@@ -31,7 +31,7 @@ namespace NJournals.Core.Views
 		}
 		
 		public void ShowItem(ItemViewModel itemViewModel){
-			
+			itemViewModelBindingSource.DataSource = itemViewModel;
 		}
 		
 		public void ReadUserInput(){
@@ -47,5 +47,12 @@ namespace NJournals.Core.Views
 			
 			
 		}
+		
+		void BtncancelClick(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+		
+
 	}
 }
