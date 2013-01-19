@@ -4,6 +4,10 @@
 -- ------------------------------------------------------
 -- Server version	5.1.47-community-log
 
+drop database if exists `db_pos`;
+create database db_pos;
+use db_pos;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -30,15 +34,6 @@ CREATE TABLE `accesssite` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `accesssite`
---
-
-LOCK TABLES `accesssite` WRITE;
-/*!40000 ALTER TABLE `accesssite` DISABLE KEYS */;
-/*!40000 ALTER TABLE `accesssite` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `catergoryinfo`
 --
 
@@ -51,15 +46,6 @@ CREATE TABLE `catergoryinfo` (
   PRIMARY KEY (`CategoryID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `catergoryinfo`
---
-
-LOCK TABLES `catergoryinfo` WRITE;
-/*!40000 ALTER TABLE `catergoryinfo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `catergoryinfo` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `daysummary`
@@ -79,15 +65,6 @@ CREATE TABLE `daysummary` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `daysummary`
---
-
-LOCK TABLES `daysummary` WRITE;
-/*!40000 ALTER TABLE `daysummary` DISABLE KEYS */;
-/*!40000 ALTER TABLE `daysummary` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `genericinfo`
 --
 
@@ -100,15 +77,6 @@ CREATE TABLE `genericinfo` (
   PRIMARY KEY (`genericID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `genericinfo`
---
-
-LOCK TABLES `genericinfo` WRITE;
-/*!40000 ALTER TABLE `genericinfo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `genericinfo` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `iteminfo`
@@ -139,15 +107,6 @@ CREATE TABLE `iteminfo` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `iteminfo`
---
-
-LOCK TABLES `iteminfo` WRITE;
-/*!40000 ALTER TABLE `iteminfo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `iteminfo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `iteminventory`
 --
 
@@ -167,48 +126,19 @@ CREATE TABLE `iteminventory` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `iteminventory`
+-- Table structure for table `rolesheader`
 --
 
-LOCK TABLES `iteminventory` WRITE;
-/*!40000 ALTER TABLE `iteminventory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `iteminventory` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `payment`
---
-
-create database db_pos;
-
-DROP TABLE IF EXISTS `payment`;
+DROP TABLE IF EXISTS `rolesheader`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `payment` (
-  `ORID` bigint(20) NOT NULL,
-  `SalesOrderID` bigint(20) DEFAULT NULL,
-  `TotalAmount` double DEFAULT NULL,
-  `Tax` double DEFAULT NULL,
-  `AmountDue` double DEFAULT NULL,
-  `Change` double DEFAULT NULL,
-  `UserID` int(11) DEFAULT NULL,
-  `DayStamp` datetime DEFAULT NULL,
-  PRIMARY KEY (`ORID`),
-  KEY `FK_payment_1` (`SalesOrderID`),
-  KEY `FK_payment_2` (`UserID`),
-  CONSTRAINT `FK_payment_1` FOREIGN KEY (`SalesOrderID`) REFERENCES `salesorderheader` (`SalesOrderID`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_payment_2` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON UPDATE CASCADE
+CREATE TABLE `rolesheader` (
+  `RoleID` int(11) NOT NULL,
+  `RoleName` varchar(50) DEFAULT NULL,
+  `Description` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`RoleID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `payment`
---
-
-LOCK TABLES `payment` WRITE;
-/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `rolesdetail`
@@ -229,66 +159,6 @@ CREATE TABLE `rolesdetail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `rolesdetail`
---
-
-LOCK TABLES `rolesdetail` WRITE;
-/*!40000 ALTER TABLE `rolesdetail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `rolesdetail` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `rolesheader`
---
-
-DROP TABLE IF EXISTS `rolesheader`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rolesheader` (
-  `RoleID` int(11) NOT NULL,
-  `RoleName` varchar(50) DEFAULT NULL,
-  `Description` varchar(300) DEFAULT NULL,
-  PRIMARY KEY (`RoleID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `rolesheader`
---
-
-LOCK TABLES `rolesheader` WRITE;
-/*!40000 ALTER TABLE `rolesheader` DISABLE KEYS */;
-/*!40000 ALTER TABLE `rolesheader` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `salesorderdetail`
---
-
-DROP TABLE IF EXISTS `salesorderdetail`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `salesorderdetail` (
-  `DetailID` bigint(20) NOT NULL,
-  `SalesOrderID` bigint(20) NOT NULL,
-  `ItemID` bigint(20) DEFAULT NULL,
-  `Qty` int(11) DEFAULT NULL,
-  `Amount` double DEFAULT NULL,
-  PRIMARY KEY (`DetailID`),
-  KEY `FK_salesorderdetail_1` (`SalesOrderID`),
-  CONSTRAINT `FK_salesorderdetail_1` FOREIGN KEY (`SalesOrderID`) REFERENCES `salesorderheader` (`SalesOrderID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `salesorderdetail`
---
-
-LOCK TABLES `salesorderdetail` WRITE;
-/*!40000 ALTER TABLE `salesorderdetail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `salesorderdetail` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `salesorderheader`
@@ -312,13 +182,24 @@ CREATE TABLE `salesorderheader` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `salesorderheader`
+-- Table structure for table `salesorderdetail`
 --
 
-LOCK TABLES `salesorderheader` WRITE;
-/*!40000 ALTER TABLE `salesorderheader` DISABLE KEYS */;
-/*!40000 ALTER TABLE `salesorderheader` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `salesorderdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `salesorderdetail` (
+  `DetailID` bigint(20) NOT NULL,
+  `SalesOrderID` bigint(20) NOT NULL,
+  `ItemID` bigint(20) DEFAULT NULL,
+  `Qty` int(11) DEFAULT NULL,
+  `Amount` double DEFAULT NULL,
+  PRIMARY KEY (`DetailID`),
+  KEY `FK_salesorderdetail_1` (`SalesOrderID`),
+  CONSTRAINT `FK_salesorderdetail_1` FOREIGN KEY (`SalesOrderID`) REFERENCES `salesorderheader` (`SalesOrderID`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Table structure for table `user`
@@ -338,16 +219,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
@@ -355,5 +227,31 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
+--
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `payment` (
+  `ORID` bigint(20) NOT NULL,
+  `SalesOrderID` bigint(20) DEFAULT NULL,
+  `TotalAmount` double DEFAULT NULL,
+  `Tax` double DEFAULT NULL,
+  `AmountDue` double DEFAULT NULL,
+  `Change` double DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  `DayStamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`ORID`),
+  KEY `FK_payment_1` (`SalesOrderID`),
+  KEY `FK_payment_2` (`UserID`),
+  CONSTRAINT `FK_payment_1` FOREIGN KEY (`SalesOrderID`) REFERENCES `salesorderheader` (`SalesOrderID`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_payment_2` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 -- Dump completed on 2013-01-17 21:25:52
