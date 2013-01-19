@@ -10,6 +10,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using NJournals.Common.Interfaces;
+using NJournals.Common.ViewModels;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -27,6 +28,24 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+		}
+		
+		public void ShowItem(ItemViewModel itemViewModel){
+			
+		}
+		
+		public void ReadUserInput(){
+			
+		}
+		
+		public void ShowError(string message){
+			
+		}			
+		
+		void BtnsaveClick(object sender, EventArgs e)
+		{
+			
+			
 		}
 	}
 }

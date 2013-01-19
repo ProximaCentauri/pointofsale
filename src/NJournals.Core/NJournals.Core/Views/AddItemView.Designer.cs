@@ -36,16 +36,41 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.btnsave = new System.Windows.Forms.Button();
+			this.btncancel = new System.Windows.Forms.Button();
 			this.SuspendLayout();
+			// 
+			// btnsave
+			// 
+			this.btnsave.Location = new System.Drawing.Point(242, 301);
+			this.btnsave.Name = "btnsave";
+			this.btnsave.Size = new System.Drawing.Size(75, 23);
+			this.btnsave.TabIndex = 0;
+			this.btnsave.Text = "Save";
+			this.btnsave.UseVisualStyleBackColor = true;
+			this.btnsave.Click += new System.EventHandler(this.BtnsaveClick);
+			// 
+			// btncancel
+			// 
+			this.btncancel.Location = new System.Drawing.Point(323, 301);
+			this.btncancel.Name = "btncancel";
+			this.btncancel.Size = new System.Drawing.Size(75, 23);
+			this.btncancel.TabIndex = 1;
+			this.btncancel.Text = "Cancel";
+			this.btncancel.UseVisualStyleBackColor = true;
 			// 
 			// AddItemView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(404, 336);
+			this.Controls.Add(this.btncancel);
+			this.Controls.Add(this.btnsave);
 			this.Name = "AddItemView";
 			this.Text = "AddItemView";
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Button btncancel;
+		private System.Windows.Forms.Button btnsave;
 	}
 }
