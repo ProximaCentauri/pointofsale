@@ -34,7 +34,7 @@ namespace NJournals.Core.Views
 			//
 		}
 		
-		
+		//TODO: Attach MessageService with MessageboxProvider
 		
 		public void ShowItem(ItemViewModel itemViewModel){
 			itemViewModelBindingSource.DataSource = itemViewModel;
