@@ -35,5 +35,27 @@ namespace NJournals.Core.Presenter
 			m_viewModel = itemViewModel;
 			m_view.ShowItem(m_viewModel);
 		}
+		
+		public void SaveClicked(){
+			m_view.ReadUserInput();	
+			
+			ItemDataEntity itemDataEntity = m_viewModel.ItemDataEntity;
+			bool dublicateExist = !IsDublicateofExisting(itemDataEntity);
+			if (dublicateExist){
+				m_itemDao.Save(itemDataEntity);
+				m_view.Close();
+			}else
+				m_view.ShowError(string.Format("Item '{0}' already exist", itemDataEntity.Name));
+		}
+		
+		public bool IsDublicateofExisting(ItemDataEntity newItemDataEntity){
+			ItemDataEntity duplicateItemDataEntity = 
+				m_itemDao.GetByName(newItemDataEntity.Name);
+			return duplicateItemDataEntity;			
+		}
+		
+		public void CancelClicked(){
+			m_view.Close();
+		}
 	}
 }

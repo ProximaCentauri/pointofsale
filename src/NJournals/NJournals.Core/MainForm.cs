@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-
+using NJournals.Common.Util;
 namespace NJournals.Core
 {
 	/// <summary>
@@ -28,6 +28,7 @@ namespace NJournals.Core
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			MessageService.Attach(new MessageBoxMessageProvider());	
 		}
 		
 		void Button1Click(object sender, EventArgs e)

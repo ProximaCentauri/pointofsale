@@ -72,5 +72,9 @@ namespace NJournals.Common.ViewModels
 			get{return m_itemDataEntity.Unit;}
 			set{m_itemDataEntity.Unit=value;}
 		}
+		
+		public ItemDataEntity ItemDataEntity{
+			get{return m_itemDataEntity;}
+		}
 	}
 }

@@ -18,5 +18,7 @@ namespace NJournals.Common
 		public ItemDataMapper()
 		{
 		}
-	}
+		
+		                 
+	}                  
 }

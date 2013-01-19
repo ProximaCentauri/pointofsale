@@ -11,6 +11,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using NJournals.Common.Interfaces;
 using NJournals.Common.ViewModels;
+using NJournals.Core.Presenter;
+using NJournals.Core.Models;
+using NJournals.Common.Util;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -18,17 +21,20 @@ namespace NJournals.Core.Views
 	/// </summary>
 	public partial class AddItemView : Form, IAddItemView
 	{
-		public AddItemView()
+		private AddItemPresenter m_presenter;
+		public AddItemView(IItemDao p_itemDao)
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
+			m_presenter = new AddItemPresenter(this, p_itemDao);
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
+		
 		
 		public void ShowItem(ItemViewModel itemViewModel){
 			itemViewModelBindingSource.DataSource = itemViewModel;
@@ -39,18 +45,18 @@ namespace NJournals.Core.Views
 		}
 		
 		public void ShowError(string message){
-			
+			MessageService.ShowError(message, "Error in Adding Item");
+			                         
 		}			
 		
 		void BtnsaveClick(object sender, EventArgs e)
 		{
-			
-			
+			m_presenter.SaveClicked();
 		}
 		
 		void BtncancelClick(object sender, EventArgs e)
 		{
-			this.Close();
+			m_presenter.CancelClicked();
 		}
 		
 
