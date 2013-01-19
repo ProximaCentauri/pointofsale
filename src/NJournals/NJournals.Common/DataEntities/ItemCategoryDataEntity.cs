@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace NJournals.Common.Entities
+namespace NJournals.Common.DataEntities
 {
 	/// <summary>
 	/// Description of ItemCategoryDataEntity.

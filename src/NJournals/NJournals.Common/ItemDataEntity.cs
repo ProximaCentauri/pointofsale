@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using NJournals.Common.DataEntities;
 	
 namespace NJournals.Common
 {

@@ -16,7 +16,7 @@ namespace NJournals.Common.Interfaces
 	public interface IItemDao
 	{
 		ItemDataEntity CreateItemDataEntity();
-        IEnumerable<ItemDataEntity> GetAlItems();
+        IEnumerable<ItemDataEntity> GetAllItems();
         void Save(ItemDataEntity p_item);
         ItemDataEntity GetByName(string p_name);
 	}

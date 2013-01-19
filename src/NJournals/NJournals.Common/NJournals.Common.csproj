@@ -31,6 +31,21 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\lib\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\..\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\lib\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\lib\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\..\..\lib\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -46,6 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataMappers\ItemCategoryDataMap.cs" />
+    <Compile Include="DataEntities\ItemCategoryDataEntity.cs" />
     <Compile Include="Interfaces\IAddItemCategoryView.cs" />
     <Compile Include="Interfaces\IAddItemGenericView.cs" />
     <Compile Include="Interfaces\IAddItemView.cs" />
@@ -55,7 +72,6 @@
     <Compile Include="Interfaces\IItemGenericDao.cs" />
     <Compile Include="Interfaces\IItemGenericView.cs" />
     <Compile Include="Interfaces\IItemView.cs" />
-    <Compile Include="ItemCategoryDataEntity.cs" />
     <Compile Include="ItemDataEntity.cs" />
     <Compile Include="ItemDataMapper.cs" />
     <Compile Include="ItemGenericDataEntity.cs" />
@@ -64,10 +80,13 @@
     <Compile Include="Util\LogHelper.cs" />
     <Compile Include="Util\MessageBoxMessageProvider.cs" />
     <Compile Include="Util\MessageService.cs" />
+    <Compile Include="Util\NHibernateHelper.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces" />
+    <Folder Include="DataMappers" />
+    <Folder Include="DataEntities" />
     <Folder Include="Util" />
     <Folder Include="ViewModels" />
   </ItemGroup>

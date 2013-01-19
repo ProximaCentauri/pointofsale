@@ -10,9 +10,9 @@ using System;
 using System.Linq;
 using FluentNHibernate.Mapping;
 using NHibernate.Linq;
-using NJournals.Common.Entities;
+using NJournals.Common.DataEntities;
 
-namespace NJournals.Common.DataMapper
+namespace NJournals.Common.DataMappers
 {
 	/// <summary>
 	/// Description of ItemCategoryDataMap.

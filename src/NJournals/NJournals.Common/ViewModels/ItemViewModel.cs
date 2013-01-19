@@ -8,7 +8,9 @@
  */
 using System;
 using NJournals.Common;
+using NJournals.Common.DataEntities;
 using System.Collections.Generic;
+
 namespace NJournals.Common.ViewModels
 {
 	/// <summary>
