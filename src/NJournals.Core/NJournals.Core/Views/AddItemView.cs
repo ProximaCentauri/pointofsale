@@ -35,7 +35,7 @@ namespace NJournals.Core.Views
 		}
 		
 		public void ReadUserInput(){
-			
+			itemViewModelBindingSource.EndEdit();
 		}
 		
 		public void ShowError(string message){
