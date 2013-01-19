@@ -2,23 +2,22 @@
  * Created by SharpDevelop.
  * User: matt
  * Date: 1/19/2013
- * Time: 9:27 AM
+ * Time: 9:58 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-
-namespace NJournals.Core
+using NJournals.Common.Interfaces;
+namespace NJournals.Core.Views
 {
 	/// <summary>
-	/// Description of MainForm.
+	/// Description of AddItemView.
 	/// </summary>
-	public partial class MainForm : Form
+	public partial class AddItemView : Form, IAddItemView
 	{
-		public MainForm()
+		public AddItemView()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -28,11 +27,6 @@ namespace NJournals.Core
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
-		}
-		
-		void Button1Click(object sender, EventArgs e)
-		{
-			
 		}
 	}
 }

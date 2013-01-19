@@ -45,7 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAddItemView.cs" />
+    <Compile Include="ItemDataEntity.cs" />
+    <Compile Include="ItemDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces" />
