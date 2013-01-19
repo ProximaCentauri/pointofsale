@@ -46,10 +46,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAddItemCategoryView.cs" />
+    <Compile Include="Interfaces\IAddItemGenericView.cs" />
     <Compile Include="Interfaces\IAddItemView.cs" />
+    <Compile Include="Interfaces\IItemCategoryDao.cs" />
+    <Compile Include="Interfaces\IItemCategoryView.cs" />
+    <Compile Include="Interfaces\IItemDao.cs" />
+    <Compile Include="Interfaces\IItemGenericDao.cs" />
+    <Compile Include="Interfaces\IItemGenericView.cs" />
     <Compile Include="Interfaces\IItemView.cs" />
+    <Compile Include="ItemCategoryDataEntity.cs" />
     <Compile Include="ItemDataEntity.cs" />
     <Compile Include="ItemDataMapper.cs" />
+    <Compile Include="ItemGenericDataEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\IMessageProvider.cs" />
     <Compile Include="Util\LogHelper.cs" />
