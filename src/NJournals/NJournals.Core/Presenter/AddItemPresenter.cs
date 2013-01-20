@@ -10,7 +10,7 @@ using System;
 using NJournals.Common.Interfaces;
 using NJournals.Common.ViewModels;
 using NJournals.Core.Models;
-using NJournals.Common;
+using NJournals.Common.DataEntities;
 
 namespace NJournals.Core.Presenter
 {
@@ -29,7 +29,7 @@ namespace NJournals.Core.Presenter
 			m_view = p_view;
 			m_itemDao = p_itemDao;
 			
-			ItemDataEntity itemDataEntity = m_itemDao.CreateItemDataEntity();
+			ItemDataEntity itemDataEntity = new ItemDataEntity();
 			ItemViewModel itemViewModel = new ItemViewModel(itemDataEntity);
 			
 			m_viewModel = itemViewModel;

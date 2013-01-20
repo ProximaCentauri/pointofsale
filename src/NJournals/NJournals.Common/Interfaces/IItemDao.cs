@@ -8,6 +8,9 @@
  */
 using System;
 using System.Collections.Generic;
+using NHibernate.Linq;
+using NJournals.Common.DataEntities;
+
 namespace NJournals.Common.Interfaces
 {
 	/// <summary>
@@ -15,9 +18,14 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface IItemDao
 	{
-		ItemDataEntity CreateItemDataEntity();
-        IEnumerable<ItemDataEntity> GetAllItems();
-        void Save(ItemDataEntity p_item);
-        ItemDataEntity GetByName(string p_name);
+		void Save(ItemDataEntity p_item);
+		IEnumerable<ItemDataEntity> GetAllItems();
+		ItemDataEntity GetByBarcode(string p_barcode);
+		ItemDataEntity GetByName(string p_name);
+		IEnumerable<ItemDataEntity> GetByCategory(string p_category);
+		IEnumerable<ItemDataEntity> GetByGeneric(string p_generic);
+		IEnumerable<ItemDataEntity> GetByDescription(string p_desc);
+		void Delete(ItemDataEntity p_item);
+		void Update(ItemDataEntity p_item);
 	}
 }

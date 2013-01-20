@@ -25,7 +25,7 @@ namespace NJournals.Common.ViewModels
 			this.m_itemDataEntity = p_itemDataEntity;
 		}
 		
-		public int Barcode{
+		public string Barcode{
 			get{return m_itemDataEntity.Barcode;}
 			set{m_itemDataEntity.Barcode=value;}
 		}
@@ -35,7 +35,17 @@ namespace NJournals.Common.ViewModels
 			set{m_itemDataEntity.Name=value;}
 		}
 		
-		public List<ItemCategoryDataEntity> Categories{
+		public ItemCategoryDataEntity Category{
+			get{return m_itemDataEntity.Category;}
+			set{m_itemDataEntity.Category=value;}
+		}
+		
+		public ItemGenericDataEntity Generic{
+			get{return m_itemDataEntity.Generic;}
+			set{m_itemDataEntity.Generic=value;}
+		}
+		
+		/*public List<ItemCategoryDataEntity> Categories{
 			get{return m_itemDataEntity.Categories;}
 			set{m_itemDataEntity.Categories=value;}
 		}
@@ -43,31 +53,31 @@ namespace NJournals.Common.ViewModels
 		public List<ItemGenericDataEntity> Generics{
 			get{return m_itemDataEntity.Generics;}
 			set{m_itemDataEntity.Generics=value;}
-		}
+		}*/
 		
 		public string Rack{
 			get{return m_itemDataEntity.Rack;}
 			set{m_itemDataEntity.Rack=value;}
 		}
 		
-		public int Quantity{
-			get{return m_itemDataEntity.Quantity;}
-			set{m_itemDataEntity.Quantity=value;}
+		public int QtyStock{
+			get{return m_itemDataEntity.QtyStock;}
+			set{m_itemDataEntity.QtyStock=value;}
 		}
 		
-		public double Price{
-			get{return m_itemDataEntity.Price;}
-			set{m_itemDataEntity.Price=value;}
+		public double BuyPrice{
+			get{return m_itemDataEntity.BuyPrice;}
+			set{m_itemDataEntity.BuyPrice=value;}
 		}
 		
-		public string MarkUp{
-			get{return m_itemDataEntity.MarkUp;}
-			set{m_itemDataEntity.MarkUp=value;}
+		public double Markup{
+			get{return m_itemDataEntity.Markup;}
+			set{m_itemDataEntity.Markup=value;}
 		}
 		
-		public double SellingPrice{
-			get{return m_itemDataEntity.SellingPrice;}
-			set{m_itemDataEntity.SellingPrice=value;}
+		public double SellPrice{
+			get{return m_itemDataEntity.SellPrice;}
+			set{m_itemDataEntity.SellPrice=value;}
 		}
 		
 		public string Unit{

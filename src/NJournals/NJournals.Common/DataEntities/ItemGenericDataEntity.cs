@@ -15,7 +15,7 @@ namespace NJournals.Common.DataEntities
 	/// </summary>
 	public class ItemGenericDataEntity
 	{
-		public virtual int GenericID { get; set; }
+		public virtual long GenericID { get; set; }
 		public virtual string GenericName { get; set; }
 	}
 }

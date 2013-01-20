@@ -63,9 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataEntities\ItemDataEntity.cs" />
     <Compile Include="DataEntities\ItemGenericDataEntity.cs" />
+    <Compile Include="DataEntities\ItemInventoryDataEntity.cs" />
     <Compile Include="DataMappers\ItemCategoryDataMap.cs" />
     <Compile Include="DataEntities\ItemCategoryDataEntity.cs" />
+    <Compile Include="DataMappers\ItemDataMap.cs" />
     <Compile Include="DataMappers\ItemGenericDataMap.cs" />
     <Compile Include="Interfaces\IAddItemCategoryView.cs" />
     <Compile Include="Interfaces\IAddItemGenericView.cs" />
@@ -76,8 +79,6 @@
     <Compile Include="Interfaces\IItemGenericDao.cs" />
     <Compile Include="Interfaces\IItemGenericView.cs" />
     <Compile Include="Interfaces\IItemView.cs" />
-    <Compile Include="ItemDataEntity.cs" />
-    <Compile Include="ItemDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\IMessageProvider.cs" />
     <Compile Include="Util\LogHelper.cs" />

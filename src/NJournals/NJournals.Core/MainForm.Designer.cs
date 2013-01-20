@@ -9,6 +9,7 @@
 using NJournals.Common.Util;
 using NJournals.Common.DataEntities;
 using NJournals.Core.Models;
+using System.Collections.Generic;
 
 namespace NJournals.Core
 {
@@ -156,16 +157,33 @@ namespace NJournals.Core
 		
 		void BtnAddGenClick(object sender, System.EventArgs e)
 		{
-			ItemGenericDataEntity itemGeneric = new ItemGenericDataEntity { GenericName = txtAdd.Text };
+			//ItemGenericDataEntity itemGeneric = new ItemGenericDataEntity { GenericName = txtAdd.Text };
+			//ItemGenericDao genericDao = new ItemGenericDao();
+			//genericDao.Save(itemGeneric);
+			ItemCategoryDao categoryDao = new ItemCategoryDao();
 			ItemGenericDao genericDao = new ItemGenericDao();
-			genericDao.Save(itemGeneric);
+	
+			ItemDataEntity itemData = new ItemDataEntity{
+				Name = "item6",
+				Category = categoryDao.GetByName("Med2"),
+				Generic = genericDao.GetByName("Gen1"),
+				Description = "this is a test item",
+				Unit = "box",
+				Rack = "A1"
+			};
+			ItemDao itemDao = new ItemDao();
+			itemDao.Save(itemData);
 		}
 		
 		void BtnDisplayGenClick(object sender, System.EventArgs e)
 		{
-			ItemGenericDao genericDao = new ItemGenericDao();
-			ItemGenericDataEntity itemGeneric = genericDao.GetByName(txtAdd.Text);
-			lblDisplay.Text = itemGeneric.GenericName;
+			//ItemGenericDao genericDao = new ItemGenericDao();
+			//ItemGenericDataEntity itemGeneric = genericDao.GetByName(txtAdd.Text);
+			//lblDisplay.Text = itemGeneric.GenericName;
+			
+			ItemDao itemDao = new ItemDao();
+			ItemDataEntity itemData = itemDao.GetByName("item6");
+			lblDisplay.Text = itemData.Generic.GenericName;
 		}
 	}
 }

@@ -18,7 +18,6 @@
 DROP DATABASE IF EXISTS `db_pos`;
 CREATE DATABASE `db_pos`;
 USE `db_pos`;
-
 --
 -- Table structure for table `accesssite`
 --
@@ -30,7 +29,7 @@ CREATE TABLE `accesssite` (
   `AccessSiteID` int(11) NOT NULL AUTO_INCREMENT,
   `SiteName` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`AccessSiteID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,9 +43,8 @@ CREATE TABLE `categoryinfo` (
   `CategoryID` int(11) NOT NULL AUTO_INCREMENT,
   `CategoryName` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`CategoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 
 --
 -- Table structure for table `genericinfo`
@@ -59,6 +57,24 @@ CREATE TABLE `genericinfo` (
   `genericID` bigint(20) NOT NULL AUTO_INCREMENT,
   `genericName` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`genericID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+----
+-- Table structure for table `daysummary`
+--
+
+DROP TABLE IF EXISTS `daysummary`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `daysummary` (
+  `DayID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DayStamp` datetime DEFAULT NULL,
+  `TotalItemSold` int(11) NOT NULL DEFAULT '0',
+  `TotalSales` double NOT NULL DEFAULT '0',
+  `TotalTax` double NOT NULL DEFAULT '0',
+  PRIMARY KEY (`DayID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -77,36 +93,22 @@ CREATE TABLE `iteminfo` (
   `GenericID` bigint(20) NOT NULL,
   `CategoryID` int(11) NOT NULL,
   `Manufacturer` varchar(250) DEFAULT NULL,
-  `Price` double NOT NULL DEFAULT '0',
+  `BuyPrice` double NOT NULL DEFAULT '0',
   `Markup` smallint(6) NOT NULL DEFAULT '0',
   `OriginalStock` int(11) NOT NULL DEFAULT '0',
   `QtyStock` int(11) NOT NULL DEFAULT '0',
   `QtySold` int(11) NOT NULL DEFAULT '0',
   `ThresholdValue` int(11) NOT NULL DEFAULT '0',
   `Barcode` varchar(45) DEFAULT NULL,
+  `Rack` varchar(45) DEFAULT NULL,
+  `SellPrice` double NOT NULL DEFAULT '0',
+  `Unit` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ItemID`),
   KEY `FK_iteminfo_1` (`CategoryID`),
   KEY `FK_iteminfo_2` (`GenericID`),
   CONSTRAINT `FK_iteminfo_1` FOREIGN KEY (`CategoryID`) REFERENCES `categoryinfo` (`CategoryID`) ON UPDATE CASCADE,
   CONSTRAINT `FK_iteminfo_2` FOREIGN KEY (`GenericID`) REFERENCES `genericinfo` (`genericID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `daysummary`
---
-
-DROP TABLE IF EXISTS `daysummary`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `daysummary` (
-  `DayID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DayStamp` datetime DEFAULT NULL,
-  `TotalItemSold` int(11) NOT NULL DEFAULT '0',
-  `TotalSales` double NOT NULL DEFAULT '0',
-  `TotalTax` double NOT NULL DEFAULT '0',
-  PRIMARY KEY (`DayID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,6 +130,7 @@ CREATE TABLE `iteminventory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Table structure for table `rolesheader`
 --
@@ -142,7 +145,6 @@ CREATE TABLE `rolesheader` (
   PRIMARY KEY (`RoleID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 
 --
 -- Table structure for table `rolesdetail`
@@ -160,6 +162,24 @@ CREATE TABLE `rolesdetail` (
   KEY `FK_rolesdetail_2` (`AccessSiteID`),
   CONSTRAINT `FK_rolesdetail_1` FOREIGN KEY (`RoleID`) REFERENCES `rolesheader` (`RoleID`) ON UPDATE CASCADE,
   CONSTRAINT `FK_rolesdetail_2` FOREIGN KEY (`AccessSiteID`) REFERENCES `accesssite` (`AccessSiteID`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `UserID` int(11) NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(250) DEFAULT NULL,
+  `Password` varchar(50) DEFAULT NULL,
+  `RoleID` int(11) NOT NULL,
+  PRIMARY KEY (`UserID`),
+  KEY `FK_user_1` (`RoleID`),
+  CONSTRAINT `FK_user_1` FOREIGN KEY (`RoleID`) REFERENCES `rolesheader` (`RoleID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -208,24 +228,6 @@ CREATE TABLE `salesorderdetail` (
 
 
 --
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
-  `UserID` int(11) NOT NULL AUTO_INCREMENT,
-  `UserName` varchar(250) DEFAULT NULL,
-  `Password` varchar(50) DEFAULT NULL,
-  `RoleID` int(11) NOT NULL,
-  PRIMARY KEY (`UserID`),
-  KEY `FK_user_1` (`RoleID`),
-  CONSTRAINT `FK_user_1` FOREIGN KEY (`RoleID`) REFERENCES `rolesheader` (`RoleID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `payment`
 --
 
@@ -250,7 +252,6 @@ CREATE TABLE `payment` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
@@ -259,5 +260,4 @@ CREATE TABLE `payment` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-01-19 13:22:04
-
+-- Dump completed on 2013-01-21  0:01:36

@@ -49,7 +49,8 @@ namespace NJournals.Common.Util
                     )
                 	.Mappings(m => m.FluentMappings
             		          .AddFromAssemblyOf<ItemCategoryDataEntity>()
-            		          .AddFromAssemblyOf<ItemGenericDataEntity>())
+            		          .AddFromAssemblyOf<ItemGenericDataEntity>()
+            		          .AddFromAssemblyOf<ItemDataEntity>())
                     .ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"))
                     .BuildSessionFactory();
             }
