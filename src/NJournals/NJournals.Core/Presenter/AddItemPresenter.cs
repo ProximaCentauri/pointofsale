@@ -51,7 +51,8 @@ namespace NJournals.Core.Presenter
 		public bool IsDublicateofExisting(ItemDataEntity newItemDataEntity){
 			ItemDataEntity duplicateItemDataEntity = 
 				m_itemDao.GetByName(newItemDataEntity.Name);
-			return duplicateItemDataEntity;			
+			//return duplicateItemDataEntity;	
+			return true;
 		}
 		
 		public void CancelClicked(){

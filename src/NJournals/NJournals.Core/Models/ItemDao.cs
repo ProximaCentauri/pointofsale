@@ -13,7 +13,7 @@ namespace NJournals.Core.Models
 	/// <summary>
 	/// Description of ItemDao.
 	/// </summary>
-	public class ItemDao : IItemDao
+	public class ItemDao// : IItemDao
 	{
 		public ItemDao()
 		{

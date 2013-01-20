@@ -34,12 +34,13 @@
     <Reference Include="Castle.Core">
       <HintPath>..\..\..\lib\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.DynamicProxy">
+      <HintPath>..\..\..\lib\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\..\lib\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\..\lib\MySql.Data.dll</HintPath>
-    </Reference>
+    <Reference Include="MySql.Data" />
     <Reference Include="NHibernate">
       <HintPath>..\..\..\lib\NHibernate.dll</HintPath>
     </Reference>
@@ -68,6 +69,7 @@
     </Compile>
     <Compile Include="Models\ItemCategoryDao.cs" />
     <Compile Include="Models\ItemDao.cs" />
+    <Compile Include="Models\ItemGenericDao.cs" />
     <Compile Include="Presenter\AddItemPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +96,9 @@
     <EmbeddedResource Include="Views\AddItemView.resx">
       <DependentUpon>AddItemView.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

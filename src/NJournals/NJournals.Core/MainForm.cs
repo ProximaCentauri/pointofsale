@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using NJournals.Common.Util;
+using NJournals.Common.DataEntities;
+using NJournals.Core.Models;
+
 namespace NJournals.Core
 {
 	/// <summary>
@@ -35,5 +38,7 @@ namespace NJournals.Core
 		{
 			
 		}
+		
+		
 	}
 }

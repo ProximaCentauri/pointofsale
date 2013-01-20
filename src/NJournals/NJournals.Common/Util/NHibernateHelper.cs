@@ -41,13 +41,15 @@ namespace NJournals.Common.Util
         {
             try
             {
-                _sessionFactory = Fluently.Configure()
+            	_sessionFactory = Fluently.Configure()
                     .Database(MySQLConfiguration.Standard
                     .ConnectionString(@"Server=localhost;Database=db_pos;User ID=root;Password=root;")
                     .Driver<NHibernate.Driver.MySqlDataDriver>()
                     .ShowSql()
                     )
-                	.Mappings(m => m.FluentMappings.AddFromAssemblyOf<ItemCategoryDataEntity>())
+                	.Mappings(m => m.FluentMappings
+            		          .AddFromAssemblyOf<ItemCategoryDataEntity>()
+            		          .AddFromAssemblyOf<ItemGenericDataEntity>())
                     .ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"))
                     .BuildSessionFactory();
             }

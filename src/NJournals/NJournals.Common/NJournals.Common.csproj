@@ -10,6 +10,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SourceAnalysisOverrideSettingsFile>C:\Users\TEJ\AppData\Roaming\ICSharpCode/SharpDevelop4\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -34,12 +35,13 @@
     <Reference Include="Castle.Core">
       <HintPath>..\..\..\lib\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.DynamicProxy">
+      <HintPath>..\..\..\lib\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\..\lib\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\..\lib\MySql.Data.dll</HintPath>
-    </Reference>
+    <Reference Include="MySql.Data" />
     <Reference Include="NHibernate">
       <HintPath>..\..\..\lib\NHibernate.dll</HintPath>
     </Reference>
@@ -61,8 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataEntities\ItemGenericDataEntity.cs" />
     <Compile Include="DataMappers\ItemCategoryDataMap.cs" />
     <Compile Include="DataEntities\ItemCategoryDataEntity.cs" />
+    <Compile Include="DataMappers\ItemGenericDataMap.cs" />
     <Compile Include="Interfaces\IAddItemCategoryView.cs" />
     <Compile Include="Interfaces\IAddItemGenericView.cs" />
     <Compile Include="Interfaces\IAddItemView.cs" />
@@ -74,7 +78,6 @@
     <Compile Include="Interfaces\IItemView.cs" />
     <Compile Include="ItemDataEntity.cs" />
     <Compile Include="ItemDataMapper.cs" />
-    <Compile Include="ItemGenericDataEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\IMessageProvider.cs" />
     <Compile Include="Util\LogHelper.cs" />

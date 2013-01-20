@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using NHibernate.Linq;
+using NJournals.Common.DataEntities;
 
 namespace NJournals.Common.Interfaces
 {
@@ -17,6 +18,10 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface IItemGenericDao
 	{
-		
+		void Save(ItemGenericDataEntity p_generic);
+		IEnumerable<ItemGenericDataEntity> GetAllItems();
+		ItemGenericDataEntity GetByName(string p_name);
+		void Delete(ItemGenericDataEntity p_generic);
+		void Update(ItemGenericDataEntity p_generic);
 	}
 }

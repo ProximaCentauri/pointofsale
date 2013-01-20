@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: TEJ
- * Date: 1/19/2013
- * Time: 9:53 PM
+ * Date: 1/20/2013
+ * Time: 11:59 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -19,67 +19,66 @@ using NJournals.Common.DataEntities;
 namespace NJournals.Core.Models
 {
 	/// <summary>
-	/// Description of ItemCategoryDao.
+	/// Description of ItemGenericDao.
 	/// </summary>
-	public class ItemCategoryDao : IItemCategoryDao
+	public class ItemGenericDao
 	{
-		public ItemCategoryDao()
+		public ItemGenericDao()
 		{
-			
 		}
 		
-		public void Save(ItemCategoryDataEntity p_category)
+		public void Save(ItemGenericDataEntity p_generic)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Save(p_category);
+					session.Save(p_generic);
 					transaction.Commit();
 				}
 			}
 		}
 		
-		public IEnumerable<ItemCategoryDataEntity> GetAllItems()
+		public IEnumerable<ItemGenericDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = (from CategoryInfo in session.Query<ItemCategoryDataEntity>()
-				             select CategoryInfo);
+				var query = (from GenericInfo in session.Query<ItemGenericDataEntity>()
+				             select GenericInfo);
 				return query.AsEnumerable();
 			}
 		}
 		
-		public ItemCategoryDataEntity GetByName(string p_name)
+		public ItemGenericDataEntity GetByName(string p_name)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = (from CategoryInfo in session.Query<ItemCategoryDataEntity>()
-				             where CategoryInfo.CategoryName == p_name
-				             select CategoryInfo).Single();
+				var query = (from GenericInfo in session.Query<ItemGenericDataEntity>()
+				             where GenericInfo.GenericName == p_name
+				             select GenericInfo).Single();
 				return query;
 			}
 		}
 		
-		public void Delete(ItemCategoryDataEntity p_category)
+		public void Delete(ItemGenericDataEntity p_generic)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Delete(p_category);
+					session.Delete(p_generic);
 					transaction.Commit();
 				}
 			}
 		}
 		
-		public void Update(ItemCategoryDataEntity p_category)
+		public void Update(ItemGenericDataEntity p_generic)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Update(p_category);
+					session.Update(p_generic);
 					transaction.Commit();
 				}
 			}

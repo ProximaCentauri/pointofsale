@@ -8,28 +8,14 @@
  */
 using System;
 
-namespace NJournals.Common
+namespace NJournals.Common.DataEntities
 {
 	/// <summary>
 	/// Description of ItemGenericDataEntity.
 	/// </summary>
 	public class ItemGenericDataEntity
 	{
-		public ItemGenericDataEntity()
-		{
-		}
-		
-		string name;
-		
-		public string Name {
-			get { return name; }
-			set { name = value; }
-		}
-		string notes;
-		
-		public string Notes {
-			get { return notes; }
-			set { notes = value; }
-		}
+		public virtual int GenericID { get; set; }
+		public virtual string GenericName { get; set; }
 	}
 }

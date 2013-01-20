@@ -40,7 +40,6 @@ namespace NJournals.Common.Util
 				}
 			}
 		}
-	
 	}
 	
 	public enum LogType
