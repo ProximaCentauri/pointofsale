@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using NJournals.Common.Util;
 using NJournals.Common.DataEntities;
 using NJournals.Core.Models;
-
+using NJournals.Core.Views;
 namespace NJournals.Core
 {
 	/// <summary>
@@ -36,7 +36,8 @@ namespace NJournals.Core
 		
 		void Button1Click(object sender, EventArgs e)
 		{
-			
+			AddItemView m_addItemView = new AddItemView(new ItemDao());
+			m_addItemView.ShowDialog();
 		}
 		
 		
