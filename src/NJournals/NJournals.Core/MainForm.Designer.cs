@@ -41,104 +41,200 @@ namespace NJournals.Core
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.Sales = new System.Windows.Forms.TabPage();
+			this.EditSales = new System.Windows.Forms.TabPage();
+			this.Payment = new System.Windows.Forms.TabPage();
+			this.Report = new System.Windows.Forms.TabPage();
+			this.Inventory = new System.Windows.Forms.TabPage();
+			this.Configuration = new System.Windows.Forms.TabPage();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.Add = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
-			this.btnAdd = new System.Windows.Forms.Button();
-			this.btnDisplay = new System.Windows.Forms.Button();
-			this.lblDisplay = new System.Windows.Forms.Label();
-			this.txtAdd = new System.Windows.Forms.TextBox();
-			this.btnAddGen = new System.Windows.Forms.Button();
-			this.btnDisplayGen = new System.Windows.Forms.Button();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
+			this.tabControl1.SuspendLayout();
+			this.Inventory.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
+			this.tabControl1.AllowDrop = true;
+			this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+			this.tabControl1.Controls.Add(this.Sales);
+			this.tabControl1.Controls.Add(this.EditSales);
+			this.tabControl1.Controls.Add(this.Payment);
+			this.tabControl1.Controls.Add(this.Report);
+			this.tabControl1.Controls.Add(this.Inventory);
+			this.tabControl1.Controls.Add(this.Configuration);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
+			this.tabControl1.HotTrack = true;
+			this.tabControl1.ImeMode = System.Windows.Forms.ImeMode.On;
+			this.tabControl1.ItemSize = new System.Drawing.Size(41, 58);
+			this.tabControl1.Location = new System.Drawing.Point(0, 0);
+			this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
+			this.tabControl1.Multiline = true;
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(974, 550);
+			this.tabControl1.TabIndex = 7;
+			// 
+			// Sales
+			// 
+			this.Sales.Location = new System.Drawing.Point(359, 4);
+			this.Sales.Name = "Sales";
+			this.Sales.Padding = new System.Windows.Forms.Padding(3);
+			this.Sales.Size = new System.Drawing.Size(611, 542);
+			this.Sales.TabIndex = 0;
+			this.Sales.Text = "Sales";
+			this.Sales.UseVisualStyleBackColor = true;
+			// 
+			// EditSales
+			// 
+			this.EditSales.Location = new System.Drawing.Point(359, 4);
+			this.EditSales.Name = "EditSales";
+			this.EditSales.Padding = new System.Windows.Forms.Padding(3);
+			this.EditSales.Size = new System.Drawing.Size(611, 542);
+			this.EditSales.TabIndex = 1;
+			this.EditSales.Text = "Edit Sales";
+			this.EditSales.UseVisualStyleBackColor = true;
+			// 
+			// Payment
+			// 
+			this.Payment.Location = new System.Drawing.Point(359, 4);
+			this.Payment.Name = "Payment";
+			this.Payment.Padding = new System.Windows.Forms.Padding(3);
+			this.Payment.Size = new System.Drawing.Size(611, 542);
+			this.Payment.TabIndex = 2;
+			this.Payment.Text = "Payment";
+			this.Payment.UseVisualStyleBackColor = true;
+			// 
+			// Report
+			// 
+			this.Report.Location = new System.Drawing.Point(359, 4);
+			this.Report.Name = "Report";
+			this.Report.Size = new System.Drawing.Size(611, 542);
+			this.Report.TabIndex = 3;
+			this.Report.Text = "Report";
+			this.Report.UseVisualStyleBackColor = true;
+			// 
+			// Inventory
+			// 
+			this.Inventory.Controls.Add(this.button3);
+			this.Inventory.Controls.Add(this.button2);
+			this.Inventory.Controls.Add(this.dataGridView1);
+			this.Inventory.Controls.Add(this.button1);
+			this.Inventory.Controls.Add(this.Add);
+			this.Inventory.Controls.Add(this.textBox1);
+			this.Inventory.Controls.Add(this.comboBox1);
+			this.Inventory.Location = new System.Drawing.Point(359, 4);
+			this.Inventory.Name = "Inventory";
+			this.Inventory.Size = new System.Drawing.Size(611, 542);
+			this.Inventory.TabIndex = 4;
+			this.Inventory.Text = "Inventory";
+			this.Inventory.UseVisualStyleBackColor = true;
+			// 
+			// Configuration
+			// 
+			this.Configuration.Location = new System.Drawing.Point(359, 4);
+			this.Configuration.Name = "Configuration";
+			this.Configuration.Size = new System.Drawing.Size(611, 542);
+			this.Configuration.TabIndex = 5;
+			this.Configuration.Text = "Configuration";
+			this.Configuration.UseVisualStyleBackColor = true;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(62, 24);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(121, 21);
+			this.comboBox1.TabIndex = 0;
+			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(196, 24);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(147, 20);
+			this.textBox1.TabIndex = 1;
+			// 
+			// Add
+			// 
+			this.Add.Location = new System.Drawing.Point(357, 21);
+			this.Add.Name = "Add";
+			this.Add.Size = new System.Drawing.Size(29, 23);
+			this.Add.TabIndex = 2;
+			this.Add.Text = "+";
+			this.Add.UseVisualStyleBackColor = true;
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(206, 227);
+			this.button1.Location = new System.Drawing.Point(401, 21);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "button1";
+			this.button1.TabIndex = 3;
+			this.button1.Text = "Search";
 			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.Button1Click);
 			// 
-			// btnAdd
+			// dataGridView1
 			// 
-			this.btnAdd.Location = new System.Drawing.Point(185, 31);
-			this.btnAdd.Name = "btnAdd";
-			this.btnAdd.Size = new System.Drawing.Size(75, 23);
-			this.btnAdd.TabIndex = 1;
-			this.btnAdd.Text = "button2";
-			this.btnAdd.UseVisualStyleBackColor = true;
-			this.btnAdd.Click += new System.EventHandler(this.BtnAddClick);
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Location = new System.Drawing.Point(19, 107);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.Size = new System.Drawing.Size(507, 212);
+			this.dataGridView1.TabIndex = 4;
 			// 
-			// btnDisplay
+			// button2
 			// 
-			this.btnDisplay.Location = new System.Drawing.Point(185, 73);
-			this.btnDisplay.Name = "btnDisplay";
-			this.btnDisplay.Size = new System.Drawing.Size(75, 23);
-			this.btnDisplay.TabIndex = 2;
-			this.btnDisplay.Text = "button3";
-			this.btnDisplay.UseVisualStyleBackColor = true;
-			this.btnDisplay.Click += new System.EventHandler(this.BtnDisplayClick);
+			this.button2.Location = new System.Drawing.Point(532, 116);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 5;
+			this.button2.Text = "Edit";
+			this.button2.UseVisualStyleBackColor = true;
 			// 
-			// lblDisplay
+			// button3
 			// 
-			this.lblDisplay.Location = new System.Drawing.Point(33, 72);
-			this.lblDisplay.Name = "lblDisplay";
-			this.lblDisplay.Size = new System.Drawing.Size(100, 23);
-			this.lblDisplay.TabIndex = 3;
-			this.lblDisplay.Text = "label1";
-			// 
-			// txtAdd
-			// 
-			this.txtAdd.Location = new System.Drawing.Point(46, 31);
-			this.txtAdd.Name = "txtAdd";
-			this.txtAdd.Size = new System.Drawing.Size(100, 20);
-			this.txtAdd.TabIndex = 4;
-			// 
-			// btnAddGen
-			// 
-			this.btnAddGen.Location = new System.Drawing.Point(185, 118);
-			this.btnAddGen.Name = "btnAddGen";
-			this.btnAddGen.Size = new System.Drawing.Size(75, 23);
-			this.btnAddGen.TabIndex = 5;
-			this.btnAddGen.Text = "button2";
-			this.btnAddGen.UseVisualStyleBackColor = true;
-			this.btnAddGen.Click += new System.EventHandler(this.BtnAddGenClick);
-			// 
-			// btnDisplayGen
-			// 
-			this.btnDisplayGen.Location = new System.Drawing.Point(185, 147);
-			this.btnDisplayGen.Name = "btnDisplayGen";
-			this.btnDisplayGen.Size = new System.Drawing.Size(75, 23);
-			this.btnDisplayGen.TabIndex = 6;
-			this.btnDisplayGen.Text = "button3";
-			this.btnDisplayGen.UseVisualStyleBackColor = true;
-			this.btnDisplayGen.Click += new System.EventHandler(this.BtnDisplayGenClick);
+			this.button3.Location = new System.Drawing.Point(532, 145);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(75, 23);
+			this.button3.TabIndex = 6;
+			this.button3.Text = "Delete";
+			this.button3.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 262);
-			this.Controls.Add(this.btnDisplayGen);
-			this.Controls.Add(this.btnAddGen);
-			this.Controls.Add(this.txtAdd);
-			this.Controls.Add(this.lblDisplay);
-			this.Controls.Add(this.btnDisplay);
-			this.Controls.Add(this.btnAdd);
-			this.Controls.Add(this.button1);
+			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.ClientSize = new System.Drawing.Size(983, 550);
+			this.Controls.Add(this.tabControl1);
 			this.Name = "MainForm";
 			this.Text = "NJournals.Core";
+			this.tabControl1.ResumeLayout(false);
+			this.Inventory.ResumeLayout(false);
+			this.Inventory.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 		}
-		private System.Windows.Forms.Button btnDisplayGen;
-		private System.Windows.Forms.Button btnAddGen;
-		private System.Windows.Forms.TextBox txtAdd;
-		private System.Windows.Forms.Label lblDisplay;
-		private System.Windows.Forms.Button btnDisplay;
-		private System.Windows.Forms.Button btnAdd;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.Button Add;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.TabPage Configuration;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TabPage Inventory;
+		private System.Windows.Forms.TabPage Report;
+		private System.Windows.Forms.TabPage Payment;
+		private System.Windows.Forms.TabPage EditSales;
+		private System.Windows.Forms.TabPage Sales;
+		private System.Windows.Forms.TabControl tabControl1;
 		
 		
 		void BtnAddClick(object sender, System.EventArgs e)

@@ -77,6 +77,10 @@
     <Compile Include="Views\AddItemView.Designer.cs">
       <DependentUpon>AddItemView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SearchItemView.cs" />
+    <Compile Include="Views\SearchItemView.Designer.cs">
+      <DependentUpon>SearchItemView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models" />
@@ -95,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AddItemView.resx">
       <DependentUpon>AddItemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SearchItemView.resx">
+      <DependentUpon>SearchItemView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
