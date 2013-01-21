@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models" />
+    <Folder Include="Resources" />
     <Folder Include="Views" />
     <Folder Include="Presenter" />
   </ItemGroup>
@@ -106,6 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\add2.png" />
+    <None Include="Resources\delete1.png" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\remove.png" />
+    <None Include="Resources\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

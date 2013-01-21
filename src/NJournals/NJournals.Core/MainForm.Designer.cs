@@ -266,50 +266,7 @@ namespace NJournals.Core
 		private System.Windows.Forms.TabControl tabControl1;
 		
 		
-		void BtnAddClick(object sender, System.EventArgs e)
-		{			
-			ItemCategoryDataEntity itemCategory = new ItemCategoryDataEntity { CategoryName = txtAdd.Text };
-			ItemCategoryDao categoryDao = new ItemCategoryDao();
-			categoryDao.Save(itemCategory);			
-		}
 		
-		void BtnDisplayClick(object sender, System.EventArgs e)
-		{
-			ItemCategoryDao categoryDao = new ItemCategoryDao();
-			ItemCategoryDataEntity itemCategory = categoryDao.GetByName(txtAdd.Text);
-			lblDisplay.Text = itemCategory.CategoryName;
-		}
-		
-		void BtnAddGenClick(object sender, System.EventArgs e)
-		{
-			//ItemGenericDataEntity itemGeneric = new ItemGenericDataEntity { GenericName = txtAdd.Text };
-			//ItemGenericDao genericDao = new ItemGenericDao();
-			//genericDao.Save(itemGeneric);
-			ItemCategoryDao categoryDao = new ItemCategoryDao();
-			ItemGenericDao genericDao = new ItemGenericDao();
-	
-			ItemDataEntity itemData = new ItemDataEntity{
-				Name = "item6",
-				Category = categoryDao.GetByName("Med2"),
-				Generic = genericDao.GetByName("Gen1"),
-				Description = "this is a test item",
-				Unit = "box",
-				Rack = "A1"
-			};
-			ItemDao itemDao = new ItemDao();
-			itemDao.Save(itemData);
-		}
-		
-		void BtnDisplayGenClick(object sender, System.EventArgs e)
-		{
-			//ItemGenericDao genericDao = new ItemGenericDao();
-			//ItemGenericDataEntity itemGeneric = genericDao.GetByName(txtAdd.Text);
-			//lblDisplay.Text = itemGeneric.GenericName;
-			
-			ItemDao itemDao = new ItemDao();
-			ItemDataEntity itemData = itemDao.GetByName("item6");
-			lblDisplay.Text = itemData.Generic.GenericName;
-		}
 
         private System.Windows.Forms.ImageList imageList1;
 	}
