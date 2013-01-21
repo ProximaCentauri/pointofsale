@@ -12,6 +12,7 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using MySql.Data;
+
 using System.Collections.Generic;
 using System.Linq;
 using NJournals.Common.DataEntities;
@@ -43,7 +44,7 @@ namespace NJournals.Common.Util
             {
             	_sessionFactory = Fluently.Configure()
                     .Database(MySQLConfiguration.Standard
-                    .ConnectionString(@"Server=localhost;Database=db_pos;User ID=root;Password=root;")
+                    .ConnectionString(@"Server=localhost;Database=db_pos;User ID=root;Password=password;")
                     .Driver<NHibernate.Driver.MySqlDataDriver>()
                     .ShowSql()
                     )

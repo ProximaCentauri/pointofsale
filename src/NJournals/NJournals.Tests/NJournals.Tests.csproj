@@ -31,8 +31,23 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\lib\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy">
+      <HintPath>..\..\..\lib\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\..\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\lib\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\..\..\lib\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\..\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\SharpDevelop\4.2\bin\Tools\NUnit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -50,6 +65,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ItemCategoryTest.cs" />
+    <Compile Include="ItemGenericTest.cs" />
+    <Compile Include="ItemTest.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -58,7 +76,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AddItemView.Test.cs" />
+    <ProjectReference Include="..\NJournals.Common\NJournals.Common.csproj">
+      <Project>{93D64FA2-505D-4E0A-8DEE-A53AC81EC839}</Project>
+      <Name>NJournals.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NJournals.Core\NJournals.Core.csproj">
+      <Project>{75204E51-263C-4A6A-ADC8-134E1D76E0CD}</Project>
+      <Name>NJournals.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

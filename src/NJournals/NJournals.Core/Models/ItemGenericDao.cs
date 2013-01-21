@@ -45,7 +45,7 @@ namespace NJournals.Core.Models
 			{
 				var query = (from GenericInfo in session.Query<ItemGenericDataEntity>()
 				             select GenericInfo);
-				return query.AsEnumerable();
+				return query.ToList();
 			}
 		}
 		
@@ -55,7 +55,7 @@ namespace NJournals.Core.Models
 			{
 				var query = (from GenericInfo in session.Query<ItemGenericDataEntity>()
 				             where GenericInfo.GenericName == p_name
-				             select GenericInfo).Single();
+				             select GenericInfo).FirstOrDefault();
 				return query;
 			}
 		}
