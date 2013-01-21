@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows;
 using NJournals.Common.Util;
 using NJournals.Common.DataEntities;
 using NJournals.Core.Models;
@@ -27,6 +28,8 @@ namespace NJournals.Core
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
+
+            //RenderOptions.SetBitmapScalingMode(this, BitmapScalingMode.);
 			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
