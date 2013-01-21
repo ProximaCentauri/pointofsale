@@ -46,7 +46,7 @@ namespace NJournals.Core.Models
 			{
 				var query = (from CategoryInfo in session.Query<ItemCategoryDataEntity>()
 				             select CategoryInfo);
-				return query.AsEnumerable();
+				return query.ToList();
 			}
 		}
 		
@@ -56,7 +56,7 @@ namespace NJournals.Core.Models
 			{
 				var query = (from CategoryInfo in session.Query<ItemCategoryDataEntity>()
 				             where CategoryInfo.CategoryName == p_name
-				             select CategoryInfo).Single();
+				             select CategoryInfo).FirstOrDefault();
 				return query;
 			}
 		}

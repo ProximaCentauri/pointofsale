@@ -47,7 +47,7 @@ namespace NJournals.Core.Models
 				var query = session.Query<ItemDataEntity>()
 					.Fetch(x => x.Category)
 					.Fetch(x => x.Generic)
-					.AsEnumerable();
+					.ToList();
 	
 				return query;
 			}
@@ -75,7 +75,7 @@ namespace NJournals.Core.Models
 					.Where(x => x.Name == p_name)
 					.Fetch(x => x.Category)
 					.Fetch(x => x.Generic)
-					.Single();
+					.FirstOrDefault();
 	
 				return query;
 			}

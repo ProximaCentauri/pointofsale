@@ -11,7 +11,7 @@ using NJournals.Common.Interfaces;
 using NJournals.Common.ViewModels;
 using NJournals.Core.Models;
 using NJournals.Common.DataEntities;
-
+using NJournals.Common.Util;
 namespace NJournals.Core.Presenter
 {
 	/// <summary>
@@ -40,6 +40,7 @@ namespace NJournals.Core.Presenter
 			m_view.ReadUserInput();	
 			
 			ItemDataEntity itemDataEntity = m_viewModel.ItemDataEntity;
+			MessageService.ShowInfo(itemDataEntity.Barcode + "    " + itemDataEntity.Name);
 			bool dublicateExist = !IsDublicateofExisting(itemDataEntity);
 			if (dublicateExist){
 				m_itemDao.Save(itemDataEntity);
