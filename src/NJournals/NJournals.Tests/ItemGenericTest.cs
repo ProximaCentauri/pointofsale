@@ -34,6 +34,12 @@ namespace NJournals.Tests
 			new ItemGenericDao().Save(entity);
 		}
 		
+		[Test]
+		public void getAllGenerics(){
+			List<ItemGenericDataEntity> entities = new ItemGenericDao().GetAllItems() as List<ItemGenericDataEntity>;
+			Assert.NotNull(entities);
+		}
+		
 		
 	}
 }

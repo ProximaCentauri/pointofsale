@@ -45,7 +45,7 @@ namespace NJournals.Core.Models
 			{
 				var query = (from GenericInfo in session.Query<ItemGenericDataEntity>()
 				             select GenericInfo);
-				return query.AsEnumerable();
+				return query.ToList();
 			}
 		}
 		
