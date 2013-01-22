@@ -35,8 +35,7 @@ namespace NJournals.Core
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
-			MessageService.Attach(new MessageBoxMessageProvider());	
-			setImage();
+			MessageService.Attach(new MessageBoxMessageProvider());				
 		}
 		
 		void AddClick(object sender, EventArgs e)
@@ -47,7 +46,12 @@ namespace NJournals.Core
 		
 		void setImage(){
 			Resource.setImage(this.Add, System.IO.Directory.GetCurrentDirectory() + "/images/add.png");
-		}
+		}	
 		
+		void MainFormLoad(object sender, EventArgs e)
+		{
+			setImage();
+			NHibernateHelper.OpenSession();
+		}
 	}
 }

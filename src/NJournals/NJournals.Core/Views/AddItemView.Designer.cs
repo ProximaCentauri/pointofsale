@@ -44,30 +44,30 @@ namespace NJournals.Core.Views
 			this.itemViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.button4 = new System.Windows.Forms.Button();
-			this.textBox9 = new System.Windows.Forms.TextBox();
-			this.textBox8 = new System.Windows.Forms.TextBox();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.txtGeneric = new System.Windows.Forms.TextBox();
+			this.txtCategory = new System.Windows.Forms.TextBox();
+			this.cmbGeneric = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.cmdCategory = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.txtRack = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.txtname = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.btnremove = new System.Windows.Forms.Button();
+			this.btnadd = new System.Windows.Forms.Button();
+			this.txtQty2 = new System.Windows.Forms.TextBox();
+			this.txtQty1 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.txtunit = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
-			this.textBox7 = new System.Windows.Forms.TextBox();
+			this.txtsellingprice = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.txtmarkup = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
-			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.txtbuyprice = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.button3 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.itemViewModelBindingSource)).BeginInit();
@@ -115,13 +115,13 @@ namespace NJournals.Core.Views
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.button4);
-			this.groupBox1.Controls.Add(this.textBox9);
-			this.groupBox1.Controls.Add(this.textBox8);
-			this.groupBox1.Controls.Add(this.comboBox2);
+			this.groupBox1.Controls.Add(this.txtGeneric);
+			this.groupBox1.Controls.Add(this.txtCategory);
+			this.groupBox1.Controls.Add(this.cmbGeneric);
 			this.groupBox1.Controls.Add(this.label5);
-			this.groupBox1.Controls.Add(this.comboBox1);
+			this.groupBox1.Controls.Add(this.cmdCategory);
 			this.groupBox1.Controls.Add(this.label4);
-			this.groupBox1.Controls.Add(this.textBox3);
+			this.groupBox1.Controls.Add(this.txtRack);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.txtname);
 			this.groupBox1.Controls.Add(this.label2);
@@ -145,27 +145,27 @@ namespace NJournals.Core.Views
 			this.button4.TabIndex = 14;
 			this.button4.UseVisualStyleBackColor = true;
 			// 
-			// textBox9
+			// txtGeneric
 			// 
-			this.textBox9.Location = new System.Drawing.Point(318, 101);
-			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(133, 20);
-			this.textBox9.TabIndex = 13;
+			this.txtGeneric.Location = new System.Drawing.Point(318, 101);
+			this.txtGeneric.Name = "txtGeneric";
+			this.txtGeneric.Size = new System.Drawing.Size(133, 20);
+			this.txtGeneric.TabIndex = 13;
 			// 
-			// textBox8
+			// txtCategory
 			// 
-			this.textBox8.Location = new System.Drawing.Point(318, 73);
-			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(133, 20);
-			this.textBox8.TabIndex = 12;
+			this.txtCategory.Location = new System.Drawing.Point(318, 73);
+			this.txtCategory.Name = "txtCategory";
+			this.txtCategory.Size = new System.Drawing.Size(133, 20);
+			this.txtCategory.TabIndex = 12;
 			// 
-			// comboBox2
+			// cmbGeneric
 			// 
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(106, 99);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(203, 21);
-			this.comboBox2.TabIndex = 11;
+			this.cmbGeneric.FormattingEnabled = true;
+			this.cmbGeneric.Location = new System.Drawing.Point(106, 99);
+			this.cmbGeneric.Name = "cmbGeneric";
+			this.cmbGeneric.Size = new System.Drawing.Size(203, 21);
+			this.cmbGeneric.TabIndex = 11;
 			// 
 			// label5
 			// 
@@ -175,13 +175,13 @@ namespace NJournals.Core.Views
 			this.label5.TabIndex = 10;
 			this.label5.Text = "Generic";
 			// 
-			// comboBox1
+			// cmdCategory
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(106, 72);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(203, 21);
-			this.comboBox1.TabIndex = 9;
+			this.cmdCategory.FormattingEnabled = true;
+			this.cmdCategory.Location = new System.Drawing.Point(106, 72);
+			this.cmdCategory.Name = "cmdCategory";
+			this.cmdCategory.Size = new System.Drawing.Size(203, 21);
+			this.cmdCategory.TabIndex = 9;
 			// 
 			// label4
 			// 
@@ -191,12 +191,12 @@ namespace NJournals.Core.Views
 			this.label4.TabIndex = 8;
 			this.label4.Text = "Category";
 			// 
-			// textBox3
+			// txtRack
 			// 
-			this.textBox3.Location = new System.Drawing.Point(106, 126);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(203, 20);
-			this.textBox3.TabIndex = 7;
+			this.txtRack.Location = new System.Drawing.Point(106, 126);
+			this.txtRack.Name = "txtRack";
+			this.txtRack.Size = new System.Drawing.Size(203, 20);
+			this.txtRack.TabIndex = 7;
 			// 
 			// label3
 			// 
@@ -224,10 +224,10 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.button2);
-			this.groupBox2.Controls.Add(this.button1);
-			this.groupBox2.Controls.Add(this.textBox2);
-			this.groupBox2.Controls.Add(this.textBox1);
+			this.groupBox2.Controls.Add(this.btnremove);
+			this.groupBox2.Controls.Add(this.btnadd);
+			this.groupBox2.Controls.Add(this.txtQty2);
+			this.groupBox2.Controls.Add(this.txtQty1);
 			this.groupBox2.Controls.Add(this.label6);
 			this.groupBox2.Location = new System.Drawing.Point(12, 177);
 			this.groupBox2.Name = "groupBox2";
@@ -236,41 +236,41 @@ namespace NJournals.Core.Views
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Stock";
 			// 
-			// button2
+			// btnremove
 			// 
-			this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.button2.FlatAppearance.BorderSize = 0;
-			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button2.Location = new System.Drawing.Point(276, 19);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(15, 19);
-			this.button2.TabIndex = 11;
-			this.button2.UseVisualStyleBackColor = true;
+			this.btnremove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.btnremove.FlatAppearance.BorderSize = 0;
+			this.btnremove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnremove.Location = new System.Drawing.Point(276, 19);
+			this.btnremove.Name = "btnremove";
+			this.btnremove.Size = new System.Drawing.Size(15, 19);
+			this.btnremove.TabIndex = 11;
+			this.btnremove.UseVisualStyleBackColor = true;
 			// 
-			// button1
+			// btnadd
 			// 
-			this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.button1.FlatAppearance.BorderSize = 0;
-			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button1.Location = new System.Drawing.Point(249, 20);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(20, 22);
-			this.button1.TabIndex = 10;
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnadd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.btnadd.FlatAppearance.BorderSize = 0;
+			this.btnadd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnadd.Location = new System.Drawing.Point(249, 20);
+			this.btnadd.Name = "btnadd";
+			this.btnadd.Size = new System.Drawing.Size(20, 22);
+			this.btnadd.TabIndex = 10;
+			this.btnadd.UseVisualStyleBackColor = true;
 			// 
-			// textBox2
+			// txtQty2
 			// 
-			this.textBox2.Location = new System.Drawing.Point(193, 18);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(45, 20);
-			this.textBox2.TabIndex = 9;
+			this.txtQty2.Location = new System.Drawing.Point(193, 18);
+			this.txtQty2.Name = "txtQty2";
+			this.txtQty2.Size = new System.Drawing.Size(45, 20);
+			this.txtQty2.TabIndex = 9;
 			// 
-			// textBox1
+			// txtQty1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(106, 19);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(79, 20);
-			this.textBox1.TabIndex = 8;
+			this.txtQty1.Location = new System.Drawing.Point(106, 19);
+			this.txtQty1.Name = "txtQty1";
+			this.txtQty1.Size = new System.Drawing.Size(79, 20);
+			this.txtQty1.TabIndex = 8;
 			// 
 			// label6
 			// 
@@ -282,13 +282,13 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.textBox6);
+			this.groupBox3.Controls.Add(this.txtunit);
 			this.groupBox3.Controls.Add(this.label9);
-			this.groupBox3.Controls.Add(this.textBox7);
+			this.groupBox3.Controls.Add(this.txtsellingprice);
 			this.groupBox3.Controls.Add(this.label10);
-			this.groupBox3.Controls.Add(this.textBox4);
+			this.groupBox3.Controls.Add(this.txtmarkup);
 			this.groupBox3.Controls.Add(this.label7);
-			this.groupBox3.Controls.Add(this.textBox5);
+			this.groupBox3.Controls.Add(this.txtbuyprice);
 			this.groupBox3.Controls.Add(this.label8);
 			this.groupBox3.Location = new System.Drawing.Point(12, 233);
 			this.groupBox3.Name = "groupBox3";
@@ -297,12 +297,12 @@ namespace NJournals.Core.Views
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Price";
 			// 
-			// textBox6
+			// txtunit
 			// 
-			this.textBox6.Location = new System.Drawing.Point(106, 97);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(203, 20);
-			this.textBox6.TabIndex = 13;
+			this.txtunit.Location = new System.Drawing.Point(106, 97);
+			this.txtunit.Name = "txtunit";
+			this.txtunit.Size = new System.Drawing.Size(203, 20);
+			this.txtunit.TabIndex = 13;
 			// 
 			// label9
 			// 
@@ -312,12 +312,12 @@ namespace NJournals.Core.Views
 			this.label9.TabIndex = 12;
 			this.label9.Text = "Unit";
 			// 
-			// textBox7
+			// txtsellingprice
 			// 
-			this.textBox7.Location = new System.Drawing.Point(106, 71);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.Size = new System.Drawing.Size(203, 20);
-			this.textBox7.TabIndex = 11;
+			this.txtsellingprice.Location = new System.Drawing.Point(106, 71);
+			this.txtsellingprice.Name = "txtsellingprice";
+			this.txtsellingprice.Size = new System.Drawing.Size(203, 20);
+			this.txtsellingprice.TabIndex = 11;
 			// 
 			// label10
 			// 
@@ -327,27 +327,27 @@ namespace NJournals.Core.Views
 			this.label10.TabIndex = 10;
 			this.label10.Text = "Selling Price";
 			// 
-			// textBox4
+			// txtmarkup
 			// 
-			this.textBox4.Location = new System.Drawing.Point(106, 45);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(203, 20);
-			this.textBox4.TabIndex = 9;
+			this.txtmarkup.Location = new System.Drawing.Point(106, 45);
+			this.txtmarkup.Name = "txtmarkup";
+			this.txtmarkup.Size = new System.Drawing.Size(203, 20);
+			this.txtmarkup.TabIndex = 9;
 			// 
 			// label7
 			// 
-			this.label7.Location = new System.Drawing.Point(10, 42);
+			this.label7.Location = new System.Drawing.Point(10, 45);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(100, 23);
 			this.label7.TabIndex = 8;
 			this.label7.Text = "Mark-up %";
 			// 
-			// textBox5
+			// txtbuyprice
 			// 
-			this.textBox5.Location = new System.Drawing.Point(106, 19);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(203, 20);
-			this.textBox5.TabIndex = 7;
+			this.txtbuyprice.Location = new System.Drawing.Point(106, 19);
+			this.txtbuyprice.Name = "txtbuyprice";
+			this.txtbuyprice.Size = new System.Drawing.Size(203, 20);
+			this.txtbuyprice.TabIndex = 7;
 			// 
 			// label8
 			// 
@@ -382,6 +382,7 @@ namespace NJournals.Core.Views
 			this.Name = "AddItemView";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Item";
+			this.Load += new System.EventHandler(this.AddItemViewLoad);
 			((System.ComponentModel.ISupportInitialize)(this.itemViewModelBindingSource)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
@@ -393,31 +394,31 @@ namespace NJournals.Core.Views
 		}
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.TextBox textBox8;
-		private System.Windows.Forms.TextBox textBox9;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.TextBox txtCategory;
+		private System.Windows.Forms.TextBox txtGeneric;
+		private System.Windows.Forms.TextBox txtQty1;
+		private System.Windows.Forms.TextBox txtQty2;
+		private System.Windows.Forms.Button btnadd;
+		private System.Windows.Forms.Button btnremove;
 		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.TextBox textBox5;
+		private System.Windows.Forms.TextBox txtbuyprice;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.TextBox txtmarkup;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.TextBox textBox7;
+		private System.Windows.Forms.TextBox txtsellingprice;
 		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.TextBox textBox6;
+		private System.Windows.Forms.TextBox txtunit;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ComboBox cmdCategory;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.ComboBox comboBox2;
+		private System.Windows.Forms.ComboBox cmbGeneric;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox txtname;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox txtRack;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.TextBox txtbarcode;
 		private System.Windows.Forms.Label label1;

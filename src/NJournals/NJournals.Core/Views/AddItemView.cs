@@ -14,6 +14,9 @@ using NJournals.Common.ViewModels;
 using NJournals.Core.Presenter;
 using NJournals.Core.Models;
 using NJournals.Common.Util;
+using System.Collections.Generic;
+using NJournals.Common.DataEntities;
+
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -32,7 +35,8 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
-			setImages();
+			
+			
 		}
 		
 		//TODO: Attach MessageService with MessageboxProvider
@@ -61,8 +65,27 @@ namespace NJournals.Core.Views
 		}
 		
 		void setImages(){
-			Resource.setImage(this.button1, System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
+			Resource.setImage(this.btnadd, System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
+			Resource.setImage(this.btnadd, System.IO.Directory.GetCurrentDirectory() + "/images/remove.png");
 		}
-
+		
+		public void SetAllCategories(List<ItemCategoryDataEntity> categories){
+			foreach(ItemCategoryDataEntity category in categories){
+				this.cmdCategory.Items.Add(category.CategoryName);
+			}
+		}
+		
+		public void SetAllGenerics(List<ItemGenericDataEntity> generics){
+			foreach(ItemGenericDataEntity generic in generics){
+				this.cmbGeneric.Items.Add(generic.GenericName);
+			}			
+		}
+		
+		void AddItemViewLoad(object sender, EventArgs e)
+		{
+			setImages();
+			m_presenter.SetAllCategories();
+			m_presenter.SetAllGenerics();
+		}
 	}
 }

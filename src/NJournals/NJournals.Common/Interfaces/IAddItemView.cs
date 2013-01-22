@@ -8,6 +8,8 @@
  */
 using System;
 using NJournals.Common.ViewModels;
+using System.Collections.Generic;
+using NJournals.Common.DataEntities;
 namespace NJournals.Common.Interfaces
 {
 	/// <summary>
@@ -18,6 +20,8 @@ namespace NJournals.Common.Interfaces
 		void ShowItem(ItemViewModel customerViewModel);
         void ReadUserInput();
         void ShowError(string message);
+        void SetAllCategories(List<ItemCategoryDataEntity> categories);
+        void SetAllGenerics(List<ItemGenericDataEntity> generics);
         void Close();
 	}
 }

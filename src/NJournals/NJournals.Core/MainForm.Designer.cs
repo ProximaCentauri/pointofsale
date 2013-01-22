@@ -240,6 +240,7 @@ namespace NJournals.Core
 			this.Controls.Add(this.tabControl1);
 			this.Name = "MainForm";
 			this.Text = "NJournals.Core";
+			this.Load += new System.EventHandler(this.MainFormLoad);
 			this.tabControl1.ResumeLayout(false);
 			this.Inventory.ResumeLayout(false);
 			this.Inventory.PerformLayout();
