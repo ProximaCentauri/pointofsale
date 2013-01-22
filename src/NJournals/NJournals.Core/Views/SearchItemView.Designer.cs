@@ -62,7 +62,7 @@ namespace NJournals.Core.Views
             // 
             // button1
             // 
-            this.button1.BackgroundImage = global::NJournals.Core.Properties.Resources.search;
+            
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

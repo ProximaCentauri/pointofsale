@@ -56,5 +56,12 @@ namespace NJournals.Tests
 			ItemDataEntity entity = new ItemDao().GetByName("Biogesic");
 			Console.WriteLine(entity.Barcode);
 		}
+		
+		[Test]
+		public void sample(){
+			string startupPath = System.IO.Directory.GetCurrentDirectory() + "\\images\\add2.png";
+			Console.WriteLine(startupPath);
+				
+		}
 	}
 }

@@ -32,6 +32,7 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			setImages();
 		}
 		
 		//TODO: Attach MessageService with MessageboxProvider
@@ -59,6 +60,9 @@ namespace NJournals.Core.Views
 			m_presenter.CancelClicked();
 		}
 		
+		void setImages(){
+			Resource.setImage(this.button1, System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
+		}
 
 	}
 }

@@ -38,7 +38,7 @@ namespace NJournals.Common.Util
 				throw new ArgumentNullException("MessageProvider");
 			}
 			provider.ShowInfo(message, caption);
-			LogHelper.Log(message, LogType.INFO);
+			LogHelper.Log(message, LogType.INFO, false);
 		}
 	
 		public static void ShowError(string message, string caption)
@@ -47,7 +47,7 @@ namespace NJournals.Common.Util
 				throw new ArgumentNullException("MessageProvider");
 			}
 			provider.ShowError(message, caption);
-			LogHelper.Log(message, LogType.ERR);
+			LogHelper.Log(message, LogType.ERR, false);
 		}
 	
 		public static void ShowError(string message)
@@ -67,7 +67,7 @@ namespace NJournals.Common.Util
 				throw new ArgumentNullException("MessageProvider");
 			}
 			provider.ShowWarning(message, caption);
-			LogHelper.Log(message, LogType.WARNING);
+			LogHelper.Log(message, LogType.WARNING, false);
 		}
 	
 		public static bool ShowYesNo(string message)

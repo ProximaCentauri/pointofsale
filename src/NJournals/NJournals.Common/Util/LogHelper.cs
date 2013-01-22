@@ -16,9 +16,9 @@ namespace NJournals.Common.Util
 	public class LogHelper
 	{
 
-		public static void Log(string data, LogType type, bool writeToConsole = false)
+		public static void Log(string data, LogType type, bool writeToConsole)
 		{
-	
+			
 			string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NJournals\\logs";
 			DirectoryInfo di = new DirectoryInfo(path);
 			if (!di.Exists) {

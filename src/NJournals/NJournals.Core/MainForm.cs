@@ -15,6 +15,7 @@ using NJournals.Common.Util;
 using NJournals.Common.DataEntities;
 using NJournals.Core.Models;
 using NJournals.Core.Views;
+
 namespace NJournals.Core
 {
 	/// <summary>
@@ -35,14 +36,18 @@ namespace NJournals.Core
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 			MessageService.Attach(new MessageBoxMessageProvider());	
+			setImage();
 		}
 		
-		void Button1Click(object sender, EventArgs e)
+		void AddClick(object sender, EventArgs e)
 		{
 			AddItemView m_addItemView = new AddItemView(new ItemDao());
 			m_addItemView.ShowDialog();
 		}
 		
+		void setImage(){
+			Resource.setImage(this.Add, System.IO.Directory.GetCurrentDirectory() + "/images/add.png");
+		}
 		
 	}
 }
