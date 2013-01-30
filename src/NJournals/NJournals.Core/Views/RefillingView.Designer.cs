@@ -52,8 +52,14 @@ namespace NJournals.Core.Views
 			this.label4 = new System.Windows.Forms.Label();
 			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.label6 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.textBox9 = new System.Windows.Forms.TextBox();
+			this.label11 = new System.Windows.Forms.Label();
+			this.textBox8 = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -208,29 +214,92 @@ namespace NJournals.Core.Views
 			this.dataGridView1.Size = new System.Drawing.Size(538, 197);
 			this.dataGridView1.TabIndex = 5;
 			// 
-			// label6
+			// textBox10
 			// 
-			this.label6.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(629, 395);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(93, 18);
-			this.label6.TabIndex = 6;
-			this.label6.Text = "Amount Due:";
+			this.textBox10.Location = new System.Drawing.Point(737, 438);
+			this.textBox10.Name = "textBox10";
+			this.textBox10.Size = new System.Drawing.Size(119, 20);
+			this.textBox10.TabIndex = 19;
 			// 
-			// textBox4
+			// label12
 			// 
-			this.textBox4.Location = new System.Drawing.Point(719, 395);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(119, 20);
-			this.textBox4.TabIndex = 7;
+			this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label12.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.label12.Location = new System.Drawing.Point(644, 438);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(93, 18);
+			this.label12.TabIndex = 18;
+			this.label12.Text = "Change:";
+			this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// textBox9
+			// 
+			this.textBox9.Location = new System.Drawing.Point(737, 412);
+			this.textBox9.Name = "textBox9";
+			this.textBox9.Size = new System.Drawing.Size(119, 20);
+			this.textBox9.TabIndex = 17;
+			// 
+			// label11
+			// 
+			this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			this.label11.Location = new System.Drawing.Point(613, 412);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(124, 18);
+			this.label11.TabIndex = 16;
+			this.label11.Text = "Amount Tender:";
+			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// textBox8
+			// 
+			this.textBox8.Location = new System.Drawing.Point(737, 386);
+			this.textBox8.Name = "textBox8";
+			this.textBox8.Size = new System.Drawing.Size(119, 20);
+			this.textBox8.TabIndex = 15;
+			// 
+			// label10
+			// 
+			this.label10.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label10.ForeColor = System.Drawing.Color.Red;
+			this.label10.Location = new System.Drawing.Point(647, 386);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(93, 18);
+			this.label10.TabIndex = 14;
+			this.label10.Text = "Amount Due:";
+			// 
+			// button4
+			// 
+			this.button4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button4.Location = new System.Drawing.Point(781, 507);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(75, 23);
+			this.button4.TabIndex = 21;
+			this.button4.Text = "Cancel";
+			this.button4.UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this.button3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button3.Location = new System.Drawing.Point(688, 507);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(75, 23);
+			this.button3.TabIndex = 20;
+			this.button3.Text = "Print";
+			this.button3.UseVisualStyleBackColor = true;
 			// 
 			// RefillingView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(892, 566);
-			this.Controls.Add(this.textBox4);
-			this.Controls.Add(this.label6);
+			this.Controls.Add(this.button4);
+			this.Controls.Add(this.button3);
+			this.Controls.Add(this.textBox10);
+			this.Controls.Add(this.label12);
+			this.Controls.Add(this.textBox9);
+			this.Controls.Add(this.label11);
+			this.Controls.Add(this.textBox8);
+			this.Controls.Add(this.label10);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.Services);
 			this.Controls.Add(this.comboBox1);
@@ -246,8 +315,14 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
-		private System.Windows.Forms.TextBox textBox4;
-		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.TextBox textBox8;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.TextBox textBox9;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.TextBox textBox10;
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.ComboBox comboBox3;
 		private System.Windows.Forms.Label label4;
