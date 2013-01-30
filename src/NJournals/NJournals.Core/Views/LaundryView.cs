@@ -9,13 +9,14 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using NJournals.Common.Interfaces;
 
 namespace NJournals.Core.Views
 {
 	/// <summary>
 	/// Description of LaundryNewView.
 	/// </summary>
-	public partial class LaundryNewView : Form
+	public partial class LaundryNewView : Form, ILaundryView
 	{
 		public LaundryNewView()
 		{

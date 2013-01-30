@@ -8,7 +8,7 @@
  */
 using System;
 using System.Windows.Forms;
-
+using NJournals.Core.Presenter;
 namespace NJournals.Core
 {
 	/// <summary>
@@ -24,7 +24,9 @@ namespace NJournals.Core
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm());
+			MainFormStation mainFormStation = new MainFormStation();
+			MainFormStationPresenter presenter = new MainFormStationPresenter(mainFormStation);
+			Application.Run(mainFormStation);
 		}
 		
 	}

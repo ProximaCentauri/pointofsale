@@ -214,7 +214,7 @@ namespace NJournals.Core.Views
 			this.label7.Size = new System.Drawing.Size(71, 23);
 			this.label7.TabIndex = 6;
 			this.label7.Text = "# of Items:";
-			this.label7.Click += new System.EventHandler(this.Label7Click);
+			
 			// 
 			// comboBox2
 			// 

@@ -56,6 +56,7 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -68,15 +69,41 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainFormStation.cs" />
+    <Compile Include="MainFormStation.Designer.cs">
+      <DependentUpon>MainFormStation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ItemCategoryDao.cs" />
     <Compile Include="Models\ItemDao.cs" />
     <Compile Include="Models\ItemGenericDao.cs" />
     <Compile Include="Presenter\AddItemPresenter.cs" />
+    <Compile Include="Presenter\LaundryViewPresenter.cs" />
+    <Compile Include="Presenter\MainFormStationPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\AddItemView.cs" />
     <Compile Include="Views\AddItemView.Designer.cs">
       <DependentUpon>AddItemView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LaundryMain.cs" />
+    <Compile Include="Views\LaundryMain.Designer.cs">
+      <DependentUpon>LaundryMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LaundryView.cs" />
+    <Compile Include="Views\LaundryView.Designer.cs">
+      <DependentUpon>LaundryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RefillingMain.cs" />
+    <Compile Include="Views\RefillingMain.Designer.cs">
+      <DependentUpon>RefillingMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RefillingView.cs" />
+    <Compile Include="Views\RefillingView.Designer.cs">
+      <DependentUpon>RefillingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportView.cs" />
+    <Compile Include="Views\ReportView.Designer.cs">
+      <DependentUpon>ReportView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SearchItemView.cs" />
     <Compile Include="Views\SearchItemView.Designer.cs">
@@ -99,8 +126,26 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainFormStation.resx">
+      <DependentUpon>MainFormStation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\AddItemView.resx">
       <DependentUpon>AddItemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LaundryMain.resx">
+      <DependentUpon>LaundryMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LaundryView.resx">
+      <DependentUpon>LaundryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RefillingMain.resx">
+      <DependentUpon>RefillingMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RefillingView.resx">
+      <DependentUpon>RefillingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReportView.resx">
+      <DependentUpon>ReportView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SearchItemView.resx">
       <DependentUpon>SearchItemView.cs</DependentUpon>
