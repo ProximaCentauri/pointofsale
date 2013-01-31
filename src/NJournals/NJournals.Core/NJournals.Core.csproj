@@ -85,37 +85,21 @@
     <Compile Include="Views\AddItemView.Designer.cs">
       <DependentUpon>AddItemView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\LaundryConfigurationView.cs" />
-    <Compile Include="Views\LaundryConfigurationView.Designer.cs">
-      <DependentUpon>LaundryConfigurationView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\LaundryMain.cs" />
-    <Compile Include="Views\LaundryMain.Designer.cs">
-      <DependentUpon>LaundryMain.cs</DependentUpon>
+    <Compile Include="Views\ConfigurationView.cs" />
+    <Compile Include="Views\ConfigurationView.Designer.cs">
+      <DependentUpon>ConfigurationView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\LaundryView.cs" />
     <Compile Include="Views\LaundryView.Designer.cs">
       <DependentUpon>LaundryView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\RefillingConfigurationView.cs" />
-    <Compile Include="Views\RefillingConfigurationView.Designer.cs">
-      <DependentUpon>RefillingConfigurationView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RefillingMain.cs" />
-    <Compile Include="Views\RefillingMain.Designer.cs">
-      <DependentUpon>RefillingMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RefillingReportView.cs" />
-    <Compile Include="Views\RefillingReportView.Designer.cs">
-      <DependentUpon>RefillingReportView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\RefillingView.cs" />
     <Compile Include="Views\RefillingView.Designer.cs">
       <DependentUpon>RefillingView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\LaundryReportView.cs" />
-    <Compile Include="Views\LaundryReportView.Designer.cs">
-      <DependentUpon>LaundryReportView.cs</DependentUpon>
+    <Compile Include="Views\ReportView.cs" />
+    <Compile Include="Views\ReportView.Designer.cs">
+      <DependentUpon>ReportView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SearchItemView.cs" />
     <Compile Include="Views\SearchItemView.Designer.cs">
@@ -144,29 +128,17 @@
     <EmbeddedResource Include="Views\AddItemView.resx">
       <DependentUpon>AddItemView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\LaundryConfigurationView.resx">
-      <DependentUpon>LaundryConfigurationView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\LaundryMain.resx">
-      <DependentUpon>LaundryMain.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ConfigurationView.resx">
+      <DependentUpon>ConfigurationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LaundryView.resx">
       <DependentUpon>LaundryView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\RefillingConfigurationView.resx">
-      <DependentUpon>RefillingConfigurationView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\RefillingMain.resx">
-      <DependentUpon>RefillingMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\RefillingReportView.resx">
-      <DependentUpon>RefillingReportView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\RefillingView.resx">
       <DependentUpon>RefillingView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\LaundryReportView.resx">
-      <DependentUpon>LaundryReportView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ReportView.resx">
+      <DependentUpon>ReportView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SearchItemView.resx">
       <DependentUpon>SearchItemView.cs</DependentUpon>

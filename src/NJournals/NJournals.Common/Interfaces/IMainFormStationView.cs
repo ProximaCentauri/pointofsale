@@ -13,7 +13,7 @@ namespace NJournals.Common.Interfaces
 	/// <summary>
 	/// Description of IMainFormView.
 	/// </summary>
-	public interface IMainFormStationView
+	public interface IMainFormStationView : IView
 	{		
 		event EventHandler SelectLaundryNew;
 		event EventHandler SelectLaundryClaim;
@@ -23,10 +23,14 @@ namespace NJournals.Common.Interfaces
 		event EventHandler SelectRefillingClaim;
 		event EventHandler SelectRefillingReport;
 		event EventHandler SelectRefillingConfiguration;
-		
-		void CloseWindow();
-		void ShowLaundryView();
-		void ShowRefillingView();
-		void ShowReportView();
+			
+		void ShowLaundryNewView();
+		void ShowLaundryClaimView();
+		void ShowRefillingNewView();
+		void ShowRefillingClaimView();
+		void ShowLaundryReportView();
+		void ShowRefillingReportView();
+		void ShowLaundryConfigurationView();
+		void ShowRefillingConfigurationView();
 	}
 }

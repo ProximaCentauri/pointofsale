@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: mc185104
- * Date: 1/30/2013
- * Time: 12:18 PM
+ * Date: 1/31/2013
+ * Time: 4:30 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -11,11 +11,10 @@ using System;
 namespace NJournals.Common.Interfaces
 {
 	/// <summary>
-	/// Description of ILaundryView.
+	/// Description of IRefillingView.
 	/// </summary>
-	public interface ILaundryView : IView
+	public interface IRefillingView : IView
 	{
-		
 		
 	}
 }

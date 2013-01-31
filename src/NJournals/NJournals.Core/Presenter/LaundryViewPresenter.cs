@@ -21,7 +21,9 @@ namespace NJournals.Core.Presenter
 		public LaundryViewPresenter(ILaundryView p_view)
 		{
 			this.m_view = p_view;
+			
 		}
+		
 		
 		
 	}

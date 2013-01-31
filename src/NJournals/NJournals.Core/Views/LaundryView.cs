@@ -10,13 +10,13 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using NJournals.Common.Interfaces;
-
+using NJournals.Common.Gui;
 namespace NJournals.Core.Views
 {
 	/// <summary>
 	/// Description of LaundryNewView.
 	/// </summary>
-	public partial class LaundryNewView : Form, ILaundryView
+	public partial class LaundryNewView : BaseForm, ILaundryView
 	{
 		public LaundryNewView()
 		{
@@ -28,6 +28,13 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			this.ViewShow += delegate { LaundryNewViewLoad(this, null); };
+			this.ViewClose += delegate { Close(); };
+		}
+		
+		void LaundryNewViewLoad(object sender, EventArgs e)
+		{
+			
 		}
 	}
 }

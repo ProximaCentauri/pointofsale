@@ -20,21 +20,46 @@ namespace NJournals.Core.Presenter
 		public MainFormStationPresenter(IMainFormStationView p_view)
 		{
 			this.m_view = p_view;
-			this.m_view.SelectLaundryNew += delegate { ShowLaundryView(); };
-			this.m_view.SelectRefillingNew += delegate { ShowRefillingView(); };
-			this.m_view.SelectRefillingReport += delegate { ShowReportView(); };
+			this.m_view.SelectLaundryNew += delegate { ShowLaundryNewView(); };
+			this.m_view.SelectLaundryClaim += delegate { ShowLaundryClaimView(); };
+			this.m_view.SelectRefillingNew += delegate { ShowRefillingNewView(); };
+			this.m_view.SelectRefillingClaim += delegate { ShowRefillingClaimView(); };
+			this.m_view.SelectRefillingReport += delegate { ShowRefillingReportView(); };
+			this.m_view.SelectLaundryReport += delegate { ShowLaundryReportView(); };
+			this.m_view.SelectLaundryConfiguration += delegate { ShowLaundryConfigurationView(); };
+			this.m_view.SelectRefillingConfiguration += delegate { ShowRefillingConfigurationView(); };
 		}
 		
-		public void ShowLaundryView(){
-			this.m_view.ShowLaundryView();
+		public void ShowLaundryNewView(){
+			this.m_view.ShowLaundryNewView();
 		}
 		
-		public void ShowRefillingView(){
-			this.m_view.ShowRefillingView();
+		public void ShowLaundryClaimView(){
+			this.m_view.ShowLaundryClaimView();
 		}
 		
-		public void ShowReportView(){
-			this.m_view.ShowReportView();
+		public void ShowRefillingNewView(){
+			this.m_view.ShowRefillingNewView();
+		}
+		
+		public void ShowRefillingClaimView(){
+			this.m_view.ShowRefillingClaimView();
+		}
+		
+		public void ShowLaundryReportView(){
+			this.m_view.ShowLaundryReportView();
+		}
+		
+		public void ShowRefillingReportView(){
+			this.m_view.ShowRefillingReportView();
+		}
+		
+		public void ShowLaundryConfigurationView(){
+			this.m_view.ShowLaundryConfigurationView();
+		}
+		
+		public void ShowRefillingConfigurationView(){
+			this.m_view.ShowRefillingConfigurationView();
 		}
 		
 	}
