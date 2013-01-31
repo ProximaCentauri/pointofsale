@@ -49,9 +49,12 @@ namespace NJournals.Common.Util
                     .ShowSql()
                     )
                 	.Mappings(m => m.FluentMappings
-            		          .AddFromAssemblyOf<ItemCategoryDataEntity>()
-            		          .AddFromAssemblyOf<ItemGenericDataEntity>()
-            		          .AddFromAssemblyOf<ItemDataEntity>())
+            		          .AddFromAssemblyOf<LaundryCategoryDataEntity>()
+            		          .AddFromAssemblyOf<LaundryChargeDataEntity>()
+            		          .AddFromAssemblyOf<LaundryServiceDataEntity>()
+            		          .AddFromAssemblyOf<LaundryPriceSchemeDataEntity>()
+            		          .AddFromAssemblyOf<LaundryHeaderDataEntity>()
+            		          .AddFromAssemblyOf<LaundryDetailDataEntity>())
                     .ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"))
                     .BuildSessionFactory();
             }
