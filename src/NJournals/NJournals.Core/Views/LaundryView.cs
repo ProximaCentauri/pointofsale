@@ -28,8 +28,7 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
-			this.ViewShow += delegate { LaundryNewViewLoad(this, null); };
-			this.ViewClose += delegate { Close(); };
+		
 		}
 		
 		void LaundryNewViewLoad(object sender, EventArgs e)

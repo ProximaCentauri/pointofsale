@@ -31,6 +31,7 @@ namespace NJournals.Tests
 		public void saveCategory(){
 			LaundryCategoryDataEntity entity = new LaundryCategoryDataEntity();			
 			entity.Name = "Wash Dry Fold";
+			entity.Description = "Wash and Burn";
 			LaundryCategoryDao dao = new LaundryCategoryDao();
 			dao.Save(entity);				
 		}
@@ -40,7 +41,8 @@ namespace NJournals.Tests
 			List<LaundryCategoryDataEntity> categories = new LaundryCategoryDao().GetAllItems() as List<LaundryCategoryDataEntity>;
 			Assert.NotNull(categories);
 			foreach(LaundryCategoryDataEntity category in categories){
-				Console.WriteLine(category.Name);
+				Console.WriteLine("Name: " + category.Name);
+				Console.WriteLine("Description: " + category.Description);
 			}
 		}
 	}

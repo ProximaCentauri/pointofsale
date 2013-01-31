@@ -16,7 +16,7 @@ using MySql.Data;
 using System.Collections.Generic;
 using System.Linq;
 using NJournals.Common.DataEntities;
-
+using System.Configuration;
 namespace NJournals.Common.Util
 {
 	/// <summary>
@@ -41,10 +41,10 @@ namespace NJournals.Common.Util
         private static void InitializeSessionFactory()
         {
             try
-            {
+            {            	
             	_sessionFactory = Fluently.Configure()
-                    .Database(MySQLConfiguration.Standard
-                    .ConnectionString(@"Server=localhost;Database=db_laundry_refilling;User ID=root;")
+                    .Database(MySQLConfiguration.Standard                    
+                    .ConnectionString(ConfigurationManager.AppSettings["mysqlConnString"])
                     .Driver<NHibernate.Driver.MySqlDataDriver>()
                     .ShowSql()
                     )
