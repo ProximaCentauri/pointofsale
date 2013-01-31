@@ -53,6 +53,7 @@ namespace NJournals.Core
 		
 		public void ShowLaundryNewView(){					
 			laundryView.SetTitle("Laundry  [NEW]");
+			
 			ShowSingletonForm(laundryView);
 		}
 		
@@ -91,7 +92,8 @@ namespace NJournals.Core
 			ShowSingletonForm(configView);
 		}
 		
-		private void ShowSingletonForm(Form p_form){			
+		private void ShowSingletonForm(Form p_form){	
+			//this.listOpenWindows();
 			string title = p_form.Text;
 			foreach(Form m_form in Application.OpenForms){
 				if(m_form.GetType() == p_form.GetType()){
@@ -106,6 +108,8 @@ namespace NJournals.Core
 			p_form.Text = title;
 			p_form.StartPosition = FormStartPosition.CenterScreen;			
 			p_form.MdiParent = this;
+			p_form.FormClosed += new FormClosedEventHandler(FormViewClose);
+			p_form.Load += new EventHandler(FormViewShow);
 			p_form.Show();
 		}
 		
@@ -187,15 +191,14 @@ namespace NJournals.Core
 			this.lblRefClaim.Click += delegate { OnSelectRefillingClaim(null); };
 			this.lblRefConfig.Click += delegate { OnSelectRefillingConfig(null); };
 			this.lblRefReports.Click += delegate { OnSelectRefillingReports(null); };
-			this.laundryView.ViewClose += delegate { FormViewClose(this.laundryView, null); };
-			this.laundryView.ViewShow += delegate { FormViewShow(this.laundryView, null); };
+			
 		}
 		
-		void FormViewClose(object sender, EventArgs e){
+		void FormViewClose(object sender, FormClosedEventArgs e){
 			Form m_form = sender as Form;
-			foreach(string s in this.lstOpenWindows.Items){
-				if(s.Equals(m_form.Text)){
-					this.lstOpenWindows.Items.Remove(s);
+			for(int i=0; i<this.lstOpenWindows.Items.Count; i++){
+				if(m_form.Text.Equals(this.lstOpenWindows.Items[i].ToString())){
+					this.lstOpenWindows.Items.RemoveAt(i);
 				}
 			}
 		}
@@ -208,6 +211,17 @@ namespace NJournals.Core
 				}
 			}
 			this.lstOpenWindows.Items.Add(m_form.Text);
+		}	
+		
+		void lstOpenWindows_SelectedIndexChange(object sender, EventArgs e)
+		{
+			if(lstOpenWindows.SelectedItem != null){
+				foreach(Form form in this.MdiChildren){
+					if(form.Text.Equals(lstOpenWindows.SelectedItem.ToString())){
+						form.Activate();
+					}
+				}
+			}
 		}
 	}
 }
