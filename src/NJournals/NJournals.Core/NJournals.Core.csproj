@@ -76,6 +76,7 @@
     <Compile Include="Models\ItemCategoryDao.cs" />
     <Compile Include="Models\ItemDao.cs" />
     <Compile Include="Models\ItemGenericDao.cs" />
+    <Compile Include="Models\LaundryCategoryDao.cs" />
     <Compile Include="Presenter\AddItemPresenter.cs" />
     <Compile Include="Presenter\LaundryViewPresenter.cs" />
     <Compile Include="Presenter\MainFormStationPresenter.cs" />

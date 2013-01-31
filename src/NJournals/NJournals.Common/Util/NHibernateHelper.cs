@@ -44,7 +44,7 @@ namespace NJournals.Common.Util
             {
             	_sessionFactory = Fluently.Configure()
                     .Database(MySQLConfiguration.Standard
-                    .ConnectionString(@"Server=localhost;Database=db_pos;User ID=root;Password=password;")
+                    .ConnectionString(@"Server=localhost;Database=db_laundry_refilling;User ID=root;")
                     .Driver<NHibernate.Driver.MySqlDataDriver>()
                     .ShowSql()
                     )
@@ -65,5 +65,6 @@ namespace NJournals.Common.Util
         {
             return SessionFactory.OpenSession();
         }
+      
 	}
 }
