@@ -97,11 +97,14 @@ namespace NJournals.Core
 			// 
 			this.lstOpenWindows.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.lstOpenWindows.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.lstOpenWindows.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstOpenWindows.FormattingEnabled = true;
+			this.lstOpenWindows.ItemHeight = 14;
 			this.lstOpenWindows.Location = new System.Drawing.Point(0, 324);
 			this.lstOpenWindows.Name = "lstOpenWindows";
 			this.lstOpenWindows.Size = new System.Drawing.Size(192, 364);
 			this.lstOpenWindows.TabIndex = 0;
+			this.lstOpenWindows.SelectedIndexChanged += new System.EventHandler(this.lstOpenWindows_SelectedIndexChange);
 			// 
 			// label3
 			// 
@@ -113,7 +116,7 @@ namespace NJournals.Core
 			this.label3.Size = new System.Drawing.Size(192, 23);
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Open window(s)";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// lbllaundryConfig
 			// 

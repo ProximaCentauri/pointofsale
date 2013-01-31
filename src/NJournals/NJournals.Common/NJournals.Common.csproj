@@ -74,9 +74,14 @@
     <Compile Include="DataEntities\ItemCategoryDataEntity.cs" />
     <Compile Include="DataMappers\ItemDataMap.cs" />
     <Compile Include="DataMappers\ItemGenericDataMap.cs" />
+    <Compile Include="Gui\BaseForm.cs" />
+    <Compile Include="Gui\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IAddItemCategoryView.cs" />
     <Compile Include="Interfaces\IAddItemGenericView.cs" />
     <Compile Include="Interfaces\IAddItemView.cs" />
+    <Compile Include="Interfaces\IConfigurationView.cs" />
     <Compile Include="Interfaces\IItemCategoryDao.cs" />
     <Compile Include="Interfaces\IItemCategoryView.cs" />
     <Compile Include="Interfaces\IItemDao.cs" />
@@ -85,6 +90,9 @@
     <Compile Include="Interfaces\IItemView.cs" />
     <Compile Include="Interfaces\ILaundryView.cs" />
     <Compile Include="Interfaces\IMainFormStationView.cs" />
+    <Compile Include="Interfaces\IRefillingView.cs" />
+    <Compile Include="Interfaces\IReportView.cs" />
+    <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\IMessageProvider.cs" />
     <Compile Include="Util\LogHelper.cs" />
@@ -98,6 +106,7 @@
     <Folder Include="Interfaces" />
     <Folder Include="DataMappers" />
     <Folder Include="DataEntities" />
+    <Folder Include="Gui" />
     <Folder Include="Util" />
     <Folder Include="ViewModels" />
   </ItemGroup>

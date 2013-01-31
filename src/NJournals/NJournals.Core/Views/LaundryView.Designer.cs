@@ -57,9 +57,9 @@ namespace NJournals.Core.Views
 			this.label6 = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.button2 = new System.Windows.Forms.Button();
 			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
-			this.button2 = new System.Windows.Forms.Button();
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.textBox9 = new System.Windows.Forms.TextBox();
@@ -67,12 +67,12 @@ namespace NJournals.Core.Views
 			this.textBox10 = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
-			this.checkBox3 = new System.Windows.Forms.CheckBox();
-			this.checkBox4 = new System.Windows.Forms.CheckBox();
-			this.checkBox5 = new System.Windows.Forms.CheckBox();
 			this.checkBox6 = new System.Windows.Forms.CheckBox();
+			this.checkBox5 = new System.Windows.Forms.CheckBox();
+			this.checkBox4 = new System.Windows.Forms.CheckBox();
+			this.checkBox3 = new System.Windows.Forms.CheckBox();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.checkBox7 = new System.Windows.Forms.CheckBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
@@ -285,6 +285,15 @@ namespace NJournals.Core.Views
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Search";
 			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(419, 21);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 4;
+			this.button2.Text = "Search";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
 			// textBox7
 			// 
 			this.textBox7.Location = new System.Drawing.Point(143, 22);
@@ -301,15 +310,6 @@ namespace NJournals.Core.Views
 			this.label9.TabIndex = 2;
 			this.label9.Text = "Job Order:";
 			this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(419, 21);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 4;
-			this.button2.Text = "Search";
-			this.button2.UseVisualStyleBackColor = true;
 			// 
 			// textBox8
 			// 
@@ -381,45 +381,15 @@ namespace NJournals.Core.Views
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Additional Charges";
 			// 
-			// checkBox1
+			// checkBox6
 			// 
-			this.checkBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox1.Location = new System.Drawing.Point(6, 22);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(68, 24);
-			this.checkBox1.TabIndex = 0;
-			this.checkBox1.Text = "Pick Up";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			// 
-			// checkBox2
-			// 
-			this.checkBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox2.Location = new System.Drawing.Point(6, 43);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(83, 24);
-			this.checkBox2.TabIndex = 1;
-			this.checkBox2.Text = "Delivery";
-			this.checkBox2.UseVisualStyleBackColor = true;
-			// 
-			// checkBox3
-			// 
-			this.checkBox3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox3.Location = new System.Drawing.Point(6, 64);
-			this.checkBox3.Name = "checkBox3";
-			this.checkBox3.Size = new System.Drawing.Size(148, 24);
-			this.checkBox3.TabIndex = 2;
-			this.checkBox3.Text = "24 Hour Rush Service";
-			this.checkBox3.UseVisualStyleBackColor = true;
-			// 
-			// checkBox4
-			// 
-			this.checkBox4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox4.Location = new System.Drawing.Point(157, 22);
-			this.checkBox4.Name = "checkBox4";
-			this.checkBox4.Size = new System.Drawing.Size(127, 24);
-			this.checkBox4.TabIndex = 15;
-			this.checkBox4.Text = "Same Day Rush";
-			this.checkBox4.UseVisualStyleBackColor = true;
+			this.checkBox6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBox6.Location = new System.Drawing.Point(157, 64);
+			this.checkBox6.Name = "checkBox6";
+			this.checkBox6.Size = new System.Drawing.Size(127, 24);
+			this.checkBox6.TabIndex = 17;
+			this.checkBox6.Text = "15% Discount";
+			this.checkBox6.UseVisualStyleBackColor = true;
 			// 
 			// checkBox5
 			// 
@@ -431,15 +401,45 @@ namespace NJournals.Core.Views
 			this.checkBox5.Text = "10% Discount";
 			this.checkBox5.UseVisualStyleBackColor = true;
 			// 
-			// checkBox6
+			// checkBox4
 			// 
-			this.checkBox6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox6.Location = new System.Drawing.Point(157, 64);
-			this.checkBox6.Name = "checkBox6";
-			this.checkBox6.Size = new System.Drawing.Size(127, 24);
-			this.checkBox6.TabIndex = 17;
-			this.checkBox6.Text = "15% Discount";
-			this.checkBox6.UseVisualStyleBackColor = true;
+			this.checkBox4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBox4.Location = new System.Drawing.Point(157, 22);
+			this.checkBox4.Name = "checkBox4";
+			this.checkBox4.Size = new System.Drawing.Size(127, 24);
+			this.checkBox4.TabIndex = 15;
+			this.checkBox4.Text = "Same Day Rush";
+			this.checkBox4.UseVisualStyleBackColor = true;
+			// 
+			// checkBox3
+			// 
+			this.checkBox3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBox3.Location = new System.Drawing.Point(6, 64);
+			this.checkBox3.Name = "checkBox3";
+			this.checkBox3.Size = new System.Drawing.Size(148, 24);
+			this.checkBox3.TabIndex = 2;
+			this.checkBox3.Text = "24 Hour Rush Service";
+			this.checkBox3.UseVisualStyleBackColor = true;
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBox2.Location = new System.Drawing.Point(6, 43);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(83, 24);
+			this.checkBox2.TabIndex = 1;
+			this.checkBox2.Text = "Delivery";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBox1.Location = new System.Drawing.Point(6, 22);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(68, 24);
+			this.checkBox1.TabIndex = 0;
+			this.checkBox1.Text = "Pick Up";
+			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
 			// checkBox7
 			// 
@@ -493,6 +493,7 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.groupBox1);
 			this.Name = "LaundryNewView";
 			this.Text = "LaundryNewView";
+			this.Load += new System.EventHandler(this.LaundryNewViewLoad);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.Services.ResumeLayout(false);

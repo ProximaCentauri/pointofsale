@@ -9,13 +9,14 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-
+using NJournals.Common.Gui;
+using NJournals.Common.Interfaces;
 namespace NJournals.Core.Views
 {
 	/// <summary>
 	/// Description of RefillingView.
 	/// </summary>
-	public partial class RefillingView : Form
+	public partial class RefillingView : BaseForm, IRefillingView
 	{
 		public RefillingView()
 		{

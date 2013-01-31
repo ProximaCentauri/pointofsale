@@ -8,7 +8,7 @@
  */
 namespace NJournals.Core.Views
 {
-	partial class LaundryConfigurationView
+	partial class ConfigurationView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
