@@ -144,7 +144,7 @@ CREATE TABLE `laundrydetail` (
   `ServiceID` int(10) unsigned NOT NULL,
   `CategoryID` int(10) unsigned NOT NULL,
   `ItemQty` int(10) unsigned NOT NULL DEFAULT '0',
-  `Kilo` double(10) unsigned NOT NULL DEFAULT '0',
+  `Kilo` double NOT NULL DEFAULT '0',
   `Amount` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   KEY `FK_LaundryDetail_1` (`LaundryHeaderID`),
