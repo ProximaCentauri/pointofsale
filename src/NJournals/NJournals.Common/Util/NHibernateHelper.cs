@@ -54,7 +54,9 @@ namespace NJournals.Common.Util
             		          .AddFromAssemblyOf<LaundryServiceDataEntity>()
             		          .AddFromAssemblyOf<LaundryPriceSchemeDataEntity>()
             		          .AddFromAssemblyOf<LaundryHeaderDataEntity>()
-            		          .AddFromAssemblyOf<LaundryDetailDataEntity>())
+            		          .AddFromAssemblyOf<LaundryDetailDataEntity>()
+            		          .AddFromAssemblyOf<LaundryJobChargesDataEntity>()
+            		          .AddFromAssemblyOf<LaundryDaySummaryDataEntity>())
                     .ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"))
                     .BuildSessionFactory();
             }

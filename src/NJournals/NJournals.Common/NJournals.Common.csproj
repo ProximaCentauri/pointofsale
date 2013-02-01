@@ -76,6 +76,7 @@
     <Compile Include="DataEntities\LaundryDaySummaryDataEntity.cs" />
     <Compile Include="DataEntities\LaundryDetailDataEntity.cs" />
     <Compile Include="DataEntities\LaundryHeaderDataEntity.cs" />
+    <Compile Include="DataEntities\LaundryJobChargesDataEntity.cs" />
     <Compile Include="DataEntities\LaundryPriceSchemeDataEntity.cs" />
     <Compile Include="DataEntities\LaundryServiceDataEntity.cs" />
     <Compile Include="DataMappers\ItemCategoryDataMap.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="DataMappers\LaundryDaySummaryDataMap.cs" />
     <Compile Include="DataMappers\LaundryDetailDataMap.cs" />
     <Compile Include="DataMappers\LaundryHeaderDataMap.cs" />
+    <Compile Include="DataMappers\LaundryJobChargesDataMap.cs" />
     <Compile Include="DataMappers\LaundryPriceSchemeDataMap.cs" />
     <Compile Include="DataMappers\LaundryServiceDataMap.cs" />
     <Compile Include="Gui\BaseForm.cs" />
@@ -106,7 +108,7 @@
     <Compile Include="Interfaces\ILaundryCategoryDao.cs" />
     <Compile Include="Interfaces\ILaundryChargeDao.cs" />
     <Compile Include="Interfaces\ILaundryDao.cs" />
-    <Compile Include="Interfaces\ILaundryDaySummary.cs" />
+    <Compile Include="Interfaces\ILaundryDaySummaryDao.cs" />
     <Compile Include="Interfaces\ILaundryView.cs" />
     <Compile Include="Interfaces\IMainFormStationView.cs" />
     <Compile Include="Interfaces\IRefillingView.cs" />

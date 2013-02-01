@@ -33,8 +33,14 @@ namespace NJournals.Common.DataMappers
 				.KeyColumn("LaundryHeaderID")
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
+			HasMany<LaundryJobChargesDataEntity>(x => x.JobChargeEntities)
+				.KeyColumn("LaundryHeaderID")
+				.Inverse()
+				.Cascade.AllDeleteOrphan();
 			References<LaundryDaySummaryDataEntity>(x => x.DaySummary)
 				.Column("DayID").Not.Nullable();
+			
+				
 			Table("LaundryHeader");
 		}
 	}

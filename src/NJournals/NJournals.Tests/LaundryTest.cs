@@ -32,28 +32,33 @@ namespace NJournals.Tests
 		}
 		
 		[Test]
-		public void saveLaundryOrder(){
+		public void saveNewHeaderWithoutExistingDaySummary(){			
 			LaundryHeaderDataEntity header = new LaundryHeaderDataEntity();
 			LaundryDetailDataEntity detail = new LaundryDetailDataEntity();
+			LaundryJobChargesDataEntity jobcharge = new LaundryJobChargesDataEntity();
 						
 			LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Wash Dry Fold");
 			LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash Dry Fold");
-
-			header.CustomerName = "John Doe";
+			LaundryChargeDataEntity charge = new LaundryChargeDao().GetByName("Pickup");
+			
+			header.CustomerName = "Test Doesn't";
 			header.ReceivedDate = DateTime.Now;
 			header.DueDate = DateTime.Now;
 			header.ClaimFlag = false;
 			header.PaidFlag = true;
-			header.AmountDue = 145.00;
+			header.AmountDue = 1520.00;
 			
-			detail.HeaderEntity = header;
+			detail.Header = header;
 			detail.Category = category;
 			detail.Service = service;
-			detail.Amount = 29;
+			detail.Amount = 23;
 			detail.Kilo = 5;
 						
-			header.DetailEntities.Add(detail);
+			jobcharge.Charge = charge;
+			jobcharge.Header = header;
 			
+			header.DetailEntities.Add(detail);
+			header.JobChargeEntities.Add(jobcharge);
 			
 			LaundryDaySummaryDataEntity daysummary = new LaundryDaySummaryDataEntity();
 			daysummary.DayStamp = DateTime.Now;
@@ -63,21 +68,94 @@ namespace NJournals.Tests
 			
 			header.DaySummary = daysummary;
 			
-			LaundryDao dao = new LaundryDao();
-			dao.SaveOrUpdate(daysummary);
+			LaundryDaySummaryDao dao = new LaundryDaySummaryDao();
+			dao.Save(daysummary);
 		}
 		
 		[Test]
-		public void queryPriceScheme(){			
-			List<LaundryPriceSchemeDataEntity> priceschemes = new LaundryPriceSchemeDao().GetAllItems() as List<LaundryPriceSchemeDataEntity>;
-			Assert.NotNull(priceschemes);			
-			foreach(LaundryPriceSchemeDataEntity pricescheme in priceschemes){								
-				Console.WriteLine("Description: " + pricescheme.Description);
-				Console.WriteLine("Service: " + pricescheme.Service.Name);
-				Console.WriteLine("Category: " + pricescheme.Category.Name);
-				Console.WriteLine("Price: " + pricescheme.Price);								
+		public void saveNewHeaderWithExistingDaySummary()
+		{
+			LaundryDaySummaryDao summarydao = new LaundryDaySummaryDao();
+			LaundryDaySummaryDataEntity summary = summarydao.GetByDay(Convert.ToDateTime("2013-02-01 23:55:30"));
+			if(summary!= null)
+			{
+				LaundryHeaderDataEntity header = new LaundryHeaderDataEntity();
+				LaundryDetailDataEntity detail = new LaundryDetailDataEntity();
+							
+				LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Wash Dry Fold");
+				LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash Dry Fold");
+	
+				header.CustomerName = "Test Doesn't";
+				header.ReceivedDate = DateTime.Now;
+				header.DueDate = DateTime.Now;
+				header.ClaimFlag = true;
+				header.PaidFlag = true;
+				header.AmountDue = 2322.00;
+				
+				detail.Header = header;
+				detail.Category = category;
+				detail.Service = service;
+				detail.Amount = 2333;
+				detail.Kilo = 15;
+							
+				header.DetailEntities.Add(detail);
+				
+				summary.TransCount += 1;
+				summary.TotalSales += detail.Amount;
+				header.DaySummary = summary;
+				
+				LaundryDaySummaryDao dao = new LaundryDaySummaryDao();
+				dao.Update(summary);
+				
+				LaundryDao ldao = new LaundryDao();
+				ldao.Save(header);
+			}
+				
+		}
+			
+		[Test]
+		public void getLaundryByID()
+		{
+			LaundryHeaderDataEntity header = new LaundryHeaderDataEntity();
+			LaundryDao dao = new LaundryDao();
+			header = dao.GetByID(5);
+			
+			Assert.NotNull(header);	
+			Assert.AreEqual("John Doe", header.CustomerName);
+			
+			foreach(LaundryDetailDataEntity detail in header.DetailEntities)
+			{
+				Console.WriteLine("service name: " + detail.Service.Name);
+				Console.WriteLine("category name: " + detail.Category.Name);
+				Console.WriteLine("itemqty: " + detail.ItemQty);
+				Console.WriteLine("kilo: " + detail.Kilo);
+				Console.WriteLine("amount: " + detail.Amount);
 			}
 			
+		}
+		
+		[Test]
+		public void getAllLaundryItems()
+		{
+			LaundryDao dao = new LaundryDao();
+			IEnumerable<LaundryHeaderDataEntity> headers = dao.GetAllItems();
+			
+			Assert.NotNull(headers);	
+			
+			foreach(LaundryHeaderDataEntity header in headers)
+			{
+				Console.WriteLine("headerID: " + header.LaundryHeaderID);
+				foreach(LaundryDetailDataEntity detail in header.DetailEntities)
+				{
+					Console.WriteLine("detailID: " + detail.ID);
+					Console.WriteLine("service name: " + detail.Service.Name);
+					Console.WriteLine("category name: " + detail.Category.Name);
+					Console.WriteLine("itemqty: " + detail.ItemQty);
+					Console.WriteLine("kilo: " + detail.Kilo);
+					Console.WriteLine("amount: " + detail.Amount);
+				}
+				Console.WriteLine("================================");
+			}
 		}
 	}
 }

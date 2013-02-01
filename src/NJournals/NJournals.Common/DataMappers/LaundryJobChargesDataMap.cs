@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: TEJ
- * Date: 2/1/2013
- * Time: 12:59 AM
+ * Date: 2/2/2013
+ * Time: 12:31 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -15,22 +15,17 @@ using NJournals.Common.DataEntities;
 namespace NJournals.Common.DataMappers
 {
 	/// <summary>
-	/// Description of LaundryDetailDataMap.
+	/// Description of LaundryJobChargesDataMap.
 	/// </summary>
-	public class LaundryDetailDataMap : ClassMap<LaundryDetailDataEntity>
+	public class LaundryJobChargesDataMap : ClassMap<LaundryJobChargesDataEntity>
 	{
-		public LaundryDetailDataMap()
+		public LaundryJobChargesDataMap()
 		{
 			Id(x => x.ID);
-			References(x => x.Category).Column("CategoryID").Not.LazyLoad();
-			References(x => x.Service).Column("ServiceID").Not.LazyLoad();
-			Map(x => x.ItemQty);
-			Map(x => x.Kilo);
-			Map(x => x.Amount);
+			References(x => x.Charge).Column("ChargeID").Not.LazyLoad();
 			References<LaundryHeaderDataEntity>(x => x.Header)
 				.Column("LaundryHeaderID").Not.Nullable();
-			Table("LaundryDetail");
-				
+			Table("LaundryJobCharges");	
 		}
 	}
 }

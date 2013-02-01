@@ -34,6 +34,12 @@ namespace NJournals.Tests
 			entity.Description = "Wash and Burn";
 			LaundryCategoryDao dao = new LaundryCategoryDao();
 			dao.Save(entity);				
+			
+			entity = new LaundryCategoryDataEntity();
+			entity.Name = "Wash Dry Press";
+			entity.Description = "Wash Dry Press";
+			
+			dao.Save(entity);							
 		}
 		
 		[Test]

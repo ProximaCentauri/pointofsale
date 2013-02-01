@@ -223,6 +223,25 @@ CREATE TABLE `refillproducttype` (
 
 
 --
+-- Table structure for table `refilldaysummary`
+--
+
+DROP TABLE IF EXISTS `refilldaysummary`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refilldaysummary` (
+  `DayID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `TotalSales` double NOT NULL DEFAULT '0',
+  `TransCount` double NOT NULL DEFAULT '0',
+  `DayStamp` datetime NOT NULL,
+  PRIMARY KEY (`DayID`),
+  UNIQUE KEY `IX_refilldaysummary` (`DayStamp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+
+--
 -- Table structure for table `refillheader`
 --
 
@@ -241,25 +260,6 @@ CREATE TABLE `refillheader` (
   KEY `FK_refillheader_1` (`TransactionTypeID`),
   CONSTRAINT `FK_refillheader_2` FOREIGN KEY (`DayID`) REFERENCES `refilldaysummary` (`DayID`) ON UPDATE CASCADE,
   CONSTRAINT `FK_refillheader_1` FOREIGN KEY (`TransactionTypeID`) REFERENCES `refilltransactiontype` (`TransactionTypeID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-
-
---
--- Table structure for table `refilldaysummary`
---
-
-DROP TABLE IF EXISTS `refilldaysummary`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `refilldaysummary` (
-  `DayID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `TotalSales` double NOT NULL DEFAULT '0',
-  `TransCount` double NOT NULL DEFAULT '0',
-  `DayStamp` datetime NOT NULL,
-  PRIMARY KEY (`DayID`),
-  UNIQUE KEY `IX_refilldaysummary` (`DayStamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

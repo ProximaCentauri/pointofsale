@@ -47,10 +47,7 @@ namespace NJournals.Core.Models
 					.Fetch(x => x.Category)
 					.Fetch(x => x.Service)
 					.ToList();
-//				
-//				var query = (from LaundryPriceScheme in session.Query<LaundryPriceSchemeDataEntity>()
-//				             select LaundryPriceScheme);
-				return query;//.ToList();
+				return query;
 			}
 		}
 		

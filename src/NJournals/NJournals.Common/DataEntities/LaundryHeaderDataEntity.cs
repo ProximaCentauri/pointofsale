@@ -27,20 +27,12 @@ namespace NJournals.Common.DataEntities
 		
 		public virtual IList<LaundryDetailDataEntity> DetailEntities {get; set;}
 		public virtual LaundryDaySummaryDataEntity DaySummary {get;set;}
+		public virtual IList<LaundryJobChargesDataEntity> JobChargeEntities {get;set;}
 		
 		public LaundryHeaderDataEntity()
 		{
 			DetailEntities = new List<LaundryDetailDataEntity>();
+			JobChargeEntities = new List<LaundryJobChargesDataEntity>();
 		}
-//		public virtual void AddLaundryDetail(LaundryDetailDataEntity p_detail)
-//		{
-//			p_detail.HeaderEntity = this;
-//			DetailEntities.Add(p_detail);
-//		}
-//		
-//		public virtual void RemoveLaundryDetail(LaundryDetailDataEntity p_detail)
-//		{
-//			DetailEntities.Remove(p_detail);
-//		}
 	}
 }

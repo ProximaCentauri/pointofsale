@@ -16,7 +16,7 @@ namespace NJournals.Common.DataEntities
 	public class LaundryDetailDataEntity
 	{
 		public virtual int ID {get;set;}
-		public virtual LaundryHeaderDataEntity HeaderEntity {get;set;}
+		public virtual LaundryHeaderDataEntity Header {get;set;}
 		public virtual LaundryServiceDataEntity Service {get;set;}
 		public virtual LaundryCategoryDataEntity Category {get;set;}
 		public virtual int ItemQty {get;set;}

@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: TEJ
- * Date: 2/1/2013
- * Time: 1:07 AM
+ * Date: 2/2/2013
+ * Time: 12:06 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -19,79 +19,73 @@ using NJournals.Common.DataEntities;
 namespace NJournals.Core.Models
 {
 	/// <summary>
-	/// Description of LaundryDao.
+	/// Description of LaundryDaySummaryDao.
 	/// </summary>
-	public class LaundryDao : ILaundryDao
+	public class LaundryDaySummaryDao : ILaundryDaySummaryDao
 	{
-		public LaundryDao()
+		public LaundryDaySummaryDao()
 		{
 		}
 		
-		public void Save(LaundryHeaderDataEntity p_header)
+		public void Save(LaundryDaySummaryDataEntity p_daysummary)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Save(p_header);
+					session.Save(p_daysummary);
 					transaction.Commit();
 				}
 			}
 		}
 		
 		
-		public LaundryHeaderDataEntity GetByID(int p_headerID)
+		public LaundryDaySummaryDataEntity GetByDay(DateTime p_day)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					var query = session.Query<LaundryHeaderDataEntity>()
-						.Where(x => x.LaundryHeaderID == p_headerID)
-						.FetchMany(x => x.DetailEntities)
+					var query = session.Query<LaundryDaySummaryDataEntity>()
+						.Where(x => x.DayStamp == p_day)
 						.Single();
 					return query;
 				}
 			}
 		}
 		
-		public IEnumerable<LaundryHeaderDataEntity> GetAllItems()
+		public IEnumerable<LaundryDaySummaryDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				using(var transaction = session.BeginTransaction())
-				{
-					var query = session.Query<LaundryHeaderDataEntity>()
-						.FetchMany(x => x.DetailEntities)
-						.ToList();
-					return query;
-				}
+				var query = (from LaundryDaySummary in session.Query<LaundryDaySummaryDataEntity>()
+				             select LaundryDaySummary);
+				return query.ToList();
 			}
 		}
 		
-		public void Update(LaundryHeaderDataEntity p_header)
+		public void Update(LaundryDaySummaryDataEntity p_daysummary)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Update(p_header);
+					session.Update(p_daysummary);
 					transaction.Commit();
 				}
 			}
 		}
 		
-		public void Delete(LaundryHeaderDataEntity p_header)
+		public void Delete(LaundryDaySummaryDataEntity p_daysummary)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Delete(p_header);
+					session.Delete(p_daysummary);
 					transaction.Commit();
 				}
 			}
 		}
-
 	}
 }
