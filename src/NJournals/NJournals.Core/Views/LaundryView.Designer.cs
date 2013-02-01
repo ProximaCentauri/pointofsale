@@ -45,14 +45,14 @@ namespace NJournals.Core.Views
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.cmbservices = new System.Windows.Forms.ComboBox();
 			this.Services = new System.Windows.Forms.GroupBox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox6 = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.textBox5 = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.cmbcategory = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -169,13 +169,13 @@ namespace NJournals.Core.Views
 			this.label1.Text = "Job Order:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// comboBox1
+			// cmbservices
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(71, 27);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(158, 23);
-			this.comboBox1.TabIndex = 2;
+			this.cmbservices.FormattingEnabled = true;
+			this.cmbservices.Location = new System.Drawing.Point(71, 27);
+			this.cmbservices.Name = "cmbservices";
+			this.cmbservices.Size = new System.Drawing.Size(158, 23);
+			this.cmbservices.TabIndex = 2;
 			// 
 			// Services
 			// 
@@ -184,10 +184,10 @@ namespace NJournals.Core.Views
 			this.Services.Controls.Add(this.label8);
 			this.Services.Controls.Add(this.textBox5);
 			this.Services.Controls.Add(this.label7);
-			this.Services.Controls.Add(this.comboBox2);
+			this.Services.Controls.Add(this.cmbcategory);
 			this.Services.Controls.Add(this.label5);
 			this.Services.Controls.Add(this.label6);
-			this.Services.Controls.Add(this.comboBox1);
+			this.Services.Controls.Add(this.cmbservices);
 			this.Services.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Services.Location = new System.Drawing.Point(21, 182);
 			this.Services.Name = "Services";
@@ -237,13 +237,13 @@ namespace NJournals.Core.Views
 			this.label7.TabIndex = 6;
 			this.label7.Text = "# of Items:";
 			// 
-			// comboBox2
+			// cmbcategory
 			// 
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(71, 53);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(158, 23);
-			this.comboBox2.TabIndex = 5;
+			this.cmbcategory.FormattingEnabled = true;
+			this.cmbcategory.Location = new System.Drawing.Point(71, 53);
+			this.cmbcategory.Name = "cmbcategory";
+			this.cmbcategory.Size = new System.Drawing.Size(158, 23);
+			this.cmbcategory.TabIndex = 5;
 			// 
 			// label5
 			// 
@@ -531,10 +531,10 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.TextBox textBox6;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.ComboBox comboBox2;
+		private System.Windows.Forms.ComboBox cmbcategory;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.GroupBox Services;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ComboBox cmbservices;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox textBox4;

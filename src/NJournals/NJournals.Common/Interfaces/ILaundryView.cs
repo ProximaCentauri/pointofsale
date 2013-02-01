@@ -18,9 +18,8 @@ namespace NJournals.Common.Interfaces
 	{
 		
 		void SetAllCategories(IList<LaundryCategoryDataEntity> categories);
-		void SetAllServices(IList<LaundryServiceDataEntity> services);
-		//TODO: parameter for laundrydataentity
-		void Save();
+		void SetAllServices(IList<LaundryServiceDataEntity> services);		
+		void Save(LaundryDaySummaryDataEntity entities);
 		
 	}
 }

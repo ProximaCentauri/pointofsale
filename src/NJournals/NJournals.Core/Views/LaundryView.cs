@@ -11,6 +11,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using NJournals.Common.Interfaces;
 using NJournals.Common.Gui;
+using NJournals.Common.DataEntities;
+using System.Collections.Generic;
+using NJournals.Core.Presenter;
+using NJournals.Core.Models;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -31,21 +35,30 @@ namespace NJournals.Core.Views
 		
 		}
 		
+		LaundryViewPresenter m_presenter;
+		ILaundryDao m_laundryDao;
+		
 		void LaundryNewViewLoad(object sender, EventArgs e)
 		{
+			m_laundryDao = new LaundryDao();
+			m_presenter = new LaundryViewPresenter(this, m_laundryDao);
 			
 		}
 		
-		public void Save(){
+		public void Save(LaundryDaySummaryDataEntity entities){
 			
 		}
 		
-		public void SetAllCategories(){
-			
+		public void SetAllCategories(IList<LaundryCategoryDataEntity> categories){
+			foreach(LaundryCategoryDataEntity category in categories){
+				this.cmbcategory.Items.Add(category.Name);
+			}
 		}
 		
-		public void SetAllServices(){
-			
+		public void SetAllServices(IList<LaundryServiceDataEntity> services){
+			foreach(LaundryServiceDataEntity service in services){
+				this.cmbservices.Items.Add(service.Name);
+			}
 		}
 	}
 }

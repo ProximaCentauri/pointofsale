@@ -9,6 +9,7 @@
 using System;
 using System.Windows.Forms;
 using NJournals.Core.Presenter;
+using NJournals.Common.Util;
 namespace NJournals.Core
 {
 	/// <summary>
@@ -24,6 +25,7 @@ namespace NJournals.Core
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+			NHibernateHelper.OpenSession();
 			MainFormStation mainFormStation = new MainFormStation();
 			MainFormStationPresenter presenter = new MainFormStationPresenter(mainFormStation);
 			Application.Run(mainFormStation);

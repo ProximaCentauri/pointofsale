@@ -131,8 +131,5 @@
     <Folder Include="Util" />
     <Folder Include="ViewModels" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>
