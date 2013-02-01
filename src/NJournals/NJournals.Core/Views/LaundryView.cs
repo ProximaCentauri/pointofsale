@@ -42,7 +42,10 @@ namespace NJournals.Core.Views
 		{
 			m_laundryDao = new LaundryDao();
 			m_presenter = new LaundryViewPresenter(this, m_laundryDao);
-			
+			if(this.Text.Contains("[NEW]")){
+				m_presenter.SetAllCategories();
+				m_presenter.SetAllServices();
+			}
 		}
 		
 		public void Save(LaundryDaySummaryDataEntity entities){

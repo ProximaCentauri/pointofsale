@@ -29,8 +29,8 @@ namespace NJournals.Core.Presenter
 			m_laundryDao = p_laundryDao;
 			m_categoryDao = new LaundryCategoryDao();
 			m_serviceDao = new LaundryServiceDao();
-			SetAllCategories();
-			SetAllServices();
+			//SetAllCategories();
+			//SetAllServices();
 		}
 		
 		public void SaveClicked(){
