@@ -27,61 +27,61 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void Save(LaundryHeaderDataEntity p_header)
+		public void Save(LaundryDaySummaryDataEntity p_daysummary)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Save(p_header);
+					session.SaveOrUpdate(p_daysummary);
 					transaction.Commit();
 				}
 			}
 		}
 		
-		public IEnumerable<LaundryHeaderDataEntity> GetAllItems()
-		{
-			using(var session = NHibernateHelper.OpenSession())
-			{
-				var query = (from LaundryHeader in session.Query<LaundryHeaderDataEntity>()
-				             select LaundryHeader);
-				return query.ToList();
-			}
-		}
-		
-		public LaundryHeaderDataEntity GetByID(int p_headerID)
-		{
-			using(var session = NHibernateHelper.OpenSession())
-			{
-				var query = (from LaundryHeader in session.Query<LaundryHeaderDataEntity>()
-				             where LaundryHeader.LaundryHeaderID == p_headerID
-				             select LaundryHeader).FirstOrDefault();
-				return query;
-			}
-		}
-		
-		public void Delete(LaundryHeaderDataEntity p_header)
-		{
-			using(var session = NHibernateHelper.OpenSession())
-			{
-				using(var transaction = session.BeginTransaction())
-				{
-					session.Delete(p_header);
-					transaction.Commit();
-				}
-			}
-		}
-		
-		public void Update(LaundryHeaderDataEntity p_header)
-		{
-			using(var session = NHibernateHelper.OpenSession())
-			{
-				using(var transaction = session.BeginTransaction())
-				{
-					session.Update(p_header);
-					transaction.Commit();
-				}
-			}
-		}
+//		public IEnumerable<LaundryHeaderDataEntity> GetAllItems()
+//		{
+//			using(var session = NHibernateHelper.OpenSession())
+//			{
+//				var query = (from LaundryHeader in session.Query<LaundryHeaderDataEntity>()
+//				             select LaundryHeader);
+//				return query.ToList();
+//			}
+//		}
+//		
+//		public LaundryHeaderDataEntity GetByID(int p_headerID)
+//		{
+//			using(var session = NHibernateHelper.OpenSession())
+//			{
+//				var query = (from LaundryHeader in session.Query<LaundryHeaderDataEntity>()
+//				             where LaundryHeader.LaundryHeaderID == p_headerID
+//				             select LaundryHeader).FirstOrDefault();
+//				return query;
+//			}
+//		}
+//		
+//		public void Delete(LaundryHeaderDataEntity p_header)
+//		{
+//			using(var session = NHibernateHelper.OpenSession())
+//			{
+//				using(var transaction = session.BeginTransaction())
+//				{
+//					session.Delete(p_header);
+//					transaction.Commit();
+//				}
+//			}
+//		}
+//		
+//		public void Update(LaundryHeaderDataEntity p_header)
+//		{
+//			using(var session = NHibernateHelper.OpenSession())
+//			{
+//				using(var transaction = session.BeginTransaction())
+//				{
+//					session.Update(p_header);
+//					transaction.Commit();
+//				}
+//			}
+//		}
 	}
 }

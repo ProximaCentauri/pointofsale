@@ -27,12 +27,14 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.ClaimDate);
 			Map(x => x.DueDate);
 			Map(x => x.ClaimFlag);
-			Map(x => x.PaidFlag);
-			Map(x => x.DayID);
+			Map(x => x.PaidFlag);			
+			Map(x => x.AmountDue);
 			HasMany<LaundryDetailDataEntity>(x => x.DetailEntities)
 				.KeyColumn("LaundryHeaderID")
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
+			References<LaundryDaySummaryDataEntity>(x => x.DaySummary)
+				.Column("DayID").Not.Nullable();
 			Table("LaundryHeader");
 		}
 	}

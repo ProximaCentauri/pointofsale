@@ -18,10 +18,11 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface ILaundryDao
 	{
-		void Save(LaundryHeaderDataEntity p_header);
-		IEnumerable<LaundryHeaderDataEntity> GetAllItems();
-		LaundryHeaderDataEntity GetByID(int p_headerID);
-		void Delete(LaundryHeaderDataEntity p_header);
-		void Update(LaundryHeaderDataEntity p_header);
+		void Save(LaundryDaySummaryDataEntity p_daysummary);
+//		void Save(LaundryHeaderDataEntity p_header);
+//		IEnumerable<LaundryHeaderDataEntity> GetAllItems();
+//		LaundryHeaderDataEntity GetByID(int p_headerID);
+//		void Delete(LaundryHeaderDataEntity p_header);
+//		void Update(LaundryHeaderDataEntity p_header);
 	}
 }

@@ -124,6 +124,7 @@ CREATE TABLE `laundryheader` (
   `ClaimDate` datetime NOT NULL,
   `PaidFlag` tinyint(1) NOT NULL DEFAULT '0',
   `ClaimFlag` tinyint(1) NOT NULL DEFAULT '0',
+  `AmountDue` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`LaundryHeaderID`),
   KEY `FK_laundryheader_1` (`DayID`),
   CONSTRAINT `FK_laundryheader_1` FOREIGN KEY (`DayID`) REFERENCES `laundrydaysummary` (`DayID`) ON UPDATE CASCADE

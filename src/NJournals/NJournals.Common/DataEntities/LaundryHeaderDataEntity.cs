@@ -16,26 +16,31 @@ namespace NJournals.Common.DataEntities
 	/// </summary>
 	public class LaundryHeaderDataEntity
 	{
-		public virtual int LaundryHeaderID {get;set;}
-		public virtual int DayID {get;set;}
+		public virtual int LaundryHeaderID {get;set;}		
 		public virtual string CustomerName {get;set;}
 		public virtual DateTime ReceivedDate {get;set;}
 		public virtual DateTime DueDate {get;set;}
 		public virtual DateTime ClaimDate {get;set;}
 		public virtual bool PaidFlag {get;set;}
 		public virtual bool ClaimFlag {get;set;}
+		public virtual double AmountDue {get;set;}
 		
 		public virtual IList<LaundryDetailDataEntity> DetailEntities {get; set;}
+		public virtual LaundryDaySummaryDataEntity DaySummary {get;set;}
 		
-		public virtual void AddLaundryDetail(LaundryDetailDataEntity p_detail)
+		public LaundryHeaderDataEntity()
 		{
-			p_detail.HeaderEntity = this;
-			DetailEntities.Add(p_detail);
+			DetailEntities = new List<LaundryDetailDataEntity>();
 		}
-		
-		public virtual void RemoveLaundryDetail(LaundryDetailDataEntity p_detail)
-		{
-			DetailEntities.Remove(p_detail);
-		}
+//		public virtual void AddLaundryDetail(LaundryDetailDataEntity p_detail)
+//		{
+//			p_detail.HeaderEntity = this;
+//			DetailEntities.Add(p_detail);
+//		}
+//		
+//		public virtual void RemoveLaundryDetail(LaundryDetailDataEntity p_detail)
+//		{
+//			DetailEntities.Remove(p_detail);
+//		}
 	}
 }

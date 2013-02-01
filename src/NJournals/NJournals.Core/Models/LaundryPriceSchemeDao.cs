@@ -43,9 +43,14 @@ namespace NJournals.Core.Models
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = (from LaundryPriceScheme in session.Query<LaundryPriceSchemeDataEntity>()
-				             select LaundryPriceScheme);
-				return query.ToList();
+				var query = session.Query<LaundryPriceSchemeDataEntity>()
+					.Fetch(x => x.Category)
+					.Fetch(x => x.Service)
+					.ToList();
+//				
+//				var query = (from LaundryPriceScheme in session.Query<LaundryPriceSchemeDataEntity>()
+//				             select LaundryPriceScheme);
+				return query;//.ToList();
 			}
 		}
 		
