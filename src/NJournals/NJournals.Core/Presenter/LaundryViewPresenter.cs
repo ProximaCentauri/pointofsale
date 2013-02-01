@@ -24,6 +24,21 @@ namespace NJournals.Core.Presenter
 			
 		}
 		
+		public void SaveClicked(){
+			
+		}
+		
+		public void CancelClicked(){
+			
+		}
+		
+		public void SetAllCategories(){
+			
+		}
+		
+		public void SetAllServices(){
+			
+		}
 		
 		
 	}

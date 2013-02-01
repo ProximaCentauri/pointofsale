@@ -52,8 +52,7 @@ namespace NJournals.Core
 		private ConfigurationView configView = new ConfigurationView();
 		
 		public void ShowLaundryNewView(){					
-			laundryView.SetTitle("Laundry  [NEW]");
-			
+			laundryView.SetTitle("Laundry  [NEW]");			
 			ShowSingletonForm(laundryView);
 		}
 		
@@ -92,17 +91,14 @@ namespace NJournals.Core
 			ShowSingletonForm(configView);
 		}
 		
-		private void ShowSingletonForm(Form p_form){	
-			//this.listOpenWindows();
+		private void ShowSingletonForm(Form p_form){			
 			string title = p_form.Text;
-			foreach(Form m_form in Application.OpenForms){
-				if(m_form.GetType() == p_form.GetType()){
-					if(m_form.Text.Equals(p_form.Text)){
-						m_form.StartPosition = FormStartPosition.CenterScreen;
-						m_form.Activate();
-						return;	
-					}				
-				}
+			foreach(Form m_form in this.MdiChildren){
+				if(m_form.Text.Equals(p_form.Text)){
+					m_form.StartPosition = FormStartPosition.CenterScreen;
+					m_form.Activate();
+					return;	
+				}				
 			}		
 			p_form = (Form)Activator.CreateInstance(p_form.GetType());
 			p_form.Text = title;
