@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.47, for Win32 (ia32)
+-- MySQL dump 10.13  Distrib 5.5.29, for Win32 (x86)
 --
 -- Host: localhost    Database: db_laundry_refilling
 -- ------------------------------------------------------
--- Server version	5.1.47-community-log
+-- Server version	5.5.29-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,7 +21,6 @@ DROP DATABASE IF EXISTS `db_laundry_refilling`;
 CREATE DATABASE `db_laundry_refilling`;
 USE `db_laundry_refilling`;
 
-
 --
 -- Table structure for table `laundrycategory`
 --
@@ -33,8 +32,9 @@ CREATE TABLE `laundrycategory` (
   `CategoryID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL DEFAULT 'NULL',
   `Description` varchar(150) NOT NULL DEFAULT 'NULL',
-  PRIMARY KEY (`CategoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`CategoryID`),
+  UNIQUE KEY `IX_laundrycategory_1` (`Name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -49,8 +49,9 @@ CREATE TABLE `laundryservices` (
   `ServiceID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL DEFAULT 'NULL',
   `Description` varchar(150) NOT NULL DEFAULT 'NULL',
-  PRIMARY KEY (`ServiceID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`ServiceID`),
+  UNIQUE KEY `IX_laundryservices` (`Name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -65,7 +66,8 @@ CREATE TABLE `laundrycharges` (
   `ChargeID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL DEFAULT '"NULL"',
   `Amount` double NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ChargeID`)
+  PRIMARY KEY (`ChargeID`),
+  UNIQUE KEY `IX_laundrycharges_1` (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -84,12 +86,14 @@ CREATE TABLE `laundrypricescheme` (
   `Description` varchar(150) NOT NULL DEFAULT 'NULL',
   `Price` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
+  UNIQUE KEY `IX_laundrypricescheme_1` (`CategoryID`,`ServiceID`),
   KEY `FK_laundrypricescheme_1` (`CategoryID`),
   KEY `FK_laundrypricescheme_2` (`ServiceID`),
   CONSTRAINT `FK_laundrypricescheme_1` FOREIGN KEY (`CategoryID`) REFERENCES `laundrycategory` (`CategoryID`) ON UPDATE CASCADE,
   CONSTRAINT `FK_laundrypricescheme_2` FOREIGN KEY (`ServiceID`) REFERENCES `laundryservices` (`ServiceID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Table structure for table `laundrydaysummary`
@@ -103,8 +107,9 @@ CREATE TABLE `laundrydaysummary` (
   `DayStamp` datetime NOT NULL,
   `TotalSales` double NOT NULL DEFAULT '0',
   `TransCount` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`DayID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`DayID`),
+  UNIQUE KEY `IX_laundrydaysummary_1` (`DayStamp`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -128,7 +133,7 @@ CREATE TABLE `laundryheader` (
   PRIMARY KEY (`LaundryHeaderID`),
   KEY `FK_laundryheader_1` (`DayID`),
   CONSTRAINT `FK_laundryheader_1` FOREIGN KEY (`DayID`) REFERENCES `laundrydaysummary` (`DayID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -148,13 +153,14 @@ CREATE TABLE `laundrydetail` (
   `Kilo` double NOT NULL DEFAULT '0',
   `Amount` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
+  UNIQUE KEY `IX_laundrydetail_1` (`ServiceID`,`CategoryID`,`LaundryHeaderID`),
   KEY `FK_LaundryDetail_1` (`LaundryHeaderID`),
   KEY `FK_laundrydetail_2` (`CategoryID`),
   KEY `FK_laundrydetail_3` (`ServiceID`),
   CONSTRAINT `FK_laundrydetail_2` FOREIGN KEY (`CategoryID`) REFERENCES `laundrycategory` (`CategoryID`) ON UPDATE CASCADE,
   CONSTRAINT `FK_laundrydetail_3` FOREIGN KEY (`ServiceID`) REFERENCES `laundryservices` (`ServiceID`) ON UPDATE CASCADE,
   CONSTRAINT `FK_LaundryDetail_1` FOREIGN KEY (`LaundryHeaderID`) REFERENCES `laundryheader` (`LaundryHeaderID`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -170,12 +176,14 @@ CREATE TABLE `laundryjobcharges` (
   `LaundryHeaderID` int(10) unsigned NOT NULL,
   `ChargeID` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
+  UNIQUE KEY `IX_laundryJobcharges_1` (`LaundryHeaderID`,`ChargeID`),
   KEY `FK_LaundryJobCharges_1` (`LaundryHeaderID`),
   KEY `FK_LaundryJobCharges_2` (`ChargeID`),
   CONSTRAINT `FK_LaundryJobCharges_1` FOREIGN KEY (`LaundryHeaderID`) REFERENCES `laundryheader` (`LaundryHeaderID`) ON UPDATE CASCADE,
   CONSTRAINT `FK_LaundryJobCharges_2` FOREIGN KEY (`ChargeID`) REFERENCES `laundrycharges` (`ChargeID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 
 --
@@ -188,9 +196,11 @@ DROP TABLE IF EXISTS `refilltransactiontype`;
 CREATE TABLE `refilltransactiontype` (
   `TransactionTypeID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL DEFAULT 'NULL',
-  PRIMARY KEY (`TransactionTypeID`)
+  PRIMARY KEY (`TransactionTypeID`),
+  UNIQUE KEY `IX_refilltransactiontype` (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 
 --
@@ -205,26 +215,11 @@ CREATE TABLE `refillproducttype` (
   `Name` varchar(50) NOT NULL DEFAULT 'NULL',
   `Description` varchar(150) NOT NULL DEFAULT 'NULL',
   `Price` double NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ProductTypeID`)
+  PRIMARY KEY (`ProductTypeID`),
+  UNIQUE KEY `IX_refillproducttype` (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
---
--- Table structure for table `refilldaysummary`
---
-
-DROP TABLE IF EXISTS `refilldaysummary`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `refilldaysummary` (
-  `DayID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `TotalSales` double NOT NULL DEFAULT '0',
-  `TransCount` double NOT NULL DEFAULT '0',
-  `DayStamp` datetime NOT NULL,
-  PRIMARY KEY (`DayID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 
 --
@@ -250,6 +245,25 @@ CREATE TABLE `refillheader` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
+
+--
+-- Table structure for table `refilldaysummary`
+--
+
+DROP TABLE IF EXISTS `refilldaysummary`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refilldaysummary` (
+  `DayID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `TotalSales` double NOT NULL DEFAULT '0',
+  `TransCount` double NOT NULL DEFAULT '0',
+  `DayStamp` datetime NOT NULL,
+  PRIMARY KEY (`DayID`),
+  UNIQUE KEY `IX_refilldaysummary` (`DayStamp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
 --
 -- Table structure for table `refilldetail`
 --
@@ -264,12 +278,14 @@ CREATE TABLE `refilldetail` (
   `Qty` int(10) unsigned NOT NULL DEFAULT '0',
   `Amount` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
+  UNIQUE KEY `IX_refilldetail_1` (`RefillHeaderID`,`ProductTypeID`),
   KEY `FK_refilldetail_1` (`RefillHeaderID`),
   KEY `FK_refilldetail_2` (`ProductTypeID`),
   CONSTRAINT `FK_refilldetail_1` FOREIGN KEY (`RefillHeaderID`) REFERENCES `refillheader` (`RefillHeaderID`) ON UPDATE CASCADE,
   CONSTRAINT `FK_refilldetail_2` FOREIGN KEY (`ProductTypeID`) REFERENCES `refillproducttype` (`ProductTypeID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 
 
@@ -281,4 +297,4 @@ CREATE TABLE `refilldetail` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-01-31 19:19:55
+-- Dump completed on 2013-02-01 19:46:46

@@ -64,7 +64,7 @@ namespace NJournals.Tests
 			header.DaySummary = daysummary;
 			
 			LaundryDao dao = new LaundryDao();
-			dao.Save(daysummary);
+			dao.SaveOrUpdate(daysummary);
 		}
 		
 		[Test]

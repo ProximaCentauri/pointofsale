@@ -27,7 +27,7 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void Save(LaundryDaySummaryDataEntity p_daysummary)
+		public void SaveOrUpdate(LaundryDaySummaryDataEntity p_daysummary)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -39,49 +39,70 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-//		public IEnumerable<LaundryHeaderDataEntity> GetAllItems()
-//		{
-//			using(var session = NHibernateHelper.OpenSession())
-//			{
-//				var query = (from LaundryHeader in session.Query<LaundryHeaderDataEntity>()
-//				             select LaundryHeader);
-//				return query.ToList();
-//			}
-//		}
-//		
-//		public LaundryHeaderDataEntity GetByID(int p_headerID)
-//		{
-//			using(var session = NHibernateHelper.OpenSession())
-//			{
-//				var query = (from LaundryHeader in session.Query<LaundryHeaderDataEntity>()
-//				             where LaundryHeader.LaundryHeaderID == p_headerID
-//				             select LaundryHeader).FirstOrDefault();
-//				return query;
-//			}
-//		}
-//		
-//		public void Delete(LaundryHeaderDataEntity p_header)
-//		{
-//			using(var session = NHibernateHelper.OpenSession())
-//			{
-//				using(var transaction = session.BeginTransaction())
-//				{
-//					session.Delete(p_header);
-//					transaction.Commit();
-//				}
-//			}
-//		}
-//		
-//		public void Update(LaundryHeaderDataEntity p_header)
-//		{
-//			using(var session = NHibernateHelper.OpenSession())
-//			{
-//				using(var transaction = session.BeginTransaction())
-//				{
-//					session.Update(p_header);
-//					transaction.Commit();
-//				}
-//			}
-//		}
+		public LaundryHeaderDataEntity GetLaundryByID(int p_headerID)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					var query = session.Query<LaundryHeaderDataEntity>()
+						.Where(x => x.LaundryHeaderID == p_headerID)
+						.FetchMany(x => x.DetailEntities)
+						.ToFuture();
+					return query.Single();
+				}
+			}
+		}
+		
+		public IEnumerable<LaundryHeaderDataEntity> GetAllLaundryItems()
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					var query = session.Query<LaundryHeaderDataEntity>()
+						.FetchMany(x => x.DetailEntities)
+						.ToFuture();
+					return query;
+				}
+			}
+		}
+		
+		public IEnumerable<LaundryDaySummaryDataEntity> GetAllDaySummary()
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					var query = (from LaundryDaySummary in session.Query<LaundryDaySummaryDataEntity>()
+				             select LaundryDaySummary);
+						return query.ToList();
+				}
+			}
+		}
+		
+		public void DeleteLaundry(LaundryHeaderDataEntity p_header)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					session.Delete(p_header);
+					transaction.Commit();
+				}
+			}
+		}
+	
+		public void DeleteDaySummary(LaundryDaySummaryDataEntity p_daysummary)
+		{
+			using (var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					session.Delete(p_daysummary);
+					transaction.Commit();
+				}
+			}
+		}
 	}
 }
