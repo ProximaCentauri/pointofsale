@@ -7,7 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-
+using NJournals.Common.DataEntities;
+using System.Collections.Generic;
 namespace NJournals.Common.Interfaces
 {
 	/// <summary>
@@ -16,6 +17,10 @@ namespace NJournals.Common.Interfaces
 	public interface ILaundryView : IView
 	{
 		
+		void SetAllCategories(IList<LaundryCategoryDataEntity> categories);
+		void SetAllServices(IList<LaundryServiceDataEntity> services);
+		//TODO: parameter for laundrydataentity
+		void Save();
 		
 	}
 }

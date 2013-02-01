@@ -8,7 +8,9 @@
  */
 using System;
 using NJournals.Common.Interfaces;
-
+using NJournals.Core.Models;
+using NJournals.Common.DataEntities;
+using System.Collections.Generic;
 namespace NJournals.Core.Presenter
 {
 	/// <summary>
@@ -17,11 +19,16 @@ namespace NJournals.Core.Presenter
 	public class LaundryViewPresenter
 	{
 		ILaundryView m_view;
+		ILaundryCategoryDao m_categoryDao;
+		ILaundryServiceDao m_serviceDao;
+		ILaundryDao m_laundryDao;
 		
-		public LaundryViewPresenter(ILaundryView p_view)
+		public LaundryViewPresenter(ILaundryView p_view, ILaundryDao p_laundryDao)
 		{
 			this.m_view = p_view;
-			
+			m_laundryDao = p_laundryDao;
+			m_categoryDao = new LaundryCategoryDao();
+			m_serviceDao = new LaundryServiceDao();
 		}
 		
 		public void SaveClicked(){
@@ -33,7 +40,7 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void SetAllCategories(){
-			
+			IList<LaundryCategoryDataEntity> categories = m_categoryDao.GetAllItems() as List<LaundryCategoryDataEntity>;
 		}
 		
 		public void SetAllServices(){

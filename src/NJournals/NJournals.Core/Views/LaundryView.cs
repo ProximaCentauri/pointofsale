@@ -35,5 +35,17 @@ namespace NJournals.Core.Views
 		{
 			
 		}
+		
+		public void Save(){
+			
+		}
+		
+		public void SetAllCategories(){
+			
+		}
+		
+		public void SetAllServices(){
+			
+		}
 	}
 }
