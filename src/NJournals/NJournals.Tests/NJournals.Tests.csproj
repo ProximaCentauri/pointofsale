@@ -48,7 +48,7 @@
       <HintPath>..\..\..\lib\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:\Program Files\SharpDevelop\4.2\bin\Tools\NUnit\nunit.framework.dll</HintPath>
+      <HintPath>C:\Program Files %28x86%29\SharpDevelop\4.2\bin\Tools\NUnit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -66,10 +66,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemCategoryTest.cs" />
-    <Compile Include="ItemGenericTest.cs" />
-    <Compile Include="ItemTest.cs" />
     <Compile Include="LaundryCategoryTests.cs" />
+    <Compile Include="LaundryChargeTest.cs" />
+    <Compile Include="LaundryDaySummaryTest.cs" />
     <Compile Include="LaundryPriceSchemeTest.cs" />
     <Compile Include="LaundryServiceTest.cs" />
     <Compile Include="LaundryTest.cs" />
