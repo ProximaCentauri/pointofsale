@@ -82,6 +82,10 @@
     <Compile Include="Models\LaundryDaySummaryDao.cs" />
     <Compile Include="Models\LaundryPriceSchemeDao.cs" />
     <Compile Include="Models\LaundryServiceDao.cs" />
+    <Compile Include="Models\RefillDao.cs" />
+    <Compile Include="Models\RefillDaySummaryDao.cs" />
+    <Compile Include="Models\RefillProductTypeDao.cs" />
+    <Compile Include="Models\RefillTransactionTypeDao.cs" />
     <Compile Include="Presenter\AddItemPresenter.cs" />
     <Compile Include="Presenter\LaundryViewPresenter.cs" />
     <Compile Include="Presenter\MainFormStationPresenter.cs" />

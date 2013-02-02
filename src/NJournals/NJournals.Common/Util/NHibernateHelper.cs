@@ -56,7 +56,12 @@ namespace NJournals.Common.Util
             		          .AddFromAssemblyOf<LaundryHeaderDataEntity>()
             		          .AddFromAssemblyOf<LaundryDetailDataEntity>()
             		          .AddFromAssemblyOf<LaundryJobChargesDataEntity>()
-            		          .AddFromAssemblyOf<LaundryDaySummaryDataEntity>())
+            		          .AddFromAssemblyOf<LaundryDaySummaryDataEntity>()
+            		          .AddFromAssemblyOf<RefillProductTypeDataEntity>()
+            		          .AddFromAssemblyOf<RefillTransactionTypeDataEntity>()
+            		          .AddFromAssemblyOf<RefillHeaderDataEntity>()
+            		          .AddFromAssemblyOf<RefillDetailDataEntity>()
+            		          .AddFromAssemblyOf<RefillDaySummaryDataEntity>())
                     .ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"))
                     .BuildSessionFactory();
             }

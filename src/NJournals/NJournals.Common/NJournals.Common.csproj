@@ -79,6 +79,11 @@
     <Compile Include="DataEntities\LaundryJobChargesDataEntity.cs" />
     <Compile Include="DataEntities\LaundryPriceSchemeDataEntity.cs" />
     <Compile Include="DataEntities\LaundryServiceDataEntity.cs" />
+    <Compile Include="DataEntities\RefillDaySummaryDataEntity.cs" />
+    <Compile Include="DataEntities\RefillDetailDataEntity.cs" />
+    <Compile Include="DataEntities\RefillHeaderDataEntity.cs" />
+    <Compile Include="DataEntities\RefillProductTypeDataEntity.cs" />
+    <Compile Include="DataEntities\RefillTransactionTypeDataEntity.cs" />
     <Compile Include="DataMappers\ItemCategoryDataMap.cs" />
     <Compile Include="DataEntities\ItemCategoryDataEntity.cs" />
     <Compile Include="DataMappers\ItemDataMap.cs" />
@@ -91,6 +96,11 @@
     <Compile Include="DataMappers\LaundryJobChargesDataMap.cs" />
     <Compile Include="DataMappers\LaundryPriceSchemeDataMap.cs" />
     <Compile Include="DataMappers\LaundryServiceDataMap.cs" />
+    <Compile Include="DataMappers\RefillDaySummaryDataMap.cs" />
+    <Compile Include="DataMappers\RefillDetailDataMap.cs" />
+    <Compile Include="DataMappers\RefillHeaderDataMap.cs" />
+    <Compile Include="DataMappers\RefillProductTypeDataMap.cs" />
+    <Compile Include="DataMappers\RefillTransactionTypeDataMap.cs" />
     <Compile Include="Gui\BaseForm.cs" />
     <Compile Include="Gui\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
@@ -111,7 +121,11 @@
     <Compile Include="Interfaces\ILaundryDaySummaryDao.cs" />
     <Compile Include="Interfaces\ILaundryView.cs" />
     <Compile Include="Interfaces\IMainFormStationView.cs" />
+    <Compile Include="Interfaces\IRefillDao.cs" />
+    <Compile Include="Interfaces\IRefillDaySummaryDao.cs" />
     <Compile Include="Interfaces\IRefillingView.cs" />
+    <Compile Include="Interfaces\IRefillProductTypeDao.cs" />
+    <Compile Include="Interfaces\IRefillTransactionTypeDao.cs" />
     <Compile Include="Interfaces\IReportView.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\ILaundryServiceDao.cs" />
