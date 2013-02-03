@@ -291,6 +291,7 @@ namespace NJournals.Core.Views
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(892, 566);
 			this.Controls.Add(this.button4);
 			this.Controls.Add(this.button3);

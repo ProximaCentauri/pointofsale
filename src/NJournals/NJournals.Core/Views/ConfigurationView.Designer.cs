@@ -6,6 +6,7 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
+
 namespace NJournals.Core.Views
 {
 	partial class ConfigurationView
@@ -42,15 +43,15 @@ namespace NJournals.Core.Views
 			this.dataGridView2 = new System.Windows.Forms.DataGridView();
 			this.label3 = new System.Windows.Forms.Label();
 			this.dataGridView3 = new System.Windows.Forms.DataGridView();
-			this.AddPriceScheme = new System.Windows.Forms.Button();
-			this.EditPriceScheme = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
-			this.button6 = new System.Windows.Forms.Button();
-			this.button7 = new System.Windows.Forms.Button();
-			this.button8 = new System.Windows.Forms.Button();
-			this.button9 = new System.Windows.Forms.Button();
+			this.btnAddPriceScheme = new System.Windows.Forms.Button();
+			this.btnEditPriceScheme = new System.Windows.Forms.Button();
+			this.btnDeletePriceScheme = new System.Windows.Forms.Button();
+			this.btnDeleteServices = new System.Windows.Forms.Button();
+			this.btnEditServices = new System.Windows.Forms.Button();
+			this.btnAddServices = new System.Windows.Forms.Button();
+			this.btnDeleteCategory = new System.Windows.Forms.Button();
+			this.btnEditCategory = new System.Windows.Forms.Button();
+			this.btnAddCategory = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -58,7 +59,7 @@ namespace NJournals.Core.Views
 			// 
 			// label1
 			// 
-			this.label1.BackColor = System.Drawing.Color.Teal;
+			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(168)))), ((int)(((byte)(188)))));
 			this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -78,7 +79,7 @@ namespace NJournals.Core.Views
 			// 
 			// label2
 			// 
-			this.label2.BackColor = System.Drawing.Color.Teal;
+			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(168)))), ((int)(((byte)(188)))));
 			this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -98,7 +99,7 @@ namespace NJournals.Core.Views
 			// 
 			// label3
 			// 
-			this.label3.BackColor = System.Drawing.Color.Teal;
+			this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(168)))), ((int)(((byte)(188)))));
 			this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -116,128 +117,169 @@ namespace NJournals.Core.Views
 			this.dataGridView3.Size = new System.Drawing.Size(789, 131);
 			this.dataGridView3.TabIndex = 5;
 			// 
-			// AddPriceScheme
+			// btnAddPriceScheme
 			// 
-			this.AddPriceScheme.Location = new System.Drawing.Point(820, 44);
-			this.AddPriceScheme.Name = "AddPriceScheme";
-			this.AddPriceScheme.Size = new System.Drawing.Size(35, 23);
-			this.AddPriceScheme.TabIndex = 6;
-			this.AddPriceScheme.Text = "Add";
-			this.AddPriceScheme.UseVisualStyleBackColor = true;
+			this.btnAddPriceScheme.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnAddPriceScheme.FlatAppearance.BorderSize = 0;
+			this.btnAddPriceScheme.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnAddPriceScheme.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnAddPriceScheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnAddPriceScheme.Location = new System.Drawing.Point(820, 64);
+			this.btnAddPriceScheme.Name = "btnAddPriceScheme";
+			this.btnAddPriceScheme.Size = new System.Drawing.Size(35, 23);
+			this.btnAddPriceScheme.TabIndex = 6;
+			this.btnAddPriceScheme.UseVisualStyleBackColor = true;
 			// 
-			// EditPriceScheme
+			// btnEditPriceScheme
 			// 
-			this.EditPriceScheme.Location = new System.Drawing.Point(820, 73);
-			this.EditPriceScheme.Name = "EditPriceScheme";
-			this.EditPriceScheme.Size = new System.Drawing.Size(35, 23);
-			this.EditPriceScheme.TabIndex = 7;
-			this.EditPriceScheme.Text = "Edit";
-			this.EditPriceScheme.UseVisualStyleBackColor = true;
+			this.btnEditPriceScheme.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnEditPriceScheme.FlatAppearance.BorderSize = 0;
+			this.btnEditPriceScheme.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnEditPriceScheme.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnEditPriceScheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnEditPriceScheme.Location = new System.Drawing.Point(820, 93);
+			this.btnEditPriceScheme.Name = "btnEditPriceScheme";
+			this.btnEditPriceScheme.Size = new System.Drawing.Size(35, 23);
+			this.btnEditPriceScheme.TabIndex = 7;
+			this.btnEditPriceScheme.UseVisualStyleBackColor = true;
 			// 
-			// button3
+			// btnDeletePriceScheme
 			// 
-			this.button3.Location = new System.Drawing.Point(820, 102);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(35, 23);
-			this.button3.TabIndex = 8;
-			this.button3.Text = "Remove";
-			this.button3.UseVisualStyleBackColor = true;
+			this.btnDeletePriceScheme.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnDeletePriceScheme.FlatAppearance.BorderSize = 0;
+			this.btnDeletePriceScheme.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeletePriceScheme.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeletePriceScheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDeletePriceScheme.Location = new System.Drawing.Point(820, 122);
+			this.btnDeletePriceScheme.Name = "btnDeletePriceScheme";
+			this.btnDeletePriceScheme.Size = new System.Drawing.Size(35, 23);
+			this.btnDeletePriceScheme.TabIndex = 8;
+			this.btnDeletePriceScheme.UseVisualStyleBackColor = true;
 			// 
-			// button4
+			// btnDeleteServices
 			// 
-			this.button4.Location = new System.Drawing.Point(820, 287);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(35, 23);
-			this.button4.TabIndex = 11;
-			this.button4.Text = "Remove";
-			this.button4.UseVisualStyleBackColor = true;
+			this.btnDeleteServices.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnDeleteServices.FlatAppearance.BorderSize = 0;
+			this.btnDeleteServices.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteServices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDeleteServices.Location = new System.Drawing.Point(820, 304);
+			this.btnDeleteServices.Name = "btnDeleteServices";
+			this.btnDeleteServices.Size = new System.Drawing.Size(35, 23);
+			this.btnDeleteServices.TabIndex = 11;
+			this.btnDeleteServices.UseVisualStyleBackColor = true;
 			// 
-			// button5
+			// btnEditServices
 			// 
-			this.button5.Location = new System.Drawing.Point(820, 258);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(35, 23);
-			this.button5.TabIndex = 10;
-			this.button5.Text = "Edit";
-			this.button5.UseVisualStyleBackColor = true;
+			this.btnEditServices.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnEditServices.FlatAppearance.BorderSize = 0;
+			this.btnEditServices.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnEditServices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnEditServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnEditServices.Location = new System.Drawing.Point(820, 275);
+			this.btnEditServices.Name = "btnEditServices";
+			this.btnEditServices.Size = new System.Drawing.Size(35, 23);
+			this.btnEditServices.TabIndex = 10;
+			this.btnEditServices.UseVisualStyleBackColor = true;
 			// 
-			// button6
+			// btnAddServices
 			// 
-			this.button6.Location = new System.Drawing.Point(820, 229);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(35, 23);
-			this.button6.TabIndex = 9;
-			this.button6.Text = "Add";
-			this.button6.UseVisualStyleBackColor = true;
+			this.btnAddServices.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnAddServices.FlatAppearance.BorderSize = 0;
+			this.btnAddServices.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnAddServices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnAddServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnAddServices.Location = new System.Drawing.Point(820, 246);
+			this.btnAddServices.Name = "btnAddServices";
+			this.btnAddServices.Size = new System.Drawing.Size(35, 23);
+			this.btnAddServices.TabIndex = 9;
+			this.btnAddServices.UseVisualStyleBackColor = true;
 			// 
-			// button7
+			// btnDeleteCategory
 			// 
-			this.button7.Location = new System.Drawing.Point(820, 477);
-			this.button7.Name = "button7";
-			this.button7.Size = new System.Drawing.Size(35, 23);
-			this.button7.TabIndex = 14;
-			this.button7.Text = "Remove";
-			this.button7.UseVisualStyleBackColor = true;
+			this.btnDeleteCategory.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnDeleteCategory.FlatAppearance.BorderSize = 0;
+			this.btnDeleteCategory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteCategory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDeleteCategory.Location = new System.Drawing.Point(820, 489);
+			this.btnDeleteCategory.Name = "btnDeleteCategory";
+			this.btnDeleteCategory.Size = new System.Drawing.Size(35, 23);
+			this.btnDeleteCategory.TabIndex = 14;
+			this.btnDeleteCategory.UseVisualStyleBackColor = true;
 			// 
-			// button8
+			// btnEditCategory
 			// 
-			this.button8.Location = new System.Drawing.Point(820, 448);
-			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(35, 23);
-			this.button8.TabIndex = 13;
-			this.button8.Text = "Edit";
-			this.button8.UseVisualStyleBackColor = true;
+			this.btnEditCategory.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnEditCategory.FlatAppearance.BorderSize = 0;
+			this.btnEditCategory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnEditCategory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnEditCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnEditCategory.Location = new System.Drawing.Point(820, 460);
+			this.btnEditCategory.Name = "btnEditCategory";
+			this.btnEditCategory.Size = new System.Drawing.Size(35, 23);
+			this.btnEditCategory.TabIndex = 13;
+			this.btnEditCategory.UseVisualStyleBackColor = true;
 			// 
-			// button9
+			// btnAddCategory
 			// 
-			this.button9.Location = new System.Drawing.Point(820, 419);
-			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(35, 23);
-			this.button9.TabIndex = 12;
-			this.button9.Text = "Add";
-			this.button9.UseVisualStyleBackColor = true;
+			this.btnAddCategory.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnAddCategory.FlatAppearance.BorderSize = 0;
+			this.btnAddCategory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnAddCategory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnAddCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnAddCategory.Location = new System.Drawing.Point(820, 431);
+			this.btnAddCategory.Name = "btnAddCategory";
+			this.btnAddCategory.Size = new System.Drawing.Size(35, 23);
+			this.btnAddCategory.TabIndex = 12;
+			this.btnAddCategory.UseVisualStyleBackColor = true;
 			// 
-			// LaundryConfigurationView
+			// ConfigurationView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(884, 562);
-			this.Controls.Add(this.button7);
-			this.Controls.Add(this.button8);
-			this.Controls.Add(this.button9);
-			this.Controls.Add(this.button4);
-			this.Controls.Add(this.button5);
-			this.Controls.Add(this.button6);
-			this.Controls.Add(this.button3);
-			this.Controls.Add(this.EditPriceScheme);
-			this.Controls.Add(this.AddPriceScheme);
+			this.Controls.Add(this.btnDeleteCategory);
+			this.Controls.Add(this.btnEditCategory);
+			this.Controls.Add(this.btnAddCategory);
+			this.Controls.Add(this.btnDeleteServices);
+			this.Controls.Add(this.btnEditServices);
+			this.Controls.Add(this.btnAddServices);
+			this.Controls.Add(this.btnDeletePriceScheme);
+			this.Controls.Add(this.btnEditPriceScheme);
+			this.Controls.Add(this.btnAddPriceScheme);
 			this.Controls.Add(this.dataGridView3);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.dataGridView2);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.label1);
-			this.Name = "LaundryConfigurationView";
+			this.Name = "ConfigurationView";
 			this.Text = "LaundryConfigurationView";
+			this.Load += new System.EventHandler(this.LaundryConfigurationFormLoad);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
 			this.ResumeLayout(false);
 		}
-		private System.Windows.Forms.Button button9;
-		private System.Windows.Forms.Button button8;
-		private System.Windows.Forms.Button button7;
-		private System.Windows.Forms.Button button6;
-		private System.Windows.Forms.Button button5;
-		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Button EditPriceScheme;
-		private System.Windows.Forms.Button AddPriceScheme;
+		private System.Windows.Forms.Button btnAddCategory;
+		private System.Windows.Forms.Button btnEditCategory;
+		private System.Windows.Forms.Button btnDeleteCategory;
+		private System.Windows.Forms.Button btnAddServices;
+		private System.Windows.Forms.Button btnEditServices;
+		private System.Windows.Forms.Button btnDeleteServices;
+		private System.Windows.Forms.Button btnDeletePriceScheme;
+		private System.Windows.Forms.Button btnEditPriceScheme;
+		private System.Windows.Forms.Button btnAddPriceScheme;
 		private System.Windows.Forms.DataGridView dataGridView3;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.DataGridView dataGridView2;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.Label label1;
+		
+		
+
 	}
 }

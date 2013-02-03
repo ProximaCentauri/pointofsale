@@ -37,13 +37,13 @@ namespace NJournals.Core.Views
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
+			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -64,39 +64,21 @@ namespace NJournals.Core.Views
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Report Information";
 			// 
-			// label1
+			// button1
 			// 
-			this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(46, 21);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(78, 19);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Report Type:";
+			this.button1.Location = new System.Drawing.Point(270, 95);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 6;
+			this.button1.Text = "Run Report";
+			this.button1.UseVisualStyleBackColor = true;
 			// 
-			// comboBox1
+			// textBox2
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(131, 17);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(121, 23);
-			this.comboBox1.TabIndex = 1;
-			// 
-			// label2
-			// 
-			this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(84, 43);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(40, 21);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "From:";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(131, 43);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(121, 23);
-			this.textBox1.TabIndex = 3;
+			this.textBox2.Location = new System.Drawing.Point(131, 69);
+			this.textBox2.Name = "textBox2";
+			this.textBox2.Size = new System.Drawing.Size(121, 23);
+			this.textBox2.TabIndex = 5;
 			// 
 			// label3
 			// 
@@ -108,26 +90,45 @@ namespace NJournals.Core.Views
 			this.label3.Text = "To:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox2
+			// textBox1
 			// 
-			this.textBox2.Location = new System.Drawing.Point(131, 69);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(121, 23);
-			this.textBox2.TabIndex = 5;
+			this.textBox1.Location = new System.Drawing.Point(131, 43);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(121, 23);
+			this.textBox1.TabIndex = 3;
 			// 
-			// button1
+			// label2
 			// 
-			this.button1.Location = new System.Drawing.Point(270, 95);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 6;
-			this.button1.Text = "Run Report";
-			this.button1.UseVisualStyleBackColor = true;
+			this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(84, 43);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(40, 21);
+			this.label2.TabIndex = 2;
+			this.label2.Text = "From:";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(131, 17);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(121, 23);
+			this.comboBox1.TabIndex = 1;
+			// 
+			// label1
+			// 
+			this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(46, 21);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(78, 19);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Report Type:";
 			// 
 			// ReportView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(892, 566);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "ReportView";

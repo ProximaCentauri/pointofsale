@@ -20,6 +20,7 @@ namespace NJournals.Common.Util
 		public static void setImage(Control control, string imagePath){
 			if(File.Exists(imagePath)){
 				control.BackgroundImage = Image.FromFile(imagePath);
+				control.BackgroundImageLayout  = ImageLayout.Center;
 			}
 		}
 	}

@@ -33,13 +33,31 @@ namespace NJournals.Core.Views
 		
 		void setButtonImages()
 		{
-			Resource.setImage(this.AddPriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/add.png");
+			Resource.setImage(this.btnAddPriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
+			Resource.setImage(this.btnEditPriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
+			Resource.setImage(this.btnDeletePriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
+			
+			Resource.setImage(this.btnAddServices,System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
+			Resource.setImage(this.btnEditServices,System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
+			Resource.setImage(this.btnDeleteServices,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
+			
+			Resource.setImage(this.btnAddCategory,System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
+			Resource.setImage(this.btnEditCategory,System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
+			Resource.setImage(this.btnDeleteCategory,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
+			
 			
 		}
+		
+		
 		
 		void LaundryConfigurationFormLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
+			this.btnAddPriceScheme.Click += delegate {  };
 		}
+		
+		
+		
+		
 	}
 }

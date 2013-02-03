@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using NJournals.Common.Interfaces;
 using NJournals.Common.Gui;
 using NJournals.Common.DataEntities;
+using NJournals.Common.Util;
 using System.Collections.Generic;
 using NJournals.Core.Presenter;
 using NJournals.Core.Models;
@@ -38,8 +39,15 @@ namespace NJournals.Core.Views
 		LaundryViewPresenter m_presenter;
 		ILaundryDao m_laundryDao;
 		
+		void setButtonImages()
+		{
+			Resource.setImage(this.btnsearch, System.IO.Directory.GetCurrentDirectory() + "/images/search.png");
+		}
+		
 		void LaundryNewViewLoad(object sender, EventArgs e)
 		{
+			setButtonImages();
+				
 			m_laundryDao = new LaundryDao();
 			m_presenter = new LaundryViewPresenter(this, m_laundryDao);
 			if(this.Text.Contains("[NEW]")){

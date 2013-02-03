@@ -278,6 +278,7 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.groupBox2.Controls.Add(this.btnsearch);
 			this.groupBox2.Controls.Add(this.txtsearch);
 			this.groupBox2.Controls.Add(this.label9);
@@ -291,12 +292,17 @@ namespace NJournals.Core.Views
 			// 
 			// btnsearch
 			// 
-			this.btnsearch.Location = new System.Drawing.Point(419, 21);
+			this.btnsearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnsearch.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnsearch.FlatAppearance.BorderSize = 0;
+			this.btnsearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnsearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnsearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnsearch.Location = new System.Drawing.Point(415, 18);
 			this.btnsearch.Name = "btnsearch";
-			this.btnsearch.Size = new System.Drawing.Size(75, 23);
+			this.btnsearch.Size = new System.Drawing.Size(24, 24);
 			this.btnsearch.TabIndex = 4;
-			this.btnsearch.Text = "Search";
-			this.btnsearch.UseVisualStyleBackColor = true;
+			this.btnsearch.UseVisualStyleBackColor = false;
 			// 
 			// txtsearch
 			// 
@@ -464,7 +470,6 @@ namespace NJournals.Core.Views
 			this.btnsaveprint.TabIndex = 16;
 			this.btnsaveprint.Text = "Save && Print";
 			this.btnsaveprint.UseVisualStyleBackColor = true;
-			
 			// 
 			// btncancel
 			// 
@@ -501,7 +506,7 @@ namespace NJournals.Core.Views
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(884, 612);
 			this.Controls.Add(this.btnsave);
 			this.Controls.Add(this.btndelete);
