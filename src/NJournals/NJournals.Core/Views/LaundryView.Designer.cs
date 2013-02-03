@@ -37,45 +37,47 @@ namespace NJournals.Core.Views
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.dtdueDate = new System.Windows.Forms.DateTimePicker();
+			this.dtrecieveDate = new System.Windows.Forms.DateTimePicker();
 			this.label4 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.txtname = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.txtjoborder = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cmbservices = new System.Windows.Forms.ComboBox();
 			this.Services = new System.Windows.Forms.GroupBox();
 			this.button1 = new System.Windows.Forms.Button();
-			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.txtkilo = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
-			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.txtnoitems = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.cmbcategory = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.button2 = new System.Windows.Forms.Button();
-			this.textBox7 = new System.Windows.Forms.TextBox();
+			this.btnsearch = new System.Windows.Forms.Button();
+			this.txtsearch = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
-			this.textBox8 = new System.Windows.Forms.TextBox();
+			this.txtamtdue = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
-			this.textBox9 = new System.Windows.Forms.TextBox();
+			this.txtamttender = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
-			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.txtchange = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.checkBox6 = new System.Windows.Forms.CheckBox();
-			this.checkBox5 = new System.Windows.Forms.CheckBox();
-			this.checkBox4 = new System.Windows.Forms.CheckBox();
-			this.checkBox3 = new System.Windows.Forms.CheckBox();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.checkBox7 = new System.Windows.Forms.CheckBox();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
+			this.chk15discount = new System.Windows.Forms.CheckBox();
+			this.chk10discount = new System.Windows.Forms.CheckBox();
+			this.chksameday = new System.Windows.Forms.CheckBox();
+			this.chk24rush = new System.Windows.Forms.CheckBox();
+			this.chkdelivery = new System.Windows.Forms.CheckBox();
+			this.chkpickup = new System.Windows.Forms.CheckBox();
+			this.chkpaywhenclaim = new System.Windows.Forms.CheckBox();
+			this.btnsaveprint = new System.Windows.Forms.Button();
+			this.btncancel = new System.Windows.Forms.Button();
+			this.btndelete = new System.Windows.Forms.Button();
+			this.btnsave = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -85,62 +87,64 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.textBox4);
+			this.groupBox1.Controls.Add(this.dtdueDate);
+			this.groupBox1.Controls.Add(this.dtrecieveDate);
 			this.groupBox1.Controls.Add(this.label4);
-			this.groupBox1.Controls.Add(this.textBox3);
 			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.textBox2);
+			this.groupBox1.Controls.Add(this.txtname);
 			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Controls.Add(this.textBox1);
+			this.groupBox1.Controls.Add(this.txtjoborder);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.Location = new System.Drawing.Point(21, 77);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(730, 93);
+			this.groupBox1.Size = new System.Drawing.Size(834, 93);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Transaction Information";
 			// 
-			// textBox4
+			// dtdueDate
 			// 
-			this.textBox4.Location = new System.Drawing.Point(424, 47);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(154, 23);
-			this.textBox4.TabIndex = 7;
+			this.dtdueDate.Location = new System.Drawing.Point(610, 52);
+			this.dtdueDate.Name = "dtdueDate";
+			this.dtdueDate.Size = new System.Drawing.Size(200, 23);
+			this.dtdueDate.TabIndex = 9;
+			this.dtdueDate.Value = new System.DateTime(2013, 2, 2, 18, 46, 42, 0);
+			// 
+			// dtrecieveDate
+			// 
+			this.dtrecieveDate.Location = new System.Drawing.Point(610, 23);
+			this.dtrecieveDate.Name = "dtrecieveDate";
+			this.dtrecieveDate.Size = new System.Drawing.Size(200, 23);
+			this.dtrecieveDate.TabIndex = 8;
+			this.dtrecieveDate.Value = new System.DateTime(2013, 2, 2, 18, 46, 34, 0);
 			// 
 			// label4
 			// 
 			this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(314, 44);
+			this.label4.Location = new System.Drawing.Point(500, 47);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(100, 23);
 			this.label4.TabIndex = 6;
 			this.label4.Text = "Due Date:";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox3
-			// 
-			this.textBox3.Location = new System.Drawing.Point(424, 21);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(154, 23);
-			this.textBox3.TabIndex = 5;
-			// 
 			// label3
 			// 
 			this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(315, 20);
+			this.label3.Location = new System.Drawing.Point(501, 23);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(100, 23);
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Received Date:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox2
+			// txtname
 			// 
-			this.textBox2.Location = new System.Drawing.Point(143, 47);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(154, 23);
-			this.textBox2.TabIndex = 3;
+			this.txtname.Location = new System.Drawing.Point(143, 47);
+			this.txtname.Name = "txtname";
+			this.txtname.Size = new System.Drawing.Size(258, 23);
+			this.txtname.TabIndex = 3;
 			// 
 			// label2
 			// 
@@ -152,12 +156,12 @@ namespace NJournals.Core.Views
 			this.label2.Text = "Customer Name: ";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox1
+			// txtjoborder
 			// 
-			this.textBox1.Location = new System.Drawing.Point(143, 21);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(154, 23);
-			this.textBox1.TabIndex = 1;
+			this.txtjoborder.Location = new System.Drawing.Point(143, 21);
+			this.txtjoborder.Name = "txtjoborder";
+			this.txtjoborder.Size = new System.Drawing.Size(258, 23);
+			this.txtjoborder.TabIndex = 1;
 			// 
 			// label1
 			// 
@@ -174,15 +178,15 @@ namespace NJournals.Core.Views
 			this.cmbservices.FormattingEnabled = true;
 			this.cmbservices.Location = new System.Drawing.Point(71, 27);
 			this.cmbservices.Name = "cmbservices";
-			this.cmbservices.Size = new System.Drawing.Size(158, 23);
+			this.cmbservices.Size = new System.Drawing.Size(190, 23);
 			this.cmbservices.TabIndex = 2;
 			// 
 			// Services
 			// 
 			this.Services.Controls.Add(this.button1);
-			this.Services.Controls.Add(this.textBox6);
+			this.Services.Controls.Add(this.txtkilo);
 			this.Services.Controls.Add(this.label8);
-			this.Services.Controls.Add(this.textBox5);
+			this.Services.Controls.Add(this.txtnoitems);
 			this.Services.Controls.Add(this.label7);
 			this.Services.Controls.Add(this.cmbcategory);
 			this.Services.Controls.Add(this.label5);
@@ -191,26 +195,26 @@ namespace NJournals.Core.Views
 			this.Services.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Services.Location = new System.Drawing.Point(21, 182);
 			this.Services.Name = "Services";
-			this.Services.Size = new System.Drawing.Size(256, 209);
+			this.Services.Size = new System.Drawing.Size(278, 317);
 			this.Services.TabIndex = 3;
 			this.Services.TabStop = false;
 			this.Services.Text = "Services";
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(154, 160);
+			this.button1.Location = new System.Drawing.Point(197, 281);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
 			this.button1.TabIndex = 12;
 			this.button1.Text = "Add";
 			this.button1.UseVisualStyleBackColor = true;
 			// 
-			// textBox6
+			// txtkilo
 			// 
-			this.textBox6.Location = new System.Drawing.Point(71, 105);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(100, 23);
-			this.textBox6.TabIndex = 10;
+			this.txtkilo.Location = new System.Drawing.Point(71, 105);
+			this.txtkilo.Name = "txtkilo";
+			this.txtkilo.Size = new System.Drawing.Size(100, 23);
+			this.txtkilo.TabIndex = 10;
 			// 
 			// label8
 			// 
@@ -221,12 +225,12 @@ namespace NJournals.Core.Views
 			this.label8.TabIndex = 9;
 			this.label8.Text = "Kilos:";
 			// 
-			// textBox5
+			// txtnoitems
 			// 
-			this.textBox5.Location = new System.Drawing.Point(71, 79);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(100, 23);
-			this.textBox5.TabIndex = 7;
+			this.txtnoitems.Location = new System.Drawing.Point(71, 79);
+			this.txtnoitems.Name = "txtnoitems";
+			this.txtnoitems.Size = new System.Drawing.Size(100, 23);
+			this.txtnoitems.TabIndex = 7;
 			// 
 			// label7
 			// 
@@ -242,7 +246,7 @@ namespace NJournals.Core.Views
 			this.cmbcategory.FormattingEnabled = true;
 			this.cmbcategory.Location = new System.Drawing.Point(71, 53);
 			this.cmbcategory.Name = "cmbcategory";
-			this.cmbcategory.Size = new System.Drawing.Size(158, 23);
+			this.cmbcategory.Size = new System.Drawing.Size(190, 23);
 			this.cmbcategory.TabIndex = 5;
 			// 
 			// label5
@@ -274,32 +278,32 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.button2);
-			this.groupBox2.Controls.Add(this.textBox7);
+			this.groupBox2.Controls.Add(this.btnsearch);
+			this.groupBox2.Controls.Add(this.txtsearch);
 			this.groupBox2.Controls.Add(this.label9);
 			this.groupBox2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox2.Location = new System.Drawing.Point(21, 12);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(727, 54);
+			this.groupBox2.Size = new System.Drawing.Size(831, 54);
 			this.groupBox2.TabIndex = 5;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Search";
 			// 
-			// button2
+			// btnsearch
 			// 
-			this.button2.Location = new System.Drawing.Point(419, 21);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 4;
-			this.button2.Text = "Search";
-			this.button2.UseVisualStyleBackColor = true;
+			this.btnsearch.Location = new System.Drawing.Point(419, 21);
+			this.btnsearch.Name = "btnsearch";
+			this.btnsearch.Size = new System.Drawing.Size(75, 23);
+			this.btnsearch.TabIndex = 4;
+			this.btnsearch.Text = "Search";
+			this.btnsearch.UseVisualStyleBackColor = true;
 			// 
-			// textBox7
+			// txtsearch
 			// 
-			this.textBox7.Location = new System.Drawing.Point(143, 22);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.Size = new System.Drawing.Size(258, 23);
-			this.textBox7.TabIndex = 3;
+			this.txtsearch.Location = new System.Drawing.Point(143, 22);
+			this.txtsearch.Name = "txtsearch";
+			this.txtsearch.Size = new System.Drawing.Size(258, 23);
+			this.txtsearch.TabIndex = 3;
 			// 
 			// label9
 			// 
@@ -311,12 +315,12 @@ namespace NJournals.Core.Views
 			this.label9.Text = "Job Order:";
 			this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox8
+			// txtamtdue
 			// 
-			this.textBox8.Location = new System.Drawing.Point(736, 400);
-			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(119, 20);
-			this.textBox8.TabIndex = 9;
+			this.txtamtdue.Location = new System.Drawing.Point(736, 400);
+			this.txtamtdue.Name = "txtamtdue";
+			this.txtamtdue.Size = new System.Drawing.Size(119, 20);
+			this.txtamtdue.TabIndex = 9;
 			// 
 			// label10
 			// 
@@ -328,12 +332,12 @@ namespace NJournals.Core.Views
 			this.label10.TabIndex = 8;
 			this.label10.Text = "Amount Due:";
 			// 
-			// textBox9
+			// txtamttender
 			// 
-			this.textBox9.Location = new System.Drawing.Point(736, 452);
-			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(119, 20);
-			this.textBox9.TabIndex = 11;
+			this.txtamttender.Location = new System.Drawing.Point(736, 452);
+			this.txtamttender.Name = "txtamttender";
+			this.txtamttender.Size = new System.Drawing.Size(119, 20);
+			this.txtamttender.TabIndex = 11;
 			// 
 			// label11
 			// 
@@ -346,12 +350,12 @@ namespace NJournals.Core.Views
 			this.label11.Text = "Amount Tender:";
 			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox10
+			// txtchange
 			// 
-			this.textBox10.Location = new System.Drawing.Point(736, 478);
-			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(119, 20);
-			this.textBox10.TabIndex = 13;
+			this.txtchange.Location = new System.Drawing.Point(736, 478);
+			this.txtchange.Name = "txtchange";
+			this.txtchange.Size = new System.Drawing.Size(119, 20);
+			this.txtchange.TabIndex = 13;
 			// 
 			// label12
 			// 
@@ -366,12 +370,12 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.checkBox6);
-			this.groupBox3.Controls.Add(this.checkBox5);
-			this.groupBox3.Controls.Add(this.checkBox4);
-			this.groupBox3.Controls.Add(this.checkBox3);
-			this.groupBox3.Controls.Add(this.checkBox2);
-			this.groupBox3.Controls.Add(this.checkBox1);
+			this.groupBox3.Controls.Add(this.chk15discount);
+			this.groupBox3.Controls.Add(this.chk10discount);
+			this.groupBox3.Controls.Add(this.chksameday);
+			this.groupBox3.Controls.Add(this.chk24rush);
+			this.groupBox3.Controls.Add(this.chkdelivery);
+			this.groupBox3.Controls.Add(this.chkpickup);
 			this.groupBox3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.groupBox3.Location = new System.Drawing.Point(317, 400);
@@ -381,95 +385,117 @@ namespace NJournals.Core.Views
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Additional Charges";
 			// 
-			// checkBox6
+			// chk15discount
 			// 
-			this.checkBox6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox6.Location = new System.Drawing.Point(157, 64);
-			this.checkBox6.Name = "checkBox6";
-			this.checkBox6.Size = new System.Drawing.Size(127, 24);
-			this.checkBox6.TabIndex = 17;
-			this.checkBox6.Text = "15% Discount";
-			this.checkBox6.UseVisualStyleBackColor = true;
+			this.chk15discount.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chk15discount.Location = new System.Drawing.Point(157, 64);
+			this.chk15discount.Name = "chk15discount";
+			this.chk15discount.Size = new System.Drawing.Size(127, 24);
+			this.chk15discount.TabIndex = 17;
+			this.chk15discount.Text = "15% Discount";
+			this.chk15discount.UseVisualStyleBackColor = true;
 			// 
-			// checkBox5
+			// chk10discount
 			// 
-			this.checkBox5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox5.Location = new System.Drawing.Point(157, 43);
-			this.checkBox5.Name = "checkBox5";
-			this.checkBox5.Size = new System.Drawing.Size(127, 24);
-			this.checkBox5.TabIndex = 16;
-			this.checkBox5.Text = "10% Discount";
-			this.checkBox5.UseVisualStyleBackColor = true;
+			this.chk10discount.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chk10discount.Location = new System.Drawing.Point(157, 43);
+			this.chk10discount.Name = "chk10discount";
+			this.chk10discount.Size = new System.Drawing.Size(127, 24);
+			this.chk10discount.TabIndex = 16;
+			this.chk10discount.Text = "10% Discount";
+			this.chk10discount.UseVisualStyleBackColor = true;
 			// 
-			// checkBox4
+			// chksameday
 			// 
-			this.checkBox4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox4.Location = new System.Drawing.Point(157, 22);
-			this.checkBox4.Name = "checkBox4";
-			this.checkBox4.Size = new System.Drawing.Size(127, 24);
-			this.checkBox4.TabIndex = 15;
-			this.checkBox4.Text = "Same Day Rush";
-			this.checkBox4.UseVisualStyleBackColor = true;
+			this.chksameday.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chksameday.Location = new System.Drawing.Point(157, 22);
+			this.chksameday.Name = "chksameday";
+			this.chksameday.Size = new System.Drawing.Size(127, 24);
+			this.chksameday.TabIndex = 15;
+			this.chksameday.Text = "Same Day Rush";
+			this.chksameday.UseVisualStyleBackColor = true;
 			// 
-			// checkBox3
+			// chk24rush
 			// 
-			this.checkBox3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox3.Location = new System.Drawing.Point(6, 64);
-			this.checkBox3.Name = "checkBox3";
-			this.checkBox3.Size = new System.Drawing.Size(148, 24);
-			this.checkBox3.TabIndex = 2;
-			this.checkBox3.Text = "24 Hour Rush Service";
-			this.checkBox3.UseVisualStyleBackColor = true;
+			this.chk24rush.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chk24rush.Location = new System.Drawing.Point(6, 64);
+			this.chk24rush.Name = "chk24rush";
+			this.chk24rush.Size = new System.Drawing.Size(148, 24);
+			this.chk24rush.TabIndex = 2;
+			this.chk24rush.Text = "24 Hour Rush Service";
+			this.chk24rush.UseVisualStyleBackColor = true;
 			// 
-			// checkBox2
+			// chkdelivery
 			// 
-			this.checkBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox2.Location = new System.Drawing.Point(6, 43);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(83, 24);
-			this.checkBox2.TabIndex = 1;
-			this.checkBox2.Text = "Delivery";
-			this.checkBox2.UseVisualStyleBackColor = true;
+			this.chkdelivery.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkdelivery.Location = new System.Drawing.Point(6, 43);
+			this.chkdelivery.Name = "chkdelivery";
+			this.chkdelivery.Size = new System.Drawing.Size(83, 24);
+			this.chkdelivery.TabIndex = 1;
+			this.chkdelivery.Text = "Delivery";
+			this.chkdelivery.UseVisualStyleBackColor = true;
 			// 
-			// checkBox1
+			// chkpickup
 			// 
-			this.checkBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox1.Location = new System.Drawing.Point(6, 22);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(68, 24);
-			this.checkBox1.TabIndex = 0;
-			this.checkBox1.Text = "Pick Up";
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.chkpickup.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkpickup.Location = new System.Drawing.Point(6, 22);
+			this.chkpickup.Name = "chkpickup";
+			this.chkpickup.Size = new System.Drawing.Size(68, 24);
+			this.chkpickup.TabIndex = 0;
+			this.chkpickup.Text = "Pick Up";
+			this.chkpickup.UseVisualStyleBackColor = true;
 			// 
-			// checkBox7
+			// chkpaywhenclaim
 			// 
-			this.checkBox7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox7.Location = new System.Drawing.Point(736, 424);
-			this.checkBox7.Name = "checkBox7";
-			this.checkBox7.Size = new System.Drawing.Size(125, 24);
-			this.checkBox7.TabIndex = 15;
-			this.checkBox7.Text = "Pay when Claim";
-			this.checkBox7.UseVisualStyleBackColor = true;
+			this.chkpaywhenclaim.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkpaywhenclaim.Location = new System.Drawing.Point(736, 424);
+			this.chkpaywhenclaim.Name = "chkpaywhenclaim";
+			this.chkpaywhenclaim.Size = new System.Drawing.Size(125, 24);
+			this.chkpaywhenclaim.TabIndex = 15;
+			this.chkpaywhenclaim.Text = "Pay when Claim";
+			this.chkpaywhenclaim.UseVisualStyleBackColor = true;
 			// 
-			// button3
+			// btnsaveprint
 			// 
-			this.button3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button3.Location = new System.Drawing.Point(687, 559);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(75, 23);
-			this.button3.TabIndex = 16;
-			this.button3.Text = "Print";
-			this.button3.UseVisualStyleBackColor = true;
+			this.btnsaveprint.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnsaveprint.Location = new System.Drawing.Point(18, 559);
+			this.btnsaveprint.Name = "btnsaveprint";
+			this.btnsaveprint.Size = new System.Drawing.Size(99, 23);
+			this.btnsaveprint.TabIndex = 16;
+			this.btnsaveprint.Text = "Save && Print";
+			this.btnsaveprint.UseVisualStyleBackColor = true;
+			
 			// 
-			// button4
+			// btncancel
 			// 
-			this.button4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button4.Location = new System.Drawing.Point(780, 559);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(75, 23);
-			this.button4.TabIndex = 17;
-			this.button4.Text = "Cancel";
-			this.button4.UseVisualStyleBackColor = true;
+			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btncancel.Location = new System.Drawing.Point(631, 559);
+			this.btncancel.Name = "btncancel";
+			this.btncancel.Size = new System.Drawing.Size(99, 23);
+			this.btncancel.TabIndex = 17;
+			this.btncancel.Text = "Cancel";
+			this.btncancel.UseVisualStyleBackColor = true;
+			this.btncancel.Click += new System.EventHandler(this.BtncancelClick);
+			// 
+			// btndelete
+			// 
+			this.btndelete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btndelete.Location = new System.Drawing.Point(736, 559);
+			this.btndelete.Name = "btndelete";
+			this.btndelete.Size = new System.Drawing.Size(119, 23);
+			this.btndelete.TabIndex = 18;
+			this.btndelete.Text = "Delete Transaction";
+			this.btndelete.UseVisualStyleBackColor = true;
+			// 
+			// btnsave
+			// 
+			this.btnsave.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnsave.Location = new System.Drawing.Point(121, 559);
+			this.btnsave.Name = "btnsave";
+			this.btnsave.Size = new System.Drawing.Size(99, 23);
+			this.btnsave.TabIndex = 19;
+			this.btnsave.Text = "Save";
+			this.btnsave.UseVisualStyleBackColor = true;
 			// 
 			// LaundryNewView
 			// 
@@ -477,15 +503,17 @@ namespace NJournals.Core.Views
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
 			this.ClientSize = new System.Drawing.Size(884, 612);
-			this.Controls.Add(this.button4);
-			this.Controls.Add(this.button3);
-			this.Controls.Add(this.checkBox7);
+			this.Controls.Add(this.btnsave);
+			this.Controls.Add(this.btndelete);
+			this.Controls.Add(this.btncancel);
+			this.Controls.Add(this.btnsaveprint);
+			this.Controls.Add(this.chkpaywhenclaim);
 			this.Controls.Add(this.groupBox3);
-			this.Controls.Add(this.textBox10);
+			this.Controls.Add(this.txtchange);
 			this.Controls.Add(this.label12);
-			this.Controls.Add(this.textBox9);
+			this.Controls.Add(this.txtamttender);
 			this.Controls.Add(this.label11);
-			this.Controls.Add(this.textBox8);
+			this.Controls.Add(this.txtamtdue);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.dataGridView1);
@@ -505,30 +533,34 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
-		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.CheckBox checkBox7;
-		private System.Windows.Forms.CheckBox checkBox4;
-		private System.Windows.Forms.CheckBox checkBox5;
-		private System.Windows.Forms.CheckBox checkBox6;
-		private System.Windows.Forms.CheckBox checkBox1;
-		private System.Windows.Forms.CheckBox checkBox2;
-		private System.Windows.Forms.CheckBox checkBox3;
+		private System.Windows.Forms.Button btnsave;
+		private System.Windows.Forms.Button btndelete;
+		private System.Windows.Forms.DateTimePicker dtrecieveDate;
+		private System.Windows.Forms.DateTimePicker dtdueDate;
+		private System.Windows.Forms.Button btncancel;
+		private System.Windows.Forms.Button btnsaveprint;
+		private System.Windows.Forms.CheckBox chkpaywhenclaim;
+		private System.Windows.Forms.CheckBox chksameday;
+		private System.Windows.Forms.CheckBox chk10discount;
+		private System.Windows.Forms.CheckBox chk15discount;
+		private System.Windows.Forms.CheckBox chkpickup;
+		private System.Windows.Forms.CheckBox chkdelivery;
+		private System.Windows.Forms.CheckBox chk24rush;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label label12;
-		private System.Windows.Forms.TextBox textBox10;
+		private System.Windows.Forms.TextBox txtchange;
 		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.TextBox textBox9;
+		private System.Windows.Forms.TextBox txtamttender;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.TextBox textBox8;
+		private System.Windows.Forms.TextBox txtamtdue;
 		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.TextBox textBox7;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.TextBox txtsearch;
+		private System.Windows.Forms.Button btnsearch;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.TextBox textBox5;
+		private System.Windows.Forms.TextBox txtnoitems;
 		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.TextBox textBox6;
+		private System.Windows.Forms.TextBox txtkilo;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.ComboBox cmbcategory;
@@ -537,13 +569,11 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.ComboBox cmbservices;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txtjoborder;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox txtname;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.GroupBox groupBox1;
 	}
 }

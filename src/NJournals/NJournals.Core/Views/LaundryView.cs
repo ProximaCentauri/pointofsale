@@ -45,6 +45,7 @@ namespace NJournals.Core.Views
 			if(this.Text.Contains("[NEW]")){
 				m_presenter.SetAllCategories();
 				m_presenter.SetAllServices();
+				this.groupBox2.Enabled = false;
 			}
 		}
 		
@@ -62,6 +63,11 @@ namespace NJournals.Core.Views
 			foreach(LaundryServiceDataEntity service in services){
 				this.cmbservices.Items.Add(service.Name);
 			}
+		}
+		
+		void BtncancelClick(object sender, EventArgs e)
+		{
+			this.Close();
 		}
 	}
 }

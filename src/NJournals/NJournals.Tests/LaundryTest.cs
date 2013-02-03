@@ -41,7 +41,7 @@ namespace NJournals.Tests
 			LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash Dry Fold");
 			LaundryChargeDataEntity charge = new LaundryChargeDao().GetByName("Pickup");
 			
-			header.CustomerName = "Test Doesn't";
+			header.CustomerName = "John Doe";
 			header.ReceivedDate = DateTime.Now;
 			header.DueDate = DateTime.Now;
 			header.ClaimFlag = false;
@@ -85,7 +85,7 @@ namespace NJournals.Tests
 				LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Wash Dry Fold");
 				LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash Dry Fold");
 	
-				header.CustomerName = "Test Doesn't";
+				header.CustomerName = "John Doe";
 				header.ReceivedDate = DateTime.Now;
 				header.DueDate = DateTime.Now;
 				header.ClaimFlag = true;
@@ -118,7 +118,7 @@ namespace NJournals.Tests
 		{
 			LaundryHeaderDataEntity header = new LaundryHeaderDataEntity();
 			LaundryDao dao = new LaundryDao();
-			header = dao.GetByID(5);
+			header = dao.GetByID(3);
 			
 			Assert.NotNull(header);	
 			Assert.AreEqual("John Doe", header.CustomerName);
