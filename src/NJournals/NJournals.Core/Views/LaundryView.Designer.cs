@@ -78,6 +78,10 @@ namespace NJournals.Core.Views
 			this.btncancel = new System.Windows.Forms.Button();
 			this.btndelete = new System.Windows.Forms.Button();
 			this.btnsave = new System.Windows.Forms.Button();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.btnCustomerSearch = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -87,6 +91,7 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.btnCustomerSearch);
 			this.groupBox1.Controls.Add(this.dtdueDate);
 			this.groupBox1.Controls.Add(this.dtrecieveDate);
 			this.groupBox1.Controls.Add(this.label4);
@@ -195,14 +200,14 @@ namespace NJournals.Core.Views
 			this.Services.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Services.Location = new System.Drawing.Point(21, 182);
 			this.Services.Name = "Services";
-			this.Services.Size = new System.Drawing.Size(278, 317);
+			this.Services.Size = new System.Drawing.Size(278, 187);
 			this.Services.TabIndex = 3;
 			this.Services.TabStop = false;
 			this.Services.Text = "Services";
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(197, 281);
+			this.button1.Location = new System.Drawing.Point(186, 156);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
 			this.button1.TabIndex = 12;
@@ -358,7 +363,7 @@ namespace NJournals.Core.Views
 			// 
 			// txtchange
 			// 
-			this.txtchange.Location = new System.Drawing.Point(736, 478);
+			this.txtchange.Location = new System.Drawing.Point(736, 499);
 			this.txtchange.Name = "txtchange";
 			this.txtchange.Size = new System.Drawing.Size(119, 20);
 			this.txtchange.TabIndex = 13;
@@ -367,7 +372,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label12.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.label12.Location = new System.Drawing.Point(643, 478);
+			this.label12.Location = new System.Drawing.Point(643, 499);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(93, 18);
 			this.label12.TabIndex = 12;
@@ -474,7 +479,7 @@ namespace NJournals.Core.Views
 			// btncancel
 			// 
 			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btncancel.Location = new System.Drawing.Point(631, 559);
+			this.btncancel.Location = new System.Drawing.Point(646, 559);
 			this.btncancel.Name = "btncancel";
 			this.btncancel.Size = new System.Drawing.Size(99, 23);
 			this.btncancel.TabIndex = 17;
@@ -485,11 +490,11 @@ namespace NJournals.Core.Views
 			// btndelete
 			// 
 			this.btndelete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btndelete.Location = new System.Drawing.Point(736, 559);
+			this.btndelete.Location = new System.Drawing.Point(764, 559);
 			this.btndelete.Name = "btndelete";
-			this.btndelete.Size = new System.Drawing.Size(119, 23);
+			this.btndelete.Size = new System.Drawing.Size(91, 23);
 			this.btndelete.TabIndex = 18;
-			this.btndelete.Text = "Delete Transaction";
+			this.btndelete.Text = "Delete";
 			this.btndelete.UseVisualStyleBackColor = true;
 			// 
 			// btnsave
@@ -502,12 +507,57 @@ namespace NJournals.Core.Views
 			this.btnsave.Text = "Save";
 			this.btnsave.UseVisualStyleBackColor = true;
 			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(736, 475);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(119, 20);
+			this.textBox1.TabIndex = 21;
+			// 
+			// label13
+			// 
+			this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label13.ForeColor = System.Drawing.Color.Maroon;
+			this.label13.Location = new System.Drawing.Point(646, 475);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(90, 18);
+			this.label13.TabIndex = 20;
+			this.label13.Text = "Balance:";
+			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// label14
+			// 
+			this.label14.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label14.ForeColor = System.Drawing.Color.Blue;
+			this.label14.Location = new System.Drawing.Point(54, 400);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(116, 23);
+			this.label14.TabIndex = 22;
+			this.label14.Text = "Add/Edit CheckList";
+			// 
+			// btnCustomerSearch
+			// 
+			this.btnCustomerSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnCustomerSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnCustomerSearch.FlatAppearance.BorderSize = 0;
+			this.btnCustomerSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnCustomerSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnCustomerSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnCustomerSearch.Location = new System.Drawing.Point(417, 45);
+			this.btnCustomerSearch.Name = "btnCustomerSearch";
+			this.btnCustomerSearch.Size = new System.Drawing.Size(24, 24);
+			this.btnCustomerSearch.TabIndex = 10;
+			this.btnCustomerSearch.UseVisualStyleBackColor = false;
+			// 
 			// LaundryNewView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(884, 612);
+			this.Controls.Add(this.label14);
+			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.label13);
 			this.Controls.Add(this.btnsave);
 			this.Controls.Add(this.btndelete);
 			this.Controls.Add(this.btncancel);
@@ -538,6 +588,10 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button btnCustomerSearch;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button btnsave;
 		private System.Windows.Forms.Button btndelete;
 		private System.Windows.Forms.DateTimePicker dtrecieveDate;
