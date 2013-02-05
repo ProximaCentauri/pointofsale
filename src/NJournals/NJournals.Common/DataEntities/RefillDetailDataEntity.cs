@@ -19,6 +19,8 @@ namespace NJournals.Common.DataEntities
 		public virtual RefillHeaderDataEntity Header {get;set;}
 		public virtual RefillProductTypeDataEntity ProductType {get;set;}
 		public virtual int Qty {get;set;}
+		public virtual int StoreBottleQty {get;set;}
+		public virtual int StoreCapQty {get;set;}
 		public virtual double Amount {get;set;}
 	}
 }

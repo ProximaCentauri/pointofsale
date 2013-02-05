@@ -22,13 +22,14 @@ namespace NJournals.Common.DataMappers
 		public LaundryHeaderDataMap()
 		{
 			Id(x => x.LaundryHeaderID);
-			Map(x => x.CustomerName);
 			Map(x => x.ReceivedDate);
 			Map(x => x.ClaimDate);
 			Map(x => x.DueDate);
 			Map(x => x.ClaimFlag);
 			Map(x => x.PaidFlag);			
 			Map(x => x.AmountDue);
+			Map(x => x.AmountTender);
+			Map(x => x.TotalItemQty);
 			HasMany<LaundryDetailDataEntity>(x => x.DetailEntities)
 				.KeyColumn("LaundryHeaderID")
 				.Inverse()
@@ -37,10 +38,15 @@ namespace NJournals.Common.DataMappers
 				.KeyColumn("LaundryHeaderID")
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
+			HasMany<LaundryJobChecklistDataEntity>(x => x.JobChecklistEntities)
+				.KeyColumn("ChecklistID")
+				.Inverse()
+				.Cascade.AllDeleteOrphan();
+			References<CustomerDataEntity>(x => x.Customer)
+				.Column("CustomerID").Not.Nullable().Not.LazyLoad();
 			References<LaundryDaySummaryDataEntity>(x => x.DaySummary)
 				.Column("DayID").Not.Nullable();
 			
-				
 			Table("LaundryHeader");
 		}
 	}

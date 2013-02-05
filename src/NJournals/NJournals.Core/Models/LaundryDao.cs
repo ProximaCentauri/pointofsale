@@ -55,6 +55,21 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public IEnumerable<LaundryHeaderDataEntity> GetByCustomer(CustomerDataEntity customer)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					var query = session.Query<LaundryHeaderDataEntity>()
+					    .Where(x => x.Customer == customer)
+						.FetchMany(x => x.DetailEntities)
+						.ToList();
+					return query;
+				}
+			}
+		}
+		
 		public IEnumerable<LaundryHeaderDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())

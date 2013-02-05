@@ -25,6 +25,8 @@ namespace NJournals.Common.DataMappers
 			References(x => x.ProductType).Column("ProductTypeID").Not.LazyLoad();
 			Map(x => x.Qty);
 			Map(x => x.Amount);
+			Map(x => x.StoreBottleQty);
+			Map(x => x.StoreCapQty);
 			References<RefillHeaderDataEntity>(x => x.Header)
 				.Column("RefillHeaderID").Not.Nullable();
 			Table("RefillDetail");

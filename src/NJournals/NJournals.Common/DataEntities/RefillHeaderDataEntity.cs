@@ -17,9 +17,13 @@ namespace NJournals.Common.DataEntities
 	public class RefillHeaderDataEntity
 	{
 		public virtual int RefillHeaderID {get;set;}
-		public virtual string CustomerName {get;set;}
 		public virtual DateTime Date {get;set;}
 		public virtual double AmountDue {get;set;}
+		public virtual double AmountTender {get;set;}
+		public virtual int TotalQty {get;set;}
+		public virtual bool PaidFlag {get;set;}
+		
+		public virtual CustomerDataEntity Customer {get;set;}
 		public virtual RefillTransactionTypeDataEntity TransactionType {get;set;}
 		public virtual IList<RefillDetailDataEntity> DetailEntities {get;set;}		
 		public virtual RefillDaySummaryDataEntity DaySummary {get;set;}

@@ -22,14 +22,18 @@ namespace NJournals.Common.DataMappers
 		public RefillHeaderDataMap()
 		{
 			Id(x => x.RefillHeaderID);
-			Map(x => x.CustomerName);
 			Map(x => x.Date);
 			Map(x => x.AmountDue);
+			Map(x => x.AmountTender);
+			Map(x => x.TotalQty);
+			Map(x => x.PaidFlag);
 			References(x => x.TransactionType).Column("TransactionTypeID").Not.LazyLoad();
 			HasMany<RefillDetailDataEntity>(x => x.DetailEntities)
 				.KeyColumn("RefillHeaderID")
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
+			References<CustomerDataEntity>(x => x.Customer)
+				.Column("CustomerID").Not.Nullable().Not.LazyLoad();
 			References<RefillDaySummaryDataEntity>(x => x.DaySummary)
 				.Column("DayID").Not.Nullable();
 				

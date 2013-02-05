@@ -20,6 +20,7 @@ namespace NJournals.Common.Interfaces
 	{
 		void Save(LaundryHeaderDataEntity p_header);		
 		LaundryHeaderDataEntity GetByID(int p_headerID);
+		IEnumerable<LaundryHeaderDataEntity> GetByCustomer(CustomerDataEntity customer);
 		IEnumerable<LaundryHeaderDataEntity> GetAllItems();
 		void Update(LaundryHeaderDataEntity p_header);
 		void Delete(LaundryHeaderDataEntity p_header);

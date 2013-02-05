@@ -73,11 +73,13 @@
     <Compile Include="MainFormStation.Designer.cs">
       <DependentUpon>MainFormStation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerDao.cs" />
     <Compile Include="Models\ItemCategoryDao.cs" />
     <Compile Include="Models\ItemDao.cs" />
     <Compile Include="Models\ItemGenericDao.cs" />
     <Compile Include="Models\LaundryCategoryDao.cs" />
     <Compile Include="Models\LaundryChargeDao.cs" />
+    <Compile Include="Models\LaundryChecklistDao.cs" />
     <Compile Include="Models\LaundryDao.cs" />
     <Compile Include="Models\LaundryDaySummaryDao.cs" />
     <Compile Include="Models\LaundryPriceSchemeDao.cs" />
@@ -95,9 +97,21 @@
     <Compile Include="Views\AddItemView.Designer.cs">
       <DependentUpon>AddItemView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CheckListView.cs" />
+    <Compile Include="Views\CheckListView.Designer.cs">
+      <DependentUpon>CheckListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConfigurationView.cs" />
     <Compile Include="Views\ConfigurationView.Designer.cs">
       <DependentUpon>ConfigurationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomerSearchView.cs" />
+    <Compile Include="Views\CustomerSearchView.Designer.cs">
+      <DependentUpon>CustomerSearchView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomerView.cs" />
+    <Compile Include="Views\CustomerView.Designer.cs">
+      <DependentUpon>CustomerView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\LaundryView.cs" />
     <Compile Include="Views\LaundryView.Designer.cs">
@@ -138,8 +152,17 @@
     <EmbeddedResource Include="Views\AddItemView.resx">
       <DependentUpon>AddItemView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\CheckListView.resx">
+      <DependentUpon>CheckListView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ConfigurationView.resx">
       <DependentUpon>ConfigurationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CustomerSearchView.resx">
+      <DependentUpon>CustomerSearchView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CustomerView.resx">
+      <DependentUpon>CustomerView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LaundryView.resx">
       <DependentUpon>LaundryView.cs</DependentUpon>
