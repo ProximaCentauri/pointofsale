@@ -17,17 +17,20 @@ namespace NJournals.Common.DataEntities
 	public class LaundryHeaderDataEntity
 	{
 		public virtual int LaundryHeaderID {get;set;}		
-		public virtual string CustomerName {get;set;}
 		public virtual DateTime ReceivedDate {get;set;}
 		public virtual DateTime DueDate {get;set;}
 		public virtual DateTime ClaimDate {get;set;}
 		public virtual bool PaidFlag {get;set;}
 		public virtual bool ClaimFlag {get;set;}
 		public virtual double AmountDue {get;set;}
+		public virtual double AmountTender {get;set;}
+		public virtual int TotalItemQty {get;set;}
 		
-		public virtual IList<LaundryDetailDataEntity> DetailEntities {get; set;}
+		public virtual CustomerDataEntity Customer {get;set;}
 		public virtual LaundryDaySummaryDataEntity DaySummary {get;set;}
+		public virtual IList<LaundryDetailDataEntity> DetailEntities {get; set;}
 		public virtual IList<LaundryJobChargesDataEntity> JobChargeEntities {get;set;}
+		public virtual IList<LaundryChecklistDataEntity> JobChecklistEntities {get;set;}
 		
 		public LaundryHeaderDataEntity()
 		{

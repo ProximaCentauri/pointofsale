@@ -57,6 +57,22 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+			public IEnumerable<RefillHeaderDataEntity> GetByCustomer(CustomerDataEntity customer)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					var query = session.Query<RefillHeaderDataEntity>()
+					    .Where(x => x.Customer == customer)
+						.FetchMany(x => x.DetailEntities)
+						.ToList();
+					return query;
+				}
+			}
+		}
+		
+		
 		public IEnumerable<RefillHeaderDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())

@@ -15,8 +15,7 @@ namespace NJournals.Common.DataEntities
 	/// </summary>
 	public class LaundryChecklistDataEntity
 	{
-		public LaundryChecklistDataEntity()
-		{
-		}
+		public virtual int ChecklistID {get;set;}
+		public virtual string Name {get;set;}
 	}
 }

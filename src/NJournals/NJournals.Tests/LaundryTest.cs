@@ -37,11 +37,21 @@ namespace NJournals.Tests
 			LaundryDetailDataEntity detail = new LaundryDetailDataEntity();
 			LaundryJobChargesDataEntity jobcharge = new LaundryJobChargesDataEntity();
 						
-			LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Wash Dry Fold");
-			LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash Dry Fold");
-			LaundryChargeDataEntity charge = new LaundryChargeDao().GetByName("Pickup");
+			LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Colored Garments");
+			LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash - Dry - Fold");
+			LaundryChargeDataEntity charge = new LaundryChargeDao().GetByName("Delivery");
 			
-			header.CustomerName = "John Doe";
+			CustomerDao custdao = new CustomerDao();
+			CustomerDataEntity customer = custdao.GetByName("John Doe");
+			if(customer == null)
+			{
+				customer = new CustomerDataEntity();
+				customer.Name = "John Doe";
+				customer.Address = "Cebu";
+				customer.ContactNumber = "111-1111";
+			}
+			
+			header.Customer = customer;
 			header.ReceivedDate = DateTime.Now;
 			header.DueDate = DateTime.Now;
 			header.ClaimFlag = false;
@@ -68,6 +78,7 @@ namespace NJournals.Tests
 			
 			header.DaySummary = daysummary;
 			
+			custdao.SaveOrUpdate(customer);
 			LaundryDaySummaryDao dao = new LaundryDaySummaryDao();
 			dao.Save(daysummary);
 		}
@@ -85,7 +96,12 @@ namespace NJournals.Tests
 				LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Wash Dry Fold");
 				LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash Dry Fold");
 	
-				header.CustomerName = "John Doe";
+				CustomerDataEntity customer = new CustomerDataEntity();
+				customer.Name = "John Doe";
+				customer.Address = "Cebu";
+				customer.ContactNumber = "111-1111";
+			
+				header.Customer = customer;
 				header.ReceivedDate = DateTime.Now;
 				header.DueDate = DateTime.Now;
 				header.ClaimFlag = true;
@@ -109,8 +125,7 @@ namespace NJournals.Tests
 				
 				LaundryDao ldao = new LaundryDao();
 				ldao.Save(header);
-			}
-				
+			}				
 		}
 			
 		[Test]
@@ -121,7 +136,7 @@ namespace NJournals.Tests
 			header = dao.GetByID(3);
 			
 			Assert.NotNull(header);	
-			Assert.AreEqual("John Doe", header.CustomerName);
+			Assert.AreEqual("John Doe", header.Customer.Name);
 			
 			foreach(LaundryDetailDataEntity detail in header.DetailEntities)
 			{

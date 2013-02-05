@@ -73,11 +73,13 @@
     <Compile Include="MainFormStation.Designer.cs">
       <DependentUpon>MainFormStation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerDao.cs" />
     <Compile Include="Models\ItemCategoryDao.cs" />
     <Compile Include="Models\ItemDao.cs" />
     <Compile Include="Models\ItemGenericDao.cs" />
     <Compile Include="Models\LaundryCategoryDao.cs" />
     <Compile Include="Models\LaundryChargeDao.cs" />
+    <Compile Include="Models\LaundryChecklistDao.cs" />
     <Compile Include="Models\LaundryDao.cs" />
     <Compile Include="Models\LaundryDaySummaryDao.cs" />
     <Compile Include="Models\LaundryPriceSchemeDao.cs" />

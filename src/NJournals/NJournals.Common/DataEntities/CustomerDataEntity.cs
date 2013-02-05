@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
 
 namespace NJournals.Common.DataEntities
 {
@@ -15,8 +16,9 @@ namespace NJournals.Common.DataEntities
 	/// </summary>
 	public class CustomerDataEntity
 	{
-		public CustomerDataEntity()
-		{
-		}
+		public virtual int CustomerID {get;set;}
+		public virtual string Name {get;set;}
+		public virtual string Address {get;set;}
+		public virtual string ContactNumber {get;set;}
 	}
 }

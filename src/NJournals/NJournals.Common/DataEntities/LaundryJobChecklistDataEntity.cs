@@ -11,9 +11,9 @@ using System;
 namespace NJournals.Common.DataEntities
 {
 	/// <summary>
-	/// Description of LaundryJobChecklist.
+	/// Description of LaundryJobChecklistDataEntity.
 	/// </summary>
-	public class LaundryJobChecklist
+	public class LaundryJobChecklistDataEntity
 	{
 		public virtual int ID {get;set;}
 		public virtual LaundryChecklistDataEntity Checklist {get;set;}

@@ -20,6 +20,7 @@ namespace NJournals.Common.Interfaces
 	{
 		void Save(RefillHeaderDataEntity p_header);		
 		RefillHeaderDataEntity GetByID(int p_headerID);
+		IEnumerable<RefillHeaderDataEntity> GetByCustomer(CustomerDataEntity customer);
 		IEnumerable<RefillHeaderDataEntity> GetAllItems();
 		void Update(RefillHeaderDataEntity p_header);
 		void Delete(RefillHeaderDataEntity p_header);
