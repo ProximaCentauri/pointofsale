@@ -79,9 +79,7 @@
     <Compile Include="DataEntities\LaundryDetailDataEntity.cs" />
     <Compile Include="DataEntities\LaundryHeaderDataEntity.cs" />
     <Compile Include="DataEntities\LaundryJobChargesDataEntity.cs" />
-    <Compile Include="DataEntities\LaundryJobChecklistDataEntity.cs">
-      <DependentUpon>LaundryDetailDataEntity.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DataEntities\LaundryJobChecklistDataEntity.cs" />
     <Compile Include="DataEntities\LaundryPriceSchemeDataEntity.cs" />
     <Compile Include="DataEntities\LaundryServiceDataEntity.cs" />
     <Compile Include="DataEntities\RefillDaySummaryDataEntity.cs" />
@@ -109,7 +107,9 @@
     <Compile Include="DataMappers\RefillHeaderDataMap.cs" />
     <Compile Include="DataMappers\RefillProductTypeDataMap.cs" />
     <Compile Include="DataMappers\RefillTransactionTypeDataMap.cs" />
-    <Compile Include="Gui\BaseForm.cs" />
+    <Compile Include="Gui\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Gui\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
@@ -150,14 +150,6 @@
     <Compile Include="Util\Resource.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\LaundryViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces" />
-    <Folder Include="DataMappers" />
-    <Folder Include="DataEntities" />
-    <Folder Include="Gui" />
-    <Folder Include="Util" />
-    <Folder Include="ViewModels" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

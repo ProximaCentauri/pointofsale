@@ -24,8 +24,8 @@ namespace NJournals.Common.DataMappers
 			Id(x => x.ID);
 			Map(x => x.Description);
 			Map(x => x.Price);
-			References(x => x.Category).Column("CategoryID").Fetch.Join();
-			References(x => x.Service).Column("ServiceID").Fetch.Join();
+			References(x => x.Category).Column("CategoryID").Not.LazyLoad();
+			References(x => x.Service).Column("ServiceID").Not.LazyLoad();
 			Table("LaundryPriceScheme");
 		}
 	}

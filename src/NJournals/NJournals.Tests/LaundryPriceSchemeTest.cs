@@ -26,9 +26,9 @@ namespace NJournals.Tests
 		
 		[Test]
 		public void savePriceScheme(){
-			LaundryPriceSchemeDataEntity entity = new LaundryPriceSchemeDataEntity();		
-			LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Wash Dry Fold");
-			LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash Dry Fold");
+			LaundryPriceSchemeDataEntity entity = new LaundryPriceSchemeDataEntity();
+            LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Colored Garments");
+			LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash - Dry - Fold");
 			entity.Category = category;
 			entity.Service = service;
 			entity.Description = "sample price scheme";
@@ -47,8 +47,19 @@ namespace NJournals.Tests
 				Console.WriteLine("Service: " + pricescheme.Service.Name);
 				Console.WriteLine("Category: " + pricescheme.Category.Name);
 				Console.WriteLine("Price: " + pricescheme.Price);								
-			}
-			
+			}			
 		}
+
+        [Test]
+        public void queryPriceScheme2()
+        {
+        	LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Colored Garments");
+			LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash - Dry - Fold");
+            LaundryPriceSchemeDataEntity pricescheme = new LaundryPriceSchemeDao().GetByCategoryService(service,category) as LaundryPriceSchemeDataEntity;
+            Assert.NotNull(pricescheme);
+            Console.WriteLine("Service: " + pricescheme.Service.Name);
+            Console.WriteLine("Category: " + pricescheme.Category.Name);
+            Console.WriteLine("Price: " + pricescheme.Price);
+        }
 	}
 }

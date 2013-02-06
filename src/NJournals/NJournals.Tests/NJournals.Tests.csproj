@@ -72,7 +72,9 @@
     <Compile Include="LaundryPriceSchemeTest.cs" />
     <Compile Include="LaundryServiceTest.cs" />
     <Compile Include="LaundryTest.cs" />
-    <Compile Include="MainForm.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
