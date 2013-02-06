@@ -41,9 +41,6 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\..\lib\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>C:\Program Files\MySQL\MySQL Installer\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="MySql.Data" />
@@ -120,11 +117,6 @@
     <Compile Include="Views\LaundryConfigurationView.cs" />
     <Compile Include="Views\LaundryConfigurationView.Designer.cs">
       <DependentUpon>LaundryConfigurationView.cs</DependentUpon>
-    <Compile Include="Views\ConfigurationView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\ConfigurationView.Designer.cs">
-      <DependentUpon>ConfigurationView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomerSearchView.cs">
       <SubType>Form</SubType>
