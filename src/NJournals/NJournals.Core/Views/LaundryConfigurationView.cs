@@ -12,14 +12,21 @@ using System.Windows.Forms;
 using NJournals.Common.Util;
 using NJournals.Common.Interfaces;
 using NJournals.Common.Gui;
+using NJournals.Common.DataEntities;
+using System.Collections.Generic;
+using NJournals.Core.Presenter;
+using NJournals.Core.Models;
+using System.Data;
 namespace NJournals.Core.Views
 {
 	/// <summary>
 	/// Description of LaundryConfigurationView.
 	/// </summary>
-	public partial class ConfigurationView : BaseForm, IConfigurationView
+	public partial class LaundryConfigurationView : BaseForm, ILaundryConfigurationView
 	{
-		public ConfigurationView()
+		LaundryConfigurationViewPresenter m_presenter;
+			
+		public LaundryConfigurationView()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -43,8 +50,7 @@ namespace NJournals.Core.Views
 			
 			Resource.setImage(this.btnAddCategory,System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
 			Resource.setImage(this.btnEditCategory,System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
-			Resource.setImage(this.btnDeleteCategory,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
-			
+			Resource.setImage(this.btnDeleteCategory,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");	
 			
 		}
 		
@@ -53,7 +59,26 @@ namespace NJournals.Core.Views
 		void LaundryConfigurationFormLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
-			this.btnAddPriceScheme.Click += delegate {  };
+			
+			m_presenter = new LaundryConfigurationViewPresenter(this);
+			m_presenter.SetAllCategories();
+			m_presenter.SetAllServices();
+			m_presenter.SetAllPriceScheme();
+		}
+		
+		public void SetAllCategories(IList<LaundryCategoryDataEntity> categories)
+		{
+			this.dgvCategory.DataSource = categories;			
+		}
+		
+		public void SetAllServices(IList<LaundryServiceDataEntity> services)
+		{
+			this.dgvServices.DataSource = services;
+			
+		}
+		
+		public void SetAllPriceScheme(IList<LaundryPriceSchemeDataEntity> priceScheme)
+		{
 		}
 		
 		

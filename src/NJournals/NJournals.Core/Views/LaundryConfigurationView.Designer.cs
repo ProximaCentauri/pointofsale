@@ -9,7 +9,7 @@
 
 namespace NJournals.Core.Views
 {
-	partial class ConfigurationView
+	partial class LaundryConfigurationView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -38,11 +38,11 @@ namespace NJournals.Core.Views
 		private void InitializeComponent()
 		{
 			this.label1 = new System.Windows.Forms.Label();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.dgvPriceScheme = new System.Windows.Forms.DataGridView();
 			this.label2 = new System.Windows.Forms.Label();
-			this.dataGridView2 = new System.Windows.Forms.DataGridView();
+			this.dgvServices = new System.Windows.Forms.DataGridView();
 			this.label3 = new System.Windows.Forms.Label();
-			this.dataGridView3 = new System.Windows.Forms.DataGridView();
+			this.dgvCategory = new System.Windows.Forms.DataGridView();
 			this.btnAddPriceScheme = new System.Windows.Forms.Button();
 			this.btnEditPriceScheme = new System.Windows.Forms.Button();
 			this.btnDeletePriceScheme = new System.Windows.Forms.Button();
@@ -52,9 +52,13 @@ namespace NJournals.Core.Views
 			this.btnDeleteCategory = new System.Windows.Forms.Button();
 			this.btnEditCategory = new System.Windows.Forms.Button();
 			this.btnAddCategory = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			((System.ComponentModel.ISupportInitialize)(this.dgvPriceScheme)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvServices)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -69,13 +73,13 @@ namespace NJournals.Core.Views
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Price Scheme";
 			// 
-			// dataGridView1
+			// dgvPriceScheme
 			// 
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Location = new System.Drawing.Point(25, 45);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(789, 149);
-			this.dataGridView1.TabIndex = 1;
+			this.dgvPriceScheme.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvPriceScheme.Location = new System.Drawing.Point(25, 45);
+			this.dgvPriceScheme.Name = "dgvPriceScheme";
+			this.dgvPriceScheme.Size = new System.Drawing.Size(789, 149);
+			this.dgvPriceScheme.TabIndex = 1;
 			// 
 			// label2
 			// 
@@ -89,13 +93,16 @@ namespace NJournals.Core.Views
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Services";
 			// 
-			// dataGridView2
+			// dgvServices
 			// 
-			this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView2.Location = new System.Drawing.Point(25, 229);
-			this.dataGridView2.Name = "dataGridView2";
-			this.dataGridView2.Size = new System.Drawing.Size(789, 149);
-			this.dataGridView2.TabIndex = 3;
+			this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvServices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+									this.Column1,
+									this.Column2});
+			this.dgvServices.Location = new System.Drawing.Point(25, 229);
+			this.dgvServices.Name = "dgvServices";
+			this.dgvServices.Size = new System.Drawing.Size(789, 149);
+			this.dgvServices.TabIndex = 3;
 			// 
 			// label3
 			// 
@@ -109,13 +116,16 @@ namespace NJournals.Core.Views
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Category";
 			// 
-			// dataGridView3
+			// dgvCategory
 			// 
-			this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView3.Location = new System.Drawing.Point(25, 419);
-			this.dataGridView3.Name = "dataGridView3";
-			this.dataGridView3.Size = new System.Drawing.Size(789, 131);
-			this.dataGridView3.TabIndex = 5;
+			this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvCategory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+									this.dataGridViewTextBoxColumn1,
+									this.dataGridViewTextBoxColumn2});
+			this.dgvCategory.Location = new System.Drawing.Point(25, 419);
+			this.dgvCategory.Name = "dgvCategory";
+			this.dgvCategory.Size = new System.Drawing.Size(789, 131);
+			this.dgvCategory.TabIndex = 5;
 			// 
 			// btnAddPriceScheme
 			// 
@@ -234,7 +244,33 @@ namespace NJournals.Core.Views
 			this.btnAddCategory.TabIndex = 12;
 			this.btnAddCategory.UseVisualStyleBackColor = true;
 			// 
-			// ConfigurationView
+			// Column1
+			// 
+			this.Column1.HeaderText = "Service Name";
+			this.Column1.MinimumWidth = 15;
+			this.Column1.Name = "Column1";
+			this.Column1.Width = 300;
+			// 
+			// Column2
+			// 
+			this.Column2.HeaderText = "Service Description";
+			this.Column2.MinimumWidth = 25;
+			this.Column2.Name = "Column2";
+			this.Column2.Width = 450;
+			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			this.dataGridViewTextBoxColumn1.HeaderText = "Category Name";
+			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+			this.dataGridViewTextBoxColumn1.Width = 300;
+			// 
+			// dataGridViewTextBoxColumn2
+			// 
+			this.dataGridViewTextBoxColumn2.HeaderText = "Category Description";
+			this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+			this.dataGridViewTextBoxColumn2.Width = 450;
+			// 
+			// LaundryConfigurationView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -249,20 +285,24 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.btnDeletePriceScheme);
 			this.Controls.Add(this.btnEditPriceScheme);
 			this.Controls.Add(this.btnAddPriceScheme);
-			this.Controls.Add(this.dataGridView3);
+			this.Controls.Add(this.dgvCategory);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.dataGridView2);
+			this.Controls.Add(this.dgvServices);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.dataGridView1);
+			this.Controls.Add(this.dgvPriceScheme);
 			this.Controls.Add(this.label1);
-			this.Name = "ConfigurationView";
+			this.Name = "LaundryConfigurationView";
 			this.Text = "LaundryConfigurationView";
 			this.Load += new System.EventHandler(this.LaundryConfigurationFormLoad);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvPriceScheme)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvServices)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
 		private System.Windows.Forms.Button btnAddCategory;
 		private System.Windows.Forms.Button btnEditCategory;
 		private System.Windows.Forms.Button btnDeleteCategory;
@@ -272,11 +312,11 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.Button btnDeletePriceScheme;
 		private System.Windows.Forms.Button btnEditPriceScheme;
 		private System.Windows.Forms.Button btnAddPriceScheme;
-		private System.Windows.Forms.DataGridView dataGridView3;
+		private System.Windows.Forms.DataGridView dgvCategory;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.DataGridView dataGridView2;
+		private System.Windows.Forms.DataGridView dgvServices;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridView dgvPriceScheme;
 		private System.Windows.Forms.Label label1;
 		
 		

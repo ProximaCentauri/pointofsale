@@ -49,7 +49,7 @@ namespace NJournals.Core
 		private LaundryNewView laundryView = new LaundryNewView();
 		private RefillingView refillingView = new RefillingView();
 		private ReportView reportView = new ReportView();
-		private ConfigurationView configView = new ConfigurationView();
+		private LaundryConfigurationView configView = new LaundryConfigurationView();
 		
 		public void ShowLaundryNewView(){					
 			laundryView.SetTitle("Laundry  [NEW]");			

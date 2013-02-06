@@ -43,7 +43,7 @@
       <HintPath>..\..\..\lib\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
-      <HintPath>..\..\..\lib\MySql.Data.dll</HintPath>
+      <HintPath>C:\Program Files\MySQL\MySQL Installer\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\..\lib\NHibernate.dll</HintPath>
@@ -127,6 +127,7 @@
     <Compile Include="Interfaces\ILaundryCategoryDao.cs" />
     <Compile Include="Interfaces\ILaundryChargeDao.cs" />
     <Compile Include="Interfaces\ILaundryChecklistDao.cs" />
+    <Compile Include="Interfaces\ILaundryConfigurationView.cs" />
     <Compile Include="Interfaces\ILaundryDao.cs" />
     <Compile Include="Interfaces\ILaundryDaySummaryDao.cs" />
     <Compile Include="Interfaces\ILaundryView.cs" />

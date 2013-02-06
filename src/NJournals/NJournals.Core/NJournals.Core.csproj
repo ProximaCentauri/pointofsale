@@ -41,7 +41,9 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\..\lib\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data" />
+    <Reference Include="MySql.Data">
+      <HintPath>C:\Program Files\MySQL\MySQL Installer\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\..\lib\NHibernate.dll</HintPath>
     </Reference>
@@ -89,6 +91,7 @@
     <Compile Include="Models\RefillProductTypeDao.cs" />
     <Compile Include="Models\RefillTransactionTypeDao.cs" />
     <Compile Include="Presenter\AddItemPresenter.cs" />
+    <Compile Include="Presenter\LaundryConfigurationViewPresenter.cs" />
     <Compile Include="Presenter\LaundryViewPresenter.cs" />
     <Compile Include="Presenter\MainFormStationPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -101,9 +104,9 @@
     <Compile Include="Views\CheckListView.Designer.cs">
       <DependentUpon>CheckListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConfigurationView.cs" />
-    <Compile Include="Views\ConfigurationView.Designer.cs">
-      <DependentUpon>ConfigurationView.cs</DependentUpon>
+    <Compile Include="Views\LaundryConfigurationView.cs" />
+    <Compile Include="Views\LaundryConfigurationView.Designer.cs">
+      <DependentUpon>LaundryConfigurationView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomerSearchView.cs" />
     <Compile Include="Views\CustomerSearchView.Designer.cs">
@@ -155,8 +158,8 @@
     <EmbeddedResource Include="Views\CheckListView.resx">
       <DependentUpon>CheckListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ConfigurationView.resx">
-      <DependentUpon>ConfigurationView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\LaundryConfigurationView.resx">
+      <DependentUpon>LaundryConfigurationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CustomerSearchView.resx">
       <DependentUpon>CustomerSearchView.cs</DependentUpon>
