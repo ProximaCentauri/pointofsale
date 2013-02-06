@@ -33,8 +33,9 @@ namespace NJournals.Core.Views
         private void ReportView_Load(object sender, EventArgs e)
         {
 
-            this.reportViewer1.RefreshReport();
-            this.reportViewer1.RefreshReport();
+            this.laundryReportViewer.RefreshReport();
+            this.laundryReportViewer.RefreshReport();
+            this.laundryReportViewer.RefreshReport();
         }
 	}
 }

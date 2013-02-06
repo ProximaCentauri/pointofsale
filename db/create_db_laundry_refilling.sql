@@ -81,7 +81,7 @@ DROP TABLE IF EXISTS `laundrycharges`;
 CREATE TABLE `laundrycharges` (
   `ChargeID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL DEFAULT '"NULL"',
-  `Amount` double NOT NULL DEFAULT '0',
+  `Amount` decimal(10,2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ChargeID`),
   UNIQUE KEY `IX_laundrycharges_1` (`Name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -113,7 +113,7 @@ CREATE TABLE `laundrypricescheme` (
   `CategoryID` int(10) unsigned NOT NULL,
   `ServiceID` int(10) unsigned NOT NULL,
   `Description` varchar(150) NOT NULL DEFAULT 'NULL',
-  `Price` double NOT NULL DEFAULT '0',
+  `Price` decimal(10,2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `IX_laundrypricescheme_1` (`CategoryID`,`ServiceID`),
   KEY `FK_laundrypricescheme_1` (`CategoryID`),
@@ -134,7 +134,7 @@ DROP TABLE IF EXISTS `laundrydaysummary`;
 CREATE TABLE `laundrydaysummary` (
   `DayID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `DayStamp` datetime NOT NULL,
-  `TotalSales` double NOT NULL DEFAULT '0',
+  `TotalSales` decimal(10,2) NOT NULL DEFAULT '0',
   `TransCount` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`DayID`),
   UNIQUE KEY `IX_laundrydaysummary_1` (`DayStamp`)
@@ -157,8 +157,8 @@ CREATE TABLE `laundryheader` (
   `DueDate` datetime NOT NULL,
   `ClaimDate` datetime NOT NULL,
   `TotalItemQty` int(10) unsigned NOT NULL DEFAULT '0',
-  `AmountDue` double NOT NULL DEFAULT '0',
-  `AmountTender` double NOT NULL DEFAULT '0',
+  `AmountDue` decimal(10,2) NOT NULL DEFAULT '0',
+  `AmountTender` decimal(10,2) NOT NULL DEFAULT '0',
   `PaidFlag` tinyint(1) NOT NULL DEFAULT '0',
   `ClaimFlag` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`LaundryHeaderID`),
@@ -184,7 +184,7 @@ CREATE TABLE `laundrydetail` (
   `CategoryID` int(10) unsigned NOT NULL,
   `ItemQty` int(10) unsigned NOT NULL DEFAULT '0',
   `Kilo` double NOT NULL DEFAULT '0',
-  `Amount` double NOT NULL DEFAULT '0',
+  `Amount` decimal(10,2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `IX_laundrydetail_1` (`ServiceID`,`CategoryID`,`LaundryHeaderID`),
   KEY `FK_LaundryDetail_1` (`LaundryHeaderID`),
@@ -265,7 +265,7 @@ CREATE TABLE `refillproducttype` (
   `ProductTypeID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL DEFAULT 'NULL',
   `Description` varchar(150) NOT NULL DEFAULT 'NULL',
-  `Price` double NOT NULL DEFAULT '0',
+  `Price` decimal(10,2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ProductTypeID`),
   UNIQUE KEY `IX_refillproducttype` (`Name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -282,8 +282,8 @@ DROP TABLE IF EXISTS `refilldaysummary`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `refilldaysummary` (
   `DayID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `TotalSales` double NOT NULL DEFAULT '0',
-  `TransCount` double NOT NULL DEFAULT '0',
+  `TotalSales` decimal(10,2) NOT NULL DEFAULT '0',
+  `TransCount` int NOT NULL DEFAULT '0',
   `DayStamp` datetime NOT NULL,
   PRIMARY KEY (`DayID`),
   UNIQUE KEY `IX_refilldaysummary` (`DayStamp`)
@@ -304,8 +304,8 @@ CREATE TABLE `refillheader` (
   `CustomerID` int(10) NOT NULL,
   `Date` datetime NOT NULL,
   `TotalQty` int(10) unsigned NOT NULL DEFAULT '0',
-  `AmountDue` double NOT NULL DEFAULT '0',
-  `AmountTender` double NOT NULL DEFAULT '0',
+  `AmountDue` decimal(10,2) NOT NULL DEFAULT '0',
+  `AmountTender` decimal(10,2) NOT NULL DEFAULT '0',
   `PaidFlag` tinyint(1) NOT NULL DEFAULT '0',
   `TransactionTypeID` int(10) unsigned NOT NULL,
   `DayID` int(10) unsigned NOT NULL,
@@ -334,7 +334,7 @@ CREATE TABLE `refilldetail` (
   `Qty` int(10) unsigned NOT NULL DEFAULT '0',
   `StoreBottleQty` int(10) unsigned NOT NULL DEFAULT '0',
   `StoreCapQty` int(10) unsigned NOT NULL DEFAULT '0',
-  `Amount` double NOT NULL DEFAULT '0',
+  `Amount` decimal(10,2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `IX_refilldetail_1` (`RefillHeaderID`,`ProductTypeID`),
   KEY `FK_refilldetail_1` (`RefillHeaderID`),
@@ -379,6 +379,14 @@ INSERT INTO `db_laundry_refilling`.`laundrycategory` (`Name`, `Description`) VAL
 INSERT INTO `db_laundry_refilling`.`laundrycategory` (`Name`, `Description`) VALUES ('Stuffed Toys','for stuffed toys');
 INSERT INTO `db_laundry_refilling`.`laundrycategory` (`Name`, `Description`) VALUES ('Seat Cover','for seat covers');
 INSERT INTO `db_laundry_refilling`.`laundrycategory` (`Name`, `Description`) VALUES ('Others','for other items');
+
+-- Laundry - pricescheme table
+INSERT INTO `db_laundry_refilling`.`laundrypricescheme` (`CategoryID`, `ServiceID`, `Description`, `Price`) VALUES ('1', '1', 'this is a test only price scheme', '25.00');
+INSERT INTO `db_laundry_refilling`.`laundrypricescheme` (`CategoryID`, `ServiceID`, `Description`, `Price`) VALUES ('2', '1', 'this is a test only price scheme', '15.00');
+INSERT INTO `db_laundry_refilling`.`laundrypricescheme` (`CategoryID`, `ServiceID`, `Description`, `Price`) VALUES ('3', '1', 'this is a test only price scheme', '10.00');
+INSERT INTO `db_laundry_refilling`.`laundrypricescheme` (`CategoryID`, `ServiceID`, `Description`, `Price`) VALUES ('1', '2', 'this is a test only price scheme', '25.00');
+INSERT INTO `db_laundry_refilling`.`laundrypricescheme` (`CategoryID`, `ServiceID`, `Description`, `Price`) VALUES ('2', '2', 'this is a test only price scheme', '15.00');
+INSERT INTO `db_laundry_refilling`.`laundrypricescheme` (`CategoryID`, `ServiceID`, `Description`, `Price`) VALUES ('3', '2', 'this is a test only price scheme', '10.00');
 
 -- Laundry - charges table
 INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`) VALUES ('Pick - Up');
