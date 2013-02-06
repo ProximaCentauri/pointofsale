@@ -39,6 +39,8 @@ namespace NJournals.Core.Views
 		
 		LaundryViewPresenter m_presenter;
 		ILaundryDao m_laundryDao;
+		List<LaundryServiceDataEntity> m_serviceEntity;
+		List<LaundryCategoryDataEntity> m_categoryEntity;
 		
 		void setButtonImages()
 		{
@@ -59,13 +61,15 @@ namespace NJournals.Core.Views
 			}
 		}
 				
-		public void SetAllCategories(IList<LaundryCategoryDataEntity> categories){
+		public void SetAllCategories(List<LaundryCategoryDataEntity> categories){
+			m_categoryEntity = categories;			
 			foreach(LaundryCategoryDataEntity category in categories){
 				this.cmbcategory.Items.Add(category.Name);
 			}
 		}
 		
-		public void SetAllServices(IList<LaundryServiceDataEntity> services){
+		public void SetAllServices(List<LaundryServiceDataEntity> services){
+			m_serviceEntity = services;
 			foreach(LaundryServiceDataEntity service in services){
 				this.cmbservices.Items.Add(service.Name);
 			}
@@ -125,24 +129,23 @@ namespace NJournals.Core.Views
 		public void AddItem(){
 			LaundryPriceSchemeDao priceDao = new LaundryPriceSchemeDao();
 			LaundryPriceSchemeDataEntity priceEntity = new LaundryPriceSchemeDataEntity();
-
-			priceEntity = priceDao.GetByCategoryService(cmbcategory.Text, cmbservices.Text);
-			double kilo = 0;
+			LaundryCategoryDataEntity category = m_categoryEntity.Find(m_category => m_category.Name == cmbcategory.Text);
+			LaundryServiceDataEntity service = m_serviceEntity.Find(m_service => m_service.Name == cmbservices.Text);
+			priceEntity = priceDao.GetByCategoryService(service, category);
+			double kilo = 0.0;
 			double.TryParse(txtkilo.Text, out kilo);
-			double price = priceEntity.Price * kilo;			
+			double price = priceEntity.Price * kilo;						
 
-			//priceEntity = priceDao.GetByCategoryService(cmbcategory.Text, cmbservices.Text);
-			
-
-			IList<String> lstItems = new List<String>();
+			List<String> lstItems = new List<String>();
 			lstItems.Add(cmbcategory.Text);
 			lstItems.Add(cmbservices.Text);
 			lstItems.Add(txtnoitems.Text);
 			lstItems.Add(txtkilo.Text);
-			lstItems.Add(price.ToString());
+			lstItems.Add(price.ToString("N2"));
 			string[] items = new string[lstItems.Count];
 			lstItems.CopyTo(items,0);
 			dataGridView1.Rows.Add(items);
+			txtamtdue.Text = (double.Parse(txtamtdue.Text) + price).ToString("N2");
 		}
 		
 		void BtnaddClick(object sender, EventArgs e)

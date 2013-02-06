@@ -45,12 +45,12 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void SetAllCategories(){
-			IList<LaundryCategoryDataEntity> categories = m_categoryDao.GetAllItems() as List<LaundryCategoryDataEntity>;
+			List<LaundryCategoryDataEntity> categories = m_categoryDao.GetAllItems() as List<LaundryCategoryDataEntity>;
 			m_view.SetAllCategories(categories);
 		}
 		
 		public void SetAllServices(){
-			IList<LaundryServiceDataEntity> services = m_serviceDao.GetAllItems() as List<LaundryServiceDataEntity>;
+			List<LaundryServiceDataEntity> services = m_serviceDao.GetAllItems() as List<LaundryServiceDataEntity>;
 			m_view.SetAllServices(services);
 		}
 		
