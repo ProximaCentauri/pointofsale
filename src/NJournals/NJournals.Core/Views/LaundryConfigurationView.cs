@@ -25,6 +25,8 @@ namespace NJournals.Core.Views
 	public partial class LaundryConfigurationView : BaseForm, ILaundryConfigurationView
 	{
 		LaundryConfigurationViewPresenter m_presenter;
+		List<LaundryServiceDataEntity> m_serviceEntity;
+		List<LaundryCategoryDataEntity> m_categoryEntity;
 			
 		public LaundryConfigurationView()
 		{
@@ -54,11 +56,21 @@ namespace NJournals.Core.Views
 			
 		}
 		
+		void formatAlternatingRows()
+		{
+			this.dgvServices.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
+            this.dgvServices.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
+            this.dgvCategory.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
+            this.dgvCategory.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
+            this.dgvPriceScheme.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
+            this.dgvPriceScheme.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
+		}
 		
 		
 		void LaundryConfigurationFormLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
+			formatAlternatingRows();
 			
 			m_presenter = new LaundryConfigurationViewPresenter(this);
 			m_presenter.SetAllCategories();
@@ -66,18 +78,24 @@ namespace NJournals.Core.Views
 			m_presenter.SetAllPriceScheme();
 		}
 		
-		public void SetAllCategories(IList<LaundryCategoryDataEntity> categories)
-		{
-			this.dgvCategory.DataSource = categories;			
+		public void SetAllCategories(List<LaundryCategoryDataEntity> categories){	
+			m_categoryEntity = categories;			
+			foreach(LaundryCategoryDataEntity category in categories){
+				this.dgvCategory.Rows.Add(category.Name, category.Description);
+			}
 		}
 		
-		public void SetAllServices(IList<LaundryServiceDataEntity> services)
+		public void SetAllServices(List<LaundryServiceDataEntity> services)
 		{
-			this.dgvServices.DataSource = services;
+			m_serviceEntity = services;
+			foreach(LaundryServiceDataEntity service in services)
+			{
+				this.dgvServices.Rows.Add(service.Name, service.Description);
+			}
 			
 		}
 		
-		public void SetAllPriceScheme(IList<LaundryPriceSchemeDataEntity> priceScheme)
+		public void SetAllPriceScheme(List<LaundryPriceSchemeDataEntity> priceScheme)
 		{
 		}
 		

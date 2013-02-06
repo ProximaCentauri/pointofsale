@@ -18,8 +18,8 @@ namespace NJournals.Common.Interfaces
 	public interface ILaundryConfigurationView : IView
 	{
 		
-		void SetAllCategories(IList<LaundryCategoryDataEntity> categories);
-		void SetAllServices(IList<LaundryServiceDataEntity> services);
-		void SetAllPriceScheme(IList<LaundryPriceSchemeDataEntity> priceScheme);
+		void SetAllCategories(List<LaundryCategoryDataEntity> categories);
+		void SetAllServices(List<LaundryServiceDataEntity> services);
+		void SetAllPriceScheme(List<LaundryPriceSchemeDataEntity> priceScheme);
 	}
 }
