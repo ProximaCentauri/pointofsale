@@ -29,5 +29,12 @@ namespace NJournals.Core.Views
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+
+        private void ReportView_Load(object sender, EventArgs e)
+        {
+
+            this.reportViewer1.RefreshReport();
+            this.reportViewer1.RefreshReport();
+        }
 	}
 }
