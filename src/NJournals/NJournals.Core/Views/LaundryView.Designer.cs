@@ -37,6 +37,7 @@ namespace NJournals.Core.Views
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnCustomerSearch = new System.Windows.Forms.Button();
 			this.dtdueDate = new System.Windows.Forms.DateTimePicker();
 			this.dtrecieveDate = new System.Windows.Forms.DateTimePicker();
 			this.label4 = new System.Windows.Forms.Label();
@@ -47,7 +48,7 @@ namespace NJournals.Core.Views
 			this.label1 = new System.Windows.Forms.Label();
 			this.cmbservices = new System.Windows.Forms.ComboBox();
 			this.Services = new System.Windows.Forms.GroupBox();
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnadd = new System.Windows.Forms.Button();
 			this.txtkilo = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.txtnoitems = new System.Windows.Forms.TextBox();
@@ -78,10 +79,15 @@ namespace NJournals.Core.Views
 			this.btncancel = new System.Windows.Forms.Button();
 			this.btndelete = new System.Windows.Forms.Button();
 			this.btnsave = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.txtbalance = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
-			this.btnCustomerSearch = new System.Windows.Forms.Button();
+			this.btnclaim = new System.Windows.Forms.Button();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -107,6 +113,20 @@ namespace NJournals.Core.Views
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Transaction Information";
+			// 
+			// btnCustomerSearch
+			// 
+			this.btnCustomerSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnCustomerSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnCustomerSearch.FlatAppearance.BorderSize = 0;
+			this.btnCustomerSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnCustomerSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnCustomerSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnCustomerSearch.Location = new System.Drawing.Point(417, 45);
+			this.btnCustomerSearch.Name = "btnCustomerSearch";
+			this.btnCustomerSearch.Size = new System.Drawing.Size(24, 24);
+			this.btnCustomerSearch.TabIndex = 10;
+			this.btnCustomerSearch.UseVisualStyleBackColor = false;
 			// 
 			// dtdueDate
 			// 
@@ -188,7 +208,7 @@ namespace NJournals.Core.Views
 			// 
 			// Services
 			// 
-			this.Services.Controls.Add(this.button1);
+			this.Services.Controls.Add(this.btnadd);
 			this.Services.Controls.Add(this.txtkilo);
 			this.Services.Controls.Add(this.label8);
 			this.Services.Controls.Add(this.txtnoitems);
@@ -205,14 +225,15 @@ namespace NJournals.Core.Views
 			this.Services.TabStop = false;
 			this.Services.Text = "Services";
 			// 
-			// button1
+			// btnadd
 			// 
-			this.button1.Location = new System.Drawing.Point(186, 156);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 12;
-			this.button1.Text = "Add";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnadd.Location = new System.Drawing.Point(186, 156);
+			this.btnadd.Name = "btnadd";
+			this.btnadd.Size = new System.Drawing.Size(75, 23);
+			this.btnadd.TabIndex = 12;
+			this.btnadd.Text = "Add";
+			this.btnadd.UseVisualStyleBackColor = true;
+			this.btnadd.Click += new System.EventHandler(this.BtnaddClick);
 			// 
 			// txtkilo
 			// 
@@ -276,6 +297,12 @@ namespace NJournals.Core.Views
 			// dataGridView1
 			// 
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+									this.Column1,
+									this.Column2,
+									this.Column3,
+									this.Column4,
+									this.Column5});
 			this.dataGridView1.Location = new System.Drawing.Point(317, 194);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.Size = new System.Drawing.Size(538, 197);
@@ -507,12 +534,12 @@ namespace NJournals.Core.Views
 			this.btnsave.Text = "Save";
 			this.btnsave.UseVisualStyleBackColor = true;
 			// 
-			// textBox1
+			// txtbalance
 			// 
-			this.textBox1.Location = new System.Drawing.Point(736, 475);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(119, 20);
-			this.textBox1.TabIndex = 21;
+			this.txtbalance.Location = new System.Drawing.Point(736, 475);
+			this.txtbalance.Name = "txtbalance";
+			this.txtbalance.Size = new System.Drawing.Size(119, 20);
+			this.txtbalance.TabIndex = 21;
 			// 
 			// label13
 			// 
@@ -535,19 +562,40 @@ namespace NJournals.Core.Views
 			this.label14.TabIndex = 22;
 			this.label14.Text = "Add/Edit CheckList";
 			// 
-			// btnCustomerSearch
+			// btnclaim
 			// 
-			this.btnCustomerSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnCustomerSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btnCustomerSearch.FlatAppearance.BorderSize = 0;
-			this.btnCustomerSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnCustomerSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnCustomerSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCustomerSearch.Location = new System.Drawing.Point(417, 45);
-			this.btnCustomerSearch.Name = "btnCustomerSearch";
-			this.btnCustomerSearch.Size = new System.Drawing.Size(24, 24);
-			this.btnCustomerSearch.TabIndex = 10;
-			this.btnCustomerSearch.UseVisualStyleBackColor = false;
+			this.btnclaim.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnclaim.Location = new System.Drawing.Point(241, 559);
+			this.btnclaim.Name = "btnclaim";
+			this.btnclaim.Size = new System.Drawing.Size(99, 23);
+			this.btnclaim.TabIndex = 23;
+			this.btnclaim.Text = "Claim && Close";
+			this.btnclaim.UseVisualStyleBackColor = true;
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "Category";
+			this.Column1.Name = "Column1";
+			// 
+			// Column2
+			// 
+			this.Column2.HeaderText = "Service";
+			this.Column2.Name = "Column2";
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "No. of Items";
+			this.Column3.Name = "Column3";
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Kilo";
+			this.Column4.Name = "Column4";
+			// 
+			// Column5
+			// 
+			this.Column5.HeaderText = "Price";
+			this.Column5.Name = "Column5";
 			// 
 			// LaundryNewView
 			// 
@@ -555,8 +603,9 @@ namespace NJournals.Core.Views
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(884, 612);
+			this.Controls.Add(this.btnclaim);
 			this.Controls.Add(this.label14);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.txtbalance);
 			this.Controls.Add(this.label13);
 			this.Controls.Add(this.btnsave);
 			this.Controls.Add(this.btndelete);
@@ -588,10 +637,16 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+		private System.Windows.Forms.Button btnclaim;
 		private System.Windows.Forms.Button btnCustomerSearch;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Label label13;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txtbalance;
 		private System.Windows.Forms.Button btnsave;
 		private System.Windows.Forms.Button btndelete;
 		private System.Windows.Forms.DateTimePicker dtrecieveDate;
@@ -620,7 +675,7 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.TextBox txtnoitems;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.TextBox txtkilo;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnadd;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.ComboBox cmbcategory;
 		private System.Windows.Forms.Label label7;

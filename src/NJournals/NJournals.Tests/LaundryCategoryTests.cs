@@ -39,7 +39,7 @@ namespace NJournals.Tests
 			entity.Name = "Wash Dry Press";
 			entity.Description = "Wash Dry Press";
 			
-			dao.Save(entity);							
+			dao.Save(entity);
 		}
 		
 		[Test]

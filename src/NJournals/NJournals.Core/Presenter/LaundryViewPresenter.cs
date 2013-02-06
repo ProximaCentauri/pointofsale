@@ -29,8 +29,7 @@ namespace NJournals.Core.Presenter
 			m_laundryDao = p_laundryDao;
 			m_categoryDao = new LaundryCategoryDao();
 			m_serviceDao = new LaundryServiceDao();
-			//SetAllCategories();
-			//SetAllServices();
+			
 		}
 		
 		public void SaveClicked(){
@@ -38,7 +37,11 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void CancelClicked(){
-			
+			m_view.CloseView();
+		}
+		
+		public void AddNewItemClicked(){
+			m_view.AddItem();
 		}
 		
 		public void SetAllCategories(){

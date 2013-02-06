@@ -16,10 +16,14 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface ILaundryView : IView
 	{
+		//LaundryCategoryDataEntity CategoryDataEntity{get;set;}
+		LaundryHeaderDataEntity HeaderDataEntity{get;set;}
+		//LaundryDetailDataEntity DetailDataEntity{get;set;}
+		
 		
 		void SetAllCategories(IList<LaundryCategoryDataEntity> categories);
 		void SetAllServices(IList<LaundryServiceDataEntity> services);		
-		void Save(LaundryDaySummaryDataEntity entities);
+		void AddItem();
 		
 	}
 }

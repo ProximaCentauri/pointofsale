@@ -16,6 +16,7 @@ using NJournals.Common.Util;
 using System.Collections.Generic;
 using NJournals.Core.Presenter;
 using NJournals.Core.Models;
+using System.Data;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -54,14 +55,10 @@ namespace NJournals.Core.Views
 			if(this.Text.Contains("[NEW]")){
 				m_presenter.SetAllCategories();
 				m_presenter.SetAllServices();
-				this.groupBox2.Enabled = false;
+				this.groupBox2.Enabled = this.btnclaim.Enabled = false;
 			}
 		}
-		
-		public void Save(LaundryDaySummaryDataEntity entities){
-			
-		}
-		
+				
 		public void SetAllCategories(IList<LaundryCategoryDataEntity> categories){
 			foreach(LaundryCategoryDataEntity category in categories){
 				this.cmbcategory.Items.Add(category.Name);
@@ -74,9 +71,75 @@ namespace NJournals.Core.Views
 			}
 		}
 		
-		void BtncancelClick(object sender, EventArgs e)
+		void BtncancelClick(object sender, EventArgs e){
+			m_presenter.CancelClicked();
+		}		
+		
+		private void processHeaderDataEntity(){
+			m_headerEntity = new LaundryHeaderDataEntity();
+			double amountDue;
+			double.TryParse(this.txtamtdue.Text, out amountDue);
+			double amountTender;
+			double.TryParse(txtamttender.Text, out amountTender);
+			if(amountDue > 0 && amountTender > 0){
+				m_headerEntity.AmountDue = 	amountDue;
+				m_headerEntity.AmountTender = amountTender;
+			}else
+				MessageService.ShowError("Invalid field in Amount due or Amount tender.","Error");
+			
+			m_headerEntity.ReceivedDate = dtrecieveDate.Value;
+			m_headerEntity.DueDate = dtdueDate.Value;
+			//TODO: change totalitemqty value to textbox value of totalitemqty
+			m_headerEntity.TotalItemQty = 1;
+			m_headerEntity.PaidFlag = chkpaywhenclaim.Checked;
+			m_headerEntity.ClaimFlag = btnclaim.Enabled;		
+			CustomerDataEntity customer = new CustomerDataEntity();
+			customer.Name = txtname.Text;
+			m_headerEntity.Customer = customer;			
+			
+			foreach(DataGridViewRow row in this.dataGridView1.Rows){
+				LaundryDetailDataEntity detail = new LaundryDetailDataEntity();
+				detail.Header = m_headerEntity;
+				LaundryCategoryDataEntity category = new LaundryCategoryDataEntity();
+				category.Name = row.Cells[0].Value.ToString();
+				detail.Category = category;			
+				LaundryServiceDataEntity service = new LaundryServiceDataEntity();
+				service.Name = row.Cells[1].Value.ToString();
+				detail.Service = service;
+				detail.Kilo = int.Parse(row.Cells[2].Value.ToString());
+				detail.ItemQty = int.Parse(row.Cells[3].Value.ToString());
+				detail.Amount = int.Parse(row.Cells[4].Value.ToString());
+				m_headerEntity.DetailEntities.Add(detail);
+			}
+			 
+			
+		}
+		
+		LaundryHeaderDataEntity m_headerEntity;
+		
+		public LaundryHeaderDataEntity HeaderDataEntity {
+			get { return m_headerEntity; }
+			set { m_headerEntity = value; }
+		}
+	
+		public void AddItem(){
+			LaundryPriceSchemeDao priceDao = new LaundryPriceSchemeDao();
+			LaundryPriceSchemeDataEntity priceEntity = new LaundryPriceSchemeDataEntity();
+			priceEntity = priceDao.GetByCategoryService(cmbcategory.Text, cmbservices.Text);
+			
+			IList<String> lstItems = new List<String>();
+			lstItems.Add(cmbcategory.Text);
+			lstItems.Add(cmbservices.Text);
+			lstItems.Add(txtnoitems.Text);
+			lstItems.Add(txtkilo.Text);
+			string[] items = new string[lstItems.Count];
+			lstItems.CopyTo(items,0);
+			dataGridView1.Rows.Add(items);
+		}
+		
+		void BtnaddClick(object sender, EventArgs e)
 		{
-			this.Close();
+			m_presenter.AddNewItemClicked();
 		}
 	}
 }

@@ -79,7 +79,9 @@
     <Compile Include="DataEntities\LaundryDetailDataEntity.cs" />
     <Compile Include="DataEntities\LaundryHeaderDataEntity.cs" />
     <Compile Include="DataEntities\LaundryJobChargesDataEntity.cs" />
-    <Compile Include="DataEntities\LaundryJobChecklistDataEntity.cs" />
+    <Compile Include="DataEntities\LaundryJobChecklistDataEntity.cs">
+      <DependentUpon>LaundryDetailDataEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataEntities\LaundryPriceSchemeDataEntity.cs" />
     <Compile Include="DataEntities\LaundryServiceDataEntity.cs" />
     <Compile Include="DataEntities\RefillDaySummaryDataEntity.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Util\NHibernateHelper.cs" />
     <Compile Include="Util\Resource.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="ViewModels\LaundryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces" />
