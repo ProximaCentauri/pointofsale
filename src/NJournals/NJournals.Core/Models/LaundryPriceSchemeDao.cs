@@ -51,17 +51,21 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-		public LaundryPriceSchemeDataEntity GetByCategoryService(string p_category, 
-		                                             string p_service)
+		public LaundryPriceSchemeDataEntity GetByCategoryService(LaundryServiceDataEntity p_service, 
+		                                             LaundryCategoryDataEntity p_category)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = session.Query<LaundryPriceSchemeDataEntity>()					
-					.Fetch(x => x.Category)
-					.Where(x => x.Category.Name == p_category)
-					.Fetch(x => x.Service)
-					.Where(x => x.Service.Name == p_service)
-					.FirstOrDefault();
+				var query = session.QueryOver<LaundryPriceSchemeDataEntity>()
+					.Where(x => x.Category == p_category)
+					.And(x => x.Service == p_service)
+					.SingleOrDefault();
+//				var query = session.Query<LaundryPriceSchemeDataEntity>()					
+//					.Fetch(x => x.Category)
+//					.Where(x => x.Category.Name == p_category)
+//					//.Fetch(x => x.Service)
+//				//	.Where(x => x.Service.Name == p_service)
+//					.Single();
 				return query;
 			}
 		}

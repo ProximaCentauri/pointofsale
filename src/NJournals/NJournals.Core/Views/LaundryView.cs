@@ -125,7 +125,7 @@ namespace NJournals.Core.Views
 		public void AddItem(){
 			LaundryPriceSchemeDao priceDao = new LaundryPriceSchemeDao();
 			LaundryPriceSchemeDataEntity priceEntity = new LaundryPriceSchemeDataEntity();
-			priceEntity = priceDao.GetByCategoryService(cmbcategory.Text, cmbservices.Text);
+			//priceEntity = priceDao.GetByCategoryService(cmbcategory.Text, cmbservices.Text);
 			
 			IList<String> lstItems = new List<String>();
 			lstItems.Add(cmbcategory.Text);

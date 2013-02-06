@@ -21,7 +21,8 @@ namespace NJournals.Common.Interfaces
 	{
 		void Save(LaundryPriceSchemeDataEntity p_priceScheme);
 		IEnumerable<LaundryPriceSchemeDataEntity> GetAllItems();
-		LaundryPriceSchemeDataEntity GetByCategoryService(string p_category, string p_service);
+		LaundryPriceSchemeDataEntity GetByCategoryService(LaundryServiceDataEntity p_service, 
+		                                                  LaundryCategoryDataEntity p_category);
 		void Delete(LaundryPriceSchemeDataEntity p_priceScheme);
 		void Update(LaundryPriceSchemeDataEntity p_priceScheme);
 	}
