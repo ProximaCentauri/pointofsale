@@ -81,6 +81,7 @@
     <Compile Include="DataEntities\LaundryJobChargesDataEntity.cs" />
     <Compile Include="DataEntities\LaundryJobChecklistDataEntity.cs" />
     <Compile Include="DataEntities\LaundryPriceSchemeDataEntity.cs" />
+    <Compile Include="DataEntities\LaundryReportDataEntity.cs" />
     <Compile Include="DataEntities\LaundryServiceDataEntity.cs" />
     <Compile Include="DataEntities\RefillDaySummaryDataEntity.cs" />
     <Compile Include="DataEntities\RefillDetailDataEntity.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Interfaces\ILaundryConfigurationView.cs" />
     <Compile Include="Interfaces\ILaundryDao.cs" />
     <Compile Include="Interfaces\ILaundryDaySummaryDao.cs" />
+    <Compile Include="Interfaces\ILaundryReportDao.cs" />
     <Compile Include="Interfaces\ILaundryView.cs" />
     <Compile Include="Interfaces\IMainFormStationView.cs" />
     <Compile Include="Interfaces\IRefillDao.cs" />

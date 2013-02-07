@@ -59,7 +59,7 @@ namespace NJournals.Core.Models
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				var query = (from Customer in session.Query<CustomerDataEntity>()
-				             select Customer);
+				             select Customer).OrderBy(x => x.Name);
 				return query.ToList();
 			}
 		}

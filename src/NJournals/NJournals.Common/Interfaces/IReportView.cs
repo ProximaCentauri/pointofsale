@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using NJournals.Common.DataEntities;
+using System.Collections.Generic;
+
 
 namespace NJournals.Common.Interfaces
 {
@@ -15,6 +18,8 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface IReportView : IView
 	{
-		
+		void SetAllReportTypes();
+		void SetAllCustomers(List<CustomerDataEntity> customers);
+		void DisplayReport<T>(List<T> report);
 	}
 }
