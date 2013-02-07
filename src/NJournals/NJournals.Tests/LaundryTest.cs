@@ -56,7 +56,7 @@ namespace NJournals.Tests
 			header.DueDate = DateTime.Now;
 			header.ClaimFlag = false;
 			header.PaidFlag = true;
-			header.AmountDue = 1520.00;
+			header.AmountDue = 1520.00M;
 			
 			detail.Header = header;
 			detail.Category = category;
@@ -106,7 +106,7 @@ namespace NJournals.Tests
 				header.DueDate = DateTime.Now;
 				header.ClaimFlag = true;
 				header.PaidFlag = true;
-				header.AmountDue = 2322.00;
+				header.AmountDue = 2322.00M;
 				
 				detail.Header = header;
 				detail.Category = category;

@@ -21,7 +21,7 @@ namespace NJournals.Core.Presenter
 	{
 		IReportView m_view;
 		ICustomerDao m_customerDao;
-		ILaundryReportDao m_laundryReportDao;
+		ILaundryReportDao m_laundryReportDao = null;
 		
 		public ReportViewPresenter(IReportView p_view)
 		{

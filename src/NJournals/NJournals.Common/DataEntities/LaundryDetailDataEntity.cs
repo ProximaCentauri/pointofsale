@@ -21,7 +21,7 @@ namespace NJournals.Common.DataEntities
 		public virtual LaundryCategoryDataEntity Category {get;set;}
 		public virtual int ItemQty {get;set;}
 		public virtual double Kilo {get;set;}
-		public virtual double Amount {get;set;}
+		public virtual decimal Amount {get;set;}
 		
 	}
 }

@@ -18,7 +18,7 @@ namespace NJournals.Common.DataEntities
 	{
 		public virtual int DayID {get;set;}
 		public virtual DateTime DayStamp {get;set;}
-		public virtual double TotalSales {get;set;}
+		public virtual decimal TotalSales {get;set;}
 		public virtual int TransCount {get;set;}
 		
 		public virtual IList<LaundryHeaderDataEntity> HeaderEntities {get; set;}	

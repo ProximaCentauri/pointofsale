@@ -241,6 +241,7 @@ namespace NJournals.Core.Views
 			this.txtkilo.Name = "txtkilo";
 			this.txtkilo.Size = new System.Drawing.Size(100, 23);
 			this.txtkilo.TabIndex = 10;
+			this.txtkilo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
 			// label8
 			// 
@@ -257,6 +258,7 @@ namespace NJournals.Core.Views
 			this.txtnoitems.Name = "txtnoitems";
 			this.txtnoitems.Size = new System.Drawing.Size(100, 23);
 			this.txtnoitems.TabIndex = 7;
+			this.txtnoitems.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
 			// label7
 			// 
@@ -380,7 +382,10 @@ namespace NJournals.Core.Views
 			// 
 			// txtamtdue
 			// 
+			this.txtamtdue.BackColor = System.Drawing.SystemColors.Info;
 			this.txtamtdue.Enabled = false;
+			this.txtamtdue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtamtdue.ForeColor = System.Drawing.Color.Black;
 			this.txtamtdue.Location = new System.Drawing.Point(736, 400);
 			this.txtamtdue.Name = "txtamtdue";
 			this.txtamtdue.Size = new System.Drawing.Size(119, 20);
@@ -403,6 +408,8 @@ namespace NJournals.Core.Views
 			this.txtamttender.Name = "txtamttender";
 			this.txtamttender.Size = new System.Drawing.Size(119, 20);
 			this.txtamttender.TabIndex = 11;
+			this.txtamttender.TextChanged += new System.EventHandler(this.txtamttender_textchanged);
+			this.txtamttender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
 			// label11
 			// 
@@ -417,7 +424,10 @@ namespace NJournals.Core.Views
 			// 
 			// txtchange
 			// 
+			this.txtchange.BackColor = System.Drawing.SystemColors.Info;
 			this.txtchange.Enabled = false;
+			this.txtchange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtchange.ForeColor = System.Drawing.Color.Black;
 			this.txtchange.Location = new System.Drawing.Point(736, 499);
 			this.txtchange.Name = "txtchange";
 			this.txtchange.Size = new System.Drawing.Size(119, 20);
@@ -565,6 +575,10 @@ namespace NJournals.Core.Views
 			// 
 			// txtbalance
 			// 
+			this.txtbalance.BackColor = System.Drawing.SystemColors.Info;
+			this.txtbalance.Enabled = false;
+			this.txtbalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtbalance.ForeColor = System.Drawing.Color.Black;
 			this.txtbalance.Location = new System.Drawing.Point(736, 475);
 			this.txtbalance.Name = "txtbalance";
 			this.txtbalance.Size = new System.Drawing.Size(119, 20);

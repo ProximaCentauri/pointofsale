@@ -41,6 +41,8 @@ namespace NJournals.Core.Views
 		ILaundryDao m_laundryDao;
 		List<LaundryServiceDataEntity> m_serviceEntity;
 		List<LaundryCategoryDataEntity> m_categoryEntity;
+		private decimal amountTender = 0;
+		private decimal amountDue = 0;
 		
 		void setButtonImages()
 		{
@@ -81,15 +83,8 @@ namespace NJournals.Core.Views
 		
 		private void processHeaderDataEntity(){
 			m_headerEntity = new LaundryHeaderDataEntity();
-			double amountDue;
-			double.TryParse(this.txtamtdue.Text, out amountDue);
-			double amountTender;
-			double.TryParse(txtamttender.Text, out amountTender);
-			if(amountDue > 0 && amountTender > 0){
-				m_headerEntity.AmountDue = 	amountDue;
-				m_headerEntity.AmountTender = amountTender;
-			}else
-				MessageService.ShowError("Invalid field in Amount due or Amount tender.","Error");
+			m_headerEntity.AmountTender = this.amountTender;
+			m_headerEntity.AmountDue = this.amountDue;
 			
 			m_headerEntity.ReceivedDate = dtrecieveDate.Value;
 			m_headerEntity.DueDate = dtdueDate.Value;
@@ -145,12 +140,43 @@ namespace NJournals.Core.Views
 			string[] items = new string[lstItems.Count];
 			lstItems.CopyTo(items,0);
 			dataGridView1.Rows.Add(items);
-			txtamtdue.Text = (double.Parse(txtamtdue.Text) + price).ToString("N2");
+			txtamtdue.Text = (double.Parse(txtamtdue.Text) + price).ToString("N2");			
 		}
 		
 		void BtnaddClick(object sender, EventArgs e)
 		{
 			m_presenter.AddNewItemClicked();
 		}
-	}
+		
+		void txtbox_keypress(object sender, KeyPressEventArgs e)
+		{
+			if(sender is TextBox){
+				TextBox txt = sender as TextBox;
+				if(!char.IsDigit(e.KeyChar) && (e.KeyChar != (char)Keys.Back) 
+				   && (e.KeyChar != (char)Keys.Decimal) && (e.KeyChar != (char)Keys.OemPeriod)){
+				   e.Handled = true;
+				}
+				else{
+					e.Handled = false;						
+				}									   
+			}					
+		}			
+		
+		void txtamttender_textchanged(object sender, EventArgs e)
+		{
+			if(txtamttender.Text.Length == 0){
+				txtamttender.Text = "0.00";				
+			}	
+			decimal amtTender = decimal.Parse(txtamttender.Text);
+			decimal amtDue = decimal.Parse(txtamtdue.Text);				
+			if(amtTender < amtDue){
+				txtbalance.Text = (amtDue - amtTender).ToString("N2");
+				txtchange.Text = "0.00";
+			}else{
+				txtchange.Text = (amtTender - amtDue).ToString("N2");	
+				txtbalance.Text = "0.00";
+			}							
+		}		
+	}	
 }
+
