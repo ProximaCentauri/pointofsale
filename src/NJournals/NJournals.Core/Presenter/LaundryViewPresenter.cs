@@ -22,6 +22,8 @@ namespace NJournals.Core.Presenter
 		ILaundryCategoryDao m_categoryDao;
 		ILaundryServiceDao m_serviceDao;
 		ILaundryDao m_laundryDao;
+		List<LaundryCategoryDataEntity> categories = null;
+		List<LaundryServiceDataEntity> services = null;
 		
 		public LaundryViewPresenter(ILaundryView p_view, ILaundryDao p_laundryDao)
 		{
@@ -45,25 +47,22 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void SetAllCategories(){
-			List<LaundryCategoryDataEntity> categories = m_categoryDao.GetAllItems() as List<LaundryCategoryDataEntity>;
+			categories = m_categoryDao.GetAllItems() as List<LaundryCategoryDataEntity>;
 			m_view.SetAllCategories(categories);
 		}
 		
 		public void SetAllServices(){
-			List<LaundryServiceDataEntity> services = m_serviceDao.GetAllItems() as List<LaundryServiceDataEntity>;
+			services = m_serviceDao.GetAllItems() as List<LaundryServiceDataEntity>;
 			m_view.SetAllServices(services);
 		}
 		
-		public LaundryPriceSchemeDataEntity getLaundryPrice(string p_category, string p_service, 
-		                                                    List<LaundryCategoryDataEntity> p_categories, List<LaundryServiceDataEntity> p_services){
+		public LaundryPriceSchemeDataEntity getLaundryPrice(string p_category, string p_service){
 			LaundryPriceSchemeDao priceDao = new LaundryPriceSchemeDao();
 			LaundryPriceSchemeDataEntity priceEntity = new LaundryPriceSchemeDataEntity();
-			LaundryCategoryDataEntity category = p_categories.Find(f_category => f_category.Name == p_category);
-			LaundryServiceDataEntity service = p_services.Find(f_service => f_service.Name == p_service);
+			LaundryCategoryDataEntity category = categories.Find(f_category => f_category.Name == p_category);
+			LaundryServiceDataEntity service = services.Find(f_service => f_service.Name == p_service);
 			priceEntity = priceDao.GetByCategoryService(service, category);
 			return priceEntity;
-		}
-		
-		
+		}		
 	}
 }

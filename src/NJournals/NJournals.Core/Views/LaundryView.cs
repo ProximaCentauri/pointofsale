@@ -39,8 +39,6 @@ namespace NJournals.Core.Views
 		
 		LaundryViewPresenter m_presenter;
 		ILaundryDao m_laundryDao;
-		List<LaundryServiceDataEntity> m_serviceEntity;
-		List<LaundryCategoryDataEntity> m_categoryEntity;
 		private decimal amountTender = 0;
 		private decimal amountDue = 0;
 		
@@ -63,15 +61,13 @@ namespace NJournals.Core.Views
 			}
 		}
 				
-		public void SetAllCategories(List<LaundryCategoryDataEntity> categories){
-			m_categoryEntity = categories;			
+		public void SetAllCategories(List<LaundryCategoryDataEntity> categories){				
 			foreach(LaundryCategoryDataEntity category in categories){
 				this.cmbcategory.Items.Add(category.Name);
 			}
 		}
 		
-		public void SetAllServices(List<LaundryServiceDataEntity> services){
-			m_serviceEntity = services;
+		public void SetAllServices(List<LaundryServiceDataEntity> services){			
 			foreach(LaundryServiceDataEntity service in services){
 				this.cmbservices.Items.Add(service.Name);
 			}
@@ -122,8 +118,7 @@ namespace NJournals.Core.Views
 		}
 	
 		public void AddItem(){
-			LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text,
-			                                                                       m_categoryEntity, m_serviceEntity);
+			LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
 			decimal kilo = decimal.Parse(txtkilo.Text);			
 			decimal price = priceEntity.Price * kilo;	
 			List<String> lstItems = new List<String>();
