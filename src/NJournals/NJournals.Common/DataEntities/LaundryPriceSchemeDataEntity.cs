@@ -20,6 +20,6 @@ namespace NJournals.Common.DataEntities
 		public virtual LaundryCategoryDataEntity Category{get;set;}
 		public virtual LaundryServiceDataEntity Service{get;set;}
 		public virtual string Description {get;set;}
-		public virtual double Price {get;set;}
+		public virtual decimal Price {get;set;}
 	}
 }

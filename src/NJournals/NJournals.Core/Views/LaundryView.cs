@@ -127,9 +127,9 @@ namespace NJournals.Core.Views
 			LaundryCategoryDataEntity category = m_categoryEntity.Find(m_category => m_category.Name == cmbcategory.Text);
 			LaundryServiceDataEntity service = m_serviceEntity.Find(m_service => m_service.Name == cmbservices.Text);
 			priceEntity = priceDao.GetByCategoryService(service, category);
-			double kilo = 0.0;
-			double.TryParse(txtkilo.Text, out kilo);
-			double price = priceEntity.Price * kilo;						
+			decimal kilo = decimal.Parse(txtkilo.Text);
+			
+			decimal price = priceEntity.Price * kilo;						
 
 			List<String> lstItems = new List<String>();
 			lstItems.Add(cmbcategory.Text);
@@ -140,7 +140,7 @@ namespace NJournals.Core.Views
 			string[] items = new string[lstItems.Count];
 			lstItems.CopyTo(items,0);
 			dataGridView1.Rows.Add(items);
-			txtamtdue.Text = (double.Parse(txtamtdue.Text) + price).ToString("N2");			
+			txtamtdue.Text = (this.amountDue + price).ToString("N2");			
 		}
 		
 		void BtnaddClick(object sender, EventArgs e)
@@ -167,13 +167,13 @@ namespace NJournals.Core.Views
 			if(txtamttender.Text.Length == 0){
 				txtamttender.Text = "0.00";				
 			}	
-			decimal amtTender = decimal.Parse(txtamttender.Text);
-			decimal amtDue = decimal.Parse(txtamtdue.Text);				
-			if(amtTender < amtDue){
-				txtbalance.Text = (amtDue - amtTender).ToString("N2");
+			this.amountTender = decimal.Parse(txtamttender.Text);
+			this.amountDue = decimal.Parse(txtamtdue.Text);				
+			if(amountTender < amountDue){
+				txtbalance.Text = (amountDue - amountTender).ToString("N2");
 				txtchange.Text = "0.00";
 			}else{
-				txtchange.Text = (amtTender - amtDue).ToString("N2");	
+				txtchange.Text = (amountTender - amountDue).ToString("N2");	
 				txtbalance.Text = "0.00";
 			}							
 		}		

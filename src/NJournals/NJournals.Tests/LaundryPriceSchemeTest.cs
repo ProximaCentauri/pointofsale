@@ -32,7 +32,7 @@ namespace NJournals.Tests
 			entity.Category = category;
 			entity.Service = service;
 			entity.Description = "sample price scheme";
-			entity.Price = 29.00;
+			entity.Price = 29.00M;
 			
 			LaundryPriceSchemeDao dao = new LaundryPriceSchemeDao();
 			dao.Save(entity);
