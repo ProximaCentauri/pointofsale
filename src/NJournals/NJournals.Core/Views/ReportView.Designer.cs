@@ -36,6 +36,7 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbCustomers = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,8 +47,10 @@ namespace NJournals.Core.Views
             this.label2 = new System.Windows.Forms.Label();
             this.cmbReportTypes = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.LaundryDaySummaryDataEntityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LaundryDaySummaryDataEntityBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -97,8 +100,7 @@ namespace NJournals.Core.Views
             // 
             // dateFromPicker
             // 
-            this.dateFromPicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dateFromPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateFromPicker.CustomFormat = "mm/dd/yyyy hh:mm:ss";
             this.dateFromPicker.Location = new System.Drawing.Point(130, 81);
             this.dateFromPicker.Name = "dateFromPicker";
             this.dateFromPicker.Size = new System.Drawing.Size(200, 23);
@@ -153,13 +155,16 @@ namespace NJournals.Core.Views
             this.label1.TabIndex = 0;
             this.label1.Text = "Report Type:";
             // 
+            // LaundryDaySummaryDataEntityBindingSource
+            // 
+            this.LaundryDaySummaryDataEntityBindingSource.DataSource = typeof(NJournals.Common.DataEntities.LaundryDaySummaryDataEntity);
+            // 
             // reportViewer
             // 
-            this.reportViewer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "NJournals.Core.Reports.SalesReport.rdlc";
-            this.reportViewer.Location = new System.Drawing.Point(38, 249);
+            this.reportViewer.AutoScroll = true;
+            this.reportViewer.Location = new System.Drawing.Point(38, 245);
             this.reportViewer.Name = "reportViewer";
-            this.reportViewer.Size = new System.Drawing.Size(820, 287);
+            this.reportViewer.Size = new System.Drawing.Size(818, 297);
             this.reportViewer.TabIndex = 1;
             // 
             // ReportView
@@ -175,6 +180,7 @@ namespace NJournals.Core.Views
             this.Text = "ReportView";
             this.Load += new System.EventHandler(this.ReportView_Load);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LaundryDaySummaryDataEntityBindingSource)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -184,10 +190,11 @@ namespace NJournals.Core.Views
         private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button btnRunReport;
         private System.Windows.Forms.GroupBox groupBox1;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.ComboBox cmbCustomers;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateToPicker;
         private System.Windows.Forms.DateTimePicker dateFromPicker;
+        private System.Windows.Forms.BindingSource LaundryDaySummaryDataEntityBindingSource;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
 	}
 }

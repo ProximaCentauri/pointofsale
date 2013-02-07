@@ -16,6 +16,7 @@ using NJournals.Common.Gui;
 using System.Collections.Generic;
 using Microsoft.Reporting.WinForms;
 using System.Globalization;
+using NJournals.Core;
 
 namespace NJournals.Core.Views
 {
@@ -44,9 +45,11 @@ namespace NJournals.Core.Views
         	m_presenter = new ReportViewPresenter(this);
         	
             this.reportViewer.RefreshReport();
+            this.reportViewer.LocalReport.ReportEmbeddedResource = null;
             m_presenter.SetAllReportTypes(this.GetTitle());
             m_presenter.SetAllCustomers();
-            
+
+            this.reportViewer.RefreshReport();
         }
         
         public void SetAllReportTypes(List<string> reportTypes)
@@ -78,9 +81,10 @@ namespace NJournals.Core.Views
 				customer = m_customerEntity.Find(m_customer => m_customer.Name == cmbCustomers.Text);
 			}
 
-            DateTime fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);            
+            DateTime fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);           
            	DateTime toDateTime = Convert.ToDateTime(this.dateToPicker.Text);
-			
+            
+
 			m_presenter.RunReport(this.GetTitle(), selectedReport, customer, fromDateTime,
 			                      toDateTime, b_isAll);			
 			
@@ -88,7 +92,15 @@ namespace NJournals.Core.Views
 		
 		public void DisplayReport<T>(List<T> report)
 		{
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("salesTable1",report));            
+            //reportViewer.LocalReport.ReportPath = @"Reports\SalesReport.rdlc";
+            reportViewer.LocalReport.ReportEmbeddedResource = "NJournals.Core.Reports.SalesReport.rdlc";
+            //reportViewer.LocalReport.DataSources.Add(new ReportDataSource("salesTable",report));
+
+            this.LaundryDaySummaryDataEntityBindingSource.DataSource = report;
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", report));
+        //    reportViewer.LocalReport.DataSources.Add();
+            reportViewer.RefreshReport();
+            
 		}
     
 	}
