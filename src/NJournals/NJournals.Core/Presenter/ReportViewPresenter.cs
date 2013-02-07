@@ -11,6 +11,7 @@ using NJournals.Common.Interfaces;
 using NJournals.Core.Models;
 using NJournals.Common.DataEntities;
 using System.Collections.Generic;
+using System.Data;
 
 namespace NJournals.Core.Presenter
 {
@@ -21,7 +22,7 @@ namespace NJournals.Core.Presenter
 	{
 		IReportView m_view;
 		ICustomerDao m_customerDao;
-		ILaundryReportDao m_laundryReportDao = null;
+		ILaundryReportDao m_laundryReportDao;
 		
 		private const string SALES_REPORT				= "Sales Report";
 		private const string UNCLAIMED_ITEMS_REPORT		= "Unclaimed Items Report";
@@ -37,6 +38,7 @@ namespace NJournals.Core.Presenter
 		{
 			this.m_view = p_view;
 			m_customerDao = new CustomerDao();
+			m_laundryReportDao = new LaundryReportDao();
 		}
 		
 		public void SetAllReportTypes(string wndTitle)
@@ -91,8 +93,8 @@ namespace NJournals.Core.Presenter
 				case SALES_REPORT:
 					if(b_isAll)
 					{
-						 List<LaundryDaySummaryDataEntity> report = m_laundryReportDao
-							.GetAllCustomersSalesReport(fromDateTime, toDateTime) as List<LaundryDaySummaryDataEntity>;
+						List<LaundryDaySummaryDataEntity> report = m_laundryReportDao
+							.GetAllCustomersSalesReport(fromDateTime, toDateTime) as List<LaundryDaySummaryDataEntity>;                      
 						 m_view.DisplayReport(report);
 					}
 					else{

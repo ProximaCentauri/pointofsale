@@ -116,7 +116,9 @@
     <Compile Include="Views\CheckListView.Designer.cs">
       <DependentUpon>CheckListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\LaundryConfigurationView.cs" />
+    <Compile Include="Views\LaundryConfigurationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\LaundryConfigurationView.Designer.cs">
       <DependentUpon>LaundryConfigurationView.cs</DependentUpon>
     </Compile>
@@ -221,6 +223,10 @@
     <None Include="images\search.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Properties\DataSources\NJournals.Common.DataEntities.LaundryDaySummaryDataEntity.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

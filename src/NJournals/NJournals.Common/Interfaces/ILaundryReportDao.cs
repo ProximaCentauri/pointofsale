@@ -19,7 +19,7 @@ namespace NJournals.Common.Interfaces
 	public interface ILaundryReportDao
 	{
 		IEnumerable<LaundryDaySummaryDataEntity> GetAllCustomersSalesReport(DateTime fromDateTime,
-		                                                                   DateTime toDateTime);
+                                                                           DateTime toDateTime);
 		IEnumerable<LaundryHeaderDataEntity> GetCustomerSalesReport(CustomerDataEntity customer,
 		                                                            DateTime fromDateTime,
 		                                                            DateTime toDateTime);

@@ -13,6 +13,7 @@ using NJournals.Common.Util;
 using System.Linq;
 using System.Text;
 using NHibernate.Linq;
+using NHibernate.Criterion;
 using System.Collections.Generic;
 using NJournals.Common.Interfaces;
 using NJournals.Common.DataEntities;
@@ -35,12 +36,12 @@ namespace NJournals.Core.Models
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					var query = session.QueryOver<LaundryDaySummaryDataEntity>()
-						.Where(x => x.DayStamp >= fromDateTime)
-						.And(x => x.DayStamp <= toDateTime)
-						.OrderBy(x => x.DayStamp).Asc
-						.List();
-					return query;
+                    var query = session.QueryOver<LaundryDaySummaryDataEntity>()
+                        .Where(x => x.DayStamp <= fromDateTime)
+                        .And(x => x.DayStamp >= toDateTime)
+                        .OrderBy(x => x.DayStamp).Asc
+                        .List();
+                    return query;
 				}
 			}
 		}

@@ -14,6 +14,8 @@ using NJournals.Common.DataEntities;
 using NJournals.Core.Presenter;
 using NJournals.Common.Gui;
 using System.Collections.Generic;
+using Microsoft.Reporting.WinForms;
+using System.Globalization;
 
 namespace NJournals.Core.Views
 {
@@ -41,9 +43,7 @@ namespace NJournals.Core.Views
         {
         	m_presenter = new ReportViewPresenter(this);
         	
-            this.laundryReportViewer.RefreshReport();
-            this.laundryReportViewer.RefreshReport();
-            this.laundryReportViewer.RefreshReport();
+            this.reportViewer.RefreshReport();
             m_presenter.SetAllReportTypes(this.GetTitle());
             m_presenter.SetAllCustomers();
             
@@ -77,8 +77,9 @@ namespace NJournals.Core.Views
 				b_isAll = false;
 				customer = m_customerEntity.Find(m_customer => m_customer.Name == cmbCustomers.Text);
 			}
-			DateTime fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);
-			DateTime toDateTime = Convert.ToDateTime(this.dateToPicker.Text);
+
+            DateTime fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);            
+           	DateTime toDateTime = Convert.ToDateTime(this.dateToPicker.Text);
 			
 			m_presenter.RunReport(this.GetTitle(), selectedReport, customer, fromDateTime,
 			                      toDateTime, b_isAll);			
@@ -87,7 +88,8 @@ namespace NJournals.Core.Views
 		
 		public void DisplayReport<T>(List<T> report)
 		{
-			
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("salesTable1",report));            
 		}
+    
 	}
 }

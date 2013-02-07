@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="DummyDataSource">
+      <rd:DataSourceID>6ea61b84-93dc-4a44-a124-141a1456ebea</rd:DataSourceID>
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
   <InteractiveHeight>11in</InteractiveHeight>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
@@ -8,10 +17,47 @@
   <LeftMargin>1in</LeftMargin>
   <BottomMargin>1in</BottomMargin>
   <rd:ReportID>2a21da73-4f84-4b0c-b41e-916ba9be4b42</rd:ReportID>
-  <Width>6.5in</Width>
+  <DataSets>
+    <DataSet Name="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity">
+      <Fields>
+        <Field Name="DayID">
+          <DataField>DayID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DayStamp">
+          <DataField>DayStamp</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="HeaderEntities">
+          <DataField>HeaderEntities</DataField>
+          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryHeaderDataEntity, NJournals.Common, Version=1.0.4786.31822, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+        </Field>
+        <Field Name="TotalSales">
+          <DataField>TotalSales</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TransCount">
+          <DataField>TransCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DummyDataSource</DataSourceName>
+        <CommandText />
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>NJournals.Common.DataEntities</rd:DataSetName>
+        <rd:TableName>LaundryDaySummaryDataEntity</rd:TableName>
+        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.LaundryDaySummaryDataEntity, NJournals.Common, Version=1.0.4786.31822, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <Width>6.50001in</Width>
   <Body>
     <ReportItems>
-      <Table Name="table1">
+      <Table Name="salesTable">
+        <DataSetName>NJournals_Common_DataEntities_LaundryDaySummaryDataEntity</DataSetName>
         <Top>0.5in</Top>
         <Details>
           <TableRows>
@@ -19,8 +65,8 @@
               <TableCells>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox4">
-                      <rd:DefaultName>textbox4</rd:DefaultName>
+                    <Textbox Name="DayStamp">
+                      <rd:DefaultName>DayStamp</rd:DefaultName>
                       <Style>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -28,37 +74,39 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>=Fields!DayStamp.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox5">
-                      <rd:DefaultName>textbox5</rd:DefaultName>
+                    <Textbox Name="TransCount">
+                      <rd:DefaultName>TransCount</rd:DefaultName>
                       <Style>
+                        <TextAlign>Right</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>=Fields!TransCount.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox6">
-                      <rd:DefaultName>textbox6</rd:DefaultName>
+                    <Textbox Name="TotalSales">
+                      <rd:DefaultName>TotalSales</rd:DefaultName>
                       <Style>
+                        <TextAlign>Right</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>=Fields!TotalSales.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -76,6 +124,7 @@
                     <Textbox Name="textbox1">
                       <rd:DefaultName>textbox1</rd:DefaultName>
                       <Style>
+                        <FontWeight>700</FontWeight>
                         <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -92,6 +141,7 @@
                     <Textbox Name="textbox2">
                       <rd:DefaultName>textbox2</rd:DefaultName>
                       <Style>
+                        <FontWeight>700</FontWeight>
                         <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -108,6 +158,7 @@
                     <Textbox Name="textbox3">
                       <rd:DefaultName>textbox3</rd:DefaultName>
                       <Style>
+                        <FontWeight>700</FontWeight>
                         <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -115,7 +166,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>Total Amount</Value>
+                      <Value>Total Sales</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -145,13 +196,14 @@
                     <Textbox Name="textbox7">
                       <rd:DefaultName>textbox7</rd:DefaultName>
                       <Style>
+                        <FontWeight>700</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>Total</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -166,7 +218,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>=Sum(Fields!TransCount.Value)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -181,7 +233,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>=Sum(Fields!TotalSales.Value)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>

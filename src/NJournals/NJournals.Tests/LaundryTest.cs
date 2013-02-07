@@ -13,6 +13,7 @@ using NJournals.Common.DataMappers;
 using NJournals.Core.Models;
 using System.Collections.Generic;
 using NJournals.Common.Util;
+using System.Globalization;
 
 
 namespace NJournals.Tests
@@ -71,7 +72,7 @@ namespace NJournals.Tests
 			header.JobChargeEntities.Add(jobcharge);
 			
 			LaundryDaySummaryDataEntity daysummary = new LaundryDaySummaryDataEntity();
-			daysummary.DayStamp = DateTime.Now;
+			daysummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 			daysummary.TotalSales = header.AmountDue;
 			daysummary.TransCount = 1;
 			daysummary.HeaderEntities.Add(header);
