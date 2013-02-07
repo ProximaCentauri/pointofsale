@@ -2,7 +2,7 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <DataSources>
     <DataSource Name="DummyDataSource">
-      <rd:DataSourceID>65952b6e-9f5b-47ea-a4d5-40e5469ab4fd</rd:DataSourceID>
+      <rd:DataSourceID>6ea61b84-93dc-4a44-a124-141a1456ebea</rd:DataSourceID>
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString />
@@ -16,7 +16,8 @@
   <RightMargin>1in</RightMargin>
   <LeftMargin>1in</LeftMargin>
   <BottomMargin>1in</BottomMargin>
-  <rd:ReportID>22d74e5c-cbf4-416e-8d86-340b83adeb19</rd:ReportID>
+  <rd:ReportID>2a21da73-4f84-4b0c-b41e-916ba9be4b42</rd:ReportID>
+<<<<<<< HEAD
   <DataSets>
     <DataSet Name="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity">
       <Fields>
@@ -53,12 +54,12 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <Width>6.5in</Width>
+  <Width>6.50001in</Width>
   <Body>
     <ReportItems>
       <Table Name="salesTable">
         <DataSetName>NJournals_Common_DataEntities_LaundryDaySummaryDataEntity</DataSetName>
-        <Top>0.625in</Top>
+        <Top>0.5in</Top>
         <Details>
           <TableRows>
             <TableRow>
@@ -124,6 +125,8 @@
                     <Textbox Name="textbox1">
                       <rd:DefaultName>textbox1</rd:DefaultName>
                       <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -139,6 +142,8 @@
                     <Textbox Name="textbox2">
                       <rd:DefaultName>textbox2</rd:DefaultName>
                       <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -154,6 +159,8 @@
                     <Textbox Name="textbox3">
                       <rd:DefaultName>textbox3</rd:DefaultName>
                       <Style>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -190,13 +197,14 @@
                     <Textbox Name="textbox7">
                       <rd:DefaultName>textbox7</rd:DefaultName>
                       <Style>
+                        <FontWeight>700</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>TOTAL</Value>
+                      <Value>Total</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -211,7 +219,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=SUM(Fields!TransCount.Value)</Value>
+                      <Value>=Sum(Fields!TransCount.Value)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -226,7 +234,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=SUM(Fields!TotalSales.Value)</Value>
+                      <Value>=Sum(Fields!TotalSales.Value)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -239,6 +247,10 @@
     </ReportItems>
     <Height>2in</Height>
   </Body>
+=======
+  <Width>6.5in</Width>
+  
+>>>>>>> 2866d5ec7c3d32cae776f2a4917836f9ecfe0987
   <Language>en-US</Language>
   <TopMargin>1in</TopMargin>
 </Report>
