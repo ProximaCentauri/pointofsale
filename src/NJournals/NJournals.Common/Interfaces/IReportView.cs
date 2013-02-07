@@ -18,7 +18,7 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface IReportView : IView
 	{
-		void SetAllReportTypes();
+		void SetAllReportTypes(List<string> reportTypes);
 		void SetAllCustomers(List<CustomerDataEntity> customers);
 		void DisplayReport<T>(List<T> report);
 	}

@@ -389,12 +389,12 @@ INSERT INTO `db_laundry_refilling`.`laundrypricescheme` (`CategoryID`, `ServiceI
 INSERT INTO `db_laundry_refilling`.`laundrypricescheme` (`CategoryID`, `ServiceID`, `Description`, `Price`) VALUES ('3', '2', 'this is a test only price scheme', '10.00');
 
 -- Laundry - charges table
-INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`) VALUES ('Pick - Up');
-INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`) VALUES ('Delivery');
-INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`) VALUES ('24 Hour Rush Service');
-INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`) VALUES ('Same Day Rush Service');
-INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`) VALUES ('10% Discount');
-INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`) VALUES ('5% Discount');
+INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('Pick - Up', '0.00');
+INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('Delivery', '20.00');
+INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('24 Hour Rush Service', '75.00');
+INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('Same Day Rush Service','150.00');
+INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('10% Discount', '0.10');
+INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('5% Discount', '0.05');
 
 -- Laundry - checklist table
 INSERT INTO `db_laundry_refilling`.`laundrychecklist` (`Name`) VALUES ('T-shirt');
@@ -425,6 +425,11 @@ INSERT INTO `db_laundry_refilling`.`refillproducttype` (`Name`, `Description`) V
 -- Refill - transactiontype table
 INSERT INTO `db_laundry_refilling`.`refilltransactiontype` (`Name`) VALUES ('Delivery');
 INSERT INTO `db_laundry_refilling`.`refilltransactiontype` (`Name`) VALUES ('Walk-In');
+
+-- Customer table (for testing only)
+INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber`) VALUES ('John Dee', 'Cebu', '111-1111');
+INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber`) VALUES ('Vanessa Dee', 'Cebu', '111-1111');
+
 
 -- DUMP COMPLETE
 

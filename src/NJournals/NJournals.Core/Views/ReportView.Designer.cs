@@ -71,6 +71,8 @@ namespace NJournals.Core.Views
 			// 
 			// cmbCustomers
 			// 
+			this.cmbCustomers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.cmbCustomers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cmbCustomers.FormattingEnabled = true;
 			this.cmbCustomers.Location = new System.Drawing.Point(131, 48);
 			this.cmbCustomers.Name = "cmbCustomers";
@@ -132,6 +134,8 @@ namespace NJournals.Core.Views
 			// 
 			// cmbReportTypes
 			// 
+			this.cmbReportTypes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.cmbReportTypes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cmbReportTypes.FormattingEnabled = true;
 			this.cmbReportTypes.Location = new System.Drawing.Point(131, 17);
 			this.cmbReportTypes.Name = "cmbReportTypes";

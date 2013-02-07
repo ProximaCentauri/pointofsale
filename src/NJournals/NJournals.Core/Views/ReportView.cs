@@ -44,29 +44,17 @@ namespace NJournals.Core.Views
             this.laundryReportViewer.RefreshReport();
             this.laundryReportViewer.RefreshReport();
             this.laundryReportViewer.RefreshReport();
-            m_presenter.SetAllReportTypes();
+            m_presenter.SetAllReportTypes(this.GetTitle());
             m_presenter.SetAllCustomers();
             
         }
         
-        public void SetAllReportTypes()
+        public void SetAllReportTypes(List<string> reportTypes)
         {
-        	switch(this.GetTitle())
+        	foreach(string reportType in reportTypes)
         	{
-        		case "Laundry Report":
-        			this.cmbReportTypes.Items.Add("Sales Report");
-        			this.cmbReportTypes.Items.Add("Unclaimed Items Report");
-        			this.cmbReportTypes.Items.Add("Unpaid Transactions Report");
-        			this.cmbReportTypes.Items.Add("Claimed Items Report");
-        			break;
-        		case "Refilling Report":
-        			this.cmbReportTypes.Items.Add("Sales Report");
-        			this.cmbReportTypes.Items.Add("Inventory Report");
-        			this.cmbReportTypes.Items.Add("Unpaid Transactions Report");
-        			break;
-        		default:
-        			break;
-        	}
+        		this.cmbReportTypes.Items.Add(reportType);
+        	}        	
         	this.cmbReportTypes.SelectedIndex = 0;
         }
         
@@ -92,13 +80,8 @@ namespace NJournals.Core.Views
 			DateTime fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);
 			DateTime toDateTime = Convert.ToDateTime(this.dateToPicker.Text);
 			
-			if(this.GetTitle() == "Laundry Report"){
-				m_presenter.RunLaundryReport(selectedReport, customer, fromDateTime,
-			                      toDateTime, b_isAll);
-			}
-			else{
-				
-			}
+			m_presenter.RunReport(this.GetTitle(), selectedReport, customer, fromDateTime,
+			                      toDateTime, b_isAll);			
 			
 		}
 		

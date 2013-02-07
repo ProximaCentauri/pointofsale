@@ -23,15 +23,42 @@ namespace NJournals.Core.Presenter
 		ICustomerDao m_customerDao;
 		ILaundryReportDao m_laundryReportDao = null;
 		
+		private const string SALES_REPORT				= "Sales Report";
+		private const string UNCLAIMED_ITEMS_REPORT		= "Unclaimed Items Report";
+		private const string UNPAID_TRANSACTIONS_REPORT	= "Unpaid Transactions Report";
+		private const string CLAIMED_ITEMS_REPORT		= "Claimed Items Report";	
+		private const string INVENTORY_REPORT			= "Inventory Report";
+		
+		private const string LAUNDRY_WINDOW				= "Laundry Report";
+		private const string REFILL_WINDOW				= "Refilling Report";
+		
+		
 		public ReportViewPresenter(IReportView p_view)
 		{
 			this.m_view = p_view;
 			m_customerDao = new CustomerDao();
 		}
 		
-		public void SetAllReportTypes()
+		public void SetAllReportTypes(string wndTitle)
 		{
-			m_view.SetAllReportTypes();
+			List<string> reportTypes = new List<string>();
+			switch(wndTitle)
+        	{
+        		case LAUNDRY_WINDOW:
+					reportTypes.Add(SALES_REPORT);        			
+        			reportTypes.Add(UNCLAIMED_ITEMS_REPORT);
+        			reportTypes.Add(UNPAID_TRANSACTIONS_REPORT);
+        			reportTypes.Add(CLAIMED_ITEMS_REPORT);
+        			break;
+        		case REFILL_WINDOW:
+        			reportTypes.Add(SALES_REPORT);
+        			reportTypes.Add(INVENTORY_REPORT);
+        			reportTypes.Add(UNPAID_TRANSACTIONS_REPORT);
+        			break;
+        		default:
+        			break;
+        	}
+			m_view.SetAllReportTypes(reportTypes);
 		}
 		
 		public void SetAllCustomers()
@@ -40,21 +67,43 @@ namespace NJournals.Core.Presenter
 			m_view.SetAllCustomers(customers);
 		}
 		
-		public void RunLaundryReport(string selectedReport, CustomerDataEntity customer, 
+		public void RunReport(string wndTitle, string selectedReport, CustomerDataEntity customer, 
 		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll)
-		{
-			switch(selectedReport)
-			{
-				case "Sales Report":
-					if(b_isAll){
-						 List<LaundryDaySummaryDataEntity> salesReport = m_laundryReportDao
-							.GetAllCustomersSalesReport(fromDateTime, toDateTime) as List<LaundryDaySummaryDataEntity>;
-						 m_view.DisplayReport(salesReport);
-					}
+		{			
+			switch(wndTitle)
+        	{
+        		case LAUNDRY_WINDOW:
+					RunLaundryReport(selectedReport, customer, fromDateTime, 
+					                 toDateTime, b_isAll);
+					break;
+				case REFILL_WINDOW:
 					break;
 				default:
 					break;
 			}
 		}
+				
+		private void RunLaundryReport(string selectedReport, CustomerDataEntity customer, 
+		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll)
+		{
+			switch(selectedReport)
+			{
+				case SALES_REPORT:
+					if(b_isAll)
+					{
+						 List<LaundryDaySummaryDataEntity> report = m_laundryReportDao
+							.GetAllCustomersSalesReport(fromDateTime, toDateTime) as List<LaundryDaySummaryDataEntity>;
+						 m_view.DisplayReport(report);
+					}
+					else{
+						List<LaundryHeaderDataEntity> report = m_laundryReportDao
+							.GetCustomerSalesReport(customer, fromDateTime, toDateTime) as List<LaundryHeaderDataEntity>;
+						m_view.DisplayReport(report);
+					}
+					break;
+				default:
+					break;
+			}
+		}			
 	}
 }
