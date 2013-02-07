@@ -54,6 +54,16 @@ namespace NJournals.Core.Presenter
 			m_view.SetAllServices(services);
 		}
 		
+		public LaundryPriceSchemeDataEntity getLaundryPrice(string p_category, string p_service, 
+		                                                    List<LaundryCategoryDataEntity> p_categories, List<LaundryServiceDataEntity> p_services){
+			LaundryPriceSchemeDao priceDao = new LaundryPriceSchemeDao();
+			LaundryPriceSchemeDataEntity priceEntity = new LaundryPriceSchemeDataEntity();
+			LaundryCategoryDataEntity category = p_categories.Find(f_category => f_category.Name == p_category);
+			LaundryServiceDataEntity service = p_services.Find(f_service => f_service.Name == p_service);
+			priceEntity = priceDao.GetByCategoryService(service, category);
+			return priceEntity;
+		}
+		
 		
 	}
 }
