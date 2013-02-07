@@ -36,7 +36,8 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnsave = new System.Windows.Forms.Button();
@@ -44,7 +45,11 @@ namespace NJournals.Core.Views
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBox8 = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
-			this.listView1 = new System.Windows.Forms.ListView();
+			this.dgvCheckList = new System.Windows.Forms.DataGridView();
+			this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			((System.ComponentModel.ISupportInitialize)(this.dgvCheckList)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// textBox1
@@ -112,17 +117,46 @@ namespace NJournals.Core.Views
 			this.button1.Text = "Cancel";
 			this.button1.UseVisualStyleBackColor = true;
 			// 
-			// listView1
+			// dgvCheckList
 			// 
-			listViewItem1.Checked = true;
-			listViewItem1.StateImageIndex = 1;
-			this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-									listViewItem1});
-			this.listView1.Location = new System.Drawing.Point(16, 71);
-			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(227, 335);
-			this.listView1.TabIndex = 25;
-			this.listView1.UseCompatibleStateImageBehavior = false;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvCheckList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			this.dgvCheckList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvCheckList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+									this.Column1,
+									this.Column2,
+									this.Column3});
+			this.dgvCheckList.Location = new System.Drawing.Point(12, 61);
+			this.dgvCheckList.Name = "dgvCheckList";
+			this.dgvCheckList.Size = new System.Drawing.Size(240, 341);
+			this.dgvCheckList.TabIndex = 25;
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "";
+			this.Column1.Name = "Column1";
+			this.Column1.Width = 25;
+			// 
+			// Column2
+			// 
+			this.Column2.DefaultCellStyle = dataGridViewCellStyle1;
+			this.Column2.HeaderText = "Item Name";
+			this.Column2.Name = "Column2";
+			this.Column2.Width = 120;
+			// 
+			// Column3
+			// 
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
+			this.Column3.HeaderText = "Item #";
+			this.Column3.Name = "Column3";
+			this.Column3.Width = 50;
 			// 
 			// CheckListView
 			// 
@@ -130,7 +164,7 @@ namespace NJournals.Core.Views
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(264, 567);
-			this.Controls.Add(this.listView1);
+			this.Controls.Add(this.dgvCheckList);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.textBox8);
 			this.Controls.Add(this.label2);
@@ -140,10 +174,14 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.label1);
 			this.Name = "CheckListView";
 			this.Text = "CheckListView";
+			((System.ComponentModel.ISupportInitialize)(this.dgvCheckList)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
-		private System.Windows.Forms.ListView listView1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
+		private System.Windows.Forms.DataGridView dgvCheckList;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.TextBox textBox8;
 		private System.Windows.Forms.Label label2;

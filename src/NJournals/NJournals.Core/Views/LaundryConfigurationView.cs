@@ -46,12 +46,10 @@ namespace NJournals.Core.Views
 			Resource.setImage(this.btnEditPriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
 			Resource.setImage(this.btnDeletePriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
 			
-			Resource.setImage(this.btnAddServices,System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
-			Resource.setImage(this.btnEditServices,System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
+			Resource.setImage(this.btnSaveServices,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
 			Resource.setImage(this.btnDeleteServices,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
 			
-			Resource.setImage(this.btnAddCategory,System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
-			Resource.setImage(this.btnEditCategory,System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
+			Resource.setImage(this.btnSaveCategory,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
 			Resource.setImage(this.btnDeleteCategory,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");	
 			
 		}
@@ -90,17 +88,48 @@ namespace NJournals.Core.Views
 			m_serviceEntity = services;
 			foreach(LaundryServiceDataEntity service in services)
 			{
-				this.dgvServices.Rows.Add(service.Name, service.Description);
+				this.dgvServices.Rows.Add(service.ServiceID,service.Name, service.Description);
 			}
 			
 		}
 		
 		public void SetAllPriceScheme(List<LaundryPriceSchemeDataEntity> priceScheme)
 		{
+		}	
+		
+		void BtnDeleteServicesClick(object sender, EventArgs e)
+		{
+			
 		}
 		
+		void BtnSaveServicesClick(object sender, EventArgs e)
+		{
+			
+		}
 		
+		private void dgvServices_CellValueChanged(object sender,
+		    DataGridViewCellEventArgs e)
+		{		    	
+			if(e.RowIndex != -1)
+		   	 GetDataValueChange(e.RowIndex, e.ColumnIndex);
+		}
 		
-		
+		private void GetDataValueChange(int rowIndex, int columnIndex)
+		{
+			LaundryServiceDataEntity service = new LaundryServiceDataEntity();
+			
+			if(rowIndex < this.dgvServices.RowCount - 2)
+			{
+				int serviceId = (int)this.dgvServices.Rows[rowIndex].Cells["ID"].Value;
+				service = m_serviceEntity.Find(m_service => m_service.ServiceID == serviceId);
+			}
+			//else
+			//{
+			//	service.Name = this.dgvServices.Rows[rowIndex].Cells["ServiceName"].Value.ToString();
+			//	service.Description = this.dgvServices.Rows[rowIndex].Cells["ServiceDescription"].Value.ToString();
+			//}
+			
+			
+		}
 	}
 }
