@@ -37,12 +37,12 @@ namespace NJournals.Core.Views
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.cmbCustomers = new System.Windows.Forms.ComboBox();
 			this.btnCustomerSearch = new System.Windows.Forms.Button();
 			this.dtdueDate = new System.Windows.Forms.DateTimePicker();
 			this.dtrecieveDate = new System.Windows.Forms.DateTimePicker();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.txtname = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtjoborder = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
@@ -97,12 +97,12 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.cmbCustomers);
 			this.groupBox1.Controls.Add(this.btnCustomerSearch);
 			this.groupBox1.Controls.Add(this.dtdueDate);
 			this.groupBox1.Controls.Add(this.dtrecieveDate);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.txtname);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.txtjoborder);
 			this.groupBox1.Controls.Add(this.label1);
@@ -113,6 +113,16 @@ namespace NJournals.Core.Views
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Transaction Information";
+			// 
+			// cmbCustomers
+			// 
+			this.cmbCustomers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.cmbCustomers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.cmbCustomers.FormattingEnabled = true;
+			this.cmbCustomers.Location = new System.Drawing.Point(143, 50);
+			this.cmbCustomers.Name = "cmbCustomers";
+			this.cmbCustomers.Size = new System.Drawing.Size(258, 23);
+			this.cmbCustomers.TabIndex = 11;
 			// 
 			// btnCustomerSearch
 			// 
@@ -164,13 +174,6 @@ namespace NJournals.Core.Views
 			this.label3.Text = "Received Date:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// txtname
-			// 
-			this.txtname.Location = new System.Drawing.Point(143, 47);
-			this.txtname.Name = "txtname";
-			this.txtname.Size = new System.Drawing.Size(258, 23);
-			this.txtname.TabIndex = 3;
-			// 
 			// label2
 			// 
 			this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -183,6 +186,9 @@ namespace NJournals.Core.Views
 			// 
 			// txtjoborder
 			// 
+			this.txtjoborder.BackColor = System.Drawing.Color.White;
+			this.txtjoborder.Enabled = false;
+			this.txtjoborder.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtjoborder.Location = new System.Drawing.Point(143, 21);
 			this.txtjoborder.Name = "txtjoborder";
 			this.txtjoborder.Size = new System.Drawing.Size(258, 23);
@@ -655,6 +661,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ComboBox cmbCustomers;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -704,7 +711,6 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox txtjoborder;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TextBox txtname;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.GroupBox groupBox1;
 	}
