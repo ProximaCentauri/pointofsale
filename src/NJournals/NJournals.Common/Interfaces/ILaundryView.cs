@@ -23,6 +23,7 @@ namespace NJournals.Common.Interfaces
 		
 		void SetAllCategories(List<LaundryCategoryDataEntity> categories);
 		void SetAllServices(List<LaundryServiceDataEntity> services);		
+		void SetAllCustomers(List<CustomerDataEntity> customers);		
 		void AddItem();
 		
 	}

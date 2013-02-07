@@ -21,9 +21,12 @@ namespace NJournals.Core.Presenter
 		ILaundryView m_view;
 		ILaundryCategoryDao m_categoryDao;
 		ILaundryServiceDao m_serviceDao;
-		ILaundryDao m_laundryDao;
+		ICustomerDao m_customerDao;
+		
+		ILaundryDao m_laundryDao;		
 		List<LaundryCategoryDataEntity> categories = null;
 		List<LaundryServiceDataEntity> services = null;
+		List<CustomerDataEntity> customers = null;
 		
 		public LaundryViewPresenter(ILaundryView p_view, ILaundryDao p_laundryDao)
 		{
@@ -31,7 +34,7 @@ namespace NJournals.Core.Presenter
 			m_laundryDao = p_laundryDao;
 			m_categoryDao = new LaundryCategoryDao();
 			m_serviceDao = new LaundryServiceDao();
-			
+			m_customerDao = new CustomerDao();
 		}
 		
 		public void SaveClicked(){
@@ -56,13 +59,36 @@ namespace NJournals.Core.Presenter
 			m_view.SetAllServices(services);
 		}
 		
+		public void SetAllCustomers(){
+			customers = m_customerDao.GetAllItems() as List<CustomerDataEntity>;
+			m_view.SetAllCustomers(customers);
+		}
+		
 		public LaundryPriceSchemeDataEntity getLaundryPrice(string p_category, string p_service){
 			LaundryPriceSchemeDao priceDao = new LaundryPriceSchemeDao();
-			LaundryPriceSchemeDataEntity priceEntity = new LaundryPriceSchemeDataEntity();
-			LaundryCategoryDataEntity category = categories.Find(f_category => f_category.Name == p_category);
-			LaundryServiceDataEntity service = services.Find(f_service => f_service.Name == p_service);
-			priceEntity = priceDao.GetByCategoryService(service, category);
+			LaundryPriceSchemeDataEntity priceEntity = new LaundryPriceSchemeDataEntity();			
+			priceEntity = priceDao.GetByCategoryService(getServiceByName(p_service), getCategoryByName(p_category));
 			return priceEntity;
 		}		
+		
+		public CustomerDataEntity getCustomerByName(string name){
+			return m_customerDao.GetByName(name);
+		}
+		
+		public LaundryCategoryDataEntity getCategoryByName(string p_category){
+			return m_categoryDao.GetByName(p_category);
+		}
+		
+		public LaundryServiceDataEntity getServiceByName(string p_service){
+			return m_serviceDao.GetByName(p_service);
+		}
+		
+		public int getHeaderID(){
+			List<LaundryHeaderDataEntity> headerEntities = m_laundryDao.GetAllItems() as List<LaundryHeaderDataEntity>;
+			if(headerEntities.Count > 0){
+				return headerEntities[headerEntities.Count-1].LaundryHeaderID + 1;
+			}
+			return 1;
+		}
 	}
 }

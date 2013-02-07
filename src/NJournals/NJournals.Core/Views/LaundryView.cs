@@ -57,7 +57,9 @@ namespace NJournals.Core.Views
 			if(this.Text.Contains("[NEW]")){
 				m_presenter.SetAllCategories();
 				m_presenter.SetAllServices();
+				m_presenter.SetAllCustomers();
 				this.groupBox2.Enabled = this.btnclaim.Enabled = false;
+				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 			}
 		}
 				
@@ -70,6 +72,12 @@ namespace NJournals.Core.Views
 		public void SetAllServices(List<LaundryServiceDataEntity> services){			
 			foreach(LaundryServiceDataEntity service in services){
 				this.cmbservices.Items.Add(service.Name);
+			}
+		}
+		
+		public void SetAllCustomers(List<CustomerDataEntity> customers){
+			foreach(CustomerDataEntity customer in customers){
+				this.cmbCustomers.Items.Add(customer.Name);
 			}
 		}
 		
@@ -88,27 +96,21 @@ namespace NJournals.Core.Views
 			m_headerEntity.TotalItemQty = 1;
 			m_headerEntity.PaidFlag = chkpaywhenclaim.Checked;
 			m_headerEntity.ClaimFlag = btnclaim.Enabled;		
-			CustomerDataEntity customer = new CustomerDataEntity();
-			customer.Name = txtname.Text;
-			m_headerEntity.Customer = customer;			
+			
+			m_headerEntity.Customer = m_presenter.getCustomerByName(cmbCustomers.Text);			
 			
 			foreach(DataGridViewRow row in this.dataGridView1.Rows){
 				LaundryDetailDataEntity detail = new LaundryDetailDataEntity();
-				detail.Header = m_headerEntity;
-				LaundryCategoryDataEntity category = new LaundryCategoryDataEntity();
-				category.Name = row.Cells[0].Value.ToString();
-				detail.Category = category;			
-				LaundryServiceDataEntity service = new LaundryServiceDataEntity();
-				service.Name = row.Cells[1].Value.ToString();
-				detail.Service = service;
+				detail.Header = m_headerEntity;				
+				detail.Category = m_presenter.getCategoryByName(row.Cells[0].Value.ToString());				
+				detail.Service = m_presenter.getServiceByName(row.Cells[1].Value.ToString());
 				detail.Kilo = int.Parse(row.Cells[2].Value.ToString());
 				detail.ItemQty = int.Parse(row.Cells[3].Value.ToString());
 				detail.Amount = int.Parse(row.Cells[4].Value.ToString());
 				m_headerEntity.DetailEntities.Add(detail);
-			}
-			 
-			
+			}			
 		}
+		
 		
 		LaundryHeaderDataEntity m_headerEntity;
 		
