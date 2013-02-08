@@ -23,6 +23,23 @@ namespace NJournals.Common.Interfaces
 		IEnumerable<LaundryHeaderDataEntity> GetCustomerSalesReport(CustomerDataEntity customer,
 		                                                            DateTime fromDateTime,
 		                                                            DateTime toDateTime);
+        IEnumerable<LaundryHeaderDataEntity> GetUnclaimedItemsReport(CustomerDataEntity customer, 
+		                                                             DateTime fromDateTime, 
+		                                                             DateTime toDateTime,
+		                                                            bool b_isAll);
+		IEnumerable<LaundryHeaderDataEntity> GetClaimedItemsReport(CustomerDataEntity customer,
+		                                                           DateTime fromDateTime,
+		                                                           DateTime toDateTime,
+		                                                           bool b_isAll);
+        IEnumerable<LaundryHeaderDataEntity> GetUnpaidItemsReport(CustomerDataEntity customer, 
+		                                                             DateTime fromDateTime, 
+		                                                             DateTime toDateTime,
+		                                                            bool b_isAll);
+		IEnumerable<LaundryHeaderDataEntity> GetPaidItemsReport(CustomerDataEntity customer, 
+		                                                             DateTime fromDateTime, 
+		                                                             DateTime toDateTime,
+		                                                            bool b_isAll);
 		
+        
 	}
 }
