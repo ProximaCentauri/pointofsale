@@ -158,6 +158,9 @@ CREATE TABLE `laundryheader` (
   `ClaimDate` datetime NOT NULL,
   `TotalItemQty` int(10) unsigned NOT NULL DEFAULT '0',
   `AmountDue` decimal(10,2) NOT NULL DEFAULT '0',
+  `TotalCharge` decimal(10,2) NOT NULL DEFAULT '0',
+  `TotalDiscount` decimal(10,2) NOT NULL DEFAULT '0',   
+  `TotalAmountDue` decimal(10,2) NOT NULL DEFAULT '0',
   `AmountTender` decimal(10,2) NOT NULL DEFAULT '0',
   `PaidFlag` tinyint(1) NOT NULL DEFAULT '0',
   `ClaimFlag` tinyint(1) NOT NULL DEFAULT '0',
@@ -196,6 +199,23 @@ CREATE TABLE `laundrydetail` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+--
+-- Table structure for table `laundrypaymentdetail`
+--
+
+DROP TABLE IF EXISTS `laundrypaymentdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `laundrypaymentdetail` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `LaundryHeaderID` int(10) unsigned NOT NULL, 
+  `Amount` decimal(10,2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `FK_LaundryDetail_1` (`LaundryHeaderID`),  
+  CONSTRAINT `FK_LaundryDetail_1` FOREIGN KEY (`LaundryHeaderID`) REFERENCES `laundryheader` (`LaundryHeaderID`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `laundryjobcharges`

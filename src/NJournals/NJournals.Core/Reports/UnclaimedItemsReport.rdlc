@@ -181,6 +181,22 @@
   <DataSets>
     <DataSet Name="NJournals_Common_DataEntities_LaundryHeaderDataEntity">
       <Fields>
+        <Field Name="Address">
+          <DataField>Address</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ContactNumber">
+          <DataField>ContactNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CustomerID">
+          <DataField>CustomerID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="AmountDue">
           <DataField>AmountDue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -207,7 +223,7 @@
         </Field>
         <Field Name="DetailEntities">
           <DataField>DetailEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryDetailDataEntity, NJournals.Common, Version=1.0.4787.30564, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryDetailDataEntity, NJournals.Common, Version=1.0.4787.31814, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="DueDate">
           <DataField>DueDate</DataField>
@@ -215,11 +231,11 @@
         </Field>
         <Field Name="JobChargeEntities">
           <DataField>JobChargeEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryJobChargesDataEntity, NJournals.Common, Version=1.0.4787.30564, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryJobChargesDataEntity, NJournals.Common, Version=1.0.4787.31814, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="JobChecklistEntities">
           <DataField>JobChecklistEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryChecklistDataEntity, NJournals.Common, Version=1.0.4787.30564, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryChecklistDataEntity, NJournals.Common, Version=1.0.4787.31814, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="LaundryHeaderID">
           <DataField>LaundryHeaderID</DataField>
@@ -246,7 +262,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>NJournals.Common.DataEntities</rd:DataSetName>
         <rd:TableName>LaundryHeaderDataEntity</rd:TableName>
-        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.LaundryHeaderDataEntity, NJournals.Common, Version=1.0.4787.30564, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.LaundryHeaderDataEntity, NJournals.Common, Version=1.0.4787.31814, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -295,8 +311,8 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox18">
-                      <rd:DefaultName>textbox18</rd:DefaultName>
+                    <Textbox Name="Name">
+                      <rd:DefaultName>Name</rd:DefaultName>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -305,7 +321,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>=Fields!CustomerID.Value.Name</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -322,7 +338,7 @@
                       </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!LaundryHeaderID</Value>
+                      <Value>=Fields!LaundryHeaderID.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -338,7 +354,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!TotalItemQty</Value>
+                      <Value>=Fields!TotalItemQty.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -346,11 +362,6 @@
               <Height>0.25in</Height>
             </TableRow>
           </TableRows>
-          <Grouping Name="table1_Details_Group">
-            <GroupExpressions>
-              <GroupExpression>=Fields!Customer.Value</GroupExpression>
-            </GroupExpressions>
-          </Grouping>
         </Details>
         <Header>
           <TableRows>
@@ -596,7 +607,7 @@
                       </Style>
                       <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=Count(Fields!LaundryHeaderID)</Value>
+                      <Value>=Count(Fields!LaundryHeaderID.Value)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -616,7 +627,7 @@
                       </Style>
                       <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=SUM(Fields!TotalItemQty)</Value>
+                      <Value>=SUM(Fields!TotalItemQty.Value)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -638,6 +649,7 @@
         <Style>
           <FontFamily>Calibri</FontFamily>
           <FontSize>8pt</FontSize>
+          <TextAlign>Right</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>

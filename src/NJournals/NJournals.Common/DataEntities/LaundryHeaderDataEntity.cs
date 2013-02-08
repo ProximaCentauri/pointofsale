@@ -23,7 +23,10 @@ namespace NJournals.Common.DataEntities
 		public virtual bool PaidFlag {get;set;}
 		public virtual bool ClaimFlag {get;set;}
 		public virtual decimal AmountDue {get;set;}
-		public virtual decimal AmountTender {get;set;}
+		public virtual decimal TotalCharge {get;set;}
+		public virtual decimal TotalDiscount {get;set;}
+		public virtual decimal TotalAmountDue {get;set;}
+		public virtual decimal AmountTender {get;set;}		
 		public virtual int TotalItemQty {get;set;}
 		
 		public virtual CustomerDataEntity Customer {get;set;}
