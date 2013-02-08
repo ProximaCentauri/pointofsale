@@ -14,6 +14,8 @@ using NJournals.Common.Interfaces;
 using System.Collections.Generic;
 using NJournals.Core.Models;
 using NJournals.Common.DataEntities;
+using NJournals.Core.Presenter;
+
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -31,6 +33,20 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			m_refillDao = new RefillDao();
+			m_presenter = new RefillingViewPresenter(this, m_refillDao);
+		}
+		
+		private IRefillDao m_refillDao;
+		private RefillingViewPresenter m_presenter;
+		
+		void RefillingViewLoad(object sender, EventArgs e)
+		{
+			if(this.Text.Contains("[NEW]")){
+				m_presenter.SetAllCustomers();
+				m_presenter.SetAllProducts();
+				m_presenter.SetAllTransactionTypes();
+			}			
 		}
 		
 		public void SetAllCustomers(List<CustomerDataEntity> customers){
@@ -39,10 +55,18 @@ namespace NJournals.Core.Views
 			}
 		}
 		
-		public void SetAllTrasactionTypes(List<RefillTransactionTypeDataEntity> transTypes){
+		public void SetAllTransactionTypes(List<RefillTransactionTypeDataEntity> transTypes){
 			foreach(RefillTransactionTypeDataEntity transType in transTypes){
-				
+				this.cmbtransTypes.Items.Add(transType.Name);
 			}
 		}
+		
+		public void SetAllProducts(List<RefillProductTypeDataEntity> products){
+			foreach(RefillProductTypeDataEntity product in products){
+				this.cmbproducts.Items.Add(product.Name);
+			}
+		}
+		
+		
 	}
 }
