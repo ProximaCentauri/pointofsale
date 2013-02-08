@@ -37,6 +37,145 @@
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <RightMargin>1in</RightMargin>
   <LeftMargin>1in</LeftMargin>
+  <PageHeader>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Top>0.125in</Top>
+        <Width>4.125in</Width>
+        <Style>
+          <Color>SteelBlue</Color>
+          <FontFamily>Calibri</FontFamily>
+          <FontSize>20pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Left</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>7</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.36in</Height>
+        <Value>Sales Report</Value>
+      </Textbox>
+      <Textbox Name="textbox15">
+        <rd:DefaultName>textbox15</rd:DefaultName>
+        <Top>0.23958in</Top>
+        <Width>2in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>6</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>4.125in</Left>
+        <Height>0.25in</Height>
+        <Value>=Now()</Value>
+      </Textbox>
+      <Textbox Name="textbox8">
+        <rd:DefaultName>textbox8</rd:DefaultName>
+        <Top>0.875in</Top>
+        <Width>3.125in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>5</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>1in</Left>
+        <Height>0.25in</Height>
+        <Value>=IIf(Parameters!entityDataSource.Value="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", "ALL", UCase(Parameters!customerName.Value))</Value>
+      </Textbox>
+      <Textbox Name="textbox13">
+        <Top>1.08333in</Top>
+        <Width>1in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <FontWeight>700</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>4</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>DATE FROM:</Value>
+      </Textbox>
+      <Textbox Name="textbox14">
+        <Top>1.29167in</Top>
+        <Width>1in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <FontWeight>700</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Value>TO DATE:</Value>
+      </Textbox>
+      <Textbox Name="textbox12">
+        <rd:DefaultName>textbox12</rd:DefaultName>
+        <Top>0.875in</Top>
+        <Width>1in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <FontWeight>700</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>CUSTOMER:</Value>
+      </Textbox>
+      <Textbox Name="textbox9">
+        <Top>1.08333in</Top>
+        <Width>3.125in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>1in</Left>
+        <Height>0.25in</Height>
+        <Value>=FormatDateTime(Parameters!fromDateTime.Value, DateFormat.ShortDate)</Value>
+      </Textbox>
+      <Textbox Name="textbox11">
+        <Top>1.29167in</Top>
+        <Width>3.125in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>1in</Left>
+        <Value>=FormatDateTime(Parameters!toDateTime.Value, DateFormat.ShortDate)</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>1.54167in</Height>
+  </PageHeader>
   <BottomMargin>1in</BottomMargin>
   <rd:ReportID>8fdae99d-7631-4e93-8241-39580bef8c23</rd:ReportID>
   <DataSets>
@@ -148,127 +287,10 @@
   <Width>8.25in</Width>
   <Body>
     <ReportItems>
-      <Textbox Name="textbox14">
-        <Top>0.91667in</Top>
-        <Width>1in</Width>
-        <Style>
-          <FontFamily>Calibri</FontFamily>
-          <FontWeight>700</FontWeight>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>7</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Height>0.25in</Height>
-        <Value>TO DATE:</Value>
-      </Textbox>
-      <Textbox Name="textbox13">
-        <Top>0.70833in</Top>
-        <Width>1in</Width>
-        <Style>
-          <FontFamily>Calibri</FontFamily>
-          <FontWeight>700</FontWeight>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>6</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Height>0.25in</Height>
-        <Value>DATE FROM:</Value>
-      </Textbox>
-      <Textbox Name="textbox12">
-        <rd:DefaultName>textbox12</rd:DefaultName>
-        <Top>0.5in</Top>
-        <Width>1in</Width>
-        <Style>
-          <FontFamily>Calibri</FontFamily>
-          <FontWeight>700</FontWeight>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>5</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Height>0.25in</Height>
-        <Value>CUSTOMER:</Value>
-      </Textbox>
-      <Textbox Name="textbox11">
-        <Top>0.91667in</Top>
-        <Width>3.125in</Width>
-        <Style>
-          <FontFamily>Calibri</FontFamily>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>4</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Left>1in</Left>
-        <Height>0.25in</Height>
-        <Value>=FormatDateTime(Parameters!toDateTime.Value, DateFormat.ShortDate)</Value>
-      </Textbox>
-      <Textbox Name="textbox9">
-        <Top>0.70833in</Top>
-        <Width>3.125in</Width>
-        <Style>
-          <FontFamily>Calibri</FontFamily>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>3</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Left>1in</Left>
-        <Height>0.25in</Height>
-        <Value>=FormatDateTime(Parameters!fromDateTime.Value, DateFormat.ShortDate)</Value>
-      </Textbox>
-      <Textbox Name="textbox8">
-        <rd:DefaultName>textbox8</rd:DefaultName>
-        <Top>0.5in</Top>
-        <Width>3.125in</Width>
-        <Style>
-          <FontFamily>Calibri</FontFamily>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>2</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Left>1in</Left>
-        <Height>0.25in</Height>
-        <Value>=IIf(Parameters!entityDataSource.Value="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", "ALL", UCase(Parameters!customerName.Value))</Value>
-      </Textbox>
-      <Textbox Name="textbox1">
-        <rd:DefaultName>textbox1</rd:DefaultName>
-        <Width>5.875in</Width>
-        <Style>
-          <Color>SteelBlue</Color>
-          <FontFamily>Calibri</FontFamily>
-          <FontSize>20pt</FontSize>
-          <FontWeight>700</FontWeight>
-          <TextAlign>Center</TextAlign>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>1</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Height>0.36in</Height>
-        <Value>Sales Report</Value>
-      </Textbox>
       <Table Name="table1">
         <DataSetName>NJournals_Common_DataEntities_LaundryDaySummaryDataEntity</DataSetName>
-        <Top>1.25in</Top>
-        <Width>5.875in</Width>
+        <Top>0.25in</Top>
+        <Width>6.125in</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -424,13 +446,13 @@
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>2.125in</Width>
+            <Width>2.21543in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.625in</Width>
+            <Width>1.69415in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>2.125in</Width>
+            <Width>2.21543in</Width>
           </TableColumn>
         </TableColumns>
         <Height>0.72in</Height>
@@ -505,8 +527,31 @@
         </Footer>
       </Table>
     </ReportItems>
-    <Height>3in</Height>
+    <Height>1.25in</Height>
   </Body>
   <Language>en-US</Language>
+  <PageFooter>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="textbox16">
+        <rd:DefaultName>textbox16</rd:DefaultName>
+        <Top>0.125in</Top>
+        <Width>1in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <FontSize>8pt</FontSize>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>5.125in</Left>
+        <Value>=Globals!PageNumber</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.375in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
   <TopMargin>1in</TopMargin>
 </Report>
