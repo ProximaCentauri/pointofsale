@@ -12,6 +12,8 @@ using NJournals.Core.Models;
 using NJournals.Common.DataEntities;
 using System.Collections.Generic;
 using System.Data;
+using NJournals.Common.Constants;
+using Microsoft.Reporting.WinForms;
 
 namespace NJournals.Core.Presenter
 {
@@ -23,16 +25,6 @@ namespace NJournals.Core.Presenter
 		IReportView m_view;
 		ICustomerDao m_customerDao;
 		ILaundryReportDao m_laundryReportDao;
-		
-		private const string SALES_REPORT				= "Sales Report";
-		private const string UNCLAIMED_ITEMS_REPORT		= "Unclaimed Items Report";
-		private const string UNPAID_TRANSACTIONS_REPORT	= "Unpaid Transactions Report";
-		private const string CLAIMED_ITEMS_REPORT		= "Claimed Items Report";	
-		private const string INVENTORY_REPORT			= "Inventory Report";
-		
-		private const string LAUNDRY_WINDOW				= "Laundry Report";
-		private const string REFILL_WINDOW				= "Refilling Report";
-		
 		
 		public ReportViewPresenter(IReportView p_view)
 		{
@@ -46,16 +38,16 @@ namespace NJournals.Core.Presenter
 			List<string> reportTypes = new List<string>();
 			switch(wndTitle)
         	{
-        		case LAUNDRY_WINDOW:
-					reportTypes.Add(SALES_REPORT);        			
-        			reportTypes.Add(UNCLAIMED_ITEMS_REPORT);
-        			reportTypes.Add(UNPAID_TRANSACTIONS_REPORT);
-        			reportTypes.Add(CLAIMED_ITEMS_REPORT);
+                case ReportConstants.LAUNDRY_WINDOW:
+                    reportTypes.Add(ReportConstants.SALES_REPORT);
+                    reportTypes.Add(ReportConstants.UNCLAIMED_ITEMS_REPORT);
+                    reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);
+                    reportTypes.Add(ReportConstants.CLAIMED_ITEMS_REPORT);
         			break;
-        		case REFILL_WINDOW:
-        			reportTypes.Add(SALES_REPORT);
-        			reportTypes.Add(INVENTORY_REPORT);
-        			reportTypes.Add(UNPAID_TRANSACTIONS_REPORT);
+                case ReportConstants.REFILL_WINDOW:
+                    reportTypes.Add(ReportConstants.SALES_REPORT);
+                    reportTypes.Add(ReportConstants.INVENTORY_REPORT);
+                    reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);
         			break;
         		default:
         			break;
@@ -74,11 +66,11 @@ namespace NJournals.Core.Presenter
 		{			
 			switch(wndTitle)
         	{
-        		case LAUNDRY_WINDOW:
+                case ReportConstants.LAUNDRY_WINDOW:
 					RunLaundryReport(selectedReport, customer, fromDateTime, 
 					                 toDateTime, b_isAll);
 					break;
-				case REFILL_WINDOW:
+                case ReportConstants.REFILL_WINDOW:
 					break;
 				default:
 					break;
@@ -88,24 +80,32 @@ namespace NJournals.Core.Presenter
 		private void RunLaundryReport(string selectedReport, CustomerDataEntity customer, 
 		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll)
 		{
+            List<ReportDataSource> datasources = new List<ReportDataSource>();
 			switch(selectedReport)
 			{
-				case SALES_REPORT:
+                case ReportConstants.SALES_REPORT:
+                   
 					if(b_isAll)
 					{
 						List<LaundryDaySummaryDataEntity> report = m_laundryReportDao
-							.GetAllCustomersSalesReport(fromDateTime, toDateTime) as List<LaundryDaySummaryDataEntity>;                      
-						 m_view.DisplayReport(report);
+							.GetAllCustomersSalesReport(fromDateTime, toDateTime) as List<LaundryDaySummaryDataEntity>;
+ 
+                        datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYDAYSUMMARY, report));
+                        datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, report));
+                        m_view.DisplayReport(report, datasources, ReportConstants.ES_SALESREPORT, ReportConstants.DS_LAUNDRYDAYSUMMARY);
 					}
 					else{
 						List<LaundryHeaderDataEntity> report = m_laundryReportDao
 							.GetCustomerSalesReport(customer, fromDateTime, toDateTime) as List<LaundryHeaderDataEntity>;
-						m_view.DisplayReport(report);
-					}
+                        datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYDAYSUMMARY, report));
+                        datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, report));
+                        m_view.DisplayReport(report, datasources, ReportConstants.ES_SALESREPORT, ReportConstants.DS_LAUNDRYHEADER);
+                    }
 					break;
 				default:
 					break;
 			}
+            datasources.Clear();
 		}			
 	}
 }

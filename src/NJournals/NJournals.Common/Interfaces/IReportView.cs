@@ -9,6 +9,7 @@
 using System;
 using NJournals.Common.DataEntities;
 using System.Collections.Generic;
+using Microsoft.Reporting.WinForms;
 
 
 namespace NJournals.Common.Interfaces
@@ -20,6 +21,7 @@ namespace NJournals.Common.Interfaces
 	{
 		void SetAllReportTypes(List<string> reportTypes);
 		void SetAllCustomers(List<CustomerDataEntity> customers);
-		void DisplayReport<T>(List<T> report);
+		void DisplayReport<T>(List<T> rpt,List<ReportDataSource> datasources, 
+            string rptembeddedsource, string p_datasource);
 	}
 }

@@ -2,7 +2,7 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <DataSources>
     <DataSource Name="DummyDataSource">
-      <rd:DataSourceID>65952b6e-9f5b-47ea-a4d5-40e5469ab4fd</rd:DataSourceID>
+      <rd:DataSourceID>16b1a834-0680-4173-aafc-ffc65bed1948</rd:DataSourceID>
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString />
@@ -10,14 +10,106 @@
     </DataSource>
   </DataSources>
   <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="entityDataSource">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>entityDataSource</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="fromDateTime">
+      <DataType>DateTime</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>fromDateTime</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="toDateTime">
+      <DataType>DateTime</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>toDateTime</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="customerName">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>customerName</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <RightMargin>1in</RightMargin>
   <LeftMargin>1in</LeftMargin>
   <BottomMargin>1in</BottomMargin>
-  <rd:ReportID>22d74e5c-cbf4-416e-8d86-340b83adeb19</rd:ReportID>
+  <rd:ReportID>8fdae99d-7631-4e93-8241-39580bef8c23</rd:ReportID>
   <DataSets>
+    <DataSet Name="NJournals_Common_DataEntities_LaundryHeaderDataEntity">
+      <Fields>
+        <Field Name="AmountDue">
+          <DataField>AmountDue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AmountTender">
+          <DataField>AmountTender</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ClaimDate">
+          <DataField>ClaimDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ClaimFlag">
+          <DataField>ClaimFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Customer">
+          <DataField>Customer</DataField>
+          <rd:TypeName>NJournals.Common.DataEntities.CustomerDataEntity</rd:TypeName>
+        </Field>
+        <Field Name="DaySummary">
+          <DataField>DaySummary</DataField>
+          <rd:TypeName>NJournals.Common.DataEntities.LaundryDaySummaryDataEntity</rd:TypeName>
+        </Field>
+        <Field Name="DetailEntities">
+          <DataField>DetailEntities</DataField>
+          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.LaundryDetailDataEntity]</rd:TypeName>
+        </Field>
+        <Field Name="DueDate">
+          <DataField>DueDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="JobChargeEntities">
+          <DataField>JobChargeEntities</DataField>
+          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.LaundryJobChargesDataEntity]</rd:TypeName>
+        </Field>
+        <Field Name="JobChecklistEntities">
+          <DataField>JobChecklistEntities</DataField>
+          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.LaundryChecklistDataEntity]</rd:TypeName>
+        </Field>
+        <Field Name="LaundryHeaderID">
+          <DataField>LaundryHeaderID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PaidFlag">
+          <DataField>PaidFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="ReceivedDate">
+          <DataField>ReceivedDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TotalItemQty">
+          <DataField>TotalItemQty</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DummyDataSource</DataSourceName>
+        <CommandText />
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>NJournals.Common.DataEntities</rd:DataSetName>
+        <rd:TableName>LaundryHeaderDataEntity</rd:TableName>
+        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.LaundryHeaderDataEntity, NJournals.Common, Version=1.0.4787.13828, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
     <DataSet Name="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity">
       <Fields>
         <Field Name="DayID">
@@ -30,7 +122,7 @@
         </Field>
         <Field Name="HeaderEntities">
           <DataField>HeaderEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryHeaderDataEntity, NJournals.Common, Version=1.0.4786.31822, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryHeaderDataEntity, NJournals.Common, Version=1.0.4787.15106, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
         <Field Name="TotalSales">
           <DataField>TotalSales</DataField>
@@ -49,64 +141,185 @@
       <rd:DataSetInfo>
         <rd:DataSetName>NJournals.Common.DataEntities</rd:DataSetName>
         <rd:TableName>LaundryDaySummaryDataEntity</rd:TableName>
-        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.LaundryDaySummaryDataEntity, NJournals.Common, Version=1.0.4786.31822, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.LaundryDaySummaryDataEntity, NJournals.Common, Version=1.0.4787.15106, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <Width>6.5in</Width>
+  <Width>8.25in</Width>
   <Body>
     <ReportItems>
-      <Table Name="salesTable">
+      <Textbox Name="textbox14">
+        <Top>0.91667in</Top>
+        <Width>1in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <FontWeight>700</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>7</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>TO DATE:</Value>
+      </Textbox>
+      <Textbox Name="textbox13">
+        <Top>0.70833in</Top>
+        <Width>1in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <FontWeight>700</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>6</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>DATE FROM:</Value>
+      </Textbox>
+      <Textbox Name="textbox12">
+        <rd:DefaultName>textbox12</rd:DefaultName>
+        <Top>0.5in</Top>
+        <Width>1in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <FontWeight>700</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>5</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>CUSTOMER:</Value>
+      </Textbox>
+      <Textbox Name="textbox11">
+        <Top>0.91667in</Top>
+        <Width>3.125in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>4</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>1in</Left>
+        <Height>0.25in</Height>
+        <Value>=FormatDateTime(Parameters!toDateTime.Value, DateFormat.ShortDate)</Value>
+      </Textbox>
+      <Textbox Name="textbox9">
+        <Top>0.70833in</Top>
+        <Width>3.125in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>1in</Left>
+        <Height>0.25in</Height>
+        <Value>=FormatDateTime(Parameters!fromDateTime.Value, DateFormat.ShortDate)</Value>
+      </Textbox>
+      <Textbox Name="textbox8">
+        <rd:DefaultName>textbox8</rd:DefaultName>
+        <Top>0.5in</Top>
+        <Width>3.125in</Width>
+        <Style>
+          <FontFamily>Calibri</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>1in</Left>
+        <Height>0.25in</Height>
+        <Value>=IIf(Parameters!entityDataSource.Value="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", "ALL", UCase(Parameters!customerName.Value))</Value>
+      </Textbox>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Width>5.875in</Width>
+        <Style>
+          <Color>SteelBlue</Color>
+          <FontFamily>Calibri</FontFamily>
+          <FontSize>20pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.36in</Height>
+        <Value>Sales Report</Value>
+      </Textbox>
+      <Table Name="table1">
         <DataSetName>NJournals_Common_DataEntities_LaundryDaySummaryDataEntity</DataSetName>
-        <Top>0.625in</Top>
+        <Top>1.25in</Top>
+        <Width>5.875in</Width>
         <Details>
           <TableRows>
             <TableRow>
               <TableCells>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="DayStamp">
-                      <rd:DefaultName>DayStamp</rd:DefaultName>
+                    <Textbox Name="DayStamp_2">
+                      <rd:DefaultName>DayStamp_2</rd:DefaultName>
                       <Style>
+                        <FontFamily>Calibri</FontFamily>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>2</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!DayStamp.Value</Value>
+                      <Value>=FormatDateTime(IIf(Parameters!entityDataSource.Value="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", Fields!DayStamp.Value, First(Fields!ClaimDate.Value,"NJournals_Common_DataEntities_LaundryHeaderDataEntity")),DateFormat.ShortDate)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="TransCount">
-                      <rd:DefaultName>TransCount</rd:DefaultName>
+                    <Textbox Name="DayStamp_1">
+                      <rd:DefaultName>DayStamp_1</rd:DefaultName>
                       <Style>
-                        <TextAlign>Right</TextAlign>
+                        <FontFamily>Calibri</FontFamily>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!TransCount.Value</Value>
+                      <Value>=IIf(Parameters!entityDataSource.Value="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", Fields!TransCount.Value,Count(Fields!Customer.Value,"NJournals_Common_DataEntities_LaundryHeaderDataEntity"))</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="TotalSales">
-                      <rd:DefaultName>TotalSales</rd:DefaultName>
+                    <Textbox Name="textbox10">
+                      <rd:DefaultName>textbox10</rd:DefaultName>
                       <Style>
-                        <TextAlign>Right</TextAlign>
+                        <FontFamily>Calibri</FontFamily>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!TotalSales.Value</Value>
+                      <Value>=IIf(Parameters!entityDataSource.Value="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", Fields!TotalSales.Value,Sum(Fields!AmountDue.Value,"NJournals_Common_DataEntities_LaundryHeaderDataEntity"))</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -121,31 +334,29 @@
               <TableCells>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox1">
-                      <rd:DefaultName>textbox1</rd:DefaultName>
-                      <Style>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>Date</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
                     <Textbox Name="textbox2">
                       <rd:DefaultName>textbox2</rd:DefaultName>
                       <Style>
+                        <Color>White</Color>
+                        <BackgroundColor>SteelBlue</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>8</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>No. of Transactions</Value>
+                      <Value>Date</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -154,62 +365,114 @@
                     <Textbox Name="textbox3">
                       <rd:DefaultName>textbox3</rd:DefaultName>
                       <Style>
+                        <Color>White</Color>
+                        <BackgroundColor>SteelBlue</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>No. of Transactions</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <Style>
+                        <Color>White</Color>
+                        <BackgroundColor>SteelBlue</BackgroundColor>
+                        <BorderColor>
+                          <Default>LightGrey</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Total Sales</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.22in</Height>
             </TableRow>
           </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>2.16667in</Width>
+            <Width>2.125in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>2.16667in</Width>
+            <Width>1.625in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>2.16667in</Width>
+            <Width>2.125in</Width>
           </TableColumn>
         </TableColumns>
-        <Height>0.75in</Height>
+        <Height>0.72in</Height>
         <Footer>
           <TableRows>
             <TableRow>
               <TableCells>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox7">
-                      <rd:DefaultName>textbox7</rd:DefaultName>
+                    <Textbox Name="textbox4">
+                      <rd:DefaultName>textbox4</rd:DefaultName>
                       <Style>
+                        <BackgroundColor>PowderBlue</BackgroundColor>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>700</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>TOTAL</Value>
+                      <Value>Total</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox8">
-                      <rd:DefaultName>textbox8</rd:DefaultName>
+                    <Textbox Name="textbox5">
+                      <rd:DefaultName>textbox5</rd:DefaultName>
                       <Style>
+                        <BackgroundColor>PowderBlue</BackgroundColor>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>700</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=SUM(Fields!TransCount.Value)</Value>
                     </Textbox>
@@ -217,14 +480,19 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox9">
-                      <rd:DefaultName>textbox9</rd:DefaultName>
+                    <Textbox Name="textbox7">
+                      <rd:DefaultName>textbox7</rd:DefaultName>
                       <Style>
+                        <BackgroundColor>PowderBlue</BackgroundColor>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>700</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=SUM(Fields!TotalSales.Value)</Value>
                     </Textbox>
@@ -237,7 +505,7 @@
         </Footer>
       </Table>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>3in</Height>
   </Body>
   <Language>en-US</Language>
   <TopMargin>1in</TopMargin>

@@ -72,7 +72,7 @@ namespace NJournals.Tests
 			header.JobChargeEntities.Add(jobcharge);
 			
 			LaundryDaySummaryDataEntity daysummary = new LaundryDaySummaryDataEntity();
-			daysummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+			daysummary.DayStamp = Convert.ToDateTime("02/09/2013");
 			daysummary.TotalSales = header.AmountDue;
 			daysummary.TransCount = 1;
 			daysummary.HeaderEntities.Add(header);

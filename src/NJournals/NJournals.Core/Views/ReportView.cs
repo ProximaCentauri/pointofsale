@@ -27,6 +27,8 @@ namespace NJournals.Core.Views
 	{
 		ReportViewPresenter m_presenter;
 		List<CustomerDataEntity> m_customerEntity;
+        DateTime fromDateTime;
+        DateTime toDateTime;
 		
 		public ReportView()
 		{
@@ -81,8 +83,8 @@ namespace NJournals.Core.Views
 				customer = m_customerEntity.Find(m_customer => m_customer.Name == cmbCustomers.Text);
 			}
 
-            DateTime fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);           
-           	DateTime toDateTime = Convert.ToDateTime(this.dateToPicker.Text);
+            fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);           
+           	toDateTime = Convert.ToDateTime(this.dateToPicker.Text);
             
 
 			m_presenter.RunReport(this.GetTitle(), selectedReport, customer, fromDateTime,
@@ -90,17 +92,25 @@ namespace NJournals.Core.Views
 			
 		}
 		
-		public void DisplayReport<T>(List<T> report)
+		public void DisplayReport<T>(List<T> rpt, List<ReportDataSource> datasources, 
+            string rptembeddedsource, string p_datasource)
 		{
-            //reportViewer.LocalReport.ReportPath = @"Reports\SalesReport.rdlc";
-            reportViewer.LocalReport.ReportEmbeddedResource = "NJournals.Core.Reports.SalesReport.rdlc";
-            //reportViewer.LocalReport.DataSources.Add(new ReportDataSource("salesTable",report));
+            this.reportViewer.Reset();
+            this.reportViewer.LocalReport.DataSources.Clear();
+            this.reportViewer.LocalReport.ReportEmbeddedResource = rptembeddedsource;         
+            this.rptBindingSource.DataSource = rpt;
 
-            this.LaundryDaySummaryDataEntityBindingSource.DataSource = report;
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", report));
-        //    reportViewer.LocalReport.DataSources.Add();
-            reportViewer.RefreshReport();
-            
+            foreach (ReportDataSource datasource in datasources)
+            {
+                this.reportViewer.LocalReport.DataSources.Add(datasource);
+            }
+            IList<ReportParameter> parameters = new List<ReportParameter>();
+            parameters.Add(new ReportParameter("entityDataSource", p_datasource));
+            parameters.Add(new ReportParameter("fromDateTime", fromDateTime.ToShortDateString()));
+            parameters.Add(new ReportParameter("toDateTime", toDateTime.ToShortDateString()));
+            parameters.Add(new ReportParameter("customerName", cmbCustomers.Text));
+            this.reportViewer.LocalReport.SetParameters(parameters);
+            this.reportViewer.RefreshReport();            
 		}
     
 	}

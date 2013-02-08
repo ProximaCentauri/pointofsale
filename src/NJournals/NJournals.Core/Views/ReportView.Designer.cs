@@ -49,8 +49,10 @@ namespace NJournals.Core.Views
             this.label1 = new System.Windows.Forms.Label();
             this.LaundryDaySummaryDataEntityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.rptBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LaundryDaySummaryDataEntityBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rptBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -157,7 +159,7 @@ namespace NJournals.Core.Views
             // 
             // LaundryDaySummaryDataEntityBindingSource
             // 
-            this.LaundryDaySummaryDataEntityBindingSource.DataSource = typeof(NJournals.Common.DataEntities.LaundryDaySummaryDataEntity);
+            this.LaundryDaySummaryDataEntityBindingSource.DataSource = typeof(NJournals.Common.DataEntities.LaundryHeaderDataEntity);
             // 
             // reportViewer
             // 
@@ -181,6 +183,7 @@ namespace NJournals.Core.Views
             this.Load += new System.EventHandler(this.ReportView_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LaundryDaySummaryDataEntityBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rptBindingSource)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -196,5 +199,6 @@ namespace NJournals.Core.Views
         private System.Windows.Forms.DateTimePicker dateFromPicker;
         private System.Windows.Forms.BindingSource LaundryDaySummaryDataEntityBindingSource;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
+        private System.Windows.Forms.BindingSource rptBindingSource;
 	}
 }
