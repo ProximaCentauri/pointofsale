@@ -100,6 +100,7 @@ namespace NJournals.Core.Views
 		
 		public void SetAllPriceScheme(List<LaundryPriceSchemeDataEntity> priceScheme)
 		{
+			//
 		}	
 		
 		
