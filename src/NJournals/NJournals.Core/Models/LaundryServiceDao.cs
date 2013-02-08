@@ -33,7 +33,7 @@ namespace NJournals.Core.Models
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Save(p_service);
+					session.SaveOrUpdate(p_service);
 					transaction.Commit();
 				}
 			}

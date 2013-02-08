@@ -47,5 +47,29 @@ namespace NJournals.Core.Presenter
 			m_view.SetAllPriceScheme(priceScheme);
 		}
 		
+		public void SaveOrUpdateService(List<LaundryServiceDataEntity> services){
+			
+			foreach(LaundryServiceDataEntity service in services)
+			{
+				m_serviceDao.Save(service);
+			}
+		}
+		
+		public void DeleteService(LaundryServiceDataEntity service) {
+			m_serviceDao.Delete(service);
+		}
+		
+		public void SaveOrUpdateCategory(List<LaundryCategoryDataEntity> categories){
+			
+			foreach(LaundryCategoryDataEntity category in categories)
+			{
+				m_categoryDao.Save(category);
+			}
+		}
+		
+		public void DeleteCategory(LaundryCategoryDataEntity category) {
+			m_categoryDao.Delete(category);
+		}
+		
 	}
 }

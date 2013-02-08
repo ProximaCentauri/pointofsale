@@ -96,6 +96,8 @@ namespace NJournals.Core.Views
 			this.label17 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label18 = new System.Windows.Forms.Label();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.label19 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -684,7 +686,7 @@ namespace NJournals.Core.Views
 			this.textBox2.ForeColor = System.Drawing.Color.Black;
 			this.textBox2.Location = new System.Drawing.Point(777, 452);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(119, 20);
+			this.textBox2.Size = new System.Drawing.Size(34, 20);
 			this.textBox2.TabIndex = 27;
 			this.textBox2.Text = "0.00";
 			// 
@@ -721,12 +723,35 @@ namespace NJournals.Core.Views
 			this.label18.TabIndex = 28;
 			this.label18.Text = "Total Amount Due:";
 			// 
+			// textBox4
+			// 
+			this.textBox4.BackColor = System.Drawing.SystemColors.Info;
+			this.textBox4.Enabled = false;
+			this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox4.ForeColor = System.Drawing.Color.Black;
+			this.textBox4.Location = new System.Drawing.Point(837, 452);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(59, 20);
+			this.textBox4.TabIndex = 30;
+			this.textBox4.Text = "0.00";
+			// 
+			// label19
+			// 
+			this.label19.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label19.Location = new System.Drawing.Point(812, 453);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(22, 17);
+			this.label19.TabIndex = 31;
+			this.label19.Text = "%";
+			// 
 			// LaundryNewView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(942, 766);
+			this.ClientSize = new System.Drawing.Size(942, 746);
+			this.Controls.Add(this.label19);
+			this.Controls.Add(this.textBox4);
 			this.Controls.Add(this.textBox3);
 			this.Controls.Add(this.label18);
 			this.Controls.Add(this.textBox2);
@@ -774,6 +799,8 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label17;
