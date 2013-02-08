@@ -7,7 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-
+using NJournals.Common.DataEntities;
+using System.Collections.Generic;
 namespace NJournals.Common.Interfaces
 {
 	/// <summary>
@@ -15,6 +16,8 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface IRefillingView : IView
 	{
-		
+		void SetAllCustomers(List<CustomerDataEntity> customers);
+		void SetAllTransactionTypes(List<RefillTransactionTypeDataEntity> transactionTypes);
+		void SetAllProducts(List<RefillProductTypeDataEntity> products);
 	}
 }

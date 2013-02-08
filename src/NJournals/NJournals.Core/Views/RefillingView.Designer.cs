@@ -37,20 +37,23 @@ namespace NJournals.Core.Views
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.cmbCustomers = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.txtjonumber = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.cmbtransTypes = new System.Windows.Forms.ComboBox();
 			this.Services = new System.Windows.Forms.GroupBox();
+			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
-			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.txtnoitems = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
+			this.cmbproducts = new System.Windows.Forms.ComboBox();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.textBox10 = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
@@ -60,10 +63,6 @@ namespace NJournals.Core.Views
 			this.label10 = new System.Windows.Forms.Label();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.label8 = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
@@ -72,11 +71,10 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.textBox3);
+			this.groupBox1.Controls.Add(this.cmbCustomers);
 			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.textBox2);
 			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Controls.Add(this.textBox1);
+			this.groupBox1.Controls.Add(this.txtjonumber);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.Location = new System.Drawing.Point(16, 59);
@@ -86,12 +84,15 @@ namespace NJournals.Core.Views
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Transaction Information";
 			// 
-			// textBox3
+			// cmbCustomers
 			// 
-			this.textBox3.Location = new System.Drawing.Point(424, 21);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(154, 23);
-			this.textBox3.TabIndex = 5;
+			this.cmbCustomers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.cmbCustomers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.cmbCustomers.FormattingEnabled = true;
+			this.cmbCustomers.Location = new System.Drawing.Point(143, 50);
+			this.cmbCustomers.Name = "cmbCustomers";
+			this.cmbCustomers.Size = new System.Drawing.Size(154, 23);
+			this.cmbCustomers.TabIndex = 23;
 			// 
 			// label3
 			// 
@@ -103,13 +104,6 @@ namespace NJournals.Core.Views
 			this.label3.Text = "Date:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox2
-			// 
-			this.textBox2.Location = new System.Drawing.Point(143, 47);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(154, 23);
-			this.textBox2.TabIndex = 3;
-			// 
 			// label2
 			// 
 			this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,12 +114,12 @@ namespace NJournals.Core.Views
 			this.label2.Text = "Customer Name: ";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox1
+			// txtjonumber
 			// 
-			this.textBox1.Location = new System.Drawing.Point(143, 21);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(154, 23);
-			this.textBox1.TabIndex = 1;
+			this.txtjonumber.Location = new System.Drawing.Point(143, 21);
+			this.txtjonumber.Name = "txtjonumber";
+			this.txtjonumber.Size = new System.Drawing.Size(154, 23);
+			this.txtjonumber.TabIndex = 1;
 			// 
 			// label1
 			// 
@@ -146,13 +140,13 @@ namespace NJournals.Core.Views
 			this.label5.TabIndex = 2;
 			this.label5.Text = "Transaction Type:";
 			// 
-			// comboBox1
+			// cmbtransTypes
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(164, 21);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(149, 21);
-			this.comboBox1.TabIndex = 3;
+			this.cmbtransTypes.FormattingEnabled = true;
+			this.cmbtransTypes.Location = new System.Drawing.Point(164, 21);
+			this.cmbtransTypes.Name = "cmbtransTypes";
+			this.cmbtransTypes.Size = new System.Drawing.Size(149, 21);
+			this.cmbtransTypes.TabIndex = 3;
 			// 
 			// Services
 			// 
@@ -161,10 +155,10 @@ namespace NJournals.Core.Views
 			this.Services.Controls.Add(this.textBox4);
 			this.Services.Controls.Add(this.label6);
 			this.Services.Controls.Add(this.button1);
-			this.Services.Controls.Add(this.textBox5);
+			this.Services.Controls.Add(this.txtnoitems);
 			this.Services.Controls.Add(this.label7);
 			this.Services.Controls.Add(this.label4);
-			this.Services.Controls.Add(this.comboBox3);
+			this.Services.Controls.Add(this.cmbproducts);
 			this.Services.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Services.Location = new System.Drawing.Point(16, 178);
 			this.Services.Name = "Services";
@@ -172,6 +166,38 @@ namespace NJournals.Core.Views
 			this.Services.TabIndex = 4;
 			this.Services.TabStop = false;
 			this.Services.Text = "Services";
+			// 
+			// textBox6
+			// 
+			this.textBox6.Location = new System.Drawing.Point(87, 105);
+			this.textBox6.Name = "textBox6";
+			this.textBox6.Size = new System.Drawing.Size(100, 23);
+			this.textBox6.TabIndex = 16;
+			// 
+			// label8
+			// 
+			this.label8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label8.Location = new System.Drawing.Point(16, 107);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(70, 23);
+			this.label8.TabIndex = 15;
+			this.label8.Text = "Store Caps:";
+			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(87, 79);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(100, 23);
+			this.textBox4.TabIndex = 14;
+			// 
+			// label6
+			// 
+			this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label6.Location = new System.Drawing.Point(3, 82);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(95, 23);
+			this.label6.TabIndex = 13;
+			this.label6.Text = "Store Bottles:";
 			// 
 			// button1
 			// 
@@ -182,12 +208,12 @@ namespace NJournals.Core.Views
 			this.button1.Text = "Add";
 			this.button1.UseVisualStyleBackColor = true;
 			// 
-			// textBox5
+			// txtnoitems
 			// 
-			this.textBox5.Location = new System.Drawing.Point(87, 53);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(100, 23);
-			this.textBox5.TabIndex = 7;
+			this.txtnoitems.Location = new System.Drawing.Point(87, 53);
+			this.txtnoitems.Name = "txtnoitems";
+			this.txtnoitems.Size = new System.Drawing.Size(100, 23);
+			this.txtnoitems.TabIndex = 7;
 			// 
 			// label7
 			// 
@@ -207,13 +233,13 @@ namespace NJournals.Core.Views
 			this.label4.TabIndex = 4;
 			this.label4.Text = "Products:";
 			// 
-			// comboBox3
+			// cmbproducts
 			// 
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(87, 27);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(142, 23);
-			this.comboBox3.TabIndex = 2;
+			this.cmbproducts.FormattingEnabled = true;
+			this.cmbproducts.Location = new System.Drawing.Point(87, 27);
+			this.cmbproducts.Name = "cmbproducts";
+			this.cmbproducts.Size = new System.Drawing.Size(142, 23);
+			this.cmbproducts.TabIndex = 2;
 			// 
 			// dataGridView1
 			// 
@@ -296,38 +322,6 @@ namespace NJournals.Core.Views
 			this.button3.Text = "Print";
 			this.button3.UseVisualStyleBackColor = true;
 			// 
-			// textBox4
-			// 
-			this.textBox4.Location = new System.Drawing.Point(87, 79);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(100, 23);
-			this.textBox4.TabIndex = 14;
-			// 
-			// label6
-			// 
-			this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(3, 82);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(95, 23);
-			this.label6.TabIndex = 13;
-			this.label6.Text = "Store Bottles:";
-			// 
-			// textBox6
-			// 
-			this.textBox6.Location = new System.Drawing.Point(87, 105);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(100, 23);
-			this.textBox6.TabIndex = 16;
-			// 
-			// label8
-			// 
-			this.label8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(16, 107);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(70, 23);
-			this.label8.TabIndex = 15;
-			this.label8.Text = "Store Caps:";
-			// 
 			// checkBox1
 			// 
 			this.checkBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -355,7 +349,7 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.Services);
-			this.Controls.Add(this.comboBox1);
+			this.Controls.Add(this.cmbtransTypes);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "RefillingView";
@@ -368,6 +362,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ComboBox cmbCustomers;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.TextBox textBox4;
@@ -382,20 +377,18 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.TextBox textBox10;
 		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.ComboBox comboBox3;
+		private System.Windows.Forms.ComboBox cmbproducts;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.TextBox textBox5;
+		private System.Windows.Forms.TextBox txtnoitems;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.GroupBox Services;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ComboBox cmbtransTypes;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txtjonumber;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.GroupBox groupBox1;
 	}
 }
