@@ -21,12 +21,14 @@ namespace NJournals.Core.Presenter
 		ILaundryView m_view;
 		ILaundryCategoryDao m_categoryDao;
 		ILaundryServiceDao m_serviceDao;
+		ILaundryChargeDao m_chargeDao;
 		ICustomerDao m_customerDao;
 		
 		ILaundryDao m_laundryDao;		
 		List<LaundryCategoryDataEntity> categories = null;
 		List<LaundryServiceDataEntity> services = null;
 		List<CustomerDataEntity> customers = null;
+		List<LaundryChargeDataEntity> charges = null;
 		
 		public LaundryViewPresenter(ILaundryView p_view, ILaundryDao p_laundryDao)
 		{
@@ -35,6 +37,7 @@ namespace NJournals.Core.Presenter
 			m_categoryDao = new LaundryCategoryDao();
 			m_serviceDao = new LaundryServiceDao();
 			m_customerDao = new CustomerDao();
+			m_chargeDao = new LaundryChargeDao();
 		}
 		
 		public void SaveClicked(){
@@ -64,6 +67,11 @@ namespace NJournals.Core.Presenter
 			m_view.SetAllCustomers(customers);
 		}
 		
+		public void SetAllCharges(){
+			charges = m_chargeDao.GetAllItems() as List<LaundryChargeDataEntity>;
+			m_view.SetAllCharges(charges);
+		}
+		
 		public LaundryPriceSchemeDataEntity getLaundryPrice(string p_category, string p_service){
 			LaundryPriceSchemeDao priceDao = new LaundryPriceSchemeDao();
 			LaundryPriceSchemeDataEntity priceEntity = new LaundryPriceSchemeDataEntity();			
@@ -89,6 +97,11 @@ namespace NJournals.Core.Presenter
 				return headerEntities[headerEntities.Count-1].LaundryHeaderID + 1;
 			}
 			return 1;
+		}
+		
+		public decimal getJobChargeByName(string name){
+			
+			return m_chargeDao.GetByName(name).Amount;
 		}
 	}
 }

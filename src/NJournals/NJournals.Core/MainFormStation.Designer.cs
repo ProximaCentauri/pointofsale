@@ -58,7 +58,6 @@ namespace NJournals.Core
 			this.lblRefNew = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -237,21 +236,11 @@ namespace NJournals.Core
 			this.label1.TabIndex = 2;
 			this.label1.Text = "REFILLING";
 			// 
-			// panel2
-			// 
-			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel2.Location = new System.Drawing.Point(196, 592);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(801, 100);
-			this.panel2.TabIndex = 3;
-			// 
 			// MainFormStation
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(997, 692);
-			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.IsMdiContainer = true;
@@ -261,7 +250,6 @@ namespace NJournals.Core
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 		}
-		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label lblRefNew;
 		private System.Windows.Forms.Label lblRefClaim;

@@ -17,6 +17,6 @@ namespace NJournals.Common.DataEntities
 	{
 		public virtual int ChargeID {get;set;}
 		public virtual string Name {get;set;}
-		public virtual double Amount {get;set;}
+		public virtual decimal Amount {get;set;}
 	}
 }

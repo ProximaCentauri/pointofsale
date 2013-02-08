@@ -58,6 +58,7 @@ namespace NJournals.Core.Views
 				m_presenter.SetAllCategories();
 				m_presenter.SetAllServices();
 				m_presenter.SetAllCustomers();
+				m_presenter.SetAllCharges();
 				this.groupBox2.Enabled = this.btnclaim.Enabled = false;
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 			}
@@ -78,6 +79,12 @@ namespace NJournals.Core.Views
 		public void SetAllCustomers(List<CustomerDataEntity> customers){
 			foreach(CustomerDataEntity customer in customers){
 				this.cmbCustomers.Items.Add(customer.Name);
+			}
+		}
+		
+		public void SetAllCharges(List<LaundryChargeDataEntity> charges){
+			foreach(LaundryChargeDataEntity charge in charges){
+				this.chkchargesList.Items.Add(charge.Name);
 			}
 		}
 		
@@ -169,6 +176,25 @@ namespace NJournals.Core.Views
 				txtbalance.Text = "0.00";
 			}							
 		}		
+		
+		void additionalCharges_checkedchanged(object sender, EventArgs e)
+		{
+			decimal totalcharge = 0M;
+			decimal charge = 0M;
+			if(sender is CheckBox){
+				CheckBox chargeChkBox = sender as CheckBox;
+				if(chargeChkBox.Checked){
+					///add charge to totalcharge
+					charge = m_presenter.getJobChargeByName(chargeChkBox.Text);
+					totalcharge = decimal.Parse(txtcharges.Text) + charge;
+					txtcharges.Text = totalcharge.ToString("N2");
+				}else{
+					charge = m_presenter.getJobChargeByName(chargeChkBox.Text);
+					totalcharge = decimal.Parse(txtcharges.Text) - charge;
+					txtcharges.Text = totalcharge.ToString("N2");
+				}
+			}
+		}
 	}	
 }
 

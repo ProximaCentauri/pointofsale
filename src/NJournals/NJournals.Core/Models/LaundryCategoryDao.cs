@@ -45,7 +45,10 @@ namespace NJournals.Core.Models
 			{
 				var query = (from LaundryCategory in session.Query<LaundryCategoryDataEntity>()
 				             select LaundryCategory);
-				return query.ToList();
+				if(query != null)
+					return query.ToList();
+				else
+					return null;
 			}
 		}
 		
