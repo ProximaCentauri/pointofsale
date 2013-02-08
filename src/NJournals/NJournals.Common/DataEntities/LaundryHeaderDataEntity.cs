@@ -32,6 +32,7 @@ namespace NJournals.Common.DataEntities
 		public virtual CustomerDataEntity Customer {get;set;}
 		public virtual LaundryDaySummaryDataEntity DaySummary {get;set;}
 		public virtual IList<LaundryDetailDataEntity> DetailEntities {get; set;}
+		public virtual IList<LaundryPaymentDetailDataEntity> PaymentDetailEntities {get;set;}
 		public virtual IList<LaundryJobChargesDataEntity> JobChargeEntities {get;set;}
 		public virtual IList<LaundryChecklistDataEntity> JobChecklistEntities {get;set;}
 		

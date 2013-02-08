@@ -59,16 +59,16 @@ namespace NJournals.Tests
 			header.PaidFlag = true;
 			header.AmountDue = 1520.00M;
 			
-			detail.Header = header;
-			detail.Category = category;
-			detail.Service = service;
-			detail.Amount = 23;
-			detail.Kilo = 5;
-						
+//			detail.Header = header;
+//			detail.Category = category;
+//			detail.Service = service;
+//			detail.Amount = 23;
+//			detail.Kilo = 5;
+//						
 			jobcharge.Charge = charge;
 			jobcharge.Header = header;
-			
-			header.DetailEntities.Add(detail);
+//			
+//			header.DetailEntities.Add(detail);
 			header.JobChargeEntities.Add(jobcharge);
 			
 			LaundryDaySummaryDataEntity daysummary = new LaundryDaySummaryDataEntity();

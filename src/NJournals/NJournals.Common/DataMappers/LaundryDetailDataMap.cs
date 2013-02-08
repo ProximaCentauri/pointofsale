@@ -28,7 +28,7 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.Kilo);
 			Map(x => x.Amount);
 			References<LaundryHeaderDataEntity>(x => x.Header)
-				.Column("LaundryHeaderID").Not.Nullable();
+				.Column("LaundryHeaderID");
 			Table("LaundryDetail");
 				
 		}

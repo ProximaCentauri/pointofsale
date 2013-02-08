@@ -212,8 +212,8 @@ CREATE TABLE `laundrypaymentdetail` (
   `LaundryHeaderID` int(10) unsigned NOT NULL, 
   `Amount` decimal(10,2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
-  KEY `FK_LaundryDetail_1` (`LaundryHeaderID`),  
-  CONSTRAINT `FK_LaundryDetail_1` FOREIGN KEY (`LaundryHeaderID`) REFERENCES `laundryheader` (`LaundryHeaderID`) ON UPDATE CASCADE
+  KEY `laundrypaymentdetail` (`LaundryHeaderID`),  
+  CONSTRAINT `FK_laundrypaymentdetail_1` FOREIGN KEY (`LaundryHeaderID`) REFERENCES `laundryheader` (`LaundryHeaderID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
