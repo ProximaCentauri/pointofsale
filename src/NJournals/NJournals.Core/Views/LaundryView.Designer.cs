@@ -74,14 +74,6 @@ namespace NJournals.Core.Views
 			this.label12 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.chkchargesList = new System.Windows.Forms.CheckedListBox();
-			this.txtcharges = new System.Windows.Forms.TextBox();
-			this.label15 = new System.Windows.Forms.Label();
-			this.chk15discount = new System.Windows.Forms.CheckBox();
-			this.chk10discount = new System.Windows.Forms.CheckBox();
-			this.chksameday = new System.Windows.Forms.CheckBox();
-			this.chk24rush = new System.Windows.Forms.CheckBox();
-			this.chkdelivery = new System.Windows.Forms.CheckBox();
-			this.chkpickup = new System.Windows.Forms.CheckBox();
 			this.chkpaywhenclaim = new System.Windows.Forms.CheckBox();
 			this.btnsaveclose = new System.Windows.Forms.Button();
 			this.btncancel = new System.Windows.Forms.Button();
@@ -464,13 +456,11 @@ namespace NJournals.Core.Views
 			// groupBox3
 			// 
 			this.groupBox3.Controls.Add(this.chkchargesList);
-			this.groupBox3.Controls.Add(this.txtcharges);
-			this.groupBox3.Controls.Add(this.label15);
 			this.groupBox3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.groupBox3.Location = new System.Drawing.Point(317, 400);
+			this.groupBox3.Location = new System.Drawing.Point(358, 402);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(330, 173);
+			this.groupBox3.Size = new System.Drawing.Size(206, 243);
 			this.groupBox3.TabIndex = 14;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Additional Charges";
@@ -479,99 +469,10 @@ namespace NJournals.Core.Views
 			// 
 			this.chkchargesList.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.chkchargesList.FormattingEnabled = true;
-			this.chkchargesList.Location = new System.Drawing.Point(6, 18);
+			this.chkchargesList.Location = new System.Drawing.Point(12, 18);
 			this.chkchargesList.Name = "chkchargesList";
-			this.chkchargesList.Size = new System.Drawing.Size(182, 132);
+			this.chkchargesList.Size = new System.Drawing.Size(182, 212);
 			this.chkchargesList.TabIndex = 24;
-			// 
-			// txtcharges
-			// 
-			this.txtcharges.BackColor = System.Drawing.SystemColors.Info;
-			this.txtcharges.Enabled = false;
-			this.txtcharges.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtcharges.ForeColor = System.Drawing.Color.Black;
-			this.txtcharges.Location = new System.Drawing.Point(194, 119);
-			this.txtcharges.Name = "txtcharges";
-			this.txtcharges.Size = new System.Drawing.Size(119, 20);
-			this.txtcharges.TabIndex = 23;
-			this.txtcharges.Text = "0.00";
-			// 
-			// label15
-			// 
-			this.label15.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label15.ForeColor = System.Drawing.Color.Blue;
-			this.label15.Location = new System.Drawing.Point(194, 98);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(90, 18);
-			this.label15.TabIndex = 22;
-			this.label15.Text = "Total Charges:";
-			this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// chk15discount
-			// 
-			this.chk15discount.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chk15discount.Location = new System.Drawing.Point(157, 513);
-			this.chk15discount.Name = "chk15discount";
-			this.chk15discount.Size = new System.Drawing.Size(127, 24);
-			this.chk15discount.TabIndex = 17;
-			this.chk15discount.Text = "15% Discount";
-			this.chk15discount.UseVisualStyleBackColor = true;
-			this.chk15discount.CheckedChanged += new System.EventHandler(this.additionalCharges_checkedchanged);
-			// 
-			// chk10discount
-			// 
-			this.chk10discount.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chk10discount.Location = new System.Drawing.Point(157, 492);
-			this.chk10discount.Name = "chk10discount";
-			this.chk10discount.Size = new System.Drawing.Size(127, 24);
-			this.chk10discount.TabIndex = 16;
-			this.chk10discount.Text = "10% Discount";
-			this.chk10discount.UseVisualStyleBackColor = true;
-			this.chk10discount.CheckedChanged += new System.EventHandler(this.additionalCharges_checkedchanged);
-			// 
-			// chksameday
-			// 
-			this.chksameday.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chksameday.Location = new System.Drawing.Point(157, 471);
-			this.chksameday.Name = "chksameday";
-			this.chksameday.Size = new System.Drawing.Size(156, 24);
-			this.chksameday.TabIndex = 15;
-			this.chksameday.Text = "Same Day Rush Service";
-			this.chksameday.UseVisualStyleBackColor = true;
-			this.chksameday.CheckedChanged += new System.EventHandler(this.additionalCharges_checkedchanged);
-			// 
-			// chk24rush
-			// 
-			this.chk24rush.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chk24rush.Location = new System.Drawing.Point(6, 513);
-			this.chk24rush.Name = "chk24rush";
-			this.chk24rush.Size = new System.Drawing.Size(148, 24);
-			this.chk24rush.TabIndex = 2;
-			this.chk24rush.Text = "24 Hour Rush Service";
-			this.chk24rush.UseVisualStyleBackColor = true;
-			this.chk24rush.CheckedChanged += new System.EventHandler(this.additionalCharges_checkedchanged);
-			// 
-			// chkdelivery
-			// 
-			this.chkdelivery.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkdelivery.Location = new System.Drawing.Point(6, 492);
-			this.chkdelivery.Name = "chkdelivery";
-			this.chkdelivery.Size = new System.Drawing.Size(83, 24);
-			this.chkdelivery.TabIndex = 1;
-			this.chkdelivery.Text = "Delivery";
-			this.chkdelivery.UseVisualStyleBackColor = true;
-			this.chkdelivery.CheckedChanged += new System.EventHandler(this.additionalCharges_checkedchanged);
-			// 
-			// chkpickup
-			// 
-			this.chkpickup.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkpickup.Location = new System.Drawing.Point(6, 471);
-			this.chkpickup.Name = "chkpickup";
-			this.chkpickup.Size = new System.Drawing.Size(99, 24);
-			this.chkpickup.TabIndex = 0;
-			this.chkpickup.Text = "Pick - Up";
-			this.chkpickup.UseVisualStyleBackColor = true;
-			this.chkpickup.CheckedChanged += new System.EventHandler(this.additionalCharges_checkedchanged);
 			// 
 			// chkpaywhenclaim
 			// 
@@ -596,7 +497,7 @@ namespace NJournals.Core.Views
 			// btncancel
 			// 
 			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btncancel.Location = new System.Drawing.Point(336, 678);
+			this.btncancel.Location = new System.Drawing.Point(21, 681);
 			this.btncancel.Name = "btncancel";
 			this.btncancel.Size = new System.Drawing.Size(99, 23);
 			this.btncancel.TabIndex = 17;
@@ -607,7 +508,7 @@ namespace NJournals.Core.Views
 			// btndelete
 			// 
 			this.btndelete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btndelete.Location = new System.Drawing.Point(441, 678);
+			this.btndelete.Location = new System.Drawing.Point(126, 681);
 			this.btndelete.Name = "btndelete";
 			this.btndelete.Size = new System.Drawing.Size(91, 23);
 			this.btndelete.TabIndex = 18;
@@ -760,17 +661,11 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.label16);
 			this.Controls.Add(this.btnclaim);
 			this.Controls.Add(this.label14);
-			this.Controls.Add(this.chk15discount);
 			this.Controls.Add(this.txtbalance);
-			this.Controls.Add(this.chk10discount);
 			this.Controls.Add(this.label13);
-			this.Controls.Add(this.chksameday);
 			this.Controls.Add(this.btndelete);
-			this.Controls.Add(this.chk24rush);
 			this.Controls.Add(this.btncancel);
-			this.Controls.Add(this.chkdelivery);
 			this.Controls.Add(this.btnsaveclose);
-			this.Controls.Add(this.chkpickup);
 			this.Controls.Add(this.chkpaywhenclaim);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.txtchange);
@@ -795,7 +690,6 @@ namespace NJournals.Core.Views
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
@@ -808,8 +702,6 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.CheckedListBox chkchargesList;
-		private System.Windows.Forms.Label label15;
-		private System.Windows.Forms.TextBox txtcharges;
 		private System.Windows.Forms.ComboBox cmbCustomers;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
@@ -827,12 +719,6 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.Button btnsaveclose;
 		private System.Windows.Forms.CheckBox chkpaywhenclaim;
-		private System.Windows.Forms.CheckBox chksameday;
-		private System.Windows.Forms.CheckBox chk10discount;
-		private System.Windows.Forms.CheckBox chk15discount;
-		private System.Windows.Forms.CheckBox chkpickup;
-		private System.Windows.Forms.CheckBox chkdelivery;
-		private System.Windows.Forms.CheckBox chk24rush;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.TextBox txtchange;
