@@ -17,12 +17,11 @@ namespace NJournals.Common.Interfaces
 	/// Description of ILaundryReportDao.
 	/// </summary>
 	public interface ILaundryReportDao
-	{
-		IEnumerable<LaundryDaySummaryDataEntity> GetAllCustomersSalesReport(DateTime fromDateTime,
-                                                                           DateTime toDateTime);
-		IEnumerable<LaundryHeaderDataEntity> GetCustomerSalesReport(CustomerDataEntity customer,
+	{		
+		IEnumerable<LaundryDaySummaryDataEntity> GetCustomerSalesReport(CustomerDataEntity customer,
 		                                                            DateTime fromDateTime,
-		                                                            DateTime toDateTime);
+		                                                            DateTime toDateTime,
+		                                                            bool b_isAll);
         IEnumerable<LaundryHeaderDataEntity> GetUnclaimedItemsReport(CustomerDataEntity customer, 
 		                                                             DateTime fromDateTime, 
 		                                                             DateTime toDateTime,

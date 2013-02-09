@@ -71,5 +71,9 @@ namespace NJournals.Core.Presenter
 			m_categoryDao.Delete(category);
 		}
 		
+		public void SaveOrUpdatePriceScheme(LaundryPriceSchemeDataEntity priceScheme) {
+			m_priceSchemeDao.Save(priceScheme);
+		}
+		
 	}
 }

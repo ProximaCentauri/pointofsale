@@ -43,9 +43,10 @@ namespace NJournals.Core.Models
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = (from RefillTransactionType in session.Query<RefillTransactionTypeDataEntity>()
-				             select RefillTransactionType);
-				return query.ToList();
+				var query = session.Query<RefillTransactionTypeDataEntity>()
+                    .OrderBy(x => x.Name)
+                    .ToList();
+                return query;
 			}
 		}
 		
@@ -53,9 +54,9 @@ namespace NJournals.Core.Models
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = (from RefillTransactionType in session.Query<RefillTransactionTypeDataEntity>()
-				             where RefillTransactionType.Name == p_name
-				             select RefillTransactionType).FirstOrDefault();
+                var query = session.Query<RefillTransactionTypeDataEntity>()
+                    .Where(x => x.Name == p_name)
+                    .SingleOrDefault();
 				return query;
 			}
 		}

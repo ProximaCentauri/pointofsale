@@ -22,7 +22,8 @@ namespace NJournals.Common.DataMappers
 		public LaundryPaymentDetailDataMap()
 		{
 			Id(x => x.ID);			
-			Map(x => x.Amount);			
+			Map(x => x.Amount);
+            Map(x => x.PaymentDate);
 			References<LaundryHeaderDataEntity>(x => x.Header)
 				.Column("LaundryHeaderID");
 			Table("LaundryPaymentDetail");

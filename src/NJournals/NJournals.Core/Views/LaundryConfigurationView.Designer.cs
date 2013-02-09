@@ -37,26 +37,21 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.label1 = new System.Windows.Forms.Label();
 			this.dgvPriceScheme = new System.Windows.Forms.DataGridView();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.dgvCategory = new System.Windows.Forms.DataGridView();
 			this.btnAddPriceScheme = new System.Windows.Forms.Button();
-			this.btnEditPriceScheme = new System.Windows.Forms.Button();
+			this.btnSavePriceScheme = new System.Windows.Forms.Button();
 			this.btnDeletePriceScheme = new System.Windows.Forms.Button();
 			this.btnDeleteServices = new System.Windows.Forms.Button();
 			this.btnSaveServices = new System.Windows.Forms.Button();
 			this.btnDeleteCategory = new System.Windows.Forms.Button();
 			this.btnSaveCategory = new System.Windows.Forms.Button();
 			this.dgvServices = new System.Windows.Forms.DataGridView();
-			this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dgvPriceScheme)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvServices)).BeginInit();
@@ -77,24 +72,20 @@ namespace NJournals.Core.Views
 			// dgvPriceScheme
 			// 
 			this.dgvPriceScheme.AllowUserToAddRows = false;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvPriceScheme.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			this.dgvPriceScheme.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvPriceScheme.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgvPriceScheme.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvPriceScheme.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-									this.ID,
-									this.ServiceName,
-									this.CategoryName,
-									this.Description,
-									this.Price});
+			this.dgvPriceScheme.Cursor = System.Windows.Forms.Cursors.Default;
 			this.dgvPriceScheme.Location = new System.Drawing.Point(25, 45);
 			this.dgvPriceScheme.Name = "dgvPriceScheme";
-			this.dgvPriceScheme.Size = new System.Drawing.Size(789, 149);
+			this.dgvPriceScheme.Size = new System.Drawing.Size(789, 220);
 			this.dgvPriceScheme.TabIndex = 1;
 			// 
 			// label2
@@ -103,7 +94,7 @@ namespace NJournals.Core.Views
 			this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.label2.Location = new System.Drawing.Point(25, 203);
+			this.label2.Location = new System.Drawing.Point(25, 279);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(789, 23);
 			this.label2.TabIndex = 2;
@@ -115,7 +106,7 @@ namespace NJournals.Core.Views
 			this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.label3.Location = new System.Drawing.Point(25, 393);
+			this.label3.Location = new System.Drawing.Point(25, 468);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(789, 23);
 			this.label3.TabIndex = 4;
@@ -123,11 +114,11 @@ namespace NJournals.Core.Views
 			// 
 			// dgvCategory
 			// 
-			//this.dgvCategory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			this.dgvCategory.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvCategory.Location = new System.Drawing.Point(25, 419);
+			this.dgvCategory.Location = new System.Drawing.Point(25, 494);
 			this.dgvCategory.Name = "dgvCategory";
-			this.dgvCategory.Size = new System.Drawing.Size(789, 131);
+			this.dgvCategory.Size = new System.Drawing.Size(789, 186);
 			this.dgvCategory.TabIndex = 5;
 			this.dgvCategory.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategory_CellValueChanged);
 			// 
@@ -145,18 +136,19 @@ namespace NJournals.Core.Views
 			this.btnAddPriceScheme.UseVisualStyleBackColor = true;
 			this.btnAddPriceScheme.Click += new System.EventHandler(this.BtnAddPriceSchemeClick);
 			// 
-			// btnEditPriceScheme
+			// btnSavePriceScheme
 			// 
-			this.btnEditPriceScheme.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btnEditPriceScheme.FlatAppearance.BorderSize = 0;
-			this.btnEditPriceScheme.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnEditPriceScheme.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnEditPriceScheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnEditPriceScheme.Location = new System.Drawing.Point(820, 93);
-			this.btnEditPriceScheme.Name = "btnEditPriceScheme";
-			this.btnEditPriceScheme.Size = new System.Drawing.Size(35, 23);
-			this.btnEditPriceScheme.TabIndex = 7;
-			this.btnEditPriceScheme.UseVisualStyleBackColor = true;
+			this.btnSavePriceScheme.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnSavePriceScheme.FlatAppearance.BorderSize = 0;
+			this.btnSavePriceScheme.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnSavePriceScheme.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnSavePriceScheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSavePriceScheme.Location = new System.Drawing.Point(820, 93);
+			this.btnSavePriceScheme.Name = "btnSavePriceScheme";
+			this.btnSavePriceScheme.Size = new System.Drawing.Size(35, 23);
+			this.btnSavePriceScheme.TabIndex = 7;
+			this.btnSavePriceScheme.UseVisualStyleBackColor = true;
+			this.btnSavePriceScheme.Click += new System.EventHandler(this.BtnSavePriceSchemeClick);
 			// 
 			// btnDeletePriceScheme
 			// 
@@ -178,7 +170,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteServices.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnDeleteServices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnDeleteServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnDeleteServices.Location = new System.Drawing.Point(820, 262);
+			this.btnDeleteServices.Location = new System.Drawing.Point(820, 338);
 			this.btnDeleteServices.Name = "btnDeleteServices";
 			this.btnDeleteServices.Size = new System.Drawing.Size(35, 23);
 			this.btnDeleteServices.TabIndex = 11;
@@ -192,7 +184,7 @@ namespace NJournals.Core.Views
 			this.btnSaveServices.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnSaveServices.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnSaveServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSaveServices.Location = new System.Drawing.Point(820, 233);
+			this.btnSaveServices.Location = new System.Drawing.Point(820, 309);
 			this.btnSaveServices.Name = "btnSaveServices";
 			this.btnSaveServices.Size = new System.Drawing.Size(35, 23);
 			this.btnSaveServices.TabIndex = 10;
@@ -206,7 +198,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteCategory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnDeleteCategory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnDeleteCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnDeleteCategory.Location = new System.Drawing.Point(820, 453);
+			this.btnDeleteCategory.Location = new System.Drawing.Point(820, 528);
 			this.btnDeleteCategory.Name = "btnDeleteCategory";
 			this.btnDeleteCategory.Size = new System.Drawing.Size(35, 23);
 			this.btnDeleteCategory.TabIndex = 14;
@@ -220,7 +212,7 @@ namespace NJournals.Core.Views
 			this.btnSaveCategory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnSaveCategory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnSaveCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSaveCategory.Location = new System.Drawing.Point(820, 424);
+			this.btnSaveCategory.Location = new System.Drawing.Point(820, 499);
 			this.btnSaveCategory.Name = "btnSaveCategory";
 			this.btnSaveCategory.Size = new System.Drawing.Size(35, 23);
 			this.btnSaveCategory.TabIndex = 13;
@@ -229,70 +221,35 @@ namespace NJournals.Core.Views
 			// 
 			// dgvServices
 			// 
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvServices.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			this.dgvServices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvServices.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvServices.Location = new System.Drawing.Point(25, 229);
+			this.dgvServices.Location = new System.Drawing.Point(25, 305);
 			this.dgvServices.Name = "dgvServices";
 			this.dgvServices.Size = new System.Drawing.Size(789, 151);
 			this.dgvServices.TabIndex = 15;
 			this.dgvServices.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServices_CellValueChanged);
-			// 
-			// ID
-			// 
-			this.ID.HeaderText = "ID";
-			this.ID.Name = "ID";
-			this.ID.Visible = false;
-			// 
-			// ServiceName
-			// 
-			this.ServiceName.HeaderText = "Service Name";
-			this.ServiceName.Name = "ServiceName";
-			this.ServiceName.ReadOnly = true;
-			this.ServiceName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.ServiceName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.ServiceName.Width = 175;
-			// 
-			// CategoryName
-			// 
-			this.CategoryName.HeaderText = "Category Name";
-			this.CategoryName.Name = "CategoryName";
-			this.CategoryName.ReadOnly = true;
-			this.CategoryName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.CategoryName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.CategoryName.Width = 175;
-			// 
-			// Description
-			// 
-			this.Description.HeaderText = "Description";
-			this.Description.Name = "Description";
-			this.Description.ReadOnly = true;
-			this.Description.Width = 279;
-			// 
-			// Price
-			// 
-			this.Price.HeaderText = "Price";
-			this.Price.Name = "Price";
 			// 
 			// LaundryConfigurationView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(884, 562);
+			this.ClientSize = new System.Drawing.Size(884, 712);
 			this.Controls.Add(this.dgvServices);
 			this.Controls.Add(this.btnDeleteCategory);
 			this.Controls.Add(this.btnSaveCategory);
 			this.Controls.Add(this.btnDeleteServices);
 			this.Controls.Add(this.btnSaveServices);
 			this.Controls.Add(this.btnDeletePriceScheme);
-			this.Controls.Add(this.btnEditPriceScheme);
+			this.Controls.Add(this.btnSavePriceScheme);
 			this.Controls.Add(this.btnAddPriceScheme);
 			this.Controls.Add(this.dgvCategory);
 			this.Controls.Add(this.label3);
@@ -307,18 +264,13 @@ namespace NJournals.Core.Views
 			((System.ComponentModel.ISupportInitialize)(this.dgvServices)).EndInit();
 			this.ResumeLayout(false);
 		}
-		private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-		private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ServiceName;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ID;
 		private System.Windows.Forms.DataGridView dgvServices;		
 		private System.Windows.Forms.Button btnSaveCategory;
 		private System.Windows.Forms.Button btnDeleteCategory;
 		private System.Windows.Forms.Button btnSaveServices;
 		private System.Windows.Forms.Button btnDeleteServices;
 		private System.Windows.Forms.Button btnDeletePriceScheme;
-		private System.Windows.Forms.Button btnEditPriceScheme;
+		private System.Windows.Forms.Button btnSavePriceScheme;
 		private System.Windows.Forms.Button btnAddPriceScheme;
 		private System.Windows.Forms.DataGridView dgvCategory;
 		private System.Windows.Forms.Label label3;

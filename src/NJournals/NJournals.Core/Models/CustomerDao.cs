@@ -46,9 +46,9 @@ namespace NJournals.Core.Models
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					var query = (from Customer in session.Query<CustomerDataEntity>()
-				             where Customer.Name == p_name
-				             select Customer).FirstOrDefault();
+                    var query = session.Query<CustomerDataEntity>()
+                        .Where(x => x.Name == p_name)
+                        .SingleOrDefault();
 					return query;
 				}
 			}
@@ -58,9 +58,10 @@ namespace NJournals.Core.Models
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = (from Customer in session.Query<CustomerDataEntity>()
-				             select Customer).OrderBy(x => x.Name);
-				return query.ToList();
+                var query = session.Query<CustomerDataEntity>()
+                    .OrderBy(x => x.Name)
+                    .ToList();
+                return query;
 			}
 		}
 		
