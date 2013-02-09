@@ -35,13 +35,32 @@ namespace NJournals.Tests
 		[Test]
 		public void getAllCustomersSalesReport(){
 			LaundryReportDao reportDao = new LaundryReportDao();
-			List<LaundryDaySummaryDataEntity> entities = reportDao.GetAllCustomersSalesReport(Convert.ToDateTime("2013-02-01 00:00:00"), Convert.ToDateTime("2013-02-08 23:59:59"))
+			List<LaundryDaySummaryDataEntity> entities = reportDao.GetAllCustomersSalesReport(DateTime.Now.AddDays(-5),
+				                                 DateTime.Now.AddDays(5))
 				as List<LaundryDaySummaryDataEntity>;
 			Assert.NotNull(entities);
 			foreach(LaundryDaySummaryDataEntity entity in entities)
 			{
 				Console.WriteLine("daystamp: " + entity.DayStamp);
 				Console.WriteLine("transcount: " + entity.TransCount);
+				Console.WriteLine("sales: " + entity.TotalSales);
+			}
+		}
+		
+		[Test]
+		public void getSpecificCustomerSalesReport(){
+			CustomerDataEntity customer = new CustomerDao().GetByName("John Dee");
+			LaundryReportDao reportDao = new LaundryReportDao();
+			List<LaundryDaySummaryDataEntity> entities = 
+				reportDao.GetCustomerSalesReport(customer, DateTime.Now.AddDays(-5),
+				                                 DateTime.Now.AddDays(5))
+				as List<LaundryDaySummaryDataEntity>;
+			Assert.NotNull(entities);
+			foreach(LaundryDaySummaryDataEntity entity in entities)
+			{				
+				Console.WriteLine("daystamp: " + entity.DayStamp);
+				Console.WriteLine("transcount: " + entity.TransCount);
+				
 				Console.WriteLine("sales: " + entity.TotalSales);
 			}
 		}

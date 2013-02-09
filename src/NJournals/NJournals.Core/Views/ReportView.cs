@@ -29,6 +29,7 @@ namespace NJournals.Core.Views
 		List<CustomerDataEntity> m_customerEntity;
         DateTime fromDateTime;
         DateTime toDateTime;
+        bool b_isAll = true;
 		
 		public ReportView()
 		{
@@ -76,7 +77,7 @@ namespace NJournals.Core.Views
 		void BtnRunReportClick(object sender, EventArgs e)
 		{
 			string selectedReport = this.cmbReportTypes.Text;
-			bool b_isAll = true;
+            b_isAll = true;
 			CustomerDataEntity customer = new CustomerDataEntity();
 			if(this.cmbCustomers.Text != "All"){
 				b_isAll = false;
@@ -93,10 +94,9 @@ namespace NJournals.Core.Views
 		}
 		
 		public void DisplayReport<T>(List<T> rpt, List<ReportDataSource> datasources, 
-            string rptembeddedsource, string p_datasource)
+            string rptembeddedsource)
 		{
-            this.reportViewer.Reset();
-            this.reportViewer.LocalReport.DataSources.Clear();
+            this.reportViewer.Reset();           
             this.reportViewer.LocalReport.ReportEmbeddedResource = rptembeddedsource;         
             this.rptBindingSource.DataSource = rpt;
 
@@ -104,11 +104,11 @@ namespace NJournals.Core.Views
             {
                 this.reportViewer.LocalReport.DataSources.Add(datasource);
             }
-            IList<ReportParameter> parameters = new List<ReportParameter>();
-            parameters.Add(new ReportParameter("entityDataSource", p_datasource));
+            IList<ReportParameter> parameters = new List<ReportParameter>();           
             parameters.Add(new ReportParameter("fromDateTime", fromDateTime.ToShortDateString()));
             parameters.Add(new ReportParameter("toDateTime", toDateTime.ToShortDateString()));
             parameters.Add(new ReportParameter("customerName", cmbCustomers.Text));
+            parameters.Add(new ReportParameter("b_isAll", b_isAll.ToString()));
             this.reportViewer.LocalReport.SetParameters(parameters);
             this.reportViewer.RefreshReport();            
 		}

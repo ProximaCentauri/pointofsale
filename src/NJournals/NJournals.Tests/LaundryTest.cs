@@ -89,6 +89,7 @@ namespace NJournals.Tests
 			// set paymentdetail
 			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
 			paymentdetail.Amount = header.AmountTender;
+			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 			paymentdetail.Header = header;
 			header.PaymentDetailEntities.Add(paymentdetail);
 				
@@ -168,6 +169,7 @@ namespace NJournals.Tests
 				// set paymentdetail
 				LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
 				paymentdetail.Amount = header.AmountTender;
+				paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 				paymentdetail.Header = header;
 				header.PaymentDetailEntities.Add(paymentdetail);
 								
@@ -195,6 +197,7 @@ namespace NJournals.Tests
 			// set paymentdetail
 			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
 			paymentdetail.Amount = 50.00M; // current amount tender or payment
+			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 			paymentdetail.Header = header;
 			
 			// TODO: should update paidflag in header if total balance = 0.
