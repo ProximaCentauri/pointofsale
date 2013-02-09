@@ -84,7 +84,7 @@ namespace NJournals.Core.Views
 			this.btnclaim = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label16 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.txtcharges = new System.Windows.Forms.TextBox();
 			this.label17 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label18 = new System.Windows.Forms.Label();
@@ -579,17 +579,17 @@ namespace NJournals.Core.Views
 			this.label16.TabIndex = 24;
 			this.label16.Text = "Total Charges:";
 			// 
-			// textBox2
+			// txtcharges
 			// 
-			this.textBox2.BackColor = System.Drawing.SystemColors.Info;
-			this.textBox2.Enabled = false;
-			this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox2.ForeColor = System.Drawing.Color.Black;
-			this.textBox2.Location = new System.Drawing.Point(777, 452);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(34, 20);
-			this.textBox2.TabIndex = 27;
-			this.textBox2.Text = "0.00";
+			this.txtcharges.BackColor = System.Drawing.SystemColors.Info;
+			this.txtcharges.Enabled = false;
+			this.txtcharges.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtcharges.ForeColor = System.Drawing.Color.Black;
+			this.txtcharges.Location = new System.Drawing.Point(777, 452);
+			this.txtcharges.Name = "txtcharges";
+			this.txtcharges.Size = new System.Drawing.Size(34, 20);
+			this.txtcharges.TabIndex = 27;
+			this.txtcharges.Text = "0.00";
 			// 
 			// label17
 			// 
@@ -655,7 +655,7 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.textBox4);
 			this.Controls.Add(this.textBox3);
 			this.Controls.Add(this.label18);
-			this.Controls.Add(this.textBox2);
+			this.Controls.Add(this.txtcharges);
 			this.Controls.Add(this.label17);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label16);
@@ -698,7 +698,7 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label17;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox txtcharges;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.CheckedListBox chkchargesList;

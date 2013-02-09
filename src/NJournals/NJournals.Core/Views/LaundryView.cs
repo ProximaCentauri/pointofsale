@@ -179,7 +179,7 @@ namespace NJournals.Core.Views
 		
 		void additionalCharges_checkedchanged(object sender, EventArgs e)
 		{
-			decimal totalcharge = 0M;
+			/*decimal totalcharge = 0M;
 			decimal charge = 0M;
 			if(sender is CheckBox){
 				CheckBox chargeChkBox = sender as CheckBox;
@@ -193,7 +193,7 @@ namespace NJournals.Core.Views
 					//totalcharge = decimal.Parse(txtcharges.Text) - charge;
 					//txtcharges.Text = totalcharge.ToString("N2");
 				}
-			}
+			}*/
 		}
 	}	
 }
