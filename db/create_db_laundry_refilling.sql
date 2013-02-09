@@ -366,6 +366,46 @@ CREATE TABLE `refilldetail` (
 
 
 
+--
+-- Table structure for table `refillinventory`
+--
+
+DROP TABLE IF EXISTS `refillinventory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refillinventory` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(25) NOT NULL DEFAULT 'NULL',
+  `TotalQty` int(10) unsigned NOT NULL DEFAULT '0',
+  `QtyOnHand` int(10) unsigned NOT NULL DEFAULT '0',
+  `QtyReleased` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `IX_refillinventory_1` (`Name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `refillcustomerinventory`
+--
+
+DROP TABLE IF EXISTS `refillcustomerinventory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refillcustomerinventory` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `CustomerID` int(10) NOT NULL,
+  `BottlesOnHand` int(10) unsigned NOT NULL DEFAULT '0',
+  `BottlesReturned` int(10) unsigned NOT NULL DEFAULT '0',
+  `CapsOnHand` int(10) unsigned NOT NULL DEFAULT '0',
+  `CapsReturned` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `IX_refillcustomerinventory_1` (`CustomerID`),
+  KEY `FK_refillcustomerinventory_1` (`CustomerID`),
+  CONSTRAINT `FK_refillcustomerinventory_1` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -413,8 +453,7 @@ INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('
 INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('Delivery', '20.00');
 INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('24 Hour Rush Service', '75.00');
 INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('Same Day Rush Service','150.00');
-INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('10% Discount', '0.10');
-INSERT INTO `db_laundry_refilling`.`laundrycharges` (`Name`, `Amount`) VALUES ('5% Discount', '0.05');
+
 
 -- Laundry - checklist table
 INSERT INTO `db_laundry_refilling`.`laundrychecklist` (`Name`) VALUES ('T-shirt');

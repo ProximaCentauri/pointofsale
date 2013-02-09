@@ -42,7 +42,7 @@ namespace NJournals.Common.DataMappers
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
 			HasMany<LaundryPaymentDetailDataEntity>(x => x.PaymentDetailEntities)
-				.KeyColumn("LaundryHeaderID")
+				.KeyColumn("LaundryHeaderID").Not.LazyLoad()
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
 			HasMany<LaundryJobChecklistDataEntity>(x => x.JobChecklistEntities)

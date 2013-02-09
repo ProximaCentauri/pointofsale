@@ -40,6 +40,8 @@ namespace NJournals.Common.DataEntities
 		{
 			DetailEntities = new List<LaundryDetailDataEntity>();
 			JobChargeEntities = new List<LaundryJobChargesDataEntity>();
+			JobChecklistEntities = new List<LaundryChecklistDataEntity>();
+			PaymentDetailEntities = new List<LaundryPaymentDetailDataEntity>();
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface ILaundryDaySummaryDao
 	{
-		void Save(LaundryDaySummaryDataEntity p_daysummary);
+		void SaveOrUpdate(LaundryDaySummaryDataEntity p_daysummary);
 		LaundryDaySummaryDataEntity GetByDay(DateTime p_day);
 		IEnumerable<LaundryDaySummaryDataEntity> GetAllItems();
 		void Update(LaundryDaySummaryDataEntity p_daysummary);

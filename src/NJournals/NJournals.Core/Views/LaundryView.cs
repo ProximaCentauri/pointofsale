@@ -186,12 +186,12 @@ namespace NJournals.Core.Views
 				if(chargeChkBox.Checked){
 					///add charge to totalcharge
 					charge = m_presenter.getJobChargeByName(chargeChkBox.Text);
-					totalcharge = decimal.Parse(txtcharges.Text) + charge;
-					txtcharges.Text = totalcharge.ToString("N2");
+					//totalcharge = decimal.Parse(txtcharges.Text) + charge;
+					//txtcharges.Text = totalcharge.ToString("N2");
 				}else{
 					charge = m_presenter.getJobChargeByName(chargeChkBox.Text);
-					totalcharge = decimal.Parse(txtcharges.Text) - charge;
-					txtcharges.Text = totalcharge.ToString("N2");
+					//totalcharge = decimal.Parse(txtcharges.Text) - charge;
+					//txtcharges.Text = totalcharge.ToString("N2");
 				}
 			}
 		}

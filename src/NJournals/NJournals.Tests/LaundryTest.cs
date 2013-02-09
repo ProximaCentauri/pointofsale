@@ -33,100 +33,188 @@ namespace NJournals.Tests
 		}
 		
 		[Test]
-		public void saveNewHeaderWithoutExistingDaySummary(){			
+		public void saveNewHeaderAndNewDaySummary(){	
+			// test for new header and new day
+			// should create new record for daysummary			
 			LaundryHeaderDataEntity header = new LaundryHeaderDataEntity();
 			LaundryDetailDataEntity detail = new LaundryDetailDataEntity();
 			LaundryJobChargesDataEntity jobcharge = new LaundryJobChargesDataEntity();
 						
 			LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Colored Garments");
 			LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash - Dry - Fold");
-			LaundryChargeDataEntity charge = new LaundryChargeDao().GetByName("Delivery");
+			LaundryPriceSchemeDataEntity pricescheme = new LaundryPriceSchemeDao().GetByCategoryService(service,category);
 			
 			CustomerDao custdao = new CustomerDao();
-			CustomerDataEntity customer = custdao.GetByName("John Doe");
+			CustomerDataEntity customer = custdao.GetByName("John Dee");
 			if(customer == null)
 			{
 				customer = new CustomerDataEntity();
-				customer.Name = "John Doe";
+				customer.Name = "John Dee";
 				customer.Address = "Cebu";
 				customer.ContactNumber = "111-1111";
 			}
 			
 			header.Customer = customer;
 			header.ReceivedDate = DateTime.Now;
-			header.DueDate = DateTime.Now;
+			header.DueDate = DateTime.Now.AddDays(5); // add 5 days for due date
+					
+			detail.Header = header; // set header entity in detail for nhibernate to pickup and map
+			detail.Category = category;
+			detail.Service = service;
+			detail.Kilo = 5;
+			detail.Amount = pricescheme.Price * Convert.ToDecimal(detail.Kilo);
+			detail.ItemQty = 20;
+						
+			jobcharge.Charge = new LaundryChargeDao().GetByName("Delivery");
+			jobcharge.Header = header; // set header entity in jobcharge for nhibernate to pickup and map
+			
+			header.DetailEntities.Add(detail); // add detail to header details list
+			header.JobChargeEntities.Add(jobcharge); // add charges to header charges list
+			
 			header.ClaimFlag = false;
-			header.PaidFlag = true;
-			header.AmountDue = 1520.00M;
+			header.AmountDue = detail.Amount;
+			header.TotalItemQty = detail.ItemQty;
+			header.TotalCharge = jobcharge.Charge.Amount;
+			header.TotalDiscount = 0;
+			header.TotalAmountDue = (header.AmountDue + header.TotalCharge) - header.TotalDiscount;
+			header.AmountTender = header.TotalAmountDue;
 			
-//			detail.Header = header;
-//			detail.Category = category;
-//			detail.Service = service;
-//			detail.Amount = 23;
-//			detail.Kilo = 5;
-//						
-			jobcharge.Charge = charge;
-			jobcharge.Header = header;
-//			
-//			header.DetailEntities.Add(detail);
-			header.JobChargeEntities.Add(jobcharge);
+			if(header.AmountTender == header.TotalAmountDue){
+				header.PaidFlag = true;
+			}
+			else{
+				header.PaidFlag = false;
+			}
 			
+			// set paymentdetail
+			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
+			paymentdetail.Amount = header.AmountTender;
+			paymentdetail.Header = header;
+			header.PaymentDetailEntities.Add(paymentdetail);
+				
+			// set daysummary			
 			LaundryDaySummaryDataEntity daysummary = new LaundryDaySummaryDataEntity();
-			daysummary.DayStamp = Convert.ToDateTime("02/09/2013");
-			daysummary.TotalSales = header.AmountDue;
-			daysummary.TransCount = 1;
-			daysummary.HeaderEntities.Add(header);
+			daysummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+			daysummary.TotalSales += header.AmountTender; 
+			daysummary.TransCount += 1;
+			daysummary.HeaderEntities.Add(header); // set header entity in daysummary for nhibernate to pickup and map			
+			header.DaySummary = daysummary; // set daysummary entity in header for nhibernate to pickup and map
 			
-			header.DaySummary = daysummary;
-			
-			custdao.SaveOrUpdate(customer);
+			custdao.SaveOrUpdate(customer); // save or update customer
+			// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
+			// this will handle the saving for the linked tables
 			LaundryDaySummaryDao dao = new LaundryDaySummaryDao();
-			dao.Save(daysummary);
+			dao.SaveOrUpdate(daysummary);
 		}
 		
 		[Test]
-		public void saveNewHeaderWithExistingDaySummary()
+		public void saveNewHeaderAndUpdateDaySummary()
 		{
-			LaundryDaySummaryDao summarydao = new LaundryDaySummaryDao();
-			LaundryDaySummaryDataEntity summary = summarydao.GetByDay(Convert.ToDateTime("2013-02-01 23:55:30"));
+			// test for new header but with existing daysummary
+			// should not save new record for daysummary
+			// should only update existing daysummary with transcount and sales			
+			
+			DateTime sampleDay = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
+			
+			LaundryDaySummaryDao summarydao = new LaundryDaySummaryDao();			
+			LaundryDaySummaryDataEntity summary = summarydao.GetByDay(sampleDay);
 			if(summary!= null)
 			{
 				LaundryHeaderDataEntity header = new LaundryHeaderDataEntity();
 				LaundryDetailDataEntity detail = new LaundryDetailDataEntity();
+				LaundryJobChargesDataEntity jobcharge = new LaundryJobChargesDataEntity();
 							
-				LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("Wash Dry Fold");
-				LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash Dry Fold");
+				LaundryCategoryDataEntity category = new LaundryCategoryDao().GetByName("White Garments");
+				LaundryServiceDataEntity service = new LaundryServiceDao().GetByName("Wash - Dry - Press");
+				LaundryPriceSchemeDataEntity pricescheme = new LaundryPriceSchemeDao().GetByCategoryService(service,category);
 	
-				CustomerDataEntity customer = new CustomerDataEntity();
-				customer.Name = "John Doe";
-				customer.Address = "Cebu";
-				customer.ContactNumber = "111-1111";
-			
+				CustomerDao custdao = new CustomerDao();
+				CustomerDataEntity customer = custdao.GetByName("John Dee");
+				if(customer == null)
+				{
+					customer = new CustomerDataEntity();
+					customer.Name = "John Dee";
+					customer.Address = "Cebu";
+					customer.ContactNumber = "111-1111";
+				}
 				header.Customer = customer;
 				header.ReceivedDate = DateTime.Now;
-				header.DueDate = DateTime.Now;
-				header.ClaimFlag = true;
-				header.PaidFlag = true;
-				header.AmountDue = 2322.00M;
-				
-				detail.Header = header;
+				header.DueDate = DateTime.Now.AddDays(5); // add 5 days for due date
+						
+				detail.Header = header; // set header entity in detail for nhibernate to pickup and map
 				detail.Category = category;
 				detail.Service = service;
-				detail.Amount = 2333;
-				detail.Kilo = 15;
+				detail.Kilo = 100;
+				detail.Amount = pricescheme.Price * Convert.ToDecimal(detail.Kilo);
+				detail.ItemQty = 300;
 							
-				header.DetailEntities.Add(detail);
+				jobcharge.Charge = new LaundryChargeDao().GetByName("Delivery");
+				jobcharge.Header = header; // set header entity in jobcharge for nhibernate to pickup and map
 				
+				header.DetailEntities.Add(detail); // add detail to header details list
+				header.JobChargeEntities.Add(jobcharge); // add charges to header charges list
+				
+				header.ClaimFlag = false;
+				header.AmountDue = detail.Amount;
+				header.TotalItemQty = detail.ItemQty;
+				header.TotalCharge = jobcharge.Charge.Amount;
+				header.TotalDiscount = 50.00M;
+				header.TotalAmountDue = (header.AmountDue + header.TotalCharge) - header.TotalDiscount;
+				header.AmountTender += 50.00M; // accumulate amount tender with current amount tender
+				
+				// TODO: should update paidflag in header if total balance = 0.
+				
+				
+				// set paymentdetail
+				LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
+				paymentdetail.Amount = header.AmountTender;
+				paymentdetail.Header = header;
+				header.PaymentDetailEntities.Add(paymentdetail);
+								
 				summary.TransCount += 1;
-				summary.TotalSales += detail.Amount;
+				summary.TotalSales += header.AmountTender;
 				header.DaySummary = summary;
 				
+				// update daysummary with transcount and totalsales
 				LaundryDaySummaryDao dao = new LaundryDaySummaryDao();
 				dao.Update(summary);
 				
+				// save header,details,etc.
 				LaundryDao ldao = new LaundryDao();
 				ldao.Save(header);
 			}				
+		}
+		
+		[Test]
+		public void saveNewPaymentDetail()
+		{
+			// test for saving new paymentdetail for partial payments
+			LaundryHeaderDataEntity header = new LaundryDao().GetByID(2);
+			
+			header.AmountTender += 50.00M; // accumulate amount tender with current payment
+			// set paymentdetail
+			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
+			paymentdetail.Amount = 50.00M; // current amount tender or payment
+			paymentdetail.Header = header;
+			
+			// TODO: should update paidflag in header if total balance = 0.
+			
+			// update daysummary
+			DateTime daysummaryDay = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+			LaundryDaySummaryDataEntity daysummary = new LaundryDaySummaryDao().GetByDay(daysummaryDay);
+			if(daysummary != null)
+			{
+				daysummary.TotalSales += paymentdetail.Amount;
+				daysummary.DayStamp = daysummaryDay;		
+			}
+			LaundryDaySummaryDao dao = new LaundryDaySummaryDao();
+			dao.SaveOrUpdate(daysummary);
+			
+			// update header, save payment detail etc.
+			header.PaymentDetailEntities.Add(paymentdetail);
+			LaundryDao ldao = new LaundryDao();
+			ldao.Update(header);
+			
 		}
 			
 		[Test]
@@ -134,7 +222,7 @@ namespace NJournals.Tests
 		{
 			LaundryHeaderDataEntity header = new LaundryHeaderDataEntity();
 			LaundryDao dao = new LaundryDao();
-			header = dao.GetByID(3);
+			header = dao.GetByID(1);
 			
 			Assert.NotNull(header);	
 			Assert.AreEqual("John Doe", header.Customer.Name);
