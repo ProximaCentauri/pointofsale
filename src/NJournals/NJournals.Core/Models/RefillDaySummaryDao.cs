@@ -59,9 +59,9 @@ namespace NJournals.Core.Models
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = (from RefillDaySummary in session.Query<RefillDaySummaryDataEntity>()
-				             select RefillDaySummary);
-				return query.ToList();
+                var query = session.Query<RefillDaySummaryDataEntity>()
+                    .ToList();
+                return query;
 			}
 		}
 		

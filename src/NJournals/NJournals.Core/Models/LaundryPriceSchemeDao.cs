@@ -60,12 +60,6 @@ namespace NJournals.Core.Models
 					.Where(x => x.Category == p_category)
 					.And(x => x.Service == p_service)
 					.SingleOrDefault();
-//				var query = session.Query<LaundryPriceSchemeDataEntity>()					
-//					.Fetch(x => x.Category)
-//					.Where(x => x.Category.Name == p_category)
-//					//.Fetch(x => x.Service)
-//				//	.Where(x => x.Service.Name == p_service)
-//					.Single();
 				return query;
 			}
 		}

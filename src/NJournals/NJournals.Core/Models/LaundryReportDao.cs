@@ -12,8 +12,10 @@ using NJournals.Common;
 using NJournals.Common.Util;
 using System.Linq;
 using System.Text;
+using NHibernate;
 using NHibernate.Linq;
 using NHibernate.Criterion;
+using NHibernate.Transform;
 using System.Collections.Generic;
 using NJournals.Common.Interfaces;
 using NJournals.Common.DataEntities;
@@ -30,42 +32,41 @@ namespace NJournals.Core.Models
 		public LaundryReportDao()
 		{
 		}
-		
-		public IEnumerable<LaundryDaySummaryDataEntity> GetAllCustomersSalesReport(DateTime fromDateTime,
-		                                                                   DateTime toDateTime)
-		{
-			using(var session = NHibernateHelper.OpenSession())
-			{
-				using(var transaction = session.BeginTransaction())
-				{
-                     var query = session.QueryOver<LaundryDaySummaryDataEntity>()
-                        .Where(x => x.DayStamp >= fromDateTime)
-                        .And(x => x.DayStamp <= toDateTime)
-                        .OrderBy(x => x.DayStamp).Asc
-                        .List();
-                    return query;
-				}
-			}
-		}
-		
-		public IEnumerable<LaundryHeaderDataEntity> GetCustomerSalesReport(CustomerDataEntity customer,
+			
+		public IEnumerable<LaundryDaySummaryDataEntity> GetCustomerSalesReport(CustomerDataEntity customer,
 		                                                                   DateTime fromDateTime,
-		                                                                   DateTime toDateTime)
+		                                                                   DateTime toDateTime, bool b_isAll)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
-				{
-					var query = session.QueryOver<LaundryHeaderDataEntity>()
-						.Where(x => x.Customer == customer)
-						.And(x => x.ClaimDate >= fromDateTime)
-						.And(x => x.ClaimDate <= toDateTime)
-						.And(x => x.PaidFlag == true)
-						.OrderBy(x => x.ClaimDate).Asc
-						.List();
-					return query;
+				{					
+					if(b_isAll)
+					{
+                        var query = session.QueryOver<LaundryDaySummaryDataEntity>()
+                            .WhereRestrictionOn(x => x.DayStamp).IsBetween(fromDateTime).And(toDateTime)
+                            .OrderBy(x => x.DayStamp).Asc
+                            .List<LaundryDaySummaryDataEntity>();						
+                    	return query;	
+					}
+					else
+					{
+						var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
+							.Add(Restrictions.Eq("header.Customer",customer))
+							.CreateAlias("header.PaymentDetailEntities","paymentdetails")
+							.SetProjection(Projections.ProjectionList()
+										   .Add(Projections.GroupProperty(Projections.Cast(NHibernateUtil.Date
+							                                                               ,Projections.GroupProperty("paymentdetails.PaymentDate"))),"DayStamp")
+							               .Add(Projections.Sum("paymentdetails.Amount"),"TotalSales")
+							               .Add(Projections.CountDistinct("LaundryHeaderID"),"TransCount"))
+							.Add(Restrictions.Between("paymentdetails.PaymentDate",fromDateTime,toDateTime))           						          
+							.AddOrder(Order.Asc("paymentdetails.PaymentDate"))
+							.SetResultTransformer(Transformers.AliasToBean(typeof(LaundryDaySummaryDataEntity)))
+							.List<LaundryDaySummaryDataEntity>();
+						return query;
+					}
 				}
-			}
+			}   
 		}
 		
 		public IEnumerable<LaundryHeaderDataEntity> GetUnclaimedItemsReport(CustomerDataEntity customer, 

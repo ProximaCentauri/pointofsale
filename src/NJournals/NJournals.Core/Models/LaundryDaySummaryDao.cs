@@ -58,9 +58,9 @@ namespace NJournals.Core.Models
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = (from LaundryDaySummary in session.Query<LaundryDaySummaryDataEntity>()
-				             select LaundryDaySummary);
-				return query.ToList();
+                var query = session.Query<LaundryDaySummaryDataEntity>()
+                    .ToList();
+                return query;
 			}
 		}
 		
