@@ -82,13 +82,13 @@ namespace NJournals.Core.Views
 			this.label13 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.btnclaim = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.txttotalcharges = new System.Windows.Forms.TextBox();
 			this.label16 = new System.Windows.Forms.Label();
-			this.txtcharges = new System.Windows.Forms.TextBox();
+			this.txtdiscount = new System.Windows.Forms.TextBox();
 			this.label17 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.txttotalamtdue = new System.Windows.Forms.TextBox();
 			this.label18 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.txttotaldiscount = new System.Windows.Forms.TextBox();
 			this.label19 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
@@ -473,6 +473,7 @@ namespace NJournals.Core.Views
 			this.chkchargesList.Name = "chkchargesList";
 			this.chkchargesList.Size = new System.Drawing.Size(182, 212);
 			this.chkchargesList.TabIndex = 24;
+			this.chkchargesList.SelectedIndexChanged += new System.EventHandler(this.chkchargeList_selectedindexchanged);
 			// 
 			// chkpaywhenclaim
 			// 
@@ -557,17 +558,17 @@ namespace NJournals.Core.Views
 			this.btnclaim.Text = "Claim && Close";
 			this.btnclaim.UseVisualStyleBackColor = true;
 			// 
-			// textBox1
+			// txttotalcharges
 			// 
-			this.textBox1.BackColor = System.Drawing.SystemColors.Info;
-			this.textBox1.Enabled = false;
-			this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox1.ForeColor = System.Drawing.Color.Black;
-			this.textBox1.Location = new System.Drawing.Point(777, 426);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(119, 20);
-			this.textBox1.TabIndex = 25;
-			this.textBox1.Text = "0.00";
+			this.txttotalcharges.BackColor = System.Drawing.SystemColors.Info;
+			this.txttotalcharges.Enabled = false;
+			this.txttotalcharges.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txttotalcharges.ForeColor = System.Drawing.Color.Black;
+			this.txttotalcharges.Location = new System.Drawing.Point(777, 426);
+			this.txttotalcharges.Name = "txttotalcharges";
+			this.txttotalcharges.Size = new System.Drawing.Size(119, 20);
+			this.txttotalcharges.TabIndex = 25;
+			this.txttotalcharges.Text = "0.00";
 			// 
 			// label16
 			// 
@@ -579,17 +580,17 @@ namespace NJournals.Core.Views
 			this.label16.TabIndex = 24;
 			this.label16.Text = "Total Charges:";
 			// 
-			// txtcharges
+			// txtdiscount
 			// 
-			this.txtcharges.BackColor = System.Drawing.SystemColors.Info;
-			this.txtcharges.Enabled = false;
-			this.txtcharges.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtcharges.ForeColor = System.Drawing.Color.Black;
-			this.txtcharges.Location = new System.Drawing.Point(777, 452);
-			this.txtcharges.Name = "txtcharges";
-			this.txtcharges.Size = new System.Drawing.Size(34, 20);
-			this.txtcharges.TabIndex = 27;
-			this.txtcharges.Text = "0.00";
+			this.txtdiscount.BackColor = System.Drawing.SystemColors.Info;
+			this.txtdiscount.Enabled = false;
+			this.txtdiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtdiscount.ForeColor = System.Drawing.Color.Black;
+			this.txtdiscount.Location = new System.Drawing.Point(777, 452);
+			this.txtdiscount.Name = "txtdiscount";
+			this.txtdiscount.Size = new System.Drawing.Size(34, 20);
+			this.txtdiscount.TabIndex = 27;
+			this.txtdiscount.Text = "0.00";
 			// 
 			// label17
 			// 
@@ -602,17 +603,17 @@ namespace NJournals.Core.Views
 			this.label17.Text = "Total Discount:";
 			this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox3
+			// txttotalamtdue
 			// 
-			this.textBox3.BackColor = System.Drawing.SystemColors.Info;
-			this.textBox3.Enabled = false;
-			this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox3.ForeColor = System.Drawing.Color.Black;
-			this.textBox3.Location = new System.Drawing.Point(777, 478);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(119, 20);
-			this.textBox3.TabIndex = 29;
-			this.textBox3.Text = "0.00";
+			this.txttotalamtdue.BackColor = System.Drawing.SystemColors.Info;
+			this.txttotalamtdue.Enabled = false;
+			this.txttotalamtdue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txttotalamtdue.ForeColor = System.Drawing.Color.Black;
+			this.txttotalamtdue.Location = new System.Drawing.Point(777, 478);
+			this.txttotalamtdue.Name = "txttotalamtdue";
+			this.txttotalamtdue.Size = new System.Drawing.Size(119, 20);
+			this.txttotalamtdue.TabIndex = 29;
+			this.txttotalamtdue.Text = "0.00";
 			// 
 			// label18
 			// 
@@ -624,17 +625,17 @@ namespace NJournals.Core.Views
 			this.label18.TabIndex = 28;
 			this.label18.Text = "Total Amount Due:";
 			// 
-			// textBox4
+			// txttotaldiscount
 			// 
-			this.textBox4.BackColor = System.Drawing.SystemColors.Info;
-			this.textBox4.Enabled = false;
-			this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox4.ForeColor = System.Drawing.Color.Black;
-			this.textBox4.Location = new System.Drawing.Point(837, 452);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(59, 20);
-			this.textBox4.TabIndex = 30;
-			this.textBox4.Text = "0.00";
+			this.txttotaldiscount.BackColor = System.Drawing.SystemColors.Info;
+			this.txttotaldiscount.Enabled = false;
+			this.txttotaldiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txttotaldiscount.ForeColor = System.Drawing.Color.Black;
+			this.txttotaldiscount.Location = new System.Drawing.Point(837, 452);
+			this.txttotaldiscount.Name = "txttotaldiscount";
+			this.txttotaldiscount.Size = new System.Drawing.Size(59, 20);
+			this.txttotaldiscount.TabIndex = 30;
+			this.txttotaldiscount.Text = "0.00";
 			// 
 			// label19
 			// 
@@ -652,12 +653,12 @@ namespace NJournals.Core.Views
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(942, 746);
 			this.Controls.Add(this.label19);
-			this.Controls.Add(this.textBox4);
-			this.Controls.Add(this.textBox3);
+			this.Controls.Add(this.txttotaldiscount);
+			this.Controls.Add(this.txttotalamtdue);
 			this.Controls.Add(this.label18);
-			this.Controls.Add(this.txtcharges);
+			this.Controls.Add(this.txtdiscount);
 			this.Controls.Add(this.label17);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.txttotalcharges);
 			this.Controls.Add(this.label16);
 			this.Controls.Add(this.btnclaim);
 			this.Controls.Add(this.label14);
@@ -694,13 +695,13 @@ namespace NJournals.Core.Views
 			this.PerformLayout();
 		}
 		private System.Windows.Forms.Label label19;
-		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.TextBox txttotaldiscount;
 		private System.Windows.Forms.Label label18;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox txttotalamtdue;
 		private System.Windows.Forms.Label label17;
-		private System.Windows.Forms.TextBox txtcharges;
+		private System.Windows.Forms.TextBox txtdiscount;
 		private System.Windows.Forms.Label label16;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txttotalcharges;
 		private System.Windows.Forms.CheckedListBox chkchargesList;
 		private System.Windows.Forms.ComboBox cmbCustomers;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;

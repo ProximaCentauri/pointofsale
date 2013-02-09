@@ -195,6 +195,13 @@ namespace NJournals.Core.Views
 				}
 			}*/
 		}
+		
+		void chkchargeList_selectedindexchanged(object sender, EventArgs e)
+		{
+			decimal totalcharge = 0M;
+			decimal charge = 0M;
+			//foreach(this.chkchargesList.SelectedItem
+		}
 	}	
 }
 
