@@ -53,7 +53,7 @@ namespace NJournals.Core.Views
 		void setButtonImages()
 		{
 			Resource.setImage(this.btnAddPriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
-			Resource.setImage(this.btnEditPriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
+			Resource.setImage(this.btnSavePriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
 			Resource.setImage(this.btnDeletePriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
 			
 			Resource.setImage(this.btnSaveServices,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
@@ -118,13 +118,34 @@ namespace NJournals.Core.Views
 		
 		public void SetAllPriceScheme(List<LaundryPriceSchemeDataEntity> priceScheme)
 		{
-			m_priceSchemeEntity = priceScheme;			
+			m_priceSchemeEntity = priceScheme;		
+			BindingSource source = new BindingSource();		
+
+			DataTable tempTable = new DataTable();
+			tempTable.Columns.Add("ID", typeof(int));
+			tempTable.Columns.Add("ServiceName", typeof(string));
+			tempTable.Columns.Add("CategoryName", typeof(string));
+			tempTable.Columns.Add("Description", typeof(string));
+			tempTable.Columns.Add("Price", typeof(int));
+			                      
 			foreach(LaundryPriceSchemeDataEntity price in m_priceSchemeEntity)
-			{
-				dgvPriceScheme.Rows.Add(price.ID, price.Service.Name ,price.Category.Name, price.Description, price.Price);
-			}
+			{				
+				tempTable.Rows.Add(price.ID, price.Service.Name, price.Category.Name,
+                   price.Description, price.Price);
+			}		
 			
+			source.DataSource = tempTable;
+			dgvPriceScheme.DataSource = source;			
 			
+			dgvPriceScheme.Columns["ID"].Visible = false;
+			dgvPriceScheme.Columns["ServiceName"].Width = 175;			
+			dgvPriceScheme.Columns["ServiceName"].HeaderText = "Service Name";
+			dgvPriceScheme.Columns["CategoryName"].Width = 175;			
+			dgvPriceScheme.Columns["CategoryName"].HeaderText = "Category Name";
+			dgvPriceScheme.Columns["Description"].Width = 295;		
+			dgvPriceScheme.Columns["Description"].HeaderText = "Description";
+			dgvPriceScheme.Columns["Price"].Width = 100;
+			dgvPriceScheme.Columns["Price"].HeaderText = "Price";			
 			
 		}	
 		
@@ -289,24 +310,45 @@ namespace NJournals.Core.Views
 			GetCategoryName(categoryCBox);
 			
 			this.dgvPriceScheme[3,dgvPriceScheme.RowCount-1].ReadOnly = false;
-			this.dgvPriceScheme[4,dgvPriceScheme.RowCount-1].ReadOnly = false;
+			this.dgvPriceScheme[4,dgvPriceScheme.RowCount-1].ReadOnly = false;			
 				
 		}
 		
-		public void GetCategoryName(DataGridViewComboBoxCell categoryCBox){	
+		void BtnSavePriceSchemeClick(object sender, EventArgs e)
+		{
+			LaundryPriceSchemeDataEntity newPriceScheme = new LaundryPriceSchemeDataEntity();			
+			
+			DataGridViewRow currentRow = this.dgvPriceScheme.CurrentCell.OwningRow;			
+			newPriceScheme.Service = new LaundryServiceDataEntity();
+			newPriceScheme.Service = m_serviceEntity.Find(m_service => m_service.Name == currentRow.Cells["ServiceName"].Value.ToString());
+			newPriceScheme.Category = new LaundryCategoryDataEntity();
+			newPriceScheme.Category = m_categoryEntity.Find(m_category => m_category.Name == currentRow.Cells["CategoryName"].Value.ToString());
+			newPriceScheme.Description = currentRow.Cells["Description"].Value.ToString();
+			newPriceScheme.Price = Convert.ToDecimal(currentRow.Cells["Price"].Value.ToString());
+			
+			m_presenter.SaveOrUpdatePriceScheme(newPriceScheme);
+			m_presenter.SetAllPriceScheme();
+		}
+		
+		private void GetCategoryName(DataGridViewComboBoxCell categoryCBox){	
 			foreach(LaundryCategoryDataEntity category in m_categoryEntity)
 			{
 				categoryCBox.Items.Add(category.Name);
 			}
 		}
 		
-		public void GetServiceName(DataGridViewComboBoxCell serviceCBox){
+		
+		
+		private void GetServiceName(DataGridViewComboBoxCell serviceCBox){
 			foreach(LaundryServiceDataEntity service in m_serviceEntity)
 			{
 				serviceCBox.Items.Add(service.Name);
 			}
 		}
 		
+		
 		#endregion PriceScheme
+		
+		
 	}
 }
