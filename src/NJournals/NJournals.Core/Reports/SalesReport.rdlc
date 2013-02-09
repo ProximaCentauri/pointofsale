@@ -26,10 +26,10 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>customerName</Prompt>
     </ReportParameter>
-    <ReportParameter Name="b_isAll">
+    <ReportParameter Name="isAll">
       <DataType>Boolean</DataType>
       <AllowBlank>true</AllowBlank>
-      <Prompt>b_isAll</Prompt>
+      <Prompt>isAll</Prompt>
     </ReportParameter>
   </ReportParameters>
   <rd:DrawGrid>true</rd:DrawGrid>
@@ -93,7 +93,7 @@
         <CanGrow>true</CanGrow>
         <Left>1in</Left>
         <Height>0.25in</Height>
-        <Value>=IIf(Parameters!b_isAll.Value=true, "ALL", UCase(Parameters!customerName.Value))</Value>
+        <Value>=IIf(Parameters!isAll.Value=true, "ALL", UCase(Parameters!customerName.Value))</Value>
       </Textbox>
       <Textbox Name="textbox13">
         <Top>1.08333in</Top>

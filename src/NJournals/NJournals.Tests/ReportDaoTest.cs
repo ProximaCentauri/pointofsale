@@ -35,8 +35,8 @@ namespace NJournals.Tests
 		[Test]
 		public void getAllCustomersSalesReport(){
 			LaundryReportDao reportDao = new LaundryReportDao();
-			List<LaundryDaySummaryDataEntity> entities = reportDao.GetAllCustomersSalesReport(DateTime.Now.AddDays(-5),
-				                                 DateTime.Now.AddDays(5))
+			List<LaundryDaySummaryDataEntity> entities = reportDao.GetCustomerSalesReport(null,DateTime.Now.AddDays(-5),
+				                                 DateTime.Now.AddDays(5), true)
 				as List<LaundryDaySummaryDataEntity>;
 			Assert.NotNull(entities);
 			foreach(LaundryDaySummaryDataEntity entity in entities)
@@ -53,7 +53,7 @@ namespace NJournals.Tests
 			LaundryReportDao reportDao = new LaundryReportDao();
 			List<LaundryDaySummaryDataEntity> entities = 
 				reportDao.GetCustomerSalesReport(customer, DateTime.Now.AddDays(-5),
-				                                 DateTime.Now.AddDays(5))
+				                                 DateTime.Now.AddDays(5), false)
 				as List<LaundryDaySummaryDataEntity>;
 			Assert.NotNull(entities);
 			foreach(LaundryDaySummaryDataEntity entity in entities)
@@ -62,6 +62,25 @@ namespace NJournals.Tests
 				Console.WriteLine("transcount: " + entity.TransCount);
 				
 				Console.WriteLine("sales: " + entity.TotalSales);
+			}
+		}
+		
+		[Test]
+		public void getUnclaimedItemsReport()
+		{			
+			LaundryReportDao reportDao = new LaundryReportDao();
+			List<LaundryHeaderDataEntity> entities = 
+				reportDao.GetUnclaimedItemsReport(null, DateTime.Now.AddDays(-5),
+				                                 DateTime.Now.AddDays(5),true)
+				as List<LaundryHeaderDataEntity>;
+			Assert.NotNull(entities);
+			foreach(LaundryHeaderDataEntity entity in entities)
+			{				
+				Console.WriteLine("daystamp: " + entity.ReceivedDate);
+				Console.WriteLine("customer: " + entity.Customer.Name);
+				Console.WriteLine("claimflag: " + entity.ClaimFlag);
+				
+				
 			}
 		}
 	}

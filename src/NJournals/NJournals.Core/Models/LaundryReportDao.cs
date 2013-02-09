@@ -80,23 +80,21 @@ namespace NJournals.Core.Models
 				{					
 					if(b_isAll)
 					{
-						var query = session.QueryOver<LaundryHeaderDataEntity>()							
-							.Where(x => x.ReceivedDate >= fromDateTime)
-							.And(x => x.ReceivedDate <= toDateTime)
-							.And(x => x.ClaimFlag == false)
-							.OrderBy(x => x.ReceivedDate).Asc
-							.List();
-						return query;
+                        var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")                            
+                            .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
+                            .Add(Restrictions.Eq("header.ClaimFlag", false))
+                            .AddOrder(Order.Asc("header.ReceivedDate"))                          
+                            .List<LaundryHeaderDataEntity>();
+                        return query;
 					}
 					else{
-						var query = session.QueryOver<LaundryHeaderDataEntity>()
-							.Where(x => x.Customer == customer)
-							.And(x => x.ReceivedDate >= fromDateTime)
-							.And(x => x.ReceivedDate <= toDateTime)
-							.And(x => x.ClaimFlag == false)
-							.OrderBy(x => x.ReceivedDate).Asc
-							.List(); 
-						return query;
+                        var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
+                            .Add(Restrictions.Eq("header.Customer", customer))    
+                            .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
+                            .Add(Restrictions.Eq("header.ClaimFlag", false))
+                            .AddOrder(Order.Asc("header.ReceivedDate"))
+                            .List<LaundryHeaderDataEntity>();
+                        return query;
 					}
 					
 				}
@@ -114,13 +112,14 @@ namespace NJournals.Core.Models
 				{					
 					if(b_isAll)
 					{
-						var query = session.QueryOver<LaundryHeaderDataEntity>()							
-							.Where(x => x.ReceivedDate >= fromDateTime)
-							.And(x => x.ReceivedDate <= toDateTime)
-							.And(x => x.ClaimFlag == true)
-							.OrderBy(x => x.ReceivedDate).Asc
-							.List();
-						return query;
+                        var query = session.QueryOver<LaundryHeaderDataEntity>()
+                            .Where(x => x.ReceivedDate >= fromDateTime)
+                            .And(x => x.ReceivedDate <= toDateTime)
+                            .And(x => x.ClaimFlag == true)
+                            .OrderBy(x => x.ReceivedDate).Asc                            
+                            .List();
+
+                        return query;
 					}
 					else{
 						var query = session.QueryOver<LaundryHeaderDataEntity>()

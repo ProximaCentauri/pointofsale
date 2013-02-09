@@ -213,6 +213,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RefillingClaimView.resx">
       <DependentUpon>RefillingClaimView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RefillingView.resx">
       <DependentUpon>RefillingView.cs</DependentUpon>
@@ -258,6 +259,7 @@
     <None Include="images\search.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Properties\DataSources\NJournals.Common.DataEntities.CustomerDataEntity.datasource" />
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.LaundryDaySummaryDataEntity.datasource" />
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.LaundryHeaderDataEntity.datasource" />
   </ItemGroup>

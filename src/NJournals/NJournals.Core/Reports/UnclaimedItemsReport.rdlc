@@ -159,6 +159,7 @@
       <Textbox Name="textbox15">
         <rd:DefaultName>textbox15</rd:DefaultName>
         <Top>0.23958in</Top>
+        <Width>2in</Width>
         <Style>
           <FontFamily>Calibri</FontFamily>
           <TextAlign>Right</TextAlign>
@@ -266,12 +267,13 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <Width>7.5in</Width>
+  <Width>7.625in</Width>
   <Body>
     <ReportItems>
       <Table Name="table1">
         <DataSetName>NJournals_Common_DataEntities_LaundryHeaderDataEntity</DataSetName>
         <Top>0.25in</Top>
+        <Width>7.5in</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -287,7 +289,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>2</ZIndex>
+                      <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=FormatDateTime(Fields!ReceivedDate.Value,DateFormat.ShortDate)</Value>
                     </Textbox>
@@ -304,6 +306,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=FormatDateTime(Fields!DueDate.Value, DateFormat.ShortDate)</Value>
                     </Textbox>
@@ -315,13 +318,15 @@
                       <rd:DefaultName>Name</rd:DefaultName>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>2</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!CustomerID.Value.Name</Value>
+                      <Value>=IIf(Parameters!isAll.Value = false, "----", Fields!Customer.Value.Name)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -389,7 +394,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>8</ZIndex>
+                      <ZIndex>14</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Received Date</Value>
                     </Textbox>
@@ -417,6 +422,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>13</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Due Date</Value>
                     </Textbox>
@@ -444,6 +450,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>12</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Customer</Value>
                     </Textbox>
@@ -471,7 +478,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>7</ZIndex>
+                      <ZIndex>11</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Job No.</Value>
                     </Textbox>
@@ -499,7 +506,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>6</ZIndex>
+                      <ZIndex>10</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>No. of items</Value>
                     </Textbox>
@@ -547,7 +554,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>5</ZIndex>
+                      <ZIndex>9</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Total</Value>
                     </Textbox>
@@ -567,6 +574,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>8</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value />
                     </Textbox>
@@ -586,6 +594,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>7</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value />
                     </Textbox>
@@ -605,7 +614,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>4</ZIndex>
+                      <ZIndex>6</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Count(Fields!LaundryHeaderID.Value)</Value>
                     </Textbox>
@@ -625,7 +634,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>3</ZIndex>
+                      <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=SUM(Fields!TotalItemQty.Value)</Value>
                     </Textbox>
@@ -638,7 +647,7 @@
         </Footer>
       </Table>
     </ReportItems>
-    <Height>1.125in</Height>
+    <Height>1.375in</Height>
   </Body>
   <Language>en-US</Language>
   <PageFooter>
@@ -646,6 +655,7 @@
     <ReportItems>
       <Textbox Name="textbox16">
         <rd:DefaultName>textbox16</rd:DefaultName>
+        <Width>1.875in</Width>
         <Style>
           <FontFamily>Calibri</FontFamily>
           <FontSize>8pt</FontSize>

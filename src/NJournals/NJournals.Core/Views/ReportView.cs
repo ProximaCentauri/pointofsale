@@ -85,7 +85,7 @@ namespace NJournals.Core.Views
 			}
 
             fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);           
-           	toDateTime = Convert.ToDateTime(this.dateToPicker.Text);
+           	toDateTime = Convert.ToDateTime(this.dateToPicker.Text + " 23:59:59");
             
 
 			m_presenter.RunReport(this.GetTitle(), selectedReport, customer, fromDateTime,
@@ -97,7 +97,7 @@ namespace NJournals.Core.Views
             string rptembeddedsource)
 		{
             this.reportViewer.Reset();           
-            this.reportViewer.LocalReport.ReportEmbeddedResource = rptembeddedsource;         
+            this.reportViewer.LocalReport.ReportEmbeddedResource = rptembeddedsource;                
             this.rptBindingSource.DataSource = rpt;
 
             foreach (ReportDataSource datasource in datasources)
@@ -108,7 +108,7 @@ namespace NJournals.Core.Views
             parameters.Add(new ReportParameter("fromDateTime", fromDateTime.ToShortDateString()));
             parameters.Add(new ReportParameter("toDateTime", toDateTime.ToShortDateString()));
             parameters.Add(new ReportParameter("customerName", cmbCustomers.Text));
-            parameters.Add(new ReportParameter("b_isAll", b_isAll.ToString()));
+            parameters.Add(new ReportParameter("isAll", b_isAll.ToString()));
             this.reportViewer.LocalReport.SetParameters(parameters);
             this.reportViewer.RefreshReport();            
 		}
