@@ -200,7 +200,9 @@ namespace NJournals.Core.Views
 		{
 			decimal totalcharge = 0M;
 			decimal charge = 0M;
-			//foreach(this.chkchargesList.SelectedItem
+			foreach(object checkedItem in this.chkchargesList.CheckedItems){
+				
+			}
 		}
 	}	
 }
