@@ -11,11 +11,6 @@
   </DataSources>
   <InteractiveHeight>11in</InteractiveHeight>
   <ReportParameters>
-    <ReportParameter Name="entityDataSource">
-      <DataType>String</DataType>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>entityDataSource</Prompt>
-    </ReportParameter>
     <ReportParameter Name="fromDateTime">
       <DataType>DateTime</DataType>
       <AllowBlank>true</AllowBlank>
@@ -30,6 +25,11 @@
       <DataType>String</DataType>
       <AllowBlank>true</AllowBlank>
       <Prompt>customerName</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="isAll">
+      <DataType>Boolean</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>isAll</Prompt>
     </ReportParameter>
   </ReportParameters>
   <rd:DrawGrid>true</rd:DrawGrid>
@@ -93,7 +93,7 @@
         <CanGrow>true</CanGrow>
         <Left>1in</Left>
         <Height>0.25in</Height>
-        <Value>=IIf(Parameters!entityDataSource.Value="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", "ALL", UCase(Parameters!customerName.Value))</Value>
+        <Value>=IIf(Parameters!isAll.Value=true, "ALL", UCase(Parameters!customerName.Value))</Value>
       </Textbox>
       <Textbox Name="textbox13">
         <Top>1.08333in</Top>
@@ -179,76 +179,6 @@
   <BottomMargin>1in</BottomMargin>
   <rd:ReportID>8fdae99d-7631-4e93-8241-39580bef8c23</rd:ReportID>
   <DataSets>
-    <DataSet Name="NJournals_Common_DataEntities_LaundryHeaderDataEntity">
-      <Fields>
-        <Field Name="AmountDue">
-          <DataField>AmountDue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="AmountTender">
-          <DataField>AmountTender</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ClaimDate">
-          <DataField>ClaimDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="ClaimFlag">
-          <DataField>ClaimFlag</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="Customer">
-          <DataField>Customer</DataField>
-          <rd:TypeName>NJournals.Common.DataEntities.CustomerDataEntity</rd:TypeName>
-        </Field>
-        <Field Name="DaySummary">
-          <DataField>DaySummary</DataField>
-          <rd:TypeName>NJournals.Common.DataEntities.LaundryDaySummaryDataEntity</rd:TypeName>
-        </Field>
-        <Field Name="DetailEntities">
-          <DataField>DetailEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.LaundryDetailDataEntity]</rd:TypeName>
-        </Field>
-        <Field Name="DueDate">
-          <DataField>DueDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="JobChargeEntities">
-          <DataField>JobChargeEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.LaundryJobChargesDataEntity]</rd:TypeName>
-        </Field>
-        <Field Name="JobChecklistEntities">
-          <DataField>JobChecklistEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.LaundryChecklistDataEntity]</rd:TypeName>
-        </Field>
-        <Field Name="LaundryHeaderID">
-          <DataField>LaundryHeaderID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="PaidFlag">
-          <DataField>PaidFlag</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="ReceivedDate">
-          <DataField>ReceivedDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="TotalItemQty">
-          <DataField>TotalItemQty</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DummyDataSource</DataSourceName>
-        <CommandText />
-        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
-      </Query>
-      <rd:DataSetInfo>
-        <rd:DataSetName>NJournals.Common.DataEntities</rd:DataSetName>
-        <rd:TableName>LaundryHeaderDataEntity</rd:TableName>
-        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.LaundryHeaderDataEntity, NJournals.Common, Version=1.0.4787.13828, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
     <DataSet Name="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity">
       <Fields>
         <Field Name="DayID">
@@ -308,7 +238,7 @@
                       </Style>
                       <ZIndex>2</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatDateTime(IIf(Parameters!entityDataSource.Value="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", Fields!DayStamp.Value, First(Fields!ClaimDate.Value,"NJournals_Common_DataEntities_LaundryHeaderDataEntity")),DateFormat.ShortDate)</Value>
+                      <Value>=FormatDateTime(Fields!DayStamp.Value,DateFormat.ShortDate)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -325,7 +255,7 @@
                       </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=IIf(Parameters!entityDataSource.Value="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", Fields!TransCount.Value,Count(Fields!Customer.Value,"NJournals_Common_DataEntities_LaundryHeaderDataEntity"))</Value>
+                      <Value>=Fields!TransCount.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -341,7 +271,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=IIf(Parameters!entityDataSource.Value="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity", Fields!TotalSales.Value,Sum(Fields!AmountDue.Value,"NJournals_Common_DataEntities_LaundryHeaderDataEntity"))</Value>
+                      <Value>=Fields!TotalSales.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>

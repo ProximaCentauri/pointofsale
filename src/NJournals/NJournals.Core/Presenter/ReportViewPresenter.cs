@@ -84,27 +84,21 @@ namespace NJournals.Core.Presenter
 			switch(selectedReport)
 			{
                 case ReportConstants.SALES_REPORT:
-                   
-					if(b_isAll)
-					{
-						List<LaundryDaySummaryDataEntity> report = m_laundryReportDao
-							.GetAllCustomersSalesReport(fromDateTime, toDateTime) as List<LaundryDaySummaryDataEntity>;
- 
-                        datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYDAYSUMMARY, report));
-                        datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, report));
-                        m_view.DisplayReport(report, datasources, ReportConstants.ES_SALESREPORT, ReportConstants.DS_LAUNDRYDAYSUMMARY);
-					}
-					else{
-						List<LaundryHeaderDataEntity> report = m_laundryReportDao
-							.GetCustomerSalesReport(customer, fromDateTime, toDateTime) as List<LaundryHeaderDataEntity>;
-                        datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYDAYSUMMARY, report));
-                        datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, report));
-                        m_view.DisplayReport(report, datasources, ReportConstants.ES_SALESREPORT, ReportConstants.DS_LAUNDRYHEADER);
-                    }
-					break;
+					List<LaundryDaySummaryDataEntity> salesReport = m_laundryReportDao
+						.GetCustomerSalesReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryDaySummaryDataEntity>;
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYDAYSUMMARY, salesReport));
+                    m_view.DisplayReport(salesReport, datasources, ReportConstants.ES_SALESREPORT);                  
+				    break;
+                case ReportConstants.UNCLAIMED_ITEMS_REPORT:
+                    List<LaundryHeaderDataEntity> unclaimedReport = m_laundryReportDao
+                        .GetUnclaimedItemsReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryHeaderDataEntity>;
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, unclaimedReport));
+                    m_view.DisplayReport(unclaimedReport, datasources, ReportConstants.ES_UNCLAIMED_ITEMS_REPORT);                   
+                    break;
 				default:
 					break;
 			}
+          
             datasources.Clear();
 		}			
 	}

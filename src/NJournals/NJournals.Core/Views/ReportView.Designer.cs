@@ -164,6 +164,8 @@ namespace NJournals.Core.Views
             // reportViewer
             // 
             this.reportViewer.AutoScroll = true;
+            this.reportViewer.AutoSize = true;
+            this.reportViewer.LocalReport.ShowDetailedSubreportMessages = false;
             this.reportViewer.Location = new System.Drawing.Point(38, 245);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.Size = new System.Drawing.Size(818, 297);
@@ -185,6 +187,7 @@ namespace NJournals.Core.Views
             ((System.ComponentModel.ISupportInitialize)(this.LaundryDaySummaryDataEntityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rptBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 		private System.Windows.Forms.Label label1;

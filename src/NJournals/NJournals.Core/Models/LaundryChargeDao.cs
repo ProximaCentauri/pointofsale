@@ -43,9 +43,10 @@ namespace NJournals.Core.Models
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = (from LaundryCharges in session.Query<LaundryChargeDataEntity>()
-				             select LaundryCharges);
-				return query.ToList();
+				var query = session.Query<LaundryChargeDataEntity>()
+                    .OrderBy(x => x.Name)
+                    .ToList();
+                return query;
 			}
 		}
 		
@@ -53,9 +54,9 @@ namespace NJournals.Core.Models
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = (from LaundryCharges in session.Query<LaundryChargeDataEntity>()
-				             where LaundryCharges.Name == p_name
-				             select LaundryCharges).FirstOrDefault();
+                var query = session.Query<LaundryChargeDataEntity>()
+                    .Where(x => x.Name == p_name)
+                    .SingleOrDefault();
 				return query;
 			}
 		}

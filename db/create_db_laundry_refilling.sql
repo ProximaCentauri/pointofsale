@@ -210,6 +210,7 @@ DROP TABLE IF EXISTS `laundrypaymentdetail`;
 CREATE TABLE `laundrypaymentdetail` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `LaundryHeaderID` int(10) unsigned NOT NULL, 
+  `PaymentDate` datetime NOT NULL,
   `Amount` decimal(10,2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   KEY `laundrypaymentdetail` (`LaundryHeaderID`),  
