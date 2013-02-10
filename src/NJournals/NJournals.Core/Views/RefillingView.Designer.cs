@@ -37,6 +37,7 @@ namespace NJournals.Core.Views
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.dtDate = new System.Windows.Forms.DateTimePicker();
 			this.cmbCustomers = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -49,21 +50,25 @@ namespace NJournals.Core.Views
 			this.label8 = new System.Windows.Forms.Label();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnadd = new System.Windows.Forms.Button();
 			this.txtnoitems = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.cmbproducts = new System.Windows.Forms.ComboBox();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.txtchange = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
-			this.textBox9 = new System.Windows.Forms.TextBox();
+			this.txtamttender = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
-			this.textBox8 = new System.Windows.Forms.TextBox();
+			this.txtamtdue = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.btncancel = new System.Windows.Forms.Button();
+			this.btnprint = new System.Windows.Forms.Button();
+			this.chkunpaid = new System.Windows.Forms.CheckBox();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -71,6 +76,7 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.dtDate);
 			this.groupBox1.Controls.Add(this.cmbCustomers);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.label2);
@@ -83,6 +89,14 @@ namespace NJournals.Core.Views
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Transaction Information";
+			// 
+			// dtDate
+			// 
+			this.dtDate.Location = new System.Drawing.Point(421, 23);
+			this.dtDate.Name = "dtDate";
+			this.dtDate.Size = new System.Drawing.Size(200, 23);
+			this.dtDate.TabIndex = 24;
+			this.dtDate.Value = new System.DateTime(2013, 2, 2, 18, 46, 34, 0);
 			// 
 			// cmbCustomers
 			// 
@@ -154,7 +168,7 @@ namespace NJournals.Core.Views
 			this.Services.Controls.Add(this.label8);
 			this.Services.Controls.Add(this.textBox4);
 			this.Services.Controls.Add(this.label6);
-			this.Services.Controls.Add(this.button1);
+			this.Services.Controls.Add(this.btnadd);
 			this.Services.Controls.Add(this.txtnoitems);
 			this.Services.Controls.Add(this.label7);
 			this.Services.Controls.Add(this.label4);
@@ -199,14 +213,15 @@ namespace NJournals.Core.Views
 			this.label6.TabIndex = 13;
 			this.label6.Text = "Store Bottles:";
 			// 
-			// button1
+			// btnadd
 			// 
-			this.button1.Location = new System.Drawing.Point(154, 155);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 12;
-			this.button1.Text = "Add";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnadd.Location = new System.Drawing.Point(154, 155);
+			this.btnadd.Name = "btnadd";
+			this.btnadd.Size = new System.Drawing.Size(75, 23);
+			this.btnadd.TabIndex = 12;
+			this.btnadd.Text = "Add";
+			this.btnadd.UseVisualStyleBackColor = true;
+			this.btnadd.Click += new System.EventHandler(this.BtnaddClick);
 			// 
 			// txtnoitems
 			// 
@@ -244,17 +259,22 @@ namespace NJournals.Core.Views
 			// dataGridView1
 			// 
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+									this.Column1,
+									this.column2,
+									this.Column3,
+									this.Column4});
 			this.dataGridView1.Location = new System.Drawing.Point(318, 178);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.Size = new System.Drawing.Size(538, 197);
 			this.dataGridView1.TabIndex = 5;
 			// 
-			// textBox10
+			// txtchange
 			// 
-			this.textBox10.Location = new System.Drawing.Point(737, 466);
-			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(119, 20);
-			this.textBox10.TabIndex = 19;
+			this.txtchange.Location = new System.Drawing.Point(737, 466);
+			this.txtchange.Name = "txtchange";
+			this.txtchange.Size = new System.Drawing.Size(119, 20);
+			this.txtchange.TabIndex = 19;
 			// 
 			// label12
 			// 
@@ -267,12 +287,12 @@ namespace NJournals.Core.Views
 			this.label12.Text = "Change:";
 			this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox9
+			// txtamttender
 			// 
-			this.textBox9.Location = new System.Drawing.Point(737, 440);
-			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(119, 20);
-			this.textBox9.TabIndex = 17;
+			this.txtamttender.Location = new System.Drawing.Point(737, 440);
+			this.txtamttender.Name = "txtamttender";
+			this.txtamttender.Size = new System.Drawing.Size(119, 20);
+			this.txtamttender.TabIndex = 17;
 			// 
 			// label11
 			// 
@@ -285,12 +305,12 @@ namespace NJournals.Core.Views
 			this.label11.Text = "Amount Tender:";
 			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox8
+			// txtamtdue
 			// 
-			this.textBox8.Location = new System.Drawing.Point(737, 386);
-			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(119, 20);
-			this.textBox8.TabIndex = 15;
+			this.txtamtdue.Location = new System.Drawing.Point(737, 386);
+			this.txtamtdue.Name = "txtamtdue";
+			this.txtamtdue.Size = new System.Drawing.Size(119, 20);
+			this.txtamtdue.TabIndex = 15;
 			// 
 			// label10
 			// 
@@ -302,35 +322,55 @@ namespace NJournals.Core.Views
 			this.label10.TabIndex = 14;
 			this.label10.Text = "Amount Due:";
 			// 
-			// button4
+			// btncancel
 			// 
-			this.button4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button4.Location = new System.Drawing.Point(781, 518);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(75, 23);
-			this.button4.TabIndex = 21;
-			this.button4.Text = "Cancel";
-			this.button4.UseVisualStyleBackColor = true;
+			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btncancel.Location = new System.Drawing.Point(781, 518);
+			this.btncancel.Name = "btncancel";
+			this.btncancel.Size = new System.Drawing.Size(75, 23);
+			this.btncancel.TabIndex = 21;
+			this.btncancel.Text = "Cancel";
+			this.btncancel.UseVisualStyleBackColor = true;
 			// 
-			// button3
+			// btnprint
 			// 
-			this.button3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button3.Location = new System.Drawing.Point(688, 518);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(75, 23);
-			this.button3.TabIndex = 20;
-			this.button3.Text = "Print";
-			this.button3.UseVisualStyleBackColor = true;
+			this.btnprint.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnprint.Location = new System.Drawing.Point(688, 518);
+			this.btnprint.Name = "btnprint";
+			this.btnprint.Size = new System.Drawing.Size(75, 23);
+			this.btnprint.TabIndex = 20;
+			this.btnprint.Text = "Print";
+			this.btnprint.UseVisualStyleBackColor = true;
 			// 
-			// checkBox1
+			// chkunpaid
 			// 
-			this.checkBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox1.Location = new System.Drawing.Point(737, 412);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(104, 24);
-			this.checkBox1.TabIndex = 22;
-			this.checkBox1.Text = "Unpaid";
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.chkunpaid.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkunpaid.Location = new System.Drawing.Point(737, 412);
+			this.chkunpaid.Name = "chkunpaid";
+			this.chkunpaid.Size = new System.Drawing.Size(104, 24);
+			this.chkunpaid.TabIndex = 22;
+			this.chkunpaid.Text = "Unpaid";
+			this.chkunpaid.UseVisualStyleBackColor = true;
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "Products";
+			this.Column1.Name = "Column1";
+			// 
+			// column2
+			// 
+			this.column2.HeaderText = "No. of Items";
+			this.column2.Name = "column2";
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "Store Bottles";
+			this.Column3.Name = "Column3";
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Store Caps";
+			this.Column4.Name = "Column4";
 			// 
 			// RefillingView
 			// 
@@ -338,14 +378,14 @@ namespace NJournals.Core.Views
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(892, 566);
-			this.Controls.Add(this.checkBox1);
-			this.Controls.Add(this.button4);
-			this.Controls.Add(this.button3);
-			this.Controls.Add(this.textBox10);
+			this.Controls.Add(this.chkunpaid);
+			this.Controls.Add(this.btncancel);
+			this.Controls.Add(this.btnprint);
+			this.Controls.Add(this.txtchange);
 			this.Controls.Add(this.label12);
-			this.Controls.Add(this.textBox9);
+			this.Controls.Add(this.txtamttender);
 			this.Controls.Add(this.label11);
-			this.Controls.Add(this.textBox8);
+			this.Controls.Add(this.txtamtdue);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.Services);
@@ -363,26 +403,31 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn column2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+		private System.Windows.Forms.DateTimePicker dtDate;
 		private System.Windows.Forms.ComboBox cmbCustomers;
-		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.CheckBox chkunpaid;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.TextBox textBox6;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button btnprint;
+		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.TextBox textBox8;
+		private System.Windows.Forms.TextBox txtamtdue;
 		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.TextBox textBox9;
+		private System.Windows.Forms.TextBox txtamttender;
 		private System.Windows.Forms.Label label12;
-		private System.Windows.Forms.TextBox textBox10;
+		private System.Windows.Forms.TextBox txtchange;
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.ComboBox cmbproducts;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.TextBox txtnoitems;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnadd;
 		private System.Windows.Forms.GroupBox Services;
 		private System.Windows.Forms.ComboBox cmbtransTypes;
 		private System.Windows.Forms.Label label5;

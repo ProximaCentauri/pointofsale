@@ -52,5 +52,13 @@ namespace NJournals.Core.Presenter
 			products = m_productDao.GetAllItems() as List<RefillProductTypeDataEntity>;
 			m_view.SetAllProducts(products);
 		}
+		
+		public int getHeaderID(){
+			List<RefillHeaderDataEntity> refillHeader = m_refillDao.GetAllItems() as List<RefillHeaderDataEntity>;
+			if(refillHeader.Count > 0){
+				return refillHeader[refillHeader.Count-1].RefillHeaderID + 1;
+			}
+			return 1;
+		}
 	}
 }

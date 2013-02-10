@@ -46,6 +46,7 @@ namespace NJournals.Core.Views
 				m_presenter.SetAllCustomers();
 				m_presenter.SetAllProducts();
 				m_presenter.SetAllTransactionTypes();
+				txtjonumber.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 			}			
 		}
 		
@@ -65,8 +66,11 @@ namespace NJournals.Core.Views
 			foreach(RefillProductTypeDataEntity product in products){
 				this.cmbproducts.Items.Add(product.Name);
 			}
+		}		
+		
+		void BtnaddClick(object sender, EventArgs e)
+		{
+			
 		}
-		
-		
 	}
 }

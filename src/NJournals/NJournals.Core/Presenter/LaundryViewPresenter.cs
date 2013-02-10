@@ -63,6 +63,7 @@ namespace NJournals.Core.Presenter
 				// set daysummary			
 				daySummary = new LaundryDaySummaryDataEntity();
 				daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+				//TODO: totalsales should be amounttender - amount change.
 				daySummary.TotalSales += m_view.HeaderDataEntity.AmountTender; 
 				daySummary.TransCount += 1;
 				daySummary.HeaderEntities.Add(m_view.HeaderDataEntity); // set header entity in daysummary for nhibernate to pickup and map			
@@ -141,6 +142,6 @@ namespace NJournals.Core.Presenter
 		
 		public LaundryChargeDataEntity getJobChargeByName(string name){			
 			return m_chargeDao.GetByName(name);
-		}
+		}	
 	}
 }
