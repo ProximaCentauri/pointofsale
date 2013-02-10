@@ -33,12 +33,6 @@ namespace NJournals.Common.Interfaces
         IEnumerable<LaundryHeaderDataEntity> GetUnpaidTransactionsReport(CustomerDataEntity customer, 
 		                                                             DateTime fromDateTime, 
 		                                                             DateTime toDateTime,
-		                                                            bool b_isAll);
-		IEnumerable<LaundryHeaderDataEntity> GetPaidTransactionsReport(CustomerDataEntity customer, 
-		                                                             DateTime fromDateTime, 
-		                                                             DateTime toDateTime,
-		                                                            bool b_isAll);
-		
-        
+		                                                            bool b_isAll);	
 	}
 }

@@ -94,6 +94,7 @@
     <Compile Include="DataEntities\RefillDetailDataEntity.cs" />
     <Compile Include="DataEntities\RefillHeaderDataEntity.cs" />
     <Compile Include="DataEntities\RefillInventoryDataEntity.cs" />
+    <Compile Include="DataEntities\RefillPaymentDetailDataEntity.cs" />
     <Compile Include="DataEntities\RefillProductTypeDataEntity.cs" />
     <Compile Include="DataEntities\RefillTransactionTypeDataEntity.cs" />
     <Compile Include="DataMappers\CustomerDataMap.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="DataMappers\RefillDetailDataMap.cs" />
     <Compile Include="DataMappers\RefillHeaderDataMap.cs" />
     <Compile Include="DataMappers\RefillInventoryDataMap.cs" />
+    <Compile Include="DataMappers\RefillPaymentDetailDataMap.cs" />
     <Compile Include="DataMappers\RefillProductTypeDataMap.cs" />
     <Compile Include="DataMappers\RefillTransactionTypeDataMap.cs" />
     <Compile Include="Gui\BaseForm.cs">
@@ -151,6 +153,7 @@
     <Compile Include="Interfaces\IRefillingView.cs" />
     <Compile Include="Interfaces\IRefillInventoryDao.cs" />
     <Compile Include="Interfaces\IRefillProductTypeDao.cs" />
+    <Compile Include="Interfaces\IRefillReportDao.cs" />
     <Compile Include="Interfaces\IRefillTransactionTypeDao.cs" />
     <Compile Include="Interfaces\IReportView.cs" />
     <Compile Include="Interfaces\IView.cs" />

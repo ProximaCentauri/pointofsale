@@ -23,6 +23,9 @@ namespace NJournals.Common.Constants
         public const string ES_LAUNDRY_CLAIMEDITEMS_REPORT      = "NJournals.Core.Reports.LaundryClaimedItemsReport.rdlc";
         public const string ES_LAUNDRY_UNPAIDTRANSACTIONS_REPORT= "NJournals.Core.Reports.LaundryUnpaidTransactionsReport.rdlc";
 
+        
+        public const string DS_REFILLDAYSUMMARY					= "NJournals_Common_DataEntities_RefillDaySummaryDataEntity";
+        public const string DS_REFILLHEADER						= "NJournals_Common_DataEntities_RefillHeaderDataEntity";
         public const string ES_REFILL_SALES_REPORT              = "NJournals.Core.Reports.RefillySalesReport.rdlc";      
         public const string ES_REFILL_UNPAIDTRANSACTIONS_REPORT = "NJournals.Core.Reports.RefillUnpaidTransactionsReport.rdlc"; 	
     }

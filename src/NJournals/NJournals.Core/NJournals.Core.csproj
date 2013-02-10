@@ -99,6 +99,7 @@
     <Compile Include="Models\RefillDaySummaryDao.cs" />
     <Compile Include="Models\RefillInventoryDao.cs" />
     <Compile Include="Models\RefillProductTypeDao.cs" />
+    <Compile Include="Models\RefillReportDao.cs" />
     <Compile Include="Models\RefillTransactionTypeDao.cs" />
     <Compile Include="Presenter\AddItemPresenter.cs" />
     <Compile Include="Presenter\LaundryConfigurationViewPresenter.cs" />

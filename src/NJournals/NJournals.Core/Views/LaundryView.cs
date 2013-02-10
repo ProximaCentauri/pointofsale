@@ -172,6 +172,7 @@ namespace NJournals.Core.Views
 			txtamtdue.Text = (this.amountDue + price).ToString("N2");			
 			this.totalAmtDue = decimal.Parse(txtamtdue.Text) + totalAmtDue;
 			this.txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + totalAmtDue).ToString("N2");
+			this.txtbalance.Text = this.txttotalamtdue.Text;
 		}
 		
 		void BtnaddClick(object sender, EventArgs e)
@@ -201,7 +202,7 @@ namespace NJournals.Core.Views
 			this.amountTender = decimal.Parse(txtamttender.Text);
 			this.totalAmtDue = decimal.Parse(txttotalamtdue.Text);				
 			if(amountTender < totalAmtDue){
-				txtbalance.Text = (amountDue - amountTender).ToString("N2");
+				txtbalance.Text = (totalAmtDue - amountTender).ToString("N2");
 				txtchange.Text = "0.00";
 			}else{
 				txtchange.Text = (amountTender - totalAmtDue).ToString("N2");	

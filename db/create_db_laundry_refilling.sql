@@ -213,7 +213,7 @@ CREATE TABLE `laundrypaymentdetail` (
   `PaymentDate` datetime NOT NULL,
   `Amount` decimal(10,2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
-  KEY `laundrypaymentdetail` (`LaundryHeaderID`),  
+  KEY `IX_laundrypaymentdetail_1` (`LaundryHeaderID`),  
   CONSTRAINT `FK_laundrypaymentdetail_1` FOREIGN KEY (`LaundryHeaderID`) REFERENCES `laundryheader` (`LaundryHeaderID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -366,6 +366,24 @@ CREATE TABLE `refilldetail` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
+
+--
+-- Table structure for table `refillpaymentdetail`
+--
+
+DROP TABLE IF EXISTS `refillpaymentdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refillpaymentdetail` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `RefillHeaderID` int(10) unsigned NOT NULL, 
+  `PaymentDate` datetime NOT NULL,
+  `Amount` decimal(10,2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `IX_refillpaymentdetail_1` (`RefillHeaderID`),  
+  CONSTRAINT `FK_refillpaymentdetail_1` FOREIGN KEY (`RefillHeaderID`) REFERENCES `refillheader` (`RefillHeaderID`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `refillinventory`

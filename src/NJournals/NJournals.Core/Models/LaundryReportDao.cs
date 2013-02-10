@@ -164,38 +164,6 @@ namespace NJournals.Core.Models
                     }
 				}
 			}
-		}
-		public IEnumerable<LaundryHeaderDataEntity> GetPaidTransactionsReport(CustomerDataEntity customer, 
-		                                                             DateTime fromDateTime, 
-		                                                             DateTime toDateTime,
-		                                                             bool b_isAll)
-		{
-			using(var session = NHibernateHelper.OpenSession())
-			{
-				using(var transaction = session.BeginTransaction())
-				{					
-					if(b_isAll)
-					{
-						var query = session.QueryOver<LaundryHeaderDataEntity>()							
-							.Where(x => x.ReceivedDate >= fromDateTime)
-							.And(x => x.ReceivedDate <= toDateTime)
-							.And(x => x.PaidFlag == true)
-							.OrderBy(x => x.ReceivedDate).Asc
-							.List();
-						return query;
-					}
-					else{
-						var query = session.QueryOver<LaundryHeaderDataEntity>()
-							.Where(x => x.Customer == customer)
-							.And(x => x.ReceivedDate >= fromDateTime)
-							.And(x => x.ReceivedDate <= toDateTime)
-							.And(x => x.PaidFlag == true)
-							.OrderBy(x => x.ReceivedDate).Asc
-							.List(); 
-						return query;
-					}					
-				}
-			}
 		}		
 	}
 }

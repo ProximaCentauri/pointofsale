@@ -25,12 +25,14 @@ namespace NJournals.Common.DataEntities
 		
 		public virtual CustomerDataEntity Customer {get;set;}
 		public virtual RefillTransactionTypeDataEntity TransactionType {get;set;}
+		public virtual IList<RefillPaymentDetailDataEntity> PaymentDetailEntities {get;set;}
 		public virtual IList<RefillDetailDataEntity> DetailEntities {get;set;}		
 		public virtual RefillDaySummaryDataEntity DaySummary {get;set;}
 		
 		public RefillHeaderDataEntity()
-		{
+		{			
 			DetailEntities = new List<RefillDetailDataEntity>();
+			PaymentDetailEntities = new List<RefillPaymentDetailDataEntity>();
 		}
 	}
 }

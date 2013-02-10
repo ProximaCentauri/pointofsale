@@ -1,6 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
+# SharpDevelop 4.2.1.8805
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NJournals.Core", "NJournals.Core\NJournals.Core.csproj", "{75204E51-263C-4A6A-ADC8-134E1D76E0CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NJournals.Common", "NJournals.Common\NJournals.Common.csproj", "{93D64FA2-505D-4E0A-8DEE-A53AC81EC839}"

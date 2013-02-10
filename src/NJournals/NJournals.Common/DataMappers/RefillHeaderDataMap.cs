@@ -32,6 +32,10 @@ namespace NJournals.Common.DataMappers
 				.KeyColumn("RefillHeaderID")
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
+			HasMany<RefillPaymentDetailDataEntity>(x => x.PaymentDetailEntities)
+				.KeyColumn("RefillHeaderID").Not.LazyLoad()
+				.Inverse()
+				.Cascade.AllDeleteOrphan();
 			References<CustomerDataEntity>(x => x.Customer)
 				.Column("CustomerID").Not.Nullable().Not.LazyLoad();
 			References<RefillDaySummaryDataEntity>(x => x.DaySummary)

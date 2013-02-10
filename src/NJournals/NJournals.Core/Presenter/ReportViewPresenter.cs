@@ -113,6 +113,31 @@ namespace NJournals.Core.Presenter
 			}
           
             datasources.Clear();
-		}			
+		}		
+
+		private void RunRefillReport(string selectedReport, CustomerDataEntity customer, 
+		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll)
+		{
+            List<ReportDataSource> datasources = new List<ReportDataSource>();
+			switch(selectedReport)
+			{
+                case ReportConstants.SALES_REPORT:
+					List<RefillDaySummaryDataEntity> salesReport = m_laundryReportDao
+						.GetCustomerSalesReport(customer, fromDateTime, toDateTime, b_isAll) as List<RefillDaySummaryDataEntity>;
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLDAYSUMMARY, salesReport));
+                    m_view.DisplayReport(salesReport, datasources, ReportConstants.ES_REFILL_SALES_REPORT);                  
+				    break;                
+                case ReportConstants.UNPAID_TRANSACTIONS_REPORT:
+                    List<RefillHeaderDataEntity> unpaidReport = m_laundryReportDao
+                        .GetUnpaidTransactionsReport(customer, fromDateTime, toDateTime, b_isAll) as List<RefillHeaderDataEntity>;
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLHEADER, unpaidReport));
+                    m_view.DisplayReport(unpaidReport, datasources, ReportConstants.ES_REFILL_UNPAIDTRANSACTIONS_REPORT);
+                    break;
+				default:
+					break;
+			}
+          
+            datasources.Clear();
+		}				
 	}
 }
