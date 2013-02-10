@@ -28,13 +28,13 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void Save(RefillDaySummaryDataEntity p_daysummary)
+		public void SaveOrUpdate(RefillDaySummaryDataEntity p_daysummary)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Save(p_daysummary);
+					session.SaveOrUpdate(p_daysummary);
 					transaction.Commit();
 				}
 			}

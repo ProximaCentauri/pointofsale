@@ -21,6 +21,6 @@ namespace NJournals.Common.DataEntities
 		public virtual int Qty {get;set;}
 		public virtual int StoreBottleQty {get;set;}
 		public virtual int StoreCapQty {get;set;}
-		public virtual double Amount {get;set;}
+		public virtual decimal Amount {get;set;}
 	}
 }

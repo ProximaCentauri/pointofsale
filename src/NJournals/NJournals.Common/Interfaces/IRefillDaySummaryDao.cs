@@ -18,7 +18,7 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface IRefillDaySummaryDao
 	{
-		void Save(RefillDaySummaryDataEntity p_daysummary);
+		void SaveOrUpdate(RefillDaySummaryDataEntity p_daysummary);
 		RefillDaySummaryDataEntity GetByDay(DateTime p_day);
 		IEnumerable<RefillDaySummaryDataEntity> GetAllItems();
 		void Update(RefillDaySummaryDataEntity p_daysummary);

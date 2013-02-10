@@ -17,7 +17,7 @@ namespace NJournals.Common.DataEntities
 	{
 		public virtual int ID {get;set;}
         public virtual DateTime PaymentDate { get; set; }
-		public virtual RefillPaymentDetailDataEntity Header {get;set;}
+		public virtual RefillHeaderDataEntity Header {get;set;}
 		public virtual decimal Amount {get;set;}		
 	}
 }
