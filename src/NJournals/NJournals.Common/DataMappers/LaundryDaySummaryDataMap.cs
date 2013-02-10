@@ -28,7 +28,7 @@ namespace NJournals.Common.DataMappers
 			HasMany<LaundryHeaderDataEntity>(x => x.HeaderEntities)
 				.KeyColumn("DayID")
 				.Inverse()
-				.Cascade.AllDeleteOrphan();
+				.Cascade.All();
 			Table("LaundryDaySummary");
 		}
 	}

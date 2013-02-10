@@ -50,16 +50,15 @@ namespace NJournals.Core.Presenter
 			if(daySummary != null)
 			{
 				daySummary.TransCount += 1;
+				//TODO: totalsales should be amounttender - amount change.
 				daySummary.TotalSales += m_view.HeaderDataEntity.AmountTender;
 				m_view.HeaderDataEntity.DaySummary = daySummary;
 				
 				// update daysummary with transcount and totalsales
 				
 				m_summaryDao.Update(daySummary);
-				
-				// save header,details,etc.
 			
-				m_laundryDao.Save(m_view.HeaderDataEntity);
+				
 			}else{
 				// set daysummary			
 				daySummary = new LaundryDaySummaryDataEntity();
@@ -75,6 +74,9 @@ namespace NJournals.Core.Presenter
 				
 				m_summaryDao.SaveOrUpdate(daySummary);
 			}
+			
+			m_laundryDao.Save(m_view.HeaderDataEntity);
+			
 			m_view.CloseView();
 		}
 		

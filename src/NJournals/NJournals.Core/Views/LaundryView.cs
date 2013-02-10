@@ -132,6 +132,7 @@ namespace NJournals.Core.Views
 			paymentdetail.Amount = m_headerEntity.AmountTender;
 			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 			paymentdetail.Header = m_headerEntity;
+			m_headerEntity.PaymentDetailEntities.Add(paymentdetail);
 			foreach(object checkedItem in this.chkchargesList.CheckedItems){
 				m_jobcharge.Charge = m_presenter.getJobChargeByName(checkedItem.ToString());
 				m_jobcharge.Header = m_headerEntity;
