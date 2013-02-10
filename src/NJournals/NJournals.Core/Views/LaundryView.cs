@@ -41,6 +41,7 @@ namespace NJournals.Core.Views
 		ILaundryDao m_laundryDao;
 		private decimal amountTender = 0;
 		private decimal amountDue = 0;
+		private decimal totalAmtDue = 0;
 		
 		void setButtonImages()
 		{
@@ -61,6 +62,7 @@ namespace NJournals.Core.Views
 				m_presenter.SetAllCharges();
 				this.groupBox2.Enabled = this.btnclaim.Enabled = false;
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
+				this.dtrecieveDate.Value = DateTime.Now;
 			}
 		}
 				
@@ -94,8 +96,8 @@ namespace NJournals.Core.Views
 		
 		private void processHeaderDataEntity(){
 			m_headerEntity = new LaundryHeaderDataEntity();
-			m_headerEntity.AmountTender = this.amountTender;
-			m_headerEntity.AmountDue = this.amountDue;
+			m_headerEntity.AmountTender = decimal.Parse(this.txtamttender.Text);			                                            
+			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
 			
 			m_headerEntity.ReceivedDate = dtrecieveDate.Value;
 			m_headerEntity.DueDate = dtdueDate.Value;
@@ -140,6 +142,8 @@ namespace NJournals.Core.Views
 			lstItems.CopyTo(items,0);
 			dataGridView1.Rows.Add(items);
 			txtamtdue.Text = (this.amountDue + price).ToString("N2");			
+			this.totalAmtDue = decimal.Parse(txtamtdue.Text) + totalAmtDue;
+			this.txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + totalAmtDue).ToString("N2");
 		}
 		
 		void BtnaddClick(object sender, EventArgs e)
@@ -167,42 +171,46 @@ namespace NJournals.Core.Views
 				txtamttender.Text = "0.00";				
 			}	
 			this.amountTender = decimal.Parse(txtamttender.Text);
-			this.amountDue = decimal.Parse(txtamtdue.Text);				
-			if(amountTender < amountDue){
+			this.totalAmtDue = decimal.Parse(txttotalamtdue.Text);				
+			if(amountTender < totalAmtDue){
 				txtbalance.Text = (amountDue - amountTender).ToString("N2");
 				txtchange.Text = "0.00";
 			}else{
-				txtchange.Text = (amountTender - amountDue).ToString("N2");	
+				txtchange.Text = (amountTender - totalAmtDue).ToString("N2");	
 				txtbalance.Text = "0.00";
 			}							
 		}		
 		
-		void additionalCharges_checkedchanged(object sender, EventArgs e)
-		{
-			/*decimal totalcharge = 0M;
-			decimal charge = 0M;
-			if(sender is CheckBox){
-				CheckBox chargeChkBox = sender as CheckBox;
-				if(chargeChkBox.Checked){
-					///add charge to totalcharge
-					charge = m_presenter.getJobChargeByName(chargeChkBox.Text);
-					//totalcharge = decimal.Parse(txtcharges.Text) + charge;
-					//txtcharges.Text = totalcharge.ToString("N2");
-				}else{
-					charge = m_presenter.getJobChargeByName(chargeChkBox.Text);
-					//totalcharge = decimal.Parse(txtcharges.Text) - charge;
-					//txtcharges.Text = totalcharge.ToString("N2");
-				}
-			}*/
-		}
-		
 		void chkchargeList_selectedindexchanged(object sender, EventArgs e)
 		{
 			decimal totalcharge = 0M;
+			decimal temp_totalcharge = 0M;
 			decimal charge = 0M;
+			txttotalcharges.Text = "0.00";
 			foreach(object checkedItem in this.chkchargesList.CheckedItems){
-				
+				charge = m_presenter.getJobChargeByName(checkedItem.ToString());
+				temp_totalcharge = totalcharge + charge;
+				totalcharge = temp_totalcharge;
 			}
+			txttotalcharges.Text = totalcharge.ToString("N2");
+			txttotalamtdue.Text = (decimal.Parse(txttotalcharges.Text) + totalAmtDue).ToString("N2");
+		}
+		
+		
+		void textbox_click(object sender, EventArgs e)
+		{
+			if(sender is TextBox){
+				TextBox txt = sender as TextBox;
+				txt.SelectionStart = 0;
+				txt.SelectionLength = txt.Text.Length;
+				txt.Focus();
+			}
+		}
+		
+		void txtdiscount_textchange(object sender, EventArgs e)
+		{
+			txttotaldiscount.Text = (decimal.Parse(txtdiscount.Text) / 100M).ToString("N2");
+			txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txttotaldiscount.Text)).ToString("N2");
 		}
 	}	
 }

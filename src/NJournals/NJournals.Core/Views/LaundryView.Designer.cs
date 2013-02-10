@@ -416,6 +416,8 @@ namespace NJournals.Core.Views
 			this.txtamttender.Name = "txtamttender";
 			this.txtamttender.Size = new System.Drawing.Size(119, 20);
 			this.txtamttender.TabIndex = 11;
+			this.txtamttender.Text = "0.00";
+			this.txtamttender.Click += new System.EventHandler(this.textbox_click);
 			this.txtamttender.TextChanged += new System.EventHandler(this.txtamttender_textchanged);
 			this.txtamttender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
@@ -526,6 +528,7 @@ namespace NJournals.Core.Views
 			this.txtbalance.Name = "txtbalance";
 			this.txtbalance.Size = new System.Drawing.Size(119, 20);
 			this.txtbalance.TabIndex = 21;
+			this.txtbalance.Text = "0.00";
 			// 
 			// label13
 			// 
@@ -583,14 +586,15 @@ namespace NJournals.Core.Views
 			// txtdiscount
 			// 
 			this.txtdiscount.BackColor = System.Drawing.SystemColors.Info;
-			this.txtdiscount.Enabled = false;
 			this.txtdiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtdiscount.ForeColor = System.Drawing.Color.Black;
 			this.txtdiscount.Location = new System.Drawing.Point(777, 452);
 			this.txtdiscount.Name = "txtdiscount";
 			this.txtdiscount.Size = new System.Drawing.Size(34, 20);
 			this.txtdiscount.TabIndex = 27;
-			this.txtdiscount.Text = "0.00";
+			this.txtdiscount.Text = "0";
+			this.txtdiscount.Click += new System.EventHandler(this.textbox_click);
+			this.txtdiscount.TextChanged += new System.EventHandler(this.txtdiscount_textchange);
 			// 
 			// label17
 			// 
