@@ -21,11 +21,6 @@ namespace NJournals.Common.DataEntities
 		public virtual string Address {get;set;}
 		public virtual string ContactNumber {get;set;}
 		
-		public virtual IList<RefillCustomerInventoryDataEntity> RefillInventoryEntities {get; set;}
-		
-		public CustomerDataEntity()
-		{
-			RefillInventoryEntities = new List<RefillCustomerInventoryDataEntity>();
-		}
+		//public virtual RefillCustomerInventoryDataEntity CustomerInventory {get;set;}
 	}
 }

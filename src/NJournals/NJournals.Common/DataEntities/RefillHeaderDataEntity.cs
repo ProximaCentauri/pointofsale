@@ -18,8 +18,8 @@ namespace NJournals.Common.DataEntities
 	{
 		public virtual int RefillHeaderID {get;set;}
 		public virtual DateTime Date {get;set;}
-		public virtual double AmountDue {get;set;}
-		public virtual double AmountTender {get;set;}
+		public virtual decimal AmountDue {get;set;}
+		public virtual decimal AmountTender {get;set;}
 		public virtual int TotalQty {get;set;}
 		public virtual bool PaidFlag {get;set;}
 		

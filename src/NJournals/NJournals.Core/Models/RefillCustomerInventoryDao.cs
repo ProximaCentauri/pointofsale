@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: TEJ
- * Date: 2/2/2013
- * Time: 12:41 PM
+ * Date: 2/10/2013
+ * Time: 10:10 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -16,74 +16,70 @@ using System.Collections.Generic;
 using NJournals.Common.Interfaces;
 using NJournals.Common.DataEntities;
 
-
 namespace NJournals.Core.Models
 {
 	/// <summary>
-	/// Description of RefillDaySummaryDao.
+	/// Description of RefillCustomerInventoryDao.
 	/// </summary>
-	public class RefillDaySummaryDao : IRefillDaySummaryDao
+	public class RefillCustomerInventoryDao : IRefillCustomerInventoryDao
 	{
-		public RefillDaySummaryDao()
+		public RefillCustomerInventoryDao()
 		{
 		}
 		
-		public void SaveOrUpdate(RefillDaySummaryDataEntity p_daysummary)
+		public void SaveOrUpdate(RefillCustomerInventoryDataEntity p_custinv)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.SaveOrUpdate(p_daysummary);
+					session.SaveOrUpdate(p_custinv);
 					transaction.Commit();
 				}
 			}
 		}
 		
-		
-		public RefillDaySummaryDataEntity GetByDay(DateTime p_day)
+		public IEnumerable<RefillCustomerInventoryDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				using(var transaction = session.BeginTransaction())
-				{
-					var query = session.Query<RefillDaySummaryDataEntity>()
-						.Where(x => x.DayStamp == p_day)
-						.SingleOrDefault();
-					return query;
-				}
-			}
-		}
-		
-		public IEnumerable<RefillDaySummaryDataEntity> GetAllItems()
-		{
-			using(var session = NHibernateHelper.OpenSession())
-			{
-                var query = session.Query<RefillDaySummaryDataEntity>()
+				var query = session.Query<RefillCustomerInventoryDataEntity>()
+                    .OrderBy(x => x.Customer)
                     .ToList();
                 return query;
 			}
 		}
 		
-		public void Update(RefillDaySummaryDataEntity p_daysummary)
+		public RefillCustomerInventoryDataEntity GetByCustomer(CustomerDataEntity customer)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+                var query = session.Query<RefillCustomerInventoryDataEntity>()
+                    .Where(x => x.Customer == customer)
+                    .SingleOrDefault();
+				return query;
+			}
+		}
+		
+		public void Delete(RefillCustomerInventoryDataEntity p_custinv)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Update(p_daysummary);
+					session.Delete(p_custinv);
 					transaction.Commit();
 				}
 			}
 		}
 		
-		public void Delete(RefillDaySummaryDataEntity p_daysummary)
+		public void Update(RefillCustomerInventoryDataEntity p_custinv)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Delete(p_daysummary);
+					session.Update(p_custinv);
 					transaction.Commit();
 				}
 			}
