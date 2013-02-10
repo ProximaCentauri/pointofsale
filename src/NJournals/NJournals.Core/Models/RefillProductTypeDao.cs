@@ -27,13 +27,13 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void Save(RefillProductTypeDataEntity p_type)
+		public void SaveOrUpdate(RefillProductTypeDataEntity p_type)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Save(p_type);
+					session.SaveOrUpdate(p_type);
 					transaction.Commit();
 				}
 			}

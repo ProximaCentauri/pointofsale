@@ -122,6 +122,7 @@ namespace NJournals.Core.Views
 			this.dgvCategory.Size = new System.Drawing.Size(789, 186);
 			this.dgvCategory.TabIndex = 5;
 			this.dgvCategory.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategory_CellValueChanged);
+			this.dgvCategory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			// 
 			// btnAddPriceScheme
 			// 

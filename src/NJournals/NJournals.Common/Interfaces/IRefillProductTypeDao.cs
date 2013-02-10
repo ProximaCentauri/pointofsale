@@ -18,7 +18,7 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface IRefillProductTypeDao
 	{
-		void Save(RefillProductTypeDataEntity p_type);
+		void SaveOrUpdate(RefillProductTypeDataEntity p_type);
 		IEnumerable<RefillProductTypeDataEntity> GetAllItems();
 		RefillProductTypeDataEntity GetByName(string p_name);
 		void Delete(RefillProductTypeDataEntity p_type);

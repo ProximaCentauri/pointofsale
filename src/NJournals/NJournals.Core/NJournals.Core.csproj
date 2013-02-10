@@ -109,6 +109,7 @@
     <Compile Include="Presenter\LaundryConfigurationViewPresenter.cs" />
     <Compile Include="Presenter\LaundryViewPresenter.cs" />
     <Compile Include="Presenter\MainFormStationPresenter.cs" />
+    <Compile Include="Presenter\RefillingConfigurationViewPresenter.cs" />
     <Compile Include="Presenter\RefillingViewPresenter.cs" />
     <Compile Include="Presenter\ReportViewPresenter.cs" />
     <Compile Include="Program.cs" />

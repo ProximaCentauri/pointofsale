@@ -150,6 +150,7 @@
     <Compile Include="Interfaces\IRefillCustomerInventoryDao.cs" />
     <Compile Include="Interfaces\IRefillDao.cs" />
     <Compile Include="Interfaces\IRefillDaySummaryDao.cs" />
+    <Compile Include="Interfaces\IRefillingConfigurationView.cs" />
     <Compile Include="Interfaces\IRefillingView.cs" />
     <Compile Include="Interfaces\IRefillInventoryDao.cs" />
     <Compile Include="Interfaces\IRefillProductTypeDao.cs" />
