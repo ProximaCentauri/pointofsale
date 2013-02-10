@@ -97,7 +97,7 @@ namespace NJournals.Core.Views
 		
 		private LaundryHeaderDataEntity processHeaderDataEntity(){
 			m_headerEntity = new LaundryHeaderDataEntity();			
-			m_jobcharge = new LaundryJobChargesDataEntity();
+			
 			m_headerEntity.AmountTender = decimal.Parse(this.txtamttender.Text);			                                            
 			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
 			
@@ -129,11 +129,13 @@ namespace NJournals.Core.Views
 			m_headerEntity.AmountDue = decimal.Parse(txtamtdue.Text);
 			
 			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
+			//TODO: amount should be amounttender - amount change.
 			paymentdetail.Amount = m_headerEntity.AmountTender;
 			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 			paymentdetail.Header = m_headerEntity;
 			m_headerEntity.PaymentDetailEntities.Add(paymentdetail);
 			foreach(object checkedItem in this.chkchargesList.CheckedItems){
+				m_jobcharge = new LaundryJobChargesDataEntity();
 				m_jobcharge.Charge = m_presenter.getJobChargeByName(checkedItem.ToString());
 				m_jobcharge.Header = m_headerEntity;
 				m_headerEntity.JobChargeEntities.Add(m_jobcharge);
@@ -235,7 +237,7 @@ namespace NJournals.Core.Views
 		
 		void txtdiscount_textchange(object sender, EventArgs e)
 		{
-			txttotaldiscount.Text = (decimal.Parse(txtdiscount.Text) / 100M).ToString("N2");
+			txttotaldiscount.Text = ((decimal.Parse(txtdiscount.Text) / 100M) * decimal.Parse(txttotalamtdue.Text)).ToString("N2");
 			txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txttotaldiscount.Text)).ToString("N2");
 		}
 		
