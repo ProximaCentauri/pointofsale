@@ -496,6 +496,7 @@ namespace NJournals.Core.Views
 			this.btnsaveclose.TabIndex = 16;
 			this.btnsaveclose.Text = "Save && Close";
 			this.btnsaveclose.UseVisualStyleBackColor = true;
+			this.btnsaveclose.Click += new System.EventHandler(this.BtnsavecloseClick);
 			// 
 			// btncancel
 			// 

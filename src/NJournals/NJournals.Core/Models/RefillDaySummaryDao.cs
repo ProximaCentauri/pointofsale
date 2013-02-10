@@ -49,7 +49,7 @@ namespace NJournals.Core.Models
 				{
 					var query = session.Query<RefillDaySummaryDataEntity>()
 						.Where(x => x.DayStamp == p_day)
-						.Single();
+						.SingleOrDefault();
 					return query;
 				}
 			}

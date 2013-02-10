@@ -39,6 +39,7 @@ namespace NJournals.Core.Views
 		
 		LaundryViewPresenter m_presenter;
 		ILaundryDao m_laundryDao;
+		LaundryJobChargesDataEntity m_jobcharge = null;
 		private decimal amountTender = 0;
 		private decimal amountDue = 0;
 		private decimal totalAmtDue = 0;
@@ -94,37 +95,61 @@ namespace NJournals.Core.Views
 			m_presenter.CancelClicked();
 		}		
 		
-		private void processHeaderDataEntity(){
-			m_headerEntity = new LaundryHeaderDataEntity();
+		private LaundryHeaderDataEntity processHeaderDataEntity(){
+			m_headerEntity = new LaundryHeaderDataEntity();			
+			m_jobcharge = new LaundryJobChargesDataEntity();
 			m_headerEntity.AmountTender = decimal.Parse(this.txtamttender.Text);			                                            
 			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
 			
 			m_headerEntity.ReceivedDate = dtrecieveDate.Value;
 			m_headerEntity.DueDate = dtdueDate.Value;
 			//TODO: change totalitemqty value to textbox value of totalitemqty
-			m_headerEntity.TotalItemQty = 1;
-			m_headerEntity.PaidFlag = chkpaywhenclaim.Checked;
-			m_headerEntity.ClaimFlag = btnclaim.Enabled;		
-			
+			m_headerEntity.TotalItemQty = 1;			
+			m_headerEntity.ClaimFlag = btnclaim.Enabled;			
 			m_headerEntity.Customer = m_presenter.getCustomerByName(cmbCustomers.Text);			
 			
 			foreach(DataGridViewRow row in this.dataGridView1.Rows){
-				LaundryDetailDataEntity detail = new LaundryDetailDataEntity();
-				detail.Header = m_headerEntity;				
-				detail.Category = m_presenter.getCategoryByName(row.Cells[0].Value.ToString());				
-				detail.Service = m_presenter.getServiceByName(row.Cells[1].Value.ToString());
-				detail.Kilo = int.Parse(row.Cells[2].Value.ToString());
-				detail.ItemQty = int.Parse(row.Cells[3].Value.ToString());
-				detail.Amount = int.Parse(row.Cells[4].Value.ToString());
-				m_headerEntity.DetailEntities.Add(detail);
-			}			
+				if(row.Cells[0].Value != null){
+					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
+						LaundryDetailDataEntity detail = new LaundryDetailDataEntity();
+						detail.Header = m_headerEntity;				
+						detail.Category = m_presenter.getCategoryByName(row.Cells[0].Value.ToString());				
+						detail.Service = m_presenter.getServiceByName(row.Cells[1].Value.ToString());
+						detail.Kilo = double.Parse(row.Cells[2].Value.ToString());
+						detail.ItemQty = int.Parse(row.Cells[3].Value.ToString());
+						detail.Amount = decimal.Parse(row.Cells[4].Value.ToString());
+						m_headerEntity.DetailEntities.Add(detail);
+					}	
+				}							
+			}		
+			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
+			m_headerEntity.TotalCharge = decimal.Parse(txttotalcharges.Text);
+			m_headerEntity.TotalDiscount = decimal.Parse(txttotaldiscount.Text);
+			m_headerEntity.AmountTender = decimal.Parse(txtamttender.Text);
+			m_headerEntity.AmountDue = decimal.Parse(txtamtdue.Text);
+			
+			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
+			paymentdetail.Amount = m_headerEntity.AmountTender;
+			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+			paymentdetail.Header = m_headerEntity;
+			foreach(object checkedItem in this.chkchargesList.CheckedItems){
+				m_jobcharge.Charge = m_presenter.getJobChargeByName(checkedItem.ToString());
+				m_jobcharge.Header = m_headerEntity;
+				m_headerEntity.JobChargeEntities.Add(m_jobcharge);
+			}
+			if(decimal.Parse(this.txtbalance.Text) == 0){
+				m_headerEntity.PaidFlag = true;				
+			}else
+				m_headerEntity.PaidFlag = false;
+			
+			return m_headerEntity;
 		}
 		
 		
 		LaundryHeaderDataEntity m_headerEntity;
 		
 		public LaundryHeaderDataEntity HeaderDataEntity {
-			get { return m_headerEntity; }
+			get { return processHeaderDataEntity(); }
 			set { m_headerEntity = value; }
 		}
 	
@@ -188,7 +213,7 @@ namespace NJournals.Core.Views
 			decimal charge = 0M;
 			txttotalcharges.Text = "0.00";
 			foreach(object checkedItem in this.chkchargesList.CheckedItems){
-				charge = m_presenter.getJobChargeByName(checkedItem.ToString());
+				charge = m_presenter.getAmtChargeByName(checkedItem.ToString());
 				temp_totalcharge = totalcharge + charge;
 				totalcharge = temp_totalcharge;
 			}
@@ -211,6 +236,13 @@ namespace NJournals.Core.Views
 		{
 			txttotaldiscount.Text = (decimal.Parse(txtdiscount.Text) / 100M).ToString("N2");
 			txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txttotaldiscount.Text)).ToString("N2");
+		}
+		
+		void BtnsavecloseClick(object sender, EventArgs e)
+		{
+			m_presenter.SaveClicked();
+			MessageService.ShowInfo("Successfully saved entries.","Information");			
+			                       
 		}
 	}	
 }

@@ -48,7 +48,7 @@ namespace NJournals.Core.Models
 				{
 					var query = session.Query<LaundryDaySummaryDataEntity>()
 						.Where(x => x.DayStamp == p_day)
-						.Single();
+						.SingleOrDefault();
 					return query;
 				}
 			}

@@ -51,7 +51,7 @@ namespace NJournals.Core.Models
 					var query = session.Query<RefillHeaderDataEntity>()
 						.Where(x => x.RefillHeaderID == p_headerID)
 						.FetchMany(x => x.DetailEntities)
-						.Single();
+						.SingleOrDefault();
 					return query;
 				}
 			}

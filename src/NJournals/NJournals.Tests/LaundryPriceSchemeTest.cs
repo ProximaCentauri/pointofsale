@@ -35,7 +35,7 @@ namespace NJournals.Tests
 			entity.Price = 29.00M;
 			
 			LaundryPriceSchemeDao dao = new LaundryPriceSchemeDao();
-			dao.Save(entity);
+			//dao.Save(entity);
 		}
 		
 		[Test]

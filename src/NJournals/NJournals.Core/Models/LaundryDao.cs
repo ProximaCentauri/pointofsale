@@ -49,7 +49,7 @@ namespace NJournals.Core.Models
 					var query = session.Query<LaundryHeaderDataEntity>()
 						.Where(x => x.LaundryHeaderID == p_headerID)
 						.FetchMany(x => x.DetailEntities)
-						.Single();
+						.SingleOrDefault();
 					return query;
 				}
 			}

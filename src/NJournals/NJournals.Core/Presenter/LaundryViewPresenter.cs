@@ -23,6 +23,7 @@ namespace NJournals.Core.Presenter
 		ILaundryServiceDao m_serviceDao;
 		ILaundryChargeDao m_chargeDao;
 		ICustomerDao m_customerDao;
+		ILaundryDaySummaryDao m_summaryDao;
 		
 		ILaundryDao m_laundryDao;		
 		List<LaundryCategoryDataEntity> categories = null;
@@ -38,10 +39,43 @@ namespace NJournals.Core.Presenter
 			m_serviceDao = new LaundryServiceDao();
 			m_customerDao = new CustomerDao();
 			m_chargeDao = new LaundryChargeDao();
+			m_summaryDao = new LaundryDaySummaryDao();
 		}
 		
 		public void SaveClicked(){
 			
+			DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
+			
+			LaundryDaySummaryDataEntity daySummary = m_summaryDao.GetByDay(today);
+			if(daySummary != null)
+			{
+				daySummary.TransCount += 1;
+				daySummary.TotalSales += m_view.HeaderDataEntity.AmountTender;
+				m_view.HeaderDataEntity.DaySummary = daySummary;
+				
+				// update daysummary with transcount and totalsales
+				
+				m_summaryDao.Update(daySummary);
+				
+				// save header,details,etc.
+			
+				m_laundryDao.Save(m_view.HeaderDataEntity);
+			}else{
+				// set daysummary			
+				daySummary = new LaundryDaySummaryDataEntity();
+				daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+				daySummary.TotalSales += m_view.HeaderDataEntity.AmountTender; 
+				daySummary.TransCount += 1;
+				daySummary.HeaderEntities.Add(m_view.HeaderDataEntity); // set header entity in daysummary for nhibernate to pickup and map			
+				m_view.HeaderDataEntity.DaySummary = daySummary; // set daysummary entity in header for nhibernate to pickup and map
+				
+				m_customerDao.SaveOrUpdate(m_view.HeaderDataEntity.Customer); // save or update customer
+				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
+				// this will handle the saving for the linked tables
+				
+				m_summaryDao.SaveOrUpdate(daySummary);
+			}
+			m_view.CloseView();
 		}
 		
 		public void CancelClicked(){
@@ -99,9 +133,12 @@ namespace NJournals.Core.Presenter
 			return 1;
 		}
 		
-		public decimal getJobChargeByName(string name){
-			
+		public decimal getAmtChargeByName(string name){			
 			return m_chargeDao.GetByName(name).Amount;
+		}
+		
+		public LaundryChargeDataEntity getJobChargeByName(string name){			
+			return m_chargeDao.GetByName(name);
 		}
 	}
 }
