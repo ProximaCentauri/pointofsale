@@ -25,12 +25,14 @@ namespace NJournals.Core.Presenter
 		IReportView m_view;
 		ICustomerDao m_customerDao;
 		ILaundryReportDao m_laundryReportDao;
+        IRefillReportDao m_refillReportDao;
 		
 		public ReportViewPresenter(IReportView p_view)
 		{
 			this.m_view = p_view;
 			m_customerDao = new CustomerDao();
 			m_laundryReportDao = new LaundryReportDao();
+            m_refillReportDao = new RefillReportDao();
 		}
 		
 		public void SetAllReportTypes(string wndTitle)
@@ -71,7 +73,7 @@ namespace NJournals.Core.Presenter
 					                 toDateTime, b_isAll);
 					break;
                 case ReportConstants.REFILL_WINDOW:
-                    
+                    RunRefillReport(selectedReport, customer, fromDateTime, toDateTime, b_isAll);
 					break;
 				default:
 					break;
@@ -122,13 +124,13 @@ namespace NJournals.Core.Presenter
 			switch(selectedReport)
 			{
                 case ReportConstants.SALES_REPORT:
-					List<RefillDaySummaryDataEntity> salesReport = m_laundryReportDao
+                    List<RefillDaySummaryDataEntity> salesReport = m_refillReportDao
 						.GetCustomerSalesReport(customer, fromDateTime, toDateTime, b_isAll) as List<RefillDaySummaryDataEntity>;
                     datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLDAYSUMMARY, salesReport));
                     m_view.DisplayReport(salesReport, datasources, ReportConstants.ES_REFILL_SALES_REPORT);                  
 				    break;                
                 case ReportConstants.UNPAID_TRANSACTIONS_REPORT:
-                    List<RefillHeaderDataEntity> unpaidReport = m_laundryReportDao
+                    List<RefillHeaderDataEntity> unpaidReport = m_refillReportDao
                         .GetUnpaidTransactionsReport(customer, fromDateTime, toDateTime, b_isAll) as List<RefillHeaderDataEntity>;
                     datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLHEADER, unpaidReport));
                     m_view.DisplayReport(unpaidReport, datasources, ReportConstants.ES_REFILL_UNPAIDTRANSACTIONS_REPORT);

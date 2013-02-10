@@ -151,7 +151,9 @@
     <Compile Include="Views\RefillingClaimView.Designer.cs">
       <DependentUpon>RefillingClaimView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\RefillingConfigurationView.cs" />
+    <Compile Include="Views\RefillingConfigurationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\RefillingConfigurationView.Designer.cs">
       <DependentUpon>RefillingConfigurationView.cs</DependentUpon>
     </Compile>
