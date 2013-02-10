@@ -47,11 +47,9 @@ namespace NJournals.Core.Views
             this.label2 = new System.Windows.Forms.Label();
             this.cmbReportTypes = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.LaundryDaySummaryDataEntityBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.rptBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LaundryDaySummaryDataEntityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rptBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -157,25 +155,22 @@ namespace NJournals.Core.Views
             this.label1.TabIndex = 0;
             this.label1.Text = "Report Type:";
             // 
-            // LaundryDaySummaryDataEntityBindingSource
-            // 
-            this.LaundryDaySummaryDataEntityBindingSource.DataSource = typeof(NJournals.Common.DataEntities.LaundryHeaderDataEntity);
-            // 
             // reportViewer
             // 
             this.reportViewer.AutoScroll = true;
             this.reportViewer.AutoSize = true;
-            this.reportViewer.LocalReport.ShowDetailedSubreportMessages = false;
-            this.reportViewer.Location = new System.Drawing.Point(38, 245);
+            this.reportViewer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.reportViewer.Location = new System.Drawing.Point(38, 234);
             this.reportViewer.Name = "reportViewer";
-            this.reportViewer.Size = new System.Drawing.Size(818, 297);
+            this.reportViewer.Size = new System.Drawing.Size(820, 310);
             this.reportViewer.TabIndex = 1;
             // 
             // ReportView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
             this.ClientSize = new System.Drawing.Size(892, 566);
             this.Controls.Add(this.reportViewer);
@@ -184,7 +179,6 @@ namespace NJournals.Core.Views
             this.Text = "ReportView";
             this.Load += new System.EventHandler(this.ReportView_Load);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.LaundryDaySummaryDataEntityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rptBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -200,8 +194,7 @@ namespace NJournals.Core.Views
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateToPicker;
         private System.Windows.Forms.DateTimePicker dateFromPicker;
-        private System.Windows.Forms.BindingSource LaundryDaySummaryDataEntityBindingSource;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.BindingSource rptBindingSource;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
 	}
 }

@@ -71,6 +71,7 @@ namespace NJournals.Core.Presenter
 					                 toDateTime, b_isAll);
 					break;
                 case ReportConstants.REFILL_WINDOW:
+                    
 					break;
 				default:
 					break;
@@ -87,13 +88,25 @@ namespace NJournals.Core.Presenter
 					List<LaundryDaySummaryDataEntity> salesReport = m_laundryReportDao
 						.GetCustomerSalesReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryDaySummaryDataEntity>;
                     datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYDAYSUMMARY, salesReport));
-                    m_view.DisplayReport(salesReport, datasources, ReportConstants.ES_SALESREPORT);                  
+                    m_view.DisplayReport(salesReport, datasources, ReportConstants.ES_LAUNDRY_SALES_REPORT);                  
 				    break;
                 case ReportConstants.UNCLAIMED_ITEMS_REPORT:
                     List<LaundryHeaderDataEntity> unclaimedReport = m_laundryReportDao
                         .GetUnclaimedItemsReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryHeaderDataEntity>;
                     datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, unclaimedReport));
-                    m_view.DisplayReport(unclaimedReport, datasources, ReportConstants.ES_UNCLAIMED_ITEMS_REPORT);                   
+                    m_view.DisplayReport(unclaimedReport, datasources, ReportConstants.ES_LAUNDRY_UNCLAIMEDITEMS_REPORT);                   
+                    break;
+                case ReportConstants.CLAIMED_ITEMS_REPORT:
+                    List<LaundryHeaderDataEntity> claimedReport = m_laundryReportDao
+                        .GetClaimedItemsReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryHeaderDataEntity>;
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, claimedReport));
+                    m_view.DisplayReport(claimedReport, datasources, ReportConstants.ES_LAUNDRY_CLAIMEDITEMS_REPORT);
+                    break;
+                case ReportConstants.UNPAID_TRANSACTIONS_REPORT:
+                    List<LaundryHeaderDataEntity> unpaidReport = m_laundryReportDao
+                        .GetUnpaidTransactionsReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryHeaderDataEntity>;
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, unpaidReport));
+                    m_view.DisplayReport(unpaidReport, datasources, ReportConstants.ES_LAUNDRY_UNPAIDTRANSACTIONS_REPORT);
                     break;
 				default:
 					break;

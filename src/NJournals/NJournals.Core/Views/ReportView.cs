@@ -53,6 +53,7 @@ namespace NJournals.Core.Views
             m_presenter.SetAllCustomers();
 
             this.reportViewer.RefreshReport();
+            this.reportViewer.RefreshReport();
         }
         
         public void SetAllReportTypes(List<string> reportTypes)
@@ -108,7 +109,7 @@ namespace NJournals.Core.Views
             parameters.Add(new ReportParameter("fromDateTime", fromDateTime.ToShortDateString()));
             parameters.Add(new ReportParameter("toDateTime", toDateTime.ToShortDateString()));
             parameters.Add(new ReportParameter("customerName", cmbCustomers.Text));
-            parameters.Add(new ReportParameter("isAll", b_isAll.ToString()));
+            parameters.Add(new ReportParameter("isAll", b_isAll.ToString()));          
             this.reportViewer.LocalReport.SetParameters(parameters);
             this.reportViewer.RefreshReport();            
 		}

@@ -30,11 +30,11 @@ namespace NJournals.Common.Interfaces
 		                                                           DateTime fromDateTime,
 		                                                           DateTime toDateTime,
 		                                                           bool b_isAll);
-        IEnumerable<LaundryHeaderDataEntity> GetUnpaidItemsReport(CustomerDataEntity customer, 
+        IEnumerable<LaundryHeaderDataEntity> GetUnpaidTransactionsReport(CustomerDataEntity customer, 
 		                                                             DateTime fromDateTime, 
 		                                                             DateTime toDateTime,
 		                                                            bool b_isAll);
-		IEnumerable<LaundryHeaderDataEntity> GetPaidItemsReport(CustomerDataEntity customer, 
+		IEnumerable<LaundryHeaderDataEntity> GetPaidTransactionsReport(CustomerDataEntity customer, 
 		                                                             DateTime fromDateTime, 
 		                                                             DateTime toDateTime,
 		                                                            bool b_isAll);

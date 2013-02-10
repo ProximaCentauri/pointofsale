@@ -7,7 +7,7 @@ namespace NJournals.Common.Constants
 {
     public static class ReportConstants
     {
-		public const string  SALES_REPORT				        = "Sales Report";
+		public const string SALES_REPORT				        = "Sales Report";
 		public const string UNCLAIMED_ITEMS_REPORT		        = "Unclaimed Items Report";
 		public const string UNPAID_TRANSACTIONS_REPORT	        = "Unpaid Transactions Report";
 		public const string CLAIMED_ITEMS_REPORT		        = "Claimed Items Report";	
@@ -18,8 +18,12 @@ namespace NJournals.Common.Constants
 
         public const string DS_LAUNDRYDAYSUMMARY                = "NJournals_Common_DataEntities_LaundryDaySummaryDataEntity";
         public const string DS_LAUNDRYHEADER                    = "NJournals_Common_DataEntities_LaundryHeaderDataEntity";
-        public const string ES_SALESREPORT                      = "NJournals.Core.Reports.SalesReport.rdlc";
-        public const string ES_UNCLAIMED_ITEMS_REPORT           = "NJournals.Core.Reports.UnclaimedItemsReport.rdlc";       
-			
+        public const string ES_LAUNDRY_SALES_REPORT             = "NJournals.Core.Reports.LaundrySalesReport.rdlc";
+        public const string ES_LAUNDRY_UNCLAIMEDITEMS_REPORT    = "NJournals.Core.Reports.LaundryUnclaimedItemsReport.rdlc";
+        public const string ES_LAUNDRY_CLAIMEDITEMS_REPORT      = "NJournals.Core.Reports.LaundryClaimedItemsReport.rdlc";
+        public const string ES_LAUNDRY_UNPAIDTRANSACTIONS_REPORT= "NJournals.Core.Reports.LaundryUnpaidTransactionsReport.rdlc";
+
+        public const string ES_REFILL_SALES_REPORT              = "NJournals.Core.Reports.RefillySalesReport.rdlc";      
+        public const string ES_REFILL_UNPAIDTRANSACTIONS_REPORT = "NJournals.Core.Reports.RefillUnpaidTransactionsReport.rdlc"; 	
     }
 }

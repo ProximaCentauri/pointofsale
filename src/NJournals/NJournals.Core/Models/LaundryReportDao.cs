@@ -109,34 +109,32 @@ namespace NJournals.Core.Models
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
-				{					
-					if(b_isAll)
-					{
-                        var query = session.QueryOver<LaundryHeaderDataEntity>()
-                            .Where(x => x.ReceivedDate >= fromDateTime)
-                            .And(x => x.ReceivedDate <= toDateTime)
-                            .And(x => x.ClaimFlag == true)
-                            .OrderBy(x => x.ReceivedDate).Asc                            
-                            .List();
-
+				{
+                    if (b_isAll)
+                    {
+                        var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
+                           .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
+                           .Add(Restrictions.Eq("header.ClaimFlag", true))
+                           .AddOrder(Order.Asc("header.ReceivedDate"))
+                           .List<LaundryHeaderDataEntity>();
                         return query;
-					}
-					else{
-						var query = session.QueryOver<LaundryHeaderDataEntity>()
-							.Where(x => x.Customer == customer)
-							.And(x => x.ReceivedDate >= fromDateTime)
-							.And(x => x.ReceivedDate <= toDateTime)
-							.And(x => x.ClaimFlag == true)
-							.OrderBy(x => x.ReceivedDate).Asc
-							.List(); 
-						return query;
-					}
+                    }
+                    else
+                    {
+                        var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
+                            .Add(Restrictions.Eq("header.Customer", customer))
+                            .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
+                            .Add(Restrictions.Eq("header.ClaimFlag", true))
+                            .AddOrder(Order.Asc("header.ReceivedDate"))
+                            .List<LaundryHeaderDataEntity>();
+                        return query;
+                    }
 					
 				}
 			}
 		}
-		
-        public IEnumerable<LaundryHeaderDataEntity> GetUnpaidItemsReport(CustomerDataEntity customer, 
+
+        public IEnumerable<LaundryHeaderDataEntity> GetUnpaidTransactionsReport(CustomerDataEntity customer, 
 		                                                             DateTime fromDateTime, 
 		                                                             DateTime toDateTime,
 		                                                            bool b_isAll)
@@ -144,31 +142,30 @@ namespace NJournals.Core.Models
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
-				{					
-					if(b_isAll)
-					{
-						var query = session.QueryOver<LaundryHeaderDataEntity>()							
-							.Where(x => x.ReceivedDate >= fromDateTime)
-							.And(x => x.ReceivedDate <= toDateTime)
-							.And(x => x.PaidFlag == false)
-							.OrderBy(x => x.ReceivedDate).Asc
-							.List();
-						return query;
-					}
-					else{
-						var query = session.QueryOver<LaundryHeaderDataEntity>()
-							.Where(x => x.Customer == customer)
-							.And(x => x.ReceivedDate >= fromDateTime)
-							.And(x => x.ReceivedDate <= toDateTime)
-							.And(x => x.PaidFlag == false)
-							.OrderBy(x => x.ReceivedDate).Asc
-							.List(); 
-						return query;
-					}					
+				{
+                    if (b_isAll)
+                    {
+                        var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
+                           .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
+                           .Add(Restrictions.Eq("header.PaidFlag", false))
+                           .AddOrder(Order.Asc("header.ReceivedDate"))
+                           .List<LaundryHeaderDataEntity>();
+                        return query;
+                    }
+                    else
+                    {
+                        var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
+                            .Add(Restrictions.Eq("header.Customer", customer))
+                            .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
+                            .Add(Restrictions.Eq("header.PaidFlag", false))
+                            .AddOrder(Order.Asc("header.ReceivedDate"))
+                            .List<LaundryHeaderDataEntity>();
+                        return query;
+                    }
 				}
 			}
 		}
-		public IEnumerable<LaundryHeaderDataEntity> GetPaidItemsReport(CustomerDataEntity customer, 
+		public IEnumerable<LaundryHeaderDataEntity> GetPaidTransactionsReport(CustomerDataEntity customer, 
 		                                                             DateTime fromDateTime, 
 		                                                             DateTime toDateTime,
 		                                                             bool b_isAll)

@@ -41,9 +41,8 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\..\lib\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms">
-      <HintPath>..\..\..\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data">
       <HintPath>C:\Program Files\MySQL\MySQL Installer\MySql.Data.dll</HintPath>
     </Reference>
@@ -185,8 +184,12 @@
       <DependentUpon>MainFormStation.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\SalesReport.rdlc" />
-    <EmbeddedResource Include="Reports\UnclaimedItemsReport.rdlc" />
+    <EmbeddedResource Include="Reports\RefillUnpaidTransactionsReport.rdlc" />
+    <EmbeddedResource Include="Reports\RefillSalesReport.rdlc" />
+    <EmbeddedResource Include="Reports\LaundryClaimedItemsReport.rdlc" />
+    <EmbeddedResource Include="Reports\LaundryUnpaidTransactionsReport.rdlc" />
+    <EmbeddedResource Include="Reports\LaundrySalesReport.rdlc" />
+    <EmbeddedResource Include="Reports\LaundryUnclaimedItemsReport.rdlc" />
     <EmbeddedResource Include="Views\AddItemView.resx">
       <DependentUpon>AddItemView.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -262,6 +265,8 @@
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.CustomerDataEntity.datasource" />
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.LaundryDaySummaryDataEntity.datasource" />
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.LaundryHeaderDataEntity.datasource" />
+    <None Include="Properties\DataSources\NJournals.Common.DataEntities.RefillDaySummaryDataEntity.datasource" />
+    <None Include="Properties\DataSources\NJournals.Common.DataEntities.RefillHeaderDataEntity.datasource" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

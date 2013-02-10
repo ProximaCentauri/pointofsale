@@ -2,7 +2,7 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <DataSources>
     <DataSource Name="DummyDataSource">
-      <rd:DataSourceID>16b1a834-0680-4173-aafc-ffc65bed1948</rd:DataSourceID>
+      <rd:DataSourceID>b7367e11-31d4-4211-badb-b3df20d3832b</rd:DataSourceID>
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString />
@@ -35,8 +35,8 @@
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
-  <RightMargin>1in</RightMargin>
-  <LeftMargin>1in</LeftMargin>
+  <RightMargin>0.875in</RightMargin>
+  <LeftMargin>0.875in</LeftMargin>
   <PageHeader>
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <ReportItems>
@@ -46,6 +46,9 @@
         <Width>4.125in</Width>
         <Style>
           <Color>SteelBlue</Color>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
           <FontFamily>Calibri</FontFamily>
           <FontSize>20pt</FontSize>
           <FontWeight>700</FontWeight>
@@ -63,8 +66,10 @@
       <Textbox Name="textbox15">
         <rd:DefaultName>textbox15</rd:DefaultName>
         <Top>0.23958in</Top>
-        <Width>2in</Width>
         <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
           <FontFamily>Calibri</FontFamily>
           <TextAlign>Right</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
@@ -83,6 +88,9 @@
         <Top>0.875in</Top>
         <Width>3.125in</Width>
         <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
           <FontFamily>Calibri</FontFamily>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -99,6 +107,9 @@
         <Top>1.08333in</Top>
         <Width>1in</Width>
         <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
           <FontFamily>Calibri</FontFamily>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
@@ -115,6 +126,9 @@
         <Top>1.29167in</Top>
         <Width>1in</Width>
         <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
           <FontFamily>Calibri</FontFamily>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
@@ -131,6 +145,9 @@
         <Top>0.875in</Top>
         <Width>1in</Width>
         <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
           <FontFamily>Calibri</FontFamily>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
@@ -147,6 +164,9 @@
         <Top>1.08333in</Top>
         <Width>3.125in</Width>
         <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
           <FontFamily>Calibri</FontFamily>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -163,6 +183,9 @@
         <Top>1.29167in</Top>
         <Width>3.125in</Width>
         <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
           <FontFamily>Calibri</FontFamily>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -179,7 +202,7 @@
   <BottomMargin>1in</BottomMargin>
   <rd:ReportID>8fdae99d-7631-4e93-8241-39580bef8c23</rd:ReportID>
   <DataSets>
-    <DataSet Name="NJournals_Common_DataEntities_LaundryDaySummaryDataEntity">
+    <DataSet Name="NJournals_Common_DataEntities_RefillDaySummaryDataEntity">
       <Fields>
         <Field Name="DayID">
           <DataField>DayID</DataField>
@@ -191,11 +214,11 @@
         </Field>
         <Field Name="HeaderEntities">
           <DataField>HeaderEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryHeaderDataEntity, NJournals.Common, Version=1.0.4787.15106, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.RefillHeaderDataEntity]</rd:TypeName>
         </Field>
         <Field Name="TotalSales">
           <DataField>TotalSales</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="TransCount">
           <DataField>TransCount</DataField>
@@ -209,18 +232,17 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>NJournals.Common.DataEntities</rd:DataSetName>
-        <rd:TableName>LaundryDaySummaryDataEntity</rd:TableName>
-        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.LaundryDaySummaryDataEntity, NJournals.Common, Version=1.0.4787.15106, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>RefillDaySummaryDataEntity</rd:TableName>
+        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.RefillDaySummaryDataEntity, NJournals.Common, Version=1.0.4789.19218, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <Width>6.5in</Width>
+  <Width>6.12501in</Width>
   <Body>
     <ReportItems>
       <Table Name="table1">
-        <DataSetName>NJournals_Common_DataEntities_LaundryDaySummaryDataEntity</DataSetName>
+        <DataSetName>NJournals_Common_DataEntities_RefillDaySummaryDataEntity</DataSetName>
         <Top>0.25in</Top>
-        <Width>6.12501in</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -230,6 +252,9 @@
                     <Textbox Name="DayStamp_2">
                       <rd:DefaultName>DayStamp_2</rd:DefaultName>
                       <Style>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -247,7 +272,11 @@
                     <Textbox Name="DayStamp_1">
                       <rd:DefaultName>DayStamp_1</rd:DefaultName>
                       <Style>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -264,6 +293,9 @@
                     <Textbox Name="textbox10">
                       <rd:DefaultName>textbox10</rd:DefaultName>
                       <Style>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -271,7 +303,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!TotalSales.Value</Value>
+                      <Value>=FormatCurrency(Fields!TotalSales.Value,2)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -280,6 +312,11 @@
             </TableRow>
           </TableRows>
         </Details>
+        <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
+        </Style>
         <Header>
           <TableRows>
             <TableRow>
@@ -292,15 +329,13 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>LightGrey</Default>
+                          <Default>White</Default>
                         </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
-                        <FontSize>12pt</FontSize>
+                        <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
                         <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -320,15 +355,13 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>LightGrey</Default>
+                          <Default>White</Default>
                         </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
-                        <FontSize>12pt</FontSize>
+                        <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
                         <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -348,15 +381,13 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>LightGrey</Default>
+                          <Default>White</Default>
                         </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
-                        <FontSize>12pt</FontSize>
+                        <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
                         <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -396,6 +427,9 @@
                       <rd:DefaultName>textbox4</rd:DefaultName>
                       <Style>
                         <BackgroundColor>PowderBlue</BackgroundColor>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -416,9 +450,13 @@
                       <rd:DefaultName>textbox5</rd:DefaultName>
                       <Style>
                         <BackgroundColor>PowderBlue</BackgroundColor>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -436,6 +474,9 @@
                       <rd:DefaultName>textbox7</rd:DefaultName>
                       <Style>
                         <BackgroundColor>PowderBlue</BackgroundColor>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -446,7 +487,7 @@
                       </Style>
                       <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=SUM(Fields!TotalSales.Value)</Value>
+                      <Value>=FormatCurrency(SUM(Fields!TotalSales.Value),2)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -459,14 +500,16 @@
     </ReportItems>
     <Height>1.125in</Height>
   </Body>
-  <Language>en-US</Language>
+  <Language>en-PH</Language>
   <PageFooter>
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <ReportItems>
       <Textbox Name="textbox16">
         <rd:DefaultName>textbox16</rd:DefaultName>
-        <Width>1.875in</Width>
         <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
           <FontFamily>Calibri</FontFamily>
           <FontSize>8pt</FontSize>
           <TextAlign>Right</TextAlign>
