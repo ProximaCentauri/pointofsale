@@ -72,7 +72,7 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void SaveOrUpdatePriceScheme(LaundryPriceSchemeDataEntity priceScheme) {
-			m_priceSchemeDao.Save(priceScheme);
+			m_priceSchemeDao.SaveOrUpdate(priceScheme);
 		}
 		
 	}

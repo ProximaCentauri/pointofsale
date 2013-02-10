@@ -27,7 +27,7 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void Save(LaundryPriceSchemeDataEntity p_priceScheme)
+		public void SaveOrUpdate(LaundryPriceSchemeDataEntity p_priceScheme)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{

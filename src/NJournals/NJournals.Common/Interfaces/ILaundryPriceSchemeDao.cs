@@ -19,7 +19,7 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface ILaundryPriceSchemeDao
 	{
-		void Save(LaundryPriceSchemeDataEntity p_priceScheme);
+		void SaveOrUpdate(LaundryPriceSchemeDataEntity p_priceScheme);
 		IEnumerable<LaundryPriceSchemeDataEntity> GetAllItems();
 		LaundryPriceSchemeDataEntity GetByCategoryService(LaundryServiceDataEntity p_service, 
 		                                                  LaundryCategoryDataEntity p_category);
