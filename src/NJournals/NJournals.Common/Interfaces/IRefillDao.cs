@@ -18,7 +18,7 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface IRefillDao
 	{
-		void Save(RefillHeaderDataEntity p_header);
+		void SaveOrUpdate(RefillHeaderDataEntity p_header);
 		RefillHeaderDataEntity GetByID(int p_headerID);
 		IEnumerable<RefillHeaderDataEntity> GetByCustomer(CustomerDataEntity customer);
 		IEnumerable<RefillHeaderDataEntity> GetAllItems();

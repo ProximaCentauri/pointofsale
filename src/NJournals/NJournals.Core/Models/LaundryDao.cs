@@ -27,7 +27,7 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void Save(LaundryHeaderDataEntity p_header)
+		public void SaveOrUpdate(LaundryHeaderDataEntity p_header)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{

@@ -107,7 +107,7 @@ namespace NJournals.Tests
 			
 			// FIX: save new header & new daysummary thru laundrydao instead of laundrydaysummary
 			LaundryDao dao = new LaundryDao();
-			dao.Save(header);
+			dao.SaveOrUpdate(header);
 		}
 		
 		[Test]
@@ -185,7 +185,7 @@ namespace NJournals.Tests
 				
 				// save header,details,etc.
 				LaundryDao ldao = new LaundryDao();
-				ldao.Save(header);
+				ldao.SaveOrUpdate(header);
 			}				
 		}
 		

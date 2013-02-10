@@ -114,9 +114,9 @@ namespace NJournals.Tests
 			custdao.SaveOrUpdate(customer); // save or update customer
 			custInvDao.SaveOrUpdate(custInv);
 			// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
-			// this will handle the saving for the linked tables
-			RefillDaySummaryDao dao = new RefillDaySummaryDao();
-			dao.SaveOrUpdate(daysummary);
+			// this will handle the saving for the linked tables		
+			RefillDao ldao = new RefillDao();
+			ldao.SaveOrUpdate(header);
 		}
 		
 		[Test]
@@ -183,7 +183,7 @@ namespace NJournals.Tests
 				
 				// save header,details,etc.
 				RefillDao ldao = new RefillDao();
-				ldao.Save(header);
+				ldao.SaveOrUpdate(header);
 			}				
 		}
 		

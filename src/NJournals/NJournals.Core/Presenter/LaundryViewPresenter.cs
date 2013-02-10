@@ -56,7 +56,7 @@ namespace NJournals.Core.Presenter
 				
 				// update daysummary with transcount and totalsales				
 				m_summaryDao.Update(daySummary);
-				m_laundryDao.Save(headerEntity);
+				m_laundryDao.SaveOrUpdate(headerEntity);
 			
 				
 			}else{
@@ -76,7 +76,7 @@ namespace NJournals.Core.Presenter
 				m_customerDao.SaveOrUpdate(headerEntity.Customer);				
 				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
 				// this will handle the saving for the linked tables				
-				m_summaryDao.SaveOrUpdate(daySummary);
+				m_laundryDao.SaveOrUpdate(headerEntity);
 			}		
 			m_view.CloseView();
 		}
