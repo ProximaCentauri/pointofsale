@@ -104,8 +104,10 @@ namespace NJournals.Tests
 			custdao.SaveOrUpdate(customer); // save or update customer
 			// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
 			// this will handle the saving for the linked tables
-			LaundryDaySummaryDao dao = new LaundryDaySummaryDao();
-			dao.SaveOrUpdate(daysummary);
+			
+			// FIX: save new header & new daysummary thru laundrydao instead of laundrydaysummary
+			LaundryDao dao = new LaundryDao();
+			dao.Save(header);
 		}
 		
 		[Test]

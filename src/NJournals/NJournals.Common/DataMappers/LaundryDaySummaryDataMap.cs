@@ -25,10 +25,12 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.DayStamp);
 			Map(x => x.TotalSales);
 			Map(x => x.TransCount);
+			
 			HasMany<LaundryHeaderDataEntity>(x => x.HeaderEntities)
 				.KeyColumn("DayID")
 				.Inverse()
-				.Cascade.All();
+				.AsBag()
+				.Cascade.AllDeleteOrphan();				
 			Table("LaundryDaySummary");
 		}
 	}
