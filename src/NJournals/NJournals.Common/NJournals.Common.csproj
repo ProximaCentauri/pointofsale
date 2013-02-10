@@ -130,6 +130,7 @@
     <Compile Include="Interfaces\IAddItemCategoryView.cs" />
     <Compile Include="Interfaces\IAddItemGenericView.cs" />
     <Compile Include="Interfaces\IAddItemView.cs" />
+    <Compile Include="Interfaces\ICheckListView.cs" />
     <Compile Include="Interfaces\IConfigurationView.cs" />
     <Compile Include="Interfaces\ICustomerDao.cs" />
     <Compile Include="Interfaces\IItemCategoryDao.cs" />

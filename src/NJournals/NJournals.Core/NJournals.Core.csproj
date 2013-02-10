@@ -102,6 +102,7 @@
     <Compile Include="Models\RefillReportDao.cs" />
     <Compile Include="Models\RefillTransactionTypeDao.cs" />
     <Compile Include="Presenter\AddItemPresenter.cs" />
+    <Compile Include="Presenter\ChekcListViewPresenter.cs" />
     <Compile Include="Presenter\LaundryConfigurationViewPresenter.cs" />
     <Compile Include="Presenter\LaundryViewPresenter.cs" />
     <Compile Include="Presenter\MainFormStationPresenter.cs" />
