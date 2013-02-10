@@ -52,6 +52,9 @@
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\..\lib\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
+    <Reference Include="NUnit.Framework">
+      <HintPath>$(SharpDevelopBinPath)\Tools\NUnit\NUnit.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -95,6 +98,7 @@
     <Compile Include="Models\LaundryPriceSchemeDao.cs" />
     <Compile Include="Models\LaundryReportDao.cs" />
     <Compile Include="Models\LaundryServiceDao.cs" />
+    <Compile Include="Models\RefillCustomerInventoryDao.cs" />
     <Compile Include="Models\RefillDao.cs" />
     <Compile Include="Models\RefillDaySummaryDao.cs" />
     <Compile Include="Models\RefillInventoryDao.cs" />
@@ -227,6 +231,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RefillingConfigurationView.resx">
       <DependentUpon>RefillingConfigurationView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RefillingView.resx">
       <DependentUpon>RefillingView.cs</DependentUpon>

@@ -24,12 +24,8 @@ namespace NJournals.Common.DataMappers
 			Id(x => x.CustomerID);
 			Map(x => x.Name);
 			Map(x => x.Address);
-			Map(x => x.ContactNumber);
+			Map(x => x.ContactNumber);	
 			
-			HasMany<RefillCustomerInventoryDataEntity>(x => x.RefillInventoryEntities)
-				.KeyColumn("CustomerID")
-				.Inverse()
-				.Cascade.AllDeleteOrphan();				 
 			Table("Customer");
 		}
 	}

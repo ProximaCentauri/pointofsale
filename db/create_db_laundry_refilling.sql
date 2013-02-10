@@ -508,6 +508,13 @@ INSERT INTO `db_laundry_refilling`.`refilltransactiontype` (`Name`) VALUES ('Wal
 INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber`) VALUES ('John Dee', 'Cebu', '111-1111');
 INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber`) VALUES ('Vanessa Dee', 'Cebu', '111-1111');
 
+-- Refill inventory table (for testing only)
+INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('5 Gal Bottle', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('4L Bottle', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('1L Bottle', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('500ML Bottle', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('330 Bottle', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('Cap', '100', '100', '0');
 
 -- DUMP COMPLETE
 

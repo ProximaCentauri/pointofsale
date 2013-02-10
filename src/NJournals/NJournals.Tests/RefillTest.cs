@@ -42,16 +42,15 @@ namespace NJournals.Tests
 			RefillProductTypeDataEntity productType = new RefillProductTypeDao().GetByName("5 Gal at 25");
 			
 			CustomerDao custdao = new CustomerDao();
-			CustomerDataEntity customer = custdao.GetByName("John Dee");
+			CustomerDataEntity customer = custdao.GetByName("Vanessa Dee");
 			if(customer == null)
 			{
 				customer = new CustomerDataEntity();
-				customer.Name = "John Dee";
+				customer.Name = "Vanessa Dee";
 				customer.Address = "Cebu";
 				customer.ContactNumber = "111-1111";
 			}
-			
-			header.Customer = customer;
+						
 			header.Date = DateTime.Now;			
 			header.TransactionType = transactionType;
 			
@@ -61,6 +60,29 @@ namespace NJournals.Tests
 			detail.Amount = productType.Price * Convert.ToDecimal(detail.Qty);
 			detail.StoreBottleQty = 10;
 			detail.StoreCapQty = 10;
+			
+			// update main inventory
+			// TODO: fix proper handling of inventory per type of bottle???
+			RefillInventoryDao refillInvDao = new RefillInventoryDao();
+			RefillInventoryDataEntity inv = new RefillInventoryDataEntity();
+			inv = refillInvDao.GetByName("Cap");
+			inv.QtyOnHand -= detail.StoreCapQty;
+			inv.QtyReleased += detail.StoreCapQty;
+			refillInvDao.Update(inv);
+			inv = refillInvDao.GetByName("5 Gal Bottle");
+			inv.QtyOnHand -= detail.StoreBottleQty;
+			inv.QtyReleased += detail.StoreBottleQty;
+			refillInvDao.Update(inv);
+				
+			// update cust inventory
+			RefillCustomerInventoryDao custInvDao = new RefillCustomerInventoryDao();
+			RefillCustomerInventoryDataEntity custInv= new RefillCustomerInventoryDataEntity();
+			custInv.Customer = customer;
+			custInv.CapsOnHand += detail.StoreCapQty;
+			custInv.BottlesOnHand += detail.StoreBottleQty;			
+			
+				
+			header.Customer = customer;
 			
 			header.DetailEntities.Add(detail); // add detail to header details list
 			header.AmountDue = detail.Amount;						
@@ -90,6 +112,7 @@ namespace NJournals.Tests
 			header.DaySummary = daysummary; // set daysummary entity in header for nhibernate to pickup and map
 			
 			custdao.SaveOrUpdate(customer); // save or update customer
+			custInvDao.SaveOrUpdate(custInv);
 			// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
 			// this will handle the saving for the linked tables
 			RefillDaySummaryDao dao = new RefillDaySummaryDao();

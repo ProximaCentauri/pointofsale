@@ -26,8 +26,9 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.BottlesReturned);
 			Map(x => x.CapsOnHand);
 			Map(x => x.CapsReturned);
+			
 			References<CustomerDataEntity>(x => x.Customer)
-				.Column("CustomerID");
+				.Column("CustomerID").Not.Nullable();
 			Table("RefillCustomerInventory");
 		}
 	}
