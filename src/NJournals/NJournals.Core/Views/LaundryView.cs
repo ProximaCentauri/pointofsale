@@ -251,12 +251,22 @@ namespace NJournals.Core.Views
 		
 		void lblchecklist_click(object sender, EventArgs e)
 		{
-			
+			m_presenter.LaunchChecklist();
 		}
 		
 		public void LaunchChecklist(){
 			CheckListView chklistView = new CheckListView();
 			chklistView.ShowDialog();
+		}
+		
+		public void LoadHeaderEntityData(LaundryHeaderDataEntity p_headerEntity){
+			this.m_headerEntity = p_headerEntity;
+			
+		}
+		
+		void BtnsearchClick(object sender, EventArgs e)
+		{
+			m_presenter.getHeaderEntityByJONumber(int.Parse(txtsearch.Text));
 		}
 	}	
 }

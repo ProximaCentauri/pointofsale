@@ -174,6 +174,7 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.label1);
 			this.Name = "CheckListView";
 			this.Text = "CheckListView";
+			this.Load += new System.EventHandler(this.CheckListViewLoad);
 			((System.ComponentModel.ISupportInitialize)(this.dgvCheckList)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

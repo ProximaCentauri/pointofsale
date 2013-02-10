@@ -40,9 +40,14 @@ namespace NJournals.Core.Views
 		private CheckListViewPresenter m_presenter;
 		
 		public void SetAllCheckList(List<LaundryChecklistDataEntity> entities){
-			foreach(LaundryChecklistDataEntity entity in entities){
-				
+			foreach(LaundryChecklistDataEntity entity in entities){				
+				dgvCheckList.Rows.Add(false, entity.Name, "");
 			}
+		}
+		
+		void CheckListViewLoad(object sender, EventArgs e)
+		{
+			m_presenter.SetAllChecklist();
 		}
 	}
 }

@@ -370,6 +370,7 @@ namespace NJournals.Core.Views
 			this.btnsearch.Size = new System.Drawing.Size(24, 24);
 			this.btnsearch.TabIndex = 4;
 			this.btnsearch.UseVisualStyleBackColor = false;
+			this.btnsearch.Click += new System.EventHandler(this.BtnsearchClick);
 			// 
 			// txtsearch
 			// 
@@ -544,6 +545,7 @@ namespace NJournals.Core.Views
 			// 
 			// lblchecklist
 			// 
+			this.lblchecklist.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblchecklist.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblchecklist.ForeColor = System.Drawing.Color.Blue;
 			this.lblchecklist.Location = new System.Drawing.Point(54, 400);

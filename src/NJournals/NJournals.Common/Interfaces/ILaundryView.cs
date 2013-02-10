@@ -25,6 +25,7 @@ namespace NJournals.Common.Interfaces
 		void SetAllServices(List<LaundryServiceDataEntity> services);		
 		void SetAllCustomers(List<CustomerDataEntity> customers);		
 		void SetAllCharges(List<LaundryChargeDataEntity> charges);
+		void LoadHeaderEntityData(LaundryHeaderDataEntity headerEntity);
 		void LaunchChecklist();
 		void AddItem();
 		

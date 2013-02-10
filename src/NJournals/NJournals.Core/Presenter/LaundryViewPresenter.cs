@@ -144,10 +144,9 @@ namespace NJournals.Core.Presenter
 			return m_chargeDao.GetByName(name);
 		}	
 		
-		public LaundryHeaderDataEntity getHeaderEntityByJONumber(int jonumber){
-			LaundryHeaderDataEntity header = m_laundryDao.GetByID(jonumber);
+		public void getHeaderEntityByJONumber(int jonumber){
+			m_view.LoadHeaderEntityData(m_laundryDao.GetByID(jonumber));
 			
-			return header;
 		}
 		
 		public void LaunchChecklist(){
