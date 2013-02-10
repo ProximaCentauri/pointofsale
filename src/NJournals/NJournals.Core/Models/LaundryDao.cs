@@ -27,13 +27,13 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void Save(LaundryHeaderDataEntity p_header)
+		public void SaveOrUpdate(LaundryHeaderDataEntity p_header)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Save(p_header);
+					session.SaveOrUpdate(p_header);
 					transaction.Commit();
 				}
 			}

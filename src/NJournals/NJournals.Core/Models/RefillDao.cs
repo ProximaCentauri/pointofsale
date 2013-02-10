@@ -29,13 +29,13 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void Save(RefillHeaderDataEntity p_header)
+		public void SaveOrUpdate(RefillHeaderDataEntity p_header)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Save(p_header);
+					session.SaveOrUpdate(p_header);
 					transaction.Commit();
 				}
 			}

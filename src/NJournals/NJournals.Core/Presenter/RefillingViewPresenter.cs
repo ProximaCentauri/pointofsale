@@ -25,6 +25,7 @@ namespace NJournals.Core.Presenter
 		ICustomerDao m_customerDao;
 		IRefillTransactionTypeDao m_transTypeDao;
 		IRefillProductTypeDao m_productDao;
+		
 		List<CustomerDataEntity> customers = null;
 		List<RefillTransactionTypeDataEntity> transactionTypes = null;
 		List<RefillProductTypeDataEntity> products = null;		
@@ -35,7 +36,8 @@ namespace NJournals.Core.Presenter
 			this.m_refillDao = p_refillDao;
 			this.m_transTypeDao = new RefillTransactionTypeDao();
 			this.m_customerDao = new CustomerDao();
-			this.m_productDao = new RefillProductTypeDao();			
+			this.m_productDao = new RefillProductTypeDao();		
+						
 		}
 		
 		public void SetAllCustomers(){
@@ -59,6 +61,10 @@ namespace NJournals.Core.Presenter
 				return refillHeader[refillHeader.Count-1].RefillHeaderID + 1;
 			}
 			return 1;
+		}
+		
+		public decimal getAmtChargeByName(string name){			
+			return m_productDao.GetByName(name).Price;
 		}
 	}
 }

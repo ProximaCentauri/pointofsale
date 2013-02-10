@@ -28,6 +28,7 @@ namespace NJournals.Common.DataMappers
 			HasMany<RefillHeaderDataEntity>(x => x.HeaderEntities)
 				.KeyColumn("DayID")
 				.Inverse()
+				.AsBag()
 				.Cascade.AllDeleteOrphan();
 			Table("RefillDaySummary");
 				

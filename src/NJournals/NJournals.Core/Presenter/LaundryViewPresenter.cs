@@ -56,7 +56,7 @@ namespace NJournals.Core.Presenter
 				
 				// update daysummary with transcount and totalsales				
 				m_summaryDao.Update(daySummary);
-				m_laundryDao.Save(headerEntity);
+				m_laundryDao.SaveOrUpdate(headerEntity);
 			
 				
 			}else{
@@ -76,7 +76,7 @@ namespace NJournals.Core.Presenter
 				m_customerDao.SaveOrUpdate(headerEntity.Customer);				
 				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
 				// this will handle the saving for the linked tables				
-				m_summaryDao.SaveOrUpdate(daySummary);
+				m_laundryDao.SaveOrUpdate(headerEntity);
 			}		
 			m_view.CloseView();
 		}
@@ -143,5 +143,15 @@ namespace NJournals.Core.Presenter
 		public LaundryChargeDataEntity getJobChargeByName(string name){			
 			return m_chargeDao.GetByName(name);
 		}	
+		
+		public LaundryHeaderDataEntity getHeaderEntityByJONumber(int jonumber){
+			LaundryHeaderDataEntity header = m_laundryDao.GetByID(jonumber);
+			
+			return header;
+		}
+		
+		public void LaunchChecklist(){
+			m_view.LaunchChecklist();
+		}
 	}
 }

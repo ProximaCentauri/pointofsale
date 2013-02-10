@@ -80,7 +80,7 @@ namespace NJournals.Core.Views
 			this.btndelete = new System.Windows.Forms.Button();
 			this.txtbalance = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
-			this.label14 = new System.Windows.Forms.Label();
+			this.lblchecklist = new System.Windows.Forms.Label();
 			this.btnclaim = new System.Windows.Forms.Button();
 			this.txttotalcharges = new System.Windows.Forms.TextBox();
 			this.label16 = new System.Windows.Forms.Label();
@@ -542,15 +542,16 @@ namespace NJournals.Core.Views
 			this.label13.Text = "Balance:";
 			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// label14
+			// lblchecklist
 			// 
-			this.label14.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label14.ForeColor = System.Drawing.Color.Blue;
-			this.label14.Location = new System.Drawing.Point(54, 400);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(116, 23);
-			this.label14.TabIndex = 22;
-			this.label14.Text = "Add/Edit CheckList";
+			this.lblchecklist.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblchecklist.ForeColor = System.Drawing.Color.Blue;
+			this.lblchecklist.Location = new System.Drawing.Point(54, 400);
+			this.lblchecklist.Name = "lblchecklist";
+			this.lblchecklist.Size = new System.Drawing.Size(116, 23);
+			this.lblchecklist.TabIndex = 22;
+			this.lblchecklist.Text = "Add/Edit CheckList";
+			this.lblchecklist.Click += new System.EventHandler(this.lblchecklist_click);
 			// 
 			// btnclaim
 			// 
@@ -666,7 +667,7 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.txttotalcharges);
 			this.Controls.Add(this.label16);
 			this.Controls.Add(this.btnclaim);
-			this.Controls.Add(this.label14);
+			this.Controls.Add(this.lblchecklist);
 			this.Controls.Add(this.txtbalance);
 			this.Controls.Add(this.label13);
 			this.Controls.Add(this.btndelete);
@@ -716,7 +717,7 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
 		private System.Windows.Forms.Button btnclaim;
 		private System.Windows.Forms.Button btnCustomerSearch;
-		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Label lblchecklist;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.TextBox txtbalance;
 		private System.Windows.Forms.Button btndelete;

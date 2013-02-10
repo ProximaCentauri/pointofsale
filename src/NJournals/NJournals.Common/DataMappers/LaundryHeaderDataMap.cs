@@ -52,7 +52,8 @@ namespace NJournals.Common.DataMappers
 			References<CustomerDataEntity>(x => x.Customer)
 				.Column("CustomerID").Not.Nullable().Not.LazyLoad();
 			References<LaundryDaySummaryDataEntity>(x => x.DaySummary)
-				.Column("DayID").Not.Nullable();
+				.Column("DayID")
+				.Cascade.SaveUpdate();
 			
 			Table("LaundryHeader");
 		}
