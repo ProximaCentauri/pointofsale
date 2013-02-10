@@ -34,9 +34,9 @@ namespace NJournals.Core.Views
 		List<int> categoryRowIndexChange = new List<int>();
 		List<int> priceSchemeRowIndexChange = new List<int>();
 		
-		int servicesDataRowCount = 0;
-		int categoryDataRowCount = 0;
-		//int priceSchemeDataRowCount = 0;
+		int servicesMaxRowIndex = -1;
+		int categoryMaxRowIndex = -1;
+		int priceSchemeMaxRowIndex = -1;
 		
 		public LaundryConfigurationView()
 		{
@@ -48,32 +48,7 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
-		}
-		
-		void setButtonImages()
-		{
-			Resource.setImage(this.btnAddPriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
-			Resource.setImage(this.btnSavePriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
-			Resource.setImage(this.btnDeletePriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
-			
-			Resource.setImage(this.btnSaveServices,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
-			Resource.setImage(this.btnDeleteServices,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
-			
-			Resource.setImage(this.btnSaveCategory,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
-			Resource.setImage(this.btnDeleteCategory,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");	
-			
-		}
-		
-		void formatAlternatingRows()
-		{
-			this.dgvServices.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
-            this.dgvServices.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.dgvCategory.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
-            this.dgvCategory.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.dgvPriceScheme.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
-            this.dgvPriceScheme.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-		}
-			
+		}	
 
 		void LaundryConfigurationFormLoad(object sender, EventArgs e)
 		{
@@ -91,14 +66,8 @@ namespace NJournals.Core.Views
 			BindingSource source = new BindingSource();
 			source.DataSource = m_categoryEntity;
 			dgvCategory.DataSource = source;
-			categoryDataRowCount = this.dgvCategory.RowCount;
-			
-			this.dgvCategory.Columns["CategoryID"].Visible = false;
-            this.dgvCategory.Columns["Name"].Width = 300;
-            this.dgvCategory.Columns["Description"].Width = 429;
-            this.dgvCategory.Columns["Name"].HeaderText = "Category Name";
-            this.dgvCategory.Columns["Description"].HeaderText = "Category Description";
-			
+			categoryMaxRowIndex = this.dgvCategory.RowCount - 1;			
+			formatCategoryDataGridView();			
 		}
 		
 		public void SetAllServices(List<LaundryServiceDataEntity> services)
@@ -107,18 +76,13 @@ namespace NJournals.Core.Views
             BindingSource source = new BindingSource();
             source.DataSource = m_serviceEntity;
             dgvServices.DataSource = source;
-            servicesDataRowCount = this.dgvServices.RowCount;
-            
-            this.dgvServices.Columns["ServiceID"].Visible = false;
-            this.dgvServices.Columns["Name"].Width = 300;
-            this.dgvServices.Columns["Description"].Width = 429;
-            this.dgvServices.Columns["Name"].HeaderText = "Service Name";
-            this.dgvServices.Columns["Description"].HeaderText = "Service Description";                
+            servicesMaxRowIndex = this.dgvServices.RowCount - 1;
+            formatServicesDataGridView();                          
 		}
 		
-		public void SetAllPriceScheme(List<LaundryPriceSchemeDataEntity> priceScheme)
+		public void SetAllPriceScheme(List<LaundryPriceSchemeDataEntity> priceSchemes)
 		{
-			m_priceSchemeEntity = priceScheme;		
+			m_priceSchemeEntity = priceSchemes;		
 			BindingSource source = new BindingSource();		
 
 			DataTable tempTable = new DataTable();
@@ -126,27 +90,18 @@ namespace NJournals.Core.Views
 			tempTable.Columns.Add("ServiceName", typeof(string));
 			tempTable.Columns.Add("CategoryName", typeof(string));
 			tempTable.Columns.Add("Description", typeof(string));
-			tempTable.Columns.Add("Price", typeof(int));
+			tempTable.Columns.Add("Price", typeof(Decimal));
 			                      
-			foreach(LaundryPriceSchemeDataEntity price in m_priceSchemeEntity)
+			foreach(LaundryPriceSchemeDataEntity priceScheme in m_priceSchemeEntity)
 			{				
-				tempTable.Rows.Add(price.ID, price.Service.Name, price.Category.Name,
-                   price.Description, price.Price);
+				tempTable.Rows.Add(priceScheme.ID, priceScheme.Service.Name, priceScheme.Category.Name,
+                   priceScheme.Description, priceScheme.Price);
 			}		
 			
 			source.DataSource = tempTable;
-			dgvPriceScheme.DataSource = source;			
-			
-			dgvPriceScheme.Columns["ID"].Visible = false;
-			dgvPriceScheme.Columns["ServiceName"].Width = 175;			
-			dgvPriceScheme.Columns["ServiceName"].HeaderText = "Service Name";
-			dgvPriceScheme.Columns["CategoryName"].Width = 175;			
-			dgvPriceScheme.Columns["CategoryName"].HeaderText = "Category Name";
-			dgvPriceScheme.Columns["Description"].Width = 295;		
-			dgvPriceScheme.Columns["Description"].HeaderText = "Description";
-			dgvPriceScheme.Columns["Price"].Width = 100;
-			dgvPriceScheme.Columns["Price"].HeaderText = "Price";			
-			
+			dgvPriceScheme.DataSource = source;		
+			priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;	
+			formatPriceSchemeDataGridView();
 		}	
 		
 		
@@ -160,7 +115,7 @@ namespace NJournals.Core.Views
 			{
 				foreach(DataGridViewRow currentRow in this.dgvServices.SelectedRows)
 				{
-					if(currentRow.Index < servicesDataRowCount - 1)
+					if(currentRow.Index < servicesMaxRowIndex)
 					{
 						int serviceId = (int)this.dgvServices.Rows[currentRow.Index].Cells["ServiceID"].Value;
 						service = m_serviceEntity.Find(m_service => m_service.ServiceID == serviceId);						
@@ -172,7 +127,7 @@ namespace NJournals.Core.Views
 				}
 				m_presenter.SetAllServices();
 			}
-			servicesDataRowCount = this.dgvServices.RowCount;
+			servicesMaxRowIndex = this.dgvServices.RowCount - 1;
 			
 		}
 		
@@ -184,7 +139,7 @@ namespace NJournals.Core.Views
 			{
 			 	m_presenter.SaveOrUpdateService(services);
 				m_presenter.SetAllServices();
-				servicesDataRowCount = this.dgvServices.RowCount;
+				servicesMaxRowIndex = this.dgvServices.RowCount - 1;
 				dgvServices.Refresh();	
 			}
 		}
@@ -207,7 +162,7 @@ namespace NJournals.Core.Views
 			{
 				LaundryServiceDataEntity service = new LaundryServiceDataEntity();
 				
-				if(rowIndex <  servicesDataRowCount - 1)
+				if(rowIndex <  servicesMaxRowIndex)
 				{
 					int serviceId = (int)this.dgvServices.Rows[rowIndex].Cells["ServiceID"].Value;
 					service = m_serviceEntity.Find(m_service => m_service.ServiceID == serviceId);
@@ -241,7 +196,7 @@ namespace NJournals.Core.Views
 			{
 			 	m_presenter.SaveOrUpdateCategory(category);
 				m_presenter.SetAllCategories();
-				categoryDataRowCount = this.dgvCategory.RowCount;
+				categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
 				dgvCategory.Refresh();	
 			}
 		}
@@ -254,7 +209,7 @@ namespace NJournals.Core.Views
 			{
 				foreach(DataGridViewRow currentRow in this.dgvCategory.SelectedRows)
 				{
-					if(currentRow.Index < categoryDataRowCount - 1)
+					if(currentRow.Index < categoryMaxRowIndex)
 					{
 						int categoryId = (int)this.dgvCategory.Rows[currentRow.Index].Cells["CategoryID"].Value;
 						category = m_categoryEntity.Find(m_category => m_category.CategoryID == categoryId);						
@@ -266,7 +221,7 @@ namespace NJournals.Core.Views
 				}
 				m_presenter.SetAllCategories();
 			}
-			categoryDataRowCount = this.dgvCategory.RowCount;
+			categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
 		}
 		
 		private List<LaundryCategoryDataEntity> GetCategoryDataValueChange(List<int> rowIndexChange)
@@ -277,7 +232,7 @@ namespace NJournals.Core.Views
 			{
 				LaundryCategoryDataEntity category = new LaundryCategoryDataEntity();
 				
-				if(rowIndex < categoryDataRowCount - 1)
+				if(rowIndex < categoryMaxRowIndex)
 				{
 					int categoryId = (int)this.dgvCategory.Rows[rowIndex].Cells["CategoryID"].Value;
 					category = m_categoryEntity.Find(m_category => m_category.CategoryID == categoryId);
@@ -295,6 +250,15 @@ namespace NJournals.Core.Views
 		
 		#region PriceScheme
 		
+		private void dgvPriceScheme_CellValueChanged(object sender,
+		    DataGridViewCellEventArgs e)
+		{		   	
+			if(e.RowIndex != -1)
+			{
+				if(!priceSchemeRowIndexChange.Contains(e.RowIndex))
+					priceSchemeRowIndexChange.Add(e.RowIndex);
+			}
+		}
 		void BtnAddPriceSchemeClick(object sender, EventArgs e)
 		{
 			this.dgvPriceScheme.AllowUserToAddRows = true;
@@ -316,18 +280,86 @@ namespace NJournals.Core.Views
 		
 		void BtnSavePriceSchemeClick(object sender, EventArgs e)
 		{
-			LaundryPriceSchemeDataEntity newPriceScheme = new LaundryPriceSchemeDataEntity();			
+			List<LaundryPriceSchemeDataEntity> priceSchemes = new List<LaundryPriceSchemeDataEntity>();
 			
-			DataGridViewRow currentRow = this.dgvPriceScheme.CurrentCell.OwningRow;			
-			newPriceScheme.Service = new LaundryServiceDataEntity();
-			newPriceScheme.Service = m_serviceEntity.Find(m_service => m_service.Name == currentRow.Cells["ServiceName"].Value.ToString());
-			newPriceScheme.Category = new LaundryCategoryDataEntity();
-			newPriceScheme.Category = m_categoryEntity.Find(m_category => m_category.Name == currentRow.Cells["CategoryName"].Value.ToString());
-			newPriceScheme.Description = currentRow.Cells["Description"].Value.ToString();
-			newPriceScheme.Price = Convert.ToDecimal(currentRow.Cells["Price"].Value.ToString());
+			//get modified row
+			if(priceSchemeRowIndexChange != null)
+			{				
+				priceSchemes = GetPriceSchemeDataValueChange(priceSchemeRowIndexChange);
+
+			}
 			
-			m_presenter.SaveOrUpdatePriceScheme(newPriceScheme);
-			m_presenter.SetAllPriceScheme();
+			//get new data
+			if(this.dgvPriceScheme.RowCount -1 > priceSchemeMaxRowIndex)
+			{
+				int rowDataToAdd =  (this.dgvPriceScheme.RowCount - 1) - priceSchemeMaxRowIndex;
+				
+				for(int ctr = 1; ctr < rowDataToAdd; ctr++)
+				{
+					LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
+					DataGridViewRow currentRow = this.dgvPriceScheme.Rows[priceSchemeMaxRowIndex + ctr];
+					priceScheme.Service = new LaundryServiceDataEntity();
+					priceScheme.Service = m_serviceEntity.Find(m_service => m_service.Name == currentRow.Cells["ServiceName"].Value.ToString());
+					priceScheme.Category = new LaundryCategoryDataEntity();
+					priceScheme.Category = m_categoryEntity.Find(m_category => m_category.Name == currentRow.Cells["CategoryName"].Value.ToString());
+					priceScheme.Description = currentRow.Cells["Description"].Value.ToString();
+					priceScheme.Price = Convert.ToDecimal(currentRow.Cells["Price"].Value.ToString());
+					
+					priceSchemes.Add(priceScheme);
+				}
+			}			
+			
+			if(priceSchemes.Count != 0)
+			{
+				m_presenter.SaveOrUpdatePriceScheme(priceSchemes);
+				m_presenter.SetAllPriceScheme();
+				priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
+				this.dgvPriceScheme.AllowUserToAddRows = false;
+			}
+		}
+		
+		void BtnDeletePriceSchemeClick(object sender, EventArgs e)
+		{
+			LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
+			
+			if(this.dgvPriceScheme.SelectedRows.Count > 0)
+			{
+				foreach(DataGridViewRow currentRow in this.dgvPriceScheme.SelectedRows)
+				{
+					if(currentRow.Index < priceSchemeMaxRowIndex)
+					{
+						int ID = (int)this.dgvPriceScheme.Rows[currentRow.Index].Cells["ID"].Value;
+						priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.ID == ID);						
+						m_presenter.DeletePriceScheme(priceScheme);
+					}
+					
+					if(!this.dgvPriceScheme.Rows[currentRow.Index].IsNewRow)
+						dgvPriceScheme.Rows.Remove(this.dgvPriceScheme.Rows[currentRow.Index]);
+				}
+				m_presenter.SetAllPriceScheme();
+			    this.dgvPriceScheme.AllowUserToAddRows = false;
+			}
+			priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
+		}
+		
+		private List<LaundryPriceSchemeDataEntity> GetPriceSchemeDataValueChange(List<int> rowIndexChange)
+		{
+			List<LaundryPriceSchemeDataEntity> priceSchemes = new List<LaundryPriceSchemeDataEntity>();			
+			
+			foreach(int rowIndex in rowIndexChange)
+			{
+				LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
+				
+				if(rowIndex <= priceSchemeMaxRowIndex)
+				{
+					int ID = (int)this.dgvPriceScheme.Rows[rowIndex].Cells["ID"].Value;
+					priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.ID == ID);
+					priceScheme.Description = this.dgvPriceScheme.Rows[rowIndex].Cells["Description"].Value.ToString();
+					priceScheme.Price = Convert.ToDecimal(this.dgvPriceScheme.Rows[rowIndex].Cells["Price"].Value.ToString());
+					priceSchemes.Add(priceScheme);
+				}			
+			}			
+			return priceSchemes;
 		}
 		
 		private void GetCategoryName(DataGridViewComboBoxCell categoryCBox){	
@@ -349,6 +381,65 @@ namespace NJournals.Core.Views
 		
 		#endregion PriceScheme
 		
+		
+		#region Format Methods
+		void setButtonImages()
+		{
+			Resource.setImage(this.btnAddPriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
+			Resource.setImage(this.btnSavePriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
+			Resource.setImage(this.btnDeletePriceScheme,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
+			
+			Resource.setImage(this.btnSaveServices,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
+			Resource.setImage(this.btnDeleteServices,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
+			
+			Resource.setImage(this.btnSaveCategory,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
+			Resource.setImage(this.btnDeleteCategory,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");	
+			
+		}
+		
+		void formatAlternatingRows()
+		{
+			this.dgvServices.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
+            this.dgvServices.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
+            this.dgvCategory.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
+            this.dgvCategory.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
+            this.dgvPriceScheme.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
+            this.dgvPriceScheme.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
+		}
+		
+		void formatCategoryDataGridView()
+		{
+			this.dgvCategory.Columns["CategoryID"].Visible = false;
+            this.dgvCategory.Columns["Name"].Width = 300;
+            this.dgvCategory.Columns["Description"].Width = 429;
+            this.dgvCategory.Columns["Name"].HeaderText = "Category Name";
+            this.dgvCategory.Columns["Description"].HeaderText = "Category Description";
+		}
+		
+		void formatServicesDataGridView()
+		{
+			this.dgvServices.Columns["ServiceID"].Visible = false;
+            this.dgvServices.Columns["Name"].Width = 300;
+            this.dgvServices.Columns["Description"].Width = 429;
+            this.dgvServices.Columns["Name"].HeaderText = "Service Name";
+            this.dgvServices.Columns["Description"].HeaderText = "Service Description";  
+		}
+		
+		void formatPriceSchemeDataGridView()
+		{
+			dgvPriceScheme.Columns["ID"].Visible = false;
+			dgvPriceScheme.Columns["ServiceName"].Width = 175;			
+			dgvPriceScheme.Columns["ServiceName"].HeaderText = "Service Name";
+			dgvPriceScheme.Columns["ServiceName"].ReadOnly = true;
+			dgvPriceScheme.Columns["CategoryName"].Width = 175;			
+			dgvPriceScheme.Columns["CategoryName"].HeaderText = "Category Name";
+			dgvPriceScheme.Columns["CategoryName"].ReadOnly = true;
+			dgvPriceScheme.Columns["Description"].Width = 295;		
+			dgvPriceScheme.Columns["Description"].HeaderText = "Description";
+			dgvPriceScheme.Columns["Price"].Width = 100;
+			dgvPriceScheme.Columns["Price"].HeaderText = "Price";	
+		}
+		#endregion
 		
 	}
 }

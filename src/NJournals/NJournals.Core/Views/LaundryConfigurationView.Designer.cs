@@ -87,6 +87,7 @@ namespace NJournals.Core.Views
 			this.dgvPriceScheme.Name = "dgvPriceScheme";
 			this.dgvPriceScheme.Size = new System.Drawing.Size(789, 220);
 			this.dgvPriceScheme.TabIndex = 1;
+			this.dgvPriceScheme.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(dgvPriceScheme_CellValueChanged);
 			// 
 			// label2
 			// 
@@ -162,6 +163,7 @@ namespace NJournals.Core.Views
 			this.btnDeletePriceScheme.Size = new System.Drawing.Size(35, 23);
 			this.btnDeletePriceScheme.TabIndex = 8;
 			this.btnDeletePriceScheme.UseVisualStyleBackColor = true;
+			this.btnDeletePriceScheme.Click += new System.EventHandler(this.BtnDeletePriceSchemeClick);
 			// 
 			// btnDeleteServices
 			// 
