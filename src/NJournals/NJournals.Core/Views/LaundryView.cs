@@ -248,6 +248,16 @@ namespace NJournals.Core.Views
 			MessageService.ShowInfo("Successfully saved entries.","Information");			
 			                       
 		}
+		
+		void lblchecklist_click(object sender, EventArgs e)
+		{
+			
+		}
+		
+		public void LaunchChecklist(){
+			CheckListView chklistView = new CheckListView();
+			chklistView.ShowDialog();
+		}
 	}	
 }
 

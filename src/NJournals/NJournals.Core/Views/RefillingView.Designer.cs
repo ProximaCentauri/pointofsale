@@ -46,9 +46,9 @@ namespace NJournals.Core.Views
 			this.label5 = new System.Windows.Forms.Label();
 			this.cmbtransTypes = new System.Windows.Forms.ComboBox();
 			this.Services = new System.Windows.Forms.GroupBox();
-			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.txtcaps = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.txtbottles = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.btnadd = new System.Windows.Forms.Button();
 			this.txtnoitems = new System.Windows.Forms.TextBox();
@@ -56,6 +56,11 @@ namespace NJournals.Core.Views
 			this.label4 = new System.Windows.Forms.Label();
 			this.cmbproducts = new System.Windows.Forms.ComboBox();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.txtchange = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.txtamttender = new System.Windows.Forms.TextBox();
@@ -65,10 +70,6 @@ namespace NJournals.Core.Views
 			this.btncancel = new System.Windows.Forms.Button();
 			this.btnprint = new System.Windows.Forms.Button();
 			this.chkunpaid = new System.Windows.Forms.CheckBox();
-			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -164,9 +165,9 @@ namespace NJournals.Core.Views
 			// 
 			// Services
 			// 
-			this.Services.Controls.Add(this.textBox6);
+			this.Services.Controls.Add(this.txtcaps);
 			this.Services.Controls.Add(this.label8);
-			this.Services.Controls.Add(this.textBox4);
+			this.Services.Controls.Add(this.txtbottles);
 			this.Services.Controls.Add(this.label6);
 			this.Services.Controls.Add(this.btnadd);
 			this.Services.Controls.Add(this.txtnoitems);
@@ -181,12 +182,12 @@ namespace NJournals.Core.Views
 			this.Services.TabStop = false;
 			this.Services.Text = "Services";
 			// 
-			// textBox6
+			// txtcaps
 			// 
-			this.textBox6.Location = new System.Drawing.Point(87, 105);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(100, 23);
-			this.textBox6.TabIndex = 16;
+			this.txtcaps.Location = new System.Drawing.Point(87, 105);
+			this.txtcaps.Name = "txtcaps";
+			this.txtcaps.Size = new System.Drawing.Size(100, 23);
+			this.txtcaps.TabIndex = 16;
 			// 
 			// label8
 			// 
@@ -197,12 +198,12 @@ namespace NJournals.Core.Views
 			this.label8.TabIndex = 15;
 			this.label8.Text = "Store Caps:";
 			// 
-			// textBox4
+			// txtbottles
 			// 
-			this.textBox4.Location = new System.Drawing.Point(87, 79);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(100, 23);
-			this.textBox4.TabIndex = 14;
+			this.txtbottles.Location = new System.Drawing.Point(87, 79);
+			this.txtbottles.Name = "txtbottles";
+			this.txtbottles.Size = new System.Drawing.Size(100, 23);
+			this.txtbottles.TabIndex = 14;
 			// 
 			// label6
 			// 
@@ -261,20 +262,48 @@ namespace NJournals.Core.Views
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Column1,
-									this.column2,
 									this.Column3,
-									this.Column4});
+									this.Column4,
+									this.column2,
+									this.Column5});
 			this.dataGridView1.Location = new System.Drawing.Point(318, 178);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.Size = new System.Drawing.Size(538, 197);
 			this.dataGridView1.TabIndex = 5;
 			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "Products";
+			this.Column1.Name = "Column1";
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "Store Bottles";
+			this.Column3.Name = "Column3";
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Store Caps";
+			this.Column4.Name = "Column4";
+			// 
+			// column2
+			// 
+			this.column2.HeaderText = "No. of Items";
+			this.column2.Name = "column2";
+			// 
+			// Column5
+			// 
+			this.Column5.HeaderText = "Price";
+			this.Column5.Name = "Column5";
+			// 
 			// txtchange
 			// 
+			this.txtchange.Enabled = false;
 			this.txtchange.Location = new System.Drawing.Point(737, 466);
 			this.txtchange.Name = "txtchange";
 			this.txtchange.Size = new System.Drawing.Size(119, 20);
 			this.txtchange.TabIndex = 19;
+			this.txtchange.Text = "0.00";
 			// 
 			// label12
 			// 
@@ -293,6 +322,7 @@ namespace NJournals.Core.Views
 			this.txtamttender.Name = "txtamttender";
 			this.txtamttender.Size = new System.Drawing.Size(119, 20);
 			this.txtamttender.TabIndex = 17;
+			this.txtamttender.Text = "0.00";
 			// 
 			// label11
 			// 
@@ -307,10 +337,12 @@ namespace NJournals.Core.Views
 			// 
 			// txtamtdue
 			// 
+			this.txtamtdue.Enabled = false;
 			this.txtamtdue.Location = new System.Drawing.Point(737, 386);
 			this.txtamtdue.Name = "txtamtdue";
 			this.txtamtdue.Size = new System.Drawing.Size(119, 20);
 			this.txtamtdue.TabIndex = 15;
+			this.txtamtdue.Text = "0.00";
 			// 
 			// label10
 			// 
@@ -352,26 +384,6 @@ namespace NJournals.Core.Views
 			this.chkunpaid.Text = "Unpaid";
 			this.chkunpaid.UseVisualStyleBackColor = true;
 			// 
-			// Column1
-			// 
-			this.Column1.HeaderText = "Products";
-			this.Column1.Name = "Column1";
-			// 
-			// column2
-			// 
-			this.column2.HeaderText = "No. of Items";
-			this.column2.Name = "column2";
-			// 
-			// Column3
-			// 
-			this.Column3.HeaderText = "Store Bottles";
-			this.Column3.Name = "Column3";
-			// 
-			// Column4
-			// 
-			this.Column4.HeaderText = "Store Caps";
-			this.Column4.Name = "Column4";
-			// 
 			// RefillingView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +415,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn column2;
@@ -411,9 +424,9 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.ComboBox cmbCustomers;
 		private System.Windows.Forms.CheckBox chkunpaid;
 		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.TextBox txtbottles;
 		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.TextBox textBox6;
+		private System.Windows.Forms.TextBox txtcaps;
 		private System.Windows.Forms.Button btnprint;
 		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.Label label10;

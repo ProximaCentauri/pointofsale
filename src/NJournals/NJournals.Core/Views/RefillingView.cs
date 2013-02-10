@@ -70,7 +70,18 @@ namespace NJournals.Core.Views
 		
 		void BtnaddClick(object sender, EventArgs e)
 		{
-			
+			decimal price = m_presenter.getAmtChargeByName(cmbproducts.Text);
+			decimal totalPrice = decimal.Parse(txtnoitems.Text) * price;
+			List<String> lstItems = new List<String>();
+			lstItems.Add(cmbproducts.Text);			
+			lstItems.Add(txtbottles.Text);
+			lstItems.Add(txtcaps.Text);
+			lstItems.Add(txtnoitems.Text);
+			lstItems.Add(totalPrice.ToString("N2"));
+			string[] items = new string[lstItems.Count];
+			lstItems.CopyTo(items,0);
+			dataGridView1.Rows.Add(items);
+			this.txtamtdue.Text = (decimal.Parse(txtamtdue.Text) + totalPrice).ToString("N2");
 		}
 	}
 }
