@@ -45,39 +45,39 @@ namespace NJournals.Core.Presenter
 		public void SaveClicked(){
 			
 			DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
-			
+			LaundryHeaderDataEntity headerEntity = m_view.HeaderDataEntity;			
 			LaundryDaySummaryDataEntity daySummary = m_summaryDao.GetByDay(today);
 			if(daySummary != null)
 			{
 				daySummary.TransCount += 1;
 				//TODO: totalsales should be amounttender - amount change.
-				daySummary.TotalSales += m_view.HeaderDataEntity.AmountTender;
-				m_view.HeaderDataEntity.DaySummary = daySummary;
+				daySummary.TotalSales += headerEntity.AmountTender;
+				headerEntity.DaySummary = daySummary;
 				
-				// update daysummary with transcount and totalsales
-				
+				// update daysummary with transcount and totalsales				
 				m_summaryDao.Update(daySummary);
+				m_laundryDao.Save(headerEntity);
 			
 				
 			}else{
 				// set daysummary			
 				daySummary = new LaundryDaySummaryDataEntity();
 				daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-				//TODO: totalsales should be amounttender - amount change.
-				daySummary.TotalSales += m_view.HeaderDataEntity.AmountTender; 
+				//TODO: totalsales should be amounttender - amount change.			
+				
+				daySummary.TotalSales += headerEntity.AmountTender;
 				daySummary.TransCount += 1;
-				daySummary.HeaderEntities.Add(m_view.HeaderDataEntity); // set header entity in daysummary for nhibernate to pickup and map			
-				m_view.HeaderDataEntity.DaySummary = daySummary; // set daysummary entity in header for nhibernate to pickup and map
 				
-				m_customerDao.SaveOrUpdate(m_view.HeaderDataEntity.Customer); // save or update customer
+				// set header entity in daysummary for nhibernate to pickup and map			
+				daySummary.HeaderEntities.Add(headerEntity);
+				// set daysummary entity in header for nhibernate to pickup and map
+				headerEntity.DaySummary = daySummary;
+				
+				m_customerDao.SaveOrUpdate(headerEntity.Customer);				
 				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
-				// this will handle the saving for the linked tables
-				
+				// this will handle the saving for the linked tables				
 				m_summaryDao.SaveOrUpdate(daySummary);
-			}
-			
-			m_laundryDao.Save(m_view.HeaderDataEntity);
-			
+			}		
 			m_view.CloseView();
 		}
 		
