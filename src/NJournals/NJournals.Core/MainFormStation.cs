@@ -49,7 +49,8 @@ namespace NJournals.Core
 		private LaundryNewView laundryView = new LaundryNewView();
 		private RefillingView refillingView = new RefillingView();
 		private ReportView reportView = new ReportView();
-		private LaundryConfigurationView configView = new LaundryConfigurationView();
+		private LaundryConfigurationView laundryConfigView = new LaundryConfigurationView();
+		private RefillingConfigurationView refillingConfigView = new RefillingConfigurationView();
 		
 		public void ShowLaundryNewView(){					
 			laundryView.SetTitle("Laundry  [NEW]");			
@@ -82,13 +83,13 @@ namespace NJournals.Core
 		}
 		
 		public void ShowLaundryConfigurationView(){
-			configView.SetTitle("Laundry Configuration");
-			ShowSingletonForm(configView);
+			laundryConfigView.SetTitle("Laundry Configuration");
+			ShowSingletonForm(laundryConfigView);
 		}
 		
 		public void ShowRefillingConfigurationView(){
-			configView.SetTitle("Refilling Configuration");
-			ShowSingletonForm(configView);
+			refillingConfigView.SetTitle("Refilling Configuration");
+			ShowSingletonForm(refillingConfigView);
 		}
 		
 		private void ShowSingletonForm(Form p_form){			
