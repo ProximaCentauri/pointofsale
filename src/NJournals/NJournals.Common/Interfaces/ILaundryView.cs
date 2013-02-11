@@ -17,7 +17,7 @@ namespace NJournals.Common.Interfaces
 	public interface ILaundryView : IView
 	{
 		//LaundryCategoryDataEntity CategoryDataEntity{get;set;}
-		LaundryHeaderDataEntity HeaderDataEntity{get;set;}
+		
 		//LaundryDetailDataEntity DetailDataEntity{get;set;}
 		
 		
@@ -27,6 +27,7 @@ namespace NJournals.Common.Interfaces
 		void SetAllCharges(List<LaundryChargeDataEntity> charges);
 		void LoadHeaderEntityData(LaundryHeaderDataEntity headerEntity);
 		void LaunchChecklist();
+		LaundryHeaderDataEntity ProcessHeaderDataEntity();
 		void AddItem();
 		
 	}

@@ -42,13 +42,13 @@ namespace NJournals.Core.Models
 		
 		public LaundryHeaderDataEntity GetByID(int p_headerID)
 		{
-			using(var session = NHibernateHelper.OpenSession())
+			using(var session = NHibernateHelper.OpenSession())			
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					var query = session.Query<LaundryHeaderDataEntity>()
+					var query = session.Query<LaundryHeaderDataEntity>()						
 						.Where(x => x.LaundryHeaderID == p_headerID)
-						.FetchMany(x => x.DetailEntities)
+						.FetchMany(x => x.DetailEntities)																		
 						.SingleOrDefault();
 					return query;
 				}

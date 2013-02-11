@@ -30,6 +30,7 @@ namespace NJournals.Core.Presenter
 		List<LaundryServiceDataEntity> services = null;
 		List<CustomerDataEntity> customers = null;
 		List<LaundryChargeDataEntity> charges = null;
+		LaundryHeaderDataEntity m_headerEntity = null;
 		
 		public LaundryViewPresenter(ILaundryView p_view, ILaundryDao p_laundryDao)
 		{
@@ -45,7 +46,8 @@ namespace NJournals.Core.Presenter
 		public void SaveClicked(){
 			
 			DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
-			LaundryHeaderDataEntity headerEntity = m_view.HeaderDataEntity;			
+			m_headerEntity = m_view.ProcessHeaderDataEntity();
+			LaundryHeaderDataEntity headerEntity = m_headerEntity;			
 			LaundryDaySummaryDataEntity daySummary = m_summaryDao.GetByDay(today);
 			if(daySummary != null)
 			{
@@ -152,8 +154,5 @@ namespace NJournals.Core.Presenter
 			m_view.LaunchChecklist();
 		}
 		
-		public void getJobChargesByHeaderId(int headerID){
-			
-		}
 	}
 }

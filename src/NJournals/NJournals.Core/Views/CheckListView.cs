@@ -49,5 +49,10 @@ namespace NJournals.Core.Views
 		{
 			m_presenter.SetAllChecklist();
 		}
+		
+		void BtnsaveClick(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }

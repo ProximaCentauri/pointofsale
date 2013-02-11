@@ -43,8 +43,8 @@ namespace NJournals.Core.Views
 			this.btnsave = new System.Windows.Forms.Button();
 			this.btnsaveprint = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox8 = new System.Windows.Forms.TextBox();
-			this.button1 = new System.Windows.Forms.Button();
+			this.txttotal = new System.Windows.Forms.TextBox();
+			this.btncancel = new System.Windows.Forms.Button();
 			this.dgvCheckList = new System.Windows.Forms.DataGridView();
 			this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,6 +78,7 @@ namespace NJournals.Core.Views
 			this.btnsave.TabIndex = 21;
 			this.btnsave.Text = "Save";
 			this.btnsave.UseVisualStyleBackColor = true;
+			this.btnsave.Click += new System.EventHandler(this.BtnsaveClick);
 			// 
 			// btnsaveprint
 			// 
@@ -100,22 +101,22 @@ namespace NJournals.Core.Views
 			this.label2.Text = "Total Items:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox8
+			// txttotal
 			// 
-			this.textBox8.Location = new System.Drawing.Point(77, 429);
-			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(66, 20);
-			this.textBox8.TabIndex = 23;
+			this.txttotal.Location = new System.Drawing.Point(77, 429);
+			this.txttotal.Name = "txttotal";
+			this.txttotal.Size = new System.Drawing.Size(66, 20);
+			this.txttotal.TabIndex = 23;
 			// 
-			// button1
+			// btncancel
 			// 
-			this.button1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.Location = new System.Drawing.Point(194, 505);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(58, 23);
-			this.button1.TabIndex = 24;
-			this.button1.Text = "Cancel";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btncancel.Location = new System.Drawing.Point(194, 505);
+			this.btncancel.Name = "btncancel";
+			this.btncancel.Size = new System.Drawing.Size(58, 23);
+			this.btncancel.TabIndex = 24;
+			this.btncancel.Text = "Cancel";
+			this.btncancel.UseVisualStyleBackColor = true;
 			// 
 			// dgvCheckList
 			// 
@@ -165,14 +166,15 @@ namespace NJournals.Core.Views
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(264, 567);
 			this.Controls.Add(this.dgvCheckList);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.textBox8);
+			this.Controls.Add(this.btncancel);
+			this.Controls.Add(this.txttotal);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.btnsave);
 			this.Controls.Add(this.btnsaveprint);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label1);
 			this.Name = "CheckListView";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "CheckListView";
 			this.Load += new System.EventHandler(this.CheckListViewLoad);
 			((System.ComponentModel.ISupportInitialize)(this.dgvCheckList)).EndInit();
@@ -183,8 +185,8 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
 		private System.Windows.Forms.DataGridView dgvCheckList;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TextBox textBox8;
+		private System.Windows.Forms.Button btncancel;
+		private System.Windows.Forms.TextBox txttotal;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btnsaveprint;
 		private System.Windows.Forms.Button btnsave;

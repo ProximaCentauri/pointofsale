@@ -40,6 +40,7 @@ namespace NJournals.Core.Views
 		LaundryViewPresenter m_presenter;
 		ILaundryDao m_laundryDao;
 		LaundryJobChargesDataEntity m_jobcharge = null;
+		LaundryHeaderDataEntity m_headerEntity;
 		private decimal amountTender = 0;
 		private decimal amountDue = 0;
 		private decimal totalAmtDue = 0;
@@ -95,7 +96,7 @@ namespace NJournals.Core.Views
 			m_presenter.CancelClicked();
 		}		
 		
-		private LaundryHeaderDataEntity processHeaderDataEntity(){
+		public LaundryHeaderDataEntity ProcessHeaderDataEntity(){
 			m_headerEntity = new LaundryHeaderDataEntity();			
 			
 			m_headerEntity.AmountTender = decimal.Parse(this.txtamttender.Text);			                                            
@@ -145,16 +146,17 @@ namespace NJournals.Core.Views
 			}else
 				m_headerEntity.PaidFlag = false;
 			
+			
 			return m_headerEntity;
 		}
 		
 		
-		LaundryHeaderDataEntity m_headerEntity;
 		
-		public LaundryHeaderDataEntity HeaderDataEntity {
+		
+		/*public LaundryHeaderDataEntity HeaderDataEntity {
 			get { return processHeaderDataEntity(); }
 			set { m_headerEntity = value; }
-		}
+		}*/
 	
 		public void AddItem(){
 			LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
@@ -230,8 +232,11 @@ namespace NJournals.Core.Views
 		
 		void txtdiscount_textchange(object sender, EventArgs e)
 		{
-			txttotaldiscount.Text = ((decimal.Parse(txtdiscount.Text) / 100M) * decimal.Parse(txttotalamtdue.Text)).ToString("N2");
-			txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txttotaldiscount.Text)).ToString("N2");
+			if(txttotaldiscount.Text.Length == 0){
+				txttotaldiscount.Text = "0";	
+			}
+			txttotaldiscount.Text = (decimal.Parse(txttotalamtdue.Text) * (decimal.Parse(txtdiscount.Text) / 100M)).ToString("N2");
+			txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txttotaldiscount.Text)).ToString("N2");	
 		}
 		
 		void BtnsavecloseClick(object sender, EventArgs e)
@@ -264,23 +269,23 @@ namespace NJournals.Core.Views
 				txtamtdue.Text = m_headerEntity.AmountDue.ToString("N2");
 				txttotalamtdue.Text = m_headerEntity.TotalAmountDue.ToString("N2");
 				txttotalcharges.Text = m_headerEntity.TotalCharge.ToString("N2");
-				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("N2");
+				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("0");
 				//TODO: Calculate percent discount
-				txtdiscount.Text = (m_headerEntity.TotalDiscount + m_headerEntity.TotalAmountDue).ToString("N2");
+				txtdiscount.Text = ((m_headerEntity.TotalDiscount / (m_headerEntity.AmountDue + m_headerEntity.TotalCharge)) * 100).ToString("0");
 				
 				txtamttender.Text = m_headerEntity.AmountTender.ToString("N2");
 				chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;
 				//TODO: Fix issue in retrieve jobchargeentities
-				//foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
-				//	chkchargesList.Items.Add(chargeEntity.Charge.Name, true);
-				//}
+				foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
+					chkchargesList.Items.Add(chargeEntity.Charge.Name, true);
+				}
 			}else
-				BtnsearchClick(this, null);
+				MessageService.ShowWarning("Can't find JO Number: " + txtsearch.Text, "Non-existing");
 		}
 		
 		void BtnsearchClick(object sender, EventArgs e)
 		{
-			MessageService.ShowInfo("Can't find JO Number: " + txtsearch.Text);
+			m_presenter.getHeaderEntityByJONumber(int.Parse(txtsearch.Text));
 		}
 		
 		void txtsearch_keypress(object sender, KeyEventArgs e)
