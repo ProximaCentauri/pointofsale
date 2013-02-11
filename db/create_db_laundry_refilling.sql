@@ -384,23 +384,42 @@ CREATE TABLE `refillpaymentdetail` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `refillinventory`
+-- Table structure for table `refillinventoryheader`
 --
 
-DROP TABLE IF EXISTS `refillinventory`;
+DROP TABLE IF EXISTS `refillinventoryheader`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `refillinventory` (
-  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `refillinventoryheader` (
+  `InvHeaderID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(25) NOT NULL DEFAULT 'NULL',
   `TotalQty` int(10) unsigned NOT NULL DEFAULT '0',
   `QtyOnHand` int(10) unsigned NOT NULL DEFAULT '0',
   `QtyReleased` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `IX_refillinventory_1` (`Name`)
+  PRIMARY KEY (`InvHeaderID`),
+  UNIQUE KEY `IX_refillinventoryheader_1` (`Name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+--
+-- Table structure for table `refillinventorydetail`
+--
+
+DROP TABLE IF EXISTS `refillinventorydetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refillinventorydetail` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `InvHeaderID` int(10) unsigned NOT NULL,  
+  `QtyAdded` int(10) unsigned NOT NULL DEFAULT '0',
+  `QtyRemoved` int(10) unsigned NOT NULL DEFAULT '0',
+  `Date` datetime NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `IX_refillinventorydetail_1` (`InvHeaderID`),  
+  CONSTRAINT `FK_refillinventorydetail_1` FOREIGN KEY (`InvHeaderID`) REFERENCES `refillinventorydetail` (`InvHeaderID`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Table structure for table `refillcustomerinventory`
 --
@@ -507,12 +526,12 @@ INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber
 INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber`) VALUES ('Vanessa Dee', 'Cebu', '111-1111');
 
 -- Refill inventory table (for testing only)
-INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('5 Gal Bottle', '100', '100', '0');
-INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('4L Bottle', '100', '100', '0');
-INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('1L Bottle', '100', '100', '0');
-INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('500ML Bottle', '100', '100', '0');
-INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('330 Bottle', '100', '100', '0');
-INSERT INTO `db_laundry_refilling`.`refillinventory` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('Cap', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('5 Gal Bottle', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('4L Bottle', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('1L Bottle', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('500ML Bottle', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('330 Bottle', '100', '100', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('Cap', '100', '100', '0');
 
 -- DUMP COMPLETE
 
