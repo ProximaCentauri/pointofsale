@@ -378,6 +378,7 @@ namespace NJournals.Core.Views
 			this.txtsearch.Name = "txtsearch";
 			this.txtsearch.Size = new System.Drawing.Size(258, 23);
 			this.txtsearch.TabIndex = 3;
+			this.txtsearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtsearch_keypress);
 			// 
 			// label9
 			// 

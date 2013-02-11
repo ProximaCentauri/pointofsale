@@ -145,12 +145,15 @@ namespace NJournals.Core.Presenter
 		}	
 		
 		public void getHeaderEntityByJONumber(int jonumber){
-			m_view.LoadHeaderEntityData(m_laundryDao.GetByID(jonumber));
-			
+			m_view.LoadHeaderEntityData(m_laundryDao.GetByID(jonumber));			
 		}
 		
 		public void LaunchChecklist(){
 			m_view.LaunchChecklist();
+		}
+		
+		public void getJobChargesByHeaderId(int headerID){
+			
 		}
 	}
 }

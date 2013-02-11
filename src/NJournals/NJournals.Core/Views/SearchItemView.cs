@@ -9,13 +9,15 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-
+using NJournals.Common.Gui;
+using NJournals.Common.Interfaces;
+	
 namespace NJournals.Core.Views
 {
 	/// <summary>
 	/// Description of SearchItemView.
 	/// </summary>
-	public partial class SearchItemView : Form
+	public partial class SearchItemView : BaseForm, IView
 	{
 		public SearchItemView()
 		{

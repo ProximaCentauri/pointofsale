@@ -160,15 +160,7 @@ namespace NJournals.Core.Views
 			LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
 			decimal kilo = decimal.Parse(txtkilo.Text);			
 			decimal price = priceEntity.Price * kilo;	
-			List<String> lstItems = new List<String>();
-			lstItems.Add(cmbcategory.Text);
-			lstItems.Add(cmbservices.Text);
-			lstItems.Add(txtnoitems.Text);
-			lstItems.Add(txtkilo.Text);
-			lstItems.Add(price.ToString("N2"));
-			string[] items = new string[lstItems.Count];
-			lstItems.CopyTo(items,0);
-			dataGridView1.Rows.Add(items);
+			dataGridView1.Rows.Add(cmbcategory.Text, cmbservices.Text, txtnoitems.Text, txtkilo.Text, price.ToString("N2"));
 			txtamtdue.Text = (this.amountDue + price).ToString("N2");			
 			this.totalAmtDue = decimal.Parse(txtamtdue.Text) + totalAmtDue;
 			this.txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + totalAmtDue).ToString("N2");
@@ -261,12 +253,41 @@ namespace NJournals.Core.Views
 		
 		public void LoadHeaderEntityData(LaundryHeaderDataEntity p_headerEntity){
 			this.m_headerEntity = p_headerEntity;
-			
+			if(this.m_headerEntity != null){
+				txtjoborder.Text = m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0');
+				cmbCustomers.Text = m_headerEntity.Customer.Name;
+				dtrecieveDate.Value = m_headerEntity.ReceivedDate;
+				dtdueDate.Value = m_headerEntity.DueDate;
+				foreach(LaundryDetailDataEntity detailEntity in m_headerEntity.DetailEntities){
+					dataGridView1.Rows.Add(detailEntity.Category.Name, detailEntity.Service.Name, detailEntity.Kilo.ToString(), detailEntity.ItemQty.ToString(), detailEntity.Amount.ToString("N2"));
+				}
+				txtamtdue.Text = m_headerEntity.AmountDue.ToString("N2");
+				txttotalamtdue.Text = m_headerEntity.TotalAmountDue.ToString("N2");
+				txttotalcharges.Text = m_headerEntity.TotalCharge.ToString("N2");
+				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("N2");
+				//TODO: Calculate percent discount
+				txtdiscount.Text = (m_headerEntity.TotalDiscount + m_headerEntity.TotalAmountDue).ToString("N2");
+				
+				txtamttender.Text = m_headerEntity.AmountTender.ToString("N2");
+				chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;
+				//TODO: Fix issue in retrieve jobchargeentities
+				//foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
+				//	chkchargesList.Items.Add(chargeEntity.Charge.Name, true);
+				//}
+			}else
+				BtnsearchClick(this, null);
 		}
 		
 		void BtnsearchClick(object sender, EventArgs e)
 		{
-			m_presenter.getHeaderEntityByJONumber(int.Parse(txtsearch.Text));
+			MessageService.ShowInfo("Can't find JO Number: " + txtsearch.Text);
+		}
+		
+		void txtsearch_keypress(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Enter){
+				m_presenter.getHeaderEntityByJONumber(int.Parse(txtsearch.Text));
+			}			
 		}
 	}	
 }
