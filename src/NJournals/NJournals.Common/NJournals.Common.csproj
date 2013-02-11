@@ -93,7 +93,8 @@
     <Compile Include="DataEntities\RefillDaySummaryDataEntity.cs" />
     <Compile Include="DataEntities\RefillDetailDataEntity.cs" />
     <Compile Include="DataEntities\RefillHeaderDataEntity.cs" />
-    <Compile Include="DataEntities\RefillInventoryDataEntity.cs" />
+    <Compile Include="DataEntities\RefillInventoryHeaderDataEntity.cs" />
+    <Compile Include="DataEntities\RefillInventoryDetailDataEntity.cs" />
     <Compile Include="DataEntities\RefillPaymentDetailDataEntity.cs" />
     <Compile Include="DataEntities\RefillProductTypeDataEntity.cs" />
     <Compile Include="DataEntities\RefillTransactionTypeDataEntity.cs" />
@@ -117,7 +118,8 @@
     <Compile Include="DataMappers\RefillDaySummaryDataMap.cs" />
     <Compile Include="DataMappers\RefillDetailDataMap.cs" />
     <Compile Include="DataMappers\RefillHeaderDataMap.cs" />
-    <Compile Include="DataMappers\RefillInventoryDataMap.cs" />
+    <Compile Include="DataMappers\RefillInventoryDetailDataMap.cs" />
+    <Compile Include="DataMappers\RefillInventoryHeaderDataMap.cs" />
     <Compile Include="DataMappers\RefillPaymentDetailDataMap.cs" />
     <Compile Include="DataMappers\RefillProductTypeDataMap.cs" />
     <Compile Include="DataMappers\RefillTransactionTypeDataMap.cs" />

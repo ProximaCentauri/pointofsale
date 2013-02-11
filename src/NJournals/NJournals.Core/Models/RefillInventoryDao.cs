@@ -27,7 +27,7 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void SaveOrUpdate(RefillInventoryDataEntity p_inventory)
+		public void SaveOrUpdate(RefillInventoryHeaderDataEntity p_inventory)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -39,29 +39,29 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-		public IEnumerable<RefillInventoryDataEntity> GetAllItems()
+		public IEnumerable<RefillInventoryHeaderDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = session.Query<RefillInventoryDataEntity>()
+				var query = session.Query<RefillInventoryHeaderDataEntity>()
                     .OrderBy(x => x.Name)
                     .ToList();
                 return query;
 			}
 		}
 		
-		public RefillInventoryDataEntity GetByName(string p_name)
+		public RefillInventoryHeaderDataEntity GetByName(string p_name)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-                var query = session.Query<RefillInventoryDataEntity>()
+                var query = session.Query<RefillInventoryHeaderDataEntity>()
                     .Where(x => x.Name == p_name)
                     .SingleOrDefault();
 				return query;
 			}
 		}
 		
-		public void Delete(RefillInventoryDataEntity p_inventory)
+		public void Delete(RefillInventoryHeaderDataEntity p_inventory)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -73,7 +73,7 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-		public void Update(RefillInventoryDataEntity p_inventory	)
+		public void Update(RefillInventoryHeaderDataEntity p_inventory	)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
