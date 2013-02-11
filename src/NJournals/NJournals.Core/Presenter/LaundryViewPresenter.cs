@@ -24,6 +24,7 @@ namespace NJournals.Core.Presenter
 		ILaundryChargeDao m_chargeDao;
 		ICustomerDao m_customerDao;
 		ILaundryDaySummaryDao m_summaryDao;
+		ILaundryPriceSchemeDao m_priceDao;
 		
 		ILaundryDao m_laundryDao;		
 		List<LaundryCategoryDataEntity> categories = null;
@@ -41,6 +42,7 @@ namespace NJournals.Core.Presenter
 			m_customerDao = new CustomerDao();
 			m_chargeDao = new LaundryChargeDao();
 			m_summaryDao = new LaundryDaySummaryDao();
+			m_priceDao = new LaundryPriceSchemeDao();
 		}
 		
 		public void SaveClicked(){
@@ -52,7 +54,7 @@ namespace NJournals.Core.Presenter
 			if(daySummary != null)
 			{
 				daySummary.TransCount += 1;
-				//TODO: totalsales should be amounttender - amount change.
+				//TODO: totalsales should be totalamoutdue - balance
 				daySummary.TotalSales += headerEntity.AmountTender;
 				headerEntity.DaySummary = daySummary;
 				
@@ -112,9 +114,9 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public LaundryPriceSchemeDataEntity getLaundryPrice(string p_category, string p_service){
-			LaundryPriceSchemeDao priceDao = new LaundryPriceSchemeDao();
+			
 			LaundryPriceSchemeDataEntity priceEntity = new LaundryPriceSchemeDataEntity();			
-			priceEntity = priceDao.GetByCategoryService(getServiceByName(p_service), getCategoryByName(p_category));
+			priceEntity = m_priceDao.GetByCategoryService(getServiceByName(p_service), getCategoryByName(p_category));
 			return priceEntity;
 		}		
 		
@@ -126,8 +128,16 @@ namespace NJournals.Core.Presenter
 			return m_categoryDao.GetByName(p_category);
 		}
 		
+		public LaundryCategoryDataEntity getCategoryById(int p_categoryId){
+			return m_categoryDao.GetById(p_categoryId);
+		}
+		
 		public LaundryServiceDataEntity getServiceByName(string p_service){
 			return m_serviceDao.GetByName(p_service);
+		}
+		
+		public List<LaundryPriceSchemeDataEntity> getCategoriesByServiceID(int serviceID){
+			return m_priceDao.GetAllItemsByServiceId(serviceID) as List<LaundryPriceSchemeDataEntity>;
 		}
 		
 		public int getHeaderID(){

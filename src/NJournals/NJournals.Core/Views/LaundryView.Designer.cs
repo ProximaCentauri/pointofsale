@@ -47,7 +47,7 @@ namespace NJournals.Core.Views
 			this.txtjoborder = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cmbservices = new System.Windows.Forms.ComboBox();
-			this.Services = new System.Windows.Forms.GroupBox();
+			this.grpServices = new System.Windows.Forms.GroupBox();
 			this.btnadd = new System.Windows.Forms.Button();
 			this.txtkilo = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -91,7 +91,7 @@ namespace NJournals.Core.Views
 			this.txttotaldiscount = new System.Windows.Forms.TextBox();
 			this.label19 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
-			this.Services.SuspendLayout();
+			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -213,25 +213,26 @@ namespace NJournals.Core.Views
 			this.cmbservices.Name = "cmbservices";
 			this.cmbservices.Size = new System.Drawing.Size(190, 23);
 			this.cmbservices.TabIndex = 2;
+			this.cmbservices.SelectedIndexChanged += new System.EventHandler(this.cmbservices_selectedindexchange);
 			// 
-			// Services
+			// grpServices
 			// 
-			this.Services.Controls.Add(this.btnadd);
-			this.Services.Controls.Add(this.txtkilo);
-			this.Services.Controls.Add(this.label8);
-			this.Services.Controls.Add(this.txtnoitems);
-			this.Services.Controls.Add(this.label7);
-			this.Services.Controls.Add(this.cmbcategory);
-			this.Services.Controls.Add(this.label5);
-			this.Services.Controls.Add(this.label6);
-			this.Services.Controls.Add(this.cmbservices);
-			this.Services.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.Services.Location = new System.Drawing.Point(21, 182);
-			this.Services.Name = "Services";
-			this.Services.Size = new System.Drawing.Size(278, 187);
-			this.Services.TabIndex = 3;
-			this.Services.TabStop = false;
-			this.Services.Text = "Services";
+			this.grpServices.Controls.Add(this.btnadd);
+			this.grpServices.Controls.Add(this.txtkilo);
+			this.grpServices.Controls.Add(this.label8);
+			this.grpServices.Controls.Add(this.txtnoitems);
+			this.grpServices.Controls.Add(this.label7);
+			this.grpServices.Controls.Add(this.cmbcategory);
+			this.grpServices.Controls.Add(this.label5);
+			this.grpServices.Controls.Add(this.label6);
+			this.grpServices.Controls.Add(this.cmbservices);
+			this.grpServices.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.grpServices.Location = new System.Drawing.Point(21, 182);
+			this.grpServices.Name = "grpServices";
+			this.grpServices.Size = new System.Drawing.Size(278, 187);
+			this.grpServices.TabIndex = 3;
+			this.grpServices.TabStop = false;
+			this.grpServices.Text = "Services";
 			// 
 			// btnadd
 			// 
@@ -686,7 +687,7 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.dataGridView1);
-			this.Controls.Add(this.Services);
+			this.Controls.Add(this.grpServices);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "LaundryNewView";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -694,8 +695,8 @@ namespace NJournals.Core.Views
 			this.Load += new System.EventHandler(this.LaundryNewViewLoad);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			this.Services.ResumeLayout(false);
-			this.Services.PerformLayout();
+			this.grpServices.ResumeLayout(false);
+			this.grpServices.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
@@ -748,7 +749,7 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.ComboBox cmbcategory;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.GroupBox Services;
+		private System.Windows.Forms.GroupBox grpServices;
 		private System.Windows.Forms.ComboBox cmbservices;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;

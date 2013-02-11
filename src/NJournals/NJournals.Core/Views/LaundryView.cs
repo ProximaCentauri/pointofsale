@@ -57,14 +57,15 @@ namespace NJournals.Core.Views
 				
 			m_laundryDao = new LaundryDao();
 			m_presenter = new LaundryViewPresenter(this, m_laundryDao);
-			if(this.Text.Contains("[NEW]")){
-				m_presenter.SetAllCategories();
+			if(this.Text.Contains("[NEW]")){				
 				m_presenter.SetAllServices();
 				m_presenter.SetAllCustomers();
 				m_presenter.SetAllCharges();
 				this.groupBox2.Enabled = this.btnclaim.Enabled = false;
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 				this.dtrecieveDate.Value = DateTime.Now;
+			}else{
+				grpServices.Enabled = false;
 			}
 		}
 				
@@ -272,8 +273,7 @@ namespace NJournals.Core.Views
 				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("0");
 				//TODO: Calculate percent discount
 				txtdiscount.Text = ((m_headerEntity.TotalDiscount / (m_headerEntity.AmountDue + m_headerEntity.TotalCharge)) * 100).ToString("0");
-				
-				txtamttender.Text = m_headerEntity.AmountTender.ToString("N2");
+								
 				chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;
 				//TODO: Fix issue in retrieve jobchargeentities
 				foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
@@ -293,6 +293,16 @@ namespace NJournals.Core.Views
 			if(e.KeyCode == Keys.Enter){
 				m_presenter.getHeaderEntityByJONumber(int.Parse(txtsearch.Text));
 			}			
+		}
+		
+		void cmbservices_selectedindexchange(object sender, EventArgs e)
+		{
+			LaundryServiceDataEntity service = m_presenter.getServiceByName(cmbservices.Text);
+			List<LaundryPriceSchemeDataEntity> prices = m_presenter.getCategoriesByServiceID(service.ServiceID);
+			this.cmbcategory.Items.Clear();
+			foreach(LaundryPriceSchemeDataEntity price in prices){
+				cmbcategory.Items.Add(m_presenter.getCategoryById(price.Category.CategoryID).Name);
+			}
 		}
 	}	
 }

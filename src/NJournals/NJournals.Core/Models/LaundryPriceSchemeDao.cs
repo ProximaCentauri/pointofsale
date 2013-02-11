@@ -50,6 +50,16 @@ namespace NJournals.Core.Models
 				return query;
 			}
 		}
+			
+		public IEnumerable<LaundryPriceSchemeDataEntity> GetAllItemsByServiceId(int serviceID){
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				var query = session.Query<LaundryPriceSchemeDataEntity>()										
+					.Where(x => x.Service.ServiceID == serviceID)
+					.ToList();
+				return query;
+			}
+		}
 		
 		public LaundryPriceSchemeDataEntity GetByCategoryService(LaundryServiceDataEntity p_service, 
 		                                             LaundryCategoryDataEntity p_category)

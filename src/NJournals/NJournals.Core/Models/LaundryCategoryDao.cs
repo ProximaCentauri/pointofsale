@@ -62,6 +62,18 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public LaundryCategoryDataEntity GetById(int p_id)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+                var query = session.Query<LaundryCategoryDataEntity>()
+                    .Where(x => x.CategoryID == p_id)
+                    .OrderBy(x => x.Name)
+                    .SingleOrDefault();
+				return query;
+			}
+		}
+		
 		public void Delete(LaundryCategoryDataEntity p_category)
 		{
 			using(var session = NHibernateHelper.OpenSession())
