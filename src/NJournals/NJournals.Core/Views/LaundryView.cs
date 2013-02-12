@@ -235,7 +235,7 @@ namespace NJournals.Core.Views
 		}
 		
 		public void LaunchChecklist(){			
-			chklistView = new CheckListView(m_headerEntity);
+			chklistView = new CheckListView(m_headerEntity, int.Parse(txtjoborder.Text));
 			chklistView.SelectChecklist += delegate { GetSelectedChecklist(); };
 			chklistView.ShowDialog();		
 		}

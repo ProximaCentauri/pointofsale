@@ -23,7 +23,7 @@ namespace NJournals.Core.Views
 	/// </summary>
 	public partial class CheckListView : BaseForm, ICheckListView
 	{
-		public CheckListView(LaundryHeaderDataEntity p_headerEntity)
+		public CheckListView(LaundryHeaderDataEntity p_headerEntity, int p_jonumber)
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -35,24 +35,25 @@ namespace NJournals.Core.Views
 			//
 			m_presenter = new CheckListViewPresenter(this, new LaundryChecklistDao());
 			m_headerEntity = p_headerEntity;
+			m_jonumber = p_jonumber;
 		}
 		
 	
 		private CheckListViewPresenter m_presenter;
 		public event EventHandler SelectChecklist;
+		private int m_jonumber;
 		private LaundryHeaderDataEntity m_headerEntity;
-		
-		public void SetAllCheckList(List<LaundryChecklistDataEntity> entities){
-			foreach(LaundryChecklistDataEntity entity in entities){				
-				dgvCheckList.Rows.Add(false, entity.Name, "");
-			}
-		}
 		
 		void CheckListViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
 			m_presenter.SetAllChecklist();
-			txtjonumber.Text = m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0');
+			if(m_headerEntity.JobChecklistEntities.Count > 0){
+				m_presenter.SetSelectedChecklist();
+			}else{
+				txtjonumber.Text = m_jonumber.ToString().PadLeft(6, '0');					
+			}
+			
 			btnok.Click += delegate { OnSelectChecklist(null); };
 		}
 		
@@ -94,6 +95,25 @@ namespace NJournals.Core.Views
 			}
 		}
 		
+		public void SetAllCheckList(List<LaundryChecklistDataEntity> entities){
+			foreach(LaundryChecklistDataEntity entity in entities){				
+				dgvCheckList.Rows.Add(false, entity.Name, "");
+			}
+		}
 		
+		public void SetSelectedCheckList(){			
+			foreach(LaundryJobChecklistDataEntity checklistEntity in m_headerEntity.JobChecklistEntities){
+				foreach(DataGridViewRow row in dgvCheckList.Rows){
+					if(row.Cells[0].Value != null){
+						if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
+							if(row.Cells[1].Value.ToString().Equals(checklistEntity.Checklist.Name)){
+								row.Cells[0].Value = true;
+								row.Cells[2].Value = checklistEntity.Qty;
+							}
+						}	
+					}					
+				}
+			}
+		}		
 	}
 }

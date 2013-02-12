@@ -19,6 +19,7 @@ namespace NJournals.Common.Interfaces
 	{
 		event EventHandler SelectChecklist;
 		void SetAllCheckList(List<LaundryChecklistDataEntity> checkListEntities);
+		void SetSelectedCheckList();
 		List<LaundryJobChecklistDataEntity> GetAllSelectedCheckList();
 	}
 }
