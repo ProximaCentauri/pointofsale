@@ -31,5 +31,9 @@ namespace NJournals.Core.Presenter
 			List<LaundryChecklistDataEntity> checklistEntities = m_checklistDao.GetAllItems() as List<LaundryChecklistDataEntity>;
 			m_view.SetAllCheckList(checklistEntities);
 		}
+		
+		public LaundryChecklistDataEntity getChecklistByName(string p_name){
+			return m_checklistDao.GetByName(p_name);
+		}
 	}
 }

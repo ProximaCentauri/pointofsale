@@ -23,7 +23,7 @@ namespace NJournals.Core.Views
 	/// </summary>
 	public partial class CheckListView : BaseForm, ICheckListView
 	{
-		public CheckListView()
+		public CheckListView(LaundryHeaderDataEntity p_headerEntity)
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -34,10 +34,13 @@ namespace NJournals.Core.Views
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 			m_presenter = new CheckListViewPresenter(this, new LaundryChecklistDao());
+			m_headerEntity = p_headerEntity;
 		}
 		
 	
 		private CheckListViewPresenter m_presenter;
+		public event EventHandler SelectChecklist;
+		private LaundryHeaderDataEntity m_headerEntity;
 		
 		public void SetAllCheckList(List<LaundryChecklistDataEntity> entities){
 			foreach(LaundryChecklistDataEntity entity in entities){				
@@ -49,6 +52,8 @@ namespace NJournals.Core.Views
 		{
 			setButtonImages();
 			m_presenter.SetAllChecklist();
+			txtjonumber.Text = m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0');
+			btnok.Click += delegate { OnSelectChecklist(null); };
 		}
 		
 		public List<LaundryJobChecklistDataEntity> GetAllSelectedCheckList(){
@@ -59,7 +64,8 @@ namespace NJournals.Core.Views
 						LaundryJobChecklistDataEntity entity = new LaundryJobChecklistDataEntity();
 						bool isChecked = bool.Parse(row.Cells[0].Value.ToString());
 						if(isChecked){
-							entity.Checklist.Name = row.Cells[1].Value.ToString();
+							entity.Header = m_headerEntity;
+							entity.Checklist = m_presenter.getChecklistByName(row.Cells[1].Value.ToString());
 							entity.Qty = int.Parse(row.Cells[2].Value.ToString());
 							checklistEntities.Add(entity);
 						}
@@ -67,27 +73,27 @@ namespace NJournals.Core.Views
 				}
 			}
 			return checklistEntities;
-		}
-		
+		}		
 
 		void setButtonImages()
 		{		
 			Resource.setImage(this.btnSaveCheckList,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
 			Resource.setImage(this.btnDeleteCheckList,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");			
 		}
-
 		
 		void BtncancelClick(object sender, EventArgs e)
-		{
-			
+		{			
 			this.Close();
+		}	
+		
+		
+		protected virtual void OnSelectChecklist(EventArgs e){
+			if(SelectChecklist != null){
+				SelectChecklist(this, e);
+				this.Close();
+			}
 		}
 		
 		
-		
-		void BtnokClick(object sender, EventArgs e)
-		{
-			//TODO: Add events to triger that add checklist
-		}
 	}
 }

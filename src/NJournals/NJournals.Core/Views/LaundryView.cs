@@ -41,6 +41,7 @@ namespace NJournals.Core.Views
 		ILaundryDao m_laundryDao;
 		LaundryJobChargesDataEntity m_jobcharge = null;
 		LaundryHeaderDataEntity m_headerEntity;
+		CheckListView chklistView = null;
 		private decimal amountTender = 0;
 		
 		private decimal totalAmtDue = 0;
@@ -132,8 +133,13 @@ namespace NJournals.Core.Views
 			m_headerEntity.AmountDue = decimal.Parse(txtamtdue.Text);
 			
 			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
-			//TODO: amount should be amounttender - amount change.
-			paymentdetail.Amount = m_headerEntity.AmountTender;
+			
+			if(m_headerEntity.AmountTender >= m_headerEntity.TotalAmountDue){
+				paymentdetail.Amount = m_headerEntity.TotalAmountDue;	
+			}else{
+				paymentdetail.Amount = m_headerEntity.TotalAmountDue - decimal.Parse(txtbalance.Text);
+			}
+			
 			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 			paymentdetail.Header = m_headerEntity;
 			m_headerEntity.PaymentDetailEntities.Add(paymentdetail);
@@ -228,14 +234,19 @@ namespace NJournals.Core.Views
 			m_presenter.LaunchChecklist();
 		}
 		
-		public void LaunchChecklist(){
-			
-			CheckListView chklistView = new CheckListView();			
-			chklistView.ShowDialog();
-			//TODO: Add events to listen that to add checklist
+		public void LaunchChecklist(){			
+			chklistView = new CheckListView(m_headerEntity);
+			chklistView.SelectChecklist += delegate { GetSelectedChecklist(); };
+			chklistView.ShowDialog();		
+		}
+		
+		public void GetSelectedChecklist(){
 			List<LaundryJobChecklistDataEntity> checkListEntities = chklistView.GetAllSelectedCheckList();
-			if(checkListEntities != null)
+			if(checkListEntities.Count > 0){
 				m_headerEntity.JobChecklistEntities = checkListEntities;
+				MessageService.ShowInfo("fire in the hole!");
+			}else
+				MessageService.ShowInfo("enemy down!");				
 		}
 		
 		public void LoadHeaderEntityData(LaundryHeaderDataEntity p_headerEntity){

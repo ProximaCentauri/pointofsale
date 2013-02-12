@@ -81,7 +81,7 @@ namespace NJournals.Core.Views
 			this.btnok.TabIndex = 21;
 			this.btnok.Text = "OK";
 			this.btnok.UseVisualStyleBackColor = true;
-			this.btnok.Click += new System.EventHandler(this.BtnokClick);
+			
 			// 
 			// btnokprint
 			// 
