@@ -38,7 +38,7 @@ namespace NJournals.Core.Views
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.txtjonumber = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnsave = new System.Windows.Forms.Button();
 			this.btnsaveprint = new System.Windows.Forms.Button();
@@ -52,12 +52,13 @@ namespace NJournals.Core.Views
 			((System.ComponentModel.ISupportInitialize)(this.dgvCheckList)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// textBox1
+			// txtjonumber
 			// 
-			this.textBox1.Location = new System.Drawing.Point(89, 24);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(154, 20);
-			this.textBox1.TabIndex = 3;
+			this.txtjonumber.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.txtjonumber.Location = new System.Drawing.Point(89, 24);
+			this.txtjonumber.Name = "txtjonumber";
+			this.txtjonumber.Size = new System.Drawing.Size(154, 20);
+			this.txtjonumber.TabIndex = 3;
 			// 
 			// label1
 			// 
@@ -171,7 +172,7 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.btnsave);
 			this.Controls.Add(this.btnsaveprint);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.txtjonumber);
 			this.Controls.Add(this.label1);
 			this.Name = "CheckListView";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -191,6 +192,6 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.Button btnsaveprint;
 		private System.Windows.Forms.Button btnsave;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txtjonumber;
 	}
 }

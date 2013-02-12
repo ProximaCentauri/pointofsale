@@ -32,11 +32,10 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
-			m_checklistDao = new LaundryChecklistDao();
-			m_presenter = new CheckListViewPresenter(this, m_checklistDao);
+			m_presenter = new CheckListViewPresenter(this, new LaundryChecklistDao());
 		}
 		
-		private ILaundryChecklistDao m_checklistDao;
+	
 		private CheckListViewPresenter m_presenter;
 		
 		public void SetAllCheckList(List<LaundryChecklistDataEntity> entities){
@@ -54,5 +53,19 @@ namespace NJournals.Core.Views
 		{
 			
 		}
+		
+		public List<LaundryChecklistDataEntity> GetAllSelectedCheckList(){
+			List<LaundryChecklistDataEntity> checklistEntities = new List<LaundryChecklistDataEntity>();;
+			foreach(DataGridViewRow row in dgvCheckList.Rows){
+				if(row.Cells[0].Value != null){
+					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
+						LaundryChecklistDataEntity entity = new LaundryChecklistDataEntity();
+						
+					}
+				}
+			}
+			return checklistEntities;
+		}
+		
 	}
 }

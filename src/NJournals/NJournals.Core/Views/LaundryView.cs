@@ -197,13 +197,7 @@ namespace NJournals.Core.Views
 				txtbalance.Text = "0.00";
 			}							
 		}		
-		
-		void chkchargeList_selectedindexchanged(object sender, EventArgs e)
-		{
-			
-		}
-		
-		
+	
 		void textbox_click(object sender, EventArgs e)
 		{
 			if(sender is TextBox){
@@ -234,8 +228,10 @@ namespace NJournals.Core.Views
 		}
 		
 		public void LaunchChecklist(){
-			CheckListView chklistView = new CheckListView();
+			
+			CheckListView chklistView = new CheckListView();			
 			chklistView.ShowDialog();
+			m_headerEntity.JobChecklistEntities = chklistView.GetAllSelectedCheckList();
 		}
 		
 		public void LoadHeaderEntityData(LaundryHeaderDataEntity p_headerEntity){
@@ -299,8 +295,6 @@ namespace NJournals.Core.Views
 				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) - charge).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - charge).ToString("N2");
 			}			
-			
-			
 		}
 	}	
 }
