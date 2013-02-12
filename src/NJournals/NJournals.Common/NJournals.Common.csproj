@@ -95,6 +95,7 @@
     <Compile Include="DataEntities\RefillHeaderDataEntity.cs" />
     <Compile Include="DataEntities\RefillInventoryHeaderDataEntity.cs" />
     <Compile Include="DataEntities\RefillInventoryDetailDataEntity.cs" />
+    <Compile Include="DataEntities\RefillInventoryReportDataEntity.cs" />
     <Compile Include="DataEntities\RefillPaymentDetailDataEntity.cs" />
     <Compile Include="DataEntities\RefillProductTypeDataEntity.cs" />
     <Compile Include="DataEntities\RefillTransactionTypeDataEntity.cs" />
@@ -172,6 +173,9 @@
     <Compile Include="Util\Resource.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\LaundryViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\NJournals.Common.DataEntities.RefillInventoryReportDataEntity.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

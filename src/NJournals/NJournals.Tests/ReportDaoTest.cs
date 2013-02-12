@@ -83,5 +83,23 @@ namespace NJournals.Tests
 				
 			}
 		}
+		
+		[Test]
+		public void getInventoryReport()
+		{
+			RefillReportDao dao = new RefillReportDao();
+			List<RefillInventoryReportDataEntity> entities = dao.GetInventoryReport(DateTime.Now.AddDays(-5),
+			                                                                        DateTime.Now.AddDays(5)) as List<RefillInventoryReportDataEntity>;
+			
+			Assert.NotNull(entities);
+			foreach(RefillInventoryReportDataEntity entity in entities)
+			{				
+				Console.WriteLine("daystamp: " + entity.DayStamp);
+				Console.WriteLine("totalqty: " + entity.TotalQty);
+				Console.WriteLine("added: " + entity.TotalAdded);
+				
+				
+			}
+		}
 	}
 }

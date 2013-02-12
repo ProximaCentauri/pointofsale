@@ -25,6 +25,9 @@ namespace NJournals.Common.DataMappers
 			Id(x => x.ID);			
 			Map(x => x.QtyAdded);
 			Map(x => x.QtyRemoved);
+            Map(x => x.TotalQty);
+            Map(x => x.QtyOnHand);
+            Map(x => x.QtyReleased);
 			Map(x => x.Date);
 			References<RefillInventoryHeaderDataEntity>(x => x.Header)
 				.Column("InvHeaderID");

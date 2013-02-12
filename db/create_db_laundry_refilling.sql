@@ -396,6 +396,8 @@ CREATE TABLE `refillinventoryheader` (
   `TotalQty` int(10) unsigned NOT NULL DEFAULT '0',
   `QtyOnHand` int(10) unsigned NOT NULL DEFAULT '0',
   `QtyReleased` int(10) unsigned NOT NULL DEFAULT '0',
+  `TotalAdded` int(10) unsigned NOT NULL DEFAULT '0',
+  `TotalRemoved` int (10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`InvHeaderID`),
   UNIQUE KEY `IX_refillinventoryheader_1` (`Name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -414,10 +416,13 @@ CREATE TABLE `refillinventorydetail` (
   `InvHeaderID` int(10) unsigned NOT NULL,  
   `QtyAdded` int(10) unsigned NOT NULL DEFAULT '0',
   `QtyRemoved` int(10) unsigned NOT NULL DEFAULT '0',
+  `TotalQty` int(10) unsigned NOT NULL DEFAULT '0',
+  `QtyOnHand` int(10) unsigned NOT NULL DEFAULT '0',
+  `QtyReleased` int(10) unsigned NOT NULL DEFAULT '0',
   `Date` datetime NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `IX_refillinventorydetail_1` (`InvHeaderID`),  
-  CONSTRAINT `FK_refillinventorydetail_1` FOREIGN KEY (`InvHeaderID`) REFERENCES `refillinventorydetail` (`InvHeaderID`) ON UPDATE CASCADE
+  CONSTRAINT `FK_refillinventorydetail_1` FOREIGN KEY (`InvHeaderID`) REFERENCES `refillinventoryheader` (`InvHeaderID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 --

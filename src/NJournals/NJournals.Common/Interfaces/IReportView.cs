@@ -22,6 +22,6 @@ namespace NJournals.Common.Interfaces
 		void SetAllReportTypes(List<string> reportTypes);
 		void SetAllCustomers(List<CustomerDataEntity> customers);
         void DisplayReport<T>(List<T> rpt, List<ReportDataSource> datasources,
-            string rptembeddedsource);
+		                      List<ReportParameter> parameters, string rptembeddedsource);
 	}
 }
