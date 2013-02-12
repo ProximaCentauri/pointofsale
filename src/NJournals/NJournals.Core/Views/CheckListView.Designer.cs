@@ -49,6 +49,8 @@ namespace NJournals.Core.Views
 			this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.btnDeleteCheckList = new System.Windows.Forms.Button();
+			this.btnSaveCheckList = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCheckList)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -94,7 +96,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.label2.Location = new System.Drawing.Point(3, 429);
+			this.label2.Location = new System.Drawing.Point(112, 408);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(68, 23);
 			this.label2.TabIndex = 22;
@@ -103,7 +105,7 @@ namespace NJournals.Core.Views
 			// 
 			// txttotal
 			// 
-			this.txttotal.Location = new System.Drawing.Point(77, 429);
+			this.txttotal.Location = new System.Drawing.Point(186, 408);
 			this.txttotal.Name = "txttotal";
 			this.txttotal.Size = new System.Drawing.Size(66, 20);
 			this.txttotal.TabIndex = 23;
@@ -159,12 +161,40 @@ namespace NJournals.Core.Views
 			this.Column3.Name = "Column3";
 			this.Column3.Width = 50;
 			// 
+			// btnDeleteCheckList
+			// 
+			this.btnDeleteCheckList.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnDeleteCheckList.FlatAppearance.BorderSize = 0;
+			this.btnDeleteCheckList.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteCheckList.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteCheckList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDeleteCheckList.Location = new System.Drawing.Point(258, 136);
+			this.btnDeleteCheckList.Name = "btnDeleteCheckList";
+			this.btnDeleteCheckList.Size = new System.Drawing.Size(35, 23);
+			this.btnDeleteCheckList.TabIndex = 27;
+			this.btnDeleteCheckList.UseVisualStyleBackColor = true;
+			// 
+			// btnSaveCheckList
+			// 
+			this.btnSaveCheckList.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnSaveCheckList.FlatAppearance.BorderSize = 0;
+			this.btnSaveCheckList.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnSaveCheckList.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnSaveCheckList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSaveCheckList.Location = new System.Drawing.Point(258, 107);
+			this.btnSaveCheckList.Name = "btnSaveCheckList";
+			this.btnSaveCheckList.Size = new System.Drawing.Size(35, 23);
+			this.btnSaveCheckList.TabIndex = 26;
+			this.btnSaveCheckList.UseVisualStyleBackColor = true;
+			// 
 			// CheckListView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(264, 567);
+			this.ClientSize = new System.Drawing.Size(307, 567);
+			this.Controls.Add(this.btnDeleteCheckList);
+			this.Controls.Add(this.btnSaveCheckList);
 			this.Controls.Add(this.dgvCheckList);
 			this.Controls.Add(this.btncancel);
 			this.Controls.Add(this.txttotal);
@@ -181,6 +211,8 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button btnSaveCheckList;
+		private System.Windows.Forms.Button btnDeleteCheckList;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;

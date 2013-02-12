@@ -48,6 +48,7 @@ namespace NJournals.Core
 		
 		private LaundryNewView laundryView = new LaundryNewView();
 		private RefillingView refillingView = new RefillingView();
+		private RefillReturnPaymentView refillReturnView = new RefillReturnPaymentView();
 		private ReportView reportView = new ReportView();
 		private LaundryConfigurationView laundryConfigView = new LaundryConfigurationView();
 		private RefillingConfigurationView refillingConfigView = new RefillingConfigurationView();
@@ -68,8 +69,8 @@ namespace NJournals.Core
 		}
 		
 		public void ShowRefillingClaimView(){
-			refillingView.SetTitle("Refilling  [CLAIM]");
-			ShowSingletonForm(refillingView);
+			refillingView.SetTitle("Refilling  [RETURN/PAYMENT]");
+			ShowSingletonForm(refillReturnView);
 		}
 		
 		public void ShowLaundryReportView(){

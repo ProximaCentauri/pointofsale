@@ -139,11 +139,11 @@
     <Compile Include="Views\CustomerSearchView.Designer.cs">
       <DependentUpon>CustomerSearchView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomerView.cs">
+    <Compile Include="Views\CustomerListView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CustomerView.Designer.cs">
-      <DependentUpon>CustomerView.cs</DependentUpon>
+    <Compile Include="Views\CustomerListView.Designer.cs">
+      <DependentUpon>CustomerListView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\LaundryView.cs">
       <SubType>Form</SubType>
@@ -168,6 +168,10 @@
     </Compile>
     <Compile Include="Views\RefillingView.Designer.cs">
       <DependentUpon>RefillingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RefillReturnPaymentView.cs" />
+    <Compile Include="Views\RefillReturnPaymentView.Designer.cs">
+      <DependentUpon>RefillReturnPaymentView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ReportView.cs">
       <SubType>Form</SubType>
@@ -219,8 +223,8 @@
       <DependentUpon>CustomerSearchView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CustomerView.resx">
-      <DependentUpon>CustomerView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\CustomerListView.resx">
+      <DependentUpon>CustomerListView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LaundryView.resx">
@@ -238,6 +242,9 @@
     <EmbeddedResource Include="Views\RefillingView.resx">
       <DependentUpon>RefillingView.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RefillReturnPaymentView.resx">
+      <DependentUpon>RefillReturnPaymentView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ReportView.resx">
       <DependentUpon>ReportView.cs</DependentUpon>
