@@ -122,9 +122,10 @@ namespace NJournals.Core
 			// 
 			this.lbllaundryConfig.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lbllaundryConfig.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryConfig.Location = new System.Drawing.Point(23, 279);
+			this.lbllaundryConfig.Location = new System.Drawing.Point(3, 279);
 			this.lbllaundryConfig.Name = "lbllaundryConfig";
-			this.lbllaundryConfig.Size = new System.Drawing.Size(166, 23);
+			this.lbllaundryConfig.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+			this.lbllaundryConfig.Size = new System.Drawing.Size(186, 23);
 			this.lbllaundryConfig.TabIndex = 16;
 			this.lbllaundryConfig.Text = "CONFIGURATION";
 			this.lbllaundryConfig.MouseLeave += new System.EventHandler(this.label_mouseleave);
@@ -134,9 +135,10 @@ namespace NJournals.Core
 			// 
 			this.lbllaundryReports.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lbllaundryReports.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryReports.Location = new System.Drawing.Point(23, 256);
+			this.lbllaundryReports.Location = new System.Drawing.Point(3, 256);
 			this.lbllaundryReports.Name = "lbllaundryReports";
-			this.lbllaundryReports.Size = new System.Drawing.Size(166, 23);
+			this.lbllaundryReports.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+			this.lbllaundryReports.Size = new System.Drawing.Size(186, 23);
 			this.lbllaundryReports.TabIndex = 15;
 			this.lbllaundryReports.Text = "REPORTS";
 			this.lbllaundryReports.MouseLeave += new System.EventHandler(this.label_mouseleave);
@@ -146,9 +148,10 @@ namespace NJournals.Core
 			// 
 			this.lbllaundryClaim.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lbllaundryClaim.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryClaim.Location = new System.Drawing.Point(23, 233);
+			this.lbllaundryClaim.Location = new System.Drawing.Point(3, 233);
 			this.lbllaundryClaim.Name = "lbllaundryClaim";
-			this.lbllaundryClaim.Size = new System.Drawing.Size(166, 23);
+			this.lbllaundryClaim.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+			this.lbllaundryClaim.Size = new System.Drawing.Size(186, 23);
 			this.lbllaundryClaim.TabIndex = 14;
 			this.lbllaundryClaim.Text = "CLAIM";
 			this.lbllaundryClaim.MouseLeave += new System.EventHandler(this.label_mouseleave);
@@ -158,9 +161,10 @@ namespace NJournals.Core
 			// 
 			this.lbllaundryNew.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lbllaundryNew.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryNew.Location = new System.Drawing.Point(23, 210);
+			this.lbllaundryNew.Location = new System.Drawing.Point(3, 210);
 			this.lbllaundryNew.Name = "lbllaundryNew";
-			this.lbllaundryNew.Size = new System.Drawing.Size(166, 23);
+			this.lbllaundryNew.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+			this.lbllaundryNew.Size = new System.Drawing.Size(186, 23);
 			this.lbllaundryNew.TabIndex = 13;
 			this.lbllaundryNew.Text = "NEW";
 			this.lbllaundryNew.MouseLeave += new System.EventHandler(this.label_mouseleave);
@@ -170,9 +174,10 @@ namespace NJournals.Core
 			// 
 			this.lblRefConfig.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblRefConfig.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefConfig.Location = new System.Drawing.Point(23, 146);
+			this.lblRefConfig.Location = new System.Drawing.Point(3, 146);
 			this.lblRefConfig.Name = "lblRefConfig";
-			this.lblRefConfig.Size = new System.Drawing.Size(166, 23);
+			this.lblRefConfig.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+			this.lblRefConfig.Size = new System.Drawing.Size(186, 23);
 			this.lblRefConfig.TabIndex = 12;
 			this.lblRefConfig.Text = "CONFIGURATION";
 			this.lblRefConfig.MouseLeave += new System.EventHandler(this.label_mouseleave);
@@ -182,9 +187,10 @@ namespace NJournals.Core
 			// 
 			this.lblRefReports.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblRefReports.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefReports.Location = new System.Drawing.Point(23, 123);
+			this.lblRefReports.Location = new System.Drawing.Point(3, 123);
 			this.lblRefReports.Name = "lblRefReports";
-			this.lblRefReports.Size = new System.Drawing.Size(166, 23);
+			this.lblRefReports.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+			this.lblRefReports.Size = new System.Drawing.Size(186, 23);
 			this.lblRefReports.TabIndex = 11;
 			this.lblRefReports.Text = "REPORTS";
 			this.lblRefReports.MouseLeave += new System.EventHandler(this.label_mouseleave);
@@ -194,9 +200,10 @@ namespace NJournals.Core
 			// 
 			this.lblRefClaim.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblRefClaim.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefClaim.Location = new System.Drawing.Point(23, 100);
+			this.lblRefClaim.Location = new System.Drawing.Point(3, 100);
 			this.lblRefClaim.Name = "lblRefClaim";
-			this.lblRefClaim.Size = new System.Drawing.Size(166, 23);
+			this.lblRefClaim.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+			this.lblRefClaim.Size = new System.Drawing.Size(186, 23);
 			this.lblRefClaim.TabIndex = 10;
 			this.lblRefClaim.Text = "RETURN/PAYMENT";
 			this.lblRefClaim.MouseLeave += new System.EventHandler(this.label_mouseleave);
@@ -206,9 +213,10 @@ namespace NJournals.Core
 			// 
 			this.lblRefNew.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblRefNew.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefNew.Location = new System.Drawing.Point(23, 77);
+			this.lblRefNew.Location = new System.Drawing.Point(3, 77);
 			this.lblRefNew.Name = "lblRefNew";
-			this.lblRefNew.Size = new System.Drawing.Size(166, 23);
+			this.lblRefNew.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+			this.lblRefNew.Size = new System.Drawing.Size(186, 23);
 			this.lblRefNew.TabIndex = 9;
 			this.lblRefNew.Text = "NEW";
 			this.lblRefNew.MouseLeave += new System.EventHandler(this.label_mouseleave);
