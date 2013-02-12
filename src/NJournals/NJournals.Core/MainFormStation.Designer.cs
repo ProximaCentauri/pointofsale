@@ -198,7 +198,7 @@ namespace NJournals.Core
 			this.lblRefClaim.Name = "lblRefClaim";
 			this.lblRefClaim.Size = new System.Drawing.Size(166, 23);
 			this.lblRefClaim.TabIndex = 10;
-			this.lblRefClaim.Text = "RETURN";
+			this.lblRefClaim.Text = "RETURN/PAYMENT";
 			this.lblRefClaim.MouseLeave += new System.EventHandler(this.label_mouseleave);
 			this.lblRefClaim.MouseHover += new System.EventHandler(this.label_mousehover);
 			// 

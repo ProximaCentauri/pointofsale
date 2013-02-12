@@ -25,6 +25,7 @@ namespace NJournals.Common.Interfaces
         IEnumerable<RefillHeaderDataEntity> GetUnpaidTransactionsReport(CustomerDataEntity customer, 
 		                                                             DateTime fromDateTime, 
 		                                                             DateTime toDateTime,
-		                                                            bool b_isAll);		
+		                                                            bool b_isAll);
+		IEnumerable<RefillInventoryReportDataEntity> GetInventoryReport(DateTime fromDateTime, DateTime toDateTime);
 	}
 }

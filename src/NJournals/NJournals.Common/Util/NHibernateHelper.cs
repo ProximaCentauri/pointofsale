@@ -64,7 +64,9 @@ namespace NJournals.Common.Util
             		          .AddFromAssemblyOf<RefillTransactionTypeDataEntity>()
             		          .AddFromAssemblyOf<RefillHeaderDataEntity>()
             		          .AddFromAssemblyOf<RefillDetailDataEntity>()
-            		          .AddFromAssemblyOf<RefillDaySummaryDataEntity>())
+            		          .AddFromAssemblyOf<RefillDaySummaryDataEntity>()
+            		          .AddFromAssemblyOf<RefillInventoryHeaderDataEntity>()
+            		          .AddFromAssemblyOf<RefillInventoryDetailDataEntity>())
                     .ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none"))
                     .BuildSessionFactory();
             }

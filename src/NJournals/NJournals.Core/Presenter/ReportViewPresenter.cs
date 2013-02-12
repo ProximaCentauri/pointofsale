@@ -41,14 +41,14 @@ namespace NJournals.Core.Presenter
 			switch(wndTitle)
         	{
                 case ReportConstants.LAUNDRY_WINDOW:
+                    reportTypes.Add(ReportConstants.CLAIMED_ITEMS_REPORT);
                     reportTypes.Add(ReportConstants.SALES_REPORT);
                     reportTypes.Add(ReportConstants.UNCLAIMED_ITEMS_REPORT);
-                    reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);
-                    reportTypes.Add(ReportConstants.CLAIMED_ITEMS_REPORT);
+                    reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);                   
         			break;
                 case ReportConstants.REFILL_WINDOW:
-                    reportTypes.Add(ReportConstants.SALES_REPORT);
                     reportTypes.Add(ReportConstants.INVENTORY_REPORT);
+                    reportTypes.Add(ReportConstants.SALES_REPORT);                    
                     reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);
         			break;
         		default:
@@ -65,7 +65,7 @@ namespace NJournals.Core.Presenter
 		
 		public void RunReport(string wndTitle, string selectedReport, CustomerDataEntity customer, 
 		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll)
-		{			
+		{						
 			switch(wndTitle)
         	{
                 case ReportConstants.LAUNDRY_WINDOW:
@@ -83,32 +83,34 @@ namespace NJournals.Core.Presenter
 		private void RunLaundryReport(string selectedReport, CustomerDataEntity customer, 
 		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll)
 		{
-            List<ReportDataSource> datasources = new List<ReportDataSource>();
+            List<ReportDataSource> datasources = new List<ReportDataSource>();   
+            List<ReportParameter> parameters = SetReportParameters(customer, fromDateTime, toDateTime, b_isAll);
+                                              
 			switch(selectedReport)
 			{
                 case ReportConstants.SALES_REPORT:
 					List<LaundryDaySummaryDataEntity> salesReport = m_laundryReportDao
 						.GetCustomerSalesReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryDaySummaryDataEntity>;
-                    datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYDAYSUMMARY, salesReport));
-                    m_view.DisplayReport(salesReport, datasources, ReportConstants.ES_LAUNDRY_SALES_REPORT);                  
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYDAYSUMMARY, salesReport));                    
+                    m_view.DisplayReport(salesReport, datasources, parameters, ReportConstants.ES_LAUNDRY_SALES_REPORT);                  
 				    break;
                 case ReportConstants.UNCLAIMED_ITEMS_REPORT:
                     List<LaundryHeaderDataEntity> unclaimedReport = m_laundryReportDao
                         .GetUnclaimedItemsReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryHeaderDataEntity>;
                     datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, unclaimedReport));
-                    m_view.DisplayReport(unclaimedReport, datasources, ReportConstants.ES_LAUNDRY_UNCLAIMEDITEMS_REPORT);                   
+                    m_view.DisplayReport(unclaimedReport, datasources, parameters, ReportConstants.ES_LAUNDRY_UNCLAIMEDITEMS_REPORT);                   
                     break;
                 case ReportConstants.CLAIMED_ITEMS_REPORT:
                     List<LaundryHeaderDataEntity> claimedReport = m_laundryReportDao
                         .GetClaimedItemsReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryHeaderDataEntity>;
                     datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, claimedReport));
-                    m_view.DisplayReport(claimedReport, datasources, ReportConstants.ES_LAUNDRY_CLAIMEDITEMS_REPORT);
+                    m_view.DisplayReport(claimedReport, datasources, parameters, ReportConstants.ES_LAUNDRY_CLAIMEDITEMS_REPORT);
                     break;
                 case ReportConstants.UNPAID_TRANSACTIONS_REPORT:
                     List<LaundryHeaderDataEntity> unpaidReport = m_laundryReportDao
                         .GetUnpaidTransactionsReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryHeaderDataEntity>;
                     datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, unpaidReport));
-                    m_view.DisplayReport(unpaidReport, datasources, ReportConstants.ES_LAUNDRY_UNPAIDTRANSACTIONS_REPORT);
+                    m_view.DisplayReport(unpaidReport, datasources, parameters, ReportConstants.ES_LAUNDRY_UNPAIDTRANSACTIONS_REPORT);
                     break;
 				default:
 					break;
@@ -121,25 +123,61 @@ namespace NJournals.Core.Presenter
 		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll)
 		{
             List<ReportDataSource> datasources = new List<ReportDataSource>();
+            List<ReportParameter> parameters = new List<ReportParameter>();
 			switch(selectedReport)
 			{
                 case ReportConstants.SALES_REPORT:
                     List<RefillDaySummaryDataEntity> salesReport = m_refillReportDao
 						.GetCustomerSalesReport(customer, fromDateTime, toDateTime, b_isAll) as List<RefillDaySummaryDataEntity>;
+                    parameters = SetReportParameters(customer, fromDateTime, toDateTime, b_isAll);
                     datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLDAYSUMMARY, salesReport));
-                    m_view.DisplayReport(salesReport, datasources, ReportConstants.ES_REFILL_SALES_REPORT);                  
+                    m_view.DisplayReport(salesReport, datasources, parameters, ReportConstants.ES_REFILL_SALES_REPORT);                  
 				    break;                
                 case ReportConstants.UNPAID_TRANSACTIONS_REPORT:
                     List<RefillHeaderDataEntity> unpaidReport = m_refillReportDao
                         .GetUnpaidTransactionsReport(customer, fromDateTime, toDateTime, b_isAll) as List<RefillHeaderDataEntity>;
+                    parameters = SetReportParameters(customer, fromDateTime, toDateTime, b_isAll);
                     datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLHEADER, unpaidReport));
-                    m_view.DisplayReport(unpaidReport, datasources, ReportConstants.ES_REFILL_UNPAIDTRANSACTIONS_REPORT);
+                    m_view.DisplayReport(unpaidReport, datasources, parameters, ReportConstants.ES_REFILL_UNPAIDTRANSACTIONS_REPORT);
                     break;
+                case ReportConstants.INVENTORY_REPORT:
+                	List<RefillInventoryReportDataEntity> invReport = m_refillReportDao
+                		.GetInventoryReport(fromDateTime, toDateTime) as List<RefillInventoryReportDataEntity>;
+                	parameters = SetReportParameters(fromDateTime, toDateTime);
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORY, invReport));
+                    m_view.DisplayReport(invReport, datasources, parameters, ReportConstants.ES_REFILL_INVENTORY_REPORT);                   
+                	break;
 				default:
 					break;
 			}
           
             datasources.Clear();
-		}				
+		}	
+
+		private List<ReportParameter> SetReportParameters( CustomerDataEntity customer, 
+		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll)
+		{
+			List<ReportParameter> parameters = new List<ReportParameter>();           
+            parameters.Add(new ReportParameter("fromDateTime", fromDateTime.ToShortDateString()));
+            parameters.Add(new ReportParameter("toDateTime", toDateTime.ToShortDateString()));
+            
+            if(customer.Name == null)
+            {
+            	 parameters.Add(new ReportParameter("customerName", ""));
+            }
+            else{
+            	 parameters.Add(new ReportParameter("customerName", customer.Name));
+            }
+            parameters.Add(new ReportParameter("isAll", b_isAll.ToString())); 
+			return parameters;            
+		}
+		
+		private List<ReportParameter> SetReportParameters(DateTime fromDateTime, DateTime toDateTime)
+		{
+			List<ReportParameter> parameters = new List<ReportParameter>();           
+            parameters.Add(new ReportParameter("fromDateTime", fromDateTime.ToShortDateString()));
+            parameters.Add(new ReportParameter("toDateTime", toDateTime.ToShortDateString()));           
+			return parameters;    
+		}
 	}
 }

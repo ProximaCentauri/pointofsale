@@ -69,7 +69,6 @@ namespace NJournals.Core.Models
 			}   
 		}
 			
-
         public IEnumerable<RefillHeaderDataEntity> GetUnpaidTransactionsReport(CustomerDataEntity customer, 
 		                                                             DateTime fromDateTime, 
 		                                                             DateTime toDateTime,
@@ -83,7 +82,7 @@ namespace NJournals.Core.Models
                     {
                         var query = session.CreateCriteria<RefillHeaderDataEntity>("header")
                            .Add(Restrictions.Between("header.Date", fromDateTime, toDateTime))
-                           .Add(Restrictions.Eq("header.PaidFlag", false))
+                           .Add(Restrictions.Eq("header.PaidFlag", false))                        
                            .AddOrder(Order.Asc("header.Date"))
                            .List<RefillHeaderDataEntity>();
                         return query;
@@ -100,6 +99,33 @@ namespace NJournals.Core.Models
                     }
 				}
 			}			
-		}		
+		}
+
+        public IEnumerable<RefillInventoryReportDataEntity> GetInventoryReport(DateTime fromDateTime, DateTime toDateTime)
+        {          
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                	var query = session.CreateCriteria<RefillInventoryHeaderDataEntity>("header")
+                		.CreateAlias("header.DetailEntities","details")
+                		.SetProjection(Projections.ProjectionList()
+                		               .Add(Projections.GroupProperty("header.Name"),"Name")
+                		               .Add(Projections.GroupProperty(Projections.Cast(NHibernateUtil.Date
+							                                                               ,Projections.GroupProperty("details.Date"))),"DayStamp")                		              
+                		               .Add(Projections.Sum("details.TotalQty"), "TotalQty")
+                		               .Add(Projections.Sum("details.QtyOnHand"), "QtyOnHand")
+                		               .Add(Projections.Sum("details.QtyAdded"), "TotalAdded")
+                		               .Add(Projections.Sum("details.QtyRemoved"), "TotalRemoved")
+                		               .Add(Projections.Sum("details.QtyReleased"), "QtyReleased"))
+                		.Add(Restrictions.Between("details.Date", fromDateTime,toDateTime))
+                		.AddOrder(Order.Asc("Name"))
+                		.AddOrder(Order.Asc("DayStamp"))
+                		.SetResultTransformer(Transformers.AliasToBean(typeof(RefillInventoryReportDataEntity)))
+                		.List<RefillInventoryReportDataEntity>();
+                	return query;
+                }
+            }
+        }
 	}
 }

@@ -17,6 +17,8 @@ using System.Collections.Generic;
 using Microsoft.Reporting.WinForms;
 using System.Globalization;
 using NJournals.Core;
+using NJournals.Common.Util;
+using NJournals.Common.Constants;
 
 namespace NJournals.Core.Views
 {
@@ -62,7 +64,7 @@ namespace NJournals.Core.Views
         	{
         		this.cmbReportTypes.Items.Add(reportType);
         	}        	
-        	this.cmbReportTypes.SelectedIndex = 0;
+        	this.cmbReportTypes.SelectedIndex = 0;            
         }
         
         public void SetAllCustomers(List<CustomerDataEntity> customers)
@@ -77,25 +79,26 @@ namespace NJournals.Core.Views
 		
 		void BtnRunReportClick(object sender, EventArgs e)
 		{
-			string selectedReport = this.cmbReportTypes.Text;
-            b_isAll = true;
-			CustomerDataEntity customer = new CustomerDataEntity();
-			if(this.cmbCustomers.Text != "All"){
-				b_isAll = false;
-				customer = m_customerEntity.Find(m_customer => m_customer.Name == cmbCustomers.Text);
-			}
+            if (ValidateReportDate())
+            { 
+               	string selectedReport = this.cmbReportTypes.Text;
+                b_isAll = true;
+                CustomerDataEntity customer = new CustomerDataEntity();
+                if (this.cmbCustomers.Text != "All")
+                {
+                    b_isAll = false;
+                    customer = m_customerEntity.Find(m_customer => m_customer.Name == cmbCustomers.Text);
+                }
 
-            fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);           
-           	toDateTime = Convert.ToDateTime(this.dateToPicker.Text + " 23:59:59");
-            
 
-			m_presenter.RunReport(this.GetTitle(), selectedReport, customer, fromDateTime,
-			                      toDateTime, b_isAll);			
-			
+                m_presenter.RunReport(this.GetTitle(), selectedReport, customer, fromDateTime,
+                                      toDateTime, b_isAll);
+         
+            }            			
 		}
-		
+				
 		public void DisplayReport<T>(List<T> rpt, List<ReportDataSource> datasources, 
-            string rptembeddedsource)
+		                             List<ReportParameter> parameters, string rptembeddedsource)
 		{
             this.reportViewer.Reset();           
             this.reportViewer.LocalReport.ReportEmbeddedResource = rptembeddedsource;                
@@ -105,14 +108,44 @@ namespace NJournals.Core.Views
             {
                 this.reportViewer.LocalReport.DataSources.Add(datasource);
             }
-            IList<ReportParameter> parameters = new List<ReportParameter>();           
-            parameters.Add(new ReportParameter("fromDateTime", fromDateTime.ToShortDateString()));
-            parameters.Add(new ReportParameter("toDateTime", toDateTime.ToShortDateString()));
-            parameters.Add(new ReportParameter("customerName", cmbCustomers.Text));
-            parameters.Add(new ReportParameter("isAll", b_isAll.ToString()));          
+                  
             this.reportViewer.LocalReport.SetParameters(parameters);
             this.reportViewer.RefreshReport();            
 		}
-    
+
+        private bool ValidateReportDate()
+        {
+            fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);
+            toDateTime = Convert.ToDateTime(this.dateToPicker.Text + " 23:59:59");
+            if (!String.IsNullOrEmpty(this.dateFromPicker.Text) && !String.IsNullOrEmpty(this.dateToPicker.Text) &&
+                (fromDateTime < toDateTime))
+            {
+                return true;
+            }
+            MessageService.ShowError("Please enter a valid report date range!", "Invalid Date");
+            return false;
+        }   
+        
+        void CmbReportTypesSelectedIndexChanged(object sender, System.EventArgs e)
+		{
+        	if(this.GetTitle() == ReportConstants.REFILL_WINDOW 
+        	   && this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.INVENTORY_REPORT)
+        	{
+        		cmbCustomers.Enabled = false;
+        	}        	
+        	else{
+        		cmbCustomers.Enabled = true;
+        	}
+        	if(this.GetTitle() == ReportConstants.REFILL_WINDOW
+        	   && this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.CUSTINVENTORY_REPORT)
+        	{
+        		this.dateFromPicker.Enabled = false;
+        		this.dateToPicker.Enabled = false;        		
+        	}
+        	else{
+        		this.dateFromPicker.Enabled = true;
+        		this.dateToPicker.Enabled = true;
+        	}
+		}
 	}
 }

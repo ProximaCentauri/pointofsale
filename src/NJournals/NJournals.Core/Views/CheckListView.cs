@@ -15,6 +15,7 @@ using NJournals.Core.Models;
 using NJournals.Core.Presenter;
 using System.Collections.Generic;
 using NJournals.Common.DataEntities;
+using NJournals.Common.Util;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -46,6 +47,7 @@ namespace NJournals.Core.Views
 		
 		void CheckListViewLoad(object sender, EventArgs e)
 		{
+			setButtonImages();
 			m_presenter.SetAllChecklist();
 		}
 		
@@ -54,6 +56,7 @@ namespace NJournals.Core.Views
 			
 		}
 		
+
 		public List<LaundryChecklistDataEntity> GetAllSelectedCheckList(){
 			List<LaundryChecklistDataEntity> checklistEntities = new List<LaundryChecklistDataEntity>();;
 			foreach(DataGridViewRow row in dgvCheckList.Rows){
@@ -67,5 +70,12 @@ namespace NJournals.Core.Views
 			return checklistEntities;
 		}
 		
+
+		void setButtonImages()
+		{		
+			Resource.setImage(this.btnSaveCheckList,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
+			Resource.setImage(this.btnDeleteCheckList,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");			
+		}
+
 	}
 }
