@@ -461,6 +461,7 @@ CREATE TABLE `refillcustomerinventorydetail` (
   `CustInvID` int(10) unsigned NOT NULL,  
   `BottlesReturned` int(10) unsigned NOT NULL DEFAULT '0',  
   `CapsReturned` int(10) unsigned NOT NULL DEFAULT '0',
+  `Date` datetime NOT NULL,
   PRIMARY KEY (`ID`),  
   CONSTRAINT `FK_refillcustinvdetail_1` FOREIGN KEY (`CustInvID`) REFERENCES `refillcustomerinventoryheader` (`CustInvID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

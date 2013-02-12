@@ -77,7 +77,7 @@ namespace NJournals.Tests
 				
 			// update cust inventory
 			RefillCustomerInventoryDao custInvDao = new RefillCustomerInventoryDao();
-			RefillCustomerInventoryDataEntity custInv= new RefillCustomerInventoryDataEntity();
+			RefillCustInventoryHeaderDataEntity custInv= new RefillCustInventoryHeaderDataEntity();
 			custInv.Customer = customer;
 			custInv.CapsOnHand += detail.StoreCapQty;
 			custInv.BottlesOnHand += detail.StoreBottleQty;			

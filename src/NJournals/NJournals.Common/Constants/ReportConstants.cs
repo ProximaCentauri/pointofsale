@@ -28,7 +28,7 @@ namespace NJournals.Common.Constants
         public const string DS_REFILLDAYSUMMARY					= "NJournals_Common_DataEntities_RefillDaySummaryDataEntity";
         public const string DS_REFILLHEADER						= "NJournals_Common_DataEntities_RefillHeaderDataEntity";
         public const string DS_REFILLINVENTORY					= "NJournals_Common_DataEntities_RefillInventoryReportDataEntity";
-        public const string DS_REFILLCUSTINVENTORY				= "NJournals_Common_DataEntities_RefillCustomerInventoryDataEntity";
+        public const string DS_REFILLCUSTINVENTORY				= "NJournals_Common_DataEntities_RefillCustInventoryHeaderDataEntity";
         public const string ES_REFILL_SALES_REPORT              = "NJournals.Core.Reports.RefillSalesReport.rdlc";      
         public const string ES_REFILL_UNPAIDTRANSACTIONS_REPORT = "NJournals.Core.Reports.RefillUnpaidTransactionsReport.rdlc"; 	
         public const string ES_REFILL_INVENTORY_REPORT			= "NJournals.Core.Reports.RefillInventoryReport.rdlc";

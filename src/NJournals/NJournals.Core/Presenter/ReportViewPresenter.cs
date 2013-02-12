@@ -147,6 +147,13 @@ namespace NJournals.Core.Presenter
                     datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORY, invReport));
                     m_view.DisplayReport(invReport, datasources, parameters, ReportConstants.ES_REFILL_INVENTORY_REPORT);                   
                 	break;
+                case ReportConstants.CUSTINVENTORY_REPORT:
+                	List<RefillCustInventoryHeaderDataEntity> custInvReport = m_refillReportDao
+                		.GetCustomerInventoryReport(customer, b_isAll) as List<RefillCustInventoryHeaderDataEntity>;
+                	parameters = SetReportParameters(customer, b_isAll);
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLCUSTINVENTORY, custInvReport));
+                    m_view.DisplayReport(custInvReport, datasources, parameters, ReportConstants.ES_REFILL_CUSTINVENTORY_REPORT);       
+                	break;
 				default:
 					break;
 			}
@@ -178,6 +185,20 @@ namespace NJournals.Core.Presenter
             parameters.Add(new ReportParameter("fromDateTime", fromDateTime.ToShortDateString()));
             parameters.Add(new ReportParameter("toDateTime", toDateTime.ToShortDateString()));           
 			return parameters;    
+		}
+		
+		private List<ReportParameter> SetReportParameters(CustomerDataEntity customer, bool b_isAll)
+		{
+			List<ReportParameter> parameters = new List<ReportParameter>();      
+ 			if(customer.Name == null)
+            {
+            	 parameters.Add(new ReportParameter("customerName", ""));
+            }
+            else{
+            	 parameters.Add(new ReportParameter("customerName", customer.Name));
+            }			            
+ 			parameters.Add(new ReportParameter("isAll", b_isAll.ToString()));
+			return parameters;  
 		}
 	}
 }

@@ -89,7 +89,8 @@
     <Compile Include="DataEntities\LaundryPriceSchemeDataEntity.cs" />
     <Compile Include="DataEntities\LaundryReportDataEntity.cs" />
     <Compile Include="DataEntities\LaundryServiceDataEntity.cs" />
-    <Compile Include="DataEntities\RefillCustomerInventoryDataEntity.cs" />
+    <Compile Include="DataEntities\RefillCustInventoryDetailDataEntity.cs" />
+    <Compile Include="DataEntities\RefillCustInventoryHeaderDataEntity.cs" />
     <Compile Include="DataEntities\RefillDaySummaryDataEntity.cs" />
     <Compile Include="DataEntities\RefillDetailDataEntity.cs" />
     <Compile Include="DataEntities\RefillHeaderDataEntity.cs" />
@@ -115,7 +116,8 @@
     <Compile Include="DataMappers\LaundryPaymentDetailDataMap.cs" />
     <Compile Include="DataMappers\LaundryPriceSchemeDataMap.cs" />
     <Compile Include="DataMappers\LaundryServiceDataMap.cs" />
-    <Compile Include="DataMappers\RefillCustomerInventoryDataMap.cs" />
+    <Compile Include="DataMappers\RefillCustInventoryDetailDataMap.cs" />
+    <Compile Include="DataMappers\RefillCustInventoryHeaderDataMap.cs" />
     <Compile Include="DataMappers\RefillDaySummaryDataMap.cs" />
     <Compile Include="DataMappers\RefillDetailDataMap.cs" />
     <Compile Include="DataMappers\RefillHeaderDataMap.cs" />

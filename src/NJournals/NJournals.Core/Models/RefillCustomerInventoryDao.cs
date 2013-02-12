@@ -27,7 +27,7 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void SaveOrUpdate(RefillCustomerInventoryDataEntity p_custinv)
+		public void SaveOrUpdate(RefillCustInventoryHeaderDataEntity p_custinv)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -39,29 +39,29 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-		public IEnumerable<RefillCustomerInventoryDataEntity> GetAllItems()
+		public IEnumerable<RefillCustInventoryHeaderDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-				var query = session.Query<RefillCustomerInventoryDataEntity>()
+				var query = session.Query<RefillCustInventoryHeaderDataEntity>()
                     .OrderBy(x => x.Customer)
                     .ToList();
                 return query;
 			}
 		}
 		
-		public RefillCustomerInventoryDataEntity GetByCustomer(CustomerDataEntity customer)
+		public RefillCustInventoryHeaderDataEntity GetByCustomer(CustomerDataEntity customer)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-                var query = session.Query<RefillCustomerInventoryDataEntity>()
+                var query = session.Query<RefillCustInventoryHeaderDataEntity>()
                     .Where(x => x.Customer == customer)
                     .SingleOrDefault();
 				return query;
 			}
 		}
 		
-		public void Delete(RefillCustomerInventoryDataEntity p_custinv)
+		public void Delete(RefillCustInventoryHeaderDataEntity p_custinv)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -73,7 +73,7 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-		public void Update(RefillCustomerInventoryDataEntity p_custinv)
+		public void Update(RefillCustInventoryHeaderDataEntity p_custinv)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{

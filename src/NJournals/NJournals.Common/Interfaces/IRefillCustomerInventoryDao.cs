@@ -18,10 +18,10 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface IRefillCustomerInventoryDao
 	{
-		void SaveOrUpdate(RefillCustomerInventoryDataEntity p_custinv);
-		IEnumerable<RefillCustomerInventoryDataEntity> GetAllItems();
-		RefillCustomerInventoryDataEntity GetByCustomer(CustomerDataEntity customer);
-		void Delete(RefillCustomerInventoryDataEntity p_custinv);
-		void Update(RefillCustomerInventoryDataEntity p_custinv);
+		void SaveOrUpdate(RefillCustInventoryHeaderDataEntity p_custinv);
+		IEnumerable<RefillCustInventoryHeaderDataEntity> GetAllItems();
+		RefillCustInventoryHeaderDataEntity GetByCustomer(CustomerDataEntity customer);
+		void Delete(RefillCustInventoryHeaderDataEntity p_custinv);
+		void Update(RefillCustInventoryHeaderDataEntity p_custinv);
 	}
 }

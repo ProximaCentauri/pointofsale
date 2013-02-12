@@ -15,21 +15,26 @@ using NJournals.Common.DataEntities;
 namespace NJournals.Common.DataMappers
 {
 	/// <summary>
-	/// Description of RefillCustomerInventoryDataMap.
+	/// Description of RefillCustInventoryHeaderDataMap.
 	/// </summary>
-	public class RefillCustomerInventoryDataMap : ClassMap<RefillCustomerInventoryDataEntity>
+	public class RefillCustInventoryHeaderDataMap : ClassMap<RefillCustInventoryHeaderDataEntity>
 	{
-		public RefillCustomerInventoryDataMap()
+		public RefillCustInventoryHeaderDataMap()
 		{
-			Id(x => x.ID);
+			Id(x => x.CustInvID);
 			Map(x => x.BottlesOnHand);
 			Map(x => x.BottlesReturned);
 			Map(x => x.CapsOnHand);
 			Map(x => x.CapsReturned);
 			
 			References<CustomerDataEntity>(x => x.Customer)
-				.Column("CustomerID").Not.Nullable();
-			Table("RefillCustomerInventory");
+				.Column("CustomerID").Not.Nullable().Not.LazyLoad();
+			
+			HasMany<RefillCustInventoryDetailDataEntity>(x => x.DetailEntities)
+				.KeyColumn("CustInvID").Not.LazyLoad()
+				.Inverse()
+				.Cascade.AllDeleteOrphan();
+			Table("RefillCustomerInventoryHeader");
 		}
 	}
 }
