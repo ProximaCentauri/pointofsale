@@ -26,9 +26,11 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.TotalQty);
 			Map(x => x.QtyOnHand);
 			Map(x => x.QtyReleased);
+			Map(x => x.TotalAdded);
+			Map(x => x.TotalRemoved);
 			
-			HasMany<RefillInventoryHeaderDataEntity>(x => x.DetailEntities)
-				.KeyColumn("InvHeaderID")
+			HasMany<RefillInventoryDetailDataEntity>(x => x.DetailEntities)
+				.KeyColumn("InvHeaderID").Not.LazyLoad()
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
 			Table("RefillInventoryHeader");

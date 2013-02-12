@@ -42,7 +42,7 @@ namespace NJournals.Core.Views
 		LaundryJobChargesDataEntity m_jobcharge = null;
 		LaundryHeaderDataEntity m_headerEntity;
 		private decimal amountTender = 0;
-		private decimal amountDue = 0;
+		
 		private decimal totalAmtDue = 0;
 		
 		void setButtonImages()
@@ -151,20 +151,13 @@ namespace NJournals.Core.Views
 			return m_headerEntity;
 		}
 		
-		
-		
-		
-		/*public LaundryHeaderDataEntity HeaderDataEntity {
-			get { return processHeaderDataEntity(); }
-			set { m_headerEntity = value; }
-		}*/
 	
 		public void AddItem(){
 			LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
 			decimal kilo = decimal.Parse(txtkilo.Text);			
 			decimal price = priceEntity.Price * kilo;	
 			dataGridView1.Rows.Add(cmbcategory.Text, cmbservices.Text, txtnoitems.Text, txtkilo.Text, price.ToString("N2"));
-			txtamtdue.Text = (this.amountDue + price).ToString("N2");			
+			txtamtdue.Text = (decimal.Parse(txtamtdue.Text) + price).ToString("N2");
 			this.totalAmtDue = decimal.Parse(txtamtdue.Text) + totalAmtDue;
 			this.txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + totalAmtDue).ToString("N2");
 			this.txtbalance.Text = this.txttotalamtdue.Text;
@@ -204,23 +197,7 @@ namespace NJournals.Core.Views
 				txtbalance.Text = "0.00";
 			}							
 		}		
-		
-		void chkchargeList_selectedindexchanged(object sender, EventArgs e)
-		{
-			decimal totalcharge = 0M;
-			decimal temp_totalcharge = 0M;
-			decimal charge = 0M;
-			txttotalcharges.Text = "0.00";
-			foreach(object checkedItem in this.chkchargesList.CheckedItems){
-				charge = m_presenter.getAmtChargeByName(checkedItem.ToString());
-				temp_totalcharge = totalcharge + charge;
-				totalcharge = temp_totalcharge;
-			}
-			txttotalcharges.Text = totalcharge.ToString("N2");
-			txttotalamtdue.Text = (decimal.Parse(txttotalcharges.Text) + totalAmtDue).ToString("N2");
-		}
-		
-		
+	
 		void textbox_click(object sender, EventArgs e)
 		{
 			if(sender is TextBox){
@@ -236,15 +213,13 @@ namespace NJournals.Core.Views
 			if(txttotaldiscount.Text.Length == 0){
 				txttotaldiscount.Text = "0";	
 			}
-			txttotaldiscount.Text = (decimal.Parse(txttotalamtdue.Text) * (decimal.Parse(txtdiscount.Text) / 100M)).ToString("N2");
+			txttotaldiscount.Text = ((decimal.Parse(txtdiscount.Text) / 100M) * (decimal.Parse(txtamtdue.Text) + decimal.Parse(txttotalcharges.Text))).ToString("N2");
 			txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txttotaldiscount.Text)).ToString("N2");	
 		}
 		
 		void BtnsavecloseClick(object sender, EventArgs e)
 		{
-			m_presenter.SaveClicked();
-			MessageService.ShowInfo("Successfully saved entries.","Information");			
-			                       
+			m_presenter.SaveClicked();			                       
 		}
 		
 		void lblchecklist_click(object sender, EventArgs e)
@@ -253,8 +228,10 @@ namespace NJournals.Core.Views
 		}
 		
 		public void LaunchChecklist(){
-			CheckListView chklistView = new CheckListView();
+			
+			CheckListView chklistView = new CheckListView();			
 			chklistView.ShowDialog();
+			m_headerEntity.JobChecklistEntities = chklistView.GetAllSelectedCheckList();
 		}
 		
 		public void LoadHeaderEntityData(LaundryHeaderDataEntity p_headerEntity){
@@ -271,11 +248,11 @@ namespace NJournals.Core.Views
 				txttotalamtdue.Text = m_headerEntity.TotalAmountDue.ToString("N2");
 				txttotalcharges.Text = m_headerEntity.TotalCharge.ToString("N2");
 				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("0");
-				//TODO: Calculate percent discount
+				
 				txtdiscount.Text = ((m_headerEntity.TotalDiscount / (m_headerEntity.AmountDue + m_headerEntity.TotalCharge)) * 100).ToString("0");
 								
 				chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;
-				//TODO: Fix issue in retrieve jobchargeentities
+				
 				foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
 					chkchargesList.Items.Add(chargeEntity.Charge.Name, true);
 				}
@@ -303,6 +280,21 @@ namespace NJournals.Core.Views
 			foreach(LaundryPriceSchemeDataEntity price in prices){
 				cmbcategory.Items.Add(m_presenter.getCategoryById(price.Category.CategoryID).Name);
 			}
+		}		
+	
+		
+		void chkchargesList_ItemChecked(object sender, ItemCheckEventArgs e)
+		{			
+			decimal charge = 0M;
+			if(e.NewValue == CheckState.Checked){
+				charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
+				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) + charge).ToString("N2");
+				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + charge).ToString("N2");
+			}else{
+				charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
+				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) - charge).ToString("N2");
+				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - charge).ToString("N2");
+			}			
 		}
 	}	
 }

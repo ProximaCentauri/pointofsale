@@ -33,11 +33,10 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
-			m_checklistDao = new LaundryChecklistDao();
-			m_presenter = new CheckListViewPresenter(this, m_checklistDao);
+			m_presenter = new CheckListViewPresenter(this, new LaundryChecklistDao());
 		}
 		
-		private ILaundryChecklistDao m_checklistDao;
+	
 		private CheckListViewPresenter m_presenter;
 		
 		public void SetAllCheckList(List<LaundryChecklistDataEntity> entities){
@@ -57,10 +56,31 @@ namespace NJournals.Core.Views
 			
 		}
 		
+
+		public List<LaundryJobChecklistDataEntity> GetAllSelectedCheckList(){
+			List<LaundryJobChecklistDataEntity> checklistEntities = new List<LaundryJobChecklistDataEntity>();;
+			foreach(DataGridViewRow row in dgvCheckList.Rows){
+				if(row.Cells[0].Value != null){
+					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
+						LaundryJobChecklistDataEntity entity = new LaundryJobChecklistDataEntity();
+						bool isChecked = bool.Parse(row.Cells[0].Value.ToString());
+						if(isChecked){
+							entity.Checklist.Name = row.Cells[1].Value.ToString();
+							entity.Qty = int.Parse(row.Cells[2].Value.ToString());
+							checklistEntities.Add(entity);
+						}
+					}
+				}
+			}
+			return checklistEntities;
+		}
+		
+
 		void setButtonImages()
 		{		
 			Resource.setImage(this.btnSaveCheckList,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
 			Resource.setImage(this.btnDeleteCheckList,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");			
 		}
+
 	}
 }

@@ -18,6 +18,9 @@ namespace NJournals.Common.DataEntities
 		public virtual int ID {get;set;}
 		public virtual int QtyAdded {get;set;}
 		public virtual int QtyRemoved {get;set;}
+        public virtual int TotalQty { get; set; }
+        public virtual int QtyOnHand {get;set;}
+        public virtual int QtyReleased { get; set; }
 		public virtual DateTime Date {get;set;}
 		public virtual RefillInventoryHeaderDataEntity Header {get;set;}
 	}

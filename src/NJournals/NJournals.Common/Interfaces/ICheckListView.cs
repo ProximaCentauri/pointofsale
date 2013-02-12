@@ -18,5 +18,6 @@ namespace NJournals.Common.Interfaces
 	public interface ICheckListView : IView
 	{
 		void SetAllCheckList(List<LaundryChecklistDataEntity> checkListEntities);
+		List<LaundryJobChecklistDataEntity> GetAllSelectedCheckList();
 	}
 }

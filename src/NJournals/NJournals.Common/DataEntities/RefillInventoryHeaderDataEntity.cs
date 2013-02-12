@@ -21,6 +21,8 @@ namespace NJournals.Common.DataEntities
 		public virtual int TotalQty {get;set;}
 		public virtual int QtyOnHand {get;set;}
 		public virtual int QtyReleased {get;set;}
+        public virtual int TotalAdded { get; set; }
+        public virtual int TotalRemoved { get; set; }
 		
 		public virtual IList<RefillInventoryDetailDataEntity> DetailEntities {get;set;}
 		
