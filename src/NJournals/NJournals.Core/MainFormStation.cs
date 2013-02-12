@@ -169,7 +169,7 @@ namespace NJournals.Core
 		void label_mousehover(object sender, EventArgs e)
 		{
 			Label label = sender as Label;			
-			label.Font = new Font("Calibri", 14, FontStyle.Bold);
+			label.Font = new Font("Calibri", 13, FontStyle.Bold);
 			label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(89)))), ((int)(((byte)(138)))));
 		}
 		
@@ -180,9 +180,33 @@ namespace NJournals.Core
 			label.ForeColor = Color.Black;
 		}
 		
+		void setMenuBackgroundImages()
+		{
+			//refilling
+			lblRefNew.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/bottle_new.png");
+			lblRefNew.BackgroundImageLayout = ImageLayout.None;
+			lblRefClaim.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/bottle_return.png");
+			lblRefClaim.BackgroundImageLayout = ImageLayout.None;
+			lblRefReports.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/chart.png");
+			lblRefReports.BackgroundImageLayout = ImageLayout.None;
+			lblRefConfig.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/config.png");
+			lblRefConfig.BackgroundImageLayout = ImageLayout.None;
+			//laundry
+			lbllaundryNew.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/basket_new.png");
+			lbllaundryNew.BackgroundImageLayout = ImageLayout.None;
+			lbllaundryClaim.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/basket_claim.png");
+			lbllaundryClaim.BackgroundImageLayout = ImageLayout.None;
+			lbllaundryReports.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/chart.png");
+			lbllaundryReports.BackgroundImageLayout = ImageLayout.None;
+			lbllaundryConfig.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/config.png");
+			lbllaundryConfig.BackgroundImageLayout = ImageLayout.None;
+		}
+		
 		
 		void MainFormStationLoad(object sender, EventArgs e)
 		{
+			setMenuBackgroundImages();
+				
 			this.lbllaundryNew.Click += delegate { OnSelectLaundryNew(null); };
 			this.lbllaundryClaim.Click += delegate { OnSelectLaundryClaim(null); };
 			this.lbllaundryConfig.Click += delegate { OnSelectLaundryConfig(null); };
