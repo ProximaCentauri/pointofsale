@@ -425,27 +425,46 @@ CREATE TABLE `refillinventorydetail` (
   CONSTRAINT `FK_refillinventorydetail_1` FOREIGN KEY (`InvHeaderID`) REFERENCES `refillinventoryheader` (`InvHeaderID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+
+
 --
--- Table structure for table `refillcustomerinventory`
+-- Table structure for table `refillcustomerinventoryheader`
 --
 
-DROP TABLE IF EXISTS `refillcustomerinventory`;
+DROP TABLE IF EXISTS `refillcustomerinventoryheader`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `refillcustomerinventory` (
-  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `refillcustomerinventoryheader` (
+  `CustInvID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `CustomerID` int(10) NOT NULL,
   `BottlesOnHand` int(10) unsigned NOT NULL DEFAULT '0',
   `BottlesReturned` int(10) unsigned NOT NULL DEFAULT '0',
   `CapsOnHand` int(10) unsigned NOT NULL DEFAULT '0',
   `CapsReturned` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `IX_refillcustomerinventory_1` (`CustomerID`),
-  KEY `FK_refillcustomerinventory_1` (`CustomerID`),
-  CONSTRAINT `FK_refillcustomerinventory_1` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`) ON UPDATE CASCADE
+  PRIMARY KEY (`CustInvID`),
+  UNIQUE KEY `IX_refillcustinvheader_1` (`CustomerID`), 
+  CONSTRAINT `FK_refillcustinvheader_1` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+--
+-- Table structure for table `refillcustomerinventorydetail`
+--
+
+DROP TABLE IF EXISTS `refillcustomerinventorydetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refillcustomerinventorydetail` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `CustInvID` int(10) unsigned NOT NULL,  
+  `BottlesReturned` int(10) unsigned NOT NULL DEFAULT '0',  
+  `CapsReturned` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),  
+  CONSTRAINT `FK_refillcustinvdetail_1` FOREIGN KEY (`CustInvID`) REFERENCES `refillcustomerinventoryheader` (`CustInvID`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
