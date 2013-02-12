@@ -97,7 +97,7 @@ namespace NJournals.Core.Views
 		
 		public void SetAllCheckList(List<LaundryChecklistDataEntity> entities){
 			foreach(LaundryChecklistDataEntity entity in entities){				
-				dgvCheckList.Rows.Add(false, entity.Name, "");
+				dgvCheckList.Rows.Add(false, entity.Name, "0");
 			}
 		}
 		

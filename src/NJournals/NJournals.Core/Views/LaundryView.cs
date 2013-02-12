@@ -101,14 +101,15 @@ namespace NJournals.Core.Views
 		}		
 		
 		public LaundryHeaderDataEntity ProcessHeaderDataEntity(){				
-			
+			int totalItemQty = 0;
+			int itemQty = 0;
 			m_headerEntity.AmountTender = decimal.Parse(this.txtamttender.Text);			                                            
 			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
 			
 			m_headerEntity.ReceivedDate = dtrecieveDate.Value;
 			m_headerEntity.DueDate = dtdueDate.Value;
 			//TODO: change totalitemqty value to textbox value of totalitemqty
-			m_headerEntity.TotalItemQty = 1;			
+			
 			m_headerEntity.ClaimFlag = btnclaim.Enabled;			
 			m_headerEntity.Customer = m_presenter.getCustomerByName(cmbCustomers.Text);			
 			
@@ -120,12 +121,15 @@ namespace NJournals.Core.Views
 						detail.Category = m_presenter.getCategoryByName(row.Cells[0].Value.ToString());				
 						detail.Service = m_presenter.getServiceByName(row.Cells[1].Value.ToString());
 						detail.Kilo = double.Parse(row.Cells[2].Value.ToString());
-						detail.ItemQty = int.Parse(row.Cells[3].Value.ToString());
+						itemQty = int.Parse(row.Cells[3].Value.ToString());
+						detail.ItemQty = itemQty;
+						totalItemQty += itemQty;
 						detail.Amount = decimal.Parse(row.Cells[4].Value.ToString());
 						m_headerEntity.DetailEntities.Add(detail);
 					}	
 				}							
 			}		
+			m_headerEntity.TotalItemQty = totalItemQty;			
 			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
 			m_headerEntity.TotalCharge = decimal.Parse(txttotalcharges.Text);
 			m_headerEntity.TotalDiscount = decimal.Parse(txttotaldiscount.Text);
@@ -153,11 +157,9 @@ namespace NJournals.Core.Views
 				m_headerEntity.PaidFlag = true;				
 			}else
 				m_headerEntity.PaidFlag = false;
-			
-			
+						
 			return m_headerEntity;
-		}
-		
+		}		
 	
 		public void AddItem(){
 			LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
@@ -243,10 +245,8 @@ namespace NJournals.Core.Views
 		public void GetSelectedChecklist(){
 			List<LaundryJobChecklistDataEntity> checkListEntities = chklistView.GetAllSelectedCheckList();
 			if(checkListEntities.Count > 0){
-				m_headerEntity.JobChecklistEntities = checkListEntities;
-				MessageService.ShowInfo("fire in the hole!");
-			}else
-				MessageService.ShowInfo("enemy down!");				
+				m_headerEntity.JobChecklistEntities = checkListEntities;				
+			}
 		}
 		
 		public void LoadHeaderEntityData(LaundryHeaderDataEntity p_headerEntity){
