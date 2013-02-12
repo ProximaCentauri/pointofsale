@@ -15,9 +15,9 @@ namespace NJournals.Core.Views
 	/// <summary>
 	/// Description of CustomerView.
 	/// </summary>
-	public partial class CustomerView : Form
+	public partial class CustomerListView : Form
 	{
-		public CustomerView()
+		public CustomerListView()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
