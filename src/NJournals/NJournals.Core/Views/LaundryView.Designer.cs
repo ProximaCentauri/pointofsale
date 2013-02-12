@@ -472,13 +472,15 @@ namespace NJournals.Core.Views
 			// 
 			// chkchargesList
 			// 
+			this.chkchargesList.CheckOnClick = true;
 			this.chkchargesList.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.chkchargesList.FormattingEnabled = true;
 			this.chkchargesList.Location = new System.Drawing.Point(12, 18);
 			this.chkchargesList.Name = "chkchargesList";
 			this.chkchargesList.Size = new System.Drawing.Size(182, 212);
 			this.chkchargesList.TabIndex = 24;
-			this.chkchargesList.SelectedIndexChanged += new System.EventHandler(this.chkchargeList_selectedindexchanged);
+			this.chkchargesList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkchargesList_ItemChecked);
+			
 			// 
 			// chkpaywhenclaim
 			// 

@@ -11,6 +11,7 @@ using NJournals.Common.Interfaces;
 using NJournals.Core.Models;
 using NJournals.Common.DataEntities;
 using System.Collections.Generic;
+using NJournals.Common.Util;
 namespace NJournals.Core.Presenter
 {
 	/// <summary>
@@ -82,6 +83,7 @@ namespace NJournals.Core.Presenter
 				// this will handle the saving for the linked tables				
 				m_laundryDao.SaveOrUpdate(headerEntity);
 			}		
+			MessageService.ShowInfo("Successfully saved entries.","Information");			
 			m_view.CloseView();
 		}
 		
