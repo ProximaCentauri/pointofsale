@@ -34,13 +34,13 @@ namespace NJournals.Common.DataEntities
 		public virtual IList<LaundryDetailDataEntity> DetailEntities {get; set;}
 		public virtual IList<LaundryPaymentDetailDataEntity> PaymentDetailEntities {get;set;}
 		public virtual IList<LaundryJobChargesDataEntity> JobChargeEntities {get;set;}
-		public virtual IList<LaundryChecklistDataEntity> JobChecklistEntities {get;set;}
+		public virtual IList<LaundryJobChecklistDataEntity> JobChecklistEntities {get;set;}
 		
 		public LaundryHeaderDataEntity()
 		{
 			DetailEntities = new List<LaundryDetailDataEntity>();
 			JobChargeEntities = new List<LaundryJobChargesDataEntity>();
-			JobChecklistEntities = new List<LaundryChecklistDataEntity>();
+			JobChecklistEntities = new List<LaundryJobChecklistDataEntity>();
 			PaymentDetailEntities = new List<LaundryPaymentDetailDataEntity>();
 		}
 	}

@@ -57,13 +57,18 @@ namespace NJournals.Core.Views
 		}
 		
 
-		public List<LaundryChecklistDataEntity> GetAllSelectedCheckList(){
-			List<LaundryChecklistDataEntity> checklistEntities = new List<LaundryChecklistDataEntity>();;
+		public List<LaundryJobChecklistDataEntity> GetAllSelectedCheckList(){
+			List<LaundryJobChecklistDataEntity> checklistEntities = new List<LaundryJobChecklistDataEntity>();;
 			foreach(DataGridViewRow row in dgvCheckList.Rows){
 				if(row.Cells[0].Value != null){
 					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
-						LaundryChecklistDataEntity entity = new LaundryChecklistDataEntity();
-						
+						LaundryJobChecklistDataEntity entity = new LaundryJobChecklistDataEntity();
+						bool isChecked = bool.Parse(row.Cells[0].Value.ToString());
+						if(isChecked){
+							entity.Checklist.Name = row.Cells[1].Value.ToString();
+							entity.Qty = int.Parse(row.Cells[2].Value.ToString());
+							checklistEntities.Add(entity);
+						}
 					}
 				}
 			}
