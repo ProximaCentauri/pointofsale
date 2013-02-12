@@ -51,12 +51,6 @@ namespace NJournals.Core.Views
 			m_presenter.SetAllChecklist();
 		}
 		
-		void BtnsaveClick(object sender, EventArgs e)
-		{
-			
-		}
-		
-
 		public List<LaundryJobChecklistDataEntity> GetAllSelectedCheckList(){
 			List<LaundryJobChecklistDataEntity> checklistEntities = new List<LaundryJobChecklistDataEntity>();;
 			foreach(DataGridViewRow row in dgvCheckList.Rows){
@@ -82,5 +76,18 @@ namespace NJournals.Core.Views
 			Resource.setImage(this.btnDeleteCheckList,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");			
 		}
 
+		
+		void BtncancelClick(object sender, EventArgs e)
+		{
+			
+			this.Close();
+		}
+		
+		
+		
+		void BtnokClick(object sender, EventArgs e)
+		{
+			//TODO: Add events to triger that add checklist
+		}
 	}
 }

@@ -57,15 +57,17 @@ namespace NJournals.Core.Views
 				
 			m_laundryDao = new LaundryDao();
 			m_presenter = new LaundryViewPresenter(this, m_laundryDao);
-			if(this.Text.Contains("[NEW]")){				
+			if(this.Text.Contains("[NEW]")){	
+				m_headerEntity = new LaundryHeaderDataEntity();						
 				m_presenter.SetAllServices();
 				m_presenter.SetAllCustomers();
 				m_presenter.SetAllCharges();
 				this.groupBox2.Enabled = this.btnclaim.Enabled = false;
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
-				this.dtrecieveDate.Value = DateTime.Now;
+				this.dtrecieveDate.Value = DateTime.Now;				
 			}else{
 				grpServices.Enabled = false;
+				lblchecklist.Enabled = false;
 			}
 		}
 				
@@ -97,8 +99,7 @@ namespace NJournals.Core.Views
 			m_presenter.CancelClicked();
 		}		
 		
-		public LaundryHeaderDataEntity ProcessHeaderDataEntity(){
-			m_headerEntity = new LaundryHeaderDataEntity();			
+		public LaundryHeaderDataEntity ProcessHeaderDataEntity(){				
 			
 			m_headerEntity.AmountTender = decimal.Parse(this.txtamttender.Text);			                                            
 			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
@@ -231,7 +232,10 @@ namespace NJournals.Core.Views
 			
 			CheckListView chklistView = new CheckListView();			
 			chklistView.ShowDialog();
-			m_headerEntity.JobChecklistEntities = chklistView.GetAllSelectedCheckList();
+			//TODO: Add events to listen that to add checklist
+			List<LaundryJobChecklistDataEntity> checkListEntities = chklistView.GetAllSelectedCheckList();
+			if(checkListEntities != null)
+				m_headerEntity.JobChecklistEntities = checkListEntities;
 		}
 		
 		public void LoadHeaderEntityData(LaundryHeaderDataEntity p_headerEntity){
@@ -256,6 +260,7 @@ namespace NJournals.Core.Views
 				foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
 					chkchargesList.Items.Add(chargeEntity.Charge.Name, true);
 				}
+				lblchecklist.Enabled = true;
 			}else
 				MessageService.ShowWarning("Can't find JO Number: " + txtsearch.Text, "Non-existing");
 		}
@@ -280,8 +285,7 @@ namespace NJournals.Core.Views
 			foreach(LaundryPriceSchemeDataEntity price in prices){
 				cmbcategory.Items.Add(m_presenter.getCategoryById(price.Category.CategoryID).Name);
 			}
-		}		
-	
+		}			
 		
 		void chkchargesList_ItemChecked(object sender, ItemCheckEventArgs e)
 		{			

@@ -40,17 +40,17 @@ namespace NJournals.Core.Views
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.txtjonumber = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.btnsave = new System.Windows.Forms.Button();
-			this.btnsaveprint = new System.Windows.Forms.Button();
+			this.btnok = new System.Windows.Forms.Button();
+			this.btnokprint = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txttotal = new System.Windows.Forms.TextBox();
-			this.btncancel = new System.Windows.Forms.Button();
 			this.dgvCheckList = new System.Windows.Forms.DataGridView();
 			this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnDeleteCheckList = new System.Windows.Forms.Button();
 			this.btnSaveCheckList = new System.Windows.Forms.Button();
+			this.btncancel = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCheckList)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -72,32 +72,32 @@ namespace NJournals.Core.Views
 			this.label1.Text = "Job Order:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// btnsave
+			// btnok
 			// 
-			this.btnsave.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnsave.Location = new System.Drawing.Point(126, 505);
-			this.btnsave.Name = "btnsave";
-			this.btnsave.Size = new System.Drawing.Size(58, 23);
-			this.btnsave.TabIndex = 21;
-			this.btnsave.Text = "Save";
-			this.btnsave.UseVisualStyleBackColor = true;
-			this.btnsave.Click += new System.EventHandler(this.BtnsaveClick);
+			this.btnok.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnok.Location = new System.Drawing.Point(123, 520);
+			this.btnok.Name = "btnok";
+			this.btnok.Size = new System.Drawing.Size(83, 23);
+			this.btnok.TabIndex = 21;
+			this.btnok.Text = "OK";
+			this.btnok.UseVisualStyleBackColor = true;
+			this.btnok.Click += new System.EventHandler(this.BtnokClick);
 			// 
-			// btnsaveprint
+			// btnokprint
 			// 
-			this.btnsaveprint.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnsaveprint.Location = new System.Drawing.Point(16, 505);
-			this.btnsaveprint.Name = "btnsaveprint";
-			this.btnsaveprint.Size = new System.Drawing.Size(99, 23);
-			this.btnsaveprint.TabIndex = 20;
-			this.btnsaveprint.Text = "Save && Print";
-			this.btnsaveprint.UseVisualStyleBackColor = true;
+			this.btnokprint.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnokprint.Location = new System.Drawing.Point(7, 520);
+			this.btnokprint.Name = "btnokprint";
+			this.btnokprint.Size = new System.Drawing.Size(99, 23);
+			this.btnokprint.TabIndex = 20;
+			this.btnokprint.Text = "OK && Print";
+			this.btnokprint.UseVisualStyleBackColor = true;
 			// 
 			// label2
 			// 
 			this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.label2.Location = new System.Drawing.Point(112, 408);
+			this.label2.Location = new System.Drawing.Point(112, 469);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(68, 23);
 			this.label2.TabIndex = 22;
@@ -106,20 +106,10 @@ namespace NJournals.Core.Views
 			// 
 			// txttotal
 			// 
-			this.txttotal.Location = new System.Drawing.Point(186, 408);
+			this.txttotal.Location = new System.Drawing.Point(186, 469);
 			this.txttotal.Name = "txttotal";
 			this.txttotal.Size = new System.Drawing.Size(66, 20);
 			this.txttotal.TabIndex = 23;
-			// 
-			// btncancel
-			// 
-			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btncancel.Location = new System.Drawing.Point(194, 505);
-			this.btncancel.Name = "btncancel";
-			this.btncancel.Size = new System.Drawing.Size(58, 23);
-			this.btncancel.TabIndex = 24;
-			this.btncancel.Text = "Cancel";
-			this.btncancel.UseVisualStyleBackColor = true;
 			// 
 			// dgvCheckList
 			// 
@@ -138,7 +128,7 @@ namespace NJournals.Core.Views
 									this.Column3});
 			this.dgvCheckList.Location = new System.Drawing.Point(12, 61);
 			this.dgvCheckList.Name = "dgvCheckList";
-			this.dgvCheckList.Size = new System.Drawing.Size(240, 341);
+			this.dgvCheckList.Size = new System.Drawing.Size(240, 390);
 			this.dgvCheckList.TabIndex = 25;
 			// 
 			// Column1
@@ -188,20 +178,31 @@ namespace NJournals.Core.Views
 			this.btnSaveCheckList.TabIndex = 26;
 			this.btnSaveCheckList.UseVisualStyleBackColor = true;
 			// 
+			// btncancel
+			// 
+			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btncancel.Location = new System.Drawing.Point(212, 520);
+			this.btncancel.Name = "btncancel";
+			this.btncancel.Size = new System.Drawing.Size(83, 23);
+			this.btncancel.TabIndex = 28;
+			this.btncancel.Text = "Cancel";
+			this.btncancel.UseVisualStyleBackColor = true;
+			this.btncancel.Click += new System.EventHandler(this.BtncancelClick);
+			// 
 			// CheckListView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(307, 567);
+			this.Controls.Add(this.btncancel);
 			this.Controls.Add(this.btnDeleteCheckList);
 			this.Controls.Add(this.btnSaveCheckList);
 			this.Controls.Add(this.dgvCheckList);
-			this.Controls.Add(this.btncancel);
 			this.Controls.Add(this.txttotal);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.btnsave);
-			this.Controls.Add(this.btnsaveprint);
+			this.Controls.Add(this.btnok);
+			this.Controls.Add(this.btnokprint);
 			this.Controls.Add(this.txtjonumber);
 			this.Controls.Add(this.label1);
 			this.Name = "CheckListView";
@@ -212,17 +213,17 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.Button btnSaveCheckList;
 		private System.Windows.Forms.Button btnDeleteCheckList;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
 		private System.Windows.Forms.DataGridView dgvCheckList;
-		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.TextBox txttotal;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Button btnsaveprint;
-		private System.Windows.Forms.Button btnsave;
+		private System.Windows.Forms.Button btnokprint;
+		private System.Windows.Forms.Button btnok;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox txtjonumber;
 	}
