@@ -12,6 +12,7 @@ using NJournals.Core.Models;
 using NJournals.Common.DataEntities;
 using System.Collections.Generic;
 using NJournals.Common.Util;
+
 namespace NJournals.Core.Presenter
 {
 	/// <summary>
@@ -52,8 +53,6 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void SaveClicked(){
-			
-			
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
 			
 			if(m_headerEntity.AmountTender > 0){
@@ -61,9 +60,12 @@ namespace NJournals.Core.Presenter
 			}
 			
 			if(headerIDExist(m_headerEntity.LaundryHeaderID)){
-				foreach(LaundryJobChargesDataEntity charge in m_headerEntity.JobChargeEntities){
+				
+				/*foreach(LaundryJobChargesDataEntity charge in m_headerEntity.JobChargeEntities){
 					m_jobChargeDao.SaveOrUpdate(charge);
 				}
+				
+				//TODO: check headerID and checklistid if equal, if not insert else update.
 				foreach(LaundryJobChecklistDataEntity checklist in m_headerEntity.JobChecklistEntities){
 					m_jobChecklistDao.SaveOrUpdate(checklist);
 				}
@@ -72,13 +74,11 @@ namespace NJournals.Core.Presenter
 					foreach(LaundryPaymentDetailDataEntity payment in m_headerEntity.PaymentDetailEntities){
 						m_paymentDetailDao.SaveOrUpdate(payment);
 					}	
-				}							
-			}
-			
-			
+				}*/
+				m_laundryDao.Update(m_headerEntity);
+			}				
 				
-			MessageService.ShowInfo("Successfully saved entries.","Information");			
-			
+			MessageService.ShowInfo("Successfully saved entries.","Information");						
 		}
 		
 		private void SaveDaySummary(LaundryHeaderDataEntity headerEntity){
