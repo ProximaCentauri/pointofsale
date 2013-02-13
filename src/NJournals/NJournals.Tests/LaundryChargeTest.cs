@@ -33,11 +33,11 @@ namespace NJournals.Tests
 			LaundryChargeDataEntity charge = new LaundryChargeDataEntity();
 			charge.Name = "Pickup";
 			charge.Amount = 10.00M;
-			chargeDao.Save(charge);
+			chargeDao.SaveOrUpdate(charge);
 			charge = new LaundryChargeDataEntity();
 			charge.Name = "Deliver";
 			charge.Amount = 20.00M;
-			chargeDao.Save(charge);
+			chargeDao.SaveOrUpdate(charge);
 		}
 		
 		[Test]

@@ -19,7 +19,7 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface ILaundryChargeDao
 	{
-		void Save(LaundryChargeDataEntity p_charge);
+		void SaveOrUpdate(LaundryChargeDataEntity p_charge);
 		IEnumerable<LaundryChargeDataEntity> GetAllItems();
 		LaundryChargeDataEntity GetByName(string p_name);
 		void Delete(LaundryChargeDataEntity p_charge);

@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: TEJ
- * Date: 2/5/2013
- * Time: 8:43 AM
+ * User: mc185104
+ * Date: 2/13/2013
+ * Time: 11:36 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -19,15 +19,16 @@ using NJournals.Common.DataEntities;
 namespace NJournals.Core.Models
 {
 	/// <summary>
-	/// Description of LaundryChecklistDao.
+	/// Description of LaundryJobChargesDao.
 	/// </summary>
-	public class LaundryChecklistDao : ILaundryChecklistDao
+	public class LaundryJobChargesDao : ILaundryJobChargesDao
 	{
-		public LaundryChecklistDao()
+		
+		public LaundryJobChargesDao()
 		{
 		}
 		
-		public void SaveOrUpdate(LaundryChecklistDataEntity p_checklist)
+		public void SaveOrUpdate(LaundryJobChargesDataEntity p_checklist)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -39,47 +40,47 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-		public IEnumerable<LaundryChecklistDataEntity> GetAllItems()
+		public IEnumerable<LaundryJobChargesDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-                var query = session.Query<LaundryChecklistDataEntity>()
-                    .OrderBy(x => x.Name)
+                var query = session.Query<LaundryJobChargesDataEntity>()
+                    .OrderBy(x => x)
                     .ToList();
                 return query;
 			}
 		}
 		
-		public LaundryChecklistDataEntity GetByName(string p_name)
+		public LaundryJobChargesDataEntity GetByID(int p_id)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-                var query = session.Query<LaundryChecklistDataEntity>()
-                    .Where(x => x.Name == p_name)
+                var query = session.Query<LaundryJobChargesDataEntity>()
+                    .Where(x => x.ID == p_id)
                     .SingleOrDefault();
 				return query;
 			}
 		}
 		
-		public void Delete(LaundryChecklistDataEntity p_checklist)
+		public void Delete(LaundryJobChargesDataEntity p_jobcharge)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Delete(p_checklist);
+					session.Delete(p_jobcharge);
 					transaction.Commit();
 				}
 			}
 		}
 		
-		public void Update(LaundryChecklistDataEntity p_checklist)
+		public void Update(LaundryJobChargesDataEntity p_jobcharge)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Update(p_checklist);
+					session.Update(p_jobcharge);
 					transaction.Commit();
 				}
 			}

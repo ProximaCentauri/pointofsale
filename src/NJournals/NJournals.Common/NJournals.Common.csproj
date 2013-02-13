@@ -150,6 +150,8 @@
     <Compile Include="Interfaces\ILaundryConfigurationView.cs" />
     <Compile Include="Interfaces\ILaundryDao.cs" />
     <Compile Include="Interfaces\ILaundryDaySummaryDao.cs" />
+    <Compile Include="Interfaces\ILaundryJobChargesDao.cs" />
+    <Compile Include="Interfaces\ILaundryJobCheckListDao.cs" />
     <Compile Include="Interfaces\ILaundryReportDao.cs" />
     <Compile Include="Interfaces\ILaundryView.cs" />
     <Compile Include="Interfaces\IMainFormStationView.cs" />

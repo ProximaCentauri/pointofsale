@@ -27,13 +27,13 @@ namespace NJournals.Core.Models
 		{
 		}
 		
-		public void Save(LaundryChargeDataEntity p_charge)
+		public void SaveOrUpdate(LaundryChargeDataEntity p_charge)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Save(p_charge);
+					session.SaveOrUpdate(p_charge);
 					transaction.Commit();
 				}
 			}

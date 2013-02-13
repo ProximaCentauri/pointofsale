@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: TEJ
- * Date: 2/5/2013
- * Time: 8:43 AM
+ * User: mc185104
+ * Date: 2/13/2013
+ * Time: 11:22 AM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -15,19 +15,18 @@ using NHibernate.Linq;
 using System.Collections.Generic;
 using NJournals.Common.Interfaces;
 using NJournals.Common.DataEntities;
-
 namespace NJournals.Core.Models
 {
 	/// <summary>
-	/// Description of LaundryChecklistDao.
+	/// Description of LaundryJobCheckListDao.
 	/// </summary>
-	public class LaundryChecklistDao : ILaundryChecklistDao
+	public class LaundryJobCheckListDao : ILaundryJobCheckListDao
 	{
-		public LaundryChecklistDao()
+		public LaundryJobCheckListDao()
 		{
 		}
 		
-		public void SaveOrUpdate(LaundryChecklistDataEntity p_checklist)
+		public void SaveOrUpdate(LaundryJobChecklistDataEntity p_checklist)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -39,29 +38,29 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-		public IEnumerable<LaundryChecklistDataEntity> GetAllItems()
+		public IEnumerable<LaundryJobChecklistDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-                var query = session.Query<LaundryChecklistDataEntity>()
-                    .OrderBy(x => x.Name)
+                var query = session.Query<LaundryJobChecklistDataEntity>()
+                    .OrderBy(x => x.ID)
                     .ToList();
                 return query;
 			}
 		}
 		
-		public LaundryChecklistDataEntity GetByName(string p_name)
+		public LaundryJobChecklistDataEntity GetByID(int p_id)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-                var query = session.Query<LaundryChecklistDataEntity>()
-                    .Where(x => x.Name == p_name)
+                var query = session.Query<LaundryJobChecklistDataEntity>()
+                    .Where(x => x.ID == p_id)
                     .SingleOrDefault();
 				return query;
 			}
 		}
 		
-		public void Delete(LaundryChecklistDataEntity p_checklist)
+		public void Delete(LaundryJobChecklistDataEntity p_checklist)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -73,7 +72,7 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-		public void Update(LaundryChecklistDataEntity p_checklist)
+		public void Update(LaundryJobChecklistDataEntity p_checklist)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{

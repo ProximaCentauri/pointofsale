@@ -176,7 +176,7 @@ namespace NJournals.Core
 		
 		protected virtual void OnSelectRefillingReports(EventArgs e){
 			if(SelectRefillingReport != null){
-				SelectRefillingRepor(this, e);
+				SelectRefillingReport(this, e);
 			}
 		}
 		

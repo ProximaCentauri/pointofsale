@@ -18,7 +18,7 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface ILaundryChecklistDao 
 	{
-		void Save(LaundryChecklistDataEntity p_checklist);
+		void SaveOrUpdate(LaundryChecklistDataEntity p_checklist);
 		IEnumerable<LaundryChecklistDataEntity> GetAllItems();
 		LaundryChecklistDataEntity GetByName(string p_name);
 		void Delete(LaundryChecklistDataEntity p_checklist);

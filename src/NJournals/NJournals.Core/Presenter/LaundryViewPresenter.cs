@@ -26,7 +26,7 @@ namespace NJournals.Core.Presenter
 		ICustomerDao m_customerDao;
 		ILaundryDaySummaryDao m_summaryDao;
 		ILaundryPriceSchemeDao m_priceDao;
-		
+		ILaundryJobChargesDao m_jobChargeDao;
 		ILaundryDao m_laundryDao;		
 		List<LaundryCategoryDataEntity> categories = null;
 		List<LaundryServiceDataEntity> services = null;
@@ -44,13 +44,34 @@ namespace NJournals.Core.Presenter
 			m_chargeDao = new LaundryChargeDao();
 			m_summaryDao = new LaundryDaySummaryDao();
 			m_priceDao = new LaundryPriceSchemeDao();
+			m_jobChargeDao = new LaundryJobChargesDao();
 		}
 		
 		public void SaveClicked(){
 			
-			DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
+			
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
-			LaundryHeaderDataEntity headerEntity = m_headerEntity;			
+			
+			if(m_headerEntity.AmountTender > 0){
+				SaveDaySummary(m_headerEntity);
+			}
+			
+			if(headerIDExist(m_headerEntity.LaundryHeaderID)){
+				foreach(LaundryJobChargesDataEntity charge in m_headerEntity.JobChargeEntities){
+					m_jobChargeDao.SaveOrUpdate(charge);
+				}
+			}
+			
+			if(m_headerEntity.AmountTender > 0){
+					
+			}				
+				
+			MessageService.ShowInfo("Successfully saved entries.","Information");			
+			
+		}
+		
+		private void SaveDaySummary(LaundryHeaderDataEntity headerEntity){
+			DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
 			LaundryDaySummaryDataEntity daySummary = m_summaryDao.GetByDay(today);
 			if(daySummary != null)
 			{
@@ -60,10 +81,7 @@ namespace NJournals.Core.Presenter
 				headerEntity.DaySummary = daySummary;
 				
 				// update daysummary with transcount and totalsales				
-				m_summaryDao.Update(daySummary);
-				m_laundryDao.SaveOrUpdate(headerEntity);
-			
-				
+				m_summaryDao.Update(daySummary);					
 			}else{
 				// set daysummary			
 				daySummary = new LaundryDaySummaryDataEntity();
@@ -76,15 +94,13 @@ namespace NJournals.Core.Presenter
 				// set header entity in daysummary for nhibernate to pickup and map			
 				daySummary.HeaderEntities.Add(headerEntity);
 				// set daysummary entity in header for nhibernate to pickup and map
-				headerEntity.DaySummary = daySummary;
-				
+				m_headerEntity.DaySummary = daySummary;
+				//m_chargeDao.SaveOrUpdate(headerEntity.
 				m_customerDao.SaveOrUpdate(headerEntity.Customer);				
 				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
 				// this will handle the saving for the linked tables				
 				m_laundryDao.SaveOrUpdate(headerEntity);
-			}		
-			MessageService.ShowInfo("Successfully saved entries.","Information");			
-			m_view.CloseView();
+			}
 		}
 		
 		public void CancelClicked(){
@@ -148,6 +164,12 @@ namespace NJournals.Core.Presenter
 				return headerEntities[headerEntities.Count-1].LaundryHeaderID + 1;
 			}
 			return 1;
+		}
+		
+		public bool headerIDExist(int headerID){
+			if(m_laundryDao.GetByID(headerID) != null)
+				return true;
+			return false;
 		}
 		
 		public decimal getAmtChargeByName(string name){			
