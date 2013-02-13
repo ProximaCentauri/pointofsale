@@ -50,6 +50,7 @@ namespace NJournals.Core.Presenter
                     reportTypes.Add(ReportConstants.INVENTORY_REPORT);
                     reportTypes.Add(ReportConstants.SALES_REPORT);                    
                     reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);
+                    reportTypes.Add(ReportConstants.CUSTINVENTORY_REPORT);
         			break;
         		default:
         			break;
@@ -141,8 +142,8 @@ namespace NJournals.Core.Presenter
                     m_view.DisplayReport(unpaidReport, datasources, parameters, ReportConstants.ES_REFILL_UNPAIDTRANSACTIONS_REPORT);
                     break;
                 case ReportConstants.INVENTORY_REPORT:
-                	List<RefillInventoryReportDataEntity> invReport = m_refillReportDao
-                		.GetInventoryReport(fromDateTime, toDateTime) as List<RefillInventoryReportDataEntity>;
+                    List<RefillInventoryReportDataEntity> invReport = m_refillReportDao
+                        .GetInventoryReport(fromDateTime, toDateTime) as List<RefillInventoryReportDataEntity>;
                 	parameters = SetReportParameters(fromDateTime, toDateTime);
                     datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORY, invReport));
                     m_view.DisplayReport(invReport, datasources, parameters, ReportConstants.ES_REFILL_INVENTORY_REPORT);                   
