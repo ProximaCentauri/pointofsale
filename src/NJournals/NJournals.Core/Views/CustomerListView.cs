@@ -9,13 +9,14 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using NJournals.Common.Gui;
 
 namespace NJournals.Core.Views
 {
 	/// <summary>
 	/// Description of CustomerView.
 	/// </summary>
-	public partial class CustomerListView : Form
+	public partial class CustomerListView : BaseForm
 	{
 		public CustomerListView()
 		{

@@ -284,6 +284,9 @@
     <None Include="images\config.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="images\customer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="images\delete1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

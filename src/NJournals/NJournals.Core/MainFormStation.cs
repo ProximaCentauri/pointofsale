@@ -37,6 +37,7 @@ namespace NJournals.Core
 			
 		}
 		
+		public event EventHandler SelectCustomerList;
 		public event EventHandler SelectLaundryNew;
 		public event EventHandler SelectLaundryClaim;
 		public event EventHandler SelectLaundryReport;
@@ -46,12 +47,19 @@ namespace NJournals.Core
 		public event EventHandler SelectRefillingReport;
 		public event EventHandler SelectRefillingConfiguration;
 		
+		private CustomerListView customerListView = new CustomerListView();
 		private LaundryNewView laundryView = new LaundryNewView();
 		private RefillingView refillingView = new RefillingView();
 		private RefillReturnPaymentView refillReturnView = new RefillReturnPaymentView();
 		private ReportView reportView = new ReportView();
 		private LaundryConfigurationView laundryConfigView = new LaundryConfigurationView();
 		private RefillingConfigurationView refillingConfigView = new RefillingConfigurationView();
+		
+		public void ShowCustomerListView()
+		{
+			customerListView.SetTitle("Customer List");
+			ShowSingletonForm(customerListView);
+		}
 		
 		public void ShowLaundryNewView(){					
 			laundryView.SetTitle("Laundry  [NEW]");			
@@ -118,6 +126,12 @@ namespace NJournals.Core
 			}
 		}
 				
+		protected virtual void OnSelectCustomerList(EventArgs e) {
+			if(SelectCustomerList != null){
+				SelectCustomerList(this,e);
+			}
+				
+		}
 		protected virtual void OnSelectLaundryNew(EventArgs e){
 			if(SelectLaundryNew != null){
 				SelectLaundryNew(this, e);
@@ -162,15 +176,17 @@ namespace NJournals.Core
 		
 		protected virtual void OnSelectRefillingReports(EventArgs e){
 			if(SelectRefillingReport != null){
-				SelectRefillingReport(this, e);
+				SelectRefillingRepor(this, e);
 			}
 		}
 		
 		void label_mousehover(object sender, EventArgs e)
 		{
 			Label label = sender as Label;			
-			label.Font = new Font("Calibri", 13, FontStyle.Bold);
-			label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(89)))), ((int)(((byte)(138)))));
+			label.Font = new Font("Calibri", 12, FontStyle.Bold);
+			//label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(89)))), ((int)(((byte)(138)))));
+			label.ForeColor = Color.White;
+			label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 		}
 		
 		void label_mouseleave(object sender, EventArgs e)
@@ -178,10 +194,13 @@ namespace NJournals.Core
 			Label label = sender as Label;
 			label.Font = new Font("Calibri", 12, FontStyle.Regular);
 			label.ForeColor = Color.Black;
+			label.BackColor = Color.Transparent;
 		}
 		
 		void setMenuBackgroundImages()
 		{
+			lblcustomerList.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/customer.png");
+			lblcustomerList.BackgroundImageLayout = ImageLayout.None;
 			//refilling
 			lblRefNew.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/bottle_new.png");
 			lblRefNew.BackgroundImageLayout = ImageLayout.None;
@@ -207,6 +226,7 @@ namespace NJournals.Core
 		{
 			setMenuBackgroundImages();
 				
+			this.lblcustomerList.Click += delegate { OnSelectCustomerList(null); };
 			this.lbllaundryNew.Click += delegate { OnSelectLaundryNew(null); };
 			this.lbllaundryClaim.Click += delegate { OnSelectLaundryClaim(null); };
 			this.lbllaundryConfig.Click += delegate { OnSelectLaundryConfig(null); };
@@ -247,5 +267,6 @@ namespace NJournals.Core
 				}
 			}
 		}
+
 	}
 }
