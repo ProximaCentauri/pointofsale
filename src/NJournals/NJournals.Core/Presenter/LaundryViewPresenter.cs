@@ -28,6 +28,8 @@ namespace NJournals.Core.Presenter
 		ILaundryPriceSchemeDao m_priceDao;
 		ILaundryJobChargesDao m_jobChargeDao;
 		ILaundryDao m_laundryDao;		
+		ILaundryJobCheckListDao m_jobChecklistDao;
+		ILaundryPaymentDetailDao m_paymentDetailDao;
 		List<LaundryCategoryDataEntity> categories = null;
 		List<LaundryServiceDataEntity> services = null;
 		List<CustomerDataEntity> customers = null;
@@ -45,6 +47,8 @@ namespace NJournals.Core.Presenter
 			m_summaryDao = new LaundryDaySummaryDao();
 			m_priceDao = new LaundryPriceSchemeDao();
 			m_jobChargeDao = new LaundryJobChargesDao();
+			m_jobChecklistDao = new LaundryJobCheckListDao();
+			m_paymentDetailDao = new LaundryPaymentDetailDao();
 		}
 		
 		public void SaveClicked(){
@@ -60,11 +64,18 @@ namespace NJournals.Core.Presenter
 				foreach(LaundryJobChargesDataEntity charge in m_headerEntity.JobChargeEntities){
 					m_jobChargeDao.SaveOrUpdate(charge);
 				}
+				foreach(LaundryJobChecklistDataEntity checklist in m_headerEntity.JobChecklistEntities){
+					m_jobChecklistDao.SaveOrUpdate(checklist);
+				}
+				
+				if(m_headerEntity.AmountTender > 0){
+					foreach(LaundryPaymentDetailDataEntity payment in m_headerEntity.PaymentDetailEntities){
+						m_paymentDetailDao.SaveOrUpdate(payment);
+					}	
+				}							
 			}
 			
-			if(m_headerEntity.AmountTender > 0){
-					
-			}				
+			
 				
 			MessageService.ShowInfo("Successfully saved entries.","Information");			
 			

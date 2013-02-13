@@ -97,6 +97,7 @@
     <Compile Include="Models\LaundryDaySummaryDao.cs" />
     <Compile Include="Models\LaundryJobChargesDao.cs" />
     <Compile Include="Models\LaundryJobCheckListDao.cs" />
+    <Compile Include="Models\LaundryPaymentDetailDao.cs" />
     <Compile Include="Models\LaundryPriceSchemeDao.cs" />
     <Compile Include="Models\LaundryReportDao.cs" />
     <Compile Include="Models\LaundryServiceDao.cs" />
