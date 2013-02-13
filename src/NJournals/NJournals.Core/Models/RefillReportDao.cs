@@ -101,45 +101,31 @@ namespace NJournals.Core.Models
 			}			
 		}
 
-        public IEnumerable<RefillInventoryHeaderDataEntity> GetInventoryReport(DateTime fromDateTime, DateTime toDateTime)
+        public IEnumerable<RefillInventoryReportDataEntity> GetInventoryReport(DateTime fromDateTime, DateTime toDateTime)
         {          
             using (var session = NHibernateHelper.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
-//                	var query = session.CreateCriteria<RefillInventoryHeaderDataEntity>("header")
-//                		.CreateAlias("header.DetailEntities","detailentities")
-//                		.SetProjection(Projections.ProjectionList()
-//                		               .Add(Projections.GroupProperty("header.Name"),"Name")
-//                		               .Add(Projections.GroupProperty(Projections.Cast(NHibernateUtil.Date
-//							                                                               ,Projections.GroupProperty("detailentities.Date"))),"DayStamp")                		              
-//                		               .Add(Projections.Sum("detailentities.TotalQty"), "TotalQty")
-//                		               .Add(Projections.Sum("detailentities.QtyOnHand"), "QtyOnHand")
-//                		               .Add(Projections.Sum("detailentities.QtyAdded"), "TotalAdded")
-//                		               .Add(Projections.Sum("detailentities.QtyRemoved"), "TotalRemoved")
-//                		               .Add(Projections.Sum("detailentities.QtyReleased"), "QtyReleased"))
-//                		.Add(Restrictions.Between("details.Date", fromDateTime,toDateTime))
-//                		.AddOrder(Order.Asc("Name"))
-//                		.AddOrder(Order.Asc("DayStamp"))
-//                		.SetResultTransformer(Transformers.AliasToBean(typeof(RefillInventoryReportDataEntity)))
-//                		.List<RefillInventoryReportDataEntity>();
-
 					var query = session.CreateCriteria<RefillInventoryHeaderDataEntity>("header")						
-                		.CreateAlias("header.DetailEntities","detailentities")
-                		.SetProjection(Projections.ProjectionList()						               
-                		               .Add(Projections.GroupProperty("header.Name"),"Name")
+                		.CreateAlias("header.DetailEntities","detailentities")                        
+                		.SetProjection(Projections.ProjectionList()						                         
+                		               .Add(Projections.Distinct(Projections.GroupProperty("header.Name")),"Name")
                 		               .Add(Projections.GroupProperty(Projections.Cast(NHibernateUtil.Date
-							                                                               ,Projections.GroupProperty("detailentities.Date"))),"DayStamp")                		              
-                		               .Add(Projections.Sum("detailentities.TotalQty"))
-                		               .Add(Projections.Sum("detailentities.QtyOnHand"))
-                		               .Add(Projections.Sum("detailentities.QtyAdded"))
-                		               .Add(Projections.Sum("detailentities.QtyRemoved"))
-                		               .Add(Projections.Sum("detailentities.QtyReleased")))
-                		.Add(Restrictions.Between("details.Date", fromDateTime,toDateTime))
+							                                                               ,Projections.GroupProperty("detailentities.Date"))),"DayStamp")
+                                       .Add(Projections.Sum("header.TotalQty"), "HeaderTotalQty")
+                                       .Add(Projections.Sum("header.QtyReleased"), "HeaderQtyReleased")
+                                       .Add(Projections.Sum("header.QtyOnHand"), "HeaderQtyOnHand")
+                                       .Add(Projections.Sum("detailentities.TotalQty"),"DetailTotalQty")
+                		               .Add(Projections.Sum("detailentities.QtyOnHand"),"DetailQtyOnHand")
+                		               .Add(Projections.Sum("detailentities.QtyAdded"),"TotalAdded")
+                		               .Add(Projections.Sum("detailentities.QtyRemoved"),"TotalRemoved")
+                		               .Add(Projections.Sum("detailentities.QtyReleased"),"DetailQtyReleased"))
+                        .Add(Restrictions.Between("detailentities.Date", fromDateTime, toDateTime))
                 		.AddOrder(Order.Asc("Name"))
-                		.AddOrder(Order.Asc("DayStamp"))
-                		.SetResultTransformer(Transformers.AliasToBean(typeof(RefillInventoryHeaderDataEntity)))
-                		.List<RefillInventoryHeaderDataEntity>();
+                        .AddOrder(Order.Asc("DayStamp"))
+                        .SetResultTransformer(Transformers.AliasToBean(typeof(RefillInventoryReportDataEntity)))
+                        .List<RefillInventoryReportDataEntity>();
                 	return query;
                 }
             }
@@ -153,16 +139,17 @@ namespace NJournals.Core.Models
                 {
                 	if(b_isAll)
                 	{
-                		var query = session.CreateCriteria<RefillCustInventoryHeaderDataEntity>("header")                			
-                			.AddOrder(Order.Asc("header.Customer.Name"))
+                        var query = session.CreateCriteria<RefillCustInventoryHeaderDataEntity>("header")
+                           .CreateAlias("header.Customer","customer")                          
+                           .AddOrder(Order.Asc("customer.Name"))
                            .List<RefillCustInventoryHeaderDataEntity>();
-                        return query;
+                        return query;                       
                 	}
                 	else{
-                		var query = session.CreateCriteria<RefillCustInventoryHeaderDataEntity>("header")
-                			.Add(Restrictions.Eq("header.Customer",customer))                			
-                           .List<RefillCustInventoryHeaderDataEntity>();
-                        return query;
+                        var query = session.QueryOver<RefillCustInventoryHeaderDataEntity>()
+                            .Where(x => x.Customer == customer)                           
+                            .List<RefillCustInventoryHeaderDataEntity>();
+                        return query;	 
                 	}                
                 }
             }

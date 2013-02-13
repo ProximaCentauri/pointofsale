@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="RefillInventoryReportDataEntity" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>NJournals.Common.DataEntities.RefillInventoryReportDataEntity, NJournals.Common, Version=1.0.4792.15572, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="RefillCustInventoryHeaderDataEntity" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>NJournals.Common.DataEntities.RefillCustInventoryHeaderDataEntity, NJournals.Common, Version=1.0.4792.15667, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>
