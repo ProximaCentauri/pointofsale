@@ -57,7 +57,7 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-			public IEnumerable<RefillHeaderDataEntity> GetByCustomer(CustomerDataEntity customer)
+		public IEnumerable<RefillHeaderDataEntity> GetByCustomer(CustomerDataEntity customer)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
