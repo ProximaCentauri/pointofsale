@@ -29,5 +29,10 @@ namespace NJournals.Core.Views
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
+		void CustomerListViewLoad(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }

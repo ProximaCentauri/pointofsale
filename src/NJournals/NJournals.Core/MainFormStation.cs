@@ -62,7 +62,8 @@ namespace NJournals.Core
 		}
 		
 		public void ShowLaundryNewView(){					
-			laundryView.SetTitle("Laundry  [NEW]");			
+			laundryView.SetTitle("Laundry  [NEW]");	
+			laundryView.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.IO.Directory.GetCurrentDirectory() + "/images/basket_new.png");
 			ShowSingletonForm(laundryView);
 		}
 		

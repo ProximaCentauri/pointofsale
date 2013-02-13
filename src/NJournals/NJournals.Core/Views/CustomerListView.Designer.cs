@@ -156,6 +156,7 @@ namespace NJournals.Core.Views
 			this.Text = "CustomerListView";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.Load += new System.EventHandler(this.CustomerListViewLoad);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 		}
