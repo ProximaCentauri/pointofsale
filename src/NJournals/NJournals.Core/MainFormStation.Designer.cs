@@ -45,6 +45,14 @@ namespace NJournals.Core
 		private void InitializeComponent()
 		{
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.lblcustomerList = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
+			this.label12 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.lbllaundryConfig = new System.Windows.Forms.Label();
+			this.lbllaundryReports = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.lbllaundryClaim = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.lblRefReports = new System.Windows.Forms.Label();
@@ -55,18 +63,10 @@ namespace NJournals.Core
 			this.lblRefNew = new System.Windows.Forms.Label();
 			this.lstOpenWindows = new System.Windows.Forms.ListBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.lbllaundryConfig = new System.Windows.Forms.Label();
-			this.lbllaundryReports = new System.Windows.Forms.Label();
-			this.lbllaundryClaim = new System.Windows.Forms.Label();
 			this.lbllaundryNew = new System.Windows.Forms.Label();
 			this.lblRefConfig = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.label11 = new System.Windows.Forms.Label();
-			this.label12 = new System.Windows.Forms.Label();
-			this.lblcustomerList = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -100,6 +100,98 @@ namespace NJournals.Core
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(196, 692);
 			this.panel1.TabIndex = 2;
+			// 
+			// lblcustomerList
+			// 
+			this.lblcustomerList.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.lblcustomerList.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblcustomerList.Location = new System.Drawing.Point(-1, 53);
+			this.lblcustomerList.Name = "lblcustomerList";
+			this.lblcustomerList.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.lblcustomerList.Size = new System.Drawing.Size(192, 32);
+			this.lblcustomerList.TabIndex = 10;
+			this.lblcustomerList.Text = "CUSTOMER LIST";
+			this.lblcustomerList.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.lblcustomerList.MouseLeave += new System.EventHandler(this.label_mouseleave);
+			this.lblcustomerList.MouseHover += new System.EventHandler(this.label_mousehover);
+			// 
+			// label11
+			// 
+			this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.label11.ForeColor = System.Drawing.Color.Red;
+			this.label11.Location = new System.Drawing.Point(2, 487);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(191, 1);
+			this.label11.TabIndex = 24;
+			// 
+			// label12
+			// 
+			this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.label12.ForeColor = System.Drawing.Color.Red;
+			this.label12.Location = new System.Drawing.Point(1, 448);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(191, 1);
+			this.label12.TabIndex = 25;
+			// 
+			// label10
+			// 
+			this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.label10.ForeColor = System.Drawing.Color.Red;
+			this.label10.Location = new System.Drawing.Point(2, 409);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(191, 1);
+			this.label10.TabIndex = 24;
+			// 
+			// lbllaundryConfig
+			// 
+			this.lbllaundryConfig.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.lbllaundryConfig.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbllaundryConfig.Location = new System.Drawing.Point(0, 452);
+			this.lbllaundryConfig.Name = "lbllaundryConfig";
+			this.lbllaundryConfig.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.lbllaundryConfig.Size = new System.Drawing.Size(191, 32);
+			this.lbllaundryConfig.TabIndex = 16;
+			this.lbllaundryConfig.Text = "CONFIGURATION";
+			this.lbllaundryConfig.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.lbllaundryConfig.MouseLeave += new System.EventHandler(this.label_mouseleave);
+			this.lbllaundryConfig.MouseHover += new System.EventHandler(this.label_mousehover);
+			// 
+			// lbllaundryReports
+			// 
+			this.lbllaundryReports.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.lbllaundryReports.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbllaundryReports.Location = new System.Drawing.Point(1, 413);
+			this.lbllaundryReports.Name = "lbllaundryReports";
+			this.lbllaundryReports.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.lbllaundryReports.Size = new System.Drawing.Size(191, 32);
+			this.lbllaundryReports.TabIndex = 15;
+			this.lbllaundryReports.Text = "REPORTS";
+			this.lbllaundryReports.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.lbllaundryReports.MouseLeave += new System.EventHandler(this.label_mouseleave);
+			this.lbllaundryReports.MouseHover += new System.EventHandler(this.label_mousehover);
+			// 
+			// label9
+			// 
+			this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.label9.ForeColor = System.Drawing.Color.Red;
+			this.label9.Location = new System.Drawing.Point(3, 370);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(191, 1);
+			this.label9.TabIndex = 23;
+			// 
+			// lbllaundryClaim
+			// 
+			this.lbllaundryClaim.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.lbllaundryClaim.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbllaundryClaim.Location = new System.Drawing.Point(1, 374);
+			this.lbllaundryClaim.Name = "lbllaundryClaim";
+			this.lbllaundryClaim.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.lbllaundryClaim.Size = new System.Drawing.Size(191, 32);
+			this.lbllaundryClaim.TabIndex = 14;
+			this.lbllaundryClaim.Text = "CLAIM";
+			this.lbllaundryClaim.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.lbllaundryClaim.MouseLeave += new System.EventHandler(this.label_mouseleave);
+			this.lbllaundryClaim.MouseHover += new System.EventHandler(this.label_mousehover);
 			// 
 			// label8
 			// 
@@ -192,6 +284,7 @@ namespace NJournals.Core
 			// 
 			// lstOpenWindows
 			// 
+			this.lstOpenWindows.BackColor = System.Drawing.SystemColors.Control;
 			this.lstOpenWindows.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.lstOpenWindows.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.lstOpenWindows.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -205,7 +298,7 @@ namespace NJournals.Core
 			// 
 			// label3
 			// 
-			this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(120)))), ((int)(((byte)(0)))));
 			this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.ForeColor = System.Drawing.Color.White;
 			this.label3.Location = new System.Drawing.Point(-2, 510);
@@ -213,49 +306,7 @@ namespace NJournals.Core
 			this.label3.Size = new System.Drawing.Size(196, 23);
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Open window(s)";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			// 
-			// lbllaundryConfig
-			// 
-			this.lbllaundryConfig.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.lbllaundryConfig.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryConfig.Location = new System.Drawing.Point(0, 452);
-			this.lbllaundryConfig.Name = "lbllaundryConfig";
-			this.lbllaundryConfig.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.lbllaundryConfig.Size = new System.Drawing.Size(191, 32);
-			this.lbllaundryConfig.TabIndex = 16;
-			this.lbllaundryConfig.Text = "CONFIGURATION";
-			this.lbllaundryConfig.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.lbllaundryConfig.MouseLeave += new System.EventHandler(this.label_mouseleave);
-			this.lbllaundryConfig.MouseHover += new System.EventHandler(this.label_mousehover);
-			// 
-			// lbllaundryReports
-			// 
-			this.lbllaundryReports.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.lbllaundryReports.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryReports.Location = new System.Drawing.Point(1, 413);
-			this.lbllaundryReports.Name = "lbllaundryReports";
-			this.lbllaundryReports.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.lbllaundryReports.Size = new System.Drawing.Size(191, 32);
-			this.lbllaundryReports.TabIndex = 15;
-			this.lbllaundryReports.Text = "REPORTS";
-			this.lbllaundryReports.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.lbllaundryReports.MouseLeave += new System.EventHandler(this.label_mouseleave);
-			this.lbllaundryReports.MouseHover += new System.EventHandler(this.label_mousehover);
-			// 
-			// lbllaundryClaim
-			// 
-			this.lbllaundryClaim.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.lbllaundryClaim.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryClaim.Location = new System.Drawing.Point(1, 374);
-			this.lbllaundryClaim.Name = "lbllaundryClaim";
-			this.lbllaundryClaim.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.lbllaundryClaim.Size = new System.Drawing.Size(191, 32);
-			this.lbllaundryClaim.TabIndex = 14;
-			this.lbllaundryClaim.Text = "CLAIM";
-			this.lbllaundryClaim.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.lbllaundryClaim.MouseLeave += new System.EventHandler(this.label_mouseleave);
-			this.lbllaundryClaim.MouseHover += new System.EventHandler(this.label_mousehover);
+			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// lbllaundryNew
 			// 
@@ -287,7 +338,7 @@ namespace NJournals.Core
 			// 
 			// label2
 			// 
-			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(225)))), ((int)(((byte)(0)))));
 			this.label2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.White;
 			this.label2.Location = new System.Drawing.Point(-2, 299);
@@ -295,67 +346,19 @@ namespace NJournals.Core
 			this.label2.Size = new System.Drawing.Size(200, 33);
 			this.label2.TabIndex = 3;
 			this.label2.Text = "LAUNDRY";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// label1
 			// 
-			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(203)))), ((int)(((byte)(200)))));
+			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(225)))), ((int)(((byte)(0)))));
 			this.label1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label1.ForeColor = System.Drawing.Color.White;
 			this.label1.Location = new System.Drawing.Point(-2, 90);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(198, 33);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "REFILLING";
-			// 
-			// label9
-			// 
-			this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-			this.label9.ForeColor = System.Drawing.Color.Red;
-			this.label9.Location = new System.Drawing.Point(3, 370);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(191, 1);
-			this.label9.TabIndex = 23;
-			// 
-			// label10
-			// 
-			this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-			this.label10.ForeColor = System.Drawing.Color.Red;
-			this.label10.Location = new System.Drawing.Point(2, 409);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(191, 1);
-			this.label10.TabIndex = 24;
-			// 
-			// label11
-			// 
-			this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-			this.label11.ForeColor = System.Drawing.Color.Red;
-			this.label11.Location = new System.Drawing.Point(2, 487);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(191, 1);
-			this.label11.TabIndex = 24;
-			// 
-			// label12
-			// 
-			this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-			this.label12.ForeColor = System.Drawing.Color.Red;
-			this.label12.Location = new System.Drawing.Point(1, 448);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(191, 1);
-			this.label12.TabIndex = 25;
-			// 
-			// lblcustomerList
-			// 
-			this.lblcustomerList.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.lblcustomerList.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblcustomerList.Location = new System.Drawing.Point(-1, 53);
-			this.lblcustomerList.Name = "lblcustomerList";
-			this.lblcustomerList.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.lblcustomerList.Size = new System.Drawing.Size(192, 32);
-			this.lblcustomerList.TabIndex = 10;
-			this.lblcustomerList.Text = "CUSTOMER LIST";
-			this.lblcustomerList.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.lblcustomerList.MouseLeave += new System.EventHandler(this.label_mouseleave);
-			this.lblcustomerList.MouseHover += new System.EventHandler(this.label_mousehover);
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// MainFormStation
 			// 
