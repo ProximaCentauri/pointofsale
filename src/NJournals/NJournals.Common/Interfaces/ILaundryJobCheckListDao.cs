@@ -20,6 +20,7 @@ namespace NJournals.Common.Interfaces
 	{
 		void SaveOrUpdate(LaundryJobChecklistDataEntity p_checklist);
 		IEnumerable<LaundryJobChecklistDataEntity> GetAllItems();
+		IEnumerable<LaundryJobChecklistDataEntity> GetAllItemsByHeaderId(int p_headerID);
 		LaundryJobChecklistDataEntity GetByID(int p_id);
 		void Delete(LaundryJobChecklistDataEntity p_checklist);
 		void Update(LaundryJobChecklistDataEntity p_checklist);

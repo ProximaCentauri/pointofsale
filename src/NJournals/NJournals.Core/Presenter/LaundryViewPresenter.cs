@@ -61,6 +61,16 @@ namespace NJournals.Core.Presenter
 			
 			if(headerIDExist(m_headerEntity.LaundryHeaderID)){
 				
+				//TODO: check headerID and checklistid if equal, if not insert else update.
+				List<LaundryJobChecklistDataEntity> checklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
+				foreach(LaundryJobChecklistDataEntity checklist in m_headerEntity.JobChecklistEntities){
+					if(checklistEntities.Find(m_checklist => m_checklist.Checklist.ChecklistID == checklist.Checklist.ChecklistID) != null){
+						m_jobChecklistDao.Update(checklist);	
+					}else{
+						m_jobChecklistDao.SaveOrUpdate(checklist);
+					}					
+				}
+				
 				/*foreach(LaundryJobChargesDataEntity charge in m_headerEntity.JobChargeEntities){
 					m_jobChargeDao.SaveOrUpdate(charge);
 				}
@@ -75,7 +85,7 @@ namespace NJournals.Core.Presenter
 						m_paymentDetailDao.SaveOrUpdate(payment);
 					}	
 				}*/
-				m_laundryDao.Update(m_headerEntity);
+				//m_laundryDao.Update(m_headerEntity);
 			}				
 				
 			MessageService.ShowInfo("Successfully saved entries.","Information");						
@@ -193,6 +203,10 @@ namespace NJournals.Core.Presenter
 		
 		public void getHeaderEntityByJONumber(int jonumber){
 			m_view.LoadHeaderEntityData(m_laundryDao.GetByID(jonumber));			
+		}
+		
+		public void GetJobChargesByHeaderId(int p_id){
+			return m_jobChecklistDao.GetAllItemsByHeaderId(p_id);
 		}
 		
 		public void LaunchChecklist(){

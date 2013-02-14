@@ -49,6 +49,18 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public IEnumerable<LaundryJobChecklistDataEntity> GetAllItemsByHeaderId(int p_headerID)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+                var query = session.Query<LaundryJobChecklistDataEntity>()
+                	.Where(x => x.Header.LaundryHeaderID == p_headerID)
+                    .OrderBy(x => x.ID)
+                    .ToList();
+                return query;
+			}
+		}
+		
 		public LaundryJobChecklistDataEntity GetByID(int p_id)
 		{
 			using(var session = NHibernateHelper.OpenSession())
