@@ -46,7 +46,7 @@ namespace NJournals.Common.DataMappers
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
 			HasMany<LaundryJobChecklistDataEntity>(x => x.JobChecklistEntities)
-				.KeyColumn("ChecklistID").Not.LazyLoad()
+				.KeyColumn("LaundryHeaderID").Not.LazyLoad()
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
 			References<CustomerDataEntity>(x => x.Customer)
