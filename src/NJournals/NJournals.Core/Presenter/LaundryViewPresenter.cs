@@ -61,13 +61,16 @@ namespace NJournals.Core.Presenter
 			
 			if(headerIDExist(m_headerEntity.LaundryHeaderID)){
 				
-				//TODO: check headerID and checklistid if equal, if not insert else update.
+				//TODO: manage the deletion of the object
 				List<LaundryJobChecklistDataEntity> checklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
-				foreach(LaundryJobChecklistDataEntity checklist in m_headerEntity.JobChecklistEntities){
-					if(checklistEntities.Find(m_checklist => m_checklist.Checklist.ChecklistID == checklist.Checklist.ChecklistID) != null){
-						m_jobChecklistDao.Update(checklist);	
+				List<LaundryJobChecklistDataEntity> newChecklistEntities = m_headerEntity.JobChecklistEntities as List<LaundryJobChecklistDataEntity>;
+				foreach(LaundryJobChecklistDataEntity checklist in newChecklistEntities){
+					LaundryJobChecklistDataEntity m_entity = checklistEntities.Find(m_checklist => m_checklist.Checklist.ChecklistID == checklist.Checklist.ChecklistID);
+					if(m_entity != null){	
+						m_entity.Qty = checklist.Qty;						
+						m_jobChecklistDao.Update(m_entity);	
 					}else{
-						m_jobChecklistDao.SaveOrUpdate(checklist);
+						m_jobChecklistDao.SaveOrUpdate(m_entity);
 					}					
 				}
 				

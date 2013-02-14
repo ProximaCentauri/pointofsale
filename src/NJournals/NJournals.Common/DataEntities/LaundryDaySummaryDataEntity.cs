@@ -21,7 +21,7 @@ namespace NJournals.Common.DataEntities
 		public virtual decimal TotalSales {get;set;}
 		public virtual int TransCount {get;set;}
 		
-		public virtual IList<LaundryHeaderDataEntity> HeaderEntities {get; set;}	
+		public virtual List<LaundryHeaderDataEntity> HeaderEntities {get; set;}	
 
 		public LaundryDaySummaryDataEntity()
 		{
