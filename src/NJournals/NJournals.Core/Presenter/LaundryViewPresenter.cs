@@ -205,8 +205,8 @@ namespace NJournals.Core.Presenter
 			m_view.LoadHeaderEntityData(m_laundryDao.GetByID(jonumber));			
 		}
 		
-		public void GetJobChargesByHeaderId(int p_id){
-			return m_jobChecklistDao.GetAllItemsByHeaderId(p_id);
+		public List<LaundryJobChecklistDataEntity> GetJobChecklistByHeaderId(int p_id){
+			return m_jobChecklistDao.GetAllItemsByHeaderId(p_id) as List<LaundryJobChecklistDataEntity>;
 		}
 		
 		public void LaunchChecklist(){

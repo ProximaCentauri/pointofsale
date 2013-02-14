@@ -272,6 +272,10 @@ namespace NJournals.Core.Views
 					chkchargesList.Items.Add(chargeEntity.Charge.Name, true);
 				}
 				lblchecklist.Enabled = true;
+				if(m_headerEntity.JobChecklistEntities.Count == 0){
+					//try to retrieve checklist in table
+					m_headerEntity.JobChecklistEntities = m_presenter.GetJobChecklistByHeaderId(m_headerEntity.LaundryHeaderID);
+				}
 			}else
 				MessageService.ShowWarning("Can't find JO Number: " + txtsearch.Text, "Non-existing");
 		}
