@@ -168,10 +168,11 @@ namespace NJournals.Core.Views
 			decimal kilo = decimal.Parse(txtkilo.Text);			
 			decimal price = priceEntity.Price * kilo;	
 			dataGridView1.Rows.Add(cmbcategory.Text, cmbservices.Text, txtnoitems.Text, txtkilo.Text, price.ToString("N2"));
-			txtamtdue.Text = (decimal.Parse(txtamtdue.Text) + price).ToString("N2");
-			this.totalAmtDue = decimal.Parse(txtamtdue.Text) + totalAmtDue;
-			this.txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + totalAmtDue).ToString("N2");
+			this.totalAmtDue = decimal.Parse(txtamtdue.Text) + price;
+			txtamtdue.Text = totalAmtDue.ToString("N2");			
+			this.txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + price).ToString("N2");
 			this.txtbalance.Text = this.txttotalamtdue.Text;
+			
 		}
 		
 		void BtnaddClick(object sender, EventArgs e)
@@ -221,11 +222,15 @@ namespace NJournals.Core.Views
 		
 		void txtdiscount_textchange(object sender, EventArgs e)
 		{
-			if(txttotaldiscount.Text.Length == 0){
+			if(txtdiscount.Text.Length == 0 || txtdiscount.Text.Equals("0")){
 				txttotaldiscount.Text = "0";	
+				txttotalamtdue.Text = (decimal.Parse(txtamtdue.Text) + decimal.Parse(txttotalcharges.Text)).ToString("N2");
+			}else{
+				txttotaldiscount.Text = ((decimal.Parse(txtdiscount.Text) / 100M) * (decimal.Parse(txtamtdue.Text) + decimal.Parse(txttotalcharges.Text))).ToString("N2");
+				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txttotaldiscount.Text)).ToString("N2");		
 			}
-			txttotaldiscount.Text = ((decimal.Parse(txtdiscount.Text) / 100M) * (decimal.Parse(txtamtdue.Text) + decimal.Parse(txttotalcharges.Text))).ToString("N2");
-			txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txttotaldiscount.Text)).ToString("N2");	
+			
+			txtbalance.Text = txttotalamtdue.Text;
 		}
 		
 		void BtnsavecloseClick(object sender, EventArgs e)
@@ -320,10 +325,12 @@ namespace NJournals.Core.Views
 				charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
 				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) + charge).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + charge).ToString("N2");
+				txtbalance.Text = txttotalamtdue.Text;
 			}else{
 				charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
 				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) - charge).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - charge).ToString("N2");
+				txtbalance.Text = txttotalamtdue.Text;
 			}			
 		}
 	}	
