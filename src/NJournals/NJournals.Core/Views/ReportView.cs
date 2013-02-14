@@ -79,7 +79,7 @@ namespace NJournals.Core.Views
 		
 		void BtnRunReportClick(object sender, EventArgs e)
 		{
-            if (ValidateReportDate())
+            if (ValidateReportParameters())
             { 
                	string selectedReport = this.cmbReportTypes.Text;
                 b_isAll = true;
@@ -113,17 +113,21 @@ namespace NJournals.Core.Views
             this.reportViewer.RefreshReport();            
 		}
 
-        private bool ValidateReportDate()
-        {
+        private bool ValidateReportParameters()
+        {        	
             fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);
             toDateTime = Convert.ToDateTime(this.dateToPicker.Text + " 23:59:59");
-            if (!String.IsNullOrEmpty(this.dateFromPicker.Text) && !String.IsNullOrEmpty(this.dateToPicker.Text) &&
+            if ((cmbReportTypes.SelectedItem != null && cmbReportTypes.SelectedItem.ToString() != string.Empty) &&
+            	(cmbCustomers.SelectedItem != null && cmbCustomers.SelectedItem.ToString() != string.Empty) &&
+                !String.IsNullOrEmpty(this.dateFromPicker.Text) && !String.IsNullOrEmpty(this.dateToPicker.Text) &&
                 (fromDateTime < toDateTime))
             {
                 return true;
             }
-            MessageService.ShowError("Please enter a valid report date range!", "Invalid Date");
-            return false;
+            MessageService.ShowError("One of the parameters is invalid. " +
+                                     "Please input a valid report type and/or customer and/or and date range!", 
+                                     "Invalid Report Parameters");
+            return false;           
         }   
         
         void CmbReportTypesSelectedIndexChanged(object sender, System.EventArgs e)
