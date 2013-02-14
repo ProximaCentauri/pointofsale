@@ -122,7 +122,7 @@ namespace NJournals.Core.Views
             {
                 return true;
             }
-            MessageService.ShowError("Please enter a valid report date range!", "Invalid Date");
+            MessageService.ShowError("Invalid date range. Please enter a valid report date range!", "Invalid Date");
             return false;
         }   
         

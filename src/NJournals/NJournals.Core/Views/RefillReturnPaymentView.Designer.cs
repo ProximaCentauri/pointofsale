@@ -40,16 +40,15 @@ namespace NJournals.Core.Views
 			this.btnCustomerSearch = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.txtBottlesOnHand = new System.Windows.Forms.TextBox();
+			this.txtCapsOnHand = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.dgvOutBalance = new System.Windows.Forms.DataGridView();
 			this.label7 = new System.Windows.Forms.Label();
 			this.txtchange = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
@@ -59,7 +58,14 @@ namespace NJournals.Core.Views
 			this.label10 = new System.Windows.Forms.Label();
 			this.btncancel = new System.Windows.Forms.Button();
 			this.btnprint = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			this.dtDate = new System.Windows.Forms.DateTimePicker();
+			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ItemQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TotalAmtDue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TotalAmtTender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			((System.ComponentModel.ISupportInitialize)(this.dgvOutBalance)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// cmbCustomers
@@ -85,6 +91,7 @@ namespace NJournals.Core.Views
 			this.btnCustomerSearch.Size = new System.Drawing.Size(24, 24);
 			this.btnCustomerSearch.TabIndex = 13;
 			this.btnCustomerSearch.UseVisualStyleBackColor = false;
+			this.btnCustomerSearch.Click += new System.EventHandler(this.BtnCustomerSearchClick);
 			// 
 			// label2
 			// 
@@ -106,21 +113,21 @@ namespace NJournals.Core.Views
 			this.label1.Text = "Bottles on hand:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox1
+			// txtBottlesOnHand
 			// 
-			this.textBox1.Location = new System.Drawing.Point(125, 60);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.Size = new System.Drawing.Size(84, 20);
-			this.textBox1.TabIndex = 16;
+			this.txtBottlesOnHand.Location = new System.Drawing.Point(125, 60);
+			this.txtBottlesOnHand.Name = "txtBottlesOnHand";
+			this.txtBottlesOnHand.ReadOnly = true;
+			this.txtBottlesOnHand.Size = new System.Drawing.Size(84, 20);
+			this.txtBottlesOnHand.TabIndex = 16;
 			// 
-			// textBox2
+			// txtCapsOnHand
 			// 
-			this.textBox2.Location = new System.Drawing.Point(125, 83);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.ReadOnly = true;
-			this.textBox2.Size = new System.Drawing.Size(84, 20);
-			this.textBox2.TabIndex = 18;
+			this.txtCapsOnHand.Location = new System.Drawing.Point(125, 83);
+			this.txtCapsOnHand.Name = "txtCapsOnHand";
+			this.txtCapsOnHand.ReadOnly = true;
+			this.txtCapsOnHand.Size = new System.Drawing.Size(84, 20);
+			this.txtCapsOnHand.TabIndex = 18;
 			// 
 			// label3
 			// 
@@ -169,27 +176,30 @@ namespace NJournals.Core.Views
 			// label6
 			// 
 			this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(521, 14);
+			this.label6.Location = new System.Drawing.Point(465, 33);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(56, 23);
 			this.label6.TabIndex = 23;
 			this.label6.Text = "Date:";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox5
+			// dgvOutBalance
 			// 
-			this.textBox5.Location = new System.Drawing.Point(582, 14);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(144, 20);
-			this.textBox5.TabIndex = 24;
-			// 
-			// dataGridView1
-			// 
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Location = new System.Drawing.Point(16, 149);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(710, 180);
-			this.dataGridView1.TabIndex = 25;
+			this.dgvOutBalance.AllowUserToAddRows = false;
+			this.dgvOutBalance.AllowUserToDeleteRows = false;
+			this.dgvOutBalance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvOutBalance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+									this.Date,
+									this.TransactionNo,
+									this.ItemQty,
+									this.TotalAmtDue,
+									this.TotalAmtTender,
+									this.Balance});
+			this.dgvOutBalance.Location = new System.Drawing.Point(16, 149);
+			this.dgvOutBalance.Name = "dgvOutBalance";
+			this.dgvOutBalance.ReadOnly = true;
+			this.dgvOutBalance.Size = new System.Drawing.Size(710, 180);
+			this.dgvOutBalance.TabIndex = 25;
 			// 
 			// label7
 			// 
@@ -281,12 +291,60 @@ namespace NJournals.Core.Views
 			this.btnprint.Text = "Save";
 			this.btnprint.UseVisualStyleBackColor = true;
 			// 
+			// dtDate
+			// 
+			this.dtDate.Font = new System.Drawing.Font("Calibri", 9.75F);
+			this.dtDate.Location = new System.Drawing.Point(526, 33);
+			this.dtDate.Name = "dtDate";
+			this.dtDate.Size = new System.Drawing.Size(200, 23);
+			this.dtDate.TabIndex = 35;
+			this.dtDate.Value = new System.DateTime(2013, 2, 2, 18, 46, 34, 0);
+			// 
+			// Date
+			// 
+			this.Date.HeaderText = "Date";
+			this.Date.Name = "Date";
+			this.Date.ReadOnly = true;
+			this.Date.Width = 135;
+			// 
+			// TransactionNo
+			// 
+			this.TransactionNo.HeaderText = "Transaction #";
+			this.TransactionNo.Name = "TransactionNo";
+			this.TransactionNo.ReadOnly = true;
+			this.TransactionNo.Width = 131;
+			// 
+			// ItemQty
+			// 
+			this.ItemQty.HeaderText = "Total # Items";
+			this.ItemQty.Name = "ItemQty";
+			this.ItemQty.ReadOnly = true;
+			// 
+			// TotalAmtDue
+			// 
+			this.TotalAmtDue.HeaderText = "Total Amount Due";
+			this.TotalAmtDue.Name = "TotalAmtDue";
+			this.TotalAmtDue.ReadOnly = true;
+			// 
+			// TotalAmtTender
+			// 
+			this.TotalAmtTender.HeaderText = "Total Amount Tender";
+			this.TotalAmtTender.Name = "TotalAmtTender";
+			this.TotalAmtTender.ReadOnly = true;
+			// 
+			// Balance
+			// 
+			this.Balance.HeaderText = "Balance";
+			this.Balance.Name = "Balance";
+			this.Balance.ReadOnly = true;
+			// 
 			// RefillReturnPaymentView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(751, 487);
+			this.Controls.Add(this.dtDate);
 			this.Controls.Add(this.btncancel);
 			this.Controls.Add(this.btnprint);
 			this.Controls.Add(this.txtchange);
@@ -296,16 +354,15 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.txtamtdue);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.label7);
-			this.Controls.Add(this.dataGridView1);
-			this.Controls.Add(this.textBox5);
+			this.Controls.Add(this.dgvOutBalance);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.textBox4);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.textBox3);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.textBox2);
+			this.Controls.Add(this.txtCapsOnHand);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.txtBottlesOnHand);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.cmbCustomers);
 			this.Controls.Add(this.btnCustomerSearch);
@@ -313,10 +370,17 @@ namespace NJournals.Core.Views
 			this.Name = "RefillReturnPaymentView";
 			this.Text = "RefillReturnPaymentView";
 			this.Load += new System.EventHandler(this.RefillReturnPaymentViewLoad);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvOutBalance)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmtTender;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmtDue;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ItemQty;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TransactionNo;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+		private System.Windows.Forms.DateTimePicker dtDate;
 		private System.Windows.Forms.Button btnprint;
 		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.Label label10;
@@ -326,16 +390,15 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.TextBox txtchange;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.TextBox textBox5;
+		private System.Windows.Forms.DataGridView dgvOutBalance;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txtCapsOnHand;
+		private System.Windows.Forms.TextBox txtBottlesOnHand;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btnCustomerSearch;
