@@ -200,7 +200,7 @@ namespace NJournals.Core
 		
 		void setMenuBackgroundImages()
 		{
-			/*lblcustomerList.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/customer.png");
+			lblcustomerList.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/customer.png");
 			lblcustomerList.BackgroundImageLayout = ImageLayout.None;
 			//refilling
 			lblRefNew.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/bottle_new.png");
@@ -219,8 +219,7 @@ namespace NJournals.Core
 			lbllaundryReports.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/chart.png");
 			lbllaundryReports.BackgroundImageLayout = ImageLayout.None;
 			lbllaundryConfig.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/config.png");
-			lbllaundryConfig.BackgroundImageLayout = ImageLayout.None;*/
-		}
+			lbllaundryConfig.BackgroundImageLayout = ImageLayout.None;
 		
 		
 		void MainFormStationLoad(object sender, EventArgs e)
