@@ -220,7 +220,7 @@ namespace NJournals.Core
 			lbllaundryReports.BackgroundImageLayout = ImageLayout.None;
 			lbllaundryConfig.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/config.png");
 			lbllaundryConfig.BackgroundImageLayout = ImageLayout.None;
-		
+		}
 		
 		void MainFormStationLoad(object sender, EventArgs e)
 		{

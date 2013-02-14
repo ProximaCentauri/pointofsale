@@ -57,6 +57,7 @@ namespace NJournals.Core.Views
 			// txtjonumber
 			// 
 			this.txtjonumber.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.txtjonumber.Enabled = false;
 			this.txtjonumber.Location = new System.Drawing.Point(89, 24);
 			this.txtjonumber.Name = "txtjonumber";
 			this.txtjonumber.Size = new System.Drawing.Size(154, 20);
@@ -81,7 +82,6 @@ namespace NJournals.Core.Views
 			this.btnok.TabIndex = 21;
 			this.btnok.Text = "OK";
 			this.btnok.UseVisualStyleBackColor = true;
-			
 			// 
 			// btnokprint
 			// 
@@ -110,6 +110,7 @@ namespace NJournals.Core.Views
 			this.txttotal.Name = "txttotal";
 			this.txttotal.Size = new System.Drawing.Size(66, 20);
 			this.txttotal.TabIndex = 23;
+			this.txttotal.Text = "0";
 			// 
 			// dgvCheckList
 			// 
@@ -130,6 +131,7 @@ namespace NJournals.Core.Views
 			this.dgvCheckList.Name = "dgvCheckList";
 			this.dgvCheckList.Size = new System.Drawing.Size(240, 390);
 			this.dgvCheckList.TabIndex = 25;
+			this.dgvCheckList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvChecklist_cellvalidating);
 			// 
 			// Column1
 			// 
