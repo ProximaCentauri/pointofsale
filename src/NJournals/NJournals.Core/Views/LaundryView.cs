@@ -230,7 +230,8 @@ namespace NJournals.Core.Views
 		
 		void BtnsavecloseClick(object sender, EventArgs e)
 		{
-			m_presenter.SaveClicked();			                       
+			m_presenter.SaveClicked();			        
+			this.Close();
 		}
 		
 		void lblchecklist_click(object sender, EventArgs e)
@@ -246,6 +247,7 @@ namespace NJournals.Core.Views
 		
 		public void GetSelectedChecklist(){
 			List<string> checkListEntities = chklistView.GetAllSelectedCheckList();
+			m_headerEntity.JobChecklistEntities = new List<LaundryJobChecklistDataEntity>();
 			foreach(string checklist in checkListEntities){
 				string[] arrchecklist = checklist.Split('|');
 				LaundryJobChecklistDataEntity newChecklist = new LaundryJobChecklistDataEntity();
@@ -295,7 +297,9 @@ namespace NJournals.Core.Views
 		void txtsearch_keypress(object sender, KeyEventArgs e)
 		{
 			if(e.KeyCode == Keys.Enter){
-				m_presenter.getHeaderEntityByJONumber(int.Parse(txtsearch.Text));
+				int id = 0;
+				int.TryParse(txtsearch.Text, out id);
+				m_presenter.getHeaderEntityByJONumber(id);
 			}			
 		}
 		

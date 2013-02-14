@@ -57,22 +57,32 @@ namespace NJournals.Core.Presenter
 		public void SaveClicked(){
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
 			
-			if(m_headerEntity.AmountTender > 0){
+			if(m_view.GetTitle().Contains("NEW")){
 				SaveDaySummary(m_headerEntity);
 			}
 			
-			if(m_view.GetTitle().Contains("CLAIM")){
+			if(m_view.GetTitle().Contains("CLAIM")){				
 				
-				//TODO: manage the deletion of the object
 				List<LaundryJobChecklistDataEntity> checklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
 				List<LaundryJobChecklistDataEntity> newChecklistEntities = m_headerEntity.JobChecklistEntities as List<LaundryJobChecklistDataEntity>;
+				
+				//TODO: manage the deletion of the object
+				foreach(LaundryJobChecklistDataEntity checklist in checklistEntities){					
+					LaundryJobChecklistDataEntity m_entity = newChecklistEntities.Find(m_checklist => m_checklist.Checklist.ChecklistID == checklist.Checklist.ChecklistID);
+					if(m_entity == null){
+						m_jobChecklistDao.Delete(checklist);
+						//delete operation refresh the list from the db						
+					}
+				}
+				  
+				checklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
 				foreach(LaundryJobChecklistDataEntity checklist in newChecklistEntities){
 					LaundryJobChecklistDataEntity m_entity = checklistEntities.Find(m_checklist => m_checklist.Checklist.ChecklistID == checklist.Checklist.ChecklistID);
 					if(m_entity != null){	
-						//m_entity.Qty = checklist.Qty;						
+						m_entity.Qty = checklist.Qty;						
 						m_jobChecklistDao.Update(m_entity);	
-					}else{
-						m_jobChecklistDao.SaveOrUpdate(m_entity);
+					}else{//new entry
+						m_jobChecklistDao.SaveOrUpdate(checklist);
 					}					
 				}
 				
