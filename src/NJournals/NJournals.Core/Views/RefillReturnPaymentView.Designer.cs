@@ -43,28 +43,30 @@ namespace NJournals.Core.Views
 			this.txtBottlesOnHand = new System.Windows.Forms.TextBox();
 			this.txtCapsOnHand = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.txtReturnedBottles = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.txtReturnedCaps = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.dgvOutBalance = new System.Windows.Forms.DataGridView();
-			this.label7 = new System.Windows.Forms.Label();
-			this.txtchange = new System.Windows.Forms.TextBox();
-			this.label12 = new System.Windows.Forms.Label();
-			this.txtamttender = new System.Windows.Forms.TextBox();
-			this.label11 = new System.Windows.Forms.Label();
-			this.txtamtdue = new System.Windows.Forms.TextBox();
-			this.label10 = new System.Windows.Forms.Label();
-			this.btncancel = new System.Windows.Forms.Button();
-			this.btnprint = new System.Windows.Forms.Button();
-			this.dtDate = new System.Windows.Forms.DateTimePicker();
 			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.TransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ItemQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.TotalAmtDue = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.TotalAmtTender = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.label7 = new System.Windows.Forms.Label();
+			this.txtchange = new System.Windows.Forms.TextBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.txtamttender = new System.Windows.Forms.TextBox();
+			this.label11 = new System.Windows.Forms.Label();
+			this.txtTotalAmtDue = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.btncancel = new System.Windows.Forms.Button();
+			this.btnSave = new System.Windows.Forms.Button();
+			this.dtDate = new System.Windows.Forms.DateTimePicker();
+			this.txtbalance = new System.Windows.Forms.TextBox();
+			this.label13 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dgvOutBalance)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -139,12 +141,12 @@ namespace NJournals.Core.Views
 			this.label3.Text = "Caps on hand:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox3
+			// txtReturnedBottles
 			// 
-			this.textBox3.Location = new System.Drawing.Point(364, 62);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(84, 20);
-			this.textBox3.TabIndex = 20;
+			this.txtReturnedBottles.Location = new System.Drawing.Point(364, 62);
+			this.txtReturnedBottles.Name = "txtReturnedBottles";
+			this.txtReturnedBottles.Size = new System.Drawing.Size(84, 20);
+			this.txtReturnedBottles.TabIndex = 20;
 			// 
 			// label4
 			// 
@@ -156,12 +158,12 @@ namespace NJournals.Core.Views
 			this.label4.Text = "Returned Bottles:";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox4
+			// txtReturnedCaps
 			// 
-			this.textBox4.Location = new System.Drawing.Point(364, 85);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(84, 20);
-			this.textBox4.TabIndex = 22;
+			this.txtReturnedCaps.Location = new System.Drawing.Point(364, 85);
+			this.txtReturnedCaps.Name = "txtReturnedCaps";
+			this.txtReturnedCaps.Size = new System.Drawing.Size(84, 20);
+			this.txtReturnedCaps.TabIndex = 22;
 			// 
 			// label5
 			// 
@@ -201,105 +203,6 @@ namespace NJournals.Core.Views
 			this.dgvOutBalance.Size = new System.Drawing.Size(710, 180);
 			this.dgvOutBalance.TabIndex = 25;
 			// 
-			// label7
-			// 
-			this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.label7.Font = new System.Drawing.Font("Calibri", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.ForeColor = System.Drawing.Color.Teal;
-			this.label7.Location = new System.Drawing.Point(16, 130);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(183, 16);
-			this.label7.TabIndex = 26;
-			this.label7.Text = "OUTSTANDING BALANCE:";
-			// 
-			// txtchange
-			// 
-			this.txtchange.Enabled = false;
-			this.txtchange.Location = new System.Drawing.Point(607, 387);
-			this.txtchange.Name = "txtchange";
-			this.txtchange.Size = new System.Drawing.Size(119, 20);
-			this.txtchange.TabIndex = 32;
-			this.txtchange.Text = "0.00";
-			// 
-			// label12
-			// 
-			this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label12.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.label12.Location = new System.Drawing.Point(514, 387);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(93, 18);
-			this.label12.TabIndex = 31;
-			this.label12.Text = "Change:";
-			this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// txtamttender
-			// 
-			this.txtamttender.Location = new System.Drawing.Point(607, 361);
-			this.txtamttender.Name = "txtamttender";
-			this.txtamttender.Size = new System.Drawing.Size(119, 20);
-			this.txtamttender.TabIndex = 30;
-			this.txtamttender.Text = "0.00";
-			// 
-			// label11
-			// 
-			this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-			this.label11.Location = new System.Drawing.Point(483, 361);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(124, 18);
-			this.label11.TabIndex = 29;
-			this.label11.Text = "Amount Tender:";
-			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// txtamtdue
-			// 
-			this.txtamtdue.Enabled = false;
-			this.txtamtdue.Location = new System.Drawing.Point(607, 335);
-			this.txtamtdue.Name = "txtamtdue";
-			this.txtamtdue.Size = new System.Drawing.Size(119, 20);
-			this.txtamtdue.TabIndex = 28;
-			this.txtamtdue.Text = "0.00";
-			// 
-			// label10
-			// 
-			this.label10.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.ForeColor = System.Drawing.Color.Red;
-			this.label10.Location = new System.Drawing.Point(538, 331);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(70, 28);
-			this.label10.TabIndex = 27;
-			this.label10.Text = "Balance:";
-			this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// btncancel
-			// 
-			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btncancel.Location = new System.Drawing.Point(651, 441);
-			this.btncancel.Name = "btncancel";
-			this.btncancel.Size = new System.Drawing.Size(75, 23);
-			this.btncancel.TabIndex = 34;
-			this.btncancel.Text = "Cancel";
-			this.btncancel.UseVisualStyleBackColor = true;
-			// 
-			// btnprint
-			// 
-			this.btnprint.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnprint.Location = new System.Drawing.Point(558, 441);
-			this.btnprint.Name = "btnprint";
-			this.btnprint.Size = new System.Drawing.Size(75, 23);
-			this.btnprint.TabIndex = 33;
-			this.btnprint.Text = "Save";
-			this.btnprint.UseVisualStyleBackColor = true;
-			// 
-			// dtDate
-			// 
-			this.dtDate.Font = new System.Drawing.Font("Calibri", 9.75F);
-			this.dtDate.Location = new System.Drawing.Point(526, 33);
-			this.dtDate.Name = "dtDate";
-			this.dtDate.Size = new System.Drawing.Size(200, 23);
-			this.dtDate.TabIndex = 35;
-			this.dtDate.Value = new System.DateTime(2013, 2, 2, 18, 46, 34, 0);
-			// 
 			// Date
 			// 
 			this.Date.HeaderText = "Date";
@@ -338,27 +241,154 @@ namespace NJournals.Core.Views
 			this.Balance.Name = "Balance";
 			this.Balance.ReadOnly = true;
 			// 
+			// label7
+			// 
+			this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.label7.Font = new System.Drawing.Font("Calibri", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label7.ForeColor = System.Drawing.Color.Teal;
+			this.label7.Location = new System.Drawing.Point(16, 130);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(183, 16);
+			this.label7.TabIndex = 26;
+			this.label7.Text = "OUTSTANDING BALANCE:";
+			// 
+			// txtchange
+			// 
+			this.txtchange.Enabled = false;
+			this.txtchange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtchange.Location = new System.Drawing.Point(607, 408);
+			this.txtchange.Name = "txtchange";
+			this.txtchange.Size = new System.Drawing.Size(119, 20);
+			this.txtchange.TabIndex = 32;
+			this.txtchange.Text = "0.00";
+			// 
+			// label12
+			// 
+			this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label12.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.label12.Location = new System.Drawing.Point(514, 408);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(93, 18);
+			this.label12.TabIndex = 31;
+			this.label12.Text = "Change:";
+			this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// txtamttender
+			// 
+			this.txtamttender.Location = new System.Drawing.Point(607, 361);
+			this.txtamttender.Name = "txtamttender";
+			this.txtamttender.Size = new System.Drawing.Size(119, 20);
+			this.txtamttender.TabIndex = 30;
+			this.txtamttender.Text = "0.00";
+			// 
+			// label11
+			// 
+			this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			this.label11.Location = new System.Drawing.Point(483, 361);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(124, 18);
+			this.label11.TabIndex = 29;
+			this.label11.Text = "Amount Tender:";
+			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// txtTotalAmtDue
+			// 
+			this.txtTotalAmtDue.Enabled = false;
+			this.txtTotalAmtDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtTotalAmtDue.Location = new System.Drawing.Point(607, 336);
+			this.txtTotalAmtDue.Name = "txtTotalAmtDue";
+			this.txtTotalAmtDue.Size = new System.Drawing.Size(119, 20);
+			this.txtTotalAmtDue.TabIndex = 28;
+			this.txtTotalAmtDue.Text = "0.00";
+			// 
+			// label10
+			// 
+			this.label10.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label10.ForeColor = System.Drawing.Color.Red;
+			this.label10.Location = new System.Drawing.Point(421, 332);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(187, 28);
+			this.label10.TabIndex = 27;
+			this.label10.Text = "Total Outstanding Balance:";
+			this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// btncancel
+			// 
+			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btncancel.Location = new System.Drawing.Point(651, 464);
+			this.btncancel.Name = "btncancel";
+			this.btncancel.Size = new System.Drawing.Size(75, 23);
+			this.btncancel.TabIndex = 34;
+			this.btncancel.Text = "Cancel";
+			this.btncancel.UseVisualStyleBackColor = true;
+			// 
+			// btnSave
+			// 
+			this.btnSave.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnSave.Location = new System.Drawing.Point(558, 464);
+			this.btnSave.Name = "btnSave";
+			this.btnSave.Size = new System.Drawing.Size(75, 23);
+			this.btnSave.TabIndex = 33;
+			this.btnSave.Text = "Save";
+			this.btnSave.UseVisualStyleBackColor = true;
+			this.btnSave.Click += new System.EventHandler(this.BtnSaveClick);
+			// 
+			// dtDate
+			// 
+			this.dtDate.Font = new System.Drawing.Font("Calibri", 9.75F);
+			this.dtDate.Location = new System.Drawing.Point(526, 33);
+			this.dtDate.Name = "dtDate";
+			this.dtDate.Size = new System.Drawing.Size(200, 23);
+			this.dtDate.TabIndex = 35;
+			this.dtDate.Value = new System.DateTime(2013, 2, 2, 18, 46, 34, 0);
+			// 
+			// txtbalance
+			// 
+			this.txtbalance.BackColor = System.Drawing.SystemColors.Info;
+			this.txtbalance.Enabled = false;
+			this.txtbalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtbalance.ForeColor = System.Drawing.Color.Black;
+			this.txtbalance.Location = new System.Drawing.Point(607, 384);
+			this.txtbalance.Name = "txtbalance";
+			this.txtbalance.Size = new System.Drawing.Size(119, 20);
+			this.txtbalance.TabIndex = 37;
+			this.txtbalance.Text = "0.00";
+			// 
+			// label13
+			// 
+			this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label13.ForeColor = System.Drawing.Color.Maroon;
+			this.label13.Location = new System.Drawing.Point(517, 384);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(90, 18);
+			this.label13.TabIndex = 36;
+			this.label13.Text = "Balance:";
+			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// RefillReturnPaymentView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(751, 487);
+			this.ClientSize = new System.Drawing.Size(751, 509);
+			this.Controls.Add(this.txtbalance);
+			this.Controls.Add(this.label13);
 			this.Controls.Add(this.dtDate);
 			this.Controls.Add(this.btncancel);
-			this.Controls.Add(this.btnprint);
+			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.txtchange);
 			this.Controls.Add(this.label12);
 			this.Controls.Add(this.txtamttender);
 			this.Controls.Add(this.label11);
-			this.Controls.Add(this.txtamtdue);
+			this.Controls.Add(this.txtTotalAmtDue);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.dgvOutBalance);
 			this.Controls.Add(this.label6);
-			this.Controls.Add(this.textBox4);
+			this.Controls.Add(this.txtReturnedCaps);
 			this.Controls.Add(this.label5);
-			this.Controls.Add(this.textBox3);
+			this.Controls.Add(this.txtReturnedBottles);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.txtCapsOnHand);
 			this.Controls.Add(this.label3);
@@ -374,6 +404,8 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.TextBox txtbalance;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmtTender;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmtDue;
@@ -381,10 +413,10 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.DataGridViewTextBoxColumn TransactionNo;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
 		private System.Windows.Forms.DateTimePicker dtDate;
-		private System.Windows.Forms.Button btnprint;
+		private System.Windows.Forms.Button btnSave;
 		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.TextBox txtamtdue;
+		private System.Windows.Forms.TextBox txtTotalAmtDue;
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.TextBox txtamttender;
 		private System.Windows.Forms.Label label12;
@@ -393,9 +425,9 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.DataGridView dgvOutBalance;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox textBox4;
+		private System.Windows.Forms.TextBox txtReturnedCaps;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox txtReturnedBottles;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TextBox txtCapsOnHand;
 		private System.Windows.Forms.TextBox txtBottlesOnHand;

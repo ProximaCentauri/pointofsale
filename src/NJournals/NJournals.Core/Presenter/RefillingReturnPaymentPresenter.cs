@@ -23,7 +23,9 @@ namespace NJournals.Core.Presenter
 		IRefillReturnPaymentView m_view;
 		ICustomerDao m_customerDao;
 		IRefillDao m_refillDao;		
-		IRefillCustomerInventoryDao m_custInvDao;
+		IRefillCustomerInventoryDao m_custInvDao;		
+		CustomerDataEntity customer;
+		RefillCustInventoryHeaderDataEntity custInv ;
 		
 		public RefillingReturnPaymentPresenter(IRefillReturnPaymentView m_view)
 		{
@@ -31,6 +33,8 @@ namespace NJournals.Core.Presenter
 			m_customerDao = new CustomerDao();
 			m_refillDao = new RefillDao();
 			m_custInvDao = new RefillCustomerInventoryDao();
+			customer = new CustomerDataEntity();
+			custInv = new RefillCustInventoryHeaderDataEntity();
 		}
 		
 		public void SetAllCustomers()
@@ -41,10 +45,24 @@ namespace NJournals.Core.Presenter
 		
 		public void GetRefillJOsByCustomer(string customerName)
 		{
-			CustomerDataEntity customer = m_customerDao.GetByName(customerName) as CustomerDataEntity;
+			customer = m_customerDao.GetByName(customerName) as CustomerDataEntity;
 			List<RefillHeaderDataEntity> refillHeaders = m_refillDao.GetByCustomer(customer) as List<RefillHeaderDataEntity>;
-			RefillCustInventoryHeaderDataEntity custInv = m_custInvDao.GetByCustomer(customer) as RefillCustInventoryHeaderDataEntity;
+			custInv = m_custInvDao.GetByCustomer(customer) as RefillCustInventoryHeaderDataEntity;
 			m_view.LoadRefillHeaderAndInventoryData(refillHeaders, custInv);
+		}
+		
+		public void UpdateCustomerInventory(int returnedBottles, int returnedCaps, DateTime returnDate)
+		{			
+			custInv.BottlesReturned += returnedBottles;
+			custInv.CapsOnHand += returnedCaps;
+			
+			RefillCustInventoryDetailDataEntity detail = new RefillCustInventoryDetailDataEntity();
+			detail.BottlesReturned = returnedBottles;
+			detail.CapsReturned = returnedCaps;
+			detail.Date = returnDate;
+			detail.Header = custInv;
+			custInv.DetailEntities.Add(detail);
+			m_custInvDao.SaveOrUpdate(custInv);						
 		}
 	}
 }

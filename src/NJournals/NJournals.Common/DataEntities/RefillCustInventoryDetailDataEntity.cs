@@ -16,7 +16,7 @@ namespace NJournals.Common.DataEntities
 	public class RefillCustInventoryDetailDataEntity
 	{
 		public virtual int ID {get;set;}
-		public virtual int BottlesOnHand {get;set;}
+		public virtual int CapsReturned {get;set;}
 		public virtual int BottlesReturned {get;set;}
 		public virtual DateTime Date {get;set;}
 		public virtual RefillCustInventoryHeaderDataEntity Header {get;set;}

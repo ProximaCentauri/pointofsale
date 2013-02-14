@@ -60,9 +60,10 @@ namespace NJournals.Core.Views
 		
 		void BtnCustomerSearchClick(object sender, EventArgs e)
 		{
-			if(!string.IsNullOrEmpty(this.cmbCustomers.SelectedText))
+			if(this.cmbCustomers.SelectedItem != null 
+			   && this.cmbCustomers.SelectedItem.ToString() != string.Empty)
 			{
-				m_presenter.GetRefillJOsByCustomer(this.cmbCustomers.SelectedText);
+				m_presenter.GetRefillJOsByCustomer(this.cmbCustomers.SelectedItem.ToString());
 			}
 			else
 			{
@@ -75,15 +76,25 @@ namespace NJournals.Core.Views
 		{
 			txtBottlesOnHand.Text = (custInv != null) ? custInv.BottlesOnHand.ToString() : "0";
 			txtCapsOnHand.Text = (custInv != null) ? custInv.CapsOnHand.ToString() : "0";
-			
+						
+			decimal totalAmountDue = 0.00M;
 			foreach(RefillHeaderDataEntity header in headers)
-			{
+			{				
 				dgvOutBalance.Rows.Add(header.Date.ToShortDateString(), header.RefillHeaderID, header.TotalQty, 
-				                       header.AmountDue, header.AmountTender, (header.AmountDue - header.AmountTender));
-				                       
+				                       header.AmountDue.ToString("N2"), header.AmountTender.ToString("N2"),
+				                       (header.AmountDue - header.AmountTender).ToString("N2"));
+				totalAmountDue += (header.AmountDue - header.AmountTender);				                      
 			}
-			
+			txtTotalAmtDue.Text = totalAmountDue.ToString("N2");
+			txtbalance.Text = totalAmountDue.ToString("N2");		
 		}
-			
+					
+		void BtnSaveClick(object sender, EventArgs e)
+		{
+			m_presenter.UpdateCustomerInventory(Convert.ToInt32(txtReturnedBottles.Text),
+			                                    Convert.ToInt32(txtReturnedCaps.Text), dtDate.Value);
+			MessageService.ShowInfo("Save successful!","Save");
+			                         
+		}
 	}
 }
