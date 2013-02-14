@@ -31,6 +31,7 @@ namespace NJournals.Core.Presenter
 		ILaundryDao m_laundryDao;		
 		ILaundryJobCheckListDao m_jobChecklistDao;
 		ILaundryPaymentDetailDao m_paymentDetailDao;
+		ILaundryChecklistDao m_checklistDao;
 		List<LaundryCategoryDataEntity> categories = null;
 		List<LaundryServiceDataEntity> services = null;
 		List<CustomerDataEntity> customers = null;
@@ -50,6 +51,7 @@ namespace NJournals.Core.Presenter
 			m_jobChargeDao = new LaundryJobChargesDao();
 			m_jobChecklistDao = new LaundryJobCheckListDao();
 			m_paymentDetailDao = new LaundryPaymentDetailDao();
+			m_checklistDao = new LaundryChecklistDao();
 		}
 		
 		public void SaveClicked(){
@@ -59,7 +61,7 @@ namespace NJournals.Core.Presenter
 				SaveDaySummary(m_headerEntity);
 			}
 			
-			if(headerIDExist(m_headerEntity.LaundryHeaderID)){
+			if(m_view.GetTitle().Contains("CLAIM")){
 				
 				//TODO: manage the deletion of the object
 				List<LaundryJobChecklistDataEntity> checklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
@@ -67,7 +69,7 @@ namespace NJournals.Core.Presenter
 				foreach(LaundryJobChecklistDataEntity checklist in newChecklistEntities){
 					LaundryJobChecklistDataEntity m_entity = checklistEntities.Find(m_checklist => m_checklist.Checklist.ChecklistID == checklist.Checklist.ChecklistID);
 					if(m_entity != null){	
-						m_entity.Qty = checklist.Qty;						
+						//m_entity.Qty = checklist.Qty;						
 						m_jobChecklistDao.Update(m_entity);	
 					}else{
 						m_jobChecklistDao.SaveOrUpdate(m_entity);
@@ -213,7 +215,11 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void LaunchChecklist(){
-			m_view.LaunchChecklist();
+			m_view.LaunchChecklist();	
+		}
+		
+		public LaundryChecklistDataEntity GetChecklistByName(string p_name){
+			return m_checklistDao.GetByName(p_name);
 		}
 		
 	}

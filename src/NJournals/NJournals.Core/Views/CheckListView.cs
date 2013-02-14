@@ -57,18 +57,19 @@ namespace NJournals.Core.Views
 			btnok.Click += delegate { OnSelectChecklist(null); };
 		}
 		
-		public List<LaundryJobChecklistDataEntity> GetAllSelectedCheckList(){
-			List<LaundryJobChecklistDataEntity> checklistEntities = new List<LaundryJobChecklistDataEntity>();;
+		public List<string> GetAllSelectedCheckList(){
+			List<string> checklistEntities = new List<string>();;
 			foreach(DataGridViewRow row in dgvCheckList.Rows){
 				if(row.Cells[0].Value != null){
 					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
-						LaundryJobChecklistDataEntity entity = new LaundryJobChecklistDataEntity();
+						//LaundryJobChecklistDataEntity entity = new LaundryJobChecklistDataEntity();
 						bool isChecked = bool.Parse(row.Cells[0].Value.ToString());
 						if(isChecked){
-							entity.Header = m_headerEntity;
-							entity.Checklist = m_presenter.getChecklistByName(row.Cells[1].Value.ToString());
-							entity.Qty = int.Parse(row.Cells[2].Value.ToString());
-							checklistEntities.Add(entity);
+							
+							//entity.Checklist = m_presenter.getChecklistByName(row.Cells[1].Value.ToString());
+							//entity.Qty = int.Parse(row.Cells[2].Value.ToString());
+							//checklistEntities.Add(entity);
+							checklistEntities.Add(row.Cells[1].Value.ToString() + "|" + row.Cells[2].Value.ToString());
 						}
 					}
 				}

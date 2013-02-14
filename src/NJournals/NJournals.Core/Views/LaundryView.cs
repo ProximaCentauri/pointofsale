@@ -153,6 +153,8 @@ namespace NJournals.Core.Views
 				m_jobcharge.Header = m_headerEntity;
 				m_headerEntity.JobChargeEntities.Add(m_jobcharge);
 			}
+			
+			
 			if(decimal.Parse(this.txtbalance.Text) == 0){
 				m_headerEntity.PaidFlag = true;				
 			}else
@@ -243,10 +245,15 @@ namespace NJournals.Core.Views
 		}
 		
 		public void GetSelectedChecklist(){
-			List<LaundryJobChecklistDataEntity> checkListEntities = chklistView.GetAllSelectedCheckList();
-			if(checkListEntities.Count > 0){
-				m_headerEntity.JobChecklistEntities = checkListEntities;				
-			}
+			List<string> checkListEntities = chklistView.GetAllSelectedCheckList();
+			foreach(string checklist in checkListEntities){
+				string[] arrchecklist = checklist.Split('|');
+				LaundryJobChecklistDataEntity newChecklist = new LaundryJobChecklistDataEntity();
+				newChecklist.Header = m_headerEntity;
+				newChecklist.Checklist = m_presenter.GetChecklistByName(arrchecklist[0]);
+				newChecklist.Qty = int.Parse(arrchecklist[1]);				
+				m_headerEntity.JobChecklistEntities.Add(newChecklist);
+			}			
 		}
 		
 		public void LoadHeaderEntityData(LaundryHeaderDataEntity p_headerEntity){
@@ -272,10 +279,10 @@ namespace NJournals.Core.Views
 					chkchargesList.Items.Add(chargeEntity.Charge.Name, true);
 				}
 				lblchecklist.Enabled = true;
-				if(m_headerEntity.JobChecklistEntities.Count == 0){
+				/*if(m_headerEntity.JobChecklistEntities.Count == 0){
 					//try to retrieve checklist in table
 					m_headerEntity.JobChecklistEntities = m_presenter.GetJobChecklistByHeaderId(m_headerEntity.LaundryHeaderID);
-				}
+				}*/
 			}else
 				MessageService.ShowWarning("Can't find JO Number: " + txtsearch.Text, "Non-existing");
 		}
