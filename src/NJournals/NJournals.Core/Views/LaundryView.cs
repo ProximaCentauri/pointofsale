@@ -103,13 +103,13 @@ namespace NJournals.Core.Views
 		public LaundryHeaderDataEntity ProcessHeaderDataEntity(){				
 			int totalItemQty = 0;
 			int itemQty = 0;
-			m_headerEntity.AmountTender = decimal.Parse(this.txtamttender.Text);			                                            
+			//TODO:calculate totalpayment;if claim then retrieve values from paymentdetail table else totalamtdue - balance
+			//m_headerEntity.TotalPayment = decimal.Parse(this.txtamttender.Text);			                                            
 			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
 			
 			m_headerEntity.ReceivedDate = dtrecieveDate.Value;
 			m_headerEntity.DueDate = dtdueDate.Value;
-			//TODO: change totalitemqty value to textbox value of totalitemqty
-			
+					
 			m_headerEntity.ClaimFlag = btnclaim.Enabled;			
 			m_headerEntity.Customer = m_presenter.getCustomerByName(cmbCustomers.Text);			
 			
@@ -133,16 +133,20 @@ namespace NJournals.Core.Views
 			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
 			m_headerEntity.TotalCharge = decimal.Parse(txttotalcharges.Text);
 			m_headerEntity.TotalDiscount = decimal.Parse(txttotaldiscount.Text);
-			m_headerEntity.AmountTender = decimal.Parse(txtamttender.Text);
+			
 			m_headerEntity.AmountDue = decimal.Parse(txtamtdue.Text);
 			
 			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
 			
-			if(m_headerEntity.AmountTender >= m_headerEntity.TotalAmountDue){
-				paymentdetail.Amount = m_headerEntity.TotalAmountDue;	
+			if(decimal.Parse(txtamttender.Text) >= m_headerEntity.TotalAmountDue){
+				paymentdetail.Amount = m_headerEntity.TotalAmountDue;							
 			}else{
 				paymentdetail.Amount = m_headerEntity.TotalAmountDue - decimal.Parse(txtbalance.Text);
 			}
+			if(this.Text.Contains("NEW"))
+				m_headerEntity.TotalPayment = paymentdetail.Amount;					
+			else
+				m_headerEntity.TotalPayment += paymentdetail.Amount;		
 			
 			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 			paymentdetail.Header = m_headerEntity;

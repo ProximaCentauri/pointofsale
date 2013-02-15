@@ -77,9 +77,9 @@ namespace NJournals.Tests
 			header.TotalCharge = jobcharge.Charge.Amount;
 			header.TotalDiscount = 0;
 			header.TotalAmountDue = (header.AmountDue + header.TotalCharge) - header.TotalDiscount;
-			header.AmountTender = header.TotalAmountDue;
+			header.TotalPayment = header.TotalAmountDue;
 			
-			if(header.AmountTender == header.TotalAmountDue){
+			if(header.TotalPayment == header.TotalAmountDue){
 				header.PaidFlag = true;
 			}
 			else{
@@ -88,7 +88,7 @@ namespace NJournals.Tests
 			
 			// set paymentdetail
 			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
-			paymentdetail.Amount = header.AmountTender;
+			paymentdetail.Amount = header.TotalPayment;
 			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 			paymentdetail.Header = header;
 			header.PaymentDetailEntities.Add(paymentdetail);
@@ -96,7 +96,7 @@ namespace NJournals.Tests
 			// set daysummary			
 			LaundryDaySummaryDataEntity daysummary = new LaundryDaySummaryDataEntity();
 			daysummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-			daysummary.TotalSales += header.AmountTender; 
+			daysummary.TotalSales += header.TotalPayment; 
 			daysummary.TransCount += 1;
 			daysummary.HeaderEntities.Add(header); // set header entity in daysummary for nhibernate to pickup and map			
 			header.DaySummary = daysummary; // set daysummary entity in header for nhibernate to pickup and map
@@ -163,20 +163,20 @@ namespace NJournals.Tests
 				header.TotalCharge = jobcharge.Charge.Amount;
 				header.TotalDiscount = 50.00M;
 				header.TotalAmountDue = (header.AmountDue + header.TotalCharge) - header.TotalDiscount;
-				header.AmountTender += 50.00M; // accumulate amount tender with current amount tender
+				header.TotalPayment += 50.00M; // accumulate amount tender with current amount tender
 				
 				// TODO: should update paidflag in header if total balance = 0.
 				
 				
 				// set paymentdetail
 				LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
-				paymentdetail.Amount = header.AmountTender;
+				paymentdetail.Amount = header.TotalPayment;
 				paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 				paymentdetail.Header = header;
 				header.PaymentDetailEntities.Add(paymentdetail);
 								
 				summary.TransCount += 1;
-				summary.TotalSales += header.AmountTender;
+				summary.TotalSales += header.TotalPayment;
 				header.DaySummary = summary;
 				
 				// update daysummary with transcount and totalsales
@@ -195,7 +195,7 @@ namespace NJournals.Tests
 			// test for saving new paymentdetail for partial payments
 			LaundryHeaderDataEntity header = new LaundryDao().GetByID(2);
 			
-			header.AmountTender += 50.00M; // accumulate amount tender with current payment
+			header.TotalPayment += 50.00M; // accumulate amount tender with current payment
 			// set paymentdetail
 			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
 			paymentdetail.Amount = 50.00M; // current amount tender or payment

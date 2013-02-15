@@ -26,7 +26,7 @@ namespace NJournals.Common.DataEntities
 		public virtual decimal TotalCharge {get;set;}
 		public virtual decimal TotalDiscount {get;set;}
 		public virtual decimal TotalAmountDue {get;set;}
-		public virtual decimal AmountTender {get;set;}		
+		public virtual decimal TotalPayment {get;set;}		
 		public virtual int TotalItemQty {get;set;}
 		
 		public virtual CustomerDataEntity Customer {get;set;}

@@ -76,7 +76,7 @@ namespace NJournals.Core.Presenter
 						m_paymentDetailDao.SaveOrUpdate(payment);
 					}	
 				}*/
-				//m_laundryDao.Update(m_headerEntity);
+				m_laundryDao.Update(m_headerEntity);
 			}				
 				
 			MessageService.ShowInfo("Successfully saved entries.","Information");						
@@ -89,7 +89,7 @@ namespace NJournals.Core.Presenter
 			{
 				daySummary.TransCount += 1;
 				//TODO: totalsales should be totalamoutdue - balance
-				daySummary.TotalSales += headerEntity.AmountTender;
+				daySummary.TotalSales += headerEntity.PaymentDetailEntities[0].Amount;
 				headerEntity.DaySummary = daySummary;
 				
 				// update daysummary with transcount and totalsales				
@@ -100,7 +100,7 @@ namespace NJournals.Core.Presenter
 				daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 				//TODO: totalsales should be amounttender - amount change.			
 				
-				daySummary.TotalSales += headerEntity.AmountTender;
+				daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[0].Amount;
 				daySummary.TransCount += 1;
 				
 				// set header entity in daysummary for nhibernate to pickup and map			
@@ -122,7 +122,6 @@ namespace NJournals.Core.Presenter
 			if(newChecklistEntities == null)
 				return;
 			
-			//TODO: manage the deletion of the object
 			foreach(LaundryJobChecklistDataEntity checklist in checklistEntities){					
 				LaundryJobChecklistDataEntity m_entity = newChecklistEntities.Find(m_checklist => m_checklist.Checklist.ChecklistID == checklist.Checklist.ChecklistID);
 				if(m_entity == null){

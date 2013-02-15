@@ -161,7 +161,7 @@ CREATE TABLE `laundryheader` (
   `TotalCharge` decimal(10,2) NOT NULL DEFAULT '0',
   `TotalDiscount` decimal(10,2) NOT NULL DEFAULT '0',   
   `TotalAmountDue` decimal(10,2) NOT NULL DEFAULT '0',
-  `AmountTender` decimal(10,2) NOT NULL DEFAULT '0',
+  `TotalPayment` decimal(10,2) NOT NULL DEFAULT '0',
   `PaidFlag` tinyint(1) NOT NULL DEFAULT '0',
   `ClaimFlag` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`LaundryHeaderID`),

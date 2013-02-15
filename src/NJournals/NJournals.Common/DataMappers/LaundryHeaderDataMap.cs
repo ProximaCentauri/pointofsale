@@ -31,15 +31,16 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.TotalCharge);
 			Map(x => x.TotalDiscount);
 			Map(x => x.TotalAmountDue);
-			Map(x => x.AmountTender);
+			Map(x => x.TotalPayment);
 			Map(x => x.TotalItemQty);		
 			HasMany<LaundryDetailDataEntity>(x => x.DetailEntities)
 				.KeyColumn("LaundryHeaderID")
 				.Inverse()
 				.Cascade.AllDeleteOrphan();
-			HasMany<LaundryJobChargesDataEntity>(x => x.JobChargeEntities)				
+			HasMany<LaundryJobChargesDataEntity>(x => x.JobChargeEntities)
 				.KeyColumn("LaundryHeaderID").Not.LazyLoad()
 				.Inverse()
+				
 				.Cascade.AllDeleteOrphan();
 			HasMany<LaundryPaymentDetailDataEntity>(x => x.PaymentDetailEntities)
 				.KeyColumn("LaundryHeaderID").Not.LazyLoad()
