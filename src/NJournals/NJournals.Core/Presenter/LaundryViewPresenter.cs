@@ -37,6 +37,7 @@ namespace NJournals.Core.Presenter
 		List<CustomerDataEntity> customers = null;
 		List<LaundryChargeDataEntity> charges = null;
 		LaundryHeaderDataEntity m_headerEntity = null;
+		LaundryHeaderDataEntity m_OriginalHeaderEntity = null;
 		
 		public LaundryViewPresenter(ILaundryView p_view, ILaundryDao p_laundryDao)
 		{
@@ -59,25 +60,45 @@ namespace NJournals.Core.Presenter
 			
 			if(m_view.GetTitle().Contains("NEW")){
 				SaveDaySummary(m_headerEntity);
-			}
-			
-			if(m_view.GetTitle().Contains("CLAIM")){								
-				SaveOrUpdateJobCheckList();
-				
-				//TODO: update details
-				
-				/*foreach(LaundryJobChargesDataEntity charge in m_headerEntity.JobChargeEntities){
-					m_jobChargeDao.SaveOrUpdate(charge);
+			}else if(m_view.GetTitle().Contains("CLAIM")){								
+				//TODO: process header details
+				List<LaundryDetailDataEntity> m_origdetailEntities = m_OriginalHeaderEntity.DetailEntities as List<LaundryDetailDataEntity>;
+				List<LaundryDetailDataEntity> m_newdetailEntities = new List<LaundryDetailDataEntity>();
+				LaundryDetailDataEntity updatedDetail = null;
+				foreach(LaundryDetailDataEntity detailEntity in m_headerEntity.DetailEntities){
+					updatedDetail = new LaundryDetailDataEntity();
+					updatedDetail = m_origdetailEntities.Find(x => x.Header.LaundryHeaderID == detailEntity.Header.LaundryHeaderID);
+					
+					if(updatedDetail != null){
+						updatedDetail.ItemQty = detailEntity.ItemQty;
+						updatedDetail.Kilo = detailEntity.Kilo;
+						updatedDetail.Amount = detailEntity.Amount;
+						m_newdetailEntities.Add(updatedDetail);
+						//m_OriginalHeaderEntity.DetailEntities[index] = udpatedDetail;
+					}
 				}				
+				if(updatedDetail != null)
+					m_OriginalHeaderEntity.DetailEntities = m_newdetailEntities;
 				
+				//TODO: process payment detail
+				m_OriginalHeaderEntity.PaymentDetailEntities = m_headerEntity.PaymentDetailEntities;
 				
-				if(m_headerEntity.AmountTender > 0){
-					foreach(LaundryPaymentDetailDataEntity payment in m_headerEntity.PaymentDetailEntities){
-						m_paymentDetailDao.SaveOrUpdate(payment);
-					}	
+				/*List<LaundryPaymentDetailDataEntity> m_origPaymentEntities = m_OriginalHeaderEntity.PaymentDetailEntities as List<LaundryPaymentDetailDataEntity>;
+				
+				foreach(LaundryPaymentDetailDataEntity paymentEntity in m_headerEntity.PaymentDetailEntities){
+					LaundryPaymentDetailDataEntity updatedPayment = m_origPaymentEntities.Find(x => x.Header.LaundryHeaderID == paymentEntity.Header.LaundryHeaderID);
+					int index = m_origPaymentEntities.FindIndex(x => x.Header.LaundryHeaderID == paymentEntity.Header.LaundryHeaderID);
+					if(updatedPayment != null){
+						updatedPayment.Amount = paymentEntity.Amount;
+					}
+					m_OriginalHeaderEntity.PaymentDetailEntities[index] = updatedPayment;
 				}*/
-				m_laundryDao.Update(m_headerEntity);
-			}				
+				//TODO: process jobcharges
+				
+				//TODO: process jobchecklist
+				
+				SaveDaySummary(m_OriginalHeaderEntity);
+			}							
 				
 			MessageService.ShowInfo("Successfully saved entries.","Information");						
 		}
@@ -94,6 +115,8 @@ namespace NJournals.Core.Presenter
 				
 				// update daysummary with transcount and totalsales				
 				m_summaryDao.Update(daySummary);					
+				
+				m_laundryDao.Update(headerEntity);
 			}else{
 				// set daysummary			
 				daySummary = new LaundryDaySummaryDataEntity();
@@ -108,7 +131,7 @@ namespace NJournals.Core.Presenter
 				// set daysummary entity in header for nhibernate to pickup and map
 				m_headerEntity.DaySummary = daySummary;
 				//m_chargeDao.SaveOrUpdate(headerEntity.
-				m_customerDao.SaveOrUpdate(headerEntity.Customer);				
+				//m_customerDao.SaveOrUpdate(headerEntity.Customer);				
 				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
 				// this will handle the saving for the linked tables				
 				m_laundryDao.SaveOrUpdate(headerEntity);
@@ -219,7 +242,8 @@ namespace NJournals.Core.Presenter
 		}	
 		
 		public void getHeaderEntityByJONumber(int jonumber){
-			m_view.LoadHeaderEntityData(m_laundryDao.GetByID(jonumber));			
+			m_OriginalHeaderEntity = m_laundryDao.GetByID(jonumber);
+			m_view.LoadHeaderEntityData(m_OriginalHeaderEntity);			
 		}
 		
 		public List<LaundryJobChecklistDataEntity> GetJobChecklistByHeaderId(int p_id){

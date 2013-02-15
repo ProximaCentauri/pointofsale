@@ -69,6 +69,7 @@ namespace NJournals.Core.Views
 			}else{
 				grpServices.Enabled = false;
 				lblchecklist.Enabled = false;
+				txtdiscount.Enabled = false;
 			}
 		}
 				
@@ -103,6 +104,7 @@ namespace NJournals.Core.Views
 		public LaundryHeaderDataEntity ProcessHeaderDataEntity(){				
 			int totalItemQty = 0;
 			int itemQty = 0;
+			
 			//TODO:calculate totalpayment;if claim then retrieve values from paymentdetail table else totalamtdue - balance
 			//m_headerEntity.TotalPayment = decimal.Parse(this.txtamttender.Text);			                                            
 			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
@@ -112,7 +114,7 @@ namespace NJournals.Core.Views
 					
 			m_headerEntity.ClaimFlag = btnclaim.Enabled;			
 			m_headerEntity.Customer = m_presenter.getCustomerByName(cmbCustomers.Text);			
-			
+			m_headerEntity.DetailEntities = new List<LaundryDetailDataEntity>();
 			foreach(DataGridViewRow row in this.dataGridView1.Rows){
 				if(row.Cells[0].Value != null){
 					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
@@ -138,11 +140,15 @@ namespace NJournals.Core.Views
 			
 			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
 			
-			if(decimal.Parse(txtamttender.Text) >= m_headerEntity.TotalAmountDue){
-				paymentdetail.Amount = m_headerEntity.TotalAmountDue;							
-			}else{
-				paymentdetail.Amount = m_headerEntity.TotalAmountDue - decimal.Parse(txtbalance.Text);
-			}
+			if(decimal.Parse(txtamttender.Text) > 0){
+				if(decimal.Parse(txtamttender.Text) >= m_headerEntity.TotalAmountDue){
+					paymentdetail.Amount = m_headerEntity.TotalAmountDue;							
+				}else{
+					paymentdetail.Amount = m_headerEntity.TotalAmountDue - decimal.Parse(txtbalance.Text);
+				}	
+			}else
+				paymentdetail.Amount = 0;
+			
 			if(this.Text.Contains("NEW"))
 				m_headerEntity.TotalPayment = paymentdetail.Amount;					
 			else
@@ -151,10 +157,11 @@ namespace NJournals.Core.Views
 			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 			paymentdetail.Header = m_headerEntity;
 			m_headerEntity.PaymentDetailEntities.Add(paymentdetail);
+			m_headerEntity.JobChargeEntities = new List<LaundryJobChargesDataEntity>();
 			foreach(object checkedItem in this.chkchargesList.CheckedItems){
 				m_jobcharge = new LaundryJobChargesDataEntity();
 				m_jobcharge.Charge = m_presenter.getJobChargeByName(checkedItem.ToString());
-				m_jobcharge.Header = m_headerEntity;
+				m_jobcharge.Header = m_headerEntity;				
 				m_headerEntity.JobChargeEntities.Add(m_jobcharge);
 			}
 			
@@ -163,10 +170,10 @@ namespace NJournals.Core.Views
 				m_headerEntity.PaidFlag = true;				
 			}else
 				m_headerEntity.PaidFlag = false;
-						
+			
 			return m_headerEntity;
-		}		
-	
+		}				
+		
 		public void AddItem(){
 			LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
 			decimal kilo = decimal.Parse(txtkilo.Text);			
@@ -304,7 +311,7 @@ namespace NJournals.Core.Views
 		}
 		
 		void txtsearch_keypress(object sender, KeyEventArgs e)
-		{
+		{			
 			if(e.KeyCode == Keys.Enter){
 				int id = 0;
 				int.TryParse(txtsearch.Text, out id);
