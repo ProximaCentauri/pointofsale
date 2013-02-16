@@ -326,7 +326,7 @@ namespace NJournals.Core.Views
 			{
 				foreach(DataGridViewRow currentRow in this.dgvPriceScheme.SelectedRows)
 				{
-					if(currentRow.Index < priceSchemeMaxRowIndex)
+					if(currentRow.Index <= priceSchemeMaxRowIndex)
 					{
 						int ID = (int)this.dgvPriceScheme.Rows[currentRow.Index].Cells["ID"].Value;
 						priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.ID == ID);						

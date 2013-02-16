@@ -27,9 +27,13 @@ namespace NJournals.Core.Views
 	{
 		RefillingConfigurationViewPresenter m_presenter;
 		List<RefillProductTypeDataEntity> m_productTypeEntity;
+		List<RefillInventoryHeaderDataEntity> m_refillInvEntity;
 		
 		List<int> productTypeIndexChange = new List<int>();
+		List<int> refillInvIndexChange = new List<int>();
+		
 		int productTypeMaxRowIndex = -1;
+		int refillInvMaxRowIndex = -1;
 		
 		public RefillingConfigurationView()
 		{
@@ -50,6 +54,7 @@ namespace NJournals.Core.Views
 			
 			m_presenter = new RefillingConfigurationViewPresenter(this);
 			m_presenter.SetAllRefillProductType();
+			m_presenter.SetAllRefillInventory();
 		}
 		
 		public void SetAllRefillProductType(List<RefillProductTypeDataEntity> productTypes)
@@ -58,9 +63,37 @@ namespace NJournals.Core.Views
 			BindingSource source = new BindingSource();
 			source.DataSource = m_productTypeEntity;
 			this.dgvProductType.DataSource = source;
-			
+			productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
 			formatProductTypeDataGridView();
 		}
+		
+		public void SetAllRefillInventory(List<RefillInventoryHeaderDataEntity> refillInvs)
+		{
+			m_refillInvEntity = refillInvs;
+			BindingSource source = new BindingSource();
+			
+			DataTable tempTable = new DataTable();
+			tempTable.Columns.Add("InvHeaderID", typeof(int));
+			tempTable.Columns.Add("Name", typeof(string));
+			tempTable.Columns.Add("TotalQty", typeof(int));
+			tempTable.Columns.Add("QtyOnHand", typeof(int));
+			tempTable.Columns.Add("QtyReleased", typeof(int));
+			tempTable.Columns.Add("AddStocks", typeof(int));
+			tempTable.Columns.Add("RemoveStocks", typeof(int));
+			
+			foreach(RefillInventoryHeaderDataEntity inv in refillInvs)
+			{
+				tempTable.Rows.Add(inv.InvHeaderID, inv.Name, inv.TotalQty, inv.QtyOnHand, 
+				                   inv.QtyReleased, 0, 0);
+			}
+			
+			source.DataSource = tempTable;
+			this.dgvRefillInventory.DataSource = source;
+			refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
+			formatRefillIventoryDataGridView();
+		}
+		
+		#region ProductType
 		
 		private void dgvProductType_CellValueChanged(object sender,
 		    DataGridViewCellEventArgs e)
@@ -130,6 +163,88 @@ namespace NJournals.Core.Views
 			return productTypes;
 		}
 		
+		#endregion ProductType
+		
+		#region RefillInventory
+		
+		void BtnAddInvClick(object sender, EventArgs e)
+		{
+			this.dgvRefillInventory.AllowUserToAddRows = true;
+			
+			this.dgvRefillInventory["Name", dgvRefillInventory.RowCount - 1].ReadOnly = false;
+			this.dgvRefillInventory["TotalQty", dgvRefillInventory.RowCount - 1].ReadOnly = false;
+			this.dgvRefillInventory["QtyOnHand", dgvRefillInventory.RowCount - 1].ReadOnly = false;
+			this.dgvRefillInventory["QtyReleased", dgvRefillInventory.RowCount - 1].ReadOnly = false;
+
+		}
+		
+		void BtnSaveInvClick(object sender, EventArgs e)
+		{
+			
+		}
+		
+		void BtnDeleteInvClick(object sender, EventArgs e)
+		{
+			RefillInventoryHeaderDataEntity refillInv = new RefillInventoryHeaderDataEntity();
+			
+			if(this.dgvRefillInventory.SelectedRows.Count > 0)
+			{
+				foreach(DataGridViewRow currentRow in this.dgvRefillInventory.SelectedRows)
+				{
+					if(currentRow.Index <= refillInvMaxRowIndex)
+					{
+						int ID = (int)this.dgvRefillInventory.Rows[currentRow.Index].Cells["InvHeaderID"].Value;
+						refillInv = m_refillInvEntity.Find(m_refillInv => m_refillInv.InvHeaderID == ID);
+						m_presenter.DeleteRefillInventory(refillInv);
+					}					
+					if(!this.dgvRefillInventory.Rows[currentRow.Index].IsNewRow)
+						dgvRefillInventory.Rows.Remove(this.dgvRefillInventory.Rows[currentRow.Index]);						
+				}
+				m_presenter.SetAllRefillInventory();
+				this.dgvRefillInventory.AllowUserToAddRows = false;
+			}
+			refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
+		}
+		
+		private void dgvRefillInventory_CellValueChanged(object sender,
+		    DataGridViewCellEventArgs e)
+		{		   	
+			if(e.RowIndex != -1)
+			{
+				if(!refillInvIndexChange.Contains(e.RowIndex))
+					refillInvIndexChange.Add(e.RowIndex);
+			}
+		}
+		
+		private List<RefillInventoryHeaderDataEntity> GetRefillInvDataValueChange(List<int> rowIndexChange)
+		{
+			List<RefillInventoryHeaderDataEntity> refillInvs = new List<RefillInventoryHeaderDataEntity>();
+			
+			foreach(int rowIndex in rowIndexChange)
+			{
+				RefillInventoryHeaderDataEntity refillInv = new RefillInventoryHeaderDataEntity();
+				
+				
+				if(rowIndex <= refillInvMaxRowIndex)
+				{
+					int ID = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["InvHeaderID"].Value;
+					refillInv = m_refillInvEntity.Find(m_refillInv => m_refillInv.InvHeaderID == ID);
+					refillInv.DetailEntities = new List<RefillInventoryDetailDataEntity>();					
+					RefillInventoryDetailDataEntity invDetail = new RefillInventoryDetailDataEntity();
+					invDetail.Header = refillInv;
+					invDetail.QtyAdded = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["AddStocks"].Value;
+					invDetail.QtyRemoved = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["RemoveStocks"].Value;
+					invDetail.Date = System.DateTime.Now;		
+					refillInv.DetailEntities.Add(invDetail);
+					
+					refillInvs.Add(refillInv);
+				}
+			}
+			
+			return refillInvs;
+		}
+		#endregion
+		
 		
 		#region Format Methods
 		void setButtonImages()
@@ -137,8 +252,9 @@ namespace NJournals.Core.Views
 			Resource.setImage(this.btnSaveProduct,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
 			Resource.setImage(this.btnDeleteProduct,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
 			
-			//Resource.setImage(this.btnSaveCategory,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
-			//Resource.setImage(this.btnDeleteCategory,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");	
+			Resource.setImage(this.btnAddInv,System.IO.Directory.GetCurrentDirectory() + "/images/add2.png");
+			Resource.setImage(this.btnSaveInv,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
+			Resource.setImage(this.btnDeleteInv,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");	
 			
 		}
 		
@@ -146,6 +262,8 @@ namespace NJournals.Core.Views
 		{
 			this.dgvProductType.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
             this.dgvProductType.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));        
+			this.dgvRefillInventory.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
+            this.dgvRefillInventory.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));        
 		}
 		
 		void formatProductTypeDataGridView()
@@ -158,7 +276,34 @@ namespace NJournals.Core.Views
             this.dgvProductType.Columns["Description"].HeaderText = "Product Description";
             this.dgvProductType.Columns["Price"].HeaderText = "Price";
 		}
+		
+		void formatRefillIventoryDataGridView()
+		{
+			this.dgvRefillInventory.Columns["InvHeaderID"].Visible = false;
+			this.dgvRefillInventory.Columns["Name"].Width = 155;
+			this.dgvRefillInventory.Columns["TotalQty"].Width = 120;
+			this.dgvRefillInventory.Columns["QtyOnHand"].Width = 120;
+			this.dgvRefillInventory.Columns["QtyReleased"].Width = 120;
+			this.dgvRefillInventory.Columns["AddStocks"].Width = 115;
+			this.dgvRefillInventory.Columns["RemoveStocks"].Width = 115;
+			this.dgvRefillInventory.Columns["Name"].ReadOnly = true;
+			this.dgvRefillInventory.Columns["TotalQty"].ReadOnly = true;
+			this.dgvRefillInventory.Columns["QtyOnHand"].ReadOnly = true;
+			this.dgvRefillInventory.Columns["QtyReleased"].ReadOnly = true;			
+			this.dgvRefillInventory.Columns["TotalQty"].HeaderText = "Total QTY";
+			this.dgvRefillInventory.Columns["QtyOnHand"].HeaderText = "QTY On Hand";
+			this.dgvRefillInventory.Columns["QtyReleased"].HeaderText = "QTY Released";
+			this.dgvRefillInventory.Columns["AddStocks"].HeaderText = "Add Stocks";
+			this.dgvRefillInventory.Columns["RemoveStocks"].HeaderText = "Remove Stocks";
+		}
 		#endregion
+		
+	
+		
+		
+		
+		
+
 		
 		
 	}

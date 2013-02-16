@@ -21,11 +21,13 @@ namespace NJournals.Core.Presenter
 	{
 		IRefillingConfigurationView m_view;
 		IRefillProductTypeDao m_productTypeDao;
+		IRefillInventoryDao m_refillInvDao;
 		
 		public RefillingConfigurationViewPresenter(IRefillingConfigurationView p_view)
 		{
 			this.m_view = p_view;
 			this.m_productTypeDao = new RefillProductTypeDao();
+			this.m_refillInvDao = new RefillInventoryDao();
 		}
 		
 		public void SetAllRefillProductType()
@@ -46,5 +48,18 @@ namespace NJournals.Core.Presenter
 		{
 			m_productTypeDao.Delete(productType);
 		}
+		
+		public void SetAllRefillInventory()
+		{
+			List<RefillInventoryHeaderDataEntity> refillInvs = m_refillInvDao.GetAllItems() as List<RefillInventoryHeaderDataEntity>;
+			m_view.SetAllRefillInventory(refillInvs);			
+		}
+		
+		public void DeleteRefillInventory(RefillInventoryHeaderDataEntity refillInv)
+		{
+			m_refillInvDao.Delete(refillInv);
+		}
+		
+
 	}
 }

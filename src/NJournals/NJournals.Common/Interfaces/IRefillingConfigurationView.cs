@@ -18,5 +18,6 @@ namespace NJournals.Common.Interfaces
 	public interface IRefillingConfigurationView : IView
 	{
 		void SetAllRefillProductType(List<RefillProductTypeDataEntity> products);
+		void SetAllRefillInventory(List<RefillInventoryHeaderDataEntity> refillInvs);
 	}
 }
