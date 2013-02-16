@@ -75,8 +75,17 @@ namespace NJournals.Core.Models
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Delete(p_inventory);
-					transaction.Commit();
+					try
+					{
+						session.Delete(p_inventory);
+						transaction.Commit();
+					}
+					catch(Exception ex)
+					{
+						transaction.Rollback();
+						throw ex;
+					}
+					
 				}
 			}
 		}
