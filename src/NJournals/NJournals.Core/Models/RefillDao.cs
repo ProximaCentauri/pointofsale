@@ -35,8 +35,16 @@ namespace NJournals.Core.Models
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.SaveOrUpdate(p_header);
-					transaction.Commit();
+					try
+					{
+						session.SaveOrUpdate(p_header);
+						transaction.Commit();
+					}
+					catch(Exception ex)
+					{
+						transaction.Rollback();
+						throw ex;
+					}		
 				}
 			}
 		}
@@ -93,8 +101,16 @@ namespace NJournals.Core.Models
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Update(p_header);
-					transaction.Commit();
+					try
+					{
+						session.Update(p_header);
+						transaction.Commit();
+					}
+					catch(Exception ex)
+					{
+						transaction.Rollback();
+						throw ex;
+					}		
 				}
 			}
 		}
@@ -105,8 +121,16 @@ namespace NJournals.Core.Models
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-					session.Delete(p_header);
-					transaction.Commit();
+					try
+					{
+						session.Delete(p_header);
+						transaction.Commit();
+					}
+					catch(Exception ex)
+					{
+						transaction.Rollback();
+						throw ex;
+					}		
 				}
 			}
 		}
