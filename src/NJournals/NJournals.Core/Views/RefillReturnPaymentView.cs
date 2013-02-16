@@ -25,6 +25,8 @@ namespace NJournals.Core.Views
 	{
 		RefillingReturnPaymentPresenter m_presenter;
 		List<CustomerDataEntity> m_customerEntity;
+		List<RefillHeaderDataEntity> refillHeaders;
+		private decimal totalAmountDue = 0.00M;
 		
 		public RefillReturnPaymentView()
 		{
@@ -42,7 +44,10 @@ namespace NJournals.Core.Views
 		{
 			setButtonImages();
 			m_presenter = new RefillingReturnPaymentPresenter(this);
+			refillHeaders = null;
+			m_customerEntity = null;
 			m_presenter.SetAllCustomers();
+			totalAmountDue = 0.00M;
 		}
 		
 		void setButtonImages()
@@ -60,9 +65,9 @@ namespace NJournals.Core.Views
 		
 		void BtnCustomerSearchClick(object sender, EventArgs e)
 		{
-			if(this.cmbCustomers.SelectedItem != null 
-			   && this.cmbCustomers.SelectedItem.ToString() != string.Empty)
+			if(ValidateCustomerInput())
 			{
+				this.refillHeaders = null;
 				m_presenter.GetRefillJOsByCustomer(this.cmbCustomers.SelectedItem.ToString());
 			}
 			else
@@ -71,14 +76,16 @@ namespace NJournals.Core.Views
 			}
 		}
 		
-		public void LoadRefillHeaderAndInventoryData(List<RefillHeaderDataEntity> headers, 
+		public void LoadRefillHeaderAndInventoryData(List<RefillHeaderDataEntity> m_headers, 
 		                                      RefillCustInventoryHeaderDataEntity custInv)
-		{
+		{			
+			this.txtamttender.Enabled = true;
 			txtBottlesOnHand.Text = (custInv != null) ? custInv.BottlesOnHand.ToString() : "0";
 			txtCapsOnHand.Text = (custInv != null) ? custInv.CapsOnHand.ToString() : "0";
-						
-			decimal totalAmountDue = 0.00M;
-			foreach(RefillHeaderDataEntity header in headers)
+
+			this.refillHeaders = m_headers;		
+			totalAmountDue = 0.00M;
+			foreach(RefillHeaderDataEntity header in this.refillHeaders)
 			{				
 				dgvOutBalance.Rows.Add(header.Date.ToShortDateString(), header.RefillHeaderID, header.TotalQty, 
 				                       header.AmountDue.ToString("N2"), header.AmountTender.ToString("N2"),
@@ -88,13 +95,84 @@ namespace NJournals.Core.Views
 			txtTotalAmtDue.Text = totalAmountDue.ToString("N2");
 			txtbalance.Text = totalAmountDue.ToString("N2");		
 		}
-					
-		void BtnSaveClick(object sender, EventArgs e)
+			
+
+		void TxtamttenderTextChanged(object sender, EventArgs e)
 		{
-			m_presenter.UpdateCustomerInventory(Convert.ToInt32(txtReturnedBottles.Text),
-			                                    Convert.ToInt32(txtReturnedCaps.Text), dtDate.Value);
-			MessageService.ShowInfo("Save successful!","Save");
-			                         
+			if(txtamttender.Text.Length == 0){
+				txtamttender.Text = "0.00";				
+			}	
+			decimal amountTender = decimal.Parse(txtamttender.Text);
+			decimal totalAmtDue = decimal.Parse(txtTotalAmtDue.Text);				
+			if(amountTender < totalAmtDue){
+				txtbalance.Text = (totalAmtDue - amountTender).ToString("N2");
+				txtchange.Text = "0.00";
+			}else{
+				txtchange.Text = (amountTender - totalAmtDue).ToString("N2");	
+				txtbalance.Text = "0.00";
+			}
+		}		
+				
+		void BtnSaveClick(object sender, EventArgs e)
+		{			
+			int returnedBottles = (txtReturnedBottles.Text != string.Empty) ? Convert.ToInt32(txtReturnedBottles.Text) : 0;
+			int returnedCaps = (txtReturnedCaps.Text != string.Empty) ? Convert.ToInt32(txtReturnedCaps.Text) : 0;
+			decimal amountTender = Convert.ToDecimal(txtamttender.Text);
+			
+			
+			if(this.ValidateCustomerInput())
+			{	
+				bool isSaved = false;				
+				if(returnedBottles > 0 || returnedCaps > 0)
+				{
+					 this.UpdateCustomerInventory(returnedBottles, returnedCaps);
+				}
+				if(amountTender > 0.0M)
+				{
+					this.UpdateCustomerRefillHeaders(amountTender);
+				}
+				if(isSaved)
+				{
+					MessageService.ShowInfo("Save successful!","Save");
+				}
+			}		
 		}
+		
+		private void UpdateCustomerInventory(int returnedBottles, int returnedCaps)
+		{
+			m_presenter.UpdateCustomerInventory(returnedBottles, returnedCaps, dtDate.Value);	
+		}
+		
+		private void UpdateCustomerRefillHeaders(decimal amountTender)
+		{
+			if(this.refillHeaders.Count > 0)
+			{
+				m_presenter.UpdateCustomerRefillHeaders(amountTender,refillHeaders);
+			}			
+		}
+		
+		private bool ValidateCustomerInput()
+		{
+			if(this.cmbCustomers.SelectedItem != null && this.cmbCustomers.SelectedItem.ToString() != string.Empty)
+			{
+				return true;
+			}
+			return false;
+		}
+						
+		void txtbox_keypress(object sender, KeyPressEventArgs e)
+		{
+			if(sender is TextBox){
+				TextBox txt = sender as TextBox;
+				if(!char.IsDigit(e.KeyChar) && (e.KeyChar != (char)Keys.Back) 
+				   && (e.KeyChar != (char)Keys.Decimal) && (e.KeyChar != (char)Keys.OemPeriod)){
+				   e.Handled = true;
+				}
+				else{
+					e.Handled = false;						
+				}									   
+			}
+		}
+						
 	}
 }

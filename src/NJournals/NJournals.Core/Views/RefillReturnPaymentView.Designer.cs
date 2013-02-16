@@ -144,9 +144,11 @@ namespace NJournals.Core.Views
 			// txtReturnedBottles
 			// 
 			this.txtReturnedBottles.Location = new System.Drawing.Point(364, 62);
+			this.txtReturnedBottles.MaxLength = 9;
 			this.txtReturnedBottles.Name = "txtReturnedBottles";
 			this.txtReturnedBottles.Size = new System.Drawing.Size(84, 20);
 			this.txtReturnedBottles.TabIndex = 20;
+			this.txtReturnedBottles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
 			// label4
 			// 
@@ -161,9 +163,11 @@ namespace NJournals.Core.Views
 			// txtReturnedCaps
 			// 
 			this.txtReturnedCaps.Location = new System.Drawing.Point(364, 85);
+			this.txtReturnedCaps.MaxLength = 9;
 			this.txtReturnedCaps.Name = "txtReturnedCaps";
 			this.txtReturnedCaps.Size = new System.Drawing.Size(84, 20);
 			this.txtReturnedCaps.TabIndex = 22;
+			this.txtReturnedCaps.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
 			// label5
 			// 
@@ -275,11 +279,15 @@ namespace NJournals.Core.Views
 			// 
 			// txtamttender
 			// 
+			this.txtamttender.BackColor = System.Drawing.Color.White;
+			this.txtamttender.Enabled = false;
 			this.txtamttender.Location = new System.Drawing.Point(607, 361);
 			this.txtamttender.Name = "txtamttender";
 			this.txtamttender.Size = new System.Drawing.Size(119, 20);
 			this.txtamttender.TabIndex = 30;
 			this.txtamttender.Text = "0.00";
+			this.txtamttender.TextChanged += new System.EventHandler(this.TxtamttenderTextChanged);
+			this.txtamttender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
 			// label11
 			// 

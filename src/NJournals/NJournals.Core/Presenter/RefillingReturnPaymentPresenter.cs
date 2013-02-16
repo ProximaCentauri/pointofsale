@@ -60,7 +60,7 @@ namespace NJournals.Core.Presenter
 				customer = m_customerDao.GetByName(customerName) as CustomerDataEntity;
 				List<RefillHeaderDataEntity> refillHeaders = m_refillDao.GetByCustomer(customer) as List<RefillHeaderDataEntity>;
 				custInv = m_custInvDao.GetByCustomer(customer) as RefillCustInventoryHeaderDataEntity;
-				if(custInv == null && refillHeaders == null)
+				if(custInv == null && refillHeaders.Count == 0)
 				{
 					MessageService.ShowInfo("No records found for customer: " + customerName);
 					return;
@@ -75,10 +75,11 @@ namespace NJournals.Core.Presenter
 			}
 		}
 		
-		public void UpdateCustomerInventory(int returnedBottles, int returnedCaps, DateTime returnDate)
+		public bool UpdateCustomerInventory(int returnedBottles, int returnedCaps, DateTime returnDate)
 		{			
 			try
 			{
+			
 				custInv.BottlesReturned += returnedBottles;
 				custInv.CapsOnHand += returnedCaps;
 				
@@ -89,14 +90,62 @@ namespace NJournals.Core.Presenter
 				detail.Header = custInv;
 				custInv.DetailEntities.Add(detail);
 				m_custInvDao.SaveOrUpdate(custInv);
-				MessageService.ShowInfo("Save successful!","Save");
+				return true;				
 			}
 			catch(Exception ex)
 			{
 				MessageService.ShowInfo("Unable to save data; an unexpected error occurred.\n" +
 				                        "Please check error log for details.","Error");
 				LogHelper.Log(ex.Message,LogType.ERR,false);
+				throw ex;				
 			}
+		}
+		
+		public bool UpdateCustomerRefillHeaders(decimal amtTender, List<RefillHeaderDataEntity> refillHeaders)
+		{
+			try
+			{
+				decimal balance = 0.00M;				
+				foreach(RefillHeaderDataEntity header in refillHeaders)
+				{					
+					balance = header.AmountDue - header.AmountTender;
+					if(amtTender >= balance)
+					{
+						header.AmountTender += balance;
+						amtTender -= balance;
+						header.PaymentDetailEntities.Add(CreateNewPayment(balance, header));
+						m_refillDao.SaveOrUpdate(header);						
+					}
+					else if(amtTender < balance)
+					{
+						header.AmountTender += amtTender;
+						header.PaymentDetailEntities.Add(CreateNewPayment(amtTender, header));
+						m_refillDao.SaveOrUpdate(header);
+						amtTender = 0.00M;
+					}
+					if(amtTender <= 0.00M)
+					{
+						break;
+					}
+				}
+				return true;				
+			}
+			catch(Exception ex)
+			{
+				MessageService.ShowInfo("Unable to save data; an unexpected error occurred.\n" +
+				                        "Please check error log for details.","Error");
+				LogHelper.Log(ex.Message,LogType.ERR,false);
+				return false;
+			}
+		}
+		
+		private RefillPaymentDetailDataEntity CreateNewPayment(decimal amount, RefillHeaderDataEntity header)
+		{
+			RefillPaymentDetailDataEntity payment = new RefillPaymentDetailDataEntity();
+			payment.Header = header;
+			payment.Amount = amount;
+			payment.PaymentDate = DateTime.Now;			
+			return payment;
 		}
 	}
 }
