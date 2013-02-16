@@ -100,17 +100,26 @@ namespace NJournals.Core.Views
 		public void DisplayReport<T>(List<T> rpt, List<ReportDataSource> datasources, 
 		                             List<ReportParameter> parameters, string rptembeddedsource)
 		{
-            this.reportViewer.Reset();           
-            this.reportViewer.LocalReport.ReportEmbeddedResource = rptembeddedsource;                
-            this.rptBindingSource.DataSource = rpt;
-
-            foreach (ReportDataSource datasource in datasources)
+            try
             {
-                this.reportViewer.LocalReport.DataSources.Add(datasource);
+				this.reportViewer.Reset();
+	            this.reportViewer.LocalReport.ReportEmbeddedResource = rptembeddedsource;                
+	            this.rptBindingSource.DataSource = rpt;
+	
+	            foreach (ReportDataSource datasource in datasources)
+	            {
+	                this.reportViewer.LocalReport.DataSources.Add(datasource);
+	            }
+	                  
+	            this.reportViewer.LocalReport.SetParameters(parameters);
+	            this.reportViewer.RefreshReport();     
             }
-                  
-            this.reportViewer.LocalReport.SetParameters(parameters);
-            this.reportViewer.RefreshReport();            
+            catch(Exception ex)
+            {
+            	MessageService.ShowError("Unable to display report; an unexpected error occurred.\n" +
+            	                         "Please check error logs for details.","Error");
+            	LogHelper.Log(ex.Message,LogType.ERR,false);            	                        
+            }
 		}
 
         private bool ValidateReportParameters()
