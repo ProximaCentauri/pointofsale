@@ -78,8 +78,7 @@ namespace NJournals.Core.Presenter
 		public void UpdateCustomerInventory(int returnedBottles, int returnedCaps, DateTime returnDate)
 		{			
 			try
-			{
-			
+			{			
 				custInv.BottlesReturned += returnedBottles;
 				custInv.CapsOnHand += returnedCaps;
 				
@@ -90,6 +89,8 @@ namespace NJournals.Core.Presenter
 				detail.Header = custInv;
 				custInv.DetailEntities.Add(detail);
 				m_custInvDao.SaveOrUpdate(custInv);
+				
+				// TODO: update inventory header - qtyonhand & releases
 			}
 			catch(Exception ex)
 			{								
