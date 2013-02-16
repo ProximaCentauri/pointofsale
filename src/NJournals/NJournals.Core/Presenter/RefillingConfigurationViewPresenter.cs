@@ -60,6 +60,14 @@ namespace NJournals.Core.Presenter
 			m_refillInvDao.Delete(refillInv);
 		}
 		
+		public void SaveOrUpdateRefillInventory(List<RefillInventoryHeaderDataEntity> refillInvs)
+		{
+			foreach(RefillInventoryHeaderDataEntity refillInv in refillInvs)
+			{
+				m_refillInvDao.SaveOrUpdate(refillInv);
+			}
+		}
+		
 
 	}
 }

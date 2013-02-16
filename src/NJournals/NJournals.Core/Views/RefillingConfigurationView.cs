@@ -172,15 +172,56 @@ namespace NJournals.Core.Views
 			this.dgvRefillInventory.AllowUserToAddRows = true;
 			
 			this.dgvRefillInventory["Name", dgvRefillInventory.RowCount - 1].ReadOnly = false;
-			this.dgvRefillInventory["TotalQty", dgvRefillInventory.RowCount - 1].ReadOnly = false;
-			this.dgvRefillInventory["QtyOnHand", dgvRefillInventory.RowCount - 1].ReadOnly = false;
-			this.dgvRefillInventory["QtyReleased", dgvRefillInventory.RowCount - 1].ReadOnly = false;
-
+			this.dgvRefillInventory["AddStocks", dgvRefillInventory.RowCount - 1].ReadOnly = false;
+			this.dgvRefillInventory["RemoveStocks", dgvRefillInventory.RowCount - 1].ReadOnly = true;
+			this.dgvRefillInventory["TotalQty", dgvRefillInventory.RowCount - 1].Value = 0;
+			this.dgvRefillInventory["QtyOnHand", dgvRefillInventory.RowCount - 1].Value = 0;
+			this.dgvRefillInventory["QtyReleased", dgvRefillInventory.RowCount - 1].Value = 0;
+			this.dgvRefillInventory["RemoveStocks", dgvRefillInventory.RowCount - 1].Value = 0;
 		}
 		
 		void BtnSaveInvClick(object sender, EventArgs e)
 		{
+			List<RefillInventoryHeaderDataEntity> refillInvs = new List<RefillInventoryHeaderDataEntity>();
 			
+			//get modified row
+			if(refillInvIndexChange != null)
+			{
+				refillInvs = GetRefillInvDataValueChange(refillInvIndexChange);
+			}
+			
+			//get new data
+			if(this.dgvRefillInventory.RowCount - 1 > refillInvMaxRowIndex)
+			{
+				int rowDataToAdd = (this.dgvRefillInventory.RowCount - 1) - refillInvMaxRowIndex;
+							
+				for(int ctr = 1; ctr < rowDataToAdd; ctr++)
+				{
+					DataGridViewRow currentRow = this.dgvRefillInventory.Rows[refillInvMaxRowIndex + ctr];
+					int addStocks = (int)currentRow.Cells["AddStocks"].Value;
+					
+					RefillInventoryDetailDataEntity detail = new RefillInventoryDetailDataEntity();					
+					detail.Date = DateTime.Now.Date;
+					detail.QtyAdded += addStocks;
+					detail.QtyOnHand += addStocks;
+					detail.TotalQty += addStocks;
+					
+					RefillInventoryHeaderDataEntity refillInv = new RefillInventoryHeaderDataEntity();
+					refillInv.Name = currentRow.Cells["Name"].Value.ToString();
+					refillInv.QtyOnHand += addStocks;
+					refillInv.TotalAdded += addStocks;
+					refillInv.TotalQty += addStocks;
+					refillInv.DetailEntities.Add(detail);
+					
+					refillInvs.Add(refillInv);					
+				}
+			}
+			
+			if(refillInvs.Count > 0)
+			{
+				m_presenter.SaveOrUpdateRefillInventory(refillInvs);
+				m_presenter.SetAllRefillInventory();
+			}
 		}
 		
 		void BtnDeleteInvClick(object sender, EventArgs e)
@@ -223,18 +264,47 @@ namespace NJournals.Core.Views
 			foreach(int rowIndex in rowIndexChange)
 			{
 				RefillInventoryHeaderDataEntity refillInv = new RefillInventoryHeaderDataEntity();
-				
+				List<RefillInventoryDetailDataEntity> detailInvs = new List<RefillInventoryDetailDataEntity>();
+				int addStocks = 0;
+				int removeStocks = 0;
 				
 				if(rowIndex <= refillInvMaxRowIndex)
 				{
+					addStocks = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["AddStocks"].Value;
+					removeStocks = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["RemoveStocks"].Value;
 					int ID = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["InvHeaderID"].Value;
+					
 					refillInv = m_refillInvEntity.Find(m_refillInv => m_refillInv.InvHeaderID == ID);
-					refillInv.DetailEntities = new List<RefillInventoryDetailDataEntity>();					
+					
 					RefillInventoryDetailDataEntity invDetail = new RefillInventoryDetailDataEntity();
-					invDetail.Header = refillInv;
-					invDetail.QtyAdded = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["AddStocks"].Value;
-					invDetail.QtyRemoved = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["RemoveStocks"].Value;
-					invDetail.Date = System.DateTime.Now;		
+					
+					foreach(RefillInventoryDetailDataEntity detail in refillInv.DetailEntities)
+					{
+						detailInvs.Add(detail);
+					}
+					
+					invDetail = detailInvs.Find(detailInv => detailInv.Date == DateTime.Now.Date);
+										
+					if(invDetail != null)
+					{	
+						invDetail.QtyAdded += addStocks;
+						invDetail.QtyRemoved += removeStocks;
+						invDetail.TotalQty = invDetail.TotalQty + addStocks - removeStocks;
+						invDetail.QtyOnHand += addStocks;
+					}
+					else
+					{
+						invDetail.Date = DateTime.Now.Date;
+						invDetail.QtyAdded = addStocks;
+						invDetail.QtyOnHand = addStocks;
+						invDetail.QtyRemoved = removeStocks;
+						invDetail.TotalQty = addStocks - removeStocks;
+					}				
+					
+					refillInv.QtyOnHand += addStocks;
+					refillInv.TotalAdded += addStocks;
+					refillInv.TotalRemoved += removeStocks;
+					refillInv.TotalQty = refillInv.TotalQty + addStocks - removeStocks;
 					refillInv.DetailEntities.Add(invDetail);
 					
 					refillInvs.Add(refillInv);
@@ -289,7 +359,7 @@ namespace NJournals.Core.Views
 			this.dgvRefillInventory.Columns["Name"].ReadOnly = true;
 			this.dgvRefillInventory.Columns["TotalQty"].ReadOnly = true;
 			this.dgvRefillInventory.Columns["QtyOnHand"].ReadOnly = true;
-			this.dgvRefillInventory.Columns["QtyReleased"].ReadOnly = true;			
+			this.dgvRefillInventory.Columns["QtyReleased"].ReadOnly = true;	
 			this.dgvRefillInventory.Columns["TotalQty"].HeaderText = "Total QTY";
 			this.dgvRefillInventory.Columns["QtyOnHand"].HeaderText = "QTY On Hand";
 			this.dgvRefillInventory.Columns["QtyReleased"].HeaderText = "QTY Released";

@@ -135,7 +135,7 @@ namespace NJournals.Core.Views
 		{
 			List<LaundryServiceDataEntity> services = new List<LaundryServiceDataEntity>();
 			services = GetServiceDataValueChange(serviceRowIndexChange);
-			if(services.Count != 0)
+			if(services.Count > 0)
 			{
 			 	m_presenter.SaveOrUpdateService(services);
 				m_presenter.SetAllServices();
@@ -192,7 +192,7 @@ namespace NJournals.Core.Views
 		{
 			List<LaundryCategoryDataEntity> category = new List<LaundryCategoryDataEntity>();
 			category = GetCategoryDataValueChange(categoryRowIndexChange);					
-			if(category.Count != 0)
+			if(category.Count > 0)
 			{
 			 	m_presenter.SaveOrUpdateCategory(category);
 				m_presenter.SetAllCategories();
@@ -309,7 +309,7 @@ namespace NJournals.Core.Views
 				}
 			}			
 			
-			if(priceSchemes.Count != 0)
+			if(priceSchemes.Count > 0)
 			{
 				m_presenter.SaveOrUpdatePriceScheme(priceSchemes);
 				m_presenter.SetAllPriceScheme();
