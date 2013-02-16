@@ -75,7 +75,7 @@ namespace NJournals.Core.Presenter
 			}
 		}
 		
-		public bool UpdateCustomerInventory(int returnedBottles, int returnedCaps, DateTime returnDate)
+		public void UpdateCustomerInventory(int returnedBottles, int returnedCaps, DateTime returnDate)
 		{			
 			try
 			{
@@ -90,18 +90,14 @@ namespace NJournals.Core.Presenter
 				detail.Header = custInv;
 				custInv.DetailEntities.Add(detail);
 				m_custInvDao.SaveOrUpdate(custInv);
-				return true;				
 			}
 			catch(Exception ex)
-			{
-				MessageService.ShowInfo("Unable to save data; an unexpected error occurred.\n" +
-				                        "Please check error log for details.","Error");
-				LogHelper.Log(ex.Message,LogType.ERR,false);
+			{								
 				throw ex;				
 			}
 		}
 		
-		public bool UpdateCustomerRefillHeaders(decimal amtTender, List<RefillHeaderDataEntity> refillHeaders)
+		public void UpdateCustomerRefillHeaders(decimal amtTender, List<RefillHeaderDataEntity> refillHeaders)
 		{
 			try
 			{
@@ -127,15 +123,11 @@ namespace NJournals.Core.Presenter
 					{
 						break;
 					}
-				}
-				return true;				
+				}			
 			}
 			catch(Exception ex)
-			{
-				MessageService.ShowInfo("Unable to save data; an unexpected error occurred.\n" +
-				                        "Please check error log for details.","Error");
-				LogHelper.Log(ex.Message,LogType.ERR,false);
-				return false;
+			{				
+				throw ex;				
 			}
 		}
 		

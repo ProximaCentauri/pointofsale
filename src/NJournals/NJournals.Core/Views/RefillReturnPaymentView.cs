@@ -118,22 +118,26 @@ namespace NJournals.Core.Views
 			int returnedBottles = (txtReturnedBottles.Text != string.Empty) ? Convert.ToInt32(txtReturnedBottles.Text) : 0;
 			int returnedCaps = (txtReturnedCaps.Text != string.Empty) ? Convert.ToInt32(txtReturnedCaps.Text) : 0;
 			decimal amountTender = Convert.ToDecimal(txtamttender.Text);
-			
-			
+						
 			if(this.ValidateCustomerInput())
 			{	
-				bool isSaved = false;				
-				if(returnedBottles > 0 || returnedCaps > 0)
+				try
 				{
-					 this.UpdateCustomerInventory(returnedBottles, returnedCaps);
-				}
-				if(amountTender > 0.0M)
-				{
-					this.UpdateCustomerRefillHeaders(amountTender);
-				}
-				if(isSaved)
-				{
+					if(returnedBottles > 0 || returnedCaps > 0)
+					{
+						this.UpdateCustomerInventory(returnedBottles, returnedCaps);
+					}
+					if(amountTender > 0.0M)
+					{
+						this.UpdateCustomerRefillHeaders(amountTender);
+					}
 					MessageService.ShowInfo("Save successful!","Save");
+				}
+				catch(Exception ex)
+				{					
+					MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
+				                        "Please check error log for details.","Error");
+					LogHelper.Log(ex.Message,LogType.ERR,false);
 				}
 			}		
 		}
