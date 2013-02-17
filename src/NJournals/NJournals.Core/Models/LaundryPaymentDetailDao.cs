@@ -60,6 +60,18 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public IEnumerable<LaundryPaymentDetailDataEntity> GetAllItemsByHeaderId(int p_id)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+                var query = session.Query<LaundryPaymentDetailDataEntity>()
+                	.Where(x => x.Header.LaundryHeaderID == p_id)
+                    .OrderBy(x => x.ID)
+                    .ToList();
+                return query;
+			}
+		}
+		
 		public LaundryPaymentDetailDataEntity GetByID(int p_id)
 		{
 			using(var session = NHibernateHelper.OpenSession())

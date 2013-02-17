@@ -59,6 +59,18 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public IEnumerable<LaundryJobChargesDataEntity> GetAllItemsByHeaderId(int p_id)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+                var query = session.Query<LaundryJobChargesDataEntity>()
+                	.Where(x => x.Header.LaundryHeaderID == p_id)
+                    .OrderBy(x => x.ID)
+                    .ToList();
+                return query;
+			}
+		}
+		
 		public LaundryJobChargesDataEntity GetByID(int p_id)
 		{
 			using(var session = NHibernateHelper.OpenSession())

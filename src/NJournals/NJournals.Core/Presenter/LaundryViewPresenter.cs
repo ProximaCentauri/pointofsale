@@ -12,6 +12,7 @@ using NJournals.Core.Models;
 using NJournals.Common.DataEntities;
 using System.Collections.Generic;
 using NJournals.Common.Util;
+using System.Linq;
 
 namespace NJournals.Core.Presenter
 {
@@ -30,7 +31,7 @@ namespace NJournals.Core.Presenter
 		ILaundryJobChargesDao m_jobChargeDao;
 		ILaundryDao m_laundryDao;		
 		ILaundryJobCheckListDao m_jobChecklistDao;
-		ILaundryPaymentDetailDao m_paymentDetailDao;
+		ILaundryPaymentDetailDao m_paymentDetailDao;		
 		ILaundryChecklistDao m_checklistDao;
 		List<LaundryCategoryDataEntity> categories = null;
 		List<LaundryServiceDataEntity> services = null;
@@ -55,33 +56,31 @@ namespace NJournals.Core.Presenter
 			m_checklistDao = new LaundryChecklistDao();
 		}
 		
+		List<LaundryJobChargesDataEntity> new_ChargeEntities = null;
+		List<LaundryJobChargesDataEntity> orig_ChargeEntities = null;
+		List<LaundryDetailDataEntity> orig_DetailEntities = null;
+		List<LaundryDetailDataEntity> new_DetailEntities = null;
+		List<LaundryJobChecklistDataEntity> orig_ChecklistEntities = null;
+		List<LaundryJobChecklistDataEntity> new_ChecklistEntities = null;
+		
 		public void SaveClicked(){
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
-			
+			new_ChargeEntities = m_headerEntity.JobChargeEntities as List<LaundryJobChargesDataEntity>;
+			new_DetailEntities = m_headerEntity.DetailEntities as List<LaundryDetailDataEntity>;
+			new_ChecklistEntities = m_headerEntity.JobChecklistEntities as List<LaundryJobChecklistDataEntity>;
 			if(m_view.GetTitle().Contains("NEW")){
 				SaveDaySummary(m_headerEntity);
 			}else if(m_view.GetTitle().Contains("CLAIM")){								
 				//TODO: process header details
-				List<LaundryDetailDataEntity> m_origdetailEntities = m_OriginalHeaderEntity.DetailEntities as List<LaundryDetailDataEntity>;
-				List<LaundryDetailDataEntity> m_newdetailEntities = new List<LaundryDetailDataEntity>();
-				LaundryDetailDataEntity updatedDetail = null;
-				foreach(LaundryDetailDataEntity detailEntity in m_headerEntity.DetailEntities){
-					updatedDetail = new LaundryDetailDataEntity();
-					updatedDetail = m_origdetailEntities.Find(x => x.Header.LaundryHeaderID == detailEntity.Header.LaundryHeaderID);
-					
-					if(updatedDetail != null){
-						updatedDetail.ItemQty = detailEntity.ItemQty;
-						updatedDetail.Kilo = detailEntity.Kilo;
-						updatedDetail.Amount = detailEntity.Amount;
-						m_newdetailEntities.Add(updatedDetail);
-						//m_OriginalHeaderEntity.DetailEntities[index] = udpatedDetail;
-					}
-				}				
-				if(updatedDetail != null)
-					m_OriginalHeaderEntity.DetailEntities = m_newdetailEntities;
+				SaveUpdateDetails();
+			
 				
 				//TODO: process payment detail
 				m_OriginalHeaderEntity.PaymentDetailEntities = m_headerEntity.PaymentDetailEntities;
+				
+				SaveOrDeleteJobCharges();
+				
+				SaveUpdateOrDeleteJobCheckList();
 				
 				/*List<LaundryPaymentDetailDataEntity> m_origPaymentEntities = m_OriginalHeaderEntity.PaymentDetailEntities as List<LaundryPaymentDetailDataEntity>;
 				
@@ -114,9 +113,7 @@ namespace NJournals.Core.Presenter
 				headerEntity.DaySummary = daySummary;
 				
 				// update daysummary with transcount and totalsales				
-				m_summaryDao.Update(daySummary);					
-				
-				m_laundryDao.Update(headerEntity);
+				m_summaryDao.Update(daySummary);				
 			}else{
 				// set daysummary			
 				daySummary = new LaundryDaySummaryDataEntity();
@@ -133,36 +130,101 @@ namespace NJournals.Core.Presenter
 				//m_chargeDao.SaveOrUpdate(headerEntity.
 				//m_customerDao.SaveOrUpdate(headerEntity.Customer);				
 				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
-				// this will handle the saving for the linked tables				
-				m_laundryDao.SaveOrUpdate(headerEntity);
+				// this will handle the saving for the linked tables								
+			}
+			m_laundryDao.SaveOrUpdate(headerEntity);
+			
+		}
+		
+		private void SaveUpdateOrDeleteJobCheckList(){
+			
+			orig_ChecklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
+			
+			var listToLookUp = new_ChecklistEntities.ToLookup(entity => entity.Checklist.ChecklistID);
+			var listToDelete = orig_ChecklistEntities.Where(entity => (!listToLookUp.Contains(entity.Checklist.ChecklistID)));
+			
+			foreach(LaundryJobChecklistDataEntity entity in listToDelete.ToList()){
+				m_jobChecklistDao.Delete(entity);
+			}	
+			
+			orig_ChecklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
+			List<LaundryJobChecklistDataEntity> new_Checklist = new List<LaundryJobChecklistDataEntity>();
+						
+			var listToLookUp2 = orig_ChecklistEntities.ToLookup(entity => entity.Checklist.ChecklistID);			
+			var listToUpdate = new_ChecklistEntities.Where(entity => (listToLookUp2.Contains(entity.Checklist.ChecklistID)));
+			
+			foreach(LaundryJobChecklistDataEntity entity in listToUpdate.ToList()){
+				LaundryJobChecklistDataEntity checklist = new LaundryJobChecklistDataEntity();
+				checklist.Checklist = entity.Checklist;
+				checklist.Qty = entity.Qty;
+				checklist.Header = entity.Header;
+				checklist.ID = entity.ID;
+				new_Checklist.Add(checklist);
+			}
+			
+			orig_ChecklistEntities = new_Checklist;			
+			var listToAdd = new_ChecklistEntities.Where(entity => (!listToLookUp2.Contains(entity.Checklist.ChecklistID)));
+			foreach(LaundryJobChecklistDataEntity entity in listToAdd.ToList()){
+				orig_ChecklistEntities.Add(entity);
+			}
+			m_OriginalHeaderEntity.JobChecklistEntities = orig_ChecklistEntities;	
+			
+			
+		}
+		
+		private void SaveOrDeleteJobCharges(){
+			if(m_headerEntity.JobChargeEntities != null){
+				orig_ChargeEntities = m_jobChargeDao.GetAllItemsByHeaderId(m_OriginalHeaderEntity.LaundryHeaderID) as List<LaundryJobChargesDataEntity>;
+				
+				var listToLookUp = new_ChargeEntities.ToLookup(entity => entity.Charge.Name);
+				var listDiff = orig_ChargeEntities.Where(entity => (!listToLookUp.Contains(entity.Charge.Name)));
+				
+				foreach(LaundryJobChargesDataEntity chargeEntity in listDiff.ToList()){
+					m_jobChargeDao.Delete(chargeEntity);
+				}
+				
+				orig_ChargeEntities = m_jobChargeDao.GetAllItemsByHeaderId(m_OriginalHeaderEntity.LaundryHeaderID) as List<LaundryJobChargesDataEntity>;
+				
+				var listToLookUp2 = orig_ChargeEntities.ToLookup(entity => entity.Charge.ChargeID);
+				var listDiff2 = new_ChargeEntities.Where(entity => (!listToLookUp2.Contains(entity.Charge.ChargeID)));
+				
+				foreach(LaundryJobChargesDataEntity chargeEntity in listDiff2.ToList()){
+					orig_ChargeEntities.Add(chargeEntity);
+				}
+				
+				m_OriginalHeaderEntity.JobChargeEntities = orig_ChargeEntities;			
 			}
 		}
 		
-		private void SaveOrUpdateJobCheckList(){
-			List<LaundryJobChecklistDataEntity> checklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
-			List<LaundryJobChecklistDataEntity> newChecklistEntities = m_headerEntity.JobChecklistEntities as List<LaundryJobChecklistDataEntity>;
+		private void SaveUpdateDetails(){
+			LaundryHeaderDataEntity headerData = m_laundryDao.GetByID(m_headerEntity.LaundryHeaderID);
+			orig_DetailEntities = headerData.DetailEntities as List<LaundryDetailDataEntity>;
+			var listToLookUp = orig_DetailEntities.ToLookup(entity => entity.Header.LaundryHeaderID);
+			var listToAdd = new_DetailEntities.Where(entity => (!listToLookUp.Contains(entity.Header.LaundryHeaderID)));
+			var listToUpdate = new_DetailEntities.Where(entity => listToLookUp.Contains(entity.Header.LaundryHeaderID));
+			List<LaundryDetailDataEntity> newDetailList = new List<LaundryDetailDataEntity>();
 			
-			if(newChecklistEntities == null)
-				return;
+			foreach(LaundryDetailDataEntity detail in listToUpdate.ToList()){
+				LaundryDetailDataEntity entity = new LaundryDetailDataEntity();
+				entity.ItemQty = detail.ItemQty;
+				entity.Kilo = detail.Kilo;
+				entity.Amount = detail.Amount;
+				entity.Category = detail.Category;
+				entity.Service = detail.Service;
+				entity.Header = detail.Header;
+				entity.ID = detail.ID;				
+				newDetailList.Add(entity);
+			}
 			
-			foreach(LaundryJobChecklistDataEntity checklist in checklistEntities){					
-				LaundryJobChecklistDataEntity m_entity = newChecklistEntities.Find(m_checklist => m_checklist.Checklist.ChecklistID == checklist.Checklist.ChecklistID);
-				if(m_entity == null){
-					m_jobChecklistDao.Delete(checklist);						
-				}
+			m_OriginalHeaderEntity.DetailEntities = newDetailList;
+			
+			foreach(LaundryDetailDataEntity detail in listToAdd.ToList()){
+				orig_DetailEntities.Add(detail);
 			}
-			  
-			checklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
-			foreach(LaundryJobChecklistDataEntity checklist in newChecklistEntities){
-				LaundryJobChecklistDataEntity m_entity = checklistEntities.Find(m_checklist => m_checklist.Checklist.ChecklistID == checklist.Checklist.ChecklistID);
-				if(m_entity != null){	
-					m_entity.Qty = checklist.Qty;						
-					m_jobChecklistDao.Update(m_entity);	
-				}else{//new entry
-					m_jobChecklistDao.SaveOrUpdate(checklist);
-				}					
-			}
+			
+			m_OriginalHeaderEntity.DetailEntities = orig_DetailEntities;		
 		}
+		
 		
 		public void CancelClicked(){
 			m_view.CloseView();

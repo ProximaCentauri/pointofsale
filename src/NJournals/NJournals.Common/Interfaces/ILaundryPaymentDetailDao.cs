@@ -20,7 +20,7 @@ namespace NJournals.Common.Interfaces
 	{
 		void SaveOrUpdate(LaundryPaymentDetailDataEntity p_payment);
 		IEnumerable<LaundryPaymentDetailDataEntity> GetAllItems();
-		
+		IEnumerable<LaundryPaymentDetailDataEntity> GetAllItemsByHeaderId(int p_id);
 		void Delete(LaundryPaymentDetailDataEntity p_payment);
 		void Update(LaundryPaymentDetailDataEntity p_payment);
 	}

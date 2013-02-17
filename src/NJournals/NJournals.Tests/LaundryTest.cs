@@ -14,7 +14,7 @@ using NJournals.Core.Models;
 using System.Collections.Generic;
 using NJournals.Common.Util;
 using System.Globalization;
-
+using System.Linq;
 
 namespace NJournals.Tests
 {
@@ -266,5 +266,39 @@ namespace NJournals.Tests
 				Console.WriteLine("================================");
 			}
 		}
+		
+		[Test]
+		public void sampletest(){
+			List<Person> s1 = new List<Person>();
+			s1.Add(new Person(1, "oplok", "langit"));
+			s1.Add(new Person(2, "oplo2k", "langit2"));
+			List<Person> s2 = new List<Person>();
+			s2.Add(new Person(1, "oplok", "langit3"));
+			s2.Add(new Person(2, "loslos", "olympus2"));
+			//List<Person> s3 = s1.Except(s2).ToList();
+			var list2lookUp = s1.ToLookup(p => p.name);
+			var listdiff = s2.Where(p => (!list2lookUp.Contains(p.name)));
+			foreach(Person s in listdiff){
+				Console.WriteLine(s.name + ": " + s.address);
+			}
+			Console.WriteLine("================================");
+			
+		
+		
+		}
+		
+	}
+	
+	public class Person{
+		
+		public Person(int id, string name, string address){
+			this.id = id;
+			this.name = name;
+			this.address = address;
+		}
+		
+		public int id;
+		public string name;
+		public string address;
 	}
 }
