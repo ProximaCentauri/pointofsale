@@ -184,8 +184,7 @@ namespace NJournals.Core
 		void label_mousehover(object sender, EventArgs e)
 		{
 			Label label = sender as Label;			
-			label.Font = new Font("Calibri", 12, FontStyle.Bold);
-			//label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(89)))), ((int)(((byte)(138)))));
+			label.Font = new Font("Calibri", 12, FontStyle.Bold);			
 			label.ForeColor = Color.White;
 			label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 		}

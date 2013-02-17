@@ -197,23 +197,25 @@ namespace NJournals.Core.Views
 							
 				for(int ctr = 1; ctr < rowDataToAdd; ctr++)
 				{
+					RefillInventoryHeaderDataEntity header = new RefillInventoryHeaderDataEntity();
+					RefillInventoryDetailDataEntity detail = new RefillInventoryDetailDataEntity();	
 					DataGridViewRow currentRow = this.dgvRefillInventory.Rows[refillInvMaxRowIndex + ctr];
 					int addStocks = (int)currentRow.Cells["AddStocks"].Value;
 					
-					RefillInventoryDetailDataEntity detail = new RefillInventoryDetailDataEntity();					
+					header.Name = currentRow.Cells["Name"].Value.ToString();
+					header.QtyOnHand += addStocks;
+					header.TotalAdded += addStocks;
+					header.TotalQty += addStocks;
+									
+					detail.Header = header;			
 					detail.Date = DateTime.Now.Date;
 					detail.QtyAdded += addStocks;
 					detail.QtyOnHand += addStocks;
-					detail.TotalQty += addStocks;
+					detail.TotalQty += addStocks;				
 					
-					RefillInventoryHeaderDataEntity refillInv = new RefillInventoryHeaderDataEntity();
-					refillInv.Name = currentRow.Cells["Name"].Value.ToString();
-					refillInv.QtyOnHand += addStocks;
-					refillInv.TotalAdded += addStocks;
-					refillInv.TotalQty += addStocks;
-					refillInv.DetailEntities.Add(detail);
+					header.DetailEntities.Add(detail);
 					
-					refillInvs.Add(refillInv);					
+					refillInvs.Add(header);					
 				}
 			}
 			
@@ -221,6 +223,8 @@ namespace NJournals.Core.Views
 			{
 				m_presenter.SaveOrUpdateRefillInventory(refillInvs);
 				m_presenter.SetAllRefillInventory();
+				refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
+				this.dgvRefillInventory.AllowUserToAddRows = false;
 			}
 		}
 		
@@ -288,20 +292,20 @@ namespace NJournals.Core.Views
 					if(invDetail != null)
 					{	
 						invDetail.QtyAdded += addStocks;
-						invDetail.QtyRemoved += removeStocks;
+						invDetail.QtyRemoved += removeStocks;						
+						invDetail.QtyOnHand = invDetail.QtyOnHand + addStocks - removeStocks;
 						invDetail.TotalQty = invDetail.TotalQty + addStocks - removeStocks;
-						invDetail.QtyOnHand += addStocks;
 					}
 					else
 					{
 						invDetail.Date = DateTime.Now.Date;
 						invDetail.QtyAdded = addStocks;
-						invDetail.QtyOnHand = addStocks;
 						invDetail.QtyRemoved = removeStocks;
+						invDetail.QtyOnHand = addStocks - removeStocks;						
 						invDetail.TotalQty = addStocks - removeStocks;
 					}				
 					
-					refillInv.QtyOnHand += addStocks;
+					refillInv.QtyOnHand = refillInv.QtyOnHand + addStocks - removeStocks;
 					refillInv.TotalAdded += addStocks;
 					refillInv.TotalRemoved += removeStocks;
 					refillInv.TotalQty = refillInv.TotalQty + addStocks - removeStocks;
@@ -367,8 +371,8 @@ namespace NJournals.Core.Views
 			this.dgvRefillInventory.Columns["RemoveStocks"].HeaderText = "Remove Stocks";
 		}
 		#endregion
+
 		
-	
 		
 		
 		
