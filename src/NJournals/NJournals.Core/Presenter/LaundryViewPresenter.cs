@@ -31,6 +31,7 @@ namespace NJournals.Core.Presenter
 		ILaundryJobChargesDao m_jobChargeDao;
 		ILaundryDao m_laundryDao;		
 		ILaundryJobCheckListDao m_jobChecklistDao;
+		ILaundryDetailDao m_detailDao;
 		ILaundryPaymentDetailDao m_paymentDetailDao;		
 		ILaundryChecklistDao m_checklistDao;
 		List<LaundryCategoryDataEntity> categories = null;
@@ -54,6 +55,7 @@ namespace NJournals.Core.Presenter
 			m_jobChecklistDao = new LaundryJobCheckListDao();
 			m_paymentDetailDao = new LaundryPaymentDetailDao();
 			m_checklistDao = new LaundryChecklistDao();
+			m_detailDao = new LaundryDetailDao();
 		}
 		
 		List<LaundryJobChargesDataEntity> new_ChargeEntities = null;
@@ -72,8 +74,7 @@ namespace NJournals.Core.Presenter
 				SaveDaySummary(m_headerEntity);
 			}else if(m_view.GetTitle().Contains("CLAIM")){								
 				//TODO: process header details
-				SaveUpdateDetails();
-			
+				SaveUpdateDetails();			
 				
 				//TODO: process payment detail
 				m_OriginalHeaderEntity.PaymentDetailEntities = m_headerEntity.PaymentDetailEntities;
@@ -137,6 +138,8 @@ namespace NJournals.Core.Presenter
 		}
 		
 		private void SaveUpdateOrDeleteJobCheckList(){
+			if(new_ChecklistEntities == null)
+				return;
 			
 			orig_ChecklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
 			
@@ -150,26 +153,25 @@ namespace NJournals.Core.Presenter
 			orig_ChecklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
 			List<LaundryJobChecklistDataEntity> new_Checklist = new List<LaundryJobChecklistDataEntity>();
 						
-			var listToLookUp2 = orig_ChecklistEntities.ToLookup(entity => entity.Checklist.ChecklistID);			
-			var listToUpdate = new_ChecklistEntities.Where(entity => (listToLookUp2.Contains(entity.Checklist.ChecklistID)));
+			var listToLookUp2 = new_ChecklistEntities.ToLookup(entity => entity.Checklist.ChecklistID);			
+			var listToUpdate = orig_ChecklistEntities.Where(entity => (listToLookUp2.Contains(entity.Checklist.ChecklistID)));
 			
 			foreach(LaundryJobChecklistDataEntity entity in listToUpdate.ToList()){
 				LaundryJobChecklistDataEntity checklist = new LaundryJobChecklistDataEntity();
 				checklist.Checklist = entity.Checklist;
 				checklist.Qty = entity.Qty;
 				checklist.Header = entity.Header;
-				checklist.ID = entity.ID;
+				checklist.ID = entity.ID;				
 				new_Checklist.Add(checklist);
-			}
-			
-			orig_ChecklistEntities = new_Checklist;			
-			var listToAdd = new_ChecklistEntities.Where(entity => (!listToLookUp2.Contains(entity.Checklist.ChecklistID)));
+			}			
+					
+			var listToLookUpForAdd = orig_ChecklistEntities.ToLookup(entity => entity.Checklist.ChecklistID);		
+			var listToAdd = new_ChecklistEntities.Where(entity => (!listToLookUpForAdd.Contains(entity.Checklist.ChecklistID)));
 			foreach(LaundryJobChecklistDataEntity entity in listToAdd.ToList()){
-				orig_ChecklistEntities.Add(entity);
+				new_Checklist.Add(entity);
 			}
-			m_OriginalHeaderEntity.JobChecklistEntities = orig_ChecklistEntities;	
-			
-			
+
+			m_OriginalHeaderEntity.JobChecklistEntities = new_Checklist;		
 		}
 		
 		private void SaveOrDeleteJobCharges(){
@@ -197,32 +199,32 @@ namespace NJournals.Core.Presenter
 		}
 		
 		private void SaveUpdateDetails(){
-			LaundryHeaderDataEntity headerData = m_laundryDao.GetByID(m_headerEntity.LaundryHeaderID);
-			orig_DetailEntities = headerData.DetailEntities as List<LaundryDetailDataEntity>;
-			var listToLookUp = orig_DetailEntities.ToLookup(entity => entity.Header.LaundryHeaderID);
+			//LaundryHeaderDataEntity headerData = m_laundryDao.GetByID(m_headerEntity.LaundryHeaderID);
+			List<LaundryDetailDataEntity> detailData = m_detailDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryDetailDataEntity>;
+			
+			var listToLookUp = detailData.ToLookup(entity => entity.Header.LaundryHeaderID);
 			var listToAdd = new_DetailEntities.Where(entity => (!listToLookUp.Contains(entity.Header.LaundryHeaderID)));
 			var listToUpdate = new_DetailEntities.Where(entity => listToLookUp.Contains(entity.Header.LaundryHeaderID));
 			List<LaundryDetailDataEntity> newDetailList = new List<LaundryDetailDataEntity>();
 			
 			foreach(LaundryDetailDataEntity detail in listToUpdate.ToList()){
 				LaundryDetailDataEntity entity = new LaundryDetailDataEntity();
+				LaundryDetailDataEntity m_entity = detailData.Find(x => x.Category.Name == detail.Category.Name && x.Service.Name == detail.Service.Name);
 				entity.ItemQty = detail.ItemQty;
 				entity.Kilo = detail.Kilo;
 				entity.Amount = detail.Amount;
 				entity.Category = detail.Category;
 				entity.Service = detail.Service;
 				entity.Header = detail.Header;
-				entity.ID = detail.ID;				
+				entity.ID = m_entity.ID;				
 				newDetailList.Add(entity);
-			}
-			
-			m_OriginalHeaderEntity.DetailEntities = newDetailList;
+			}		
 			
 			foreach(LaundryDetailDataEntity detail in listToAdd.ToList()){
-				orig_DetailEntities.Add(detail);
+				newDetailList.Add(detail);
 			}
 			
-			m_OriginalHeaderEntity.DetailEntities = orig_DetailEntities;		
+			m_OriginalHeaderEntity.DetailEntities = newDetailList;	
 		}
 		
 		

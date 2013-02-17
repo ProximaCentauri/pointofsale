@@ -179,13 +179,29 @@ namespace NJournals.Core.Views
 			LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
 			decimal kilo = decimal.Parse(txtkilo.Text);			
 			decimal price = priceEntity.Price * kilo;	
-			dataGridView1.Rows.Add(cmbcategory.Text, cmbservices.Text, txtnoitems.Text, txtkilo.Text, price.ToString("N2"));
+			bool alreadyExist = false;
+			for(int i=0;i<dataGridView1.Rows.Count -1;i++){
+				if(dataGridView1.Rows[i].Cells[0].Value != null){
+					if(dataGridView1.Rows[i].Cells[0].Value.ToString().Equals(cmbcategory.Text) &&
+					   dataGridView1.Rows[i].Cells[1].Value.ToString().Equals(cmbservices.Text)){
+						dataGridView1.Rows[i].Cells[2].Value = (int.Parse(txtnoitems.Text) + int.Parse(dataGridView1.Rows[i].Cells[2].Value.ToString())).ToString();
+						dataGridView1.Rows[i].Cells[3].Value = (int.Parse(txtkilo.Text) + int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString())).ToString();
+						dataGridView1.Rows[i].Cells[4].Value = (decimal.Parse((dataGridView1.Rows[i].Cells[4].Value.ToString())) + price).ToString("N2");
+						alreadyExist = true;
+						break;
+					}
+				}
+			}
+			
+			if(!alreadyExist)
+				dataGridView1.Rows.Add(cmbcategory.Text, cmbservices.Text, txtnoitems.Text, txtkilo.Text, price.ToString("N2"));
 			this.totalAmtDue = decimal.Parse(txtamtdue.Text) + price;
 			txtamtdue.Text = totalAmtDue.ToString("N2");			
 			this.txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + price).ToString("N2");
-			this.txtbalance.Text = this.txttotalamtdue.Text;
-			
+			this.txtbalance.Text = this.txttotalamtdue.Text;			
 		}
+		
+		
 		
 		void BtnaddClick(object sender, EventArgs e)
 		{
@@ -294,7 +310,7 @@ namespace NJournals.Core.Views
 								
 				chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;
 										
-				for(int i=0;i<chkchargesList.Items.Count-1;i++){
+				for(int i=0;i<chkchargesList.Items.Count;i++){
 					foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
 						if(chkchargesList.Items[i].ToString().Equals(chargeEntity.Charge.Name)){
 							chkchargesList.SetItemChecked(i, true);
