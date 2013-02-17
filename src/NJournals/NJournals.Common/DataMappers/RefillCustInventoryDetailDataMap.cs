@@ -22,7 +22,7 @@ namespace NJournals.Common.DataMappers
 		public RefillCustInventoryDetailDataMap()
 		{
 			Id(x => x.ID);
-			Map(x => x.CapsReturned);
+			Map(x => x.CapsReturned);  
 			Map(x => x.BottlesReturned);
 			Map(x => x.Date);
 			References<RefillCustInventoryHeaderDataEntity>(x => x.Header)

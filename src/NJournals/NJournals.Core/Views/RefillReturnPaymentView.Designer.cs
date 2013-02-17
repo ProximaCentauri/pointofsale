@@ -193,6 +193,8 @@ namespace NJournals.Core.Views
 			// 
 			this.dgvOutBalance.AllowUserToAddRows = false;
 			this.dgvOutBalance.AllowUserToDeleteRows = false;
+			this.dgvOutBalance.AllowUserToResizeColumns = false;
+			this.dgvOutBalance.AllowUserToResizeRows = false;
 			this.dgvOutBalance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvOutBalance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Date,
