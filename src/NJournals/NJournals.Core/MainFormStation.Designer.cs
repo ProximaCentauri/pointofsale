@@ -98,7 +98,7 @@ namespace NJournals.Core
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(196, 692);
+			this.panel1.Size = new System.Drawing.Size(196, 572);
 			this.panel1.TabIndex = 2;
 			// 
 			// lblcustomerList
@@ -290,7 +290,7 @@ namespace NJournals.Core
 			this.lstOpenWindows.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstOpenWindows.FormattingEnabled = true;
 			this.lstOpenWindows.ItemHeight = 14;
-			this.lstOpenWindows.Location = new System.Drawing.Point(0, 534);
+			this.lstOpenWindows.Location = new System.Drawing.Point(0, 414);
 			this.lstOpenWindows.Name = "lstOpenWindows";
 			this.lstOpenWindows.Size = new System.Drawing.Size(192, 154);
 			this.lstOpenWindows.TabIndex = 0;
@@ -364,11 +364,12 @@ namespace NJournals.Core
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(997, 692);
+			this.ClientSize = new System.Drawing.Size(997, 572);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.IsMdiContainer = true;
 			this.Name = "MainFormStation";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "MainFormStation";
 			this.Load += new System.EventHandler(this.MainFormStationLoad);
 			this.panel1.ResumeLayout(false);

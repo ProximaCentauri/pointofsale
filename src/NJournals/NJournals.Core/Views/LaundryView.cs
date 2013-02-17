@@ -67,6 +67,7 @@ namespace NJournals.Core.Views
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 				this.dtrecieveDate.Value = DateTime.Now;				
 			}else{
+				m_presenter.SetAllCharges();
 				grpServices.Enabled = false;
 				lblchecklist.Enabled = false;
 				txtdiscount.Enabled = false;
@@ -240,8 +241,8 @@ namespace NJournals.Core.Views
 				txttotaldiscount.Text = ((decimal.Parse(txtdiscount.Text) / 100M) * (decimal.Parse(txtamtdue.Text) + decimal.Parse(txttotalcharges.Text))).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txttotaldiscount.Text)).ToString("N2");		
 			}
-			
-			txtbalance.Text = txttotalamtdue.Text;
+			//TODO: accurate calculation for balance when amttender > 0
+			txtbalance.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txtamttender.Text)).ToString("N2");
 		}
 		
 		void BtnsavecloseClick(object sender, EventArgs e)
@@ -286,15 +287,19 @@ namespace NJournals.Core.Views
 				}
 				txtamtdue.Text = m_headerEntity.AmountDue.ToString("N2");
 				txttotalamtdue.Text = m_headerEntity.TotalAmountDue.ToString("N2");
-				txttotalcharges.Text = m_headerEntity.TotalCharge.ToString("N2");
+				//txttotalcharges.Text = m_headerEntity.TotalCharge.ToString("N2");
 				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("0");
 				
 				txtdiscount.Text = ((m_headerEntity.TotalDiscount / (m_headerEntity.AmountDue + m_headerEntity.TotalCharge)) * 100).ToString("0");
 								
 				chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;
-				
-				foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
-					chkchargesList.Items.Add(chargeEntity.Charge.Name, true);
+										
+				for(int i=0;i<chkchargesList.Items.Count-1;i++){
+					foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
+						if(chkchargesList.Items[i].ToString().Equals(chargeEntity.Charge.Name)){
+							chkchargesList.SetItemChecked(i, true);
+						}
+					}					
 				}
 				lblchecklist.Enabled = true;
 				/*if(m_headerEntity.JobChecklistEntities.Count == 0){
