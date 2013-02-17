@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using NJournals.Core.Presenter;
 using NJournals.Core.Models;
 using System.Data;
+using System.Text;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -29,7 +30,6 @@ namespace NJournals.Core.Views
 		List<LaundryCategoryDataEntity> m_categoryEntity;
 		List<LaundryPriceSchemeDataEntity> m_priceSchemeEntity;
 			
-		
 		List<int> serviceRowIndexChange = new List<int>();
 		List<int> categoryRowIndexChange = new List<int>();
 		List<int> priceSchemeRowIndexChange = new List<int>();
@@ -134,15 +134,22 @@ namespace NJournals.Core.Views
 		void BtnSaveServicesClick(object sender, EventArgs e)
 		{
 			List<LaundryServiceDataEntity> services = new List<LaundryServiceDataEntity>();
+			List<LaundryServiceDataEntity> dupEntries = new List<LaundryServiceDataEntity>();
+			
 			services = GetServiceDataValueChange(serviceRowIndexChange);
 			if(services.Count > 0)
-			{
-			 	m_presenter.SaveOrUpdateService(services);
+			{	 					
+				if((dupEntries = m_presenter.SaveOrUpdateService(services)).Count > 0)
+			 	{
+			 		ErrorMessage(dupEntries);
+			 	}			 	
 				m_presenter.SetAllServices();
 				servicesMaxRowIndex = this.dgvServices.RowCount - 1;
 				dgvServices.Refresh();	
 			}
 		}
+		
+		
 		
 		private void dgvServices_CellValueChanged(object sender,
 		    DataGridViewCellEventArgs e)
@@ -191,10 +198,14 @@ namespace NJournals.Core.Views
 		void BtnSaveCategoryClick(object sender, EventArgs e)
 		{
 			List<LaundryCategoryDataEntity> category = new List<LaundryCategoryDataEntity>();
+			List<LaundryCategoryDataEntity> dupEntries = new List<LaundryCategoryDataEntity>();
 			category = GetCategoryDataValueChange(categoryRowIndexChange);					
 			if(category.Count > 0)
-			{
-			 	m_presenter.SaveOrUpdateCategory(category);
+			{		 			
+				if((dupEntries = m_presenter.SaveOrUpdateCategory(category)).Count > 0)
+			 	{
+			 		ErrorMessage(dupEntries);
+			 	}
 				m_presenter.SetAllCategories();
 				categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
 				dgvCategory.Refresh();	
@@ -281,6 +292,7 @@ namespace NJournals.Core.Views
 		void BtnSavePriceSchemeClick(object sender, EventArgs e)
 		{
 			List<LaundryPriceSchemeDataEntity> priceSchemes = new List<LaundryPriceSchemeDataEntity>();
+			List<LaundryPriceSchemeDataEntity> dupEntries = new List<LaundryPriceSchemeDataEntity>();
 			
 			//get modified row
 			if(priceSchemeRowIndexChange != null)
@@ -311,7 +323,10 @@ namespace NJournals.Core.Views
 			
 			if(priceSchemes.Count > 0)
 			{
-				m_presenter.SaveOrUpdatePriceScheme(priceSchemes);
+				if((dupEntries = m_presenter.SaveOrUpdatePriceScheme(priceSchemes)).Count > 0)
+				{
+					ErrorMessage(dupEntries);
+				}
 				m_presenter.SetAllPriceScheme();
 				priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
 				this.dgvPriceScheme.AllowUserToAddRows = false;
@@ -439,6 +454,42 @@ namespace NJournals.Core.Views
 			dgvPriceScheme.Columns["Price"].Width = 100;
 			dgvPriceScheme.Columns["Price"].HeaderText = "Price";	
 		}
+		#endregion
+		
+		#region Helper Methods
+		private void ErrorMessage<T>(List<T> dupEntries)
+		{
+			StringBuilder message = new StringBuilder();
+			message.AppendLine("Cannot insert duplicate entry: ");
+			
+			foreach(object dup in dupEntries)
+			{
+				switch(dup.GetType().ToString())
+				{
+					case "NJournals.Common.DataEntities.LaundryServiceDataEntity":
+						{
+							LaundryServiceDataEntity var = (LaundryServiceDataEntity) dup;
+							message.AppendLine(" - " + var.Name);
+						}
+					break;
+					case "NJournals.Common.DataEntities.LaundryCategoryDataEntity":
+						{
+							LaundryCategoryDataEntity var = (LaundryCategoryDataEntity) dup;
+							message.AppendLine(" - " + var.Name);
+						}
+					break;
+					case "NJournals.Common.DataEntities.LaundryPriceSchemeDataEntity":
+						{
+							LaundryPriceSchemeDataEntity var = (LaundryPriceSchemeDataEntity) dup;
+							message.AppendLine(" - " + var.Service.Name + " - " + var.Category.Name);
+						}
+					break;
+				}
+			}			
+			MessageService.ShowWarning(message.ToString());		
+		}
+		
+		
 		#endregion
 		
 	}

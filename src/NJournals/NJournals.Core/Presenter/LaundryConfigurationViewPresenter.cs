@@ -47,35 +47,65 @@ namespace NJournals.Core.Presenter
 			m_view.SetAllPriceScheme(priceScheme);
 		}
 		
-		public void SaveOrUpdateService(List<LaundryServiceDataEntity> services){
+		public List<LaundryServiceDataEntity> SaveOrUpdateService(List<LaundryServiceDataEntity> services){
+
+			List<LaundryServiceDataEntity> dupEntries = new List<LaundryServiceDataEntity>();
 			
 			foreach(LaundryServiceDataEntity service in services)
 			{
-				m_serviceDao.Save(service);
+				try
+				{
+					m_serviceDao.Save(service);
+				}
+				catch
+				{
+					dupEntries.Add(service);
+				}
 			}
+			return dupEntries;		
 		}
 		
 		public void DeleteService(LaundryServiceDataEntity service) {
 			m_serviceDao.Delete(service);
 		}
 		
-		public void SaveOrUpdateCategory(List<LaundryCategoryDataEntity> categories){
+		public List<LaundryCategoryDataEntity> SaveOrUpdateCategory(List<LaundryCategoryDataEntity> categories){
+			
+			List<LaundryCategoryDataEntity> dupEntries = new List<LaundryCategoryDataEntity>();
 			
 			foreach(LaundryCategoryDataEntity category in categories)
 			{
-				m_categoryDao.Save(category);
+				try
+				{
+					m_categoryDao.Save(category);
+				}
+				catch
+				{
+					dupEntries.Add(category);
+				}
 			}
+			return dupEntries;
 		}
 		
 		public void DeleteCategory(LaundryCategoryDataEntity category) {
 			m_categoryDao.Delete(category);
 		}
 		
-		public void SaveOrUpdatePriceScheme(List<LaundryPriceSchemeDataEntity> priceSchemes) {
+		public List<LaundryPriceSchemeDataEntity> SaveOrUpdatePriceScheme(List<LaundryPriceSchemeDataEntity> priceSchemes) {
+			List<LaundryPriceSchemeDataEntity> dupEntries = new List<LaundryPriceSchemeDataEntity>();
+			
 			foreach(LaundryPriceSchemeDataEntity priceScheme in priceSchemes)
 			{
-				m_priceSchemeDao.SaveOrUpdate(priceScheme);
+				try
+				{
+					m_priceSchemeDao.SaveOrUpdate(priceScheme);
+				}
+				catch
+				{
+					dupEntries.Add(priceScheme);
+				}
 			}
+			return dupEntries;
 		}
 		
 		public void DeletePriceScheme(LaundryPriceSchemeDataEntity priceScheme) {
