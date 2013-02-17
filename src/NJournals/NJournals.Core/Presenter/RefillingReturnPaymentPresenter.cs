@@ -24,9 +24,12 @@ namespace NJournals.Core.Presenter
 		IRefillReturnPaymentView m_view;
 		ICustomerDao m_customerDao;
 		IRefillDao m_refillDao;		
-		IRefillCustomerInventoryDao m_custInvDao;		
+		IRefillCustomerInventoryDao m_custInvDao;	
+		IRefillDaySummaryDao m_daysummaryDao;
+		IRefillInventoryDao m_invDao;		
 		CustomerDataEntity customer;
 		RefillCustInventoryHeaderDataEntity custInv ;
+		
 		
 		public RefillingReturnPaymentPresenter(IRefillReturnPaymentView m_view)
 		{
@@ -34,6 +37,8 @@ namespace NJournals.Core.Presenter
 			m_customerDao = new CustomerDao();
 			m_refillDao = new RefillDao();
 			m_custInvDao = new RefillCustomerInventoryDao();
+			m_daysummaryDao = new RefillDaySummaryDao();
+			m_invDao = new RefillInventoryDao();
 			customer = new CustomerDataEntity();
 			custInv = new RefillCustInventoryHeaderDataEntity();
 		}
@@ -90,7 +95,9 @@ namespace NJournals.Core.Presenter
 				custInv.DetailEntities.Add(detail);
 				m_custInvDao.SaveOrUpdate(custInv);
 				
-				// TODO: update inventory header - qtyonhand & releases
+				UpdateInventory("BOTTLE", returnedBottles, returnDate);
+				UpdateInventory("CAP", returnedCaps, returnDate);
+				
 			}
 			catch(Exception ex)
 			{								
@@ -98,7 +105,27 @@ namespace NJournals.Core.Presenter
 			}
 		}
 		
-		public void UpdateCustomerRefillHeaders(decimal amtTender, List<RefillHeaderDataEntity> refillHeaders)
+		private void UpdateInventory(string name, int returnedQty, DateTime daystamp)
+		{
+			RefillInventoryHeaderDataEntity header = m_invDao.GetByName(name);
+			header.QtyOnHand += returnedQty;
+			header.QtyReleased -= returnedQty;
+						
+			RefillInventoryDetailDataEntity detail = m_invDao.GetDetailDay(header, daystamp);
+			if(detail == null)
+			{
+				detail = new RefillInventoryDetailDataEntity();
+				detail.Header = header;
+				detail.QtyOnHand += returnedQty; // FIXME: need to verify whether detail qtyonhand should be the same with header qytonhand
+				detail.Date = daystamp;
+				header.DetailEntities.Add(detail);
+			}else{
+				detail.QtyOnHand += returnedQty;
+			}
+			m_invDao.SaveOrUpdate(header);
+		}
+		
+		public void UpdateCustomerRefillHeaders(decimal amtTender, List<RefillHeaderDataEntity> refillHeaders, DateTime paymentDate)
 		{
 			try
 			{
@@ -110,14 +137,16 @@ namespace NJournals.Core.Presenter
 					{
 						header.AmountTender += balance;
 						amtTender -= balance;
-						header.PaymentDetailEntities.Add(CreateNewPayment(balance, header));
-						m_refillDao.SaveOrUpdate(header);						
+						header.PaymentDetailEntities.Add(CreateNewPayment(balance, header, paymentDate));						
+						m_refillDao.SaveOrUpdate(header);
+						UpdateDaySummary(balance, paymentDate, header);
 					}
 					else if(amtTender < balance)
 					{
 						header.AmountTender += amtTender;
-						header.PaymentDetailEntities.Add(CreateNewPayment(amtTender, header));
+						header.PaymentDetailEntities.Add(CreateNewPayment(amtTender, header, paymentDate));
 						m_refillDao.SaveOrUpdate(header);
+						UpdateDaySummary(amtTender, paymentDate, header);
 						amtTender = 0.00M;
 					}
 					if(amtTender <= 0.00M)
@@ -132,12 +161,28 @@ namespace NJournals.Core.Presenter
 			}
 		}
 		
-		private RefillPaymentDetailDataEntity CreateNewPayment(decimal amount, RefillHeaderDataEntity header)
+		private void UpdateDaySummary(decimal amount, DateTime paymentDate, RefillHeaderDataEntity header)
+		{
+			RefillDaySummaryDataEntity daysummary = m_daysummaryDao.GetByDay(paymentDate);
+			if(daysummary == null)
+			{
+				daysummary = new RefillDaySummaryDataEntity();
+				daysummary.HeaderEntities.Add(header);
+				daysummary.TotalSales += amount;
+				daysummary.DayStamp = paymentDate;				
+			}else{
+				daysummary.HeaderEntities.Add(header);
+				daysummary.TotalSales += amount;
+			}
+			m_daysummaryDao.SaveOrUpdate(daysummary);
+		}
+		
+		private RefillPaymentDetailDataEntity CreateNewPayment(decimal amount, RefillHeaderDataEntity header, DateTime paymentDate)
 		{
 			RefillPaymentDetailDataEntity payment = new RefillPaymentDetailDataEntity();
 			payment.Header = header;
 			payment.Amount = amount;
-			payment.PaymentDate = DateTime.Now;			
+			payment.PaymentDate = paymentDate;		
 			return payment;
 		}
 	}

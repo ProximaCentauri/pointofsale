@@ -63,8 +63,22 @@ namespace NJournals.Core.Models
 			using(var session = NHibernateHelper.OpenSession())
 			{
                 var query = session.Query<RefillInventoryHeaderDataEntity>()
-                    .Where(x => x.Name == p_name)
-                    .SingleOrDefault();
+                	.Where(x => x.Name.ToUpper().Contains(p_name.ToUpper()))
+                	.FirstOrDefault();
+                   	
+				return query;
+			}
+		}
+		
+		public RefillInventoryDetailDataEntity GetDetailDay(RefillInventoryHeaderDataEntity p_header, DateTime p_dayStamp)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+                var query = session.QueryOver<RefillInventoryDetailDataEntity>()
+                	.Where(x => x.Header == p_header)
+                	.And(x => x.Date == p_dayStamp)
+                	.SingleOrDefault();
+                   	
 				return query;
 			}
 		}

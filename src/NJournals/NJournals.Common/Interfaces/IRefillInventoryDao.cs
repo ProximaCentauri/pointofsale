@@ -21,6 +21,7 @@ namespace NJournals.Common.Interfaces
 		void SaveOrUpdate(RefillInventoryHeaderDataEntity p_inventory);
 		IEnumerable<RefillInventoryHeaderDataEntity> GetAllItems();
 		RefillInventoryHeaderDataEntity GetByName(string p_name);
+		RefillInventoryDetailDataEntity GetDetailDay(RefillInventoryHeaderDataEntity p_header, DateTime p_dayStamp);
 		void Delete(RefillInventoryHeaderDataEntity p_inventory);
 		void Update(RefillInventoryHeaderDataEntity p_inventory);
 	}

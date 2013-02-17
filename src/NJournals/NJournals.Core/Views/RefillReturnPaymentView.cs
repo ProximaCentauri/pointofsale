@@ -123,15 +123,23 @@ namespace NJournals.Core.Views
 			{	
 				try
 				{
+					bool isSaved = false;
 					if(returnedBottles > 0 || returnedCaps > 0)
 					{
 						this.UpdateCustomerInventory(returnedBottles, returnedCaps);
+						isSaved = true;
 					}
 					if(amountTender > 0.0M)
 					{
 						this.UpdateCustomerRefillHeaders(amountTender);
+						isSaved = true;
 					}
-					MessageService.ShowInfo("Save successful!","Save");
+					if(isSaved){
+						MessageService.ShowInfo("Save successful!","Save");
+					}
+					else{
+						MessageService.ShowWarning("No changes; nothing to save.","Save");
+					}
 				}
 				catch(Exception ex)
 				{					
@@ -151,7 +159,7 @@ namespace NJournals.Core.Views
 		{
 			if(this.refillHeaders.Count > 0)
 			{
-				m_presenter.UpdateCustomerRefillHeaders(amountTender,refillHeaders);
+				m_presenter.UpdateCustomerRefillHeaders(amountTender,refillHeaders, dtDate.Value);
 			}			
 		}
 		

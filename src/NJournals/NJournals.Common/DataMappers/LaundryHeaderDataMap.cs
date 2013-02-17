@@ -39,8 +39,7 @@ namespace NJournals.Common.DataMappers
 				.Cascade.AllDeleteOrphan();
 			HasMany<LaundryJobChargesDataEntity>(x => x.JobChargeEntities)
 				.KeyColumn("LaundryHeaderID").Not.LazyLoad()
-				.Inverse()
-				
+				.Inverse()				
 				.Cascade.AllDeleteOrphan();
 			HasMany<LaundryPaymentDetailDataEntity>(x => x.PaymentDetailEntities)
 				.KeyColumn("LaundryHeaderID").Not.LazyLoad()
