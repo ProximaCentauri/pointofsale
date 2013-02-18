@@ -522,6 +522,7 @@ namespace NJournals.Core.Views
 			// 
 			// btndelete
 			// 
+			this.btndelete.Enabled = false;
 			this.btndelete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btndelete.Location = new System.Drawing.Point(126, 681);
 			this.btndelete.Name = "btndelete";

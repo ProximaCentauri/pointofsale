@@ -199,9 +199,7 @@ namespace NJournals.Core.Views
 			txtamtdue.Text = totalAmtDue.ToString("N2");			
 			this.txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + price).ToString("N2");
 			this.txtbalance.Text = this.txttotalamtdue.Text;			
-		}
-		
-		
+		}		
 		
 		void BtnaddClick(object sender, EventArgs e)
 		{
@@ -368,20 +366,26 @@ namespace NJournals.Core.Views
 		
 		void dgv_validating(object sender, DataGridViewCellValidatingEventArgs e)
 		{			
-			validateDatagridValue(this.Column3, e);
+			validateDatagridValue(new List<DataGridViewTextBoxColumn>(){this.Column3,this.Column4}, e);
 		}
 		
-		private void validateDatagridValue(DataGridViewTextBoxColumn column, DataGridViewCellValidatingEventArgs e){
+		private void validateDatagridValue(List<DataGridViewTextBoxColumn> columns, DataGridViewCellValidatingEventArgs e){
 			//DataGridViewColumn itemQty = dataGridView1.Columns[e.ColumnIndex];
-			
-			if(dataGridView1.Columns[e.ColumnIndex] == column && dataGridView1.IsCurrentCellInEditMode){
-				int val;					
-				if(!int.TryParse(Convert.ToString(e.FormattedValue), out val)){
-					e.Cancel = true;
-					MessageService.ShowWarning("Invalid value being inputted.","Invalid Value");
-					dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];				
+			foreach(DataGridViewTextBoxColumn column in columns){
+				if(dataGridView1.Columns[e.ColumnIndex] == column && dataGridView1.IsCurrentCellInEditMode){
+					int val;					
+					if(!int.TryParse(Convert.ToString(e.FormattedValue), out val)){
+						e.Cancel = true;
+						MessageService.ShowWarning("Invalid value being inputted.","Invalid Value");
+						dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];				
+					}else{
+						LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
+						decimal kilo = decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString());			
+						decimal price = priceEntity.Price * kilo;						
+						dataGridView1.Rows[e.RowIndex].Cells[4].Value = price.ToString("N2");
+					}
 				}
-			}
+			}			
 		}
 	}	
 }
