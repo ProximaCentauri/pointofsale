@@ -180,7 +180,7 @@ namespace NJournals.Core.Views
 			decimal kilo = decimal.Parse(txtkilo.Text);			
 			decimal price = priceEntity.Price * kilo;	
 			bool alreadyExist = false;
-			for(int i=0;i<dataGridView1.Rows.Count -1;i++){
+			for(int i=0;i<dataGridView1.Rows.Count;i++){
 				if(dataGridView1.Rows[i].Cells[0].Value != null){
 					if(dataGridView1.Rows[i].Cells[0].Value.ToString().Equals(cmbcategory.Text) &&
 					   dataGridView1.Rows[i].Cells[1].Value.ToString().Equals(cmbservices.Text)){
@@ -364,6 +364,24 @@ namespace NJournals.Core.Views
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - charge).ToString("N2");
 				txtbalance.Text = txttotalamtdue.Text;
 			}			
+		}
+		
+		void dgv_validating(object sender, DataGridViewCellValidatingEventArgs e)
+		{			
+			validateDatagridValue(this.Column3, e);
+		}
+		
+		private void validateDatagridValue(DataGridViewTextBoxColumn column, DataGridViewCellValidatingEventArgs e){
+			//DataGridViewColumn itemQty = dataGridView1.Columns[e.ColumnIndex];
+			
+			if(dataGridView1.Columns[e.ColumnIndex] == column && dataGridView1.IsCurrentCellInEditMode){
+				int val;					
+				if(!int.TryParse(Convert.ToString(e.FormattedValue), out val)){
+					e.Cancel = true;
+					MessageService.ShowWarning("Invalid value being inputted.","Invalid Value");
+					dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];				
+				}
+			}
 		}
 	}	
 }

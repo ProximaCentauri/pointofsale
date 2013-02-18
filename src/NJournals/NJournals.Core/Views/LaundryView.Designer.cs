@@ -57,6 +57,11 @@ namespace NJournals.Core.Views
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.btnsearch = new System.Windows.Forms.Button();
 			this.txtsearch = new System.Windows.Forms.TextBox();
@@ -85,11 +90,6 @@ namespace NJournals.Core.Views
 			this.label18 = new System.Windows.Forms.Label();
 			this.txttotaldiscount = new System.Windows.Forms.TextBox();
 			this.label19 = new System.Windows.Forms.Label();
-			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -307,6 +307,8 @@ namespace NJournals.Core.Views
 			// 
 			// dataGridView1
 			// 
+			this.dataGridView1.AllowUserToAddRows = false;
+			this.dataGridView1.AllowUserToDeleteRows = false;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Column1,
@@ -319,6 +321,35 @@ namespace NJournals.Core.Views
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.Size = new System.Drawing.Size(538, 197);
 			this.dataGridView1.TabIndex = 4;
+			this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgv_validating);
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "Category";
+			this.Column1.Name = "Column1";
+			this.Column1.ReadOnly = true;
+			// 
+			// Column2
+			// 
+			this.Column2.HeaderText = "Service";
+			this.Column2.Name = "Column2";
+			this.Column2.ReadOnly = true;
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "No. of Items";
+			this.Column3.Name = "Column3";
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Kilo";
+			this.Column4.Name = "Column4";
+			// 
+			// Column5
+			// 
+			this.Column5.HeaderText = "Price";
+			this.Column5.Name = "Column5";
+			this.Column5.ReadOnly = true;
 			// 
 			// groupBox2
 			// 
@@ -632,34 +663,6 @@ namespace NJournals.Core.Views
 			this.label19.Size = new System.Drawing.Size(22, 17);
 			this.label19.TabIndex = 31;
 			this.label19.Text = "%";
-			// 
-			// Column1
-			// 
-			this.Column1.HeaderText = "Category";
-			this.Column1.Name = "Column1";
-			this.Column1.ReadOnly = true;
-			// 
-			// Column2
-			// 
-			this.Column2.HeaderText = "Service";
-			this.Column2.Name = "Column2";
-			this.Column2.ReadOnly = true;
-			// 
-			// Column3
-			// 
-			this.Column3.HeaderText = "No. of Items";
-			this.Column3.Name = "Column3";
-			// 
-			// Column4
-			// 
-			this.Column4.HeaderText = "Kilo";
-			this.Column4.Name = "Column4";
-			// 
-			// Column5
-			// 
-			this.Column5.HeaderText = "Price";
-			this.Column5.Name = "Column5";
-			this.Column5.ReadOnly = true;
 			// 
 			// LaundryNewView
 			// 
