@@ -60,7 +60,7 @@ namespace NJournals.Core.Presenter
 		
 		List<LaundryJobChargesDataEntity> new_ChargeEntities = null;
 		List<LaundryJobChargesDataEntity> orig_ChargeEntities = null;
-		List<LaundryDetailDataEntity> orig_DetailEntities = null;
+		//List<LaundryDetailDataEntity> orig_DetailEntities = null;
 		List<LaundryDetailDataEntity> new_DetailEntities = null;
 		List<LaundryJobChecklistDataEntity> orig_ChecklistEntities = null;
 		List<LaundryJobChecklistDataEntity> new_ChecklistEntities = null;
@@ -73,69 +73,20 @@ namespace NJournals.Core.Presenter
 			if(m_view.GetTitle().Contains("NEW")){
 				SaveDaySummary(m_headerEntity);
 			}else if(m_view.GetTitle().Contains("CLAIM")){								
-				//TODO: process header details
-				SaveUpdateDetails();			
+
+				SaveUpdateDetails();
 				
-				//TODO: process payment detail
 				m_OriginalHeaderEntity.PaymentDetailEntities = m_headerEntity.PaymentDetailEntities;
 				
 				SaveOrDeleteJobCharges();
 				
-				SaveUpdateOrDeleteJobCheckList();
-				
-				/*List<LaundryPaymentDetailDataEntity> m_origPaymentEntities = m_OriginalHeaderEntity.PaymentDetailEntities as List<LaundryPaymentDetailDataEntity>;
-				
-				foreach(LaundryPaymentDetailDataEntity paymentEntity in m_headerEntity.PaymentDetailEntities){
-					LaundryPaymentDetailDataEntity updatedPayment = m_origPaymentEntities.Find(x => x.Header.LaundryHeaderID == paymentEntity.Header.LaundryHeaderID);
-					int index = m_origPaymentEntities.FindIndex(x => x.Header.LaundryHeaderID == paymentEntity.Header.LaundryHeaderID);
-					if(updatedPayment != null){
-						updatedPayment.Amount = paymentEntity.Amount;
-					}
-					m_OriginalHeaderEntity.PaymentDetailEntities[index] = updatedPayment;
-				}*/
-				//TODO: process jobcharges
-				
-				//TODO: process jobchecklist
+				SaveUpdateOrDeleteJobCheckList();			
 				
 				SaveDaySummary(m_OriginalHeaderEntity);
 			}							
 				
 			MessageService.ShowInfo("Successfully saved entries.","Information");						
-		}
-		
-		private void SaveDaySummary(LaundryHeaderDataEntity headerEntity){
-			DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
-			LaundryDaySummaryDataEntity daySummary = m_summaryDao.GetByDay(today);
-			if(daySummary != null)
-			{
-				daySummary.TransCount += 1;
-				//TODO: totalsales should be totalamoutdue - balance
-				daySummary.TotalSales += headerEntity.PaymentDetailEntities[0].Amount;
-				headerEntity.DaySummary = daySummary;
-				
-				// update daysummary with transcount and totalsales				
-				m_summaryDao.Update(daySummary);				
-			}else{
-				// set daysummary			
-				daySummary = new LaundryDaySummaryDataEntity();
-				daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-				//TODO: totalsales should be amounttender - amount change.			
-				
-				daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[0].Amount;
-				daySummary.TransCount += 1;
-				
-				// set header entity in daysummary for nhibernate to pickup and map			
-				daySummary.HeaderEntities.Add(headerEntity);
-				// set daysummary entity in header for nhibernate to pickup and map
-				m_headerEntity.DaySummary = daySummary;
-				//m_chargeDao.SaveOrUpdate(headerEntity.
-				//m_customerDao.SaveOrUpdate(headerEntity.Customer);				
-				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
-				// this will handle the saving for the linked tables								
-			}
-			m_laundryDao.SaveOrUpdate(headerEntity);
-			
-		}
+		}	
 		
 		private void SaveUpdateOrDeleteJobCheckList(){
 			if(new_ChecklistEntities == null)
@@ -202,22 +153,24 @@ namespace NJournals.Core.Presenter
 			//LaundryHeaderDataEntity headerData = m_laundryDao.GetByID(m_headerEntity.LaundryHeaderID);
 			List<LaundryDetailDataEntity> detailData = m_detailDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryDetailDataEntity>;
 			
-			var listToLookUp = detailData.ToLookup(entity => entity.Header.LaundryHeaderID);
-			var listToAdd = new_DetailEntities.Where(entity => (!listToLookUp.Contains(entity.Header.LaundryHeaderID)));
-			var listToUpdate = new_DetailEntities.Where(entity => listToLookUp.Contains(entity.Header.LaundryHeaderID));
+			var listToLookUp = detailData.ToLookup(entity => entity.Category.Name);
+			var listToAdd = new_DetailEntities.Where(entity => (!listToLookUp.Contains(entity.Category.Name)));
+			var listToUpdate = new_DetailEntities.Where(entity => listToLookUp.Contains(entity.Category.Name));
 			List<LaundryDetailDataEntity> newDetailList = new List<LaundryDetailDataEntity>();
 			
 			foreach(LaundryDetailDataEntity detail in listToUpdate.ToList()){
 				LaundryDetailDataEntity entity = new LaundryDetailDataEntity();
 				LaundryDetailDataEntity m_entity = detailData.Find(x => x.Category.Name == detail.Category.Name && x.Service.Name == detail.Service.Name);
-				entity.ItemQty = detail.ItemQty;
-				entity.Kilo = detail.Kilo;
-				entity.Amount = detail.Amount;
-				entity.Category = detail.Category;
-				entity.Service = detail.Service;
-				entity.Header = detail.Header;
-				entity.ID = m_entity.ID;				
-				newDetailList.Add(entity);
+				if(m_entity != null){
+					entity.ItemQty = detail.ItemQty;
+					entity.Kilo = detail.Kilo;
+					entity.Amount = detail.Amount;
+					entity.Category = detail.Category;
+					entity.Service = detail.Service;
+					entity.Header = detail.Header;
+					entity.ID = m_entity.ID;				
+					newDetailList.Add(entity);
+				}				
 			}		
 			
 			foreach(LaundryDetailDataEntity detail in listToAdd.ToList()){
@@ -227,6 +180,39 @@ namespace NJournals.Core.Presenter
 			m_OriginalHeaderEntity.DetailEntities = newDetailList;	
 		}
 		
+		private void SaveDaySummary(LaundryHeaderDataEntity headerEntity){
+			DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
+			LaundryDaySummaryDataEntity daySummary = m_summaryDao.GetByDay(today);
+			if(daySummary != null)
+			{
+				daySummary.TransCount += 1;
+				//TODO: totalsales should be totalamoutdue - balance
+				daySummary.TotalSales += headerEntity.PaymentDetailEntities[0].Amount;
+				headerEntity.DaySummary = daySummary;
+				
+				// update daysummary with transcount and totalsales				
+				m_summaryDao.Update(daySummary);				
+			}else{
+				// set daysummary			
+				daySummary = new LaundryDaySummaryDataEntity();
+				daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+				//TODO: totalsales should be amounttender - amount change.			
+				
+				daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[0].Amount;
+				daySummary.TransCount += 1;
+				
+				// set header entity in daysummary for nhibernate to pickup and map			
+				daySummary.HeaderEntities.Add(headerEntity);
+				// set daysummary entity in header for nhibernate to pickup and map
+				m_headerEntity.DaySummary = daySummary;
+				//m_chargeDao.SaveOrUpdate(headerEntity.
+				//m_customerDao.SaveOrUpdate(headerEntity.Customer);				
+				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
+				// this will handle the saving for the linked tables								
+			}
+			m_laundryDao.SaveOrUpdate(headerEntity);
+			
+		}
 		
 		public void CancelClicked(){
 			m_view.CloseView();

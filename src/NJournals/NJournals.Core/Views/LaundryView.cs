@@ -60,18 +60,18 @@ namespace NJournals.Core.Views
 			m_presenter = new LaundryViewPresenter(this, m_laundryDao);
 			if(this.Text.Contains("[NEW]")){	
 				m_headerEntity = new LaundryHeaderDataEntity();						
-				m_presenter.SetAllServices();
 				m_presenter.SetAllCustomers();
-				m_presenter.SetAllCharges();
 				this.groupBox2.Enabled = this.btnclaim.Enabled = false;
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 				this.dtrecieveDate.Value = DateTime.Now;				
-			}else{
-				m_presenter.SetAllCharges();
-				grpServices.Enabled = false;
+			}else{				
+				cmbCustomers.Enabled = false;
+				//grpServices.Enabled = false;
 				lblchecklist.Enabled = false;
 				txtdiscount.Enabled = false;
 			}
+			m_presenter.SetAllServices();
+			m_presenter.SetAllCharges();
 		}
 				
 		public void SetAllCategories(List<LaundryCategoryDataEntity> categories){				
@@ -99,7 +99,7 @@ namespace NJournals.Core.Views
 		}
 		
 		void BtncancelClick(object sender, EventArgs e){
-			m_presenter.CancelClicked();
+			this.Close();
 		}		
 		
 		public LaundryHeaderDataEntity ProcessHeaderDataEntity(){				
