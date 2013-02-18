@@ -366,11 +366,11 @@ namespace NJournals.Core.Views
 		
 		void dgv_validating(object sender, DataGridViewCellValidatingEventArgs e)
 		{			
+			//TODO: Improve price changing
 			validateDatagridValue(new List<DataGridViewTextBoxColumn>(){this.Column3,this.Column4}, e);
 		}
 		
 		private void validateDatagridValue(List<DataGridViewTextBoxColumn> columns, DataGridViewCellValidatingEventArgs e){
-			//DataGridViewColumn itemQty = dataGridView1.Columns[e.ColumnIndex];
 			foreach(DataGridViewTextBoxColumn column in columns){
 				if(dataGridView1.Columns[e.ColumnIndex] == column && dataGridView1.IsCurrentCellInEditMode){
 					int val;					
@@ -379,7 +379,9 @@ namespace NJournals.Core.Views
 						MessageService.ShowWarning("Invalid value being inputted.","Invalid Value");
 						dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];				
 					}else{
-						LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
+						string category = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+						string service = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+						LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(category, service);
 						decimal kilo = decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString());			
 						decimal price = priceEntity.Price * kilo;						
 						dataGridView1.Rows[e.RowIndex].Cells[4].Value = price.ToString("N2");
