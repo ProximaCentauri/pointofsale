@@ -315,11 +315,7 @@ namespace NJournals.Core.Views
 						}
 					}					
 				}
-				lblchecklist.Enabled = true;
-				/*if(m_headerEntity.JobChecklistEntities.Count == 0){
-					//try to retrieve checklist in table
-					m_headerEntity.JobChecklistEntities = m_presenter.GetJobChecklistByHeaderId(m_headerEntity.LaundryHeaderID);
-				}*/
+				lblchecklist.Enabled = true;				
 			}else
 				MessageService.ShowWarning("Can't find JO Number: " + txtsearch.Text, "Non-existing");
 		}
