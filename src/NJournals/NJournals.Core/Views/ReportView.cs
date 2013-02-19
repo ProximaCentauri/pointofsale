@@ -117,8 +117,8 @@ namespace NJournals.Core.Views
             catch(Exception ex)
             {
             	MessageService.ShowError("Unable to display report; an unexpected error occurred.\n" +
-            	                         "Please check error logs for details.","Error");
-            	LogHelper.Log(ex.Message,LogType.ERR,false);            	                        
+				                        "Please check error log for details.\n" +
+				                        ex.Message,"Error");           	          	                       
             }
 		}
 

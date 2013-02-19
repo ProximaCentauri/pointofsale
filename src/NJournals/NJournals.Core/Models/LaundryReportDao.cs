@@ -59,7 +59,8 @@ namespace NJournals.Core.Models
 							                                                               ,Projections.GroupProperty("paymentdetails.PaymentDate"))),"DayStamp")
 							               .Add(Projections.Sum("paymentdetails.Amount"),"TotalSales")
 							               .Add(Projections.CountDistinct("LaundryHeaderID"),"TransCount"))
-							.Add(Restrictions.Between("paymentdetails.PaymentDate",fromDateTime,toDateTime))           						          
+							.Add(Restrictions.Between("paymentdetails.PaymentDate",fromDateTime,toDateTime)) 
+							.Add(Restrictions.Eq("header.VoidFlag",false))							
 							.AddOrder(Order.Asc("paymentdetails.PaymentDate"))
 							.SetResultTransformer(Transformers.AliasToBean(typeof(LaundryDaySummaryDataEntity)))
 							.List<LaundryDaySummaryDataEntity>();
@@ -83,6 +84,7 @@ namespace NJournals.Core.Models
                         var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")                            
                             .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
                             .Add(Restrictions.Eq("header.ClaimFlag", false))
+                        	.Add(Restrictions.Eq("header.VoidFlag",false))
                             .AddOrder(Order.Asc("header.ReceivedDate"))                          
                             .List<LaundryHeaderDataEntity>();
                         return query;
@@ -92,11 +94,29 @@ namespace NJournals.Core.Models
                             .Add(Restrictions.Eq("header.Customer", customer))    
                             .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
                             .Add(Restrictions.Eq("header.ClaimFlag", false))
+                        	.Add(Restrictions.Eq("header.VoidFlag",false))
                             .AddOrder(Order.Asc("header.ReceivedDate"))
                             .List<LaundryHeaderDataEntity>();
                         return query;
 					}
 					
+				}
+			}
+		}
+		
+		public IEnumerable<LaundryHeaderDataEntity> GetUnclaimedItemsReport(CustomerDataEntity customer)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{										
+                    var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")                            
+                        .Add(Restrictions.Eq("header.Customer", customer))
+                        .Add(Restrictions.Eq("header.ClaimFlag", false))
+                    	.Add(Restrictions.Eq("header.VoidFlag",false))
+                        .AddOrder(Order.Asc("header.ReceivedDate"))                          
+                        .List<LaundryHeaderDataEntity>();
+                    return query;
 				}
 			}
 		}
@@ -148,6 +168,7 @@ namespace NJournals.Core.Models
                         var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
                            .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
                            .Add(Restrictions.Eq("header.PaidFlag", false))
+                           .Add(Restrictions.Eq("header.VoidFlag",false))
                            .AddOrder(Order.Asc("header.ReceivedDate"))
                            .List<LaundryHeaderDataEntity>();
                         return query;
@@ -158,12 +179,63 @@ namespace NJournals.Core.Models
                             .Add(Restrictions.Eq("header.Customer", customer))
                             .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
                             .Add(Restrictions.Eq("header.PaidFlag", false))
+                        	.Add(Restrictions.Eq("header.VoidFlag",false))
                             .AddOrder(Order.Asc("header.ReceivedDate"))
                             .List<LaundryHeaderDataEntity>();
                         return query;
                     }
 				}
 			}
-		}		
+		}
+
+		public IEnumerable<LaundryHeaderDataEntity> GetUnpaidTransactionsReport(CustomerDataEntity customer)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{                  
+                    var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
+                       .Add(Restrictions.Eq("header.Customer", customer))
+                       .Add(Restrictions.Eq("header.PaidFlag", false))
+                       .Add(Restrictions.Eq("header.VoidFlag",false))
+                       .AddOrder(Order.Asc("header.ReceivedDate"))
+                       .List<LaundryHeaderDataEntity>();
+                    return query;
+				}
+			}
+		}
+		
+		public IEnumerable<LaundryHeaderDataEntity> GetVoidTransactionsReport(CustomerDataEntity customer,
+		                                                               DateTime fromDateTime,
+		                                                               DateTime toDateTime,
+		                                                               bool b_isAll)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					if (b_isAll)
+                    {
+                        var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
+                           .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
+                           .Add(Restrictions.Eq("header.VoidFlag", true))
+                           .AddOrder(Order.Asc("header.ReceivedDate"))
+                           .List<LaundryHeaderDataEntity>();
+                        return query;
+                    }
+                    else
+                    {
+                        var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
+                            .Add(Restrictions.Eq("header.Customer", customer))
+                            .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
+                            .Add(Restrictions.Eq("header.VoidFlag", true))
+                            .AddOrder(Order.Asc("header.ReceivedDate"))
+                            .List<LaundryHeaderDataEntity>();
+                        return query;
+                    }
+					
+				}
+			}
+		}
 	}
 }

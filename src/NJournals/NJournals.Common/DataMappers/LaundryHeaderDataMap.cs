@@ -33,6 +33,7 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.TotalAmountDue);
 			Map(x => x.TotalPayment);
 			Map(x => x.TotalItemQty);		
+			Map(x => x.VoidFlag);
 			HasMany<LaundryDetailDataEntity>(x => x.DetailEntities)
 				.KeyColumn("LaundryHeaderID")
 				.Inverse()

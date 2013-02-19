@@ -308,5 +308,9 @@ namespace NJournals.Core.Presenter
 			return m_checklistDao.GetByName(p_name);
 		}
 		
+		public void LaunchCustomerSearch()
+		{
+			m_view.LaunchCustomerSearch();
+		}
 	}
 }
