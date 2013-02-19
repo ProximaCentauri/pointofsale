@@ -27,6 +27,7 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.DueDate);
 			Map(x => x.ClaimFlag);
 			Map(x => x.PaidFlag);			
+			Map(x => x.VoidFlag);
 			Map(x => x.AmountDue);
 			Map(x => x.TotalCharge);
 			Map(x => x.TotalDiscount);
