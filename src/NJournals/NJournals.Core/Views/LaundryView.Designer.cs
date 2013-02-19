@@ -309,7 +309,6 @@ namespace NJournals.Core.Views
 			// dataGridView1
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
-			this.dataGridView1.AllowUserToDeleteRows = false;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Column1,
@@ -340,11 +339,13 @@ namespace NJournals.Core.Views
 			// 
 			this.Column3.HeaderText = "No. of Items";
 			this.Column3.Name = "Column3";
+			this.Column3.ReadOnly = true;
 			// 
 			// Column4
 			// 
 			this.Column4.HeaderText = "Kilo";
 			this.Column4.Name = "Column4";
+			this.Column4.ReadOnly = true;
 			// 
 			// Column5
 			// 

@@ -65,10 +65,12 @@ namespace NJournals.Core.Views
 				this.groupBox2.Enabled = this.btnclaim.Enabled = false;
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 				this.dtrecieveDate.Value = DateTime.Now;				
+				dataGridView1.AllowUserToDeleteRows = true;
 			}else{				
 				cmbCustomers.Enabled = false;
-				//grpServices.Enabled = false;
+				grpServices.Enabled = false;
 				lblchecklist.Enabled = false;
+				btncancel.Enabled = false;
 				txtdiscount.Enabled = false;
 			}
 			m_presenter.SetAllServices();
@@ -99,8 +101,24 @@ namespace NJournals.Core.Views
 			}
 		}
 		
-		void BtncancelClick(object sender, EventArgs e){
-			this.Close();
+		void BtncancelClick(object sender, EventArgs e){			
+			if(MessageService.ShowYesNo("Are you sure you want to cancel this transaction? Data in the fields will be remove.","Cancel Transaction")){
+				this.dataGridView1.Rows.Clear();
+				this.cmbcategory.Text = 
+					cmbservices.Text = 
+					cmbCustomers.Text = string.Empty;			
+				for(int i=0;i<chkchargesList.Items.Count;i++)
+					chkchargesList.SetItemCheckState(i, CheckState.Unchecked);
+				txttotalamtdue.Text = 					
+					txtamtdue.Text = 
+					txtbalance.Text = 
+					txtchange.Text =
+					txtamttender.Text = 
+					txttotaldiscount.Text = "0.00";
+				txtdiscount.Text = "0";
+				txtnoitems.Text = string.Empty;
+				txtkilo.Text = string.Empty;					
+			}			   			   
 		}		
 		
 		public LaundryHeaderDataEntity ProcessHeaderDataEntity(){				
@@ -364,7 +382,9 @@ namespace NJournals.Core.Views
 		void dgv_validating(object sender, DataGridViewCellValidatingEventArgs e)
 		{			
 			//TODO: Improve price changing
-			validateDatagridValue(new List<DataGridViewTextBoxColumn>(){this.Column3,this.Column4}, e);
+			//validateDatagridValue(new List<DataGridViewTextBoxColumn>(){this.Column3,this.Column4}, e);
+			
+			
 		}
 		
 		private void validateDatagridValue(List<DataGridViewTextBoxColumn> columns, DataGridViewCellValidatingEventArgs e){
@@ -397,6 +417,8 @@ namespace NJournals.Core.Views
 			customerSearchView = new LaundryCustomerSearchView(m_presenter.getCustomerByName(cmbCustomers.Text));			
 			customerSearchView.ShowDialog();				
 		}
+		
+		
 	}	
 }
 
