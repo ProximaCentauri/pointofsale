@@ -52,8 +52,7 @@ namespace NJournals.Common.Util
 	
 		public static void ShowError(string message)
 		{
-			ShowError(message, "Error");
-	
+			ShowError(message, "Error");	
 		}
 	
 		public static void ShowWarning(string message)

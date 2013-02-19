@@ -22,12 +22,13 @@ namespace NJournals.Common.DataEntities
 		public virtual DateTime ClaimDate {get;set;}
 		public virtual bool PaidFlag {get;set;}
 		public virtual bool ClaimFlag {get;set;}
+		public virtual bool VoidFlag {get;set;}
 		public virtual decimal AmountDue {get;set;}
 		public virtual decimal TotalCharge {get;set;}
 		public virtual decimal TotalDiscount {get;set;}
 		public virtual decimal TotalAmountDue {get;set;}
 		public virtual decimal TotalPayment {get;set;}		
-		public virtual int TotalItemQty {get;set;}
+		public virtual int TotalItemQty {get;set;}		
 		
 		public virtual CustomerDataEntity Customer {get;set;}
 		public virtual LaundryDaySummaryDataEntity DaySummary {get;set;}

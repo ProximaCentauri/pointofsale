@@ -72,15 +72,20 @@ namespace NJournals.Core.Views
 		{
 			decimal price = m_presenter.getAmtChargeByName(cmbproducts.Text);
 			decimal totalPrice = decimal.Parse(txtnoitems.Text) * price;
-			List<String> lstItems = new List<String>();
-			lstItems.Add(cmbproducts.Text);			
-			lstItems.Add(txtbottles.Text);
-			lstItems.Add(txtcaps.Text);
-			lstItems.Add(txtnoitems.Text);
-			lstItems.Add(totalPrice.ToString("N2"));
-			string[] items = new string[lstItems.Count];
-			lstItems.CopyTo(items,0);
-			dataGridView1.Rows.Add(items);
+			bool alreadyExist = false;
+			for(int i=0;i<dataGridView1.Rows.Count;i++){
+				if(dataGridView1.Rows[i].Cells[0].Value != null){
+					if(dataGridView1.Rows[i].Cells[0].Value.ToString().Equals(cmbproducts.Text)){
+						dataGridView1.Rows[i].Cells[1].Value = (int.Parse(txtbottles.Text) + int.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString())).ToString();
+						dataGridView1.Rows[i].Cells[2].Value = (int.Parse(txtcaps.Text) + int.Parse(dataGridView1.Rows[i].Cells[2].Value.ToString())).ToString();
+						dataGridView1.Rows[i].Cells[3].Value = (int.Parse(txtnoitems.Text) + int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString())).ToString();
+						dataGridView1.Rows[i].Cells[4].Value = (decimal.Parse((dataGridView1.Rows[i].Cells[4].Value.ToString())) + totalPrice).ToString("N2");
+						alreadyExist = true;
+					}
+				}
+			}				
+			if(!alreadyExist)
+				dataGridView1.Rows.Add(cmbproducts.Text, txtbottles.Text, txtcaps.Text, txtnoitems.Text, totalPrice.ToString("N2"));
 			this.txtamtdue.Text = (decimal.Parse(txtamtdue.Text) + totalPrice).ToString("N2");
 		}
 	}

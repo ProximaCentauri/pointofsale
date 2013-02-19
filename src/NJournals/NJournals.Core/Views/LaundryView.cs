@@ -42,6 +42,7 @@ namespace NJournals.Core.Views
 		LaundryJobChargesDataEntity m_jobcharge = null;
 		LaundryHeaderDataEntity m_headerEntity;
 		CheckListView chklistView = null;
+		LaundryCustomerSearchView customerSearchView = null;
 		private decimal amountTender = 0;
 		
 		private decimal totalAmtDue = 0;
@@ -384,6 +385,17 @@ namespace NJournals.Core.Views
 					}
 				}
 			}			
+		}
+		
+		void BtnCustomerSearchClick(object sender, EventArgs e)
+		{
+			m_presenter.LaunchCustomerSearch();
+		}
+		
+		public void LaunchCustomerSearch()
+		{			
+			customerSearchView = new LaundryCustomerSearchView(m_presenter.getCustomerByName(cmbCustomers.Text));			
+			customerSearchView.ShowDialog();				
 		}
 	}	
 }

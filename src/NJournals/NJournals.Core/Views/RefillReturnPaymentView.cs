@@ -143,9 +143,9 @@ namespace NJournals.Core.Views
 				}
 				catch(Exception ex)
 				{					
-					MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
-				                        "Please check error log for details.","Error");
-					LogHelper.Log(ex.Message,LogType.ERR,false);
+					MessageService.ShowError("Unable to display data; an unexpected error occurred.\n" +
+				                        "Please check error log for details.\n" +
+				                        ex.Message,"Error");				
 				}
 			}		
 		}

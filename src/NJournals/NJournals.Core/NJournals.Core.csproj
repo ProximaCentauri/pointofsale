@@ -104,6 +104,7 @@
     <Compile Include="Models\LaundryServiceDao.cs" />
     <Compile Include="Models\RefillCustomerInventoryDao.cs" />
     <Compile Include="Models\RefillDao.cs" />
+    <Compile Include="Models\RefillDataDao.cs" />
     <Compile Include="Models\RefillDaySummaryDao.cs" />
     <Compile Include="Models\RefillInventoryDao.cs" />
     <Compile Include="Models\RefillProductTypeDao.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Presenter\AddItemPresenter.cs" />
     <Compile Include="Presenter\ChekcListViewPresenter.cs" />
     <Compile Include="Presenter\LaundryConfigurationViewPresenter.cs" />
+    <Compile Include="Presenter\LaundryCustomerSearchViewPresenter.cs" />
     <Compile Include="Presenter\LaundryViewPresenter.cs" />
     <Compile Include="Presenter\MainFormStationPresenter.cs" />
     <Compile Include="Presenter\RefillingConfigurationViewPresenter.cs" />
@@ -138,11 +140,11 @@
     <Compile Include="Views\LaundryConfigurationView.Designer.cs">
       <DependentUpon>LaundryConfigurationView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomerSearchView.cs">
+    <Compile Include="Views\LaundryCustomerSearchView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CustomerSearchView.Designer.cs">
-      <DependentUpon>CustomerSearchView.cs</DependentUpon>
+    <Compile Include="Views\LaundryCustomerSearchView.Designer.cs">
+      <DependentUpon>LaundryCustomerSearchView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomerListView.cs">
       <SubType>Form</SubType>
@@ -208,6 +210,7 @@
       <DependentUpon>MainFormStation.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\LaundryVoidTransactionsReport.rdlc" />
     <EmbeddedResource Include="Reports\RefillCustomerInventoryReport.rdlc" />
     <EmbeddedResource Include="Reports\RefillInventoryReport.rdlc" />
     <EmbeddedResource Include="Reports\RefillUnpaidTransactionsReport.rdlc" />
@@ -228,8 +231,8 @@
       <DependentUpon>LaundryConfigurationView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CustomerSearchView.resx">
-      <DependentUpon>CustomerSearchView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\LaundryCustomerSearchView.resx">
+      <DependentUpon>LaundryCustomerSearchView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CustomerListView.resx">
