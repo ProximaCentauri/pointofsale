@@ -47,22 +47,19 @@ namespace NJournals.Core.Presenter
 			m_view.SetAllPriceScheme(priceScheme);
 		}
 		
-		public List<LaundryServiceDataEntity> SaveOrUpdateService(List<LaundryServiceDataEntity> services){
-
-			List<LaundryServiceDataEntity> dupEntries = new List<LaundryServiceDataEntity>();
+		public void SaveOrUpdateService(List<LaundryServiceDataEntity> services){
 			
-			foreach(LaundryServiceDataEntity service in services)
+			try
 			{
-				try
+				foreach(LaundryServiceDataEntity service in services)
 				{
 					m_serviceDao.Save(service);
-				}
-				catch
-				{
-					dupEntries.Add(service);
-				}
+				}	
 			}
-			return dupEntries;		
+			catch(Exception ex)
+			{
+				throw ex;
+			}
 		}
 		
 		public void DeleteService(LaundryServiceDataEntity service) {

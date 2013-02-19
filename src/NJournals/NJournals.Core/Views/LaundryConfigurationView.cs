@@ -134,18 +134,30 @@ namespace NJournals.Core.Views
 		void BtnSaveServicesClick(object sender, EventArgs e)
 		{
 			List<LaundryServiceDataEntity> services = new List<LaundryServiceDataEntity>();
-			List<LaundryServiceDataEntity> dupEntries = new List<LaundryServiceDataEntity>();
+			string errorMessage = string.Empty;
 			
-			services = GetServiceDataValueChange(serviceRowIndexChange);
-			if(services.Count > 0)
-			{	 					
-				if((dupEntries = m_presenter.SaveOrUpdateService(services)).Count > 0)
-			 	{
-			 		ErrorMessage(dupEntries);
-			 	}			 	
-				m_presenter.SetAllServices();
-				servicesMaxRowIndex = this.dgvServices.RowCount - 1;
-				dgvServices.Refresh();	
+			services = GetServiceDataValueChange(serviceRowIndexChange, out errorMessage);
+			
+			if(errorMessage == string.Empty)
+			{
+				if(services.Count > 0)
+				{	 				
+					try
+					{
+						m_presenter.SaveOrUpdateService(services);	 	
+						m_presenter.SetAllServices();
+						servicesMaxRowIndex = this.dgvServices.RowCount - 1;
+						dgvServices.Refresh();	
+					}
+					catch
+					{
+						MessageService.ShowError("Unable to save data");
+					}
+				}
+			}
+			else
+			{
+				MessageService.ShowWarning("Unable to insert duplicate service name: " + errorMessage);
 			}
 		}
 		
@@ -161,24 +173,49 @@ namespace NJournals.Core.Views
 			}
 		}
 		
-		private List<LaundryServiceDataEntity> GetServiceDataValueChange(List<int> rowIndexChange)
+		private List<LaundryServiceDataEntity> GetServiceDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
-			List<LaundryServiceDataEntity> services = new List<LaundryServiceDataEntity>();			
+			List<LaundryServiceDataEntity> services = new List<LaundryServiceDataEntity>();		
+			List<string> updatedServices = new List<string>();		
+			string errorMsg = string.Empty;
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
 				LaundryServiceDataEntity service = new LaundryServiceDataEntity();
+	
 				
 				if(rowIndex <  servicesMaxRowIndex)
 				{
 					int serviceId = (int)this.dgvServices.Rows[rowIndex].Cells["ServiceID"].Value;
 					service = m_serviceEntity.Find(m_service => m_service.ServiceID == serviceId);
+					service.Name = this.dgvServices.Rows[rowIndex].Cells["Name"].Value.ToString();
+					service.Description = this.dgvServices.Rows[rowIndex].Cells["Description"].Value.ToString();
+					
+					services.Add(service);
+					updatedServices.Add(service.Name);
 				}
+				else
+				{	
+					LaundryServiceDataEntity newService = new LaundryServiceDataEntity();	
+					string name = this.dgvServices.Rows[rowIndex].Cells["Name"].Value.ToString();
+					newService = m_serviceEntity.Find(m_service => m_service.Name == name);
+					
+					service.Name = name;
+					service.Description = this.dgvServices.Rows[rowIndex].Cells["Description"].Value.ToString();	
+					
+					if(newService.ServiceID == 0 && !updatedServices.Contains(service.Name))
+					{
+						updatedServices.Add(service.Name);
+						services.Add(service);
+					}
+					else
+					{
+						errorMsg += service.Name + ",";
+					}
+				}			
 
-				service.Name = this.dgvServices.Rows[rowIndex].Cells["Name"].Value.ToString();
-				service.Description = this.dgvServices.Rows[rowIndex].Cells["Description"].Value.ToString();
-				services.Add(service);
-			}			
+			}
+			errorMessage = errorMsg;
 			return services;
 		}
 		
