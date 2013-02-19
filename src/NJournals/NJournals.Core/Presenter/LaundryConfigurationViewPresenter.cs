@@ -66,22 +66,19 @@ namespace NJournals.Core.Presenter
 			m_serviceDao.Delete(service);
 		}
 		
-		public List<LaundryCategoryDataEntity> SaveOrUpdateCategory(List<LaundryCategoryDataEntity> categories){
-			
-			List<LaundryCategoryDataEntity> dupEntries = new List<LaundryCategoryDataEntity>();
-			
-			foreach(LaundryCategoryDataEntity category in categories)
+		public void SaveOrUpdateCategory(List<LaundryCategoryDataEntity> categories){
+				
+			try
 			{
-				try
+				foreach(LaundryCategoryDataEntity category in categories)
 				{
 					m_categoryDao.Save(category);
 				}
-				catch
-				{
-					dupEntries.Add(category);
-				}
 			}
-			return dupEntries;
+			catch(Exception ex)
+			{
+				throw ex;
+			}
 		}
 		
 		public void DeleteCategory(LaundryCategoryDataEntity category) {

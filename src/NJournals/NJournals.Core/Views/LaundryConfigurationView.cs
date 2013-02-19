@@ -151,13 +151,16 @@ namespace NJournals.Core.Views
 					}
 					catch
 					{
-						MessageService.ShowError("Unable to save data");
+						//TODO: error message
+						MessageService.ShowError("Unable to save data.");
 					}
 				}
 			}
 			else
 			{
-				MessageService.ShowWarning("Unable to insert duplicate service name: " + errorMessage);
+				//TODO: error message
+				MessageService.ShowWarning("Unable to insert duplicate service name: " + errorMessage +
+				                          " . Please make sure that no duplicate entries before saving");
 			}
 		}
 		
@@ -178,18 +181,21 @@ namespace NJournals.Core.Views
 			List<LaundryServiceDataEntity> services = new List<LaundryServiceDataEntity>();		
 			List<string> updatedServices = new List<string>();		
 			string errorMsg = string.Empty;
+			string name = string.Empty;
+			string description = string.Empty;
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
 				LaundryServiceDataEntity service = new LaundryServiceDataEntity();
-	
+				name = this.dgvServices.Rows[rowIndex].Cells["Name"].Value.ToString();
+				description = this.dgvServices.Rows[rowIndex].Cells["Description"].Value.ToString();
 				
 				if(rowIndex <  servicesMaxRowIndex)
 				{
 					int serviceId = (int)this.dgvServices.Rows[rowIndex].Cells["ServiceID"].Value;
 					service = m_serviceEntity.Find(m_service => m_service.ServiceID == serviceId);
-					service.Name = this.dgvServices.Rows[rowIndex].Cells["Name"].Value.ToString();
-					service.Description = this.dgvServices.Rows[rowIndex].Cells["Description"].Value.ToString();
+					service.Name = name;
+					service.Description = description;
 					
 					services.Add(service);
 					updatedServices.Add(service.Name);
@@ -197,20 +203,19 @@ namespace NJournals.Core.Views
 				else
 				{	
 					LaundryServiceDataEntity newService = new LaundryServiceDataEntity();	
-					string name = this.dgvServices.Rows[rowIndex].Cells["Name"].Value.ToString();
 					newService = m_serviceEntity.Find(m_service => m_service.Name == name);
-					
-					service.Name = name;
-					service.Description = this.dgvServices.Rows[rowIndex].Cells["Description"].Value.ToString();	
-					
-					if(newService.ServiceID == 0 && !updatedServices.Contains(service.Name))
+
+					if(newService.ServiceID == 0 && !updatedServices.Contains(name))
 					{
+						service.Name = name;
+						service.Description = description;
+					
 						updatedServices.Add(service.Name);
 						services.Add(service);
 					}
 					else
 					{
-						errorMsg += service.Name + ",";
+						errorMsg += name + " , ";
 					}
 				}			
 
@@ -236,16 +241,33 @@ namespace NJournals.Core.Views
 		{
 			List<LaundryCategoryDataEntity> category = new List<LaundryCategoryDataEntity>();
 			List<LaundryCategoryDataEntity> dupEntries = new List<LaundryCategoryDataEntity>();
-			category = GetCategoryDataValueChange(categoryRowIndexChange);					
-			if(category.Count > 0)
-			{		 			
-				if((dupEntries = m_presenter.SaveOrUpdateCategory(category)).Count > 0)
-			 	{
-			 		ErrorMessage(dupEntries);
-			 	}
-				m_presenter.SetAllCategories();
-				categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
-				dgvCategory.Refresh();	
+			string errorMessage = string.Empty;
+			
+			category = GetCategoryDataValueChange(categoryRowIndexChange, out errorMessage);					
+			
+			if(errorMessage == string.Empty)
+			{
+				if(category.Count > 0)
+				{		 
+					try
+					{
+						m_presenter.SaveOrUpdateCategory(category);
+						m_presenter.SetAllCategories();
+						categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
+						dgvCategory.Refresh();	
+					}
+					catch(Exception ex)
+					{
+						//TODO: error message
+						MessageService.ShowError("Unable to save data", ex.Message);
+					}
+				}
+			}
+			else
+			{
+				//TODO: error message
+				MessageService.ShowWarning("Unable to insert duplicate category name: " + errorMessage +
+				                          " . Please make sure that no duplicate entries before saving");
 			}
 		}
 		
@@ -272,24 +294,51 @@ namespace NJournals.Core.Views
 			categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
 		}
 		
-		private List<LaundryCategoryDataEntity> GetCategoryDataValueChange(List<int> rowIndexChange)
+		private List<LaundryCategoryDataEntity> GetCategoryDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
-			List<LaundryCategoryDataEntity> categories = new List<LaundryCategoryDataEntity>();			
+			List<LaundryCategoryDataEntity> categories = new List<LaundryCategoryDataEntity>();		
+			List<string> updatedCategories = new List<string>();
+			string name = string.Empty;
+			string description = string.Empty;
+			string errorMsg = string.Empty;
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
 				LaundryCategoryDataEntity category = new LaundryCategoryDataEntity();
+				name = this.dgvCategory.Rows[rowIndex].Cells["Name"].Value.ToString();
+				description = this.dgvCategory.Rows[rowIndex].Cells["Description"].Value.ToString();
 				
 				if(rowIndex < categoryMaxRowIndex)
 				{
 					int categoryId = (int)this.dgvCategory.Rows[rowIndex].Cells["CategoryID"].Value;
 					category = m_categoryEntity.Find(m_category => m_category.CategoryID == categoryId);
+					category.Name = name;
+					category.Description = description;
+					
+					categories.Add(category);
+					updatedCategories.Add(category.Name);
 				}
-
-				category.Name = this.dgvCategory.Rows[rowIndex].Cells["Name"].Value.ToString();
-				category.Description = this.dgvCategory.Rows[rowIndex].Cells["Description"].Value.ToString();
-				categories.Add(category);
+				else
+				{
+					LaundryCategoryDataEntity newCategory = new LaundryCategoryDataEntity();
+					newCategory = m_categoryEntity.Find(m_category => m_category.Name == name);					
+					
+					if(newCategory.CategoryID == 0 && !updatedCategories.Contains(name))
+					{
+						category.Name = name;
+						category.Description = description;
+					
+						updatedCategories.Add(category.Name);
+						categories.Add(category);
+					}
+					else
+					{
+						errorMsg += name + " , ";
+					}
+					
+				}
 			}			
+			errorMessage = errorMsg;
 			return categories;
 		}
 		
@@ -342,15 +391,24 @@ namespace NJournals.Core.Views
 			if(this.dgvPriceScheme.RowCount -1 > priceSchemeMaxRowIndex)
 			{
 				int rowDataToAdd =  (this.dgvPriceScheme.RowCount - 1) - priceSchemeMaxRowIndex;
+				string serviceName = string.Empty;
+				string categoryName = string.Empty;
 				
 				for(int ctr = 1; ctr < rowDataToAdd; ctr++)
 				{
-					LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
+					LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();	
+					LaundryPriceSchemeDataEntity newPriceScheme = new LaundryPriceSchemeDataEntity();
 					DataGridViewRow currentRow = this.dgvPriceScheme.Rows[priceSchemeMaxRowIndex + ctr];
+					serviceName = currentRow.Cells["ServiceName"].Value.ToString();
+					categoryName = currentRow.Cells["CategoryName"].Value.ToString();
+					
+					newPriceScheme = m_priceSchemeEntity.Find(m_priceScheme => (m_priceScheme.Service.Name == serviceName) 
+					                                          && (m_priceScheme.Category.Name == categoryName));				
+										
 					priceScheme.Service = new LaundryServiceDataEntity();
-					priceScheme.Service = m_serviceEntity.Find(m_service => m_service.Name == currentRow.Cells["ServiceName"].Value.ToString());
+					priceScheme.Service = m_serviceEntity.Find(m_service => m_service.Name == serviceName);
 					priceScheme.Category = new LaundryCategoryDataEntity();
-					priceScheme.Category = m_categoryEntity.Find(m_category => m_category.Name == currentRow.Cells["CategoryName"].Value.ToString());
+					priceScheme.Category = m_categoryEntity.Find(m_category => m_category.Name == categoryName);
 					priceScheme.Description = currentRow.Cells["Description"].Value.ToString();
 					priceScheme.Price = Convert.ToDecimal(currentRow.Cells["Price"].Value.ToString());
 					
@@ -396,11 +454,16 @@ namespace NJournals.Core.Views
 		
 		private List<LaundryPriceSchemeDataEntity> GetPriceSchemeDataValueChange(List<int> rowIndexChange)
 		{
-			List<LaundryPriceSchemeDataEntity> priceSchemes = new List<LaundryPriceSchemeDataEntity>();			
+			List<LaundryPriceSchemeDataEntity> priceSchemes = new List<LaundryPriceSchemeDataEntity>();	
+			List<string> updatedPriceScheme = new List<string>();
+			string serviceName = string.Empty;
+			string categoryName = string.Empty;
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
 				LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
+				serviceName = this.dgvPriceScheme.Rows[rowIndex].Cells["ServiceName"].Value.ToString();
+				categoryName = this.dgvPriceScheme.Rows[rowIndex].Cells["CategoryName"].Value.ToString();
 				
 				if(rowIndex <= priceSchemeMaxRowIndex)
 				{
@@ -409,7 +472,13 @@ namespace NJournals.Core.Views
 					priceScheme.Description = this.dgvPriceScheme.Rows[rowIndex].Cells["Description"].Value.ToString();
 					priceScheme.Price = Convert.ToDecimal(this.dgvPriceScheme.Rows[rowIndex].Cells["Price"].Value.ToString());
 					priceSchemes.Add(priceScheme);
-				}			
+				}
+				else
+				{
+					//TODO: new data
+				}
+				
+
 			}			
 			return priceSchemes;
 		}

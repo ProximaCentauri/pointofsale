@@ -108,13 +108,33 @@ namespace NJournals.Core.Views
 		void BtnSaveProductClick(object sender, EventArgs e)
 		{
 			List<RefillProductTypeDataEntity> productTypes = new List<RefillProductTypeDataEntity>();
-			productTypes = GetProductTypeDataValueChange(productTypeIndexChange);					
-			if(productTypes.Count != 0)
+			string errorMessage = string.Empty;
+			
+			productTypes = GetProductTypeDataValueChange(productTypeIndexChange, out errorMessage);		
+			
+			if(errorMessage.Equals(string.Empty))
 			{
-			 	m_presenter.SaveOrUpdateProductType(productTypes);
-				m_presenter.SetAllRefillProductType();
-				productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
-				dgvProductType.Refresh();	
+				if(productTypes.Count != 0)
+				{
+					try
+					{
+					 	m_presenter.SaveOrUpdateProductType(productTypes);
+						m_presenter.SetAllRefillProductType();
+						productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
+						dgvProductType.Refresh();
+					}
+					catch(Exception ex)
+					{
+						//TODO: error message
+						MessageService.ShowError("Unable to save data", ex.Message);
+					}
+				}
+			}
+			else
+			{
+				//TODO: error message
+				MessageService.ShowWarning("Unable to insert duplicate productType name: " + errorMessage +
+				                          " . Please make sure that no duplicate entries before saving");
 			}
 		}
 		
@@ -141,25 +161,56 @@ namespace NJournals.Core.Views
 			productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
 		}
 		
-		private List<RefillProductTypeDataEntity> GetProductTypeDataValueChange(List<int> rowIndexChange)
+		private List<RefillProductTypeDataEntity> GetProductTypeDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
-			List<RefillProductTypeDataEntity> productTypes = new List<RefillProductTypeDataEntity>();			
+			List<RefillProductTypeDataEntity> productTypes = new List<RefillProductTypeDataEntity>();
+			List<string> updatedProducts = new List<string>();
+			string errorMsg = string.Empty;
+			string name = string.Empty;
+			string description = string.Empty;
+			decimal price = 0;
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
 				RefillProductTypeDataEntity productType = new RefillProductTypeDataEntity();
+				name = this.dgvProductType.Rows[rowIndex].Cells["Name"].Value.ToString();
+				description = this.dgvProductType.Rows[rowIndex].Cells["Description"].Value.ToString();
+				price = Convert.ToDecimal(this.dgvProductType.Rows[rowIndex].Cells["Price"].Value.ToString());
 				
 				if(rowIndex < productTypeMaxRowIndex)
 				{
 					int productTypeID = (int)this.dgvProductType.Rows[rowIndex].Cells["ProductTypeID"].Value;
 					productType = m_productTypeEntity.Find(m_productType => m_productType.ProductTypeID == productTypeID);
+					
+					productType.Name = name;
+					productType.Description = description;
+					productType.Price = price;
+					
+					productTypes.Add(productType);
+					updatedProducts.Add(productType.Name);
+				}
+				else
+				{
+					RefillProductTypeDataEntity newProduct = new RefillProductTypeDataEntity();
+					newProduct = m_productTypeEntity.Find(m_productType => m_productType.Name == name);					
+					
+					if(newProduct.ProductTypeID == 0 && !updatedProducts.Contains(name))
+					{
+						productType.Name = name;
+						productType.Description = description;
+						productType.Price = price;
+						
+						updatedProducts.Add(productType.Name);
+						productTypes.Add(productType);
+					}
+					else
+					{
+						errorMsg += name + " , ";
+					}
 				}
 
-				productType.Name = this.dgvProductType.Rows[rowIndex].Cells["Name"].Value.ToString();
-				productType.Description = this.dgvProductType.Rows[rowIndex].Cells["Description"].Value.ToString();
-				productType.Price = Convert.ToDecimal(this.dgvProductType.Rows[rowIndex].Cells["Price"].Value.ToString());
-				productTypes.Add(productType);
-			}			
+			}
+			errorMessage = errorMsg;			
 			return productTypes;
 		}
 		

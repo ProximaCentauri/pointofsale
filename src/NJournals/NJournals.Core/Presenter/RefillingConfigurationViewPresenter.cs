@@ -38,9 +38,16 @@ namespace NJournals.Core.Presenter
 		
 		public void SaveOrUpdateProductType(List<RefillProductTypeDataEntity> productTypes)
 		{
-			foreach(RefillProductTypeDataEntity productType in productTypes)
+			try
 			{
-				m_productTypeDao.SaveOrUpdate(productType);
+				foreach(RefillProductTypeDataEntity productType in productTypes)
+				{
+					m_productTypeDao.SaveOrUpdate(productType);
+				}
+			}
+			catch(Exception ex)
+			{
+				throw ex;
 			}
 		}
 		
@@ -62,9 +69,16 @@ namespace NJournals.Core.Presenter
 		
 		public void SaveOrUpdateRefillInventory(List<RefillInventoryHeaderDataEntity> refillInvs)
 		{
-			foreach(RefillInventoryHeaderDataEntity refillInv in refillInvs)
+			try
 			{
-				m_refillInvDao.SaveOrUpdate(refillInv);
+				foreach(RefillInventoryHeaderDataEntity refillInv in refillInvs)
+				{
+					m_refillInvDao.SaveOrUpdate(refillInv);
+				}
+			}
+			catch(Exception ex)
+			{
+				throw ex;
 			}
 		}
 		
