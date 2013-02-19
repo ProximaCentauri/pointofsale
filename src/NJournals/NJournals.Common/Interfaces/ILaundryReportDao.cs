@@ -26,6 +26,7 @@ namespace NJournals.Common.Interfaces
 		                                                             DateTime fromDateTime, 
 		                                                             DateTime toDateTime,
 		                                                            bool b_isAll);
+		IEnumerable<LaundryHeaderDataEntity> GetUnclaimedItemsReport(CustomerDataEntity customer);
 		IEnumerable<LaundryHeaderDataEntity> GetClaimedItemsReport(CustomerDataEntity customer,
 		                                                           DateTime fromDateTime,
 		                                                           DateTime toDateTime,
@@ -34,5 +35,10 @@ namespace NJournals.Common.Interfaces
 		                                                             DateTime fromDateTime, 
 		                                                             DateTime toDateTime,
 		                                                            bool b_isAll);	
+		IEnumerable<LaundryHeaderDataEntity> GetUnpaidTransactionsReport(CustomerDataEntity customer);
+		IEnumerable<LaundryHeaderDataEntity> GetVoidTransactionsReport(CustomerDataEntity customer,
+		                                                               DateTime fromDateTime,
+		                                                               DateTime toDateTime,
+		                                                               bool b_isAll);
 	}
 }

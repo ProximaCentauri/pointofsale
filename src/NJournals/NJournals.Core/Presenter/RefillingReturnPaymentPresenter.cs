@@ -52,9 +52,9 @@ namespace NJournals.Core.Presenter
 			}
 			catch(Exception ex)
 			{
-				MessageService.ShowInfo("Unable to display data; an unexpected error occurred.\n" +
-				                        "Please check error log for details.","Error");
-				LogHelper.Log(ex.Message,LogType.ERR,false);
+				MessageService.ShowError("Unable to display data; an unexpected error occurred.\n" +
+				                        "Please check error log for details.\n" +
+				                        ex.Message,"Error");
 			}
 		}
 		
@@ -74,9 +74,9 @@ namespace NJournals.Core.Presenter
 			}
 			catch(Exception ex)
 			{
-				MessageService.ShowInfo("Unable to display data; an unexpected error occurred.\n" +
-				                        "Please check error log for details.","Error");
-				LogHelper.Log(ex.Message,LogType.ERR,false);
+				MessageService.ShowError("Unable to display data; an unexpected error occurred.\n" +
+				                        "Please check error log for details.\n" +
+				                        ex.Message,"Error");			
 			}
 		}
 		

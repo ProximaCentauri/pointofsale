@@ -44,7 +44,8 @@ namespace NJournals.Core.Presenter
                     reportTypes.Add(ReportConstants.CLAIMED_ITEMS_REPORT);
                     reportTypes.Add(ReportConstants.SALES_REPORT);
                     reportTypes.Add(ReportConstants.UNCLAIMED_ITEMS_REPORT);
-                    reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);                   
+                    reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);  
+                    reportTypes.Add(ReportConstants.VOID_TRANSACTIONS_REPORT);
         			break;
                 case ReportConstants.REFILL_WINDOW:
                     reportTypes.Add(ReportConstants.INVENTORY_REPORT);
@@ -112,6 +113,12 @@ namespace NJournals.Core.Presenter
                         .GetUnpaidTransactionsReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryHeaderDataEntity>;
                     datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, unpaidReport));
                     m_view.DisplayReport(unpaidReport, datasources, parameters, ReportConstants.ES_LAUNDRY_UNPAIDTRANSACTIONS_REPORT);
+                    break;
+                case ReportConstants.VOID_TRANSACTIONS_REPORT:
+                    List<LaundryHeaderDataEntity> voidReport = m_laundryReportDao
+                    	.GetVoidTransactionsReport(customer, fromDateTime, toDateTime, b_isAll) as List<LaundryHeaderDataEntity>;
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_LAUNDRYHEADER, voidReport));
+                    m_view.DisplayReport(voidReport, datasources, parameters, ReportConstants.ES_LAUNDRY_VOIDTRANSACTIONS_REPORT);
                     break;
 				default:
 					break;

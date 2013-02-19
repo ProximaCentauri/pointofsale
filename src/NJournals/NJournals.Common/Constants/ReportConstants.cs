@@ -13,6 +13,7 @@ namespace NJournals.Common.Constants
 		public const string CLAIMED_ITEMS_REPORT		        = "Claimed Items Report";	
 		public const string INVENTORY_REPORT			        = "Inventory Report";
 		public const string CUSTINVENTORY_REPORT				= "Customer Inventory Report";
+		public const string VOID_TRANSACTIONS_REPORT			= "Void Transactions Report";
 			
 		public const string LAUNDRY_WINDOW				        = "Laundry Report";
 		public const string REFILL_WINDOW				        = "Refilling Report";
@@ -23,7 +24,7 @@ namespace NJournals.Common.Constants
         public const string ES_LAUNDRY_UNCLAIMEDITEMS_REPORT    = "NJournals.Core.Reports.LaundryUnclaimedItemsReport.rdlc";
         public const string ES_LAUNDRY_CLAIMEDITEMS_REPORT      = "NJournals.Core.Reports.LaundryClaimedItemsReport.rdlc";
         public const string ES_LAUNDRY_UNPAIDTRANSACTIONS_REPORT= "NJournals.Core.Reports.LaundryUnpaidTransactionsReport.rdlc";
-
+		public const string ES_LAUNDRY_VOIDTRANSACTIONS_REPORT	= "NJournals.Core.Reports.LaundryVoidTransactionsReport.rdlc";
         
         public const string DS_REFILLDAYSUMMARY					= "NJournals_Common_DataEntities_RefillDaySummaryDataEntity";
         public const string DS_REFILLHEADER						= "NJournals_Common_DataEntities_RefillHeaderDataEntity";

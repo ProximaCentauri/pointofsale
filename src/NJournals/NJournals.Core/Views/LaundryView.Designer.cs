@@ -139,6 +139,7 @@ namespace NJournals.Core.Views
 			this.btnCustomerSearch.Size = new System.Drawing.Size(24, 24);
 			this.btnCustomerSearch.TabIndex = 10;
 			this.btnCustomerSearch.UseVisualStyleBackColor = false;
+			this.btnCustomerSearch.Click += new System.EventHandler(this.BtnCustomerSearchClick);
 			// 
 			// dtdueDate
 			// 
@@ -670,7 +671,7 @@ namespace NJournals.Core.Views
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(942, 746);
+			this.ClientSize = new System.Drawing.Size(942, 742);
 			this.Controls.Add(this.label19);
 			this.Controls.Add(this.txttotaldiscount);
 			this.Controls.Add(this.txttotalamtdue);
