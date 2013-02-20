@@ -277,8 +277,10 @@ namespace NJournals.Core.Views
 		
 		void BtnsavecloseClick(object sender, EventArgs e)
 		{
-			m_presenter.SaveClicked();			        
-			this.Close();
+			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjoborder.Text , "Saving New Entries?")){
+				m_presenter.SaveClicked();			        
+				this.Close();
+			}			
 		}
 		
 		void lblchecklist_click(object sender, EventArgs e)
@@ -389,27 +391,23 @@ namespace NJournals.Core.Views
 		
 		void dgv_rowsremoved(object sender, DataGridViewRowsRemovedEventArgs e)
 		{			
-			//TODO: calculate totalamtdue
 			decimal amtdue = decimal.Parse(txtamtdue.Text);
 			decimal totaldue = decimal.Parse(txttotalamtdue.Text);
 			amtdue -= removePrice;
 			txtamtdue.Text = amtdue.ToString("N2");
 			totaldue -= removePrice;
 			txttotalamtdue.Text = totaldue.ToString("N2");
-		}
-		
+		}		
 		
 		void dgv_selectionchanged(object sender, EventArgs e)
 		{
 			if(dataGridView1.SelectedRows.Count > 0 )
 				removePrice = decimal.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
-		}
-		
+		}		
 		
 		void BtndeleteClick(object sender, EventArgs e)
 		{
 			if(MessageService.ShowYesNo("Are you sure you want to void this transaction?","Voiding Transaction?")){
-				//m_headerEntity.VoidFlag = true;	
 				m_presenter.VoidingTransaction();	
 			}			
 		}
@@ -420,8 +418,6 @@ namespace NJournals.Core.Views
 		}
 		
 		public void ClaimTransaction(){
-			//m_headerEntity.ClaimFlag = true;
-			//m_headerEntity.ClaimDate = DateTime.Now;
 			MessageService.ShowInfo("Claiming transaction with JO number: " + txtjoborder.Text , "Claim");
 			this.Close();
 		}
