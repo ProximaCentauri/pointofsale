@@ -43,6 +43,7 @@ namespace NJournals.Core.Views
 		LaundryHeaderDataEntity m_headerEntity;
 		CheckListView chklistView = null;
 		LaundryCustomerSearchView customerSearchView = null;
+		private decimal removePrice = 0;
 		private decimal amountTender = 0;
 		
 		private decimal totalAmtDue = 0;
@@ -62,13 +63,15 @@ namespace NJournals.Core.Views
 			if(this.Text.Contains("[NEW]")){	
 				m_headerEntity = new LaundryHeaderDataEntity();						
 				m_presenter.SetAllCustomers();
-				this.groupBox2.Enabled = this.btnclaim.Enabled = false;
+				this.groupBox2.Enabled = this.btnclaim.Enabled = btndelete.Enabled = false;
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 				this.dtrecieveDate.Value = DateTime.Now;				
+				dataGridView1.AllowUserToDeleteRows = true;
 			}else{				
 				cmbCustomers.Enabled = false;
-				//grpServices.Enabled = false;
+				grpServices.Enabled = false;
 				lblchecklist.Enabled = false;
+				btncancel.Enabled = false;
 				txtdiscount.Enabled = false;
 			}
 			m_presenter.SetAllServices();
@@ -99,8 +102,24 @@ namespace NJournals.Core.Views
 			}
 		}
 		
-		void BtncancelClick(object sender, EventArgs e){
-			this.Close();
+		void BtncancelClick(object sender, EventArgs e){			
+			if(MessageService.ShowYesNo("Are you sure you want to cancel this transaction? Data in the fields will be remove.","Cancel Transaction")){
+				this.dataGridView1.Rows.Clear();
+				this.cmbcategory.Text = 
+					cmbservices.Text = 
+					cmbCustomers.Text = string.Empty;			
+				for(int i=0;i<chkchargesList.Items.Count;i++)
+					chkchargesList.SetItemCheckState(i, CheckState.Unchecked);
+				txttotalamtdue.Text = 					
+					txtamtdue.Text = 
+					txtbalance.Text = 
+					txtchange.Text =
+					txtamttender.Text = 
+					txttotaldiscount.Text = "0.00";
+				txtdiscount.Text = "0";
+				txtnoitems.Text = string.Empty;
+				txtkilo.Text = string.Empty;					
+			}			   			   
 		}		
 		
 		public LaundryHeaderDataEntity ProcessHeaderDataEntity(){				
@@ -114,7 +133,7 @@ namespace NJournals.Core.Views
 			m_headerEntity.ReceivedDate = dtrecieveDate.Value;
 			m_headerEntity.DueDate = dtdueDate.Value;
 					
-			m_headerEntity.ClaimFlag = btnclaim.Enabled;			
+			//m_headerEntity.ClaimFlag = btnclaim.Enabled;			
 			m_headerEntity.Customer = m_presenter.getCustomerByName(cmbCustomers.Text);			
 			m_headerEntity.DetailEntities = new List<LaundryDetailDataEntity>();
 			foreach(DataGridViewRow row in this.dataGridView1.Rows){
@@ -167,12 +186,8 @@ namespace NJournals.Core.Views
 				m_headerEntity.JobChargeEntities.Add(m_jobcharge);
 			}
 			
-			
-			if(decimal.Parse(this.txtbalance.Text) == 0){
-				m_headerEntity.PaidFlag = true;				
-			}else
-				m_headerEntity.PaidFlag = false;
-			
+			m_headerEntity.PaidFlag = (decimal.Parse(txtbalance.Text) == 0) ? true : false;
+				
 			return m_headerEntity;
 		}				
 		
@@ -360,33 +375,7 @@ namespace NJournals.Core.Views
 				txtbalance.Text = txttotalamtdue.Text;
 			}			
 		}
-		
-		void dgv_validating(object sender, DataGridViewCellValidatingEventArgs e)
-		{			
-			//TODO: Improve price changing
-			validateDatagridValue(new List<DataGridViewTextBoxColumn>(){this.Column3,this.Column4}, e);
-		}
-		
-		private void validateDatagridValue(List<DataGridViewTextBoxColumn> columns, DataGridViewCellValidatingEventArgs e){
-			foreach(DataGridViewTextBoxColumn column in columns){
-				if(dataGridView1.Columns[e.ColumnIndex] == column && dataGridView1.IsCurrentCellInEditMode){
-					int val;					
-					if(!int.TryParse(Convert.ToString(e.FormattedValue), out val)){
-						e.Cancel = true;
-						MessageService.ShowWarning("Invalid value being inputted.","Invalid Value");
-						dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];				
-					}else{
-						string category = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-						string service = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-						LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(category, service);
-						decimal kilo = decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString());			
-						decimal price = priceEntity.Price * kilo;						
-						dataGridView1.Rows[e.RowIndex].Cells[4].Value = price.ToString("N2");
-					}
-				}
-			}			
-		}
-		
+					
 		void BtnCustomerSearchClick(object sender, EventArgs e)
 		{
 			m_presenter.LaunchCustomerSearch();
@@ -396,6 +385,49 @@ namespace NJournals.Core.Views
 		{			
 			customerSearchView = new LaundryCustomerSearchView(m_presenter.getCustomerByName(cmbCustomers.Text));			
 			customerSearchView.ShowDialog();				
+		}
+		
+		void dgv_rowsremoved(object sender, DataGridViewRowsRemovedEventArgs e)
+		{			
+			//TODO: calculate totalamtdue
+			decimal amtdue = decimal.Parse(txtamtdue.Text);
+			decimal totaldue = decimal.Parse(txttotalamtdue.Text);
+			amtdue -= removePrice;
+			txtamtdue.Text = amtdue.ToString("N2");
+			totaldue -= removePrice;
+			txttotalamtdue.Text = totaldue.ToString("N2");
+		}
+		
+		
+		void dgv_selectionchanged(object sender, EventArgs e)
+		{
+			if(dataGridView1.SelectedRows.Count > 0 )
+				removePrice = decimal.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+		}
+		
+		
+		void BtndeleteClick(object sender, EventArgs e)
+		{
+			if(MessageService.ShowYesNo("Are you sure you want to void this transaction?","Voiding Transaction?")){
+				//m_headerEntity.VoidFlag = true;	
+				m_presenter.VoidingTransaction();	
+			}			
+		}
+		
+		void BtnclaimClick(object sender, EventArgs e)
+		{
+			m_presenter.ClaimTransaction();
+		}
+		
+		public void ClaimTransaction(){
+			//m_headerEntity.ClaimFlag = true;
+			//m_headerEntity.ClaimDate = DateTime.Now;
+			MessageService.ShowInfo("Claiming transaction with JO number: " + txtjoborder.Text , "Claim");
+			this.Close();
+		}
+		
+		public void VoidingTransaction(){
+			this.Close();
 		}
 	}	
 }

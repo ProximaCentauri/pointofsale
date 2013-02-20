@@ -309,7 +309,6 @@ namespace NJournals.Core.Views
 			// dataGridView1
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
-			this.dataGridView1.AllowUserToDeleteRows = false;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Column1,
@@ -317,24 +316,25 @@ namespace NJournals.Core.Views
 									this.Column3,
 									this.Column4,
 									this.Column5});
-			this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+			this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
 			this.dataGridView1.Location = new System.Drawing.Point(358, 197);
+			this.dataGridView1.MultiSelect = false;
 			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView1.Size = new System.Drawing.Size(538, 197);
 			this.dataGridView1.TabIndex = 4;
-			this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgv_validating);
+			this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgv_rowsremoved);
+			this.dataGridView1.SelectionChanged += new System.EventHandler(this.dgv_selectionchanged);
 			// 
 			// Column1
 			// 
 			this.Column1.HeaderText = "Category";
 			this.Column1.Name = "Column1";
-			this.Column1.ReadOnly = true;
 			// 
 			// Column2
 			// 
 			this.Column2.HeaderText = "Service";
 			this.Column2.Name = "Column2";
-			this.Column2.ReadOnly = true;
 			// 
 			// Column3
 			// 
@@ -350,7 +350,6 @@ namespace NJournals.Core.Views
 			// 
 			this.Column5.HeaderText = "Price";
 			this.Column5.Name = "Column5";
-			this.Column5.ReadOnly = true;
 			// 
 			// groupBox2
 			// 
@@ -523,7 +522,6 @@ namespace NJournals.Core.Views
 			// 
 			// btndelete
 			// 
-			this.btndelete.Enabled = false;
 			this.btndelete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btndelete.Location = new System.Drawing.Point(126, 681);
 			this.btndelete.Name = "btndelete";
@@ -531,6 +529,7 @@ namespace NJournals.Core.Views
 			this.btndelete.TabIndex = 18;
 			this.btndelete.Text = "Delete";
 			this.btndelete.UseVisualStyleBackColor = true;
+			this.btndelete.Click += new System.EventHandler(this.BtndeleteClick);
 			// 
 			// txtbalance
 			// 
@@ -576,6 +575,7 @@ namespace NJournals.Core.Views
 			this.btnclaim.TabIndex = 23;
 			this.btnclaim.Text = "Claim && Close";
 			this.btnclaim.UseVisualStyleBackColor = true;
+			this.btnclaim.Click += new System.EventHandler(this.BtnclaimClick);
 			// 
 			// txttotalcharges
 			// 
