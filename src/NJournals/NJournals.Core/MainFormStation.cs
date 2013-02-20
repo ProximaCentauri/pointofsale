@@ -199,7 +199,7 @@ namespace NJournals.Core
 		
 		void setMenuBackgroundImages()
 		{
-			lblcustomerList.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/customer.png");
+			/*lblcustomerList.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/customer.png");
 			lblcustomerList.BackgroundImageLayout = ImageLayout.None;
 			//refilling
 			lblRefNew.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/bottle_new.png");
@@ -218,7 +218,7 @@ namespace NJournals.Core
 			lbllaundryReports.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/chart.png");
 			lbllaundryReports.BackgroundImageLayout = ImageLayout.None;
 			lbllaundryConfig.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/config.png");
-			lbllaundryConfig.BackgroundImageLayout = ImageLayout.None;
+			lbllaundryConfig.BackgroundImageLayout = ImageLayout.None;*/
 		}
 		
 		void MainFormStationLoad(object sender, EventArgs e)
@@ -234,7 +234,15 @@ namespace NJournals.Core
 			this.lblRefClaim.Click += delegate { OnSelectRefillingClaim(null); };
 			this.lblRefConfig.Click += delegate { OnSelectRefillingConfig(null); };
 			this.lblRefReports.Click += delegate { OnSelectRefillingReports(null); };
-			
+			#if DEBUG
+			label1.Text = label2.Text = "";
+			foreach(Control c in this.panel1.Controls){
+				if(c is Label){
+					Label l = c as Label;
+					l.Font = new Font("Calibri", 7, FontStyle.Regular);
+				}					
+			}
+			#endif
 		}
 		
 		void FormViewClose(object sender, FormClosedEventArgs e){

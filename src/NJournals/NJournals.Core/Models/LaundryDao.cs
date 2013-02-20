@@ -92,6 +92,35 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public IEnumerable<LaundryHeaderDataEntity> GetAllVoidItems()
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					var query = session.Query<LaundryHeaderDataEntity>()
+						.Where(x => x.VoidFlag == true)
+						.FetchMany(x => x.DetailEntities)						
+						.ToList();
+					return query;
+				}
+			}
+		}
+
+		public IEnumerable<LaundryHeaderDataEntity> GetAllNotVoidItems()
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					var query = session.Query<LaundryHeaderDataEntity>()
+						.Where(x => x.VoidFlag == false)
+						.FetchMany(x => x.DetailEntities)						
+						.ToList();
+					return query;
+				}
+			}
+		}		
 		public void Update(LaundryHeaderDataEntity p_header)
 		{
 			using(var session = NHibernateHelper.OpenSession())

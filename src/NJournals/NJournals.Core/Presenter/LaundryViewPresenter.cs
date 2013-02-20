@@ -312,5 +312,23 @@ namespace NJournals.Core.Presenter
 		{
 			m_view.LaunchCustomerSearch();
 		}
+		
+		public void VoidingTransaction(){
+			m_view.VoidingTransaction();
+			m_OriginalHeaderEntity.VoidFlag = true;
+			try{
+				m_laundryDao.Update(m_OriginalHeaderEntity);	
+				MessageService.ShowInfo("Successfully voiding the transaction with JO number: " + m_OriginalHeaderEntity.LaundryHeaderID.ToString().PadLeft(6, '0'));
+			}catch(Exception ex){
+				MessageService.ShowError(ex.Message,"Error in Voiding Transaction");
+			}			
+		}
+		
+		public void ClaimTransaction(){
+			m_view.ClaimTransaction();
+			m_OriginalHeaderEntity.ClaimDate = DateTime.Now;
+			m_OriginalHeaderEntity.ClaimFlag = true;
+			m_laundryDao.Update(m_OriginalHeaderEntity);
+		}
 	}
 }
