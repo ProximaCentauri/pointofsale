@@ -318,6 +318,10 @@ namespace NJournals.Core.Presenter
 			m_OriginalHeaderEntity.VoidFlag = true;
 			try{
 				m_laundryDao.Update(m_OriginalHeaderEntity);	
+				LaundryDaySummaryDataEntity daysummary = m_summaryDao.GetByDayId(m_OriginalHeaderEntity.DaySummary.DayID);
+				daysummary.TotalSales -= m_OriginalHeaderEntity.TotalPayment;
+				daysummary.TransCount -= 1;
+				m_summaryDao.Update(daysummary);
 				MessageService.ShowInfo("Successfully voiding the transaction with JO number: " + m_OriginalHeaderEntity.LaundryHeaderID.ToString().PadLeft(6, '0'));
 			}catch(Exception ex){
 				MessageService.ShowError(ex.Message,"Error in Voiding Transaction");

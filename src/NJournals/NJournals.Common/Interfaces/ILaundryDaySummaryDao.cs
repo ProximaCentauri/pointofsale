@@ -20,6 +20,7 @@ namespace NJournals.Common.Interfaces
 	{
 		void SaveOrUpdate(LaundryDaySummaryDataEntity p_daysummary);
 		LaundryDaySummaryDataEntity GetByDay(DateTime p_day);
+		LaundryDaySummaryDataEntity GetByDayId(int p_id);
 		IEnumerable<LaundryDaySummaryDataEntity> GetAllItems();
 		void Update(LaundryDaySummaryDataEntity p_daysummary);
 		void Delete(LaundryDaySummaryDataEntity p_daysummary);
