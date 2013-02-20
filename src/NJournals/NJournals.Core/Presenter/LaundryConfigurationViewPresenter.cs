@@ -85,21 +85,19 @@ namespace NJournals.Core.Presenter
 			m_categoryDao.Delete(category);
 		}
 		
-		public List<LaundryPriceSchemeDataEntity> SaveOrUpdatePriceScheme(List<LaundryPriceSchemeDataEntity> priceSchemes) {
-			List<LaundryPriceSchemeDataEntity> dupEntries = new List<LaundryPriceSchemeDataEntity>();
+		public void SaveOrUpdatePriceScheme(List<LaundryPriceSchemeDataEntity> priceSchemes) {
 			
-			foreach(LaundryPriceSchemeDataEntity priceScheme in priceSchemes)
+			try
 			{
-				try
+				foreach(LaundryPriceSchemeDataEntity priceScheme in priceSchemes)
 				{
 					m_priceSchemeDao.SaveOrUpdate(priceScheme);
 				}
-				catch
-				{
-					dupEntries.Add(priceScheme);
-				}
 			}
-			return dupEntries;
+			catch(Exception ex)
+			{
+				throw ex;
+			}
 		}
 		
 		public void DeletePriceScheme(LaundryPriceSchemeDataEntity priceScheme) {
