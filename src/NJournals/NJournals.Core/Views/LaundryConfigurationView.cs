@@ -378,15 +378,42 @@ namespace NJournals.Core.Views
 		void BtnSavePriceSchemeClick(object sender, EventArgs e)
 		{
 			List<LaundryPriceSchemeDataEntity> priceSchemes = new List<LaundryPriceSchemeDataEntity>();
-			List<LaundryPriceSchemeDataEntity> dupEntries = new List<LaundryPriceSchemeDataEntity>();
+			string errorMessage = string.Empty;
 			
-			//get modified row
-			if(priceSchemeRowIndexChange != null)
-			{				
-				priceSchemes = GetPriceSchemeDataValueChange(priceSchemeRowIndexChange);
-
+			priceSchemes = GetPriceSchemeDataValueChange(priceSchemeRowIndexChange, out errorMessage);
+			
+			if(errorMessage.Equals(string.Empty))
+			{
+				if(priceSchemes.Count > 0)
+				{
+					try
+					{
+						m_presenter.SaveOrUpdatePriceScheme(priceSchemes);
+						m_presenter.SetAllPriceScheme();
+						priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
+						this.dgvPriceScheme.AllowUserToAddRows = false;
+					}
+					catch(Exception ex)
+					{
+						//TODO: error message
+						MessageService.ShowError("Unable to save data", ex.Message);
+					}
+				}
+			}
+			else
+			{
+				//TODO: error message
+				MessageService.ShowWarning("Unable to insert duplicate service name and category name: " + errorMessage +
+				                          " . Please make sure that no duplicate entries before saving");
 			}
 			
+			/*
+			 * //get modified row
+			if(priceSchemeRowIndexChange != null)
+			{				
+				priceSchemes = GetPriceSchemeDataValueChange(priceSchemeRowIndexChange, out errorMessage);
+
+			}
 			//get new data
 			if(this.dgvPriceScheme.RowCount -1 > priceSchemeMaxRowIndex)
 			{
@@ -414,18 +441,10 @@ namespace NJournals.Core.Views
 					
 					priceSchemes.Add(priceScheme);
 				}
-			}			
+			}	
+			*/		
 			
-			if(priceSchemes.Count > 0)
-			{
-				if((dupEntries = m_presenter.SaveOrUpdatePriceScheme(priceSchemes)).Count > 0)
-				{
-					ErrorMessage(dupEntries);
-				}
-				m_presenter.SetAllPriceScheme();
-				priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
-				this.dgvPriceScheme.AllowUserToAddRows = false;
-			}
+			
 		}
 		
 		void BtnDeletePriceSchemeClick(object sender, EventArgs e)
@@ -452,34 +471,62 @@ namespace NJournals.Core.Views
 			priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
 		}
 		
-		private List<LaundryPriceSchemeDataEntity> GetPriceSchemeDataValueChange(List<int> rowIndexChange)
+		private List<LaundryPriceSchemeDataEntity> GetPriceSchemeDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
 			List<LaundryPriceSchemeDataEntity> priceSchemes = new List<LaundryPriceSchemeDataEntity>();	
 			List<string> updatedPriceScheme = new List<string>();
+			string errorMsg = string.Empty;
 			string serviceName = string.Empty;
 			string categoryName = string.Empty;
+			string description = string.Empty;
+			decimal price = 0;
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
 				LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
 				serviceName = this.dgvPriceScheme.Rows[rowIndex].Cells["ServiceName"].Value.ToString();
 				categoryName = this.dgvPriceScheme.Rows[rowIndex].Cells["CategoryName"].Value.ToString();
+				description = this.dgvPriceScheme.Rows[rowIndex].Cells["Description"].Value.ToString();
+				price = Convert.ToDecimal(this.dgvPriceScheme.Rows[rowIndex].Cells["Price"].Value.ToString());
 				
 				if(rowIndex <= priceSchemeMaxRowIndex)
 				{
 					int ID = (int)this.dgvPriceScheme.Rows[rowIndex].Cells["ID"].Value;
 					priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.ID == ID);
-					priceScheme.Description = this.dgvPriceScheme.Rows[rowIndex].Cells["Description"].Value.ToString();
-					priceScheme.Price = Convert.ToDecimal(this.dgvPriceScheme.Rows[rowIndex].Cells["Price"].Value.ToString());
+					priceScheme.Description = description;
+					priceScheme.Price = price;
+					
 					priceSchemes.Add(priceScheme);
+					updatedPriceScheme.Add(serviceName + " - " + categoryName);
 				}
 				else
 				{
 					//TODO: new data
+					LaundryPriceSchemeDataEntity newPriceScheme = new LaundryPriceSchemeDataEntity();
+					
+					newPriceScheme = m_priceSchemeEntity.Find(m_priceScheme => (m_priceScheme.Service.Name == serviceName) 
+					                                          && (m_priceScheme.Category.Name == categoryName));
+					
+					if(newPriceScheme.ID == 0 && !updatedPriceScheme.Contains(serviceName + " - " + categoryName))
+					{
+						priceScheme.Service = new LaundryServiceDataEntity();
+						priceScheme.Service = m_serviceEntity.Find(m_service => m_service.Name == serviceName);
+						priceScheme.Category = new LaundryCategoryDataEntity();
+						priceScheme.Category = m_categoryEntity.Find(m_category => m_category.Name == categoryName);
+						priceScheme.Description = description;
+						priceScheme.Price = price;
+						
+						priceSchemes.Add(priceScheme);
+						updatedPriceScheme.Add(serviceName + " - " + categoryName);						
+					}
+					{
+						errorMsg += serviceName + " - " + categoryName + " , ";
+					}
 				}
 				
 
-			}			
+			}	
+			errorMessage = errorMsg;
 			return priceSchemes;
 		}
 		
