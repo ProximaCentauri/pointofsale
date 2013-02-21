@@ -112,6 +112,7 @@
     <Compile Include="Models\RefillTransactionTypeDao.cs" />
     <Compile Include="Presenter\AddItemPresenter.cs" />
     <Compile Include="Presenter\ChekcListViewPresenter.cs" />
+    <Compile Include="Presenter\CustomerListViewPresenter.cs" />
     <Compile Include="Presenter\LaundryConfigurationViewPresenter.cs" />
     <Compile Include="Presenter\LaundryCustomerSearchViewPresenter.cs" />
     <Compile Include="Presenter\LaundryViewPresenter.cs" />

@@ -23,7 +23,8 @@ namespace NJournals.Common.Interfaces
 		event EventHandler SelectRefillingClaim;
 		event EventHandler SelectRefillingReport;
 		event EventHandler SelectRefillingConfiguration;
-			
+		event EventHandler SelectCustomerList;
+		
 		void ShowLaundryNewView();
 		void ShowLaundryClaimView();
 		void ShowRefillingNewView();
@@ -32,5 +33,6 @@ namespace NJournals.Common.Interfaces
 		void ShowRefillingReportView();
 		void ShowLaundryConfigurationView();
 		void ShowRefillingConfigurationView();
+		void ShowCustomerListView();
 	}
 }

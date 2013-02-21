@@ -102,6 +102,8 @@ namespace NJournals.Core
 			ShowSingletonForm(refillingConfigView);
 		}
 		
+		
+		
 		private void ShowSingletonForm(Form p_form){			
 			string title = p_form.Text;
 			foreach(Form m_form in this.MdiChildren){

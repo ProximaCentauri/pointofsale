@@ -28,6 +28,7 @@ namespace NJournals.Core.Presenter
 			this.m_view = p_view;
 			this.m_productTypeDao = new RefillProductTypeDao();
 			this.m_refillInvDao = new RefillInventoryDao();
+			
 		}
 		
 		public void SetAllRefillProductType()
