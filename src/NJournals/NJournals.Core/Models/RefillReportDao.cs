@@ -186,5 +186,6 @@ namespace NJournals.Core.Models
 					
 				}
 			}
+        }
 	}
 }
