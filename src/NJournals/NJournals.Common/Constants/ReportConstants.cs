@@ -34,5 +34,6 @@ namespace NJournals.Common.Constants
         public const string ES_REFILL_UNPAIDTRANSACTIONS_REPORT = "NJournals.Core.Reports.RefillUnpaidTransactionsReport.rdlc"; 	
         public const string ES_REFILL_INVENTORY_REPORT			= "NJournals.Core.Reports.RefillInventoryReport.rdlc";
         public const string ES_REFILL_CUSTINVENTORY_REPORT		= "NJournals.Core.Reports.RefillCustomerInventoryReport.rdlc";
+        public const string ES_REFILL_VOIDTRANSACTIONS_REPORT	= "NJournals.Core.Reports.RefillVoidTransactionsReport.rdlc";
     }
 }

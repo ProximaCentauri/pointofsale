@@ -22,7 +22,7 @@ namespace NJournals.Common.DataEntities
 		public virtual decimal AmountTender {get;set;}
 		public virtual int TotalQty {get;set;}
 		public virtual bool PaidFlag {get;set;}
-		
+		public virtual bool VoidFlag {get;set;}
 		public virtual CustomerDataEntity Customer {get;set;}
 		public virtual RefillTransactionTypeDataEntity TransactionType {get;set;}
 		public virtual IList<RefillPaymentDetailDataEntity> PaymentDetailEntities {get;set;}

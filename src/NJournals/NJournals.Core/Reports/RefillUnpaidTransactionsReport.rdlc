@@ -349,7 +349,7 @@
                       </Style>
                       <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!TotalQty.Value</Value>
+                      <Value>=FormatNumber(Fields!TotalQty.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -708,7 +708,7 @@
                       </Style>
                       <ZIndex>11</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=Count(Fields!RefillHeaderID.Value)</Value>
+                      <Value>=FormatNumber(Count(Fields!RefillHeaderID.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -732,7 +732,7 @@
                       </Style>
                       <ZIndex>10</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=SUM(Fields!TotalQty.Value)</Value>
+                      <Value>=FormatNumber(SUM(Fields!TotalQty.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
