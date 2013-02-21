@@ -27,7 +27,7 @@ namespace NJournals.Core.Views
 	public partial class CustomerListView : BaseForm, ICustomerListView
 	{
 		CustomerListViewPresenter m_presenter;
-		List<CustomerDataEntity> m_customers;
+		List<CustomerDataEntity> m_customersEntity;
 		int selectedIndex = -1;
 		
 		public CustomerListView()
@@ -50,9 +50,9 @@ namespace NJournals.Core.Views
 		
 		public void SetAllCustomerList(List<CustomerDataEntity> customers)
 		{
-			m_customers = customers;
+			m_customersEntity = customers;
 			BindingSource source = new BindingSource();
-			source.DataSource = m_customers;
+			source.DataSource = m_customersEntity;
 			this.dgvCustomerList.DataSource = source;
 			formatCustomerListDataGridView();
 		}
@@ -80,47 +80,76 @@ namespace NJournals.Core.Views
 			else
 			{
 				//TODO: info message
-				MessageService.ShowInfo("Cannot view multiple customer details. Select one customer at a time");
+				MessageService.ShowInfo("Cannot view multiple customer details. Please select one customer at a time.");
 			}
 		}
 		
 		void BtnSaveClick(object sender, EventArgs e)
-		{
-			CustomerDataEntity customer = new CustomerDataEntity();
-			string name = txtName.Text;
-			string address = txtAddress.Text;
-			string number = txtNumber.Text;			
-			
-			if(selectedIndex != -1)
-			{				
-				int ID = (int)dgvCustomerList.Rows[selectedIndex].Cells["CustomerID"].Value;
-				customer = m_customers.Find(m_customer => m_customer.CustomerID == ID);
+		{		
+			if(txtName.Text.Trim() == "")
+			{
+				errorProvider.SetError(txtName, "Name is required.");
+				return;
 			}
 			else
 			{
-				customer = m_customers.Find(m_customer => m_customer.Name == name);				
+				errorProvider.SetError(txtName, "");
+				
+				CustomerDataEntity customer = new CustomerDataEntity();
+				string name = txtName.Text.ToString();
+				string address = txtAddress.Text.ToString();
+				string number = txtNumber.Text.ToString();
+				
+				if(selectedIndex != -1)
+				{				
+					int ID = (int)dgvCustomerList.Rows[selectedIndex].Cells["CustomerID"].Value;
+					customer = m_customersEntity.Find(m_customer => m_customer.CustomerID == ID);
+				}
+				else
+				{
+					customer = m_customersEntity.Find(m_customer => m_customer.Name == name);	
+
+					if(customer != null && customer.CustomerID != 0)
+					{
+						MessageService.ShowWarning("Unable to insert duplicate name: " + name);
+						return;
+					}
+					else
+					{
+						customer = new CustomerDataEntity();
+					}
+				}	
+			
+				customer.Name = name;
+				customer.Address = address;
+				customer.ContactNumber = number;
+				
+				try
+				{
+					m_presenter.SaveOrUpdateCustomer(customer);					
+					selectedIndex = -1;
+					ClearData();
+					m_presenter.SetAllCustomerList();					
+				}
+				catch(Exception ex)
+				{
+					MessageService.ShowError("Unable to save data.", ex.Message);
+				}
 			}			
-							
-			customer.Name = name;
-			customer.Address = address;
-			customer.ContactNumber = number;
-			
-			try
-			{
-				m_presenter.SaveOrUpdate(customer);
-			}
-			catch(Exception ex)
-			{
-				MessageService.ShowError("Unable to save data.", ex.Message);
-			}
-			
 		}
 		
 		void BtnCancelClick(object sender, EventArgs e)
 		{
+			ClearData();
+		}
+		
+		void ClearData()
+		{
 			txtName.Text = string.Empty;
 			txtAddress.Text = string.Empty;
 			txtNumber.Text = string.Empty;
+			
+			errorProvider.SetError(txtName, "");
 		}
 		
 		void txtName_Validating(object sender, CancelEventArgs e)
@@ -133,6 +162,30 @@ namespace NJournals.Core.Views
 			}
 			
 			errorProvider.SetError(txtName, "");
+		}
+		
+		void BtnDeleteClick(object sender, EventArgs e)
+		{
+			CustomerDataEntity customer = new CustomerDataEntity();
+			
+			if(dgvCustomerList.SelectedRows.Count > 0)
+			{
+				try
+				{
+					foreach(DataGridViewRow currentRow in dgvCustomerList.SelectedRows)
+					{
+						int ID = (int)dgvCustomerList.Rows[currentRow.Index].Cells["CustomerID"].Value;
+						customer = m_customersEntity.Find(m_customer => m_customer.CustomerID == ID);
+						m_presenter.DeleteCustomer(customer);
+						dgvCustomerList.Rows.Remove(dgvCustomerList.Rows[currentRow.Index]);
+					}
+					m_presenter.SetAllCustomerList();
+				}
+				catch(Exception ex)
+				{
+					MessageService.ShowError("Unable to delete selected data.", ex.Message);
+				}
+			}
 		}
 	}
 }

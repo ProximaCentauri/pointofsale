@@ -52,6 +52,7 @@ namespace NJournals.Core.Views
 			this.dgvCustomerList = new System.Windows.Forms.DataGridView();
 			this.btnShow = new System.Windows.Forms.Button();
 			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+			this.btnDelete = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCustomerList)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -63,7 +64,6 @@ namespace NJournals.Core.Views
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(238, 20);
 			this.txtName.TabIndex = 5;
-			//this.txtName.Validating += new CancelEventHandler(txtName_Validating);
 			// 
 			// label2
 			// 
@@ -121,6 +121,7 @@ namespace NJournals.Core.Views
 			// 
 			// btnCancel
 			// 
+			this.btnCancel.CausesValidation = false;
 			this.btnCancel.Location = new System.Drawing.Point(335, 165);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -169,12 +170,23 @@ namespace NJournals.Core.Views
 			// 
 			this.errorProvider.ContainerControl = this;
 			// 
+			// btnDelete
+			// 
+			this.btnDelete.Location = new System.Drawing.Point(411, 303);
+			this.btnDelete.Name = "btnDelete";
+			this.btnDelete.Size = new System.Drawing.Size(75, 23);
+			this.btnDelete.TabIndex = 15;
+			this.btnDelete.Text = "Delete";
+			this.btnDelete.UseVisualStyleBackColor = true;
+			this.btnDelete.Click += new System.EventHandler(this.BtnDeleteClick);
+			// 
 			// CustomerListView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(896, 490);
+			this.Controls.Add(this.btnDelete);
 			this.Controls.Add(this.btnShow);
 			this.Controls.Add(this.dgvCustomerList);
 			this.Controls.Add(this.groupBox1);
@@ -187,6 +199,7 @@ namespace NJournals.Core.Views
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Button btnDelete;
 		private System.Windows.Forms.ErrorProvider errorProvider;
 		private System.Windows.Forms.Button btnShow;
 		private System.Windows.Forms.DataGridView dgvCustomerList;

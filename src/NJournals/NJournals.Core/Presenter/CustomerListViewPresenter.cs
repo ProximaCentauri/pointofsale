@@ -34,11 +34,23 @@ namespace NJournals.Core.Presenter
 			m_view.SetAllCustomerList(customers);
 		}
 		
-		public void SaveOrUpdate(CustomerDataEntity customer)
+		public void SaveOrUpdateCustomer(CustomerDataEntity customer)
 		{
 			try
 			{
 				m_customerDao.SaveOrUpdate(customer);
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
+		}
+		
+		public void DeleteCustomer(CustomerDataEntity customer)
+		{
+			try
+			{
+				m_customerDao.Delete(customer);
 			}
 			catch(Exception ex)
 			{
