@@ -227,7 +227,7 @@
         <CanGrow>true</CanGrow>
         <Left>2.375in</Left>
         <Height>0.25in</Height>
-        <Value>=FormatNumber(Fields!HeaderQtyReleased.Value)</Value>
+        <Value>=FormatNumber(Fields!HeaderQtyReleased.Value,0)</Value>
       </Textbox>
       <Textbox Name="textbox30">
         <Top>0.75in</Top>
@@ -303,7 +303,7 @@
         <CanGrow>true</CanGrow>
         <Left>2.375in</Left>
         <Height>0.25in</Height>
-        <Value>=FormatNumber(Fields!HeaderTotalQty.Value)</Value>
+        <Value>=FormatNumber(Fields!HeaderTotalQty.Value,0)</Value>
       </Textbox>
       <Textbox Name="textbox29">
         <Top>0.50001in</Top>
@@ -322,7 +322,7 @@
         <CanGrow>true</CanGrow>
         <Left>2.375in</Left>
         <Height>0.25in</Height>
-        <Value>=FormatNumber(Fields!HeaderQtyReleased.Value)</Value>
+        <Value>=FormatNumber(Fields!HeaderQtyReleased.Value,0)</Value>
       </Textbox>
       <Table Name="table1">
         <DataSetName>NJournals_Common_DataEntities_RefillInventoryReportDataEntity</DataSetName>
@@ -396,7 +396,7 @@
                       </Style>
                       <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!DetailTotalQty.Value)</Value>
+                      <Value>=FormatNumber(Fields!DetailTotalQty.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -416,7 +416,7 @@
                       </Style>
                       <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!TotalAdded.Value)</Value>
+                      <Value>=FormatNumber(Fields!TotalAdded.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -436,7 +436,7 @@
                       </Style>
                       <ZIndex>2</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!TotalRemoved.Value)</Value>
+                      <Value>=FormatNumber(Fields!TotalRemoved.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -456,7 +456,7 @@
                       </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!DetailQtyReleased.Value)</Value>
+                      <Value>=FormatNumber(Fields!DetailQtyReleased.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -475,7 +475,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!DetailQtyOnHand.Value)</Value>
+                      <Value>=FormatNumber(Fields!DetailQtyOnHand.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -675,6 +675,7 @@
             <Width>1.15in</Width>
           </TableColumn>
         </TableColumns>
+        <Height>0.97in</Height>
         <Footer>
           <TableRows>
             <TableRow>
@@ -722,7 +723,7 @@
                       </Style>
                       <ZIndex>10</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Sum(Fields!DetailTotalQty.Value))</Value>
+                      <Value />
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -745,7 +746,7 @@
                       </Style>
                       <ZIndex>9</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Sum(Fields!TotalAdded.Value))</Value>
+                      <Value>=FormatNumber(Sum(Fields!TotalAdded.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -768,7 +769,7 @@
                       </Style>
                       <ZIndex>8</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Sum(Fields!TotalRemoved.Value))</Value>
+                      <Value>=FormatNumber(Sum(Fields!TotalRemoved.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -791,7 +792,7 @@
                       </Style>
                       <ZIndex>7</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Sum(Fields!DetailQtyReleased.Value))</Value>
+                      <Value>=FormatNumber(Sum(Fields!DetailQtyReleased.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -813,7 +814,7 @@
                       </Style>
                       <ZIndex>6</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Sum(Fields!DetailQtyOnHand.Value))</Value>
+                      <Value />
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -824,7 +825,7 @@
         </Footer>
       </Table>
     </ReportItems>
-    <Height>2.22in</Height>
+    <Height>2.25in</Height>
   </Body>
   <Language>en-PH</Language>
   <PageFooter>

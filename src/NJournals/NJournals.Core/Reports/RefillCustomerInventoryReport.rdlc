@@ -208,7 +208,7 @@
                       </Style>
                       <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!BottlesOnHand.Value)</Value>
+                      <Value>=FormatNumber(Fields!BottlesOnHand.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -229,7 +229,7 @@
                       </Style>
                       <ZIndex>2</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!CapsOnHand.Value)</Value>
+                      <Value>=FormatNumber(Fields!CapsOnHand.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -250,7 +250,7 @@
                       </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!BottlesReturned.Value)</Value>
+                      <Value>=FormatNumber(Fields!BottlesReturned.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -270,7 +270,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!CapsReturned.Value)</Value>
+                      <Value>=FormatNumber(Fields!CapsReturned.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -489,7 +489,7 @@
                       </Style>
                       <ZIndex>8</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(SUM(Fields!BottlesOnHand.Value))</Value>
+                      <Value>=FormatNumber(SUM(Fields!BottlesOnHand.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -513,7 +513,7 @@
                       </Style>
                       <ZIndex>7</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(SUM(Fields!CapsOnHand.Value))</Value>
+                      <Value>=FormatNumber(SUM(Fields!CapsOnHand.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -537,7 +537,7 @@
                       </Style>
                       <ZIndex>6</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(SUM(Fields!BottlesReturned.Value))</Value>
+                      <Value>=FormatNumber(SUM(Fields!BottlesReturned.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -561,7 +561,7 @@
                       </Style>
                       <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(SUM(Fields!CapsReturned.Value))</Value>
+                      <Value>=FormatNumber(SUM(Fields!CapsReturned.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>

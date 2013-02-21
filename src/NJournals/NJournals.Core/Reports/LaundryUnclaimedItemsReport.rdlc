@@ -398,7 +398,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!TotalItemQty.Value</Value>
+                      <Value>=FormatNumber(Fields!TotalItemQty.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -663,7 +663,7 @@
                       </Style>
                       <ZIndex>6</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=Count(Fields!LaundryHeaderID.Value)</Value>
+                      <Value>=FormatNumber(Count(Fields!LaundryHeaderID.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -687,7 +687,7 @@
                       </Style>
                       <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=SUM(Fields!TotalItemQty.Value)</Value>
+                      <Value>=FormatNumber(SUM(Fields!TotalItemQty.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
