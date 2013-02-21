@@ -96,8 +96,7 @@ namespace NJournals.Core.Presenter
 				m_custInvDao.SaveOrUpdate(custInv);
 				
 				UpdateInventory("BOTTLE", returnedBottles, returnDate);
-				UpdateInventory("CAP", returnedCaps, returnDate);
-				
+				UpdateInventory("CAP", returnedCaps, returnDate);				
 			}
 			catch(Exception ex)
 			{								
@@ -107,22 +106,29 @@ namespace NJournals.Core.Presenter
 		
 		private void UpdateInventory(string name, int returnedQty, DateTime daystamp)
 		{
-			RefillInventoryHeaderDataEntity header = m_invDao.GetByName(name);
-			header.QtyOnHand += returnedQty;
-			header.QtyReleased -= returnedQty;
-						
-			RefillInventoryDetailDataEntity detail = m_invDao.GetDetailDay(header, daystamp);
-			if(detail == null)
+			try
 			{
-				detail = new RefillInventoryDetailDataEntity();
-				detail.Header = header;
-				detail.QtyOnHand += returnedQty; // FIXME: need to verify whether detail qtyonhand should be the same with header qytonhand
-				detail.Date = daystamp;
-				header.DetailEntities.Add(detail);
-			}else{
-				detail.QtyOnHand += returnedQty;
+				RefillInventoryHeaderDataEntity header = m_invDao.GetByName(name);
+				header.QtyOnHand += returnedQty;
+				header.QtyReleased -= returnedQty;
+							
+				RefillInventoryDetailDataEntity detail = m_invDao.GetDetailDay(header, daystamp);
+				if(detail == null)
+				{
+					detail = new RefillInventoryDetailDataEntity();
+					detail.Header = header;
+					detail.QtyOnHand += returnedQty;
+					detail.Date = daystamp;
+					header.DetailEntities.Add(detail);
+				}else{
+					detail.QtyOnHand += returnedQty;
+				}
+				m_invDao.SaveOrUpdate(header);
 			}
-			m_invDao.SaveOrUpdate(header);
+			catch(Exception ex)
+			{
+				throw ex;
+			}
 		}
 		
 		public void UpdateCustomerRefillHeaders(decimal amtTender, List<RefillHeaderDataEntity> refillHeaders, DateTime paymentDate)
@@ -163,18 +169,25 @@ namespace NJournals.Core.Presenter
 		
 		private void UpdateDaySummary(decimal amount, DateTime paymentDate, RefillHeaderDataEntity header)
 		{
-			RefillDaySummaryDataEntity daysummary = m_daysummaryDao.GetByDay(paymentDate);
-			if(daysummary == null)
+			try
 			{
-				daysummary = new RefillDaySummaryDataEntity();
-				daysummary.HeaderEntities.Add(header);
-				daysummary.TotalSales += amount;
-				daysummary.DayStamp = paymentDate;				
-			}else{
-				daysummary.HeaderEntities.Add(header);
-				daysummary.TotalSales += amount;
+				RefillDaySummaryDataEntity daysummary = m_daysummaryDao.GetByDay(paymentDate);
+				if(daysummary == null)
+				{
+					daysummary = new RefillDaySummaryDataEntity();
+					daysummary.HeaderEntities.Add(header);
+					daysummary.TotalSales += amount;
+					daysummary.DayStamp = paymentDate;				
+				}else{
+					daysummary.HeaderEntities.Add(header);
+					daysummary.TotalSales += amount;
+				}
+				m_daysummaryDao.SaveOrUpdate(daysummary);
 			}
-			m_daysummaryDao.SaveOrUpdate(daysummary);
+			catch(Exception ex)
+			{
+				throw ex;
+			}
 		}
 		
 		private RefillPaymentDetailDataEntity CreateNewPayment(decimal amount, RefillHeaderDataEntity header, DateTime paymentDate)
