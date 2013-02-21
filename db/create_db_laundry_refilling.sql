@@ -328,6 +328,7 @@ CREATE TABLE `refillheader` (
   `AmountDue` decimal(10,2) NOT NULL DEFAULT '0',
   `AmountTender` decimal(10,2) NOT NULL DEFAULT '0',
   `PaidFlag` tinyint(1) NOT NULL DEFAULT '0',
+  `VoidFlag` tinyint(1) NOT NULL DEFAULT '0',
   `TransactionTypeID` int(10) unsigned NOT NULL,
   `DayID` int(10) unsigned NOT NULL,
   PRIMARY KEY (`RefillHeaderID`),

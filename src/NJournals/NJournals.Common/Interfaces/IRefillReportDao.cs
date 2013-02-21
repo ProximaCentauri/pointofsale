@@ -28,5 +28,9 @@ namespace NJournals.Common.Interfaces
 		                                                            bool b_isAll);
 		IEnumerable<RefillInventoryReportDataEntity> GetInventoryReport(DateTime fromDateTime, DateTime toDateTime);
 		IEnumerable<RefillCustInventoryHeaderDataEntity> GetCustomerInventoryReport(CustomerDataEntity customer, bool  b_isAll);
+		IEnumerable<RefillHeaderDataEntity> GetVoidTransactionsReport(CustomerDataEntity customer,
+		                                                               DateTime fromDateTime,
+		                                                               DateTime toDateTime,
+		                                                               bool b_isAll);
 	}
 }

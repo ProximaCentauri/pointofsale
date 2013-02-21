@@ -49,9 +49,10 @@ namespace NJournals.Core.Presenter
         			break;
                 case ReportConstants.REFILL_WINDOW:
                     reportTypes.Add(ReportConstants.INVENTORY_REPORT);
-                    reportTypes.Add(ReportConstants.SALES_REPORT);                    
-                    reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);
                     reportTypes.Add(ReportConstants.CUSTINVENTORY_REPORT);
+                    reportTypes.Add(ReportConstants.SALES_REPORT);
+                    reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);                    
+                    reportTypes.Add(ReportConstants.VOID_TRANSACTIONS_REPORT);
         			break;
         		default:
         			break;
@@ -162,6 +163,13 @@ namespace NJournals.Core.Presenter
                     datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLCUSTINVENTORY, custInvReport));
                     m_view.DisplayReport(custInvReport, datasources, parameters, ReportConstants.ES_REFILL_CUSTINVENTORY_REPORT);       
                 	break;
+                case ReportConstants.VOID_TRANSACTIONS_REPORT:
+                    List<RefillHeaderDataEntity> voidReport = m_refillReportDao
+                    	.GetVoidTransactionsReport(customer, fromDateTime, toDateTime, b_isAll) as List<RefillHeaderDataEntity>;
+                    parameters = SetReportParameters(customer, fromDateTime, toDateTime, b_isAll);
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLHEADER, voidReport));
+                    m_view.DisplayReport(voidReport, datasources, parameters, ReportConstants.ES_REFILL_VOIDTRANSACTIONS_REPORT);
+                    break;
 				default:
 					break;
 			}

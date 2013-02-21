@@ -154,5 +154,37 @@ namespace NJournals.Core.Models
                 }
             }
         }
+        
+        public IEnumerable<RefillHeaderDataEntity> GetVoidTransactionsReport(CustomerDataEntity customer,
+		                                                               DateTime fromDateTime,
+		                                                               DateTime toDateTime,
+		                                                               bool b_isAll)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					if (b_isAll)
+                    {
+                        var query = session.CreateCriteria<RefillHeaderDataEntity>("header")
+                           .Add(Restrictions.Between("header.Date", fromDateTime, toDateTime))
+                           .Add(Restrictions.Eq("header.VoidFlag", true))
+                           .AddOrder(Order.Asc("header.Date"))
+                           .List<RefillHeaderDataEntity>();
+                        return query;
+                    }
+                    else
+                    {
+                        var query = session.CreateCriteria<RefillHeaderDataEntity>("header")
+                            .Add(Restrictions.Eq("header.Customer", customer))
+                            .Add(Restrictions.Between("header.Date", fromDateTime, toDateTime))
+                            .Add(Restrictions.Eq("header.VoidFlag", true))
+                            .AddOrder(Order.Asc("header.Date"))
+                            .List<RefillHeaderDataEntity>();
+                        return query;
+                    }
+					
+				}
+			}
 	}
 }
