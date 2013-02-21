@@ -268,7 +268,8 @@ namespace NJournals.Core.Views
 				txttotaldiscount.Text = "0";	
 				txttotalamtdue.Text = (decimal.Parse(txtamtdue.Text) + decimal.Parse(txttotalcharges.Text)).ToString("N2");
 			}else{
-				txttotaldiscount.Text = ((decimal.Parse(txtdiscount.Text) / 100M) * (decimal.Parse(txtamtdue.Text) + decimal.Parse(txttotalcharges.Text))).ToString("N2");
+				decimal discount = decimal.Parse(txtdiscount.Text) / 100M;
+				txttotaldiscount.Text = (decimal.Parse(txttotalamtdue.Text) * discount).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - decimal.Parse(txttotaldiscount.Text)).ToString("N2");		
 			}
 			//TODO: accurate calculation for balance when amttender > 0
@@ -369,13 +370,15 @@ namespace NJournals.Core.Views
 				charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
 				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) + charge).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + charge).ToString("N2");
-				txtbalance.Text = txttotalamtdue.Text;
 			}else{
 				charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
 				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) - charge).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - charge).ToString("N2");
-				txtbalance.Text = txttotalamtdue.Text;
 			}			
+			//FIXME: issue in calculation
+			txtbalance.Text = txttotalamtdue.Text;
+			decimal discount = decimal.Parse(txtdiscount.Text) / 100M;
+			txttotaldiscount.Text = (decimal.Parse(txttotalamtdue.Text) * discount).ToString("N2");
 		}
 					
 		void BtnCustomerSearchClick(object sender, EventArgs e)
