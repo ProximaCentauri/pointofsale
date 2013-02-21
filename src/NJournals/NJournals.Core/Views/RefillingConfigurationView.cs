@@ -344,22 +344,22 @@ namespace NJournals.Core.Views
 					{	
 						invDetail.QtyAdded += addStocks;
 						invDetail.QtyRemoved += removeStocks;						
-						invDetail.QtyOnHand = invDetail.QtyOnHand + addStocks - removeStocks;
-						invDetail.TotalQty = invDetail.TotalQty + addStocks - removeStocks;
+						invDetail.QtyOnHand += addStocks - removeStocks;
+						invDetail.TotalQty += addStocks - removeStocks;
 					}
 					else
 					{
 						invDetail.Date = DateTime.Now.Date;
-						invDetail.QtyAdded = addStocks;
-						invDetail.QtyRemoved = removeStocks;
-						invDetail.QtyOnHand = addStocks - removeStocks;						
-						invDetail.TotalQty = addStocks - removeStocks;
+						invDetail.QtyAdded += addStocks;
+						invDetail.QtyRemoved += removeStocks;
+						invDetail.QtyOnHand += addStocks - removeStocks;						
+						invDetail.TotalQty += addStocks - removeStocks;
 					}				
 					
-					refillInv.QtyOnHand = refillInv.QtyOnHand + addStocks - removeStocks;
+					refillInv.QtyOnHand += addStocks - removeStocks;
 					refillInv.TotalAdded += addStocks;
 					refillInv.TotalRemoved += removeStocks;
-					refillInv.TotalQty = refillInv.TotalQty + addStocks - removeStocks;
+					refillInv.TotalQty += addStocks - removeStocks;
 					refillInv.DetailEntities.Add(invDetail);
 					
 					refillInvs.Add(refillInv);
