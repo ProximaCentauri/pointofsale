@@ -88,5 +88,51 @@ namespace NJournals.Core.Views
 				dataGridView1.Rows.Add(cmbproducts.Text, txtbottles.Text, txtcaps.Text, txtnoitems.Text, totalPrice.ToString("N2"));
 			this.txtamtdue.Text = (decimal.Parse(txtamtdue.Text) + totalPrice).ToString("N2");
 		}
+		
+		void BtnprintcloseClick(object sender, EventArgs e)
+		{
+			m_presenter.PrintClicked();			
+		}
+		
+		public RefillHeaderDataEntity ProcessHeaderDataEntity(){
+			RefillHeaderDataEntity m_headerEntity = new RefillHeaderDataEntity();
+			m_headerEntity.RefillHeaderID = int.Parse(txtjonumber.Text);
+			m_headerEntity.Date = dtDate.Value;
+			m_headerEntity.Customer = m_presenter.getCustomerByName(cmbCustomers.Text);
+			m_headerEntity.TransactionType = m_presenter.getTransactionTypeByName(cmbtransTypes.Text);
+			m_headerEntity.AmountDue = decimal.Parse(txtamtdue.Text);
+			m_headerEntity.AmountTender = decimal.Parse(txtamttender.Text);
+			m_headerEntity.DetailEntities = new List<RefillDetailDataEntity>();
+			foreach(DataGridViewRow row in this.dataGridView1.Rows){
+				if(row.Cells[0].Value != null){
+					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
+						RefillDetailDataEntity detail = new RefillDetailDataEntity();
+						detail.ProductType = m_presenter.getProductByName(row.Cells[0].Value.ToString());
+						detail.StoreBottleQty = int.Parse(row.Cells[1].Value.ToString());
+						detail.StoreCapQty = int.Parse(row.Cells[2].Value.ToString());
+						detail.Qty = int.Parse(row.Cells[3].Value.ToString());
+						detail.Amount = decimal.Parse(row.Cells[4].Value.ToString());
+						m_headerEntity.DetailEntities.Add(detail);
+							
+					}
+				}
+			}
+			m_headerEntity.PaidFlag = chkunpaid.Checked;
+			RefillPaymentDetailDataEntity paymentDetail = new RefillPaymentDetailDataEntity();
+		
+			if(m_headerEntity.AmountTender > 0){
+				if(m_headerEntity.AmountTender >= m_headerEntity.AmountDue){
+					paymentDetail.Amount = m_headerEntity.AmountDue;
+				}else{
+					paymentDetail.Amount = m_headerEntity.AmountTender;
+				}
+			}else
+				paymentDetail.Amount = 0M;
+			paymentDetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());		
+			paymentDetail.Header = m_headerEntity;
+			m_headerEntity.PaymentDetailEntities.Add(paymentDetail);
+			
+			return m_headerEntity;
+		}
 	}
 }

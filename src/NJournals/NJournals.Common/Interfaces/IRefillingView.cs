@@ -19,5 +19,6 @@ namespace NJournals.Common.Interfaces
 		void SetAllCustomers(List<CustomerDataEntity> customers);
 		void SetAllTransactionTypes(List<RefillTransactionTypeDataEntity> transactionTypes);
 		void SetAllProducts(List<RefillProductTypeDataEntity> products);
+		RefillHeaderDataEntity ProcessHeaderDataEntity();
 	}
 }

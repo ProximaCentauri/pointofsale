@@ -68,7 +68,7 @@ namespace NJournals.Core.Views
 			this.txtamtdue = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.btncancel = new System.Windows.Forms.Button();
-			this.btnprint = new System.Windows.Forms.Button();
+			this.btnprintclose = new System.Windows.Forms.Button();
 			this.chkunpaid = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
@@ -131,6 +131,8 @@ namespace NJournals.Core.Views
 			// 
 			// txtjonumber
 			// 
+			this.txtjonumber.BackColor = System.Drawing.Color.White;
+			this.txtjonumber.Enabled = false;
 			this.txtjonumber.Location = new System.Drawing.Point(143, 21);
 			this.txtjonumber.Name = "txtjonumber";
 			this.txtjonumber.Size = new System.Drawing.Size(154, 23);
@@ -366,15 +368,16 @@ namespace NJournals.Core.Views
 			this.btncancel.Text = "Cancel";
 			this.btncancel.UseVisualStyleBackColor = true;
 			// 
-			// btnprint
+			// btnprintclose
 			// 
-			this.btnprint.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnprint.Location = new System.Drawing.Point(688, 518);
-			this.btnprint.Name = "btnprint";
-			this.btnprint.Size = new System.Drawing.Size(75, 23);
-			this.btnprint.TabIndex = 20;
-			this.btnprint.Text = "Print";
-			this.btnprint.UseVisualStyleBackColor = true;
+			this.btnprintclose.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnprintclose.Location = new System.Drawing.Point(627, 518);
+			this.btnprintclose.Name = "btnprintclose";
+			this.btnprintclose.Size = new System.Drawing.Size(136, 23);
+			this.btnprintclose.TabIndex = 20;
+			this.btnprintclose.Text = " Print && Close";
+			this.btnprintclose.UseVisualStyleBackColor = true;
+			this.btnprintclose.Click += new System.EventHandler(this.BtnprintcloseClick);
 			// 
 			// chkunpaid
 			// 
@@ -394,7 +397,7 @@ namespace NJournals.Core.Views
 			this.ClientSize = new System.Drawing.Size(892, 566);
 			this.Controls.Add(this.chkunpaid);
 			this.Controls.Add(this.btncancel);
-			this.Controls.Add(this.btnprint);
+			this.Controls.Add(this.btnprintclose);
 			this.Controls.Add(this.txtchange);
 			this.Controls.Add(this.label12);
 			this.Controls.Add(this.txtamttender);
@@ -429,7 +432,7 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.TextBox txtbottles;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.TextBox txtcaps;
-		private System.Windows.Forms.Button btnprint;
+		private System.Windows.Forms.Button btnprintclose;
 		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.TextBox txtamtdue;
