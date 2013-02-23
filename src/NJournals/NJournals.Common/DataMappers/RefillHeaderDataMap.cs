@@ -28,7 +28,8 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.TotalQty);
 			Map(x => x.PaidFlag);
 			Map(x => x.VoidFlag);
-			References(x => x.TransactionType).Column("TransactionTypeID").Not.LazyLoad();
+			References(x => x.TransactionType)
+				.Column("TransactionTypeID").Not.Nullable().Not.LazyLoad();
 			HasMany<RefillDetailDataEntity>(x => x.DetailEntities)
 				.KeyColumn("RefillHeaderID")
 				.Inverse()

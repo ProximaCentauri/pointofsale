@@ -28,7 +28,7 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.StoreBottleQty);
 			Map(x => x.StoreCapQty);
 			References<RefillHeaderDataEntity>(x => x.Header)
-				.Column("RefillHeaderID").Not.Nullable();
+				.Column("RefillHeaderID");
 			Table("RefillDetail");
 		}
 	}

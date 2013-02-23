@@ -107,13 +107,13 @@ namespace NJournals.Core.Views
 				if(row.Cells[0].Value != null){
 					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
 						RefillDetailDataEntity detail = new RefillDetailDataEntity();
+						detail.Header = m_headerEntity;
 						detail.ProductType = m_presenter.getProductByName(row.Cells[0].Value.ToString());
 						detail.StoreBottleQty = int.Parse(row.Cells[1].Value.ToString());
 						detail.StoreCapQty = int.Parse(row.Cells[2].Value.ToString());
 						detail.Qty = int.Parse(row.Cells[3].Value.ToString());
 						detail.Amount = decimal.Parse(row.Cells[4].Value.ToString());
-						m_headerEntity.DetailEntities.Add(detail);
-							
+						m_headerEntity.DetailEntities.Add(detail);							
 					}
 				}
 			}
