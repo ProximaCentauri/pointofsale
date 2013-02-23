@@ -59,7 +59,7 @@ namespace NJournals.Core.Views
 			// 
 			// label1
 			// 
-			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(168)))), ((int)(((byte)(188)))));
+			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(151)))), ((int)(((byte)(166)))));
 			this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -68,6 +68,7 @@ namespace NJournals.Core.Views
 			this.label1.Size = new System.Drawing.Size(789, 23);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Price Scheme";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// dgvPriceScheme
 			// 
@@ -87,11 +88,10 @@ namespace NJournals.Core.Views
 			this.dgvPriceScheme.Name = "dgvPriceScheme";
 			this.dgvPriceScheme.Size = new System.Drawing.Size(789, 220);
 			this.dgvPriceScheme.TabIndex = 1;
-			this.dgvPriceScheme.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(dgvPriceScheme_CellValueChanged);
 			// 
 			// label2
 			// 
-			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(168)))), ((int)(((byte)(188)))));
+			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(151)))), ((int)(((byte)(166)))));
 			this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -100,10 +100,11 @@ namespace NJournals.Core.Views
 			this.label2.Size = new System.Drawing.Size(789, 23);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Services";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// label3
 			// 
-			this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(168)))), ((int)(((byte)(188)))));
+			this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(151)))), ((int)(((byte)(166)))));
 			this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -112,17 +113,18 @@ namespace NJournals.Core.Views
 			this.label3.Size = new System.Drawing.Size(789, 23);
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Category";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// dgvCategory
 			// 
 			this.dgvCategory.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.dgvCategory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvCategory.Location = new System.Drawing.Point(25, 494);
 			this.dgvCategory.Name = "dgvCategory";
 			this.dgvCategory.Size = new System.Drawing.Size(789, 186);
 			this.dgvCategory.TabIndex = 5;
 			this.dgvCategory.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategory_CellValueChanged);
-			this.dgvCategory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			// 
 			// btnAddPriceScheme
 			// 

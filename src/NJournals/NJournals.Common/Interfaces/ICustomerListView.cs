@@ -18,5 +18,6 @@ namespace NJournals.Common.Interfaces
 	public interface ICustomerListView : IView
 	{
 		void SetAllCustomerList(List<CustomerDataEntity> customers);
+		void ViewCustomersByName(List<CustomerDataEntity> customers);
 	}
 }

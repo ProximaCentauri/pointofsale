@@ -36,8 +36,8 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dgvProductType = new System.Windows.Forms.DataGridView();
 			this.label3 = new System.Windows.Forms.Label();
 			this.btnDeleteProduct = new System.Windows.Forms.Button();
@@ -54,14 +54,14 @@ namespace NJournals.Core.Views
 			// dgvProductType
 			// 
 			this.dgvProductType.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvProductType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvProductType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
 			this.dgvProductType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvProductType.Location = new System.Drawing.Point(12, 59);
 			this.dgvProductType.Name = "dgvProductType";
@@ -71,7 +71,7 @@ namespace NJournals.Core.Views
 			// 
 			// label3
 			// 
-			this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(168)))), ((int)(((byte)(188)))));
+			this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(151)))), ((int)(((byte)(166)))));
 			this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -80,6 +80,7 @@ namespace NJournals.Core.Views
 			this.label3.Size = new System.Drawing.Size(789, 23);
 			this.label3.TabIndex = 6;
 			this.label3.Text = "Products";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// btnDeleteProduct
 			// 
@@ -89,7 +90,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteProduct.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnDeleteProduct.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnDeleteProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnDeleteProduct.Location = new System.Drawing.Point(807, 106);
+			this.btnDeleteProduct.Location = new System.Drawing.Point(807, 107);
 			this.btnDeleteProduct.Name = "btnDeleteProduct";
 			this.btnDeleteProduct.Size = new System.Drawing.Size(35, 23);
 			this.btnDeleteProduct.TabIndex = 16;
@@ -113,16 +114,16 @@ namespace NJournals.Core.Views
 			// 
 			// dgvRefillInventory
 			// 
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
 			this.dgvRefillInventory.AllowUserToAddRows = false;
 			this.dgvRefillInventory.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.dgvRefillInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvRefillInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
 			this.dgvRefillInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvRefillInventory.Location = new System.Drawing.Point(12, 291);
 			this.dgvRefillInventory.Name = "dgvRefillInventory";
@@ -132,7 +133,7 @@ namespace NJournals.Core.Views
 			// 
 			// label1
 			// 
-			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(168)))), ((int)(((byte)(188)))));
+			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(151)))), ((int)(((byte)(166)))));
 			this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.label1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -141,6 +142,7 @@ namespace NJournals.Core.Views
 			this.label1.Size = new System.Drawing.Size(789, 23);
 			this.label1.TabIndex = 17;
 			this.label1.Text = "Inventory";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// btnDeleteInv
 			// 
@@ -150,7 +152,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteInv.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnDeleteInv.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnDeleteInv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnDeleteInv.Location = new System.Drawing.Point(807, 355);
+			this.btnDeleteInv.Location = new System.Drawing.Point(807, 360);
 			this.btnDeleteInv.Name = "btnDeleteInv";
 			this.btnDeleteInv.Size = new System.Drawing.Size(35, 23);
 			this.btnDeleteInv.TabIndex = 20;
@@ -165,7 +167,7 @@ namespace NJournals.Core.Views
 			this.btnSaveInv.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnSaveInv.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnSaveInv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSaveInv.Location = new System.Drawing.Point(807, 326);
+			this.btnSaveInv.Location = new System.Drawing.Point(807, 328);
 			this.btnSaveInv.Name = "btnSaveInv";
 			this.btnSaveInv.Size = new System.Drawing.Size(35, 23);
 			this.btnSaveInv.TabIndex = 19;

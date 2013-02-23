@@ -20,6 +20,7 @@ namespace NJournals.Common.Interfaces
 	{
 		void SaveOrUpdate(CustomerDataEntity p_customer);
 		IEnumerable<CustomerDataEntity> GetAllItems();
+		IEnumerable<CustomerDataEntity> GetCustomersByName(string p_name);
 		CustomerDataEntity GetByName(string p_name);
 		void Delete(CustomerDataEntity p_customer);
 		void Update(CustomerDataEntity p_customer);

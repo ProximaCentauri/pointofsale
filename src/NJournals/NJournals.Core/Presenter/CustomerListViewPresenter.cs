@@ -57,5 +57,11 @@ namespace NJournals.Core.Presenter
 				throw ex;
 			}
 		}
+		
+		public void viewCustomersByName(string custName)
+		{
+			List<CustomerDataEntity> customers = m_customerDao.GetCustomersByName(custName) as List<CustomerDataEntity>;
+			m_view.ViewCustomersByName(customers);
+		}
 	}
 }

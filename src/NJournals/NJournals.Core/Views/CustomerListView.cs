@@ -27,7 +27,7 @@ namespace NJournals.Core.Views
 	public partial class CustomerListView : BaseForm, ICustomerListView
 	{
 		CustomerListViewPresenter m_presenter;
-		List<CustomerDataEntity> m_customersEntity;
+		List<CustomerDataEntity> m_customersEntity = null;
 		int selectedIndex = -1;
 		
 		public CustomerListView()
@@ -44,6 +44,8 @@ namespace NJournals.Core.Views
 		
 		void CustomerListViewLoad(object sender, EventArgs e)
 		{
+			setButtonImages();
+			formatAlternatingRows();
 			m_presenter = new CustomerListViewPresenter(this);
 			m_presenter.SetAllCustomerList();
 		}
@@ -55,16 +57,7 @@ namespace NJournals.Core.Views
 			source.DataSource = m_customersEntity;
 			this.dgvCustomerList.DataSource = source;
 			formatCustomerListDataGridView();
-		}
-		
-		
-		private void formatCustomerListDataGridView()
-		{
-			dgvCustomerList.Columns["CustomerID"].Visible = false;
-			dgvCustomerList.Columns["Name"].ReadOnly = true;
-			dgvCustomerList.Columns["Address"].ReadOnly = true;
-			dgvCustomerList.Columns["ContactNumber"].ReadOnly = true;
-		}
+		}	
 		
 		void BtnShowClick(object sender, EventArgs e)
 		{
@@ -76,6 +69,8 @@ namespace NJournals.Core.Views
 				txtName.Text = currentRow.Cells["Name"].Value.ToString();
 				txtAddress.Text = currentRow.Cells["Address"].Value.ToString();
 				txtNumber.Text = currentRow.Cells["ContactNumber"].Value.ToString();
+				
+				txtsearch.Text = string.Empty;
 			}
 			else
 			{
@@ -148,6 +143,7 @@ namespace NJournals.Core.Views
 			txtName.Text = string.Empty;
 			txtAddress.Text = string.Empty;
 			txtNumber.Text = string.Empty;
+			txtsearch.Text = string.Empty;
 			
 			errorProvider.SetError(txtName, "");
 		}
@@ -164,7 +160,37 @@ namespace NJournals.Core.Views
 			errorProvider.SetError(txtName, "");
 		}
 		
-		void BtnDeleteClick(object sender, EventArgs e)
+
+		
+		void BtnsearchClick(object sender, EventArgs e)
+		{
+			if(!txtsearch.Text.Trim().Equals(string.Empty))
+			{
+				m_presenter.viewCustomersByName(txtsearch.Text.Trim().ToString());
+			}
+			else
+			{
+				m_presenter.SetAllCustomerList();
+			}
+		}
+		
+		public void ViewCustomersByName(List<CustomerDataEntity> p_customers)
+		{
+			m_customersEntity = p_customers;
+			if(m_customersEntity != null)
+			{
+				BindingSource source = new BindingSource();
+				source.DataSource = m_customersEntity;
+				dgvCustomerList.Rows.Clear();
+				dgvCustomerList.DataSource = source;
+			}
+			else
+			{
+				MessageService.ShowWarning("Can't find customer name: " + txtsearch.Text.Trim(), "Non-existing");
+			}
+		}		
+		
+		void BtnDeleteCustomerClick(object sender, EventArgs e)
 		{
 			CustomerDataEntity customer = new CustomerDataEntity();
 			
@@ -187,5 +213,37 @@ namespace NJournals.Core.Views
 				}
 			}
 		}
+		
+		
+		#region Format Methods
+		
+		void setButtonImages()
+		{
+			Resource.setImage(this.btnDeleteCustomer,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
+			Resource.setImage(this.btnShow,System.IO.Directory.GetCurrentDirectory() + "/images/viewUser.png");			
+			Resource.setImage(this.btnsearch,System.IO.Directory.GetCurrentDirectory() + "/images/search.png");			
+		}
+		
+		private void formatCustomerListDataGridView()
+		{
+			dgvCustomerList.Columns["CustomerID"].Visible = false;
+			dgvCustomerList.Columns["Name"].ReadOnly = true;
+			dgvCustomerList.Columns["Address"].ReadOnly = true;
+			dgvCustomerList.Columns["ContactNumber"].ReadOnly = true;
+			dgvCustomerList.Columns["ContactNumber"].HeaderText = "Contact Number";
+			dgvCustomerList.Columns["Name"].Width = 115;
+			dgvCustomerList.Columns["Address"].Width = 140;
+			dgvCustomerList.Columns["ContactNumber"].Width = 110;
+		}
+		
+		void formatAlternatingRows()
+		{
+            this.dgvCustomerList.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgvCustomerList.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
+		}
+		
+		#endregion
+		
+		
 	}
 }

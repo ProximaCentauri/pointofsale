@@ -321,6 +321,9 @@
     <None Include="images\search.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="images\viewUser.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.CustomerDataEntity.datasource" />
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.LaundryDaySummaryDataEntity.datasource" />
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.LaundryHeaderDataEntity.datasource" />

@@ -51,6 +51,7 @@ namespace NJournals.Core.Views
 		{
 			setButtonImages();
 			formatAlternatingRows();
+			SetToolTip();
 			
 			m_presenter = new RefillingConfigurationViewPresenter(this);
 			m_presenter.SetAllRefillProductType();
@@ -273,9 +274,10 @@ namespace NJournals.Core.Views
 			if(refillInvs.Count > 0)
 			{
 				m_presenter.SaveOrUpdateRefillInventory(refillInvs);
-				m_presenter.SetAllRefillInventory();
-				refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
+				m_presenter.SetAllRefillInventory();				
 				this.dgvRefillInventory.AllowUserToAddRows = false;
+				dgvRefillInventory.Refresh();
+				refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
 			}
 		}
 		
@@ -340,21 +342,15 @@ namespace NJournals.Core.Views
 					
 					invDetail = detailInvs.Find(detailInv => detailInv.Date == DateTime.Now.Date);
 										
-					if(invDetail != null)
+					if(invDetail == null)
 					{	
-						invDetail.QtyAdded += addStocks;
-						invDetail.QtyRemoved += removeStocks;						
-						invDetail.QtyOnHand += addStocks - removeStocks;
-						invDetail.TotalQty += addStocks - removeStocks;
-					}
-					else
-					{
 						invDetail.Date = DateTime.Now.Date;
-						invDetail.QtyAdded += addStocks;
-						invDetail.QtyRemoved += removeStocks;
-						invDetail.QtyOnHand += addStocks - removeStocks;						
-						invDetail.TotalQty += addStocks - removeStocks;
-					}				
+					}
+					
+					invDetail.QtyAdded += addStocks;
+					invDetail.QtyRemoved += removeStocks;
+					invDetail.QtyOnHand += addStocks - removeStocks;						
+					invDetail.TotalQty += addStocks - removeStocks;				
 					
 					refillInv.QtyOnHand += addStocks - removeStocks;
 					refillInv.TotalAdded += addStocks;
@@ -385,10 +381,10 @@ namespace NJournals.Core.Views
 		
 		void formatAlternatingRows()
 		{
-			this.dgvProductType.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
-            this.dgvProductType.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));        
-			this.dgvRefillInventory.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
-            this.dgvRefillInventory.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));        
+            this.dgvProductType.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgvProductType.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
+			this.dgvRefillInventory.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgvRefillInventory.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
 		}
 		
 		void formatProductTypeDataGridView()
@@ -420,6 +416,16 @@ namespace NJournals.Core.Views
 			this.dgvRefillInventory.Columns["QtyReleased"].HeaderText = "QTY Released";
 			this.dgvRefillInventory.Columns["AddStocks"].HeaderText = "Add Stocks";
 			this.dgvRefillInventory.Columns["RemoveStocks"].HeaderText = "Remove Stocks";
+		}
+		
+		void SetToolTip()
+		{
+			ToolTip toolTip = new ToolTip();
+			toolTip.SetToolTip(btnAddInv, "Add new inventory item");
+			toolTip.SetToolTip(btnDeleteInv, "Remove inventory item");
+			toolTip.SetToolTip(btnSaveInv, "Save or Update inventory item");
+			toolTip.SetToolTip(btnDeleteProduct, "Remove product type");
+			toolTip.SetToolTip(btnSaveProduct, "Save or Update product type");
 		}
 		#endregion
 

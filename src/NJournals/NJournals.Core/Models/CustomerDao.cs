@@ -62,6 +62,20 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public IEnumerable<CustomerDataEntity> GetCustomersByName(string p_name)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+                    var query = session.Query<CustomerDataEntity>()
+                    	.Where(x => x.Name.Contains(p_name))
+                    	.ToList();
+					return query;
+				}
+			}
+		}
+		
 		public IEnumerable<CustomerDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())

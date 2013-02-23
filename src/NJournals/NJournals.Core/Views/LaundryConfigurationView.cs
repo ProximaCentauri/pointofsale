@@ -54,6 +54,7 @@ namespace NJournals.Core.Views
 		{
 			setButtonImages();
 			formatAlternatingRows();
+			setToolTip();
 			
 			m_presenter = new LaundryConfigurationViewPresenter(this);
 			m_presenter.SetAllCategories();
@@ -107,9 +108,12 @@ namespace NJournals.Core.Views
 		
 		#region Services
 		
+		//TODO: 0224 - cannot delete entry if used in priceScheme
 		void BtnDeleteServicesClick(object sender, EventArgs e)
 		{
 			LaundryServiceDataEntity service = new LaundryServiceDataEntity();
+			LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
+			string errorMessage = string.Empty;
 			
 			if(this.dgvServices.SelectedRows.Count > 0)
 			{
@@ -118,16 +122,31 @@ namespace NJournals.Core.Views
 					if(currentRow.Index < servicesMaxRowIndex)
 					{
 						int serviceId = (int)this.dgvServices.Rows[currentRow.Index].Cells["ServiceID"].Value;
-						service = m_serviceEntity.Find(m_service => m_service.ServiceID == serviceId);						
-						m_presenter.DeleteService(service);						
-					}
-					
-					if(!this.dgvServices.Rows[currentRow.Index].IsNewRow)
-					 dgvServices.Rows.Remove(this.dgvServices.Rows[currentRow.Index]);										
+						service = m_serviceEntity.Find(m_service => m_service.ServiceID == serviceId);
+						priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.Service.Name == service.Name);
+						
+						if(priceScheme == null || priceScheme.ID == 0)
+						{
+							m_presenter.DeleteService(service);	
+							
+							if(!this.dgvServices.Rows[currentRow.Index].IsNewRow)
+							 dgvServices.Rows.Remove(this.dgvServices.Rows[currentRow.Index]);								
+						}
+						else
+						{
+							errorMessage += service.Name + " , ";
+						}
+					}													
 				}
 				m_presenter.SetAllServices();
 			}
 			servicesMaxRowIndex = this.dgvServices.RowCount - 1;
+			
+			if(!errorMessage.Equals(string.Empty))
+			{
+				MessageService.ShowWarning("Unable to delete services: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
+				                           " since it is still used in Price Scheme. Remove linked price Scheme before deleting the services");
+			}
 			
 		}
 		
@@ -146,6 +165,7 @@ namespace NJournals.Core.Views
 					{
 						m_presenter.SaveOrUpdateService(services);	 	
 						m_presenter.SetAllServices();
+						m_presenter.SetAllPriceScheme();
 						servicesMaxRowIndex = this.dgvServices.RowCount - 1;
 						dgvServices.Refresh();	
 					}
@@ -159,7 +179,7 @@ namespace NJournals.Core.Views
 			else
 			{
 				//TODO: error message
-				MessageService.ShowWarning("Unable to insert duplicate service name: " + errorMessage +
+				MessageService.ShowWarning("Unable to insert duplicate service name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
 				                          " . Please make sure that no duplicate entries before saving");
 			}
 		}
@@ -205,7 +225,7 @@ namespace NJournals.Core.Views
 					LaundryServiceDataEntity newService = new LaundryServiceDataEntity();	
 					newService = m_serviceEntity.Find(m_service => m_service.Name == name);
 
-					if(newService.ServiceID == 0 && !updatedServices.Contains(name))
+					if((newService == null || newService.ServiceID == 0) && !updatedServices.Contains(name))
 					{
 						service.Name = name;
 						service.Description = description;
@@ -253,6 +273,7 @@ namespace NJournals.Core.Views
 					{
 						m_presenter.SaveOrUpdateCategory(category);
 						m_presenter.SetAllCategories();
+						m_presenter.SetAllPriceScheme();
 						categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
 						dgvCategory.Refresh();	
 					}
@@ -266,14 +287,17 @@ namespace NJournals.Core.Views
 			else
 			{
 				//TODO: error message
-				MessageService.ShowWarning("Unable to insert duplicate category name: " + errorMessage +
+				MessageService.ShowWarning("Unable to insert duplicate category name/s: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
 				                          " . Please make sure that no duplicate entries before saving");
 			}
 		}
 		
+		//TODO: 0224 - cannot delete entry if used in priceScheme
 		void BtnDeleteCategoryClick(object sender, EventArgs e)
 		{
 			LaundryCategoryDataEntity category = new LaundryCategoryDataEntity();
+			LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
+			string errorMessage = string.Empty;
 			
 			if(this.dgvCategory.SelectedRows.Count > 0)
 			{
@@ -282,16 +306,32 @@ namespace NJournals.Core.Views
 					if(currentRow.Index < categoryMaxRowIndex)
 					{
 						int categoryId = (int)this.dgvCategory.Rows[currentRow.Index].Cells["CategoryID"].Value;
-						category = m_categoryEntity.Find(m_category => m_category.CategoryID == categoryId);						
-						m_presenter.DeleteCategory(category);
+						category = m_categoryEntity.Find(m_category => m_category.CategoryID == categoryId);
+						priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.Category.Name == category.Name);
+						
+						if(priceScheme == null || priceScheme.ID == 0)
+						{
+							m_presenter.DeleteCategory(category);
+							if(!this.dgvCategory.Rows[currentRow.Index].IsNewRow)
+								dgvCategory.Rows.Remove(this.dgvCategory.Rows[currentRow.Index]);	
+						}
+						else
+						{
+							errorMessage += category.Name + " , ";
+						}
 					}
 					
-					if(!this.dgvCategory.Rows[currentRow.Index].IsNewRow)
-						dgvCategory.Rows.Remove(this.dgvCategory.Rows[currentRow.Index]);											
+															
 				}
 				m_presenter.SetAllCategories();
 			}
 			categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
+			
+			if(!errorMessage.Equals(string.Empty))
+			{
+				MessageService.ShowWarning("Unable to delete categories: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
+				                           " since it is still used in Price Scheme. Remove linked price Scheme before deleting the categories");
+			}
 		}
 		
 		private List<LaundryCategoryDataEntity> GetCategoryDataValueChange(List<int> rowIndexChange, out string errorMessage)
@@ -372,7 +412,6 @@ namespace NJournals.Core.Views
 			
 			this.dgvPriceScheme[3,dgvPriceScheme.RowCount-1].ReadOnly = false;
 			this.dgvPriceScheme[4,dgvPriceScheme.RowCount-1].ReadOnly = false;			
-				
 		}
 		
 		void BtnSavePriceSchemeClick(object sender, EventArgs e)
@@ -389,9 +428,10 @@ namespace NJournals.Core.Views
 					try
 					{
 						m_presenter.SaveOrUpdatePriceScheme(priceSchemes);
-						m_presenter.SetAllPriceScheme();
-						priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
+						m_presenter.SetAllPriceScheme();						
 						this.dgvPriceScheme.AllowUserToAddRows = false;
+						dgvPriceScheme.Refresh();
+						priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
 					}
 					catch(Exception ex)
 					{
@@ -403,7 +443,7 @@ namespace NJournals.Core.Views
 			else
 			{
 				//TODO: error message
-				MessageService.ShowWarning("Unable to insert duplicate service name and category name: " + errorMessage +
+				MessageService.ShowWarning("Unable to insert duplicate service name and category name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
 				                          " . Please make sure that no duplicate entries before saving");
 			}
 			
@@ -474,6 +514,7 @@ namespace NJournals.Core.Views
 		private List<LaundryPriceSchemeDataEntity> GetPriceSchemeDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
 			List<LaundryPriceSchemeDataEntity> priceSchemes = new List<LaundryPriceSchemeDataEntity>();	
+			LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
 			List<string> updatedPriceScheme = new List<string>();
 			string errorMsg = string.Empty;
 			string serviceName = string.Empty;
@@ -483,7 +524,7 @@ namespace NJournals.Core.Views
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
-				LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
+				priceScheme = new LaundryPriceSchemeDataEntity();
 				serviceName = this.dgvPriceScheme.Rows[rowIndex].Cells["ServiceName"].Value.ToString();
 				categoryName = this.dgvPriceScheme.Rows[rowIndex].Cells["CategoryName"].Value.ToString();
 				description = this.dgvPriceScheme.Rows[rowIndex].Cells["Description"].Value.ToString();
@@ -499,15 +540,28 @@ namespace NJournals.Core.Views
 					priceSchemes.Add(priceScheme);
 					updatedPriceScheme.Add(serviceName + " - " + categoryName);
 				}
-				else
+			}
+
+			//TODO: get new data
+			if(this.dgvPriceScheme.RowCount -1 > priceSchemeMaxRowIndex)
+			{
+				int rowDataToAdd =  (this.dgvPriceScheme.RowCount - 1) - priceSchemeMaxRowIndex;				
+				
+				for(int ctr = 1; ctr < rowDataToAdd; ctr++)
 				{
-					//TODO: new data
 					LaundryPriceSchemeDataEntity newPriceScheme = new LaundryPriceSchemeDataEntity();
+					priceScheme = new LaundryPriceSchemeDataEntity();
+					DataGridViewRow currentRow = this.dgvPriceScheme.Rows[priceSchemeMaxRowIndex + ctr];
+					
+					serviceName = currentRow.Cells["ServiceName"].Value.ToString();
+					categoryName = currentRow.Cells["CategoryName"].Value.ToString();
+					description = currentRow.Cells["Description"].Value.ToString();
+					price = Convert.ToDecimal(currentRow.Cells["Price"].Value.ToString());
 					
 					newPriceScheme = m_priceSchemeEntity.Find(m_priceScheme => (m_priceScheme.Service.Name == serviceName) 
-					                                          && (m_priceScheme.Category.Name == categoryName));
+					&& (m_priceScheme.Category.Name == categoryName));
 					
-					if(newPriceScheme.ID == 0 && !updatedPriceScheme.Contains(serviceName + " - " + categoryName))
+					if((newPriceScheme == null || newPriceScheme.ID == 0 )&& !updatedPriceScheme.Contains(serviceName + " - " + categoryName))
 					{
 						priceScheme.Service = new LaundryServiceDataEntity();
 						priceScheme.Service = m_serviceEntity.Find(m_service => m_service.Name == serviceName);
@@ -519,13 +573,13 @@ namespace NJournals.Core.Views
 						priceSchemes.Add(priceScheme);
 						updatedPriceScheme.Add(serviceName + " - " + categoryName);						
 					}
+					else
 					{
 						errorMsg += serviceName + " - " + categoryName + " , ";
 					}
 				}
-				
+			}			
 
-			}	
 			errorMessage = errorMsg;
 			return priceSchemes;
 		}
@@ -536,9 +590,7 @@ namespace NJournals.Core.Views
 				categoryCBox.Items.Add(category.Name);
 			}
 		}
-		
-		
-		
+	
 		private void GetServiceName(DataGridViewComboBoxCell serviceCBox){
 			foreach(LaundryServiceDataEntity service in m_serviceEntity)
 			{
@@ -567,12 +619,12 @@ namespace NJournals.Core.Views
 		
 		void formatAlternatingRows()
 		{
-			this.dgvServices.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
-            this.dgvServices.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.dgvCategory.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
-            this.dgvCategory.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
-            this.dgvPriceScheme.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(234)))), ((int)(((byte)(177)))));
-            this.dgvPriceScheme.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(250)))), ((int)(((byte)(225)))));
+			this.dgvServices.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgvServices.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
+            this.dgvCategory.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgvCategory.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
+            this.dgvPriceScheme.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgvPriceScheme.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
 		}
 		
 		void formatCategoryDataGridView()
@@ -606,6 +658,18 @@ namespace NJournals.Core.Views
 			dgvPriceScheme.Columns["Description"].HeaderText = "Description";
 			dgvPriceScheme.Columns["Price"].Width = 100;
 			dgvPriceScheme.Columns["Price"].HeaderText = "Price";	
+		}
+		
+		void setToolTip()
+		{
+			ToolTip toolTip = new ToolTip();
+			toolTip.SetToolTip(btnAddPriceScheme, "Add new price scheme");
+			toolTip.SetToolTip(btnSavePriceScheme, "Save or Update price scheme");
+			toolTip.SetToolTip(btnDeletePriceScheme, "Remove price scheme");
+			toolTip.SetToolTip(btnSaveServices, "Save or update services");
+			toolTip.SetToolTip(btnDeleteServices, "Remove services");
+			toolTip.SetToolTip(btnSaveCategory, "Save or update categories");
+			toolTip.SetToolTip(btnDeleteCategory, "Remove categories");
 		}
 		#endregion
 		
