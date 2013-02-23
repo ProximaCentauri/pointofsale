@@ -65,11 +65,11 @@ namespace NJournals.Tests
 			// TODO: fix proper handling of inventory per type of bottle???
 			RefillInventoryDao refillInvDao = new RefillInventoryDao();
 			RefillInventoryHeaderDataEntity inv = new RefillInventoryHeaderDataEntity();
-			inv = refillInvDao.GetByName("Cap");
-			inv.TotalQty = 500;
-			inv.QtyOnHand -= detail.StoreCapQty;
-			inv.QtyReleased += detail.StoreCapQty;
-			refillInvDao.Update(inv);
+			//inv = refillInvDao.GetByName("Cap");
+			//inv.TotalQty = 500;
+			//inv.QtyOnHand -= detail.StoreCapQty;
+			//inv.QtyReleased += detail.StoreCapQty;
+			//refillInvDao.Update(inv);
 			inv = refillInvDao.GetByName("5 Gal Bottle");
 			inv.QtyOnHand -= detail.StoreBottleQty;
 			inv.QtyReleased += detail.StoreBottleQty;

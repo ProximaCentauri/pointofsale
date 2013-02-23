@@ -133,6 +133,6 @@ namespace NJournals.Core.Views
 			m_headerEntity.PaymentDetailEntities.Add(paymentDetail);
 			
 			return m_headerEntity;
-		}
+			}
 	}
 }

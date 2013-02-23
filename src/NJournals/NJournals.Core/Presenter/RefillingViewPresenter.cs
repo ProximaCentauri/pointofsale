@@ -98,7 +98,7 @@ namespace NJournals.Core.Presenter
 				// set header entity in daysummary for nhibernate to pickup and map			
 				daySummary.HeaderEntities.Add(headerEntity);
 				// set daysummary entity in header for nhibernate to pickup and map
-				m_headerEntity.DaySummary = daySummary;
+				headerEntity.DaySummary = daySummary;
 				//m_chargeDao.SaveOrUpdate(headerEntity.
 				//m_customerDao.SaveOrUpdate(headerEntity.Customer);				
 				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
