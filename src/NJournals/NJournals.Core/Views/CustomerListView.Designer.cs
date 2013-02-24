@@ -56,6 +56,7 @@ namespace NJournals.Core.Views
 			this.dgvCustomerList = new System.Windows.Forms.DataGridView();
 			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.btnRefresh = new System.Windows.Forms.Button();
 			this.btnsearch = new System.Windows.Forms.Button();
 			this.txtsearch = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
@@ -200,16 +201,32 @@ namespace NJournals.Core.Views
 			// groupBox2
 			// 
 			this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.groupBox2.Controls.Add(this.btnRefresh);
 			this.groupBox2.Controls.Add(this.btnsearch);
 			this.groupBox2.Controls.Add(this.txtsearch);
 			this.groupBox2.Controls.Add(this.label9);
 			this.groupBox2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox2.Location = new System.Drawing.Point(29, 24);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(458, 54);
+			this.groupBox2.Size = new System.Drawing.Size(481, 54);
 			this.groupBox2.TabIndex = 16;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Search";
+			// 
+			// btnRefresh
+			// 
+			this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnRefresh.FlatAppearance.BorderSize = 0;
+			this.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnRefresh.Location = new System.Drawing.Point(447, 18);
+			this.btnRefresh.Name = "btnRefresh";
+			this.btnRefresh.Size = new System.Drawing.Size(24, 24);
+			this.btnRefresh.TabIndex = 5;
+			this.btnRefresh.UseVisualStyleBackColor = false;
+			this.btnRefresh.Click += new System.EventHandler(this.BtnRefreshClick);
 			// 
 			// btnsearch
 			// 
@@ -295,6 +312,7 @@ namespace NJournals.Core.Views
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Button btnRefresh;
 		private System.Windows.Forms.Button btnDeleteCustomer;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.TextBox txtsearch;
@@ -312,5 +330,6 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.TextBox txtAddress;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox txtName;
+		
 	}
 }

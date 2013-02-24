@@ -46,6 +46,7 @@ namespace NJournals.Core.Views
 		{
 			setButtonImages();
 			formatAlternatingRows();
+			setToolTip();
 			m_presenter = new CustomerListViewPresenter(this);
 			m_presenter.SetAllCustomerList();
 		}
@@ -170,8 +171,14 @@ namespace NJournals.Core.Views
 			}
 			else
 			{
-				m_presenter.SetAllCustomerList();
+				
 			}
+		}
+		
+		void BtnRefreshClick(object sender, EventArgs e)
+		{
+			txtsearch.Text = string.Empty;
+			m_presenter.SetAllCustomerList();
 		}
 		
 		public void ViewCustomersByName(List<CustomerDataEntity> p_customers)
@@ -221,7 +228,8 @@ namespace NJournals.Core.Views
 		{
 			Resource.setImage(this.btnDeleteCustomer,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
 			Resource.setImage(this.btnShow,System.IO.Directory.GetCurrentDirectory() + "/images/viewUser.png");			
-			Resource.setImage(this.btnsearch,System.IO.Directory.GetCurrentDirectory() + "/images/search.png");			
+			Resource.setImage(this.btnsearch,System.IO.Directory.GetCurrentDirectory() + "/images/search.png");	
+			Resource.setImage(this.btnRefresh,System.IO.Directory.GetCurrentDirectory() + "/images/refresh.png");				
 		}
 		
 		private void formatCustomerListDataGridView()
@@ -242,7 +250,21 @@ namespace NJournals.Core.Views
             this.dgvCustomerList.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
 		}
 		
+		void setToolTip()
+		{
+			ToolTip toolTip = new ToolTip();
+			toolTip.SetToolTip(btnCancel, "Clear data");
+			toolTip.SetToolTip(btnDeleteCustomer, "Remove customer from the list");
+			toolTip.SetToolTip(btnRefresh, "Loads the customer list");
+			toolTip.SetToolTip(btnSave, "Save new customer data");
+			toolTip.SetToolTip(btnShow, "Show customer data");
+			toolTip.SetToolTip(btnsearch, "Search customer by name");
+		}
+		
 		#endregion
+		
+		
+		
 		
 		
 	}

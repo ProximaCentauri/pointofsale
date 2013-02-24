@@ -6,6 +6,8 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
+using System.Windows.Forms;
+
 namespace NJournals.Core.Views
 {
 	partial class RefillingConfigurationView
@@ -67,7 +69,8 @@ namespace NJournals.Core.Views
 			this.dgvProductType.Name = "dgvProductType";
 			this.dgvProductType.Size = new System.Drawing.Size(789, 186);
 			this.dgvProductType.TabIndex = 7;
-			this.dgvProductType.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductType_CellValueChanged);
+			this.dgvProductType.CellValueChanged += new DataGridViewCellEventHandler(this.dgvProductType_CellValueChanged);
+			this.dgvProductType.CellValidating += new DataGridViewCellValidatingEventHandler(dgvProductType_cellValidating);
 			// 
 			// label3
 			// 
@@ -130,6 +133,7 @@ namespace NJournals.Core.Views
 			this.dgvRefillInventory.Size = new System.Drawing.Size(789, 186);
 			this.dgvRefillInventory.TabIndex = 18;
 			this.dgvRefillInventory.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRefillInventory_CellValueChanged);
+			this.dgvRefillInventory.CellValidating += new DataGridViewCellValidatingEventHandler(this.dgvRefillInventory_cellValidating);
 			// 
 			// label1
 			// 

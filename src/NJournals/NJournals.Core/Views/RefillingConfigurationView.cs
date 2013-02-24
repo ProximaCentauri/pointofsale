@@ -85,7 +85,7 @@ namespace NJournals.Core.Views
 			foreach(RefillInventoryHeaderDataEntity inv in refillInvs)
 			{
 				tempTable.Rows.Add(inv.InvHeaderID, inv.Name, inv.TotalQty, inv.QtyOnHand, 
-				                   inv.QtyReleased, 0, 0);
+				                   inv.QtyReleased, "0", "0");
 			}
 			
 			source.DataSource = tempTable;
@@ -111,31 +111,38 @@ namespace NJournals.Core.Views
 			List<RefillProductTypeDataEntity> productTypes = new List<RefillProductTypeDataEntity>();
 			string errorMessage = string.Empty;
 			
-			productTypes = GetProductTypeDataValueChange(productTypeIndexChange, out errorMessage);		
-			
-			if(errorMessage.Equals(string.Empty))
+			if(ValidateProductTypeName(productTypeIndexChange))
 			{
-				if(productTypes.Count != 0)
+				productTypes = GetProductTypeDataValueChange(productTypeIndexChange, out errorMessage);		
+				
+				if(errorMessage.Equals(string.Empty))
 				{
-					try
+					if(productTypes.Count != 0)
 					{
-					 	m_presenter.SaveOrUpdateProductType(productTypes);
-						m_presenter.SetAllRefillProductType();
-						productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
-						dgvProductType.Refresh();
+						try
+						{
+						 	m_presenter.SaveOrUpdateProductType(productTypes);
+							m_presenter.SetAllRefillProductType();
+							productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
+							dgvProductType.Refresh();
+						}
+						catch(Exception ex)
+						{
+							//TODO: error message
+							MessageService.ShowError("Unable to save data", ex.Message);
+						}
 					}
-					catch(Exception ex)
-					{
-						//TODO: error message
-						MessageService.ShowError("Unable to save data", ex.Message);
-					}
+				}
+				else
+				{
+					//TODO: error message
+					MessageService.ShowWarning("Unable to insert duplicate productType name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
+					                          " . Please make sure that no duplicate entries before saving.");
 				}
 			}
 			else
 			{
-				//TODO: error message
-				MessageService.ShowWarning("Unable to insert duplicate productType name: " + errorMessage +
-				                          " . Please make sure that no duplicate entries before saving");
+				MessageService.ShowWarning("Cannot save empty product type name.");
 			}
 		}
 		
@@ -175,7 +182,10 @@ namespace NJournals.Core.Views
 			{
 				RefillProductTypeDataEntity productType = new RefillProductTypeDataEntity();
 				name = this.dgvProductType.Rows[rowIndex].Cells["Name"].Value.ToString();
-				description = this.dgvProductType.Rows[rowIndex].Cells["Description"].Value.ToString();
+				
+				if(this.dgvProductType.Rows[rowIndex].Cells["Description"].Value != null)
+					description = this.dgvProductType.Rows[rowIndex].Cells["Description"].Value.ToString();
+				
 				price = Convert.ToDecimal(this.dgvProductType.Rows[rowIndex].Cells["Price"].Value.ToString());
 				
 				if(rowIndex < productTypeMaxRowIndex)
@@ -215,6 +225,33 @@ namespace NJournals.Core.Views
 			return productTypes;
 		}
 		
+		private bool ValidateProductTypeName(List<int> rowIndexChange)
+		{
+			foreach(int rowIndex in rowIndexChange)
+			{
+				if(this.dgvProductType.Rows[rowIndex].Cells["Name"].Value == null ||
+				   this.dgvProductType.Rows[rowIndex].Cells["Name"].Value.ToString().Trim().Equals(string.Empty))
+					return false;
+			}			
+			return true;
+		}
+		
+		void dgvProductType_cellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+		{		
+			DataGridViewColumn price = dgvProductType.Columns["Price"];
+			
+			if(dgvProductType.Rows[e.RowIndex].IsNewRow) { return;}
+			if(dgvProductType.CurrentCell.OwningColumn.HeaderText == "Price" && dgvProductType.IsCurrentCellInEditMode)
+			{
+				Decimal val;
+				if(!Decimal.TryParse(Convert.ToString(e.FormattedValue), out val)){
+					e.Cancel = true;
+					MessageService.ShowWarning("Invalid value being inputted.", "Invalid Value");
+					dgvProductType.CurrentCell = dgvProductType.Rows[e.RowIndex].Cells["Price"];
+				}
+			}
+		}
+		
 		#endregion ProductType
 		
 		#region RefillInventory
@@ -235,50 +272,42 @@ namespace NJournals.Core.Views
 		void BtnSaveInvClick(object sender, EventArgs e)
 		{
 			List<RefillInventoryHeaderDataEntity> refillInvs = new List<RefillInventoryHeaderDataEntity>();
+			string errorMessage = string.Empty;
 			
-			//get modified row
-			if(refillInvIndexChange != null)
+			if(ValidateInventoryName())
 			{
-				refillInvs = GetRefillInvDataValueChange(refillInvIndexChange);
-			}
-			
-			//get new data
-			if(this.dgvRefillInventory.RowCount - 1 > refillInvMaxRowIndex)
-			{
-				int rowDataToAdd = (this.dgvRefillInventory.RowCount - 1) - refillInvMaxRowIndex;
-							
-				for(int ctr = 1; ctr < rowDataToAdd; ctr++)
+				refillInvs = GetRefillInvDataValueChange(refillInvIndexChange, out errorMessage);
+				
+				if(errorMessage.Equals(string.Empty))
 				{
-					RefillInventoryHeaderDataEntity header = new RefillInventoryHeaderDataEntity();
-					RefillInventoryDetailDataEntity detail = new RefillInventoryDetailDataEntity();	
-					DataGridViewRow currentRow = this.dgvRefillInventory.Rows[refillInvMaxRowIndex + ctr];
-					int addStocks = (int)currentRow.Cells["AddStocks"].Value;
-					
-					header.Name = currentRow.Cells["Name"].Value.ToString();
-					header.QtyOnHand += addStocks;
-					header.TotalAdded += addStocks;
-					header.TotalQty += addStocks;
-									
-					detail.Header = header;			
-					detail.Date = DateTime.Now.Date;
-					detail.QtyAdded += addStocks;
-					detail.QtyOnHand += addStocks;
-					detail.TotalQty += addStocks;				
-					
-					header.DetailEntities.Add(detail);
-					
-					refillInvs.Add(header);					
+					if(refillInvs.Count > 0)
+					{
+						try
+						{
+							m_presenter.SaveOrUpdateRefillInventory(refillInvs);
+							m_presenter.SetAllRefillInventory();				
+							this.dgvRefillInventory.AllowUserToAddRows = false;
+							dgvRefillInventory.Refresh();
+							refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
+						}
+						catch(Exception ex)
+						{
+							//TODO: error message
+							MessageService.ShowError("Unable to save data", ex.Message);
+						}
+					}
+				}
+				else
+				{
+					//TODO: error message
+					MessageService.ShowWarning("Unable to insert duplicate inventory name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
+					                          " . Please make sure that no duplicate entries before saving");
 				}
 			}
-			
-			if(refillInvs.Count > 0)
+			else
 			{
-				m_presenter.SaveOrUpdateRefillInventory(refillInvs);
-				m_presenter.SetAllRefillInventory();				
-				this.dgvRefillInventory.AllowUserToAddRows = false;
-				dgvRefillInventory.Refresh();
-				refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
-			}
+				MessageService.ShowWarning("Cannot save empty inventory name. Please input inventory name");
+			}		
 		}
 		
 		void BtnDeleteInvClick(object sender, EventArgs e)
@@ -314,25 +343,29 @@ namespace NJournals.Core.Views
 			}
 		}
 		
-		private List<RefillInventoryHeaderDataEntity> GetRefillInvDataValueChange(List<int> rowIndexChange)
+		private List<RefillInventoryHeaderDataEntity> GetRefillInvDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
 			List<RefillInventoryHeaderDataEntity> refillInvs = new List<RefillInventoryHeaderDataEntity>();
-			
+			RefillInventoryHeaderDataEntity refillInv = new RefillInventoryHeaderDataEntity();
+			List<string> updatedRefillInv = new List<string>();
+			string errorMsg = string.Empty;
+			int addStocks = 0;
+			int removeStocks = 0;
+			string name = string.Empty;
+				
 			foreach(int rowIndex in rowIndexChange)
-			{
-				RefillInventoryHeaderDataEntity refillInv = new RefillInventoryHeaderDataEntity();
+			{				
 				List<RefillInventoryDetailDataEntity> detailInvs = new List<RefillInventoryDetailDataEntity>();
-				int addStocks = 0;
-				int removeStocks = 0;
+				
+				if(!this.dgvRefillInventory.Rows[rowIndex].Cells["AddStocks"].Value.ToString().Trim().Equals(string.Empty))
+					addStocks = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["AddStocks"].Value;
+				if(!this.dgvRefillInventory.Rows[rowIndex].Cells["RemoveStocks"].Value.ToString().Trim().Equals(string.Empty))
+					removeStocks = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["RemoveStocks"].Value;
 				
 				if(rowIndex <= refillInvMaxRowIndex)
-				{
-					addStocks = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["AddStocks"].Value;
-					removeStocks = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["RemoveStocks"].Value;
-					int ID = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["InvHeaderID"].Value;
-					
-					refillInv = m_refillInvEntity.Find(m_refillInv => m_refillInv.InvHeaderID == ID);
-					
+				{					
+					int ID = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["InvHeaderID"].Value;					
+					refillInv = m_refillInvEntity.Find(m_refillInv => m_refillInv.InvHeaderID == ID);					
 					RefillInventoryDetailDataEntity invDetail = new RefillInventoryDetailDataEntity();
 					
 					foreach(RefillInventoryDetailDataEntity detail in refillInv.DetailEntities)
@@ -344,6 +377,7 @@ namespace NJournals.Core.Views
 										
 					if(invDetail == null)
 					{	
+						invDetail = new RefillInventoryDetailDataEntity();
 						invDetail.Date = DateTime.Now.Date;
 					}
 					
@@ -359,10 +393,83 @@ namespace NJournals.Core.Views
 					refillInv.DetailEntities.Add(invDetail);
 					
 					refillInvs.Add(refillInv);
+					updatedRefillInv.Add(refillInv.Name);
+				}
+				else
+				{
+					RefillInventoryHeaderDataEntity header = new RefillInventoryHeaderDataEntity();
+					RefillInventoryHeaderDataEntity newHeader = new RefillInventoryHeaderDataEntity();
+					RefillInventoryDetailDataEntity detail = new RefillInventoryDetailDataEntity();	
+					name = this.dgvRefillInventory.Rows[rowIndex].Cells["Name"].Value.ToString().Trim();
+					
+					newHeader = m_refillInvEntity.Find(m_refillInv => m_refillInv.Name == name);
+					
+					if((newHeader == null || newHeader.InvHeaderID == 0) && !updatedRefillInv.Contains(name))
+					{
+						header.Name = name;
+						header.QtyOnHand += addStocks;
+						header.TotalAdded += addStocks;
+						header.TotalQty += addStocks;
+						
+						detail.Header = header;			
+						detail.Date = DateTime.Now.Date;
+						detail.QtyAdded += addStocks;
+						detail.QtyOnHand += addStocks;
+						detail.TotalQty += addStocks;				
+						
+						header.DetailEntities.Add(detail);
+						
+						refillInvs.Add(header);													
+					}
+					else
+					{
+						errorMsg += name + " , ";
+					}		
+				}
+			}
+
+			errorMessage = errorMsg;
+			return refillInvs;
+		}
+		
+		private bool ValidateInventoryName()
+		{
+			int rowDataToAdd = (this.dgvRefillInventory.RowCount - 1) - refillInvMaxRowIndex;
+			
+			for(int ctr = 1; ctr < rowDataToAdd; ctr++)
+			{
+				DataGridViewRow currentRow = this.dgvRefillInventory.Rows[refillInvMaxRowIndex + ctr];
+				
+				if(currentRow.Cells["Name"].Value.ToString().Trim().Equals(string.Empty))
+					return false;
+			}			
+			
+			return true;
+		}
+		
+		void dgvRefillInventory_cellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+		{		
+			Decimal val;
+			
+			if(dgvRefillInventory.Rows[e.RowIndex].IsNewRow) { return;}
+			if(dgvRefillInventory.CurrentCell.OwningColumn.HeaderText == "Add Stocks" && dgvRefillInventory.IsCurrentCellInEditMode)
+			{
+				
+				if(!Decimal.TryParse(Convert.ToString(e.FormattedValue), out val)){
+					e.Cancel = true;
+					MessageService.ShowWarning("Invalid value being inputted.", "Invalid Value");
+					dgvRefillInventory.CurrentCell = dgvRefillInventory.Rows[e.RowIndex].Cells["AddStocks"];
 				}
 			}
 			
-			return refillInvs;
+			if(dgvRefillInventory.CurrentCell.OwningColumn.HeaderText == "Remove Stocks" && dgvRefillInventory.IsCurrentCellInEditMode)
+			{
+				if(!Decimal.TryParse(Convert.ToString(e.FormattedValue), out val)){
+					e.Cancel = true;
+					MessageService.ShowWarning("Invalid value being inputted.", "Invalid Value");
+					dgvRefillInventory.CurrentCell = dgvRefillInventory.Rows[e.RowIndex].Cells["RemoveStocks"];
+				}
+			}
 		}
 		#endregion
 		

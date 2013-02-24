@@ -6,6 +6,7 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
+using System.Windows.Forms;
 
 namespace NJournals.Core.Views
 {
@@ -88,6 +89,7 @@ namespace NJournals.Core.Views
 			this.dgvPriceScheme.Name = "dgvPriceScheme";
 			this.dgvPriceScheme.Size = new System.Drawing.Size(789, 220);
 			this.dgvPriceScheme.TabIndex = 1;
+			this.dgvPriceScheme.CellValidating += new DataGridViewCellValidatingEventHandler(dgvPriceScheme_cellValidating);
 			// 
 			// label2
 			// 
