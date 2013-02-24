@@ -34,7 +34,8 @@ namespace NJournals.Core.Presenter
 		List<CustomerDataEntity> customers = null;
 		List<RefillTransactionTypeDataEntity> transactionTypes = null;
 		List<RefillProductTypeDataEntity> products = null;	
-		RefillHeaderDataEntity m_headerEntity = null;		
+		RefillHeaderDataEntity m_headerEntity = null;	
+		RefillHeaderDataEntity m_OriginalHeaderEntity = null;		
 		
 		public RefillingViewPresenter(IRefillingView p_view, IRefillDao p_refillDao)
 		{
@@ -101,6 +102,10 @@ namespace NJournals.Core.Presenter
 			}			
 		}
 		
+		public void VoidTransaction(){
+			
+		}
+		
 		private bool SaveDaySummary(RefillHeaderDataEntity headerEntity){		
 			try{
 				DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
@@ -150,6 +155,11 @@ namespace NJournals.Core.Presenter
 		
 		public RefillProductTypeDataEntity getProductByName(string name){
 			return m_productDao.GetByName(name);
+		}
+		
+		public RefillHeaderDataEntity getByJoNumber(int id){
+			m_OriginalHeaderEntity = m_refillDao.GetByID(id);
+			return m_OriginalHeaderEntity;
 		}
 	}
 }
