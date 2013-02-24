@@ -82,7 +82,8 @@ namespace NJournals.Core.Models
                     {
                         var query = session.CreateCriteria<RefillHeaderDataEntity>("header")
                            .Add(Restrictions.Between("header.Date", fromDateTime, toDateTime))
-                           .Add(Restrictions.Eq("header.PaidFlag", false))                        
+                           .Add(Restrictions.Eq("header.PaidFlag", false))
+						   .Add(Restrictions.Eq("header.VoidFlag",false))                        	
                            .AddOrder(Order.Asc("header.Date"))
                            .List<RefillHeaderDataEntity>();
                         return query;
@@ -93,6 +94,7 @@ namespace NJournals.Core.Models
                             .Add(Restrictions.Eq("header.Customer", customer))
                             .Add(Restrictions.Between("header.Date", fromDateTime, toDateTime))
                             .Add(Restrictions.Eq("header.PaidFlag", false))
+                        	.Add(Restrictions.Eq("header.VoidFlag",false))
                             .AddOrder(Order.Asc("header.Date"))
                             .List<RefillHeaderDataEntity>();
                         return query;
