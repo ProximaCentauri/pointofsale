@@ -264,9 +264,9 @@ namespace NJournals.Core.Views
 		
 		void txtdiscount_textchange(object sender, EventArgs e)
 		{
+			txttotalamtdue.Text = txttotalamtdue.Text = (decimal.Parse(txtamtdue.Text) + decimal.Parse(txttotalcharges.Text)).ToString("N2");
 			if(txtdiscount.Text.Length == 0 || txtdiscount.Text.Equals("0")){
-				txttotaldiscount.Text = "0";	
-				txttotalamtdue.Text = (decimal.Parse(txtamtdue.Text) + decimal.Parse(txttotalcharges.Text)).ToString("N2");
+				txttotaldiscount.Text = "0";					
 			}else{
 				decimal discount = decimal.Parse(txtdiscount.Text) / 100M;
 				txttotaldiscount.Text = (decimal.Parse(txttotalamtdue.Text) * discount).ToString("N2");
