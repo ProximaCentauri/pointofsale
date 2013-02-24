@@ -328,6 +328,7 @@ namespace NJournals.Core.Views
 					}					
 				}
 				// load amount details
+				
 				txtamtdue.Text = m_headerEntity.AmountDue.ToString("N2");
 				txttotalamtdue.Text = m_headerEntity.TotalAmountDue.ToString("N2");				
 				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("0");				
