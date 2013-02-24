@@ -2,7 +2,7 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <DataSources>
     <DataSource Name="DummyDataSource">
-      <rd:DataSourceID>b1ec3bb2-59b9-45de-ad7d-f171aaeb6611</rd:DataSourceID>
+      <rd:DataSourceID>10e9ca9e-e0ee-4e18-ab87-b0e3f9593c94</rd:DataSourceID>
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString />
@@ -210,10 +210,6 @@
           <DataField>AmountDue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="AmountTender">
-          <DataField>AmountTender</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="ClaimDate">
           <DataField>ClaimDate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -232,7 +228,7 @@
         </Field>
         <Field Name="DetailEntities">
           <DataField>DetailEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryDetailDataEntity, NJournals.Common, Version=1.0.4789.16694, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.LaundryDetailDataEntity]</rd:TypeName>
         </Field>
         <Field Name="DueDate">
           <DataField>DueDate</DataField>
@@ -240,11 +236,11 @@
         </Field>
         <Field Name="JobChargeEntities">
           <DataField>JobChargeEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryJobChargesDataEntity, NJournals.Common, Version=1.0.4789.16694, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.LaundryJobChargesDataEntity]</rd:TypeName>
         </Field>
         <Field Name="JobChecklistEntities">
           <DataField>JobChecklistEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryChecklistDataEntity, NJournals.Common, Version=1.0.4789.16694, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.LaundryJobChecklistDataEntity]</rd:TypeName>
         </Field>
         <Field Name="LaundryHeaderID">
           <DataField>LaundryHeaderID</DataField>
@@ -256,7 +252,7 @@
         </Field>
         <Field Name="PaymentDetailEntities">
           <DataField>PaymentDetailEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[[NJournals.Common.DataEntities.LaundryPaymentDetailDataEntity, NJournals.Common, Version=1.0.4789.16694, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
+          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.LaundryPaymentDetailDataEntity]</rd:TypeName>
         </Field>
         <Field Name="ReceivedDate">
           <DataField>ReceivedDate</DataField>
@@ -278,6 +274,14 @@
           <DataField>TotalItemQty</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="TotalPayment">
+          <DataField>TotalPayment</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="VoidFlag">
+          <DataField>VoidFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>DummyDataSource</DataSourceName>
@@ -287,7 +291,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>NJournals.Common.DataEntities</rd:DataSetName>
         <rd:TableName>LaundryHeaderDataEntity</rd:TableName>
-        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.LaundryHeaderDataEntity, NJournals.Common, Version=1.0.4789.16694, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.LaundryHeaderDataEntity, NJournals.Common, Version=1.0.4803.35715, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -441,7 +445,7 @@
                       </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatCurrency(Fields!AmountTender.Value,2)</Value>
+                      <Value>=FormatCurrency(Fields!TotalPayment.Value,2)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -460,7 +464,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatCurrency(Fields!TotalAmountDue.Value - Fields!AmountTender.Value,2)</Value>
+                      <Value>=FormatCurrency(Fields!TotalAmountDue.Value - Fields!TotalPayment.Value,2)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -882,7 +886,7 @@
                       </Style>
                       <ZIndex>9</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatCurrency(SUM(Fields!AmountTender.Value),2)</Value>
+                      <Value>=FormatCurrency(SUM(Fields!TotalPayment.Value),2)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -905,7 +909,7 @@
                       </Style>
                       <ZIndex>8</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatCurrency(SUM(Fields!TotalAmountDue.Value - Fields!AmountTender.Value),2)</Value>
+                      <Value>=FormatCurrency(SUM(Fields!TotalAmountDue.Value - Fields!TotalPayment.Value),2)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>

@@ -104,17 +104,28 @@ namespace NJournals.Core.Presenter
 			orig_ChecklistEntities = m_jobChecklistDao.GetAllItemsByHeaderId(m_headerEntity.LaundryHeaderID) as List<LaundryJobChecklistDataEntity>;
 			List<LaundryJobChecklistDataEntity> new_Checklist = new List<LaundryJobChecklistDataEntity>();
 						
-			var listToLookUp2 = new_ChecklistEntities.ToLookup(entity => entity.Checklist.ChecklistID);			
-			var listToUpdate = orig_ChecklistEntities.Where(entity => (listToLookUp2.Contains(entity.Checklist.ChecklistID)));
-			
-			foreach(LaundryJobChecklistDataEntity entity in listToUpdate.ToList()){
+			foreach(LaundryJobChecklistDataEntity entity in orig_ChecklistEntities)
+			{
 				LaundryJobChecklistDataEntity checklist = new LaundryJobChecklistDataEntity();
-				checklist.Checklist = entity.Checklist;
-				checklist.Qty = entity.Qty;
-				checklist.Header = entity.Header;
-				checklist.ID = entity.ID;				
-				new_Checklist.Add(checklist);
-			}			
+				checklist = new_ChecklistEntities.Where(x => x.Checklist.ChecklistID == entity.Checklist.ChecklistID).FirstOrDefault();
+				if(checklist != null)
+				{
+					entity.Qty = checklist.Qty;
+					new_Checklist.Add(entity);
+				}				
+			}
+			
+//			var listToLookUp2 = new_ChecklistEntities.ToLookup(entity => entity.Checklist.ChecklistID);				
+//			var listToUpdate = orig_ChecklistEntities.Where(entity => (listToLookUp2.Contains(entity.Checklist.ChecklistID)));
+//			
+//			foreach(LaundryJobChecklistDataEntity entity in listToUpdate.ToList()){
+//				LaundryJobChecklistDataEntity checklist = new LaundryJobChecklistDataEntity();
+//				checklist.Checklist = entity.Checklist;
+//				checklist.Qty = entity.Qty;
+//				checklist.Header = entity.Header;
+//				checklist.ID = entity.ID;				
+//				new_Checklist.Add(checklist);
+//			}			
 					
 			var listToLookUpForAdd = orig_ChecklistEntities.ToLookup(entity => entity.Checklist.ChecklistID);		
 			var listToAdd = new_ChecklistEntities.Where(entity => (!listToLookUpForAdd.Contains(entity.Checklist.ChecklistID)));
