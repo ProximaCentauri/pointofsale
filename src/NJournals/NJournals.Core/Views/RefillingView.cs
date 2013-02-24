@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using NJournals.Core.Models;
 using NJournals.Common.DataEntities;
 using NJournals.Core.Presenter;
-
+using NJournals.Common.Util;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -91,18 +91,21 @@ namespace NJournals.Core.Views
 		
 		void BtnprintcloseClick(object sender, EventArgs e)
 		{
-			m_presenter.PrintClicked();			
+			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjonumber.Text, "Save?")){
+				m_presenter.PrintClicked();			
+				this.Close();
+			}			                            
+			
 		}
 		
 		public RefillHeaderDataEntity ProcessHeaderDataEntity(){
 			RefillHeaderDataEntity m_headerEntity = new RefillHeaderDataEntity();
-			m_headerEntity.RefillHeaderID = int.Parse(txtjonumber.Text);
 			m_headerEntity.Date = dtDate.Value;
 			m_headerEntity.Customer = m_presenter.getCustomerByName(cmbCustomers.Text);
 			m_headerEntity.TransactionType = m_presenter.getTransactionTypeByName(cmbtransTypes.Text);
 			m_headerEntity.AmountDue = decimal.Parse(txtamtdue.Text);
 			m_headerEntity.AmountTender = decimal.Parse(txtamttender.Text);
-			m_headerEntity.DetailEntities = new List<RefillDetailDataEntity>();
+			List<RefillDetailDataEntity> refillDetails = new List<RefillDetailDataEntity>();
 			foreach(DataGridViewRow row in this.dataGridView1.Rows){
 				if(row.Cells[0].Value != null){
 					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
@@ -113,10 +116,11 @@ namespace NJournals.Core.Views
 						detail.StoreCapQty = int.Parse(row.Cells[2].Value.ToString());
 						detail.Qty = int.Parse(row.Cells[3].Value.ToString());
 						detail.Amount = decimal.Parse(row.Cells[4].Value.ToString());
-						m_headerEntity.DetailEntities.Add(detail);							
+						refillDetails.Add(detail);							
 					}
 				}
 			}
+			m_headerEntity.DetailEntities = refillDetails;
 			m_headerEntity.PaidFlag = chkunpaid.Checked;
 			RefillPaymentDetailDataEntity paymentDetail = new RefillPaymentDetailDataEntity();
 		
@@ -133,6 +137,14 @@ namespace NJournals.Core.Views
 			m_headerEntity.PaymentDetailEntities.Add(paymentDetail);
 			
 			return m_headerEntity;
-			}
+		}
+		
+		void BtndeletecloseClick(object sender, EventArgs e)
+		{
+			if(MessageService.ShowYesNo("Are you sure you want to delete this transaction with JO number: " + txtjonumber.Text, "Delete?")){
+				m_presenter.VoidTransaction();
+			}		
+		}
+		
 	}
 }

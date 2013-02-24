@@ -70,6 +70,7 @@ namespace NJournals.Core.Views
 			this.btncancel = new System.Windows.Forms.Button();
 			this.btnprintclose = new System.Windows.Forms.Button();
 			this.chkunpaid = new System.Windows.Forms.CheckBox();
+			this.btndeleteclose = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.Services.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -361,9 +362,9 @@ namespace NJournals.Core.Views
 			// btncancel
 			// 
 			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btncancel.Location = new System.Drawing.Point(781, 518);
+			this.btncancel.Location = new System.Drawing.Point(771, 518);
 			this.btncancel.Name = "btncancel";
-			this.btncancel.Size = new System.Drawing.Size(75, 23);
+			this.btncancel.Size = new System.Drawing.Size(85, 23);
 			this.btncancel.TabIndex = 21;
 			this.btncancel.Text = "Cancel";
 			this.btncancel.UseVisualStyleBackColor = true;
@@ -371,7 +372,7 @@ namespace NJournals.Core.Views
 			// btnprintclose
 			// 
 			this.btnprintclose.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnprintclose.Location = new System.Drawing.Point(627, 518);
+			this.btnprintclose.Location = new System.Drawing.Point(501, 518);
 			this.btnprintclose.Name = "btnprintclose";
 			this.btnprintclose.Size = new System.Drawing.Size(136, 23);
 			this.btnprintclose.TabIndex = 20;
@@ -389,12 +390,24 @@ namespace NJournals.Core.Views
 			this.chkunpaid.Text = "Unpaid";
 			this.chkunpaid.UseVisualStyleBackColor = true;
 			// 
+			// btndeleteclose
+			// 
+			this.btndeleteclose.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btndeleteclose.Location = new System.Drawing.Point(647, 518);
+			this.btndeleteclose.Name = "btndeleteclose";
+			this.btndeleteclose.Size = new System.Drawing.Size(118, 23);
+			this.btndeleteclose.TabIndex = 23;
+			this.btndeleteclose.Text = "Delete && Close";
+			this.btndeleteclose.UseVisualStyleBackColor = true;
+			this.btndeleteclose.Click += new System.EventHandler(this.BtndeletecloseClick);
+			// 
 			// RefillingView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(892, 566);
+			this.Controls.Add(this.btndeleteclose);
 			this.Controls.Add(this.chkunpaid);
 			this.Controls.Add(this.btncancel);
 			this.Controls.Add(this.btnprintclose);
@@ -420,6 +433,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button btndeleteclose;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

@@ -12,6 +12,8 @@ using NJournals.Common.DataEntities;
 using NJournals.Core.Models;
 using NJournals.Core.Views;
 using System.Collections.Generic;
+using NJournals.Common.Util;
+using System.Configuration;
 
 namespace NJournals.Core.Presenter
 {
@@ -26,7 +28,9 @@ namespace NJournals.Core.Presenter
 		IRefillTransactionTypeDao m_transTypeDao;
 		IRefillProductTypeDao m_productDao;
 		IRefillDaySummaryDao m_summaryDao;
-		
+		IRefillCustomerInventoryDao m_customerInvDao;
+		IRefillInventoryDao m_refillInvDao;
+				
 		List<CustomerDataEntity> customers = null;
 		List<RefillTransactionTypeDataEntity> transactionTypes = null;
 		List<RefillProductTypeDataEntity> products = null;	
@@ -40,6 +44,8 @@ namespace NJournals.Core.Presenter
 			this.m_customerDao = new CustomerDao();
 			this.m_productDao = new RefillProductTypeDao();		
 			m_summaryDao = new RefillDaySummaryDao();
+			m_customerInvDao = new RefillCustomerInventoryDao();
+			m_refillInvDao = new RefillInventoryDao();
 		}
 		
 		public void SetAllCustomers(){
@@ -71,41 +77,67 @@ namespace NJournals.Core.Presenter
 		
 		public void PrintClicked(){
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
-			SaveDaySummary(m_headerEntity);
+			if(SaveDaySummary(m_headerEntity)){
+				UpdateRefillCustomerInventory(m_headerEntity);
+				MessageService.ShowInfo("Successfully saved the entries.","Save");
+			}
+				
 		}
 		
-		private void SaveDaySummary(RefillHeaderDataEntity headerEntity){
-			DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
-			RefillDaySummaryDataEntity daySummary = m_summaryDao.GetByDay(today);
-			if(daySummary != null)
-			{
-				daySummary.TransCount += 1;
-				//TODO: totalsales should be totalamoutdue - balance
-				daySummary.TotalSales += headerEntity.PaymentDetailEntities[0].Amount;
-				headerEntity.DaySummary = daySummary;
-				
-				// update daysummary with transcount and totalsales				
-				m_summaryDao.Update(daySummary);				
-			}else{
-				// set daysummary			
-				daySummary = new RefillDaySummaryDataEntity();
-				daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-				//TODO: totalsales should be amounttender - amount change.			
-				
-				daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[0].Amount;
-				daySummary.TransCount += 1;
-				
-				// set header entity in daysummary for nhibernate to pickup and map			
-				daySummary.HeaderEntities.Add(headerEntity);
-				// set daysummary entity in header for nhibernate to pickup and map
-				headerEntity.DaySummary = daySummary;
-				//m_chargeDao.SaveOrUpdate(headerEntity.
-				//m_customerDao.SaveOrUpdate(headerEntity.Customer);				
-				// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
-				// this will handle the saving for the linked tables								
-			}
-			m_refillDao.SaveOrUpdate(headerEntity);
-			
+		private void UpdateRefillCustomerInventory(RefillHeaderDataEntity headerEntity){
+			RefillInventoryHeaderDataEntity inventoryHeader = new RefillInventoryHeaderDataEntity();
+			RefillCustInventoryHeaderDataEntity customerInvHeader = new RefillCustInventoryHeaderDataEntity();
+			customerInvHeader.Customer = headerEntity.Customer;
+			foreach(RefillDetailDataEntity detail in headerEntity.DetailEntities){
+				inventoryHeader = m_refillInvDao.GetByName(detail.ProductType.Name);
+				if(inventoryHeader != null){
+					inventoryHeader.QtyOnHand -= detail.StoreBottleQty;
+					inventoryHeader.QtyReleased += detail.StoreBottleQty;
+					customerInvHeader.CapsOnHand += detail.StoreCapQty;
+					customerInvHeader.BottlesOnHand += detail.StoreBottleQty;
+					m_refillInvDao.Update(inventoryHeader);
+					m_customerInvDao.SaveOrUpdate(customerInvHeader);
+				}				
+			}			
+		}
+		
+		private bool SaveDaySummary(RefillHeaderDataEntity headerEntity){		
+			try{
+				DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
+				RefillDaySummaryDataEntity daySummary = m_summaryDao.GetByDay(today);
+				if(daySummary != null)
+				{
+					daySummary.TransCount += 1;
+					//TODO: totalsales should be totalamoutdue - balance
+					daySummary.TotalSales += headerEntity.PaymentDetailEntities[0].Amount;
+					headerEntity.DaySummary = daySummary;
+					
+					// update daysummary with transcount and totalsales				
+					m_summaryDao.Update(daySummary);				
+				}else{
+					// set daysummary			
+					daySummary = new RefillDaySummaryDataEntity();
+					daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+					//TODO: totalsales should be amounttender - amount change.			
+					
+					daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[0].Amount;
+					daySummary.TransCount += 1;
+					
+					// set header entity in daysummary for nhibernate to pickup and map			
+					daySummary.HeaderEntities.Add(headerEntity);
+					// set daysummary entity in header for nhibernate to pickup and map
+					headerEntity.DaySummary = daySummary;
+					//m_chargeDao.SaveOrUpdate(headerEntity.
+					//m_customerDao.SaveOrUpdate(headerEntity.Customer);				
+					// save daysummary record; no need to explicitly save header,detail,jobcharges,paymentdetail, etc for new daysummary record
+					// this will handle the saving for the linked tables								
+				}
+				m_refillDao.SaveOrUpdate(headerEntity);
+				return true;
+			}catch(Exception ex){
+				MessageService.ShowError("There's been a problem while processing this request. Technical details below: " + Environment.NewLine + ex.Message);
+			}	
+			return false;
 		}
 		
 		public CustomerDataEntity getCustomerByName(string name){
