@@ -317,14 +317,7 @@ namespace NJournals.Core.Views
 				dtdueDate.Value = m_headerEntity.DueDate;
 				foreach(LaundryDetailDataEntity detailEntity in m_headerEntity.DetailEntities){
 					dataGridView1.Rows.Add(detailEntity.Category.Name, detailEntity.Service.Name, detailEntity.Kilo.ToString(), detailEntity.ItemQty.ToString(), detailEntity.Amount.ToString("N2"));
-				}
-				txtamtdue.Text = m_headerEntity.AmountDue.ToString("N2");
-				txttotalamtdue.Text = m_headerEntity.TotalAmountDue.ToString("N2");
-				//txttotalcharges.Text = m_headerEntity.TotalCharge.ToString("N2");
-				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("0");
-				
-				txtdiscount.Text = ((m_headerEntity.TotalDiscount / (m_headerEntity.AmountDue + m_headerEntity.TotalCharge)) * 100).ToString("0");
-								
+				}				
 				chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;
 										
 				for(int i=0;i<chkchargesList.Items.Count;i++){
@@ -334,6 +327,13 @@ namespace NJournals.Core.Views
 						}
 					}					
 				}
+				// load amount details
+				txtamtdue.Text = m_headerEntity.AmountDue.ToString("N2");
+				txttotalamtdue.Text = m_headerEntity.TotalAmountDue.ToString("N2");				
+				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("0");				
+				txtbalance.Text = (m_headerEntity.TotalAmountDue - m_headerEntity.TotalPayment).ToString("N2");								
+				txtdiscount.Text = ((m_headerEntity.TotalDiscount / (m_headerEntity.AmountDue + m_headerEntity.TotalCharge)) * 100).ToString("0");
+								
 				lblchecklist.Enabled = true;				
 			}else
 				MessageService.ShowWarning("Can't find JO Number: " + txtsearch.Text, "Non-existing");
