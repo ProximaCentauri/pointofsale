@@ -23,6 +23,7 @@ namespace NJournals.Core.Presenter
 			this.m_view.SelectLaundryNew += delegate { ShowLaundryNewView(); };
 			this.m_view.SelectLaundryClaim += delegate { ShowLaundryClaimView(); };
 			this.m_view.SelectRefillingNew += delegate { ShowRefillingNewView(); };
+			this.m_view.SelectRefillingDelete += delegate { ShowRefillingDeleteView(); };
 			this.m_view.SelectRefillingClaim += delegate { ShowRefillingClaimView(); };
 			this.m_view.SelectRefillingReport += delegate { ShowRefillingReportView(); };
 			this.m_view.SelectLaundryReport += delegate { ShowLaundryReportView(); };
@@ -41,6 +42,10 @@ namespace NJournals.Core.Presenter
 		
 		public void ShowRefillingNewView(){
 			this.m_view.ShowRefillingNewView();
+		}
+		
+		public void ShowRefillingDeleteView(){
+			this.m_view.ShowRefillingDeleteView();
 		}
 		
 		public void ShowRefillingClaimView(){

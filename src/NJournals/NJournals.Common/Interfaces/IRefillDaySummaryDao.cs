@@ -20,6 +20,7 @@ namespace NJournals.Common.Interfaces
 	{
 		void SaveOrUpdate(RefillDaySummaryDataEntity p_daysummary);
 		RefillDaySummaryDataEntity GetByDay(DateTime p_day);
+		RefillDaySummaryDataEntity GetByDayId(int p_id);
 		IEnumerable<RefillDaySummaryDataEntity> GetAllItems();
 		void Update(RefillDaySummaryDataEntity p_daysummary);
 		void Delete(RefillDaySummaryDataEntity p_daysummary);

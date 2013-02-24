@@ -103,7 +103,31 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void VoidTransaction(){
-			
+			try{
+				m_OriginalHeaderEntity.VoidFlag = true;
+				m_refillDao.Update(m_OriginalHeaderEntity);
+				RefillDaySummaryDataEntity daySummary = m_summaryDao.GetByDayId(m_OriginalHeaderEntity.DaySummary.DayID);
+				daySummary.TotalSales -= m_OriginalHeaderEntity.AmountTender;
+				daySummary.TransCount -= 1;
+				m_summaryDao.Update(daySummary);
+					
+				RefillInventoryHeaderDataEntity inventoryHeader = new RefillInventoryHeaderDataEntity();
+				RefillCustInventoryHeaderDataEntity customerInvHeader = new RefillCustInventoryHeaderDataEntity();
+				customerInvHeader.Customer = m_OriginalHeaderEntity.Customer;
+				foreach(RefillDetailDataEntity detail in m_OriginalHeaderEntity.DetailEntities){
+					inventoryHeader = m_refillInvDao.GetByName(detail.ProductType.Name);
+					if(inventoryHeader != null){
+						inventoryHeader.QtyOnHand += detail.StoreBottleQty;
+						inventoryHeader.QtyReleased -= detail.StoreBottleQty;
+						customerInvHeader.CapsOnHand -= detail.StoreCapQty;
+						customerInvHeader.BottlesOnHand -= detail.StoreBottleQty;
+						m_refillInvDao.Update(inventoryHeader);
+						m_customerInvDao.SaveOrUpdate(customerInvHeader);
+					}				
+				}		
+			}catch(Exception ex){
+				MessageService.ShowError("There is a problem while void this transaction." + Environment.NewLine + ex.Message,"Error in Voiding Transaction");
+			}			
 		}
 		
 		private bool SaveDaySummary(RefillHeaderDataEntity headerEntity){		
@@ -157,9 +181,13 @@ namespace NJournals.Core.Presenter
 			return m_productDao.GetByName(name);
 		}
 		
-		public RefillHeaderDataEntity getByJoNumber(int id){
+		public RefillHeaderDataEntity getHeaderByJoNumber(int id){
 			m_OriginalHeaderEntity = m_refillDao.GetByID(id);
 			return m_OriginalHeaderEntity;
+		}
+		
+		public void loadHeaderEntity(){
+			m_view.LoadHeaderEntityData(m_OriginalHeaderEntity);
 		}
 	}
 }

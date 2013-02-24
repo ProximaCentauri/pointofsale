@@ -43,6 +43,7 @@ namespace NJournals.Core
 		public event EventHandler SelectLaundryReport;
 		public event EventHandler SelectLaundryConfiguration;
 		public event EventHandler SelectRefillingNew;
+		public event EventHandler SelectRefillingDelete;
 		public event EventHandler SelectRefillingClaim;
 		public event EventHandler SelectRefillingReport;
 		public event EventHandler SelectRefillingConfiguration;
@@ -77,6 +78,11 @@ namespace NJournals.Core
 			ShowSingletonForm(refillingView);
 		}
 		
+		public void ShowRefillingDeleteView(){
+			refillingView.SetTitle("Refilling  [SEARCH/DELETE]");
+			ShowSingletonForm(refillingView);
+		}
+		
 		public void ShowRefillingClaimView(){
 			refillingView.SetTitle("Refilling  [RETURN/PAYMENT]");
 			ShowSingletonForm(refillReturnView);
@@ -101,9 +107,7 @@ namespace NJournals.Core
 			refillingConfigView.SetTitle("Refilling Configuration");
 			ShowSingletonForm(refillingConfigView);
 		}
-		
-		
-		
+			
 		private void ShowSingletonForm(Form p_form){			
 			string title = p_form.Text;
 			foreach(Form m_form in this.MdiChildren){
@@ -177,6 +181,12 @@ namespace NJournals.Core
 			}
 		}
 		
+		protected virtual void OnSelectRefillingDelete(EventArgs e){
+			if(SelectRefillingDelete != null){
+				SelectRefillingDelete(this, e);
+			}
+		}
+		
 		protected virtual void OnSelectRefillingReports(EventArgs e){
 			if(SelectRefillingReport != null){
 				SelectRefillingReport(this, e);
@@ -233,6 +243,7 @@ namespace NJournals.Core
 			this.lbllaundryConfig.Click += delegate { OnSelectLaundryConfig(null); };
 			this.lbllaundryReports.Click += delegate { OnSelectLaundryReports(null); };
 			this.lblRefNew.Click += delegate { OnSelectRefillingNew(null); };
+			this.lblrefdel.Click += delegate { OnSelectRefillingDelete(null); };
 			this.lblRefClaim.Click += delegate { OnSelectRefillingClaim(null); };
 			this.lblRefConfig.Click += delegate { OnSelectRefillingConfig(null); };
 			this.lblRefReports.Click += delegate { OnSelectRefillingReports(null); };

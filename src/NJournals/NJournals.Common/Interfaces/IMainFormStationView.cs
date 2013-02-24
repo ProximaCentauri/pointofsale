@@ -24,10 +24,12 @@ namespace NJournals.Common.Interfaces
 		event EventHandler SelectRefillingReport;
 		event EventHandler SelectRefillingConfiguration;
 		event EventHandler SelectCustomerList;
+		event EventHandler SelectRefillingDelete;
 		
 		void ShowLaundryNewView();
 		void ShowLaundryClaimView();
 		void ShowRefillingNewView();
+		void ShowRefillingDeleteView();
 		void ShowRefillingClaimView();
 		void ShowLaundryReportView();
 		void ShowRefillingReportView();

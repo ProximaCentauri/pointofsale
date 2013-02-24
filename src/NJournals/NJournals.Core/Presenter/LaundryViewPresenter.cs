@@ -325,7 +325,7 @@ namespace NJournals.Core.Presenter
 				MessageService.ShowInfo("Successfully voiding the transaction with JO number: " + m_OriginalHeaderEntity.LaundryHeaderID.ToString().PadLeft(6, '0'));
 				m_view.VoidingTransaction();	
 			}catch(Exception ex){
-				MessageService.ShowError(ex.Message,"Error in Voiding Transaction");
+				MessageService.ShowError("There is a problem while void this transaction." + Environment.NewLine + ex.Message,"Error in Voiding Transaction");
 			}		
 					
 		}

@@ -47,7 +47,18 @@ namespace NJournals.Core.Views
 				m_presenter.SetAllProducts();
 				m_presenter.SetAllTransactionTypes();
 				txtjonumber.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
-			}			
+			}else{
+				foreach(Control c in this.Controls){
+					if(c is GroupBox){
+						GroupBox groupBox = c as GroupBox;
+						groupBox.Enabled = false;
+					}					
+				}
+				groupBox2.Enabled = true;
+				btnprintclose.Enabled = false;
+				btncancel.Enabled = false;
+				btndeleteclose.Enabled = true;
+			}
 		}
 		
 		public void SetAllCustomers(List<CustomerDataEntity> customers){
@@ -91,7 +102,7 @@ namespace NJournals.Core.Views
 		
 		void BtnprintcloseClick(object sender, EventArgs e)
 		{
-			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjonumber.Text, "Save?")){
+			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number:" + txtjonumber.Text + "?", "Save?")){
 				m_presenter.PrintClicked();			
 				this.Close();
 			}			                            
@@ -104,7 +115,7 @@ namespace NJournals.Core.Views
 			m_headerEntity.Customer = m_presenter.getCustomerByName(cmbCustomers.Text);
 			m_headerEntity.TransactionType = m_presenter.getTransactionTypeByName(cmbtransTypes.Text);
 			m_headerEntity.AmountDue = decimal.Parse(txtamtdue.Text);
-			m_headerEntity.AmountTender = decimal.Parse(txtamttender.Text);
+			//m_headerEntity.AmountTender = decimal.Parse(txtamttender.Text);
 			List<RefillDetailDataEntity> refillDetails = new List<RefillDetailDataEntity>();
 			foreach(DataGridViewRow row in this.dataGridView1.Rows){
 				if(row.Cells[0].Value != null){
@@ -124,14 +135,20 @@ namespace NJournals.Core.Views
 			m_headerEntity.PaidFlag = chkunpaid.Checked;
 			RefillPaymentDetailDataEntity paymentDetail = new RefillPaymentDetailDataEntity();
 		
-			if(m_headerEntity.AmountTender > 0){
-				if(m_headerEntity.AmountTender >= m_headerEntity.AmountDue){
+			if(decimal.Parse(txtamttender.Text) > 0){
+				if(decimal.Parse(txtamttender.Text) >= m_headerEntity.AmountDue){
 					paymentDetail.Amount = m_headerEntity.AmountDue;
 				}else{
-					paymentDetail.Amount = m_headerEntity.AmountTender;
+					paymentDetail.Amount = decimal.Parse(txtamttender.Text);
 				}
 			}else
 				paymentDetail.Amount = 0M;
+			
+			if(this.Text.Contains("NEW"))
+				m_headerEntity.AmountTender = paymentDetail.Amount;					
+			else
+				m_headerEntity.AmountTender += paymentDetail.Amount;	
+			
 			paymentDetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());		
 			paymentDetail.Header = m_headerEntity;
 			m_headerEntity.PaymentDetailEntities.Add(paymentDetail);
@@ -139,12 +156,63 @@ namespace NJournals.Core.Views
 			return m_headerEntity;
 		}
 		
+		public void LoadHeaderEntityData(RefillHeaderDataEntity p_headerEntity){
+			RefillHeaderDataEntity m_headerEntity = p_headerEntity;
+			txtjonumber.Text = m_headerEntity.RefillHeaderID.ToString().PadLeft(6, '0');
+			cmbCustomers.Text = m_headerEntity.Customer.Name;
+			cmbtransTypes.Text = m_headerEntity.TransactionType.Name;
+			dataGridView1.Rows.Clear();
+			dtDate.Value = m_headerEntity.Date;
+			foreach(RefillDetailDataEntity detail in m_headerEntity.DetailEntities){
+				dataGridView1.Rows.Add(detail.ProductType.Name, detail.StoreBottleQty.ToString(), detail.StoreCapQty.ToString(), detail.Qty.ToString(), detail.Amount.ToString("N2"));
+			}
+			txtamtdue.Text = m_headerEntity.AmountDue.ToString("N2");
+			txtbalance.Text = (m_headerEntity.AmountDue - m_headerEntity.AmountTender).ToString("N2");
+			
+		}
+		
 		void BtndeletecloseClick(object sender, EventArgs e)
 		{
-			if(MessageService.ShowYesNo("Are you sure you want to delete this transaction with JO number: " + txtjonumber.Text, "Delete?")){
+			if(MessageService.ShowYesNo("Are you sure you want to delete this transaction with JO number: " + txtjonumber.Text + "?", "Delete?")){
 				m_presenter.VoidTransaction();
+				this.Close();
 			}		
 		}
 		
+		
+		void txtsearch_keydown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Enter){
+				int id = 0;
+				int.TryParse(txtsearch.Text, out id);
+				if(m_presenter.getHeaderByJoNumber(id) != null){
+					m_presenter.loadHeaderEntity();
+				}else{
+					MessageService.ShowWarning("Can't find JO number: " + txtsearch.Text);
+				}
+			}	
+		}
+		
+		void BtnsearchClick(object sender, EventArgs e)
+		{
+			int id = 0;
+			int.TryParse(txtsearch.Text, out id);
+			if(m_presenter.getHeaderByJoNumber(id) != null){
+				m_presenter.loadHeaderEntity();
+			}else{
+				MessageService.ShowWarning("Can't find JO number: " + txtsearch.Text);
+			}
+		}
+		
+		void BtncancelClick(object sender, EventArgs e)
+		{
+			if(MessageService.ShowYesNo("Are you sure you want to cancel this transaction? Data in the fields will be remove.","Cancel Transaction")){
+				this.dataGridView1.Rows.Clear();
+				txtamtdue.Text = txtamttender.Text = txtbalance.Text = 
+					txtchange.Text = "0.00";
+				cmbproducts.Text = cmbCustomers.Text = cmbtransTypes.Text = string.Empty;
+				txtbottles.Text = txtcaps.Text = txtnoitems.Text = "0";
+			}
+		}
 	}
 }

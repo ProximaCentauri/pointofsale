@@ -278,7 +278,7 @@ namespace NJournals.Core.Views
 		
 		void BtnsavecloseClick(object sender, EventArgs e)
 		{
-			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjoborder.Text , "Saving New Entries?")){
+			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjoborder.Text + "?", "Saving New Entries?")){
 				m_presenter.SaveClicked();			        
 				this.Close();
 			}			

@@ -63,6 +63,20 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public RefillDaySummaryDataEntity GetByDayId(int p_id)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+					var query = session.Query<RefillDaySummaryDataEntity>()
+						.Where(x => x.DayID == p_id)
+						.SingleOrDefault();
+					return query;
+				}
+			}
+		}
+		
 		public IEnumerable<RefillDaySummaryDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())
