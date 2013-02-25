@@ -74,9 +74,7 @@ namespace NJournals.Core.Presenter
 				SaveDaySummary(m_headerEntity);
 			}else if(m_view.GetTitle().Contains("CLAIM")){								
 
-				SaveUpdateDetails();
-				
-				m_OriginalHeaderEntity.PaymentDetailEntities = m_headerEntity.PaymentDetailEntities;
+				SaveUpdateDetails();						
 				
 				SaveOrDeleteJobCharges();
 				
@@ -113,19 +111,7 @@ namespace NJournals.Core.Presenter
 					entity.Qty = checklist.Qty;
 					new_Checklist.Add(entity);
 				}				
-			}
-			
-//			var listToLookUp2 = new_ChecklistEntities.ToLookup(entity => entity.Checklist.ChecklistID);				
-//			var listToUpdate = orig_ChecklistEntities.Where(entity => (listToLookUp2.Contains(entity.Checklist.ChecklistID)));
-//			
-//			foreach(LaundryJobChecklistDataEntity entity in listToUpdate.ToList()){
-//				LaundryJobChecklistDataEntity checklist = new LaundryJobChecklistDataEntity();
-//				checklist.Checklist = entity.Checklist;
-//				checklist.Qty = entity.Qty;
-//				checklist.Header = entity.Header;
-//				checklist.ID = entity.ID;				
-//				new_Checklist.Add(checklist);
-//			}			
+			}			
 					
 			var listToLookUpForAdd = orig_ChecklistEntities.ToLookup(entity => entity.Checklist.ChecklistID);		
 			var listToAdd = new_ChecklistEntities.Where(entity => (!listToLookUpForAdd.Contains(entity.Checklist.ChecklistID)));
@@ -194,11 +180,14 @@ namespace NJournals.Core.Presenter
 		private void SaveDaySummary(LaundryHeaderDataEntity headerEntity){
 			DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString()); // daystamp in daysummary should be date only (no time);
 			LaundryDaySummaryDataEntity daySummary = m_summaryDao.GetByDay(today);
+			
+			headerEntity.PaymentDetailEntities = m_headerEntity.PaymentDetailEntities;
+			
 			if(daySummary != null)
 			{
 				daySummary.TransCount += 1;
 				//TODO: totalsales should be totalamoutdue - balance
-				daySummary.TotalSales += headerEntity.PaymentDetailEntities[0].Amount;
+				daySummary.TotalSales += headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1].Amount;
 				headerEntity.DaySummary = daySummary;
 				
 				// update daysummary with transcount and totalsales				
@@ -209,7 +198,9 @@ namespace NJournals.Core.Presenter
 				daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 				//TODO: totalsales should be amounttender - amount change.			
 				
-				daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[0].Amount;
+				
+				
+				daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1].Amount;
 				daySummary.TransCount += 1;
 				
 				// set header entity in daysummary for nhibernate to pickup and map			
@@ -342,10 +333,13 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void ClaimTransaction(){
-			m_view.ClaimTransaction();
-			m_OriginalHeaderEntity.ClaimDate = DateTime.Now;
-			m_OriginalHeaderEntity.ClaimFlag = true;
-			m_laundryDao.Update(m_OriginalHeaderEntity);
+			if(m_view.ClaimTransaction())
+			{
+				m_OriginalHeaderEntity.ClaimDate = DateTime.Now;			
+				m_OriginalHeaderEntity.ClaimFlag = true;
+				SaveClicked();							
+				m_view.CloseView();
+			}			
 		}
 	}
 }

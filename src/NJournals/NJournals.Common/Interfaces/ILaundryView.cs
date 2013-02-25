@@ -30,7 +30,7 @@ namespace NJournals.Common.Interfaces
 		void LaunchCustomerSearch();
 		LaundryHeaderDataEntity ProcessHeaderDataEntity();
 		void AddItem();
-		void ClaimTransaction();
+		bool ClaimTransaction();
 		void VoidingTransaction();
 		
 	}

@@ -142,13 +142,12 @@ namespace NJournals.Core.Views
 			m_headerEntity.TotalItemQty = totalItemQty;			
 			m_headerEntity.TotalAmountDue = decimal.Parse(txttotalamtdue.Text);
 			m_headerEntity.TotalCharge = decimal.Parse(txttotalcharges.Text);
-			m_headerEntity.TotalDiscount = decimal.Parse(txttotaldiscount.Text);
-			
+			m_headerEntity.TotalDiscount = decimal.Parse(txttotaldiscount.Text);			
 			m_headerEntity.AmountDue = decimal.Parse(txtamtdue.Text);
 			
 			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
 			
-			if(decimal.Parse(txtamttender.Text) > 0){
+			if(decimal.Parse(txtamttender.Text) > 0){	
 				if(decimal.Parse(txtamttender.Text) >= m_headerEntity.TotalAmountDue){
 					paymentdetail.Amount = m_headerEntity.TotalAmountDue;							
 				}else{
@@ -173,7 +172,7 @@ namespace NJournals.Core.Views
 				m_headerEntity.JobChargeEntities.Add(m_jobcharge);
 			}
 			
-			m_headerEntity.PaidFlag = (decimal.Parse(txtbalance.Text) == 0) ? true : false;
+			m_headerEntity.PaidFlag = (decimal.Parse(txtbalance.Text) == 0) ? true : false;			
 				
 			return m_headerEntity;
 		}				
@@ -231,10 +230,10 @@ namespace NJournals.Core.Views
 			this.amountTender = decimal.Parse(txtamttender.Text);
 			this.totalAmtDue = decimal.Parse(txttotalamtdue.Text);				
 			if(amountTender < totalAmtDue){
-				txtbalance.Text = (totalAmtDue - amountTender).ToString("N2");
+				txtbalance.Text = (totalAmtDue - totalPayment - amountTender).ToString("N2");
 				txtchange.Text = "0.00";
 			}else{
-				txtchange.Text = (amountTender - totalAmtDue).ToString("N2");	
+				txtchange.Text = (amountTender - totalAmtDue - totalPayment).ToString("N2");	
 				txtbalance.Text = "0.00";
 			}							
 		}		
@@ -298,6 +297,10 @@ namespace NJournals.Core.Views
 		public void LoadHeaderEntityData(LaundryHeaderDataEntity p_headerEntity){
 			this.m_headerEntity = p_headerEntity;
 			if(this.m_headerEntity != null){
+				btnsaveclose.Enabled = true;
+				btnclaim.Enabled = true;
+				chkchargesList.Enabled = true;
+				
 				txtjoborder.Text = m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0');
 				cmbCustomers.Text = m_headerEntity.Customer.Name;
 				dtrecieveDate.Value = m_headerEntity.ReceivedDate;
@@ -305,8 +308,7 @@ namespace NJournals.Core.Views
 				foreach(LaundryDetailDataEntity detailEntity in m_headerEntity.DetailEntities){
 					dataGridView1.Rows.Add(detailEntity.Category.Name, detailEntity.Service.Name, detailEntity.Kilo.ToString(), detailEntity.ItemQty.ToString(), detailEntity.Amount.ToString("N2"));
 				}				
-				chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;
-										
+				chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;										
 				for(int i=0;i<chkchargesList.Items.Count;i++){
 					foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
 						if(chkchargesList.Items[i].ToString().Equals(chargeEntity.Charge.Name)){
@@ -320,9 +322,17 @@ namespace NJournals.Core.Views
 				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("0");				
 				txtdiscount.Text = ((m_headerEntity.TotalDiscount / (m_headerEntity.AmountDue + m_headerEntity.TotalCharge)) * 100).ToString("0");
 				totalPayment = m_headerEntity.TotalPayment;
-				txtbalance.Text = (m_headerEntity.TotalAmountDue - m_headerEntity.TotalPayment).ToString("N2");
-			
-				lblchecklist.Enabled = true;				
+				txtbalance.Text = (m_headerEntity.TotalAmountDue - m_headerEntity.TotalPayment).ToString("N2");			
+				lblchecklist.Enabled = true;	
+				
+				if(m_headerEntity.ClaimFlag)
+				{
+					btnsaveclose.Enabled = false;
+					btnclaim.Enabled = false;
+					chkchargesList.Enabled = false;
+					chkpaywhenclaim.Enabled = false;
+				}		
+								
 			}else
 				MessageService.ShowWarning("Can't find JO Number: " + txtsearch.Text, "Non-existing");
 		}
@@ -431,12 +441,24 @@ namespace NJournals.Core.Views
 			m_presenter.ClaimTransaction();
 		}
 		
-		public void ClaimTransaction(){
-			MessageService.ShowInfo("Claiming transaction with JO number: " + txtjoborder.Text , "Claim");
-			this.Close();
+		public bool ClaimTransaction(){
+			if(decimal.Parse(txtbalance.Text) <= 0.00M){
+				MessageService.ShowInfo("Claiming transaction with JO number: " + txtjoborder.Text , "Claim");				
+				return true;				
+			}
+			else{
+				MessageService.ShowWarning("Unable to claim transaction with JO number: " + txtjoborder.Text + ".\n" +
+				                           "Please make sure transaction is fully paid to claim transaction.","Claim");	
+				return false;				
+			}
+			
 		}
 		
 		public void VoidingTransaction(){
+			this.Close();
+		}
+		
+		public override void CloseView(){
 			this.Close();
 		}
 	}	
