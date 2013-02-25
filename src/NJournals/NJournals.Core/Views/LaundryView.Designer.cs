@@ -498,6 +498,7 @@ namespace NJournals.Core.Views
 			this.chkpaywhenclaim.TabIndex = 15;
 			this.chkpaywhenclaim.Text = "Pay when Claim";
 			this.chkpaywhenclaim.UseVisualStyleBackColor = true;
+			this.chkpaywhenclaim.CheckedChanged += new System.EventHandler(this.ChkpaywhenclaimCheckedChanged);
 			// 
 			// btnsaveclose
 			// 

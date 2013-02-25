@@ -463,6 +463,11 @@ namespace NJournals.Core.Views
 		public override void CloseView(){
 			this.Close();
 		}
+		
+		void ChkpaywhenclaimCheckedChanged(object sender, EventArgs e)
+		{
+			txtamttender.Enabled = !chkpaywhenclaim.Checked;
+		}
 	}	
 }
 
