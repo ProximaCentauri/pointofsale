@@ -44,9 +44,9 @@ namespace NJournals.Core.Views
 		CheckListView chklistView = null;
 		LaundryCustomerSearchView customerSearchView = null;
 		private decimal removePrice = 0;
-		private decimal amountTender = 0;
-		
+		private decimal amountTender = 0;		
 		private decimal totalAmtDue = 0;
+		private decimal totalPayment = 0;
 		
 		void setButtonImages()
 		{
@@ -105,21 +105,7 @@ namespace NJournals.Core.Views
 		
 		void BtncancelClick(object sender, EventArgs e){			
 			if(MessageService.ShowYesNo("Are you sure you want to cancel this transaction? Data in the fields will be remove.","Cancel Transaction")){
-				this.dataGridView1.Rows.Clear();
-				this.cmbcategory.Text = 
-					cmbservices.Text = 
-					cmbCustomers.Text = string.Empty;			
-				for(int i=0;i<chkchargesList.Items.Count;i++)
-					chkchargesList.SetItemCheckState(i, CheckState.Unchecked);
-				txttotalamtdue.Text = 					
-					txtamtdue.Text = 
-					txtbalance.Text = 
-					txtchange.Text =
-					txtamttender.Text = 
-					txttotaldiscount.Text = "0.00";
-				txtdiscount.Text = "0";
-				txtnoitems.Text = string.Empty;
-				txtkilo.Text = string.Empty;					
+				ClearFields();
 			}			   			   
 		}		
 		
@@ -328,14 +314,14 @@ namespace NJournals.Core.Views
 						}
 					}					
 				}
-				// load amount details
-				
+				// load amount details				
 				txtamtdue.Text = m_headerEntity.AmountDue.ToString("N2");
 				txttotalamtdue.Text = m_headerEntity.TotalAmountDue.ToString("N2");				
 				txttotaldiscount.Text = m_headerEntity.TotalDiscount.ToString("0");				
-				txtbalance.Text = (m_headerEntity.TotalAmountDue - m_headerEntity.TotalPayment).ToString("N2");								
 				txtdiscount.Text = ((m_headerEntity.TotalDiscount / (m_headerEntity.AmountDue + m_headerEntity.TotalCharge)) * 100).ToString("0");
-								
+				totalPayment = m_headerEntity.TotalPayment;
+				txtbalance.Text = (m_headerEntity.TotalAmountDue - m_headerEntity.TotalPayment).ToString("N2");
+			
 				lblchecklist.Enabled = true;				
 			}else
 				MessageService.ShowWarning("Can't find JO Number: " + txtsearch.Text, "Non-existing");
@@ -391,6 +377,7 @@ namespace NJournals.Core.Views
 		void chkchargesList_ItemChecked(object sender, ItemCheckEventArgs e)
 		{			
 			decimal charge = 0M;
+			
 			if(e.NewValue == CheckState.Checked){
 				charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
 				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) + charge).ToString("N2");
@@ -400,8 +387,7 @@ namespace NJournals.Core.Views
 				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) - charge).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - charge).ToString("N2");
 			}			
-			//FIXME: issue in calculation
-			txtbalance.Text = txttotalamtdue.Text;
+			txtbalance.Text = (decimal.Parse(txttotalamtdue.Text) - totalPayment).ToString("N2");
 			decimal discount = decimal.Parse(txtdiscount.Text) / 100M;
 			txttotaldiscount.Text = (decimal.Parse(txttotalamtdue.Text) * discount).ToString("N2");
 		}
