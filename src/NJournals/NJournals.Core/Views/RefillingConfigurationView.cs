@@ -123,7 +123,7 @@ namespace NJournals.Core.Views
 						{
 						 	m_presenter.SaveOrUpdateProductType(productTypes);
 							m_presenter.SetAllRefillProductType();
-							MessageService.ShowInfo("Successfully added new Product Type.", "New Product Type");
+							MessageService.ShowInfo("Successfully added/updated Product Type.", "Save  or Updated Product Type");
 							dgvProductType.Refresh();
 							productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;							
 						}
@@ -290,7 +290,7 @@ namespace NJournals.Core.Views
 						{
 							m_presenter.SaveOrUpdateRefillInventory(refillInvs);
 							m_presenter.SetAllRefillInventory();	
-							MessageService.ShowInfo("Successfully added new inventory item.", "New Inventory Item");
+							MessageService.ShowInfo("Successfully added/updated Inventory item.", "Save or Update Inventory Item");
 							this.dgvRefillInventory.AllowUserToAddRows = false;
 							dgvRefillInventory.Refresh();
 							refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;

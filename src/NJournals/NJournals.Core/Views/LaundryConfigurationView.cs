@@ -171,7 +171,7 @@ namespace NJournals.Core.Views
 							m_presenter.SaveOrUpdateService(services);							
 							m_presenter.SetAllServices();
 							m_presenter.SetAllPriceScheme();
-							MessageService.ShowInfo("Successfully saved the newly added service.", "New service");
+							MessageService.ShowInfo("Successfully saved/updated service.", "Save or Update service");
 							servicesMaxRowIndex = this.dgvServices.RowCount - 1;
 							dgvServices.Refresh();	
 						}
@@ -302,7 +302,7 @@ namespace NJournals.Core.Views
 							m_presenter.SaveOrUpdateCategory(category);							
 							m_presenter.SetAllCategories();
 							m_presenter.SetAllPriceScheme();
-							MessageService.ShowInfo("Successfully saved the newly added category.", "New category");
+							MessageService.ShowInfo("Successfully saved/updated category.", "Save or Update category");
 							categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
 							dgvCategory.Refresh();	
 						}
@@ -478,7 +478,7 @@ namespace NJournals.Core.Views
 						{
 							m_presenter.SaveOrUpdatePriceScheme(priceSchemes);							
 							m_presenter.SetAllPriceScheme();	
-							MessageService.ShowInfo("Successfully saved newly added Price Scheme.", "New Price Scheme");							
+							MessageService.ShowInfo("Successfully saved/updated Price Scheme.", "Save or Update Price Scheme");							
 							this.dgvPriceScheme.AllowUserToAddRows = false;
 							dgvPriceScheme.Refresh();
 							priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
