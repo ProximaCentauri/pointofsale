@@ -92,9 +92,9 @@ namespace NJournals.Core.Views
 				errorProvider.SetError(txtName, "");
 				
 				CustomerDataEntity customer = new CustomerDataEntity();
-				string name = txtName.Text.ToString();
-				string address = txtAddress.Text.ToString();
-				string number = txtNumber.Text.ToString();
+				string name = txtName.Text.ToString().Trim();
+				string address = txtAddress.Text.ToString().Trim();
+				string number = txtNumber.Text.ToString().Trim();
 				
 				if(selectedIndex != -1)
 				{				
@@ -122,10 +122,11 @@ namespace NJournals.Core.Views
 				
 				try
 				{
-					m_presenter.SaveOrUpdateCustomer(customer);					
+					m_presenter.SaveOrUpdateCustomer(customer);						
 					selectedIndex = -1;
 					ClearData();
-					m_presenter.SetAllCustomerList();					
+					m_presenter.SetAllCustomerList();
+					MessageService.ShowInfo("Successfully saved new customer name.");					
 				}
 				catch(Exception ex)
 				{
@@ -167,11 +168,7 @@ namespace NJournals.Core.Views
 		{
 			if(!txtsearch.Text.Trim().Equals(string.Empty))
 			{
-				m_presenter.viewCustomersByName(txtsearch.Text.Trim().ToString());
-			}
-			else
-			{
-				
+				m_presenter.viewCustomersByName(txtsearch.Text.Trim());
 			}
 		}
 		
@@ -184,7 +181,7 @@ namespace NJournals.Core.Views
 		public void ViewCustomersByName(List<CustomerDataEntity> p_customers)
 		{
 			m_customersEntity = p_customers;
-			if(m_customersEntity != null)
+			if(m_customersEntity.Count > 0)
 			{
 				BindingSource source = new BindingSource();
 				source.DataSource = m_customersEntity;
@@ -203,20 +200,23 @@ namespace NJournals.Core.Views
 			
 			if(dgvCustomerList.SelectedRows.Count > 0)
 			{
-				try
+				if(MessageService.ShowYesNo("Are you sure you want to remove the selected customer from the list?", "Remove Customer"))
 				{
-					foreach(DataGridViewRow currentRow in dgvCustomerList.SelectedRows)
+					try
 					{
-						int ID = (int)dgvCustomerList.Rows[currentRow.Index].Cells["CustomerID"].Value;
-						customer = m_customersEntity.Find(m_customer => m_customer.CustomerID == ID);
-						m_presenter.DeleteCustomer(customer);
-						dgvCustomerList.Rows.Remove(dgvCustomerList.Rows[currentRow.Index]);
+						foreach(DataGridViewRow currentRow in dgvCustomerList.SelectedRows)
+						{
+							int ID = (int)dgvCustomerList.Rows[currentRow.Index].Cells["CustomerID"].Value;
+							customer = m_customersEntity.Find(m_customer => m_customer.CustomerID == ID);
+							m_presenter.DeleteCustomer(customer);
+							dgvCustomerList.Rows.Remove(dgvCustomerList.Rows[currentRow.Index]);
+						}
+						m_presenter.SetAllCustomerList();
 					}
-					m_presenter.SetAllCustomerList();
-				}
-				catch(Exception ex)
-				{
-					MessageService.ShowError("Unable to delete selected data.", ex.Message);
+					catch(Exception ex)
+					{
+						MessageService.ShowError("Unable to delete selected data.", ex.Message);
+					}
 				}
 			}
 		}

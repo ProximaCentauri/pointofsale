@@ -123,21 +123,22 @@ namespace NJournals.Core.Views
 						{
 						 	m_presenter.SaveOrUpdateProductType(productTypes);
 							m_presenter.SetAllRefillProductType();
-							productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
+							MessageService.ShowInfo("Successfully added new Product Type.", "New Product Type");
 							dgvProductType.Refresh();
+							productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;							
 						}
 						catch(Exception ex)
 						{
 							//TODO: error message
-							MessageService.ShowError("Unable to save data", ex.Message);
+							MessageService.ShowError("Unable to save data.", ex.Message);
 						}
 					}
 				}
 				else
 				{
 					//TODO: error message
-					MessageService.ShowWarning("Unable to insert duplicate productType name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
-					                          " . Please make sure that no duplicate entries before saving.");
+					MessageService.ShowWarning("Unable to insert duplicate Product Type name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')).Trim() +
+					                          " . Please make sure that no duplicate entries before saving.", "Duplicate Product Type name");
 				}
 			}
 			else
@@ -152,21 +153,24 @@ namespace NJournals.Core.Views
 			
 			if(this.dgvProductType.SelectedRows.Count > 0)
 			{
-				foreach(DataGridViewRow currentRow in this.dgvProductType.SelectedRows)
+				if(MessageService.ShowYesNo("Are you sure to delete the selected Product Type?", "Delete Product Type"))
 				{
-					if(currentRow.Index < productTypeMaxRowIndex)
+					foreach(DataGridViewRow currentRow in this.dgvProductType.SelectedRows)
 					{
-						int productTypeID = (int)this.dgvProductType.Rows[currentRow.Index].Cells["ProductTypeID"].Value;
-						productType = m_productTypeEntity.Find(m_productType => m_productType.ProductTypeID == productTypeID);						
-						m_presenter.DeleteProductType(productType);
+						if(currentRow.Index < productTypeMaxRowIndex)
+						{
+							int productTypeID = (int)this.dgvProductType.Rows[currentRow.Index].Cells["ProductTypeID"].Value;
+							productType = m_productTypeEntity.Find(m_productType => m_productType.ProductTypeID == productTypeID);						
+							m_presenter.DeleteProductType(productType);
+						}
+						
+						if(!this.dgvProductType.Rows[currentRow.Index].IsNewRow)
+							dgvProductType.Rows.Remove(this.dgvProductType.Rows[currentRow.Index]);											
 					}
-					
-					if(!this.dgvProductType.Rows[currentRow.Index].IsNewRow)
-						dgvProductType.Rows.Remove(this.dgvProductType.Rows[currentRow.Index]);											
+					m_presenter.SetAllRefillProductType();
+					productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
 				}
-				m_presenter.SetAllRefillProductType();
-			}
-			productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
+			}			
 		}
 		
 		private List<RefillProductTypeDataEntity> GetProductTypeDataValueChange(List<int> rowIndexChange, out string errorMessage)
@@ -285,7 +289,8 @@ namespace NJournals.Core.Views
 						try
 						{
 							m_presenter.SaveOrUpdateRefillInventory(refillInvs);
-							m_presenter.SetAllRefillInventory();				
+							m_presenter.SetAllRefillInventory();	
+							MessageService.ShowInfo("Successfully added new inventory item.", "New Inventory Item");
 							this.dgvRefillInventory.AllowUserToAddRows = false;
 							dgvRefillInventory.Refresh();
 							refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
@@ -293,20 +298,20 @@ namespace NJournals.Core.Views
 						catch(Exception ex)
 						{
 							//TODO: error message
-							MessageService.ShowError("Unable to save data", ex.Message);
+							MessageService.ShowError("Unable to save data.", ex.Message);
 						}
 					}
 				}
 				else
 				{
 					//TODO: error message
-					MessageService.ShowWarning("Unable to insert duplicate inventory name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
+					MessageService.ShowWarning("Unable to insert duplicate inventory name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')).Trim() +
 					                          " . Please make sure that no duplicate entries before saving");
 				}
 			}
 			else
 			{
-				MessageService.ShowWarning("Cannot save empty inventory name. Please input inventory name");
+				MessageService.ShowWarning("Cannot save empty inventory name. Please input inventory name.");
 			}		
 		}
 		
@@ -316,21 +321,24 @@ namespace NJournals.Core.Views
 			
 			if(this.dgvRefillInventory.SelectedRows.Count > 0)
 			{
-				foreach(DataGridViewRow currentRow in this.dgvRefillInventory.SelectedRows)
+				if(MessageService.ShowYesNo("Are you sure to delete selected inventory item?", "Delete Inventory Item"))
 				{
-					if(currentRow.Index <= refillInvMaxRowIndex)
+					foreach(DataGridViewRow currentRow in this.dgvRefillInventory.SelectedRows)
 					{
-						int ID = (int)this.dgvRefillInventory.Rows[currentRow.Index].Cells["InvHeaderID"].Value;
-						refillInv = m_refillInvEntity.Find(m_refillInv => m_refillInv.InvHeaderID == ID);
-						m_presenter.DeleteRefillInventory(refillInv);
-					}					
-					if(!this.dgvRefillInventory.Rows[currentRow.Index].IsNewRow)
-						dgvRefillInventory.Rows.Remove(this.dgvRefillInventory.Rows[currentRow.Index]);						
+						if(currentRow.Index <= refillInvMaxRowIndex)
+						{
+							int ID = (int)this.dgvRefillInventory.Rows[currentRow.Index].Cells["InvHeaderID"].Value;
+							refillInv = m_refillInvEntity.Find(m_refillInv => m_refillInv.InvHeaderID == ID);
+							m_presenter.DeleteRefillInventory(refillInv);
+						}					
+						if(!this.dgvRefillInventory.Rows[currentRow.Index].IsNewRow)
+							dgvRefillInventory.Rows.Remove(this.dgvRefillInventory.Rows[currentRow.Index]);						
+					}
+					m_presenter.SetAllRefillInventory();
+					this.dgvRefillInventory.AllowUserToAddRows = false;
+					refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
 				}
-				m_presenter.SetAllRefillInventory();
-				this.dgvRefillInventory.AllowUserToAddRows = false;
-			}
-			refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
+			}			
 		}
 		
 		private void dgvRefillInventory_CellValueChanged(object sender,

@@ -90,6 +90,7 @@ namespace NJournals.Core.Views
 			this.label18 = new System.Windows.Forms.Label();
 			this.txttotaldiscount = new System.Windows.Forms.TextBox();
 			this.label19 = new System.Windows.Forms.Label();
+			this.btnDeleteDetail = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -666,12 +667,26 @@ namespace NJournals.Core.Views
 			this.label19.TabIndex = 31;
 			this.label19.Text = "%";
 			// 
+			// btnDeleteDetail
+			// 
+			this.btnDeleteDetail.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnDeleteDetail.FlatAppearance.BorderSize = 0;
+			this.btnDeleteDetail.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteDetail.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDeleteDetail.Location = new System.Drawing.Point(901, 234);
+			this.btnDeleteDetail.Name = "btnDeleteDetail";
+			this.btnDeleteDetail.Size = new System.Drawing.Size(35, 23);
+			this.btnDeleteDetail.TabIndex = 32;
+			this.btnDeleteDetail.UseVisualStyleBackColor = true;
+			// 
 			// LaundryNewView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(942, 742);
+			this.Controls.Add(this.btnDeleteDetail);
 			this.Controls.Add(this.label19);
 			this.Controls.Add(this.txttotaldiscount);
 			this.Controls.Add(this.txttotalamtdue);
@@ -714,6 +729,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button btnDeleteDetail;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.TextBox txttotaldiscount;
 		private System.Windows.Forms.Label label18;

@@ -116,35 +116,39 @@ namespace NJournals.Core.Views
 			
 			if(this.dgvServices.SelectedRows.Count > 0)
 			{
-				foreach(DataGridViewRow currentRow in this.dgvServices.SelectedRows)
+				if(MessageService.ShowYesNo("Are you sure to delete the selected service?", "Delete Service"))
 				{
-					if(currentRow.Index < servicesMaxRowIndex)
+					foreach(DataGridViewRow currentRow in this.dgvServices.SelectedRows)
 					{
-						int serviceId = (int)this.dgvServices.Rows[currentRow.Index].Cells["ServiceID"].Value;
-						service = m_serviceEntity.Find(m_service => m_service.ServiceID == serviceId);
-						priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.Service.Name == service.Name);
-						
-						if(priceScheme == null || priceScheme.ID == 0)
+						if(currentRow.Index < servicesMaxRowIndex)
 						{
-							m_presenter.DeleteService(service);	
+							int serviceId = (int)this.dgvServices.Rows[currentRow.Index].Cells["ServiceID"].Value;
+							service = m_serviceEntity.Find(m_service => m_service.ServiceID == serviceId);
+							priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.Service.Name == service.Name);
 							
-							if(!this.dgvServices.Rows[currentRow.Index].IsNewRow)
-							 dgvServices.Rows.Remove(this.dgvServices.Rows[currentRow.Index]);								
-						}
-						else
-						{
-							errorMessage += service.Name + " , ";
-						}
-					}													
+							if(priceScheme == null || priceScheme.ID == 0)
+							{
+								m_presenter.DeleteService(service);	
+								
+								if(!this.dgvServices.Rows[currentRow.Index].IsNewRow)
+								 dgvServices.Rows.Remove(this.dgvServices.Rows[currentRow.Index]);								
+							}
+							else
+							{
+								errorMessage += service.Name + " , ";
+							}
+						}													
+					}
+					m_presenter.SetAllServices();
+					servicesMaxRowIndex = this.dgvServices.RowCount - 1;
 				}
-				m_presenter.SetAllServices();
 			}
-			servicesMaxRowIndex = this.dgvServices.RowCount - 1;
+			
 			
 			if(!errorMessage.Equals(string.Empty))
 			{
-				MessageService.ShowWarning("Unable to delete services: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
-				                           " since it is still used in Price Scheme. Remove linked price Scheme before deleting the services");
+				MessageService.ShowWarning("Unable to delete service: " + errorMessage.Remove(errorMessage.LastIndexOf(',')).Trim() +
+				                           " since it is still used in Price Scheme. Remove linked entry in Price Scheme before deleting the service.");
 			}
 			
 		}
@@ -164,9 +168,10 @@ namespace NJournals.Core.Views
 					{	 				
 						try
 						{
-							m_presenter.SaveOrUpdateService(services);	 	
+							m_presenter.SaveOrUpdateService(services);							
 							m_presenter.SetAllServices();
 							m_presenter.SetAllPriceScheme();
+							MessageService.ShowInfo("Successfully saved the newly added service.", "New service");
 							servicesMaxRowIndex = this.dgvServices.RowCount - 1;
 							dgvServices.Refresh();	
 						}
@@ -180,8 +185,8 @@ namespace NJournals.Core.Views
 				else
 				{
 					//TODO: error message
-					MessageService.ShowWarning("Unable to insert duplicate service name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
-					                          " . Please make sure that no duplicate entries before saving");
+					MessageService.ShowWarning("Unable to insert duplicate service name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')).Trim() +
+					                          " . Please make sure that no duplicate entry before saving.");
 				}
 			}
 			else
@@ -294,29 +299,30 @@ namespace NJournals.Core.Views
 					{		 
 						try
 						{
-							m_presenter.SaveOrUpdateCategory(category);
+							m_presenter.SaveOrUpdateCategory(category);							
 							m_presenter.SetAllCategories();
 							m_presenter.SetAllPriceScheme();
+							MessageService.ShowInfo("Successfully saved the newly added category.", "New category");
 							categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
 							dgvCategory.Refresh();	
 						}
 						catch(Exception ex)
 						{
 							//TODO: error message
-							MessageService.ShowError("Unable to save data", ex.Message);
+							MessageService.ShowError("Unable to save data.", ex.Message);
 						}
 					}
 				}
 				else
 				{
 					//TODO: error message
-					MessageService.ShowWarning("Unable to insert duplicate category name/s: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
+					MessageService.ShowWarning("Unable to insert duplicate category name/s: " + errorMessage.Remove(errorMessage.LastIndexOf(',')).Trim() +
 					                          " . Please make sure that no duplicate entries before saving");
 				}
 			}
 			else
 			{
-				MessageService.ShowWarning("Cannot save empty category name");
+				MessageService.ShowWarning("Cannot save empty Category name.");
 			}
 		}
 		
@@ -329,34 +335,37 @@ namespace NJournals.Core.Views
 			
 			if(this.dgvCategory.SelectedRows.Count > 0)
 			{
-				foreach(DataGridViewRow currentRow in this.dgvCategory.SelectedRows)
+				if(MessageService.ShowYesNo("Are you sure to delete the selected category?", "Delete Catetory"))
 				{
-					if(currentRow.Index < categoryMaxRowIndex)
+					foreach(DataGridViewRow currentRow in this.dgvCategory.SelectedRows)
 					{
-						int categoryId = (int)this.dgvCategory.Rows[currentRow.Index].Cells["CategoryID"].Value;
-						category = m_categoryEntity.Find(m_category => m_category.CategoryID == categoryId);
-						priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.Category.Name == category.Name);
-						
-						if(priceScheme == null || priceScheme.ID == 0)
+						if(currentRow.Index < categoryMaxRowIndex)
 						{
-							m_presenter.DeleteCategory(category);
-							if(!this.dgvCategory.Rows[currentRow.Index].IsNewRow)
-								dgvCategory.Rows.Remove(this.dgvCategory.Rows[currentRow.Index]);	
-						}
-						else
-						{
-							errorMessage += category.Name + " , ";
-						}
-					}															
+							int categoryId = (int)this.dgvCategory.Rows[currentRow.Index].Cells["CategoryID"].Value;
+							category = m_categoryEntity.Find(m_category => m_category.CategoryID == categoryId);
+							priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.Category.Name == category.Name);
+							
+							if(priceScheme == null || priceScheme.ID == 0)
+							{
+								m_presenter.DeleteCategory(category);
+								if(!this.dgvCategory.Rows[currentRow.Index].IsNewRow)
+									dgvCategory.Rows.Remove(this.dgvCategory.Rows[currentRow.Index]);	
+							}
+							else
+							{
+								errorMessage += category.Name + " , ";
+							}
+						}															
+					}
+					m_presenter.SetAllCategories();
+					categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
 				}
-				m_presenter.SetAllCategories();
-			}
-			categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
+			}			
 			
 			if(!errorMessage.Equals(string.Empty))
 			{
-				MessageService.ShowWarning("Unable to delete categories: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
-				                           " since it is still used in Price Scheme. Remove linked price Scheme before deleting the categories");
+				MessageService.ShowWarning("Unable to delete category: " + errorMessage.Remove(errorMessage.LastIndexOf(',')).Trim() +
+				                           " since it is still used in Price Scheme. Remove linked entry in Price Scheme before deleting the category.");
 			}
 		}
 		
@@ -467,8 +476,9 @@ namespace NJournals.Core.Views
 					{
 						try
 						{
-							m_presenter.SaveOrUpdatePriceScheme(priceSchemes);
-							m_presenter.SetAllPriceScheme();						
+							m_presenter.SaveOrUpdatePriceScheme(priceSchemes);							
+							m_presenter.SetAllPriceScheme();	
+							MessageService.ShowInfo("Successfully saved newly added Price Scheme.", "New Price Scheme");							
 							this.dgvPriceScheme.AllowUserToAddRows = false;
 							dgvPriceScheme.Refresh();
 							priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
@@ -476,15 +486,15 @@ namespace NJournals.Core.Views
 						catch(Exception ex)
 						{
 							//TODO: error message
-							MessageService.ShowError("Unable to save data", ex.Message);
+							MessageService.ShowError("Unable to save data.", ex.Message);
 						}
 					}
 				}
 				else
 				{
 					//TODO: error message
-					MessageService.ShowWarning("Unable to insert duplicate service name and category name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')) +
-					                          " . Please make sure that no duplicate entries before saving");
+					MessageService.ShowWarning("Unable to insert duplicate service name and category name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')).Trim() +
+					                          " . Please make sure that no duplicate entries before saving.");
 				}		
 			}
 			else
@@ -499,22 +509,25 @@ namespace NJournals.Core.Views
 			
 			if(this.dgvPriceScheme.SelectedRows.Count > 0)
 			{
-				foreach(DataGridViewRow currentRow in this.dgvPriceScheme.SelectedRows)
+				if(MessageService.ShowYesNo("Are you sure to delete the selected Price Scheme?", "Delete Price Scheme"))
 				{
-					if(currentRow.Index <= priceSchemeMaxRowIndex)
+					foreach(DataGridViewRow currentRow in this.dgvPriceScheme.SelectedRows)
 					{
-						int ID = (int)this.dgvPriceScheme.Rows[currentRow.Index].Cells["ID"].Value;
-						priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.ID == ID);						
-						m_presenter.DeletePriceScheme(priceScheme);
+						if(currentRow.Index <= priceSchemeMaxRowIndex)
+						{
+							int ID = (int)this.dgvPriceScheme.Rows[currentRow.Index].Cells["ID"].Value;
+							priceScheme = m_priceSchemeEntity.Find(m_priceScheme => m_priceScheme.ID == ID);						
+							m_presenter.DeletePriceScheme(priceScheme);
+						}
+						
+						if(!this.dgvPriceScheme.Rows[currentRow.Index].IsNewRow)
+							dgvPriceScheme.Rows.Remove(this.dgvPriceScheme.Rows[currentRow.Index]);
 					}
-					
-					if(!this.dgvPriceScheme.Rows[currentRow.Index].IsNewRow)
-						dgvPriceScheme.Rows.Remove(this.dgvPriceScheme.Rows[currentRow.Index]);
-				}
-				m_presenter.SetAllPriceScheme();
-			    this.dgvPriceScheme.AllowUserToAddRows = false;
+					m_presenter.SetAllPriceScheme();
+				    this.dgvPriceScheme.AllowUserToAddRows = false;
+				    priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
+				}				
 			}
-			priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
 		}
 		
 		private List<LaundryPriceSchemeDataEntity> GetPriceSchemeDataValueChange(List<int> rowIndexChange, out string errorMessage)
