@@ -149,10 +149,11 @@ namespace NJournals.Core.Views
 			LaundryPaymentDetailDataEntity paymentdetail = new LaundryPaymentDetailDataEntity();
 			
 			if(decimal.Parse(txtamttender.Text) > 0){	
-				if(decimal.Parse(txtamttender.Text) >= m_headerEntity.TotalAmountDue){
-					paymentdetail.Amount = m_headerEntity.TotalAmountDue;							
+				if(decimal.Parse(txtamttender.Text) >=  (decimal.Parse(txttotalamtdue.Text) - m_headerEntity.TotalPayment)){
+					paymentdetail.Amount = decimal.Parse(txttotalamtdue.Text) - m_headerEntity.TotalPayment;
 				}else{
-					paymentdetail.Amount = m_headerEntity.TotalAmountDue - decimal.Parse(txtbalance.Text);
+					//paymentdetail.Amount = m_headerEntity.TotalAmountDue - decimal.Parse(txtbalance.Text);
+					paymentdetail.Amount = decimal.Parse(txtamttender.Text);
 				}	
 			}else
 				paymentdetail.Amount = 0;
@@ -230,11 +231,11 @@ namespace NJournals.Core.Views
 			}	
 			this.amountTender = decimal.Parse(txtamttender.Text);
 			this.totalAmtDue = decimal.Parse(txttotalamtdue.Text);				
-			if(amountTender < totalAmtDue){
+			if(amountTender < (totalAmtDue - totalPayment)){
 				txtbalance.Text = (totalAmtDue - totalPayment - amountTender).ToString("N2");
 				txtchange.Text = "0.00";
 			}else{
-				txtchange.Text = (amountTender - totalAmtDue - totalPayment).ToString("N2");	
+				txtchange.Text = (amountTender - (totalAmtDue - totalPayment)).ToString("N2");
 				txtbalance.Text = "0.00";
 			}							
 		}		
