@@ -73,6 +73,7 @@ namespace NJournals.Core.Views
 				lblchecklist.Enabled = false;
 				btncancel.Enabled = false;
 				txtdiscount.Enabled = false;
+				dataGridView1.AllowUserToDeleteRows = false;
 			}
 			m_presenter.SetAllServices();
 			m_presenter.SetAllCharges();
@@ -342,24 +343,29 @@ namespace NJournals.Core.Views
 		
 		void BtnsearchClick(object sender, EventArgs e)
 		{
+			ClearFields();
+			int id = 0;
+			int.TryParse(txtsearch.Text, out id);
+			m_presenter.getHeaderEntityByJONumber(id);
+		}
+			
+		private void ClearFields(){
 			// clear data first
 			this.dataGridView1.Rows.Clear();
-				this.cmbcategory.Text = 
-					cmbservices.Text = 
-					cmbCustomers.Text = string.Empty;			
-				for(int i=0;i<chkchargesList.Items.Count;i++)
-					chkchargesList.SetItemCheckState(i, CheckState.Unchecked);
-				txttotalamtdue.Text = 					
-					txtamtdue.Text = 
-					txtbalance.Text = 
-					txtchange.Text =
-					txtamttender.Text = 
-					txttotaldiscount.Text = "0.00";
-				txtdiscount.Text = "0";
-				txtnoitems.Text = string.Empty;
-				txtkilo.Text = string.Empty;	
-				
-			m_presenter.getHeaderEntityByJONumber(int.Parse(txtsearch.Text));
+			this.cmbcategory.Text = 
+				cmbservices.Text = 
+				cmbCustomers.Text = string.Empty;			
+			for(int i=0;i<chkchargesList.Items.Count;i++)
+				chkchargesList.SetItemCheckState(i, CheckState.Unchecked);
+			txttotalamtdue.Text = 					
+				txtamtdue.Text = 
+				txtbalance.Text = 
+				txtchange.Text =
+				txtamttender.Text = 
+				txttotaldiscount.Text = "0.00";
+			txtdiscount.Text = "0";
+			txtnoitems.Text = string.Empty;
+			txtkilo.Text = string.Empty;	
 		}
 		
 		void txtsearch_keypress(object sender, KeyEventArgs e)
@@ -367,6 +373,7 @@ namespace NJournals.Core.Views
 			if(e.KeyCode == Keys.Enter){
 				int id = 0;
 				int.TryParse(txtsearch.Text, out id);
+				ClearFields();
 				m_presenter.getHeaderEntityByJONumber(id);
 			}			
 		}
