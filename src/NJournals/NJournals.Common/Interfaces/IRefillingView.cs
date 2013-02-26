@@ -21,5 +21,6 @@ namespace NJournals.Common.Interfaces
 		void SetAllProducts(List<RefillProductTypeDataEntity> products);
 		RefillHeaderDataEntity ProcessHeaderDataEntity();
 		void LoadHeaderEntityData(RefillHeaderDataEntity headerEntity);
+		void AddItem();
 	}
 }

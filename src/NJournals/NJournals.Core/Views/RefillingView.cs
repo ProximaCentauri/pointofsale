@@ -80,7 +80,18 @@ namespace NJournals.Core.Views
 		}		
 		
 		void BtnaddClick(object sender, EventArgs e)
-		{
+		{			
+			foreach(Control c in grpServices.Controls){
+				if(c.Text.Trim().Equals(string.Empty)){
+					MessageService.ShowWarning("Please input a value in empty field.","Empty Field");
+					c.Focus();
+					return;
+				}
+			}
+			m_presenter.AddNewItemClicked();	
+		}
+		
+		public void AddItem(){
 			decimal price = m_presenter.getAmtChargeByName(cmbproducts.Text);
 			decimal totalPrice = decimal.Parse(txtnoitems.Text) * price;
 			bool alreadyExist = false;

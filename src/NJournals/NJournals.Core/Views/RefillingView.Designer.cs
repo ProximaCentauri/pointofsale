@@ -45,7 +45,7 @@ namespace NJournals.Core.Views
 			this.label1 = new System.Windows.Forms.Label();
 			this.cmbtransTypes = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.Services = new System.Windows.Forms.GroupBox();
+			this.grpServices = new System.Windows.Forms.GroupBox();
 			this.txtcaps = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.txtbottles = new System.Windows.Forms.TextBox();
@@ -72,13 +72,14 @@ namespace NJournals.Core.Views
 			this.chkunpaid = new System.Windows.Forms.CheckBox();
 			this.btndeleteclose = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.lblvoid = new System.Windows.Forms.Label();
 			this.btnsearch = new System.Windows.Forms.Button();
 			this.txtsearch = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.txtbalance = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
-			this.Services.SuspendLayout();
+			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -175,24 +176,24 @@ namespace NJournals.Core.Views
 			this.label5.TabIndex = 2;
 			this.label5.Text = "Transaction Type:";
 			// 
-			// Services
+			// grpServices
 			// 
-			this.Services.Controls.Add(this.txtcaps);
-			this.Services.Controls.Add(this.label8);
-			this.Services.Controls.Add(this.txtbottles);
-			this.Services.Controls.Add(this.label6);
-			this.Services.Controls.Add(this.btnadd);
-			this.Services.Controls.Add(this.txtnoitems);
-			this.Services.Controls.Add(this.label7);
-			this.Services.Controls.Add(this.label4);
-			this.Services.Controls.Add(this.cmbproducts);
-			this.Services.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.Services.Location = new System.Drawing.Point(16, 189);
-			this.Services.Name = "Services";
-			this.Services.Size = new System.Drawing.Size(239, 197);
-			this.Services.TabIndex = 4;
-			this.Services.TabStop = false;
-			this.Services.Text = "Services";
+			this.grpServices.Controls.Add(this.txtcaps);
+			this.grpServices.Controls.Add(this.label8);
+			this.grpServices.Controls.Add(this.txtbottles);
+			this.grpServices.Controls.Add(this.label6);
+			this.grpServices.Controls.Add(this.btnadd);
+			this.grpServices.Controls.Add(this.txtnoitems);
+			this.grpServices.Controls.Add(this.label7);
+			this.grpServices.Controls.Add(this.label4);
+			this.grpServices.Controls.Add(this.cmbproducts);
+			this.grpServices.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.grpServices.Location = new System.Drawing.Point(16, 189);
+			this.grpServices.Name = "grpServices";
+			this.grpServices.Size = new System.Drawing.Size(239, 197);
+			this.grpServices.TabIndex = 4;
+			this.grpServices.TabStop = false;
+			this.grpServices.Text = "Services";
 			// 
 			// txtcaps
 			// 
@@ -427,6 +428,7 @@ namespace NJournals.Core.Views
 			// groupBox2
 			// 
 			this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.groupBox2.Controls.Add(this.lblvoid);
 			this.groupBox2.Controls.Add(this.btnsearch);
 			this.groupBox2.Controls.Add(this.txtsearch);
 			this.groupBox2.Controls.Add(this.label9);
@@ -438,6 +440,19 @@ namespace NJournals.Core.Views
 			this.groupBox2.TabIndex = 24;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Search";
+			// 
+			// lblvoid
+			// 
+			this.lblvoid.BackColor = System.Drawing.Color.Transparent;
+			this.lblvoid.Font = new System.Drawing.Font("Calibri", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblvoid.ForeColor = System.Drawing.Color.Red;
+			this.lblvoid.Location = new System.Drawing.Point(415, 12);
+			this.lblvoid.Name = "lblvoid";
+			this.lblvoid.Size = new System.Drawing.Size(403, 33);
+			this.lblvoid.TabIndex = 6;
+			this.lblvoid.Text = "VOIDED TRANSACTION";
+			this.lblvoid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblvoid.Visible = false;
 			// 
 			// btnsearch
 			// 
@@ -515,21 +530,22 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.txtamtdue);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.dataGridView1);
-			this.Controls.Add(this.Services);
+			this.Controls.Add(this.grpServices);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "RefillingView";
 			this.Text = "RefillingView";
 			this.Load += new System.EventHandler(this.RefillingViewLoad);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			this.Services.ResumeLayout(false);
-			this.Services.PerformLayout();
+			this.grpServices.ResumeLayout(false);
+			this.grpServices.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Label lblvoid;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.TextBox txtbalance;
 		private System.Windows.Forms.Label label9;
@@ -563,7 +579,7 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.TextBox txtnoitems;
 		private System.Windows.Forms.Button btnadd;
-		private System.Windows.Forms.GroupBox Services;
+		private System.Windows.Forms.GroupBox grpServices;
 		private System.Windows.Forms.ComboBox cmbtransTypes;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label1;

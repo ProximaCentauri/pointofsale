@@ -72,6 +72,10 @@ namespace NJournals.Core.Presenter
 			return 1;
 		}
 		
+		public void AddNewItemClicked(){
+			m_view.AddItem();
+		}
+		
 		public decimal getAmtChargeByName(string name){			
 			return m_productDao.GetByName(name).Price;
 		}
