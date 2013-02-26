@@ -34,7 +34,7 @@ namespace NJournals.Core.Presenter
 		ILaundryDetailDao m_detailDao;
 		ILaundryPaymentDetailDao m_paymentDetailDao;		
 		ILaundryChecklistDao m_checklistDao;
-		List<LaundryCategoryDataEntity> categories = null;
+		
 		List<LaundryServiceDataEntity> services = null;
 		List<CustomerDataEntity> customers = null;
 		List<LaundryChargeDataEntity> charges = null;
@@ -224,14 +224,11 @@ namespace NJournals.Core.Presenter
 			m_view.AddItem();
 		}
 		
-		public void SetAllCategories(){
-			categories = m_categoryDao.GetAllItems() as List<LaundryCategoryDataEntity>;
-			m_view.SetAllCategories(categories);
-		}
 		
 		public void SetAllServices(){
-			services = m_serviceDao.GetAllItems() as List<LaundryServiceDataEntity>;
-			m_view.SetAllServices(services);
+			//services = m_serviceDao.GetAllItems() as List<LaundryServiceDataEntity>;
+			List<LaundryServiceDataEntity> serviceEntities = GetAllServiceInPriceScheme();
+			m_view.SetAllServices(serviceEntities);
 		}
 		
 		public void SetAllCustomers(){
@@ -242,6 +239,15 @@ namespace NJournals.Core.Presenter
 		public void SetAllCharges(){
 			charges = m_chargeDao.GetAllItems() as List<LaundryChargeDataEntity>;
 			m_view.SetAllCharges(charges);
+		}
+		
+		private List<LaundryServiceDataEntity> GetAllServiceInPriceScheme(){
+			List<LaundryServiceDataEntity> m_services = m_serviceDao.GetAllItems() as List<LaundryServiceDataEntity>;
+			List<LaundryPriceSchemeDataEntity> priceEntities = m_priceDao.GetAllItems() as List<LaundryPriceSchemeDataEntity>;
+			var listToLookUp = priceEntities.ToLookup(id => id.Service.ServiceID);
+			var ids = m_services.Where(entity => (listToLookUp.Contains(entity.ServiceID)));
+			
+			return ids.ToList() as List<LaundryServiceDataEntity>;			
 		}
 		
 		public LaundryPriceSchemeDataEntity getLaundryPrice(string p_category, string p_service){

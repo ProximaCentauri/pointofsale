@@ -78,13 +78,7 @@ namespace NJournals.Core.Views
 			}
 			m_presenter.SetAllServices();
 			m_presenter.SetAllCharges();
-		}
-				
-		public void SetAllCategories(List<LaundryCategoryDataEntity> categories){				
-			foreach(LaundryCategoryDataEntity category in categories){
-				this.cmbcategory.Items.Add(category.Name);
-			}
-		}
+		}				
 		
 		public void SetAllServices(List<LaundryServiceDataEntity> services){			
 			foreach(LaundryServiceDataEntity service in services){
@@ -333,6 +327,7 @@ namespace NJournals.Core.Views
 					btnclaim.Enabled = false;
 					chkchargesList.Enabled = false;
 					chkpaywhenclaim.Enabled = false;
+					txtamttender.Enabled = false;
 				}		
 								
 			}else

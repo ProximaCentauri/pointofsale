@@ -69,6 +69,17 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public LaundryServiceDataEntity GetById(int p_id)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+                var query = session.Query<LaundryServiceDataEntity>()
+                    .Where(x => x.ServiceID == p_id)
+                    .SingleOrDefault();
+				return query;
+			}
+		}
+		
 		public void Delete(LaundryServiceDataEntity p_service)
 		{
 			using(var session = NHibernateHelper.OpenSession())

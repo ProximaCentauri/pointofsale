@@ -21,6 +21,7 @@ namespace NJournals.Common.Interfaces
 		void Save(LaundryServiceDataEntity p_service);
 		IEnumerable<LaundryServiceDataEntity> GetAllItems();
 		LaundryServiceDataEntity GetByName(string p_name);
+		LaundryServiceDataEntity GetById(int p_id);
 		void Delete(LaundryServiceDataEntity p_service);
 		void Update(LaundryServiceDataEntity p_service);
 	}

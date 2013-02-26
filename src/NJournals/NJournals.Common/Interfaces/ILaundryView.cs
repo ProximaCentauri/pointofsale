@@ -21,7 +21,7 @@ namespace NJournals.Common.Interfaces
 		//LaundryDetailDataEntity DetailDataEntity{get;set;}
 		
 		
-		void SetAllCategories(List<LaundryCategoryDataEntity> categories);
+		//void SetAllCategories(List<LaundryCategoryDataEntity> categories);
 		void SetAllServices(List<LaundryServiceDataEntity> services);		
 		void SetAllCustomers(List<CustomerDataEntity> customers);		
 		void SetAllCharges(List<LaundryChargeDataEntity> charges);
