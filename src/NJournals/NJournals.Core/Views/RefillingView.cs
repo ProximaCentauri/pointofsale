@@ -86,7 +86,7 @@ namespace NJournals.Core.Views
 					MessageService.ShowWarning("Please input a value in empty field.","Empty Field");
 					c.Focus();
 					return;
-				}
+				}	
 			}
 			m_presenter.AddNewItemClicked();	
 		}
@@ -113,11 +113,25 @@ namespace NJournals.Core.Views
 		
 		void BtnprintcloseClick(object sender, EventArgs e)
 		{
+			if(cmbCustomers.Text.Trim().Equals(string.Empty)){
+				cmbCustomers.Focus();
+				MessageService.ShowWarning("No customer being selected. Please select a customer.","Empty Field");				
+				return;
+			}
+			if(dataGridView1.Rows.Count == 0){
+				MessageService.ShowWarning("No list to save. Please add an item before saving.","Empty Field");				
+				return;
+			}
+			if(cmbtransTypes.Text.Trim().Equals(string.Empty)){
+				MessageService.ShowWarning("No transaction type being selected. Please select a type of transaction.","Empty Field");
+				cmbtransTypes.Focus();
+				return;
+			}
+			
 			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number:" + txtjonumber.Text + "?", "Save?")){
 				m_presenter.PrintClicked();			
 				this.Close();
-			}			                            
-			
+			}			                            			
 		}
 		
 		public RefillHeaderDataEntity ProcessHeaderDataEntity(){
@@ -226,6 +240,19 @@ namespace NJournals.Core.Views
 				cmbproducts.Text = cmbCustomers.Text = cmbtransTypes.Text = string.Empty;
 				txtbottles.Text = txtcaps.Text = txtnoitems.Text = "0";
 			}
+		}
+		
+		void cmbproducts_selectedindexchange(object sender, EventArgs e)
+		{
+			if(!cmbproducts.Text.StartsWith("5 Gal", true, null)){
+				txtbottles.Enabled = false;
+				txtcaps.Enabled = false;				
+			}else{				
+				txtbottles.Enabled = true;
+				txtcaps.Enabled = true;
+				txtcaps.Text = "";
+				txtbottles.Text = "";
+			}			
 		}
 	}
 }

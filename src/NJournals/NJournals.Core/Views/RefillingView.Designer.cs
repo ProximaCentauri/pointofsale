@@ -201,7 +201,6 @@ namespace NJournals.Core.Views
 			this.txtcaps.Name = "txtcaps";
 			this.txtcaps.Size = new System.Drawing.Size(100, 23);
 			this.txtcaps.TabIndex = 16;
-			this.txtcaps.Text = "0";
 			// 
 			// label8
 			// 
@@ -218,7 +217,6 @@ namespace NJournals.Core.Views
 			this.txtbottles.Name = "txtbottles";
 			this.txtbottles.Size = new System.Drawing.Size(100, 23);
 			this.txtbottles.TabIndex = 14;
-			this.txtbottles.Text = "0";
 			// 
 			// label6
 			// 
@@ -245,7 +243,6 @@ namespace NJournals.Core.Views
 			this.txtnoitems.Name = "txtnoitems";
 			this.txtnoitems.Size = new System.Drawing.Size(100, 23);
 			this.txtnoitems.TabIndex = 7;
-			this.txtnoitems.Text = "0";
 			// 
 			// label7
 			// 
@@ -272,6 +269,7 @@ namespace NJournals.Core.Views
 			this.cmbproducts.Name = "cmbproducts";
 			this.cmbproducts.Size = new System.Drawing.Size(142, 23);
 			this.cmbproducts.TabIndex = 2;
+			this.cmbproducts.SelectedIndexChanged += new System.EventHandler(this.cmbproducts_selectedindexchange);
 			// 
 			// dataGridView1
 			// 

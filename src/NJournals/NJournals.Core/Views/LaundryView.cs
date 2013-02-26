@@ -268,7 +268,8 @@ namespace NJournals.Core.Views
 		void BtnsavecloseClick(object sender, EventArgs e)
 		{
 			if(cmbCustomers.Text.Trim().Equals(string.Empty)){
-				MessageService.ShowWarning("No customer being selected.","Empty Field");				
+				MessageService.ShowWarning("No customer being selected. Please select a customer.","Empty Field");				
+				cmbCustomers.Focus();
 				return;
 			}
 			if(dataGridView1.Rows.Count == 0){
@@ -337,6 +338,9 @@ namespace NJournals.Core.Views
 				lblchecklist.Enabled = true;	
 				
 				if(m_headerEntity.ClaimFlag){
+					lblvoid.Visible = true;
+					lblvoid.Text = "CLAIMED TRANSACTION";
+					lblvoid.ForeColor = Color.Green;
 					EnableDisableControls(false);
 				}else{
 					EnableDisableControls(true);					
@@ -344,9 +348,11 @@ namespace NJournals.Core.Views
 				
 				if(m_headerEntity.VoidFlag){
 					lblvoid.Visible = true;
+					lblvoid.Text = "VOIDED TRANSACTION";
+					lblvoid.ForeColor = Color.Red;
 					btndelete.Enabled = false;
 					EnableDisableControls(false);
-				}else{
+				}else if(!m_headerEntity.ClaimFlag){
 					lblvoid.Visible = false;
 					btndelete.Enabled = true;
 					//EnableDisableControls(true);
