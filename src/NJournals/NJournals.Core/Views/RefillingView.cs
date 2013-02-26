@@ -173,7 +173,9 @@ namespace NJournals.Core.Views
 		
 		void BtndeletecloseClick(object sender, EventArgs e)
 		{
-			if(MessageService.ShowYesNo("Are you sure you want to delete this transaction with JO number: " + txtjonumber.Text + "?", "Delete?")){
+			if(MessageService.ShowYesNo("Are you sure you want to void this transaction: " + txtjonumber.Text + "?" + Environment.NewLine +
+			                            "Please note that voiding this transaction will revert back items being released to your inventory." + Environment.NewLine + 
+			                            "If you know what are you doing, then proceed by clicking option below.","Voiding Transaction?")){
 				m_presenter.VoidTransaction();
 				this.Close();
 			}		

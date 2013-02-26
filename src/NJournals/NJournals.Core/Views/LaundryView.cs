@@ -339,7 +339,7 @@ namespace NJournals.Core.Views
 				if(m_headerEntity.ClaimFlag){
 					EnableDisableControls(false);
 				}else{
-					EnableDisableControls(true);
+					EnableDisableControls(true);					
 				}
 				
 				if(m_headerEntity.VoidFlag){
@@ -359,6 +359,7 @@ namespace NJournals.Core.Views
 			btnsaveclose.Enabled = enabled;
 			btnclaim.Enabled = enabled;
 			chkchargesList.Enabled = enabled;
+			
 			chkpaywhenclaim.Enabled = enabled;
 			txtamttender.Enabled = enabled;
 		}
@@ -457,7 +458,7 @@ namespace NJournals.Core.Views
 		
 		void BtndeleteClick(object sender, EventArgs e)
 		{
-			if(MessageService.ShowYesNo("Are you sure you want to void this transaction?","Voiding Transaction?")){
+			if(MessageService.ShowYesNo("Are you sure you want to void this transaction: " + txtjoborder.Text + "?")){
 				m_presenter.VoidingTransaction();	
 			}			
 		}
@@ -490,7 +491,7 @@ namespace NJournals.Core.Views
 		
 		void ChkpaywhenclaimCheckedChanged(object sender, EventArgs e)
 		{
-			if(this.Text.Contains("NEW"))
+			//if(this.Text.Contains("NEW"))
 				txtamttender.Enabled = !chkpaywhenclaim.Checked;
 		}
 	}	

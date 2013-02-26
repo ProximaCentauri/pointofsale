@@ -35,7 +35,6 @@ namespace NJournals.Core.Presenter
 		ILaundryPaymentDetailDao m_paymentDetailDao;		
 		ILaundryChecklistDao m_checklistDao;
 		
-		List<LaundryServiceDataEntity> services = null;
 		List<CustomerDataEntity> customers = null;
 		List<LaundryChargeDataEntity> charges = null;
 		LaundryHeaderDataEntity m_headerEntity = null;
@@ -60,7 +59,6 @@ namespace NJournals.Core.Presenter
 		
 		List<LaundryJobChargesDataEntity> new_ChargeEntities = null;
 		List<LaundryJobChargesDataEntity> orig_ChargeEntities = null;
-		//List<LaundryDetailDataEntity> orig_DetailEntities = null;
 		List<LaundryDetailDataEntity> new_DetailEntities = null;
 		List<LaundryJobChecklistDataEntity> orig_ChecklistEntities = null;
 		List<LaundryJobChecklistDataEntity> new_ChecklistEntities = null;
@@ -226,7 +224,6 @@ namespace NJournals.Core.Presenter
 		
 		
 		public void SetAllServices(){
-			//services = m_serviceDao.GetAllItems() as List<LaundryServiceDataEntity>;
 			List<LaundryServiceDataEntity> serviceEntities = GetAllServiceInPriceScheme();
 			m_view.SetAllServices(serviceEntities);
 		}
