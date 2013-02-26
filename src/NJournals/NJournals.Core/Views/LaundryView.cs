@@ -336,17 +336,31 @@ namespace NJournals.Core.Views
 				txtbalance.Text = (m_headerEntity.TotalAmountDue - m_headerEntity.TotalPayment).ToString("N2");			
 				lblchecklist.Enabled = true;	
 				
-				if(m_headerEntity.ClaimFlag)
-				{
-					btnsaveclose.Enabled = false;
-					btnclaim.Enabled = false;
-					chkchargesList.Enabled = false;
-					chkpaywhenclaim.Enabled = false;
-					txtamttender.Enabled = false;
-				}		
-								
+				if(m_headerEntity.ClaimFlag){
+					EnableDisableControls(false);
+				}else{
+					EnableDisableControls(true);
+				}
+				
+				if(m_headerEntity.VoidFlag){
+					lblvoid.Visible = true;
+					btndelete.Enabled = false;
+					EnableDisableControls(false);
+				}else{
+					lblvoid.Visible = false;
+					btndelete.Enabled = true;
+					//EnableDisableControls(true);
+				}								
 			}else
 				MessageService.ShowWarning("Can't find JO Number: " + txtsearch.Text, "Non-existing");
+		}
+		
+		private void EnableDisableControls(bool enabled){
+			btnsaveclose.Enabled = enabled;
+			btnclaim.Enabled = enabled;
+			chkchargesList.Enabled = enabled;
+			chkpaywhenclaim.Enabled = enabled;
+			txtamttender.Enabled = enabled;
 		}
 		
 		void BtnsearchClick(object sender, EventArgs e)
@@ -476,7 +490,8 @@ namespace NJournals.Core.Views
 		
 		void ChkpaywhenclaimCheckedChanged(object sender, EventArgs e)
 		{
-			txtamttender.Enabled = !chkpaywhenclaim.Checked;
+			if(this.Text.Contains("NEW"))
+				txtamttender.Enabled = !chkpaywhenclaim.Checked;
 		}
 	}	
 }

@@ -64,6 +64,7 @@ namespace NJournals.Core.Views
 			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.lblvoid = new System.Windows.Forms.Label();
 			this.btnsearch = new System.Windows.Forms.Button();
 			this.txtsearch = new System.Windows.Forms.TextBox();
 			this.label9 = new System.Windows.Forms.Label();
@@ -358,6 +359,7 @@ namespace NJournals.Core.Views
 			// groupBox2
 			// 
 			this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.groupBox2.Controls.Add(this.lblvoid);
 			this.groupBox2.Controls.Add(this.btnsearch);
 			this.groupBox2.Controls.Add(this.txtsearch);
 			this.groupBox2.Controls.Add(this.label9);
@@ -368,6 +370,19 @@ namespace NJournals.Core.Views
 			this.groupBox2.TabIndex = 5;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Search";
+			// 
+			// lblvoid
+			// 
+			this.lblvoid.BackColor = System.Drawing.Color.Transparent;
+			this.lblvoid.Font = new System.Drawing.Font("Calibri", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblvoid.ForeColor = System.Drawing.Color.Red;
+			this.lblvoid.Location = new System.Drawing.Point(407, 18);
+			this.lblvoid.Name = "lblvoid";
+			this.lblvoid.Size = new System.Drawing.Size(403, 33);
+			this.lblvoid.TabIndex = 5;
+			this.lblvoid.Text = "VOIDED TRANSACTION";
+			this.lblvoid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblvoid.Visible = false;
 			// 
 			// btnsearch
 			// 
@@ -738,6 +753,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Label lblvoid;
 		private System.Windows.Forms.ErrorProvider errorProvider1;
 		private System.Windows.Forms.Button btnDeleteDetail;
 		private System.Windows.Forms.Label label19;
