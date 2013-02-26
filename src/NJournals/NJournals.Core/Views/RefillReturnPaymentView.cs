@@ -47,7 +47,7 @@ namespace NJournals.Core.Views
 			refillHeaders = null;
 			m_customerEntity = null;
 			m_presenter.SetAllCustomers();
-			totalAmountDue = 0.00M;
+			totalAmountDue = 0.00M;			
 		}
 		
 		void setButtonImages()
@@ -67,6 +67,7 @@ namespace NJournals.Core.Views
 		{
 			if(ValidateCustomerInput())
 			{
+				ClearFields();
 				this.refillHeaders = null;
 				m_presenter.GetRefillJOsByCustomer(this.cmbCustomers.SelectedItem.ToString());
 			}
@@ -82,6 +83,10 @@ namespace NJournals.Core.Views
 			this.txtamttender.Enabled = true;
 			txtBottlesOnHand.Text = (custInv != null) ? custInv.BottlesOnHand.ToString() : "0";
 			txtCapsOnHand.Text = (custInv != null) ? custInv.CapsOnHand.ToString() : "0";
+			
+			txtReturnedBottles.Enabled = (txtBottlesOnHand.Text != "0") ? true : false;
+			txtReturnedCaps.Enabled = (txtCapsOnHand.Text != "0") ? true : false;
+			
 
 			this.refillHeaders = m_headers;		
 			totalAmountDue = 0.00M;
@@ -184,6 +189,19 @@ namespace NJournals.Core.Views
 					e.Handled = false;						
 				}									   
 			}
+		}
+		
+		private void ClearFields()
+		{
+			txtBottlesOnHand.Text = 
+				txtCapsOnHand.Text =
+				txtReturnedBottles.Text =
+				txtReturnedCaps.Text ="";
+			txtTotalAmtDue.Text =
+				txtamttender.Text =
+				txtchange.Text =
+				txtbalance.Text = "0.00";
+			dgvOutBalance.Rows.Clear();				
 		}
 						
 	}

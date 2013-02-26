@@ -24,6 +24,7 @@ namespace NJournals.Core.Presenter
 		IRefillReturnPaymentView m_view;
 		ICustomerDao m_customerDao;
 		IRefillDao m_refillDao;		
+		IRefillReportDao m_refillReportDao;
 		IRefillCustomerInventoryDao m_custInvDao;	
 		IRefillDaySummaryDao m_daysummaryDao;
 		IRefillInventoryDao m_invDao;		
@@ -36,6 +37,7 @@ namespace NJournals.Core.Presenter
 			this.m_view = m_view;
 			m_customerDao = new CustomerDao();
 			m_refillDao = new RefillDao();
+			m_refillReportDao = new RefillReportDao();
 			m_custInvDao = new RefillCustomerInventoryDao();
 			m_daysummaryDao = new RefillDaySummaryDao();
 			m_invDao = new RefillInventoryDao();
@@ -63,7 +65,7 @@ namespace NJournals.Core.Presenter
 			try
 			{
 				customer = m_customerDao.GetByName(customerName) as CustomerDataEntity;
-				List<RefillHeaderDataEntity> refillHeaders = m_refillDao.GetByCustomer(customer) as List<RefillHeaderDataEntity>;
+				List<RefillHeaderDataEntity> refillHeaders = m_refillReportDao.GetUnpaidTransactionsReport(customer) as List<RefillHeaderDataEntity>;
 				custInv = m_custInvDao.GetByCustomer(customer) as RefillCustInventoryHeaderDataEntity;
 				if(custInv == null && refillHeaders.Count == 0)
 				{
@@ -142,6 +144,9 @@ namespace NJournals.Core.Presenter
 					if(amtTender >= balance)
 					{
 						header.AmountTender += balance;
+						if(header.AmountDue == header.AmountTender){
+							header.PaidFlag = true;
+						}
 						amtTender -= balance;
 						header.PaymentDetailEntities.Add(CreateNewPayment(balance, header, paymentDate));						
 						m_refillDao.SaveOrUpdate(header);
@@ -150,6 +155,9 @@ namespace NJournals.Core.Presenter
 					else if(amtTender < balance)
 					{
 						header.AmountTender += amtTender;
+						if(header.AmountDue == header.AmountTender){
+							header.PaidFlag = true;
+						}							
 						header.PaymentDetailEntities.Add(CreateNewPayment(amtTender, header, paymentDate));
 						m_refillDao.SaveOrUpdate(header);
 						UpdateDaySummary(amtTender, paymentDate, header);

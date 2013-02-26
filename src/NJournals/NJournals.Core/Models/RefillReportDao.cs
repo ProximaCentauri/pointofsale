@@ -103,6 +103,24 @@ namespace NJournals.Core.Models
 			}			
 		}
 
+		public IEnumerable<RefillHeaderDataEntity> GetUnpaidTransactionsReport(CustomerDataEntity customer)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{                  
+                    var query = session.CreateCriteria<RefillHeaderDataEntity>("header")
+                        .Add(Restrictions.Eq("header.Customer", customer))                       
+                        .Add(Restrictions.Eq("header.PaidFlag", false))
+                    	.Add(Restrictions.Eq("header.VoidFlag",false))
+                        .AddOrder(Order.Asc("header.Date"))
+                        .List<RefillHeaderDataEntity>();
+                    return query;                    
+				}
+			}			
+		}
+
+		
         public IEnumerable<RefillInventoryReportDataEntity> GetInventoryReport(DateTime fromDateTime, DateTime toDateTime)
         {          
             using (var session = NHibernateHelper.OpenSession())

@@ -117,6 +117,7 @@ namespace NJournals.Core.Views
 			// 
 			// txtBottlesOnHand
 			// 
+			this.txtBottlesOnHand.BackColor = System.Drawing.SystemColors.Info;
 			this.txtBottlesOnHand.Location = new System.Drawing.Point(125, 60);
 			this.txtBottlesOnHand.Name = "txtBottlesOnHand";
 			this.txtBottlesOnHand.ReadOnly = true;
@@ -125,6 +126,7 @@ namespace NJournals.Core.Views
 			// 
 			// txtCapsOnHand
 			// 
+			this.txtCapsOnHand.BackColor = System.Drawing.SystemColors.Info;
 			this.txtCapsOnHand.Location = new System.Drawing.Point(125, 83);
 			this.txtCapsOnHand.Name = "txtCapsOnHand";
 			this.txtCapsOnHand.ReadOnly = true;
@@ -143,6 +145,7 @@ namespace NJournals.Core.Views
 			// 
 			// txtReturnedBottles
 			// 
+			this.txtReturnedBottles.Enabled = false;
 			this.txtReturnedBottles.Location = new System.Drawing.Point(364, 62);
 			this.txtReturnedBottles.MaxLength = 9;
 			this.txtReturnedBottles.Name = "txtReturnedBottles";
@@ -162,6 +165,7 @@ namespace NJournals.Core.Views
 			// 
 			// txtReturnedCaps
 			// 
+			this.txtReturnedCaps.Enabled = false;
 			this.txtReturnedCaps.Location = new System.Drawing.Point(364, 85);
 			this.txtReturnedCaps.MaxLength = 9;
 			this.txtReturnedCaps.Name = "txtReturnedCaps";
