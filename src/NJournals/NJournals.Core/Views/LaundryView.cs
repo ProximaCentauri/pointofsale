@@ -201,6 +201,13 @@ namespace NJournals.Core.Views
 		
 		void BtnaddClick(object sender, EventArgs e)
 		{
+			foreach(Control c in grpServices.Controls){
+				if(c.Text.Trim().Equals(string.Empty)){
+					MessageService.ShowWarning("Please input a value in empty field.","Empty Field");
+					c.Focus();
+					return;
+				}
+			}
 			m_presenter.AddNewItemClicked();
 		}
 		
@@ -260,6 +267,14 @@ namespace NJournals.Core.Views
 		
 		void BtnsavecloseClick(object sender, EventArgs e)
 		{
+			if(cmbCustomers.Text.Trim().Equals(string.Empty)){
+				MessageService.ShowWarning("No customer being selected.","Empty Field");				
+				return;
+			}
+			if(dataGridView1.Rows.Count == 0){
+				MessageService.ShowWarning("No list to save. Please add an item before saving.","Empty Field");				
+				return;
+			}
 			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjoborder.Text + "?", "Saving New Entries?")){
 				m_presenter.SaveClicked();			        
 				this.Close();

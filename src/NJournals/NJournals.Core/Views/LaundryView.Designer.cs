@@ -36,6 +36,7 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cmbCustomers = new System.Windows.Forms.ComboBox();
 			this.btnCustomerSearch = new System.Windows.Forms.Button();
@@ -91,11 +92,13 @@ namespace NJournals.Core.Views
 			this.txttotaldiscount = new System.Windows.Forms.TextBox();
 			this.label19 = new System.Windows.Forms.Label();
 			this.btnDeleteDetail = new System.Windows.Forms.Button();
+			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -681,6 +684,10 @@ namespace NJournals.Core.Views
 			this.btnDeleteDetail.TabIndex = 32;
 			this.btnDeleteDetail.UseVisualStyleBackColor = true;
 			// 
+			// errorProvider1
+			// 
+			this.errorProvider1.ContainerControl = this;
+			// 
 			// LaundryNewView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -727,9 +734,11 @@ namespace NJournals.Core.Views
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ErrorProvider errorProvider1;
 		private System.Windows.Forms.Button btnDeleteDetail;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.TextBox txttotaldiscount;
