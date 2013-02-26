@@ -58,15 +58,16 @@ namespace NJournals.Core.Views
 			// 
 			this.txtjonumber.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtjonumber.Enabled = false;
+			this.txtjonumber.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtjonumber.Location = new System.Drawing.Point(89, 24);
 			this.txtjonumber.Name = "txtjonumber";
-			this.txtjonumber.Size = new System.Drawing.Size(154, 20);
+			this.txtjonumber.Size = new System.Drawing.Size(154, 24);
 			this.txtjonumber.TabIndex = 3;
 			// 
 			// label1
 			// 
-			this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(8, 22);
+			this.label1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(8, 23);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(76, 23);
 			this.label1.TabIndex = 2;

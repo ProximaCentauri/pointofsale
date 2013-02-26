@@ -70,15 +70,15 @@ namespace NJournals.Core.Views
 			// 
 			// txtName
 			// 
-			this.txtName.Location = new System.Drawing.Point(121, 31);
+			this.txtName.Location = new System.Drawing.Point(142, 31);
 			this.txtName.Name = "txtName";
-			this.txtName.Size = new System.Drawing.Size(259, 20);
+			this.txtName.Size = new System.Drawing.Size(259, 25);
 			this.txtName.TabIndex = 5;
 			// 
 			// label2
 			// 
-			this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(6, 28);
+			this.label2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(27, 32);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(109, 23);
 			this.label2.TabIndex = 4;
@@ -87,7 +87,7 @@ namespace NJournals.Core.Views
 			// 
 			// txtAddress
 			// 
-			this.txtAddress.Location = new System.Drawing.Point(121, 56);
+			this.txtAddress.Location = new System.Drawing.Point(142, 63);
 			this.txtAddress.Multiline = true;
 			this.txtAddress.Name = "txtAddress";
 			this.txtAddress.Size = new System.Drawing.Size(259, 56);
@@ -95,8 +95,8 @@ namespace NJournals.Core.Views
 			// 
 			// label1
 			// 
-			this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(7, 52);
+			this.label1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(28, 64);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(109, 23);
 			this.label1.TabIndex = 6;
@@ -105,23 +105,24 @@ namespace NJournals.Core.Views
 			// 
 			// txtNumber
 			// 
-			this.txtNumber.Location = new System.Drawing.Point(121, 118);
+			this.txtNumber.Location = new System.Drawing.Point(142, 126);
 			this.txtNumber.Name = "txtNumber";
-			this.txtNumber.Size = new System.Drawing.Size(140, 20);
+			this.txtNumber.Size = new System.Drawing.Size(140, 25);
 			this.txtNumber.TabIndex = 9;
 			// 
 			// label3
 			// 
-			this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(7, 114);
+			this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.Location = new System.Drawing.Point(28, 129);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(109, 23);
 			this.label3.TabIndex = 8;
 			this.label3.Text = "Contact Number: ";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.label3.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// btnSave
 			// 
+			this.btnSave.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnSave.Location = new System.Drawing.Point(241, 165);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(75, 23);
@@ -133,6 +134,7 @@ namespace NJournals.Core.Views
 			// btnCancel
 			// 
 			this.btnCancel.CausesValidation = false;
+			this.btnCancel.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnCancel.Location = new System.Drawing.Point(335, 165);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -151,6 +153,7 @@ namespace NJournals.Core.Views
 			this.groupBox1.Controls.Add(this.txtNumber);
 			this.groupBox1.Controls.Add(this.txtAddress);
 			this.groupBox1.Controls.Add(this.label3);
+			this.groupBox1.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.Location = new System.Drawing.Point(518, 214);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(423, 204);
@@ -173,7 +176,7 @@ namespace NJournals.Core.Views
 			this.dgvCustomerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
 			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -205,7 +208,7 @@ namespace NJournals.Core.Views
 			this.groupBox2.Controls.Add(this.btnsearch);
 			this.groupBox2.Controls.Add(this.txtsearch);
 			this.groupBox2.Controls.Add(this.label9);
-			this.groupBox2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox2.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox2.Location = new System.Drawing.Point(29, 24);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(481, 54);
@@ -247,12 +250,12 @@ namespace NJournals.Core.Views
 			// 
 			this.txtsearch.Location = new System.Drawing.Point(139, 22);
 			this.txtsearch.Name = "txtsearch";
-			this.txtsearch.Size = new System.Drawing.Size(258, 23);
+			this.txtsearch.Size = new System.Drawing.Size(258, 25);
 			this.txtsearch.TabIndex = 3;
 			// 
 			// label9
 			// 
-			this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label9.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label9.Location = new System.Drawing.Point(16, 22);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(117, 23);

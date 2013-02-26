@@ -254,5 +254,6 @@ namespace NJournals.Core.Views
 				txtbottles.Text = "";
 			}			
 		}
+
 	}
 }

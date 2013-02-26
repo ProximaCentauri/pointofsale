@@ -89,7 +89,6 @@ namespace NJournals.Core.Views
 			this.dgvPriceScheme.Name = "dgvPriceScheme";
 			this.dgvPriceScheme.Size = new System.Drawing.Size(789, 220);
 			this.dgvPriceScheme.TabIndex = 1;
-			this.dgvPriceScheme.CellValidating += new DataGridViewCellValidatingEventHandler(dgvPriceScheme_cellValidating);
 			// 
 			// label2
 			// 
@@ -249,7 +248,7 @@ namespace NJournals.Core.Views
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(884, 712);
+			this.ClientSize = new System.Drawing.Size(1084, 712);
 			this.Controls.Add(this.dgvServices);
 			this.Controls.Add(this.btnDeleteCategory);
 			this.Controls.Add(this.btnSaveCategory);

@@ -63,15 +63,16 @@ namespace NJournals.Core.Views
 			// 
 			this.txtcustomer.BackColor = System.Drawing.SystemColors.Info;
 			this.txtcustomer.Enabled = false;
+			this.txtcustomer.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtcustomer.Location = new System.Drawing.Point(153, 22);
 			this.txtcustomer.Name = "txtcustomer";
-			this.txtcustomer.Size = new System.Drawing.Size(289, 20);
+			this.txtcustomer.Size = new System.Drawing.Size(289, 24);
 			this.txtcustomer.TabIndex = 7;
 			// 
 			// label2
 			// 
-			this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(38, 19);
+			this.label2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(38, 23);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(109, 23);
 			this.label2.TabIndex = 6;
@@ -100,7 +101,7 @@ namespace NJournals.Core.Views
 									this.Balance});
 			this.dgvunclaimeditems.Location = new System.Drawing.Point(48, 82);
 			this.dgvunclaimeditems.Name = "dgvunclaimeditems";
-			this.dgvunclaimeditems.Size = new System.Drawing.Size(645, 107);
+			this.dgvunclaimeditems.Size = new System.Drawing.Size(645, 129);
 			this.dgvunclaimeditems.TabIndex = 9;
 			// 
 			// TransactionNo
@@ -155,9 +156,9 @@ namespace NJournals.Core.Views
 									this.ItemQty2,
 									this.AmtDue2,
 									this.Balance2});
-			this.dgvunpaidtrans.Location = new System.Drawing.Point(48, 220);
+			this.dgvunpaidtrans.Location = new System.Drawing.Point(48, 249);
 			this.dgvunpaidtrans.Name = "dgvunpaidtrans";
-			this.dgvunpaidtrans.Size = new System.Drawing.Size(645, 107);
+			this.dgvunpaidtrans.Size = new System.Drawing.Size(645, 142);
 			this.dgvunpaidtrans.TabIndex = 11;
 			// 
 			// TransactionNo2
@@ -206,7 +207,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label3.Font = new System.Drawing.Font("Calibri", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.ForeColor = System.Drawing.Color.Teal;
-			this.label3.Location = new System.Drawing.Point(48, 206);
+			this.label3.Location = new System.Drawing.Point(48, 235);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(183, 23);
 			this.label3.TabIndex = 10;
@@ -215,7 +216,7 @@ namespace NJournals.Core.Views
 			// btnClose
 			// 
 			this.btnClose.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnClose.Location = new System.Drawing.Point(617, 349);
+			this.btnClose.Location = new System.Drawing.Point(618, 417);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(75, 23);
 			this.btnClose.TabIndex = 12;
@@ -228,7 +229,7 @@ namespace NJournals.Core.Views
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(742, 410);
+			this.ClientSize = new System.Drawing.Size(742, 462);
 			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.dgvunpaidtrans);
 			this.Controls.Add(this.label3);
