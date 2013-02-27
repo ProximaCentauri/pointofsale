@@ -37,6 +37,7 @@ namespace NJournals.Core.Views
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cmbCustomers = new System.Windows.Forms.ComboBox();
@@ -59,6 +60,11 @@ namespace NJournals.Core.Views
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.lblvoid = new System.Windows.Forms.Label();
 			this.btnsearch = new System.Windows.Forms.Button();
@@ -91,11 +97,6 @@ namespace NJournals.Core.Views
 			this.btnDeleteDetail = new System.Windows.Forms.Button();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.button1 = new System.Windows.Forms.Button();
-			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -323,14 +324,14 @@ namespace NJournals.Core.Views
 			// dataGridView1
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Column1,
@@ -339,14 +340,44 @@ namespace NJournals.Core.Views
 									this.Column4,
 									this.Column5});
 			this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-			this.dataGridView1.Location = new System.Drawing.Point(349, 176);
+			this.dataGridView1.Location = new System.Drawing.Point(329, 176);
 			this.dataGridView1.MultiSelect = false;
 			this.dataGridView1.Name = "dataGridView1";
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridView1.Size = new System.Drawing.Size(676, 225);
+			this.dataGridView1.Size = new System.Drawing.Size(591, 240);
 			this.dataGridView1.TabIndex = 4;
 			this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgv_rowsremoved);
 			this.dataGridView1.SelectionChanged += new System.EventHandler(this.dgv_selectionchanged);
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "Category";
+			this.Column1.Name = "Column1";
+			this.Column1.Width = 130;
+			// 
+			// Column2
+			// 
+			this.Column2.HeaderText = "Service";
+			this.Column2.Name = "Column2";
+			this.Column2.Width = 130;
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "No. of Items";
+			this.Column3.Name = "Column3";
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Kilo";
+			this.Column4.Name = "Column4";
+			this.Column4.Width = 88;
+			// 
+			// Column5
+			// 
+			this.Column5.HeaderText = "Price";
+			this.Column5.Name = "Column5";
 			// 
 			// groupBox2
 			// 
@@ -416,7 +447,7 @@ namespace NJournals.Core.Views
 			this.txtamtdue.Enabled = false;
 			this.txtamtdue.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtamtdue.ForeColor = System.Drawing.Color.Black;
-			this.txtamtdue.Location = new System.Drawing.Point(906, 408);
+			this.txtamtdue.Location = new System.Drawing.Point(801, 422);
 			this.txtamtdue.Name = "txtamtdue";
 			this.txtamtdue.Size = new System.Drawing.Size(119, 23);
 			this.txtamtdue.TabIndex = 9;
@@ -426,7 +457,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label10.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label10.ForeColor = System.Drawing.Color.DimGray;
-			this.label10.Location = new System.Drawing.Point(816, 411);
+			this.label10.Location = new System.Drawing.Point(711, 425);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(93, 18);
 			this.label10.TabIndex = 8;
@@ -434,10 +465,10 @@ namespace NJournals.Core.Views
 			// 
 			// txtamttender
 			// 
-			this.txtamttender.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtamttender.Location = new System.Drawing.Point(906, 548);
+			this.txtamttender.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtamttender.Location = new System.Drawing.Point(801, 571);
 			this.txtamttender.Name = "txtamttender";
-			this.txtamttender.Size = new System.Drawing.Size(119, 25);
+			this.txtamttender.Size = new System.Drawing.Size(119, 29);
 			this.txtamttender.TabIndex = 11;
 			this.txtamttender.Text = "0.00";
 			this.txtamttender.Click += new System.EventHandler(this.textbox_click);
@@ -448,7 +479,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-			this.label11.Location = new System.Drawing.Point(782, 550);
+			this.label11.Location = new System.Drawing.Point(677, 575);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(124, 18);
 			this.label11.TabIndex = 10;
@@ -459,11 +490,11 @@ namespace NJournals.Core.Views
 			// 
 			this.txtchange.BackColor = System.Drawing.SystemColors.Info;
 			this.txtchange.Enabled = false;
-			this.txtchange.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtchange.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtchange.ForeColor = System.Drawing.Color.Black;
-			this.txtchange.Location = new System.Drawing.Point(906, 608);
+			this.txtchange.Location = new System.Drawing.Point(801, 640);
 			this.txtchange.Name = "txtchange";
-			this.txtchange.Size = new System.Drawing.Size(119, 25);
+			this.txtchange.Size = new System.Drawing.Size(119, 29);
 			this.txtchange.TabIndex = 13;
 			this.txtchange.Text = "0.00";
 			// 
@@ -471,7 +502,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.label12.Location = new System.Drawing.Point(813, 608);
+			this.label12.Location = new System.Drawing.Point(708, 644);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(93, 18);
 			this.label12.TabIndex = 12;
@@ -483,7 +514,7 @@ namespace NJournals.Core.Views
 			this.groupBox3.Controls.Add(this.chkchargesList);
 			this.groupBox3.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.groupBox3.Location = new System.Drawing.Point(349, 407);
+			this.groupBox3.Location = new System.Drawing.Point(329, 421);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(206, 197);
 			this.groupBox3.TabIndex = 14;
@@ -493,18 +524,18 @@ namespace NJournals.Core.Views
 			// chkchargesList
 			// 
 			this.chkchargesList.CheckOnClick = true;
-			this.chkchargesList.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkchargesList.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.chkchargesList.FormattingEnabled = true;
 			this.chkchargesList.Location = new System.Drawing.Point(12, 18);
 			this.chkchargesList.Name = "chkchargesList";
-			this.chkchargesList.Size = new System.Drawing.Size(182, 164);
+			this.chkchargesList.Size = new System.Drawing.Size(182, 156);
 			this.chkchargesList.TabIndex = 24;
 			this.chkchargesList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkchargesList_ItemChecked);
 			// 
 			// chkpaywhenclaim
 			// 
 			this.chkpaywhenclaim.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkpaywhenclaim.Location = new System.Drawing.Point(900, 518);
+			this.chkpaywhenclaim.Location = new System.Drawing.Point(795, 541);
 			this.chkpaywhenclaim.Name = "chkpaywhenclaim";
 			this.chkpaywhenclaim.Size = new System.Drawing.Size(125, 24);
 			this.chkpaywhenclaim.TabIndex = 15;
@@ -514,8 +545,8 @@ namespace NJournals.Core.Views
 			// 
 			// btnsaveclose
 			// 
-			this.btnsaveclose.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnsaveclose.Location = new System.Drawing.Point(821, 664);
+			this.btnsaveclose.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnsaveclose.Location = new System.Drawing.Point(716, 698);
 			this.btnsaveclose.Name = "btnsaveclose";
 			this.btnsaveclose.Size = new System.Drawing.Size(99, 23);
 			this.btnsaveclose.TabIndex = 16;
@@ -525,8 +556,8 @@ namespace NJournals.Core.Views
 			// 
 			// btncancel
 			// 
-			this.btncancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btncancel.Location = new System.Drawing.Point(32, 664);
+			this.btncancel.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btncancel.Location = new System.Drawing.Point(28, 698);
 			this.btncancel.Name = "btncancel";
 			this.btncancel.Size = new System.Drawing.Size(99, 23);
 			this.btncancel.TabIndex = 17;
@@ -536,8 +567,8 @@ namespace NJournals.Core.Views
 			// 
 			// btndelete
 			// 
-			this.btndelete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btndelete.Location = new System.Drawing.Point(137, 664);
+			this.btndelete.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btndelete.Location = new System.Drawing.Point(133, 698);
 			this.btndelete.Name = "btndelete";
 			this.btndelete.Size = new System.Drawing.Size(91, 23);
 			this.btndelete.TabIndex = 18;
@@ -549,11 +580,11 @@ namespace NJournals.Core.Views
 			// 
 			this.txtbalance.BackColor = System.Drawing.SystemColors.Info;
 			this.txtbalance.Enabled = false;
-			this.txtbalance.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtbalance.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtbalance.ForeColor = System.Drawing.Color.Black;
-			this.txtbalance.Location = new System.Drawing.Point(906, 578);
+			this.txtbalance.Location = new System.Drawing.Point(801, 606);
 			this.txtbalance.Name = "txtbalance";
-			this.txtbalance.Size = new System.Drawing.Size(119, 25);
+			this.txtbalance.Size = new System.Drawing.Size(119, 29);
 			this.txtbalance.TabIndex = 21;
 			this.txtbalance.Text = "0.00";
 			// 
@@ -561,7 +592,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label13.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label13.ForeColor = System.Drawing.Color.Maroon;
-			this.label13.Location = new System.Drawing.Point(816, 578);
+			this.label13.Location = new System.Drawing.Point(711, 610);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(90, 18);
 			this.label13.TabIndex = 20;
@@ -582,8 +613,8 @@ namespace NJournals.Core.Views
 			// 
 			// btnclaim
 			// 
-			this.btnclaim.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnclaim.Location = new System.Drawing.Point(926, 664);
+			this.btnclaim.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnclaim.Location = new System.Drawing.Point(821, 698);
 			this.btnclaim.Name = "btnclaim";
 			this.btnclaim.Size = new System.Drawing.Size(99, 23);
 			this.btnclaim.TabIndex = 23;
@@ -597,7 +628,7 @@ namespace NJournals.Core.Views
 			this.txttotalcharges.Enabled = false;
 			this.txttotalcharges.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txttotalcharges.ForeColor = System.Drawing.Color.Black;
-			this.txttotalcharges.Location = new System.Drawing.Point(906, 433);
+			this.txttotalcharges.Location = new System.Drawing.Point(801, 448);
 			this.txttotalcharges.Name = "txttotalcharges";
 			this.txttotalcharges.Size = new System.Drawing.Size(119, 24);
 			this.txttotalcharges.TabIndex = 25;
@@ -607,7 +638,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label16.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label16.ForeColor = System.Drawing.Color.DimGray;
-			this.label16.Location = new System.Drawing.Point(813, 434);
+			this.label16.Location = new System.Drawing.Point(708, 449);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(93, 18);
 			this.label16.TabIndex = 24;
@@ -618,7 +649,7 @@ namespace NJournals.Core.Views
 			this.txtdiscount.BackColor = System.Drawing.SystemColors.Info;
 			this.txtdiscount.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtdiscount.ForeColor = System.Drawing.Color.Black;
-			this.txtdiscount.Location = new System.Drawing.Point(906, 458);
+			this.txtdiscount.Location = new System.Drawing.Point(801, 477);
 			this.txtdiscount.Name = "txtdiscount";
 			this.txtdiscount.Size = new System.Drawing.Size(34, 24);
 			this.txtdiscount.TabIndex = 27;
@@ -630,7 +661,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label17.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label17.ForeColor = System.Drawing.Color.DimGray;
-			this.label17.Location = new System.Drawing.Point(795, 458);
+			this.label17.Location = new System.Drawing.Point(690, 479);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(114, 18);
 			this.label17.TabIndex = 26;
@@ -641,11 +672,11 @@ namespace NJournals.Core.Views
 			// 
 			this.txttotalamtdue.BackColor = System.Drawing.SystemColors.Info;
 			this.txttotalamtdue.Enabled = false;
-			this.txttotalamtdue.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txttotalamtdue.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txttotalamtdue.ForeColor = System.Drawing.Color.Black;
-			this.txttotalamtdue.Location = new System.Drawing.Point(906, 488);
+			this.txttotalamtdue.Location = new System.Drawing.Point(801, 506);
 			this.txttotalamtdue.Name = "txttotalamtdue";
-			this.txttotalamtdue.Size = new System.Drawing.Size(119, 25);
+			this.txttotalamtdue.Size = new System.Drawing.Size(119, 29);
 			this.txttotalamtdue.TabIndex = 29;
 			this.txttotalamtdue.Text = "0.00";
 			// 
@@ -653,7 +684,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label18.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label18.ForeColor = System.Drawing.Color.Red;
-			this.label18.Location = new System.Drawing.Point(757, 490);
+			this.label18.Location = new System.Drawing.Point(650, 510);
 			this.label18.Name = "label18";
 			this.label18.Size = new System.Drawing.Size(152, 18);
 			this.label18.TabIndex = 28;
@@ -666,7 +697,7 @@ namespace NJournals.Core.Views
 			this.txttotaldiscount.Enabled = false;
 			this.txttotaldiscount.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txttotaldiscount.ForeColor = System.Drawing.Color.Black;
-			this.txttotaldiscount.Location = new System.Drawing.Point(966, 458);
+			this.txttotaldiscount.Location = new System.Drawing.Point(861, 477);
 			this.txttotaldiscount.Name = "txttotaldiscount";
 			this.txttotaldiscount.Size = new System.Drawing.Size(59, 24);
 			this.txttotaldiscount.TabIndex = 30;
@@ -675,7 +706,7 @@ namespace NJournals.Core.Views
 			// label19
 			// 
 			this.label19.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label19.Location = new System.Drawing.Point(941, 459);
+			this.label19.Location = new System.Drawing.Point(836, 478);
 			this.label19.Name = "label19";
 			this.label19.Size = new System.Drawing.Size(22, 17);
 			this.label19.TabIndex = 31;
@@ -688,7 +719,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteDetail.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnDeleteDetail.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.btnDeleteDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnDeleteDetail.Location = new System.Drawing.Point(1033, 233);
+			this.btnDeleteDetail.Location = new System.Drawing.Point(926, 219);
 			this.btnDeleteDetail.Name = "btnDeleteDetail";
 			this.btnDeleteDetail.Size = new System.Drawing.Size(35, 23);
 			this.btnDeleteDetail.TabIndex = 32;
@@ -700,50 +731,20 @@ namespace NJournals.Core.Views
 			// 
 			// button1
 			// 
-			this.button1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.Location = new System.Drawing.Point(716, 664);
+			this.button1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button1.Location = new System.Drawing.Point(611, 698);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(99, 23);
 			this.button1.TabIndex = 33;
 			this.button1.Text = "Print";
 			this.button1.UseVisualStyleBackColor = true;
 			// 
-			// Column1
-			// 
-			this.Column1.HeaderText = "Category";
-			this.Column1.Name = "Column1";
-			this.Column1.Width = 140;
-			// 
-			// Column2
-			// 
-			this.Column2.HeaderText = "Service";
-			this.Column2.Name = "Column2";
-			this.Column2.Width = 140;
-			// 
-			// Column3
-			// 
-			this.Column3.HeaderText = "No. of Items";
-			this.Column3.Name = "Column3";
-			this.Column3.Width = 120;
-			// 
-			// Column4
-			// 
-			this.Column4.HeaderText = "Kilo";
-			this.Column4.Name = "Column4";
-			this.Column4.Width = 110;
-			// 
-			// Column5
-			// 
-			this.Column5.HeaderText = "Price";
-			this.Column5.Name = "Column5";
-			this.Column5.Width = 120;
-			// 
 			// LaundryNewView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(1084, 712);
+			this.ClientSize = new System.Drawing.Size(984, 750);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.btnDeleteDetail);
 			this.Controls.Add(this.label19);

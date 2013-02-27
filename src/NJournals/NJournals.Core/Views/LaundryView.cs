@@ -500,6 +500,7 @@ namespace NJournals.Core.Views
 			//if(this.Text.Contains("NEW"))
 				txtamttender.Enabled = !chkpaywhenclaim.Checked;
 		}
+
 	}	
 }
 

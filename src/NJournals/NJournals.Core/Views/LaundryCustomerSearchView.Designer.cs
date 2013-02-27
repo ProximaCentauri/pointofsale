@@ -36,25 +36,29 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.txtcustomer = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.dgvunclaimeditems = new System.Windows.Forms.DataGridView();
-			this.TransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ReceivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.DueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ItemQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.AmtDue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dgvunpaidtrans = new System.Windows.Forms.DataGridView();
+			this.label3 = new System.Windows.Forms.Label();
+			this.btnClose = new System.Windows.Forms.Button();
 			this.TransactionNo2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ReceivedDate2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DueDate2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ItemQty2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.AmtDue2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Balance2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.label3 = new System.Windows.Forms.Label();
-			this.btnClose = new System.Windows.Forms.Button();
+			this.TransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ReceivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.DueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ItemQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.AmtDue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dgvunclaimeditems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvunpaidtrans)).BeginInit();
 			this.SuspendLayout();
@@ -81,9 +85,9 @@ namespace NJournals.Core.Views
 			// 
 			// label1
 			// 
-			this.label1.Font = new System.Drawing.Font("Calibri", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.Teal;
-			this.label1.Location = new System.Drawing.Point(48, 68);
+			this.label1.Location = new System.Drawing.Point(48, 78);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(183, 23);
 			this.label1.TabIndex = 8;
@@ -91,6 +95,14 @@ namespace NJournals.Core.Views
 			// 
 			// dgvunclaimeditems
 			// 
+			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvunclaimeditems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
 			this.dgvunclaimeditems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvunclaimeditems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.TransactionNo,
@@ -99,55 +111,23 @@ namespace NJournals.Core.Views
 									this.ItemQty,
 									this.AmtDue,
 									this.Balance});
-			this.dgvunclaimeditems.Location = new System.Drawing.Point(48, 82);
+			this.dgvunclaimeditems.Location = new System.Drawing.Point(48, 98);
 			this.dgvunclaimeditems.Name = "dgvunclaimeditems";
-			this.dgvunclaimeditems.Size = new System.Drawing.Size(645, 129);
+			dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dgvunclaimeditems.RowsDefaultCellStyle = dataGridViewCellStyle10;
+			this.dgvunclaimeditems.Size = new System.Drawing.Size(704, 169);
 			this.dgvunclaimeditems.TabIndex = 9;
-			// 
-			// TransactionNo
-			// 
-			this.TransactionNo.HeaderText = "Transaction #";
-			this.TransactionNo.Name = "TransactionNo";
-			this.TransactionNo.ReadOnly = true;
-			this.TransactionNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// ReceivedDate
-			// 
-			this.ReceivedDate.HeaderText = "Received Date";
-			this.ReceivedDate.Name = "ReceivedDate";
-			this.ReceivedDate.ReadOnly = true;
-			this.ReceivedDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// DueDate
-			// 
-			this.DueDate.HeaderText = "Due Date";
-			this.DueDate.Name = "DueDate";
-			this.DueDate.ReadOnly = true;
-			this.DueDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// ItemQty
-			// 
-			this.ItemQty.HeaderText = "# of Items";
-			this.ItemQty.Name = "ItemQty";
-			this.ItemQty.ReadOnly = true;
-			this.ItemQty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// AmtDue
-			// 
-			this.AmtDue.HeaderText = "Amount Due";
-			this.AmtDue.Name = "AmtDue";
-			this.AmtDue.ReadOnly = true;
-			this.AmtDue.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// Balance
-			// 
-			this.Balance.HeaderText = "Balance";
-			this.Balance.Name = "Balance";
-			this.Balance.ReadOnly = true;
-			this.Balance.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			// 
 			// dgvunpaidtrans
 			// 
+			dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvunpaidtrans.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
 			this.dgvunpaidtrans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvunpaidtrans.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.TransactionNo2,
@@ -156,10 +136,33 @@ namespace NJournals.Core.Views
 									this.ItemQty2,
 									this.AmtDue2,
 									this.Balance2});
-			this.dgvunpaidtrans.Location = new System.Drawing.Point(48, 249);
+			this.dgvunpaidtrans.Location = new System.Drawing.Point(48, 307);
 			this.dgvunpaidtrans.Name = "dgvunpaidtrans";
-			this.dgvunpaidtrans.Size = new System.Drawing.Size(645, 142);
+			dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dgvunpaidtrans.RowsDefaultCellStyle = dataGridViewCellStyle12;
+			this.dgvunpaidtrans.Size = new System.Drawing.Size(704, 169);
 			this.dgvunpaidtrans.TabIndex = 11;
+			// 
+			// label3
+			// 
+			this.label3.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.ForeColor = System.Drawing.Color.Teal;
+			this.label3.Location = new System.Drawing.Point(48, 285);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(238, 23);
+			this.label3.TabIndex = 10;
+			this.label3.Text = "OUTSTANDING BALANCE:";
+			// 
+			// btnClose
+			// 
+			this.btnClose.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnClose.Location = new System.Drawing.Point(677, 510);
+			this.btnClose.Name = "btnClose";
+			this.btnClose.Size = new System.Drawing.Size(75, 23);
+			this.btnClose.TabIndex = 12;
+			this.btnClose.Text = "Close";
+			this.btnClose.UseVisualStyleBackColor = true;
+			this.btnClose.Click += new System.EventHandler(this.BtnCloseClick);
 			// 
 			// TransactionNo2
 			// 
@@ -174,6 +177,7 @@ namespace NJournals.Core.Views
 			this.ReceivedDate2.Name = "ReceivedDate2";
 			this.ReceivedDate2.ReadOnly = true;
 			this.ReceivedDate2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.ReceivedDate2.Width = 120;
 			// 
 			// DueDate2
 			// 
@@ -181,6 +185,7 @@ namespace NJournals.Core.Views
 			this.DueDate2.Name = "DueDate2";
 			this.DueDate2.ReadOnly = true;
 			this.DueDate2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.DueDate2.Width = 120;
 			// 
 			// ItemQty2
 			// 
@@ -195,6 +200,7 @@ namespace NJournals.Core.Views
 			this.AmtDue2.Name = "AmtDue2";
 			this.AmtDue2.ReadOnly = true;
 			this.AmtDue2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.AmtDue2.Width = 110;
 			// 
 			// Balance2
 			// 
@@ -202,34 +208,60 @@ namespace NJournals.Core.Views
 			this.Balance2.Name = "Balance2";
 			this.Balance2.ReadOnly = true;
 			this.Balance2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Balance2.Width = 110;
 			// 
-			// label3
+			// TransactionNo
 			// 
-			this.label3.Font = new System.Drawing.Font("Calibri", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.ForeColor = System.Drawing.Color.Teal;
-			this.label3.Location = new System.Drawing.Point(48, 235);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(183, 23);
-			this.label3.TabIndex = 10;
-			this.label3.Text = "OUTSTANDING BALANCE:";
+			this.TransactionNo.HeaderText = "Transaction #";
+			this.TransactionNo.Name = "TransactionNo";
+			this.TransactionNo.ReadOnly = true;
+			this.TransactionNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			// 
-			// btnClose
+			// ReceivedDate
 			// 
-			this.btnClose.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnClose.Location = new System.Drawing.Point(618, 417);
-			this.btnClose.Name = "btnClose";
-			this.btnClose.Size = new System.Drawing.Size(75, 23);
-			this.btnClose.TabIndex = 12;
-			this.btnClose.Text = "Close";
-			this.btnClose.UseVisualStyleBackColor = true;
-			this.btnClose.Click += new System.EventHandler(this.BtnCloseClick);
+			this.ReceivedDate.HeaderText = "Received Date";
+			this.ReceivedDate.Name = "ReceivedDate";
+			this.ReceivedDate.ReadOnly = true;
+			this.ReceivedDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.ReceivedDate.Width = 120;
+			// 
+			// DueDate
+			// 
+			this.DueDate.HeaderText = "Due Date";
+			this.DueDate.Name = "DueDate";
+			this.DueDate.ReadOnly = true;
+			this.DueDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.DueDate.Width = 120;
+			// 
+			// ItemQty
+			// 
+			this.ItemQty.HeaderText = "# of Items";
+			this.ItemQty.Name = "ItemQty";
+			this.ItemQty.ReadOnly = true;
+			this.ItemQty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// AmtDue
+			// 
+			this.AmtDue.HeaderText = "Amount Due";
+			this.AmtDue.Name = "AmtDue";
+			this.AmtDue.ReadOnly = true;
+			this.AmtDue.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.AmtDue.Width = 110;
+			// 
+			// Balance
+			// 
+			this.Balance.HeaderText = "Balance";
+			this.Balance.Name = "Balance";
+			this.Balance.ReadOnly = true;
+			this.Balance.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Balance.Width = 110;
 			// 
 			// LaundryCustomerSearchView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(742, 462);
+			this.ClientSize = new System.Drawing.Size(784, 562);
 			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.dgvunpaidtrans);
 			this.Controls.Add(this.label3);
