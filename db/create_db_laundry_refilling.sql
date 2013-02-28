@@ -553,16 +553,14 @@ INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber
 INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber`) VALUES ('Vanessa Dee', 'Cebu', '111-1111');
 
 -- Refill inventory table (for testing only)
-INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('5 Gal Bottle', '600', '300', '300');
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('5 Gal Bottle', '400', '400', '0');
 
 
 -- Refill inventory table (for testing only)
-INSERT INTO `db_laundry_refilling`.`refillinventorydetail` (`InvHeaderID`, `QtyAdded`, `QtyRemoved`, `TotalQty`,`QtyOnHand`,`QtyReleased`,`Date`) VALUES ('1','100','0','100','50','50','2013-03-09 14:00:00');
-INSERT INTO `db_laundry_refilling`.`refillinventorydetail` (`InvHeaderID`, `QtyAdded`, `QtyRemoved`, `TotalQty`,`QtyOnHand`,`QtyReleased`,`Date`) VALUES ('1','100','0','200','100','50','2013-03-09 15:00:00');
-INSERT INTO `db_laundry_refilling`.`refillinventorydetail` (`InvHeaderID`, `QtyAdded`, `QtyRemoved`, `TotalQty`,`QtyOnHand`,`QtyReleased`,`Date`) VALUES ('1','100','0','300','150','50','2013-03-10 14:00:00');
-INSERT INTO `db_laundry_refilling`.`refillinventorydetail` (`InvHeaderID`, `QtyAdded`, `QtyRemoved`, `TotalQty`,`QtyOnHand`,`QtyReleased`,`Date`) VALUES ('1','100','0','400','200','50','2013-03-11 14:00:00');
-INSERT INTO `db_laundry_refilling`.`refillinventorydetail` (`InvHeaderID`, `QtyAdded`, `QtyRemoved`, `TotalQty`,`QtyOnHand`,`QtyReleased`,`Date`) VALUES ('1','100','0','500','250','50','2013-03-11 15:00:00');
-INSERT INTO `db_laundry_refilling`.`refillinventorydetail` (`InvHeaderID`, `QtyAdded`, `QtyRemoved`, `TotalQty`,`QtyOnHand`,`QtyReleased`,`Date`) VALUES ('1','100','0','600','300','50','2013-03-12 14:00:00');
+INSERT INTO `db_laundry_refilling`.`refillinventorydetail` (`InvHeaderID`, `QtyAdded`, `QtyRemoved`, `TotalQty`,`QtyOnHand`,`QtyReleased`,`Date`) VALUES ('1','100','0','100','100','0','2013-02-09 00:00:00');
+INSERT INTO `db_laundry_refilling`.`refillinventorydetail` (`InvHeaderID`, `QtyAdded`, `QtyRemoved`, `TotalQty`,`QtyOnHand`,`QtyReleased`,`Date`) VALUES ('1','100','0','200','200','0','2013-02-10 00:00:00');
+INSERT INTO `db_laundry_refilling`.`refillinventorydetail` (`InvHeaderID`, `QtyAdded`, `QtyRemoved`, `TotalQty`,`QtyOnHand`,`QtyReleased`,`Date`) VALUES ('1','100','0','300','300','0','2013-02-11 00:00:00');
+INSERT INTO `db_laundry_refilling`.`refillinventorydetail` (`InvHeaderID`, `QtyAdded`, `QtyRemoved`, `TotalQty`,`QtyOnHand`,`QtyReleased`,`Date`) VALUES ('1','100','0','400','400','0','2013-02-12 00:00:00');
 
 -- DUMP COMPLETE
 

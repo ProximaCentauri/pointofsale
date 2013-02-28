@@ -298,7 +298,7 @@ namespace NJournals.Core.Views
 						catch(Exception ex)
 						{
 							//TODO: error message
-							MessageService.ShowError("Unable to save data.", ex.Message);
+							MessageService.ShowError("Unable to save data." + ex.Message, "Error");
 						}
 					}
 				}
@@ -362,9 +362,7 @@ namespace NJournals.Core.Views
 			string name = string.Empty;
 				
 			foreach(int rowIndex in rowIndexChange)
-			{				
-				List<RefillInventoryDetailDataEntity> detailInvs = new List<RefillInventoryDetailDataEntity>();
-				
+			{												
 				if(!this.dgvRefillInventory.Rows[rowIndex].Cells["AddStocks"].Value.ToString().Trim().Equals(string.Empty))
 					addStocks = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["AddStocks"].Value;
 				if(!this.dgvRefillInventory.Rows[rowIndex].Cells["RemoveStocks"].Value.ToString().Trim().Equals(string.Empty))
@@ -375,31 +373,36 @@ namespace NJournals.Core.Views
 					int ID = (int)this.dgvRefillInventory.Rows[rowIndex].Cells["InvHeaderID"].Value;					
 					refillInv = m_refillInvEntity.Find(m_refillInv => m_refillInv.InvHeaderID == ID);					
 					RefillInventoryDetailDataEntity invDetail = new RefillInventoryDetailDataEntity();
-					
+									
+					bool detailFound = false;
 					foreach(RefillInventoryDetailDataEntity detail in refillInv.DetailEntities)
 					{
-						detailInvs.Add(detail);
+						if(detail.Date == DateTime.Now.Date)
+						{
+							detail.QtyAdded += addStocks;
+							detail.QtyRemoved += removeStocks;
+							detail.QtyOnHand += addStocks - removeStocks;						
+							detail.TotalQty += addStocks - removeStocks;
+							detailFound = true;
+							break;							
+						}
 					}
-					
-					invDetail = detailInvs.Find(detailInv => detailInv.Date == DateTime.Now.Date);
-										
-					if(invDetail == null)
-					{	
+					if(!detailFound){						
 						invDetail = new RefillInventoryDetailDataEntity();
 						invDetail.Date = DateTime.Now.Date;
-					}
-					
-					invDetail.QtyAdded += addStocks;
-					invDetail.QtyRemoved += removeStocks;
-					invDetail.QtyOnHand += addStocks - removeStocks;						
-					invDetail.TotalQty += addStocks - removeStocks;				
+						invDetail.QtyAdded += addStocks;
+						invDetail.QtyRemoved += removeStocks;
+						invDetail.QtyOnHand += addStocks - removeStocks;						
+						invDetail.TotalQty += addStocks - removeStocks;
+						invDetail.Header = refillInv;
+						refillInv.DetailEntities.Add(invDetail);
+					}													
 					
 					refillInv.QtyOnHand += addStocks - removeStocks;
 					refillInv.TotalAdded += addStocks;
 					refillInv.TotalRemoved += removeStocks;
 					refillInv.TotalQty += addStocks - removeStocks;
-					refillInv.DetailEntities.Add(invDetail);
-					
+														
 					refillInvs.Add(refillInv);
 					updatedRefillInv.Add(refillInv.Name);
 				}
