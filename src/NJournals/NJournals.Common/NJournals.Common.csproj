@@ -165,6 +165,7 @@
     <Compile Include="Interfaces\IRefillingConfigurationView.cs" />
     <Compile Include="Interfaces\IRefillingView.cs" />
     <Compile Include="Interfaces\IRefillInventoryDao.cs" />
+    <Compile Include="Interfaces\IRefillInventoryDetailDao.cs" />
     <Compile Include="Interfaces\IRefillProductTypeDao.cs" />
     <Compile Include="Interfaces\IRefillReportDao.cs" />
     <Compile Include="Interfaces\IRefillReturnPaymentView.cs" />

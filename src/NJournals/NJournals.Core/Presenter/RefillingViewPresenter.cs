@@ -30,6 +30,7 @@ namespace NJournals.Core.Presenter
 		IRefillDaySummaryDao m_summaryDao;
 		IRefillCustomerInventoryDao m_customerInvDao;
 		IRefillInventoryDao m_refillInvDao;
+		IRefillInventoryDetailDao m_refillInvDetailDao;
 				
 		List<CustomerDataEntity> customers = null;
 		List<RefillTransactionTypeDataEntity> transactionTypes = null;
@@ -47,6 +48,7 @@ namespace NJournals.Core.Presenter
 			m_summaryDao = new RefillDaySummaryDao();
 			m_customerInvDao = new RefillCustomerInventoryDao();
 			m_refillInvDao = new RefillInventoryDao();
+			m_refillInvDetailDao = new RefillInventoryDetailDao();
 		}
 		
 		public void SetAllCustomers(){
@@ -103,12 +105,31 @@ namespace NJournals.Core.Presenter
 						inventoryHeader.QtyOnHand -= detail.StoreBottleQty;
 						inventoryHeader.QtyReleased += detail.StoreBottleQty;
 						customerInvHeader.CapsOnHand += detail.StoreCapQty;
-						customerInvHeader.BottlesOnHand += detail.StoreBottleQty;
+						customerInvHeader.BottlesOnHand += detail.StoreBottleQty;						
 						m_refillInvDao.Update(inventoryHeader);
 						m_customerInvDao.SaveOrUpdate(customerInvHeader);
+						UpdateInventoryDetail(inventoryHeader);
 					}		
 				}						
 			}			
+		}
+		
+		public void UpdateInventoryDetail(RefillInventoryHeaderDataEntity p_inventoryHeader){
+			if(p_inventoryHeader != null){
+				DateTime today = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+				RefillInventoryDetailDataEntity inventoryDetail = m_refillInvDetailDao.GetDetailDay(p_inventoryHeader, today);
+				if(inventoryDetail == null){
+					inventoryDetail = new RefillInventoryDetailDataEntity();
+				}
+				inventoryDetail.Header = p_inventoryHeader;
+				inventoryDetail.Date = today;
+				inventoryDetail.QtyAdded = 0;
+				inventoryDetail.QtyOnHand = p_inventoryHeader.QtyOnHand;
+				inventoryDetail.QtyReleased = p_inventoryHeader.QtyReleased;
+				inventoryDetail.QtyRemoved = 0;
+				inventoryDetail.TotalQty = p_inventoryHeader.TotalQty;					
+				m_refillInvDetailDao.SaveOrUpdate(inventoryDetail);
+			}
 		}
 		
 		public void VoidTransaction(){
@@ -132,9 +153,11 @@ namespace NJournals.Core.Presenter
 							customerInvHeader.BottlesOnHand -= detail.StoreBottleQty;
 							m_refillInvDao.Update(inventoryHeader);
 							m_customerInvDao.SaveOrUpdate(customerInvHeader);
+							UpdateInventoryDetail(inventoryHeader);
 						}		
 					}							
 				}		
+				MessageService.ShowInfo("Successfully voiding transaction with JO number: " + m_OriginalHeaderEntity.RefillHeaderID.ToString().PadLeft(6, '0'));
 			}catch(Exception ex){
 				MessageService.ShowError("There is a problem while void this transaction." ,"Error in Voiding Transaction", ex);
 			}			
