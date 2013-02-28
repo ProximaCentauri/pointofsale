@@ -20,6 +20,7 @@ namespace NJournals.Common.DataEntities
 		public virtual string Name {get;set;}
 		public virtual string Address {get;set;}
 		public virtual string ContactNumber {get;set;}
+		public virtual int VoidFlag {get;set;}
 		
 		//public virtual RefillCustomerInventoryDataEntity CustomerInventory {get;set;}
 	}

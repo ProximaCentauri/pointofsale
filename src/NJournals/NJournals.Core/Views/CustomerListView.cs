@@ -73,10 +73,15 @@ namespace NJournals.Core.Views
 				
 				txtsearch.Text = string.Empty;
 			}
-			else
+			else if(dgvCustomerList.SelectedRows.Count > 1)
 			{
 				//TODO: info message
 				MessageService.ShowInfo("Cannot view multiple customer details. Please select one customer at a time.");
+			}
+			else
+			{
+				//TODO: info message
+				MessageService.ShowInfo("Please select one customer to view the customer's detail.");
 			}
 		}
 		
@@ -119,6 +124,7 @@ namespace NJournals.Core.Views
 				customer.Name = name;
 				customer.Address = address;
 				customer.ContactNumber = number;
+				customer.VoidFlag = 0;
 				
 				try
 				{
@@ -126,7 +132,7 @@ namespace NJournals.Core.Views
 					selectedIndex = -1;
 					ClearData();
 					m_presenter.SetAllCustomerList();
-					MessageService.ShowInfo("Successfully saved new customer name.");					
+					MessageService.ShowInfo("Successfully saved/updated customer details");					
 				}
 				catch(Exception ex)
 				{
@@ -198,6 +204,7 @@ namespace NJournals.Core.Views
 		void BtnDeleteCustomerClick(object sender, EventArgs e)
 		{
 			CustomerDataEntity customer = new CustomerDataEntity();
+			string pendingCustomers = string.Empty;
 			
 			if(dgvCustomerList.SelectedRows.Count > 0)
 			{
@@ -209,9 +216,23 @@ namespace NJournals.Core.Views
 						{
 							int ID = (int)dgvCustomerList.Rows[currentRow.Index].Cells["CustomerID"].Value;
 							customer = m_customersEntity.Find(m_customer => m_customer.CustomerID == ID);
-							m_presenter.DeleteCustomer(customer);
-							dgvCustomerList.Rows.Remove(dgvCustomerList.Rows[currentRow.Index]);
+							customer.VoidFlag = 1;
+							if(!m_presenter.VerifyCustomerPendingTransaction(customer))
+							{
+								m_presenter.SaveOrUpdateCustomer(customer);
+								dgvCustomerList.Rows.Remove(dgvCustomerList.Rows[currentRow.Index]);
+							}
+							else
+							{
+								pendingCustomers += customer.Name + ", ";
+							}
 						}
+						
+						if(!pendingCustomers.Equals(string.Empty))
+						{
+							MessageService.ShowWarning("Unable to delete customer: " + pendingCustomers.Remove(pendingCustomers.LastIndexOf(',')).Trim() + " due to pending transaction.", "Pending transaction");
+						}
+						
 						m_presenter.SetAllCustomerList();
 					}
 					catch(Exception ex)
@@ -222,6 +243,7 @@ namespace NJournals.Core.Views
 				}
 			}
 		}
+		
 		
 		
 		#region Format Methods
@@ -237,6 +259,7 @@ namespace NJournals.Core.Views
 		private void formatCustomerListDataGridView()
 		{
 			dgvCustomerList.Columns["CustomerID"].Visible = false;
+			dgvCustomerList.Columns["VoidFlag"].Visible = false;
 			dgvCustomerList.Columns["Name"].ReadOnly = true;
 			dgvCustomerList.Columns["Address"].ReadOnly = true;
 			dgvCustomerList.Columns["ContactNumber"].ReadOnly = true;

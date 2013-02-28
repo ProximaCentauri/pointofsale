@@ -313,7 +313,9 @@
     <None Include="images\edit2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="images\refresh.png" />
+    <None Include="images\refresh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="images\remove.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

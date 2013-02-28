@@ -25,6 +25,7 @@ namespace NJournals.Common.DataMappers
 			Map(x => x.Name);
 			Map(x => x.Address);
 			Map(x => x.ContactNumber);	
+			Map(x => x.VoidFlag);
 			
 			Table("Customer");
 		}
