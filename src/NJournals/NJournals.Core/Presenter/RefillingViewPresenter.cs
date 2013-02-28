@@ -104,8 +104,7 @@ namespace NJournals.Core.Presenter
 						m_refillInvDao.Update(inventoryHeader);
 						m_customerInvDao.SaveOrUpdate(customerInvHeader);
 					}		
-				}
-						
+				}						
 			}			
 		}
 		

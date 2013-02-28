@@ -41,7 +41,7 @@ namespace NJournals.Common.Util
 			LogHelper.Log(message, LogType.INFO, false);
 		}
 	
-		public static void ShowError(string message, string caption)
+		public static void ShowError(string message, string caption, Exception ex)
 		{
 			if (provider == null) {
 				throw new ArgumentNullException("MessageProvider");
@@ -50,9 +50,9 @@ namespace NJournals.Common.Util
 			LogHelper.Log(message, LogType.ERR, false);
 		}
 	
-		public static void ShowError(string message)
+		public static void ShowError(string message, Exception ex)
 		{
-			ShowError(message, "Error");	
+			ShowError(message, "Error", ex);	
 		}
 	
 		public static void ShowWarning(string message)

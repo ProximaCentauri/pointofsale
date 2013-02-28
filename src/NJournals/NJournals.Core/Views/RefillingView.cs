@@ -86,7 +86,18 @@ namespace NJournals.Core.Views
 						MessageService.ShowWarning("Please input a value in empty field.","Empty Field");
 						c.Focus();
 						return;
-					}		
+					}else if(c.Name.Equals("txtnoitems") ||
+					         c.Name.Equals("txtbottles") ||
+					         c.Name.Equals("txtcaps")){
+						int i = 0;
+						int.TryParse(c.Text, out i);
+						if(i == 0){
+							MessageService.ShowWarning("Invalid data in input field. " + c.Text,"Invalid data");
+							c.Focus();
+							return;
+						}
+							
+					}
 				}				
 			}
 			m_presenter.AddNewItemClicked();	
