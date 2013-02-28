@@ -157,7 +157,7 @@ namespace NJournals.Core.Views
 			else
 				m_headerEntity.TotalPayment += paymentdetail.Amount;		
 			
-			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now);
 			paymentdetail.Header = m_headerEntity;
 			m_headerEntity.PaymentDetailEntities.Add(paymentdetail);
 			m_headerEntity.JobChargeEntities = new List<LaundryJobChargesDataEntity>();
