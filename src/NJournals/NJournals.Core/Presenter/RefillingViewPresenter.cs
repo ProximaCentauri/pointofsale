@@ -133,7 +133,7 @@ namespace NJournals.Core.Presenter
 					}							
 				}		
 			}catch(Exception ex){
-				MessageService.ShowError("There is a problem while void this transaction." + Environment.NewLine + ex.ToString(),"Error in Voiding Transaction");
+				MessageService.ShowError("There is a problem while void this transaction." ,"Error in Voiding Transaction", ex);
 			}			
 		}
 		
@@ -171,7 +171,7 @@ namespace NJournals.Core.Presenter
 				m_refillDao.SaveOrUpdate(headerEntity);
 				return true;
 			}catch(Exception ex){
-				MessageService.ShowError("There's been a problem while processing this request. Technical details below: " + Environment.NewLine + ex.Message);
+				MessageService.ShowError("There's been a problem while processing this request.", "Error in saving", ex);
 			}	
 			return false;
 		}

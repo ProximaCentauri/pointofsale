@@ -50,7 +50,7 @@ namespace NJournals.Core.Views
 		}
 		
 		public void ShowError(string message){
-			MessageService.ShowError(message, "Error in Adding Item");
+			MessageService.ShowError(message, "Error in Adding Item", new Exception("Error in adding item"));
 			                         
 		}			
 		
