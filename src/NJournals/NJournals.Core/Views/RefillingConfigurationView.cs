@@ -396,13 +396,12 @@ namespace NJournals.Core.Views
 						invDetail.TotalQty += addStocks - removeStocks;
 						invDetail.Header = refillInv;
 						refillInv.DetailEntities.Add(invDetail);
-					}													
-					
+					}																		
 					refillInv.QtyOnHand += addStocks - removeStocks;
 					refillInv.TotalAdded += addStocks;
 					refillInv.TotalRemoved += removeStocks;
 					refillInv.TotalQty += addStocks - removeStocks;
-														
+																
 					refillInvs.Add(refillInv);
 					updatedRefillInv.Add(refillInv.Name);
 				}
