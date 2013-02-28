@@ -47,7 +47,7 @@ namespace NJournals.Common.Util
 				throw new ArgumentNullException("MessageProvider");
 			}
 			provider.ShowError(message, caption);
-			LogHelper.Log(message, LogType.ERR, false);
+			LogHelper.Log(ex.ToString(), LogType.ERR, false);
 		}
 	
 		public static void ShowError(string message, Exception ex)
