@@ -113,6 +113,7 @@ namespace NJournals.Core.Views
 			if(!alreadyExist)
 				dataGridView1.Rows.Add(cmbproducts.Text, nobottles, nocaps, txtnoitems.Text, totalPrice.ToString("N2"));
 			this.txtamtdue.Text = (decimal.Parse(txtamtdue.Text) + totalPrice).ToString("N2");
+			txtbalance.Text = txtamtdue.Text;
 		}
 		
 		void BtnprintcloseClick(object sender, EventArgs e)
@@ -163,20 +164,19 @@ namespace NJournals.Core.Views
 			m_headerEntity.DetailEntities = refillDetails;
 			m_headerEntity.PaidFlag = chkunpaid.Checked;
 			RefillPaymentDetailDataEntity paymentDetail = new RefillPaymentDetailDataEntity();
-		
+			m_headerEntity.PaidFlag = false;
+			
 			if(decimal.Parse(txtamttender.Text) > 0){
 				if(decimal.Parse(txtamttender.Text) >= m_headerEntity.AmountDue){
 					paymentDetail.Amount = m_headerEntity.AmountDue;
+					m_headerEntity.PaidFlag = true;
 				}else{
 					paymentDetail.Amount = decimal.Parse(txtamttender.Text);
 				}
 			}else
 				paymentDetail.Amount = 0M;
 			
-			if(this.Text.Contains("NEW"))
-				m_headerEntity.AmountTender = paymentDetail.Amount;					
-			else
-				m_headerEntity.AmountTender += paymentDetail.Amount;	
+			m_headerEntity.AmountTender = paymentDetail.Amount;		
 			
 			paymentDetail.PaymentDate = Convert.ToDateTime(DateTime.Now);		
 			paymentDetail.Header = m_headerEntity;
@@ -253,11 +253,37 @@ namespace NJournals.Core.Views
 				txtcaps.Enabled = false;				
 			}else{				
 				txtbottles.Enabled = true;
-				txtcaps.Enabled = true;
-				txtcaps.Text = "";
-				txtbottles.Text = "";
+				txtcaps.Enabled = true;			
 			}			
+			txtcaps.Text = "";
+			txtbottles.Text = "";
 		}
-
+		
+		void chkunpaid_click(object sender, EventArgs e)
+		{
+			if(chkunpaid.Checked){
+				txtamttender.Text = "0.00";
+				txtamttender.Enabled = false;
+			}else{
+				txtamttender.Enabled = true;
+				txtamttender.Focus();
+			}
+		}
+		
+		void txtamttender_textchanged(object sender, EventArgs e)
+		{
+			if(txtamttender.Text.Length == 0){
+				txtamttender.Text = "0.00";				
+			}	
+			decimal amountTender = decimal.Parse(txtamttender.Text);
+			decimal amtdue = decimal.Parse(txtamtdue.Text);				
+			if(amountTender < amtdue){
+				txtbalance.Text = (amtdue - amountTender).ToString("N2");
+				txtchange.Text = "0.00";
+			}else{
+				txtchange.Text = (amountTender - amtdue).ToString("N2");
+				txtbalance.Text = "0.00";
+			}		
+		}
 	}
 }

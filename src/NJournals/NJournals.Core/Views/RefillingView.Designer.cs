@@ -360,12 +360,14 @@ namespace NJournals.Core.Views
 			// 
 			// txtamttender
 			// 
+			this.txtamttender.Enabled = false;
 			this.txtamttender.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtamttender.Location = new System.Drawing.Point(826, 539);
 			this.txtamttender.Name = "txtamttender";
 			this.txtamttender.Size = new System.Drawing.Size(119, 29);
 			this.txtamttender.TabIndex = 17;
 			this.txtamttender.Text = "0.00";
+			this.txtamttender.TextChanged += new System.EventHandler(this.txtamttender_textchanged);
 			// 
 			// label11
 			// 
@@ -423,6 +425,8 @@ namespace NJournals.Core.Views
 			// 
 			// chkunpaid
 			// 
+			this.chkunpaid.Checked = true;
+			this.chkunpaid.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chkunpaid.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.chkunpaid.Location = new System.Drawing.Point(826, 512);
 			this.chkunpaid.Name = "chkunpaid";
@@ -430,6 +434,7 @@ namespace NJournals.Core.Views
 			this.chkunpaid.TabIndex = 22;
 			this.chkunpaid.Text = "Unpaid";
 			this.chkunpaid.UseVisualStyleBackColor = true;
+			this.chkunpaid.Click += new System.EventHandler(this.chkunpaid_click);
 			// 
 			// btndeleteclose
 			// 
