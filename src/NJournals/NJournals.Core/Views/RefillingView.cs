@@ -178,7 +178,7 @@ namespace NJournals.Core.Views
 			else
 				m_headerEntity.AmountTender += paymentDetail.Amount;	
 			
-			paymentDetail.PaymentDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());		
+			paymentDetail.PaymentDate = Convert.ToDateTime(DateTime.Now);		
 			paymentDetail.Header = m_headerEntity;
 			m_headerEntity.PaymentDetailEntities.Add(paymentDetail);
 			
