@@ -55,8 +55,7 @@ namespace NJournals.Core.Views
 					}					
 				}
 				groupBox2.Enabled = true;
-				btnprintclose.Enabled = false;
-				btncancel.Enabled = false;
+				btnprintclose.Enabled = btnsave.Enabled = btncancel.Enabled = false;
 				btndeleteclose.Enabled = true;
 			}
 		}
@@ -197,7 +196,12 @@ namespace NJournals.Core.Views
 			}
 			txtamtdue.Text = m_headerEntity.AmountDue.ToString("N2");
 			txtbalance.Text = (m_headerEntity.AmountDue - m_headerEntity.AmountTender).ToString("N2");
-			
+			lblvoid.Visible = m_headerEntity.VoidFlag;
+			if(m_headerEntity.VoidFlag){
+				btndeleteclose.Enabled = false;				
+			}else{
+				btndeleteclose.Enabled = true;				
+			}
 		}
 		
 		void BtndeletecloseClick(object sender, EventArgs e)

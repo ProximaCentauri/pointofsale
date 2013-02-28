@@ -94,15 +94,18 @@ namespace NJournals.Core.Presenter
 			RefillCustInventoryHeaderDataEntity customerInvHeader = new RefillCustInventoryHeaderDataEntity();
 			customerInvHeader.Customer = headerEntity.Customer;
 			foreach(RefillDetailDataEntity detail in headerEntity.DetailEntities){
-				inventoryHeader = m_refillInvDao.GetByName(detail.ProductType.Name);
-				if(inventoryHeader != null){
-					inventoryHeader.QtyOnHand -= detail.StoreBottleQty;
-					inventoryHeader.QtyReleased += detail.StoreBottleQty;
-					customerInvHeader.CapsOnHand += detail.StoreCapQty;
-					customerInvHeader.BottlesOnHand += detail.StoreBottleQty;
-					m_refillInvDao.Update(inventoryHeader);
-					m_customerInvDao.SaveOrUpdate(customerInvHeader);
-				}				
+				if(detail.ProductType.Name.StartsWith("5 Gal",true,null)){
+					inventoryHeader = m_refillInvDao.GetByName("5 Gal");
+					if(inventoryHeader != null){
+						inventoryHeader.QtyOnHand -= detail.StoreBottleQty;
+						inventoryHeader.QtyReleased += detail.StoreBottleQty;
+						customerInvHeader.CapsOnHand += detail.StoreCapQty;
+						customerInvHeader.BottlesOnHand += detail.StoreBottleQty;
+						m_refillInvDao.Update(inventoryHeader);
+						m_customerInvDao.SaveOrUpdate(customerInvHeader);
+					}		
+				}
+						
 			}			
 		}
 		
@@ -116,21 +119,22 @@ namespace NJournals.Core.Presenter
 				m_summaryDao.Update(daySummary);
 					
 				RefillInventoryHeaderDataEntity inventoryHeader = new RefillInventoryHeaderDataEntity();
-				RefillCustInventoryHeaderDataEntity customerInvHeader = new RefillCustInventoryHeaderDataEntity();
-				customerInvHeader.Customer = m_OriginalHeaderEntity.Customer;
+				RefillCustInventoryHeaderDataEntity customerInvHeader = m_customerInvDao.GetByCustomer(m_OriginalHeaderEntity.Customer);
 				foreach(RefillDetailDataEntity detail in m_OriginalHeaderEntity.DetailEntities){
-					inventoryHeader = m_refillInvDao.GetByName(detail.ProductType.Name);
-					if(inventoryHeader != null){
-						inventoryHeader.QtyOnHand += detail.StoreBottleQty;
-						inventoryHeader.QtyReleased -= detail.StoreBottleQty;
-						customerInvHeader.CapsOnHand -= detail.StoreCapQty;
-						customerInvHeader.BottlesOnHand -= detail.StoreBottleQty;
-						m_refillInvDao.Update(inventoryHeader);
-						m_customerInvDao.SaveOrUpdate(customerInvHeader);
-					}				
+					if(detail.ProductType.Name.StartsWith("5 Gal",true,null)){
+						inventoryHeader = m_refillInvDao.GetByName("5 Gal");
+						if(inventoryHeader != null){
+							inventoryHeader.QtyOnHand += detail.StoreBottleQty;
+							inventoryHeader.QtyReleased -= detail.StoreBottleQty;
+							customerInvHeader.CapsOnHand -= detail.StoreCapQty;
+							customerInvHeader.BottlesOnHand -= detail.StoreBottleQty;
+							m_refillInvDao.Update(inventoryHeader);
+							m_customerInvDao.SaveOrUpdate(customerInvHeader);
+						}		
+					}							
 				}		
 			}catch(Exception ex){
-				MessageService.ShowError("There is a problem while void this transaction." + Environment.NewLine + ex.Message,"Error in Voiding Transaction");
+				MessageService.ShowError("There is a problem while void this transaction." + Environment.NewLine + ex.ToString(),"Error in Voiding Transaction");
 			}			
 		}
 		

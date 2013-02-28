@@ -36,9 +36,8 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cmbCustomers = new System.Windows.Forms.ComboBox();
 			this.btnCustomerSearch = new System.Windows.Forms.Button();
@@ -95,14 +94,12 @@ namespace NJournals.Core.Views
 			this.txttotaldiscount = new System.Windows.Forms.TextBox();
 			this.label19 = new System.Windows.Forms.Label();
 			this.btnDeleteDetail = new System.Windows.Forms.Button();
-			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnprint = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -324,14 +321,14 @@ namespace NJournals.Core.Views
 			// dataGridView1
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Column1,
@@ -343,8 +340,8 @@ namespace NJournals.Core.Views
 			this.dataGridView1.Location = new System.Drawing.Point(329, 176);
 			this.dataGridView1.MultiSelect = false;
 			this.dataGridView1.Name = "dataGridView1";
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView1.Size = new System.Drawing.Size(591, 240);
 			this.dataGridView1.TabIndex = 4;
@@ -725,19 +722,17 @@ namespace NJournals.Core.Views
 			this.btnDeleteDetail.TabIndex = 32;
 			this.btnDeleteDetail.UseVisualStyleBackColor = true;
 			// 
-			// errorProvider1
+			// btnprint
 			// 
-			this.errorProvider1.ContainerControl = this;
-			// 
-			// button1
-			// 
-			this.button1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.Location = new System.Drawing.Point(611, 698);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(99, 23);
-			this.button1.TabIndex = 33;
-			this.button1.Text = "Print";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnprint.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnprint.Location = new System.Drawing.Point(611, 698);
+			this.btnprint.Name = "btnprint";
+			this.btnprint.Size = new System.Drawing.Size(99, 23);
+			this.btnprint.TabIndex = 33;
+			this.btnprint.Text = "Print";
+			this.btnprint.UseVisualStyleBackColor = true;
+			this.btnprint.Visible = false;
+			this.btnprint.Click += new System.EventHandler(this.BtnprintClick);
 			// 
 			// LaundryNewView
 			// 
@@ -745,7 +740,7 @@ namespace NJournals.Core.Views
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(984, 750);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.btnprint);
 			this.Controls.Add(this.btnDeleteDetail);
 			this.Controls.Add(this.label19);
 			this.Controls.Add(this.txttotaldiscount);
@@ -786,13 +781,11 @@ namespace NJournals.Core.Views
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnprint;
 		private System.Windows.Forms.Label lblvoid;
-		private System.Windows.Forms.ErrorProvider errorProvider1;
 		private System.Windows.Forms.Button btnDeleteDetail;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.TextBox txttotaldiscount;

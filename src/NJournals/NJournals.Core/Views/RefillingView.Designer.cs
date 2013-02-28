@@ -80,7 +80,7 @@ namespace NJournals.Core.Views
 			this.label9 = new System.Windows.Forms.Label();
 			this.txtbalance = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnsave = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -194,14 +194,14 @@ namespace NJournals.Core.Views
 			this.grpServices.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.grpServices.Location = new System.Drawing.Point(16, 189);
 			this.grpServices.Name = "grpServices";
-			this.grpServices.Size = new System.Drawing.Size(280, 197);
+			this.grpServices.Size = new System.Drawing.Size(304, 197);
 			this.grpServices.TabIndex = 4;
 			this.grpServices.TabStop = false;
 			this.grpServices.Text = "Product";
 			// 
 			// txtcaps
 			// 
-			this.txtcaps.Location = new System.Drawing.Point(87, 105);
+			this.txtcaps.Location = new System.Drawing.Point(114, 103);
 			this.txtcaps.Name = "txtcaps";
 			this.txtcaps.Size = new System.Drawing.Size(100, 25);
 			this.txtcaps.TabIndex = 16;
@@ -209,15 +209,15 @@ namespace NJournals.Core.Views
 			// label8
 			// 
 			this.label8.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(16, 107);
+			this.label8.Location = new System.Drawing.Point(3, 107);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(70, 23);
+			this.label8.Size = new System.Drawing.Size(83, 23);
 			this.label8.TabIndex = 15;
 			this.label8.Text = "Store Caps:";
 			// 
 			// txtbottles
 			// 
-			this.txtbottles.Location = new System.Drawing.Point(87, 79);
+			this.txtbottles.Location = new System.Drawing.Point(114, 77);
 			this.txtbottles.Name = "txtbottles";
 			this.txtbottles.Size = new System.Drawing.Size(100, 25);
 			this.txtbottles.TabIndex = 14;
@@ -244,7 +244,7 @@ namespace NJournals.Core.Views
 			// 
 			// txtnoitems
 			// 
-			this.txtnoitems.Location = new System.Drawing.Point(87, 53);
+			this.txtnoitems.Location = new System.Drawing.Point(114, 51);
 			this.txtnoitems.Name = "txtnoitems";
 			this.txtnoitems.Size = new System.Drawing.Size(100, 25);
 			this.txtnoitems.TabIndex = 7;
@@ -270,7 +270,7 @@ namespace NJournals.Core.Views
 			// cmbproducts
 			// 
 			this.cmbproducts.FormattingEnabled = true;
-			this.cmbproducts.Location = new System.Drawing.Point(87, 27);
+			this.cmbproducts.Location = new System.Drawing.Point(114, 25);
 			this.cmbproducts.Name = "cmbproducts";
 			this.cmbproducts.Size = new System.Drawing.Size(177, 26);
 			this.cmbproducts.TabIndex = 2;
@@ -533,15 +533,15 @@ namespace NJournals.Core.Views
 			this.label13.Text = "Balance:";
 			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// button1
+			// btnsave
 			// 
-			this.button1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.Location = new System.Drawing.Point(556, 686);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(87, 23);
-			this.button1.TabIndex = 27;
-			this.button1.Text = "Save";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnsave.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnsave.Location = new System.Drawing.Point(556, 686);
+			this.btnsave.Name = "btnsave";
+			this.btnsave.Size = new System.Drawing.Size(87, 23);
+			this.btnsave.TabIndex = 27;
+			this.btnsave.Text = "Save";
+			this.btnsave.UseVisualStyleBackColor = true;
 			// 
 			// RefillingView
 			// 
@@ -549,7 +549,7 @@ namespace NJournals.Core.Views
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(984, 750);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.btnsave);
 			this.Controls.Add(this.txtbalance);
 			this.Controls.Add(this.label13);
 			this.Controls.Add(this.groupBox2);
@@ -579,7 +579,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnsave;
 		private System.Windows.Forms.Label lblvoid;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.TextBox txtbalance;

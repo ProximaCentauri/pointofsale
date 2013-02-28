@@ -75,6 +75,7 @@ namespace NJournals.Core.Views
 				btncancel.Enabled = false;
 				txtdiscount.Enabled = false;
 				dataGridView1.AllowUserToDeleteRows = false;
+				btnprint.Visible = true;
 			}
 			m_presenter.SetAllServices();
 			m_presenter.SetAllCharges();
@@ -267,15 +268,9 @@ namespace NJournals.Core.Views
 		
 		void BtnsavecloseClick(object sender, EventArgs e)
 		{
-			if(cmbCustomers.Text.Trim().Equals(string.Empty)){
-				MessageService.ShowWarning("No customer being selected. Please select a customer.","Empty Field");				
-				cmbCustomers.Focus();
+			if(CheckForEmptyFields())
 				return;
-			}
-			if(dataGridView1.Rows.Count == 0){
-				MessageService.ShowWarning("No list to save. Please add an item before saving.","Empty Field");				
-				return;
-			}
+			
 			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjoborder.Text + "?", "Saving New Entries?")){
 				m_presenter.SaveClicked();			        
 				this.Close();
@@ -285,6 +280,19 @@ namespace NJournals.Core.Views
 		void lblchecklist_click(object sender, EventArgs e)
 		{
 			m_presenter.LaunchChecklist();
+		}
+		
+		bool CheckForEmptyFields(){
+			if(cmbCustomers.Text.Trim().Equals(string.Empty)){
+				MessageService.ShowWarning("No customer being selected. Please select a customer.","Empty Field");				
+				cmbCustomers.Focus();
+				return true;
+			}
+			if(dataGridView1.Rows.Count == 0){
+				MessageService.ShowWarning("No list to save. Please add an item before saving.","Empty Field");				
+				return true;
+			}
+			return false;
 		}
 		
 		public void LaunchChecklist(){			
@@ -501,6 +509,13 @@ namespace NJournals.Core.Views
 				txtamttender.Enabled = !chkpaywhenclaim.Checked;
 		}
 
+		
+		void BtnprintClick(object sender, EventArgs e)
+		{
+			if(CheckForEmptyFields())
+				return;
+			m_presenter.PrintTransaction();
+		}
 	}	
 }
 

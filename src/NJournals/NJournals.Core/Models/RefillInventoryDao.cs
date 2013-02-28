@@ -70,6 +70,7 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		
 		public RefillInventoryDetailDataEntity GetDetailDay(RefillInventoryHeaderDataEntity p_header, DateTime p_dayStamp)
 		{
 			using(var session = NHibernateHelper.OpenSession())
