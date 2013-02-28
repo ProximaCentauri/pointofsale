@@ -91,8 +91,11 @@ namespace NJournals.Core.Presenter
 		
 		private void UpdateRefillCustomerInventory(RefillHeaderDataEntity headerEntity){
 			RefillInventoryHeaderDataEntity inventoryHeader = new RefillInventoryHeaderDataEntity();
-			RefillCustInventoryHeaderDataEntity customerInvHeader = new RefillCustInventoryHeaderDataEntity();
-			customerInvHeader.Customer = headerEntity.Customer;
+			RefillCustInventoryHeaderDataEntity customerInvHeader = m_customerInvDao.GetByCustomer(headerEntity.Customer);
+			if(customerInvHeader == null){
+				customerInvHeader = new RefillCustInventoryHeaderDataEntity();
+				customerInvHeader.Customer = headerEntity.Customer;	
+			}			
 			foreach(RefillDetailDataEntity detail in headerEntity.DetailEntities){
 				if(detail.ProductType.Name.StartsWith("5 Gal",true,null)){
 					inventoryHeader = m_refillInvDao.GetByName("5 Gal");
