@@ -348,11 +348,11 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void PrintTransaction(){
-			m_headerEntity = m_view.ProcessHeaderDataEntity();
-			if(m_headerEntity != null){
-				MessageService.ShowInfo("Printing transaction with JO number: " + m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0'));
-			}
-				
+//			m_headerEntity = m_view.ProcessHeaderDataEntity();
+//			if(m_headerEntity != null){
+//				MessageService.ShowInfo("Printing transaction with JO number: " + m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0'));
+//			}
+			PrintService.PrintClaimSlip(null);
 		}
 	}
 }
