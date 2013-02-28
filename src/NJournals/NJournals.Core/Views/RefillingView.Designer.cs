@@ -542,6 +542,7 @@ namespace NJournals.Core.Views
 			this.btnsave.TabIndex = 27;
 			this.btnsave.Text = "Save";
 			this.btnsave.UseVisualStyleBackColor = true;
+			this.btnsave.Click += new System.EventHandler(this.BtnsaveClick);
 			// 
 			// RefillingView
 			// 

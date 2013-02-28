@@ -289,5 +289,10 @@ namespace NJournals.Core.Views
 				txtbalance.Text = "0.00";
 			}		
 		}
+		
+		void BtnsaveClick(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }
