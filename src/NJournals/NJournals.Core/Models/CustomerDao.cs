@@ -68,9 +68,10 @@ namespace NJournals.Core.Models
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-                    var query = session.Query<CustomerDataEntity>()
+                    var query = session.QueryOver<CustomerDataEntity>()
                     	.Where(x => x.Name.Contains(p_name))
-                    	.ToList();
+                    	.And(x => x.VoidFlag == 0)
+                    	.List<CustomerDataEntity>();
 					return query;
 				}
 			}
@@ -81,7 +82,8 @@ namespace NJournals.Core.Models
 			using(var session = NHibernateHelper.OpenSession())
 			{
                 var query = session.Query<CustomerDataEntity>()
-                    .OrderBy(x => x.Name)
+                	.Where(x => x.VoidFlag == 0)
+                	.OrderBy(x => x.Name)
                     .ToList();
                 return query;
 			}

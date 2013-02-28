@@ -21,11 +21,15 @@ namespace NJournals.Core.Presenter
 	{
 		ICustomerListView m_view;
 		ICustomerDao m_customerDao;
+		ILaundryReportDao m_laundryReport;
+		IRefillReportDao m_refillReport;
 		
 		public CustomerListViewPresenter(ICustomerListView p_view)
 		{
 			this.m_view = p_view;
 			m_customerDao = new CustomerDao();
+			m_laundryReport = new LaundryReportDao();
+			m_refillReport = new RefillReportDao();
 		}
 		
 		public void SetAllCustomerList()
@@ -62,6 +66,27 @@ namespace NJournals.Core.Presenter
 		{
 			List<CustomerDataEntity> customers = m_customerDao.GetCustomersByName(custName) as List<CustomerDataEntity>;
 			m_view.ViewCustomersByName(customers);
+		}
+		
+		public bool VerifyCustomerPendingTransaction(CustomerDataEntity customer)
+		{
+			List<LaundryHeaderDataEntity> laundryHeader = null;
+			List<RefillHeaderDataEntity> refillHeader = null;
+			
+			if((laundryHeader = m_laundryReport.GetUnclaimedItemsReport(customer) as List<LaundryHeaderDataEntity>).Count > 0)
+			{
+				return true;
+			}
+			if((laundryHeader = m_laundryReport.GetUnpaidTransactionsReport(customer) as List<LaundryHeaderDataEntity>).Count > 0)
+			{
+				return true;
+			}
+			if((refillHeader = m_refillReport.GetUnpaidTransactionsReport(customer) as List<RefillHeaderDataEntity>).Count > 0)
+			{
+				return true;
+			}
+			
+			return false;			
 		}
 	}
 }

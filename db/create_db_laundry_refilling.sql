@@ -32,6 +32,7 @@ CREATE  TABLE `db_laundry_refilling`.`customer` (
   `Name` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,
   `Address` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,
   `ContactNumber` VARCHAR(25) NOT NULL DEFAULT 'NULL' ,
+  `VoidFlag` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`CustomerID`) )
 ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
