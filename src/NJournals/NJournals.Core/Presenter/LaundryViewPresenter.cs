@@ -183,7 +183,8 @@ namespace NJournals.Core.Presenter
 			
 			if(daySummary != null)
 			{
-				daySummary.TransCount += 1;
+				if(m_view.GetTitle().Contains("NEW"))
+					daySummary.TransCount += 1;
 				//TODO: totalsales should be totalamoutdue - balance
 				daySummary.TotalSales += headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1].Amount;
 				headerEntity.DaySummary = daySummary;
@@ -199,7 +200,8 @@ namespace NJournals.Core.Presenter
 				
 				
 				daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1].Amount;
-				daySummary.TransCount += 1;
+				if(m_view.GetTitle().Contains("NEW"))
+					daySummary.TransCount += 1;
 				
 				// set header entity in daysummary for nhibernate to pickup and map			
 				daySummary.HeaderEntities.Add(headerEntity);
