@@ -175,10 +175,11 @@ namespace NJournals.Core.Views
 							servicesMaxRowIndex = this.dgvServices.RowCount - 1;
 							dgvServices.Refresh();	
 						}
-						catch
+						catch (Exception ex)
 						{
 							//TODO: error message
-							MessageService.ShowError("Unable to save data.");
+                            MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
+                                       "Please check error log for details.\n", ex); ;
 						}
 					}
 				}
@@ -309,7 +310,8 @@ namespace NJournals.Core.Views
 						catch(Exception ex)
 						{
 							//TODO: error message
-							MessageService.ShowError("Unable to save data.", ex.Message);
+                            MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
+                                       "Please check error log for details.\n", ex);
 						}
 					}
 				}
@@ -486,7 +488,8 @@ namespace NJournals.Core.Views
 						catch(Exception ex)
 						{
 							//TODO: error message
-							MessageService.ShowError("Unable to save data.", ex.Message);
+                            MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
+                                       "Please check error log for details.\n", ex); ;
 						}
 					}
 				}

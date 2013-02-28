@@ -64,12 +64,14 @@ namespace NJournals.Core.Views
 		}
 		
 		void BtnCustomerSearchClick(object sender, EventArgs e)
-		{
+		{           
 			if(ValidateCustomerInput())
 			{
 				ClearFields();
 				this.refillHeaders = null;
-				m_presenter.GetRefillJOsByCustomer(this.cmbCustomers.SelectedItem.ToString());
+                txtReturnedBottles.Enabled = false;
+                txtReturnedCaps.Enabled = false;
+				m_presenter.GetRefillJOsByCustomer(this.cmbCustomers.SelectedItem.ToString());                
 			}
 			else
 			{
@@ -147,10 +149,9 @@ namespace NJournals.Core.Views
 					}
 				}
 				catch(Exception ex)
-				{					
-					MessageService.ShowError("Unable to display data; an unexpected error occurred.\n" +
-				                        "Please check error log for details.\n" +
-				                        ex.Message,"Error");				
+				{
+                    MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
+                                        "Please check error log for details.\n", ex);
 				}
 			}		
 		}

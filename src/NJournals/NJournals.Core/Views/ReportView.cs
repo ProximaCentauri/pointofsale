@@ -117,8 +117,7 @@ namespace NJournals.Core.Views
             catch(Exception ex)
             {
             	MessageService.ShowError("Unable to display report; an unexpected error occurred.\n" +
-				                        "Please check error log for details.\n" +
-				                        ex.Message,"Error");           	          	                       
+                                        "Please check error log for details.\n", ex);	                       
             }
 		}
 
@@ -133,7 +132,7 @@ namespace NJournals.Core.Views
             {
                 return true;
             }
-            MessageService.ShowError("One of the parameters is invalid. " +
+            MessageService.ShowWarning("One of the parameters is invalid. " +
                                      "Please input a valid report type and/or customer and/or and date range!", 
                                      "Invalid Report Parameters");
             return false;           

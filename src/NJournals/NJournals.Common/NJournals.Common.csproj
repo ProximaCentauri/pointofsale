@@ -179,6 +179,7 @@
     <Compile Include="Util\MessageBoxMessageProvider.cs" />
     <Compile Include="Util\MessageService.cs" />
     <Compile Include="Util\NHibernateHelper.cs" />
+    <Compile Include="Util\RawPrinterHelper.cs" />
     <Compile Include="Util\Resource.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\LaundryViewModel.cs" />
