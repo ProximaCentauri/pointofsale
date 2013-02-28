@@ -82,11 +82,13 @@ namespace NJournals.Core.Views
 		void BtnaddClick(object sender, EventArgs e)
 		{			
 			foreach(Control c in grpServices.Controls){
-				if(c.Text.Trim().Equals(string.Empty)){
-					MessageService.ShowWarning("Please input a value in empty field.","Empty Field");
-					c.Focus();
-					return;
-				}	
+				if(c.Enabled){
+					if(c.Text.Trim().Equals(string.Empty)){
+						MessageService.ShowWarning("Please input a value in empty field.","Empty Field");
+						c.Focus();
+						return;
+					}		
+				}				
 			}
 			m_presenter.AddNewItemClicked();	
 		}
@@ -95,11 +97,13 @@ namespace NJournals.Core.Views
 			decimal price = m_presenter.getAmtChargeByName(cmbproducts.Text);
 			decimal totalPrice = decimal.Parse(txtnoitems.Text) * price;
 			bool alreadyExist = false;
+			string nobottles = txtbottles.Text.Trim().Equals(string.Empty) ? "0" : txtbottles.Text;
+			string nocaps = txtcaps.Text.Trim().Equals(string.Empty) ? "0" : txtcaps.Text;
 			for(int i=0;i<dataGridView1.Rows.Count;i++){
 				if(dataGridView1.Rows[i].Cells[0].Value != null){
 					if(dataGridView1.Rows[i].Cells[0].Value.ToString().Equals(cmbproducts.Text)){
-						dataGridView1.Rows[i].Cells[1].Value = (int.Parse(txtbottles.Text) + int.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString())).ToString();
-						dataGridView1.Rows[i].Cells[2].Value = (int.Parse(txtcaps.Text) + int.Parse(dataGridView1.Rows[i].Cells[2].Value.ToString())).ToString();
+						dataGridView1.Rows[i].Cells[1].Value = (int.Parse(nobottles) + int.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString())).ToString();
+						dataGridView1.Rows[i].Cells[2].Value = (int.Parse(nocaps) + int.Parse(dataGridView1.Rows[i].Cells[2].Value.ToString())).ToString();
 						dataGridView1.Rows[i].Cells[3].Value = (int.Parse(txtnoitems.Text) + int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString())).ToString();
 						dataGridView1.Rows[i].Cells[4].Value = (decimal.Parse((dataGridView1.Rows[i].Cells[4].Value.ToString())) + totalPrice).ToString("N2");
 						alreadyExist = true;
@@ -107,7 +111,7 @@ namespace NJournals.Core.Views
 				}
 			}				
 			if(!alreadyExist)
-				dataGridView1.Rows.Add(cmbproducts.Text, txtbottles.Text, txtcaps.Text, txtnoitems.Text, totalPrice.ToString("N2"));
+				dataGridView1.Rows.Add(cmbproducts.Text, nobottles, nocaps, txtnoitems.Text, totalPrice.ToString("N2"));
 			this.txtamtdue.Text = (decimal.Parse(txtamtdue.Text) + totalPrice).ToString("N2");
 		}
 		
