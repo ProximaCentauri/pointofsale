@@ -24,7 +24,7 @@ namespace NJournals.Common.DataMappers
 			Id(x => x.PrinterID);
 			Map(x => x.Name);
 			Map(x => x.Model);
-			Map(x => x.Status);				
+			Map(x => x.Active);				
 			
 			Table("Printer");
 		}

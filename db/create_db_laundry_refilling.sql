@@ -59,7 +59,7 @@ CREATE  TABLE `db_laundry_refilling`.`printer` (
   `PrinterID` int(10) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,
   `Model` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,  
-  `Status` tinyint(1) NOT NULL DEFAULT '0',
+  `Active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`PrinterID`) )
 ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

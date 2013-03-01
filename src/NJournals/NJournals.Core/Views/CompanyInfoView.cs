@@ -33,8 +33,32 @@ namespace NJournals.Core.Views
 			
 		}
 		
-		public void SetCompany(){
-				
+		private CompanyDataEntity m_companyEntity;
+		private PrinterDataEntity m_printerEntity;
+		
+		public void SetCompanyInfo(CompanyDataEntity p_entity){
+			m_companyEntity = p_entity;
+			if(m_companyEntity == null){
+				m_companyEntity = new CompanyDataEntity();
+			}
+			txtname.Text = m_companyEntity.Name;
+			txtaddress.Text = m_companyEntity.Address;
+			txtcontact.Text = m_companyEntity.ContactNumber;			
 		}
+		
+		public void SetPrinterInfo(PrinterDataEntity p_printer){
+			m_printerEntity = p_printer;
+			if(m_printerEntity == null){
+				m_printerEntity = new PrinterDataEntity();
+			}
+			txtprinter.Text = m_printerEntity.Name;
+			txtmodel.Text = m_printerEntity.Model;
+			if(!m_printerEntity.Active){
+				rdbinactive.Checked = true;
+			}
+			rdbactive.Checked = rdbinactive.Checked ? false : true;
+		}
+		
+		
 	}
 }

@@ -18,6 +18,6 @@ namespace NJournals.Common.DataEntities
 		public virtual int PrinterID {get;set;}
 		public virtual string Name {get;set;}
 		public virtual string Model {get;set;}			
-		public virtual bool Status {get;set;}
+		public virtual bool Active {get;set;}
 	}
 }

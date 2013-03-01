@@ -68,7 +68,7 @@ namespace NJournals.Core.Models
 			using(var session = NHibernateHelper.OpenSession())
 			{
                 var query = session.Query<PrinterDataEntity>()
-                	.Where(x => x.Status == false)
+                	.Where(x => x.Active == true)
                 	.OrderBy(x => x.Name)
                     .ToList();
                 return query;

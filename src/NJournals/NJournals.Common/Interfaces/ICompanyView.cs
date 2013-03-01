@@ -17,7 +17,7 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface ICompanyView
 	{		
-		void SetCompany();
+		void SetCompanyInfo(CompanyDataEntity entity);
 		
 	}
 }

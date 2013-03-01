@@ -45,6 +45,11 @@ namespace NJournals.Core.Views
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.rdbinactive = new System.Windows.Forms.RadioButton();
+			this.rdbactive = new System.Windows.Forms.RadioButton();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
+			this.txtmodel = new System.Windows.Forms.TextBox();
 			this.txtprinter = new System.Windows.Forms.TextBox();
 			this.btnclose = new System.Windows.Forms.Button();
 			this.btnsave = new System.Windows.Forms.Button();
@@ -132,6 +137,11 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.rdbinactive);
+			this.groupBox2.Controls.Add(this.rdbactive);
+			this.groupBox2.Controls.Add(this.label5);
+			this.groupBox2.Controls.Add(this.label1);
+			this.groupBox2.Controls.Add(this.txtmodel);
 			this.groupBox2.Controls.Add(this.txtprinter);
 			this.groupBox2.Controls.Add(this.label6);
 			this.groupBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -141,6 +151,53 @@ namespace NJournals.Core.Views
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Printer Settings";
+			// 
+			// rdbinactive
+			// 
+			this.rdbinactive.Location = new System.Drawing.Point(207, 93);
+			this.rdbinactive.Name = "rdbinactive";
+			this.rdbinactive.Size = new System.Drawing.Size(104, 24);
+			this.rdbinactive.TabIndex = 13;
+			this.rdbinactive.Text = "In-active";
+			this.rdbinactive.UseVisualStyleBackColor = true;
+			// 
+			// rdbactive
+			// 
+			this.rdbactive.Checked = true;
+			this.rdbactive.Location = new System.Drawing.Point(130, 93);
+			this.rdbactive.Name = "rdbactive";
+			this.rdbactive.Size = new System.Drawing.Size(71, 24);
+			this.rdbactive.TabIndex = 12;
+			this.rdbactive.TabStop = true;
+			this.rdbactive.Text = "Active";
+			this.rdbactive.UseVisualStyleBackColor = true;
+			// 
+			// label5
+			// 
+			this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label5.Location = new System.Drawing.Point(24, 93);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(100, 23);
+			this.label5.TabIndex = 11;
+			this.label5.Text = "Printer Status:";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// label1
+			// 
+			this.label1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(24, 61);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(100, 23);
+			this.label1.TabIndex = 10;
+			this.label1.Text = "Printer Model:";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// txtmodel
+			// 
+			this.txtmodel.Location = new System.Drawing.Point(130, 61);
+			this.txtmodel.Name = "txtmodel";
+			this.txtmodel.Size = new System.Drawing.Size(364, 22);
+			this.txtmodel.TabIndex = 9;
 			// 
 			// txtprinter
 			// 
@@ -188,6 +245,11 @@ namespace NJournals.Core.Views
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.TextBox txtmodel;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.RadioButton rdbactive;
+		private System.Windows.Forms.RadioButton rdbinactive;
 		private System.Windows.Forms.Button btnsave;
 		private System.Windows.Forms.Button btnclose;
 		private System.Windows.Forms.TextBox txtprinter;
