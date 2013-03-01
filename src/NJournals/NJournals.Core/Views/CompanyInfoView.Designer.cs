@@ -173,12 +173,14 @@ namespace NJournals.Core.Views
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(696, 495);
 			this.Controls.Add(this.btnsave);
 			this.Controls.Add(this.btnclose);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "CompanyInfoView";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "CompanyInfoView";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();

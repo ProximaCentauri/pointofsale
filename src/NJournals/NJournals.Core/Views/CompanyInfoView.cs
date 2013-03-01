@@ -9,13 +9,15 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-
+using NJournals.Common.Interfaces;
+using NJournals.Common.Gui;
+using NJournals.Common.DataEntities;
 namespace NJournals.Core.Views
 {
 	/// <summary>
 	/// Description of CompanyInfoView.
 	/// </summary>
-	public partial class CompanyInfoView : Form
+	public partial class CompanyInfoView : BaseForm, ICompanyView
 	{
 		public CompanyInfoView()
 		{
@@ -27,6 +29,12 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			
+			
+		}
+		
+		public void SetCompany(){
+				
 		}
 	}
 }

@@ -61,7 +61,7 @@ namespace NJournals.Core
 			this.label7 = new System.Windows.Forms.Label();
 			this.lblRefClaim = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
+			this.lblcompany = new System.Windows.Forms.Label();
 			this.lblRefNew = new System.Windows.Forms.Label();
 			this.lstOpenWindows = new System.Windows.Forms.ListBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -91,7 +91,7 @@ namespace NJournals.Core
 			this.panel1.Controls.Add(this.label7);
 			this.panel1.Controls.Add(this.lblRefClaim);
 			this.panel1.Controls.Add(this.label6);
-			this.panel1.Controls.Add(this.label4);
+			this.panel1.Controls.Add(this.lblcompany);
 			this.panel1.Controls.Add(this.lblRefNew);
 			this.panel1.Controls.Add(this.lstOpenWindows);
 			this.panel1.Controls.Add(this.label3);
@@ -285,15 +285,15 @@ namespace NJournals.Core
 			this.label6.Size = new System.Drawing.Size(191, 1);
 			this.label6.TabIndex = 19;
 			// 
-			// label4
+			// lblcompany
 			// 
-			this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(0, 0);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(166, 23);
-			this.label4.TabIndex = 17;
-			this.label4.Text = "Company Logo HERE";
+			this.lblcompany.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.lblcompany.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblcompany.Location = new System.Drawing.Point(0, 0);
+			this.lblcompany.Name = "lblcompany";
+			this.lblcompany.Size = new System.Drawing.Size(166, 23);
+			this.lblcompany.TabIndex = 17;
+			this.lblcompany.Text = "Company Logo HERE";
 			// 
 			// lblRefNew
 			// 
@@ -413,7 +413,7 @@ namespace NJournals.Core
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label lblcompany;
 		private System.Windows.Forms.Label lblRefNew;
 		private System.Windows.Forms.Label lblRefClaim;
 		private System.Windows.Forms.Label lblRefReports;
