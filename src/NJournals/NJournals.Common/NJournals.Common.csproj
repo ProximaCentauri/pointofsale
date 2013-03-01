@@ -145,6 +145,7 @@
     <Compile Include="Interfaces\IItemGenericDao.cs" />
     <Compile Include="Interfaces\IItemGenericView.cs" />
     <Compile Include="Interfaces\IItemView.cs" />
+    <Compile Include="Interfaces\ILaundryChargesView.cs" />
     <Compile Include="Interfaces\ILaundryCategoryDao.cs" />
     <Compile Include="Interfaces\ILaundryChargeDao.cs" />
     <Compile Include="Interfaces\ILaundryChecklistDao.cs" />

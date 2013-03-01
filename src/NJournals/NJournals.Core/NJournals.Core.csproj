@@ -115,6 +115,7 @@
     <Compile Include="Presenter\AddItemPresenter.cs" />
     <Compile Include="Presenter\ChekcListViewPresenter.cs" />
     <Compile Include="Presenter\CustomerListViewPresenter.cs" />
+    <Compile Include="Presenter\LaundryChargesViewPresenter.cs" />
     <Compile Include="Presenter\LaundryConfigurationViewPresenter.cs" />
     <Compile Include="Presenter\LaundryCustomerSearchViewPresenter.cs" />
     <Compile Include="Presenter\LaundryViewPresenter.cs" />
@@ -140,6 +141,10 @@
     <Compile Include="Views\CompanyInfoView.cs" />
     <Compile Include="Views\CompanyInfoView.Designer.cs">
       <DependentUpon>CompanyInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LaundryChargesView.cs" />
+    <Compile Include="Views\LaundryChargesView.Designer.cs">
+      <DependentUpon>LaundryChargesView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\LaundryConfigurationView.cs">
       <SubType>Form</SubType>
@@ -237,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CompanyInfoView.resx">
       <DependentUpon>CompanyInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LaundryChargesView.resx">
+      <DependentUpon>LaundryChargesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LaundryConfigurationView.resx">
       <DependentUpon>LaundryConfigurationView.cs</DependentUpon>
