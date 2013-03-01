@@ -90,6 +90,7 @@
     <Compile Include="DataEntities\LaundryPriceSchemeDataEntity.cs" />
     <Compile Include="DataEntities\LaundryReportDataEntity.cs" />
     <Compile Include="DataEntities\LaundryServiceDataEntity.cs" />
+    <Compile Include="DataEntities\PrinterDataEntity.cs" />
     <Compile Include="DataEntities\RefillCustInventoryDetailDataEntity.cs" />
     <Compile Include="DataEntities\RefillCustInventoryHeaderDataEntity.cs" />
     <Compile Include="DataEntities\RefillDaySummaryDataEntity.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="DataMappers\LaundryPaymentDetailDataMap.cs" />
     <Compile Include="DataMappers\LaundryPriceSchemeDataMap.cs" />
     <Compile Include="DataMappers\LaundryServiceDataMap.cs" />
+    <Compile Include="DataMappers\PrinterDataMap.cs" />
     <Compile Include="DataMappers\RefillCustInventoryDetailDataMap.cs" />
     <Compile Include="DataMappers\RefillCustInventoryHeaderDataMap.cs" />
     <Compile Include="DataMappers\RefillDaySummaryDataMap.cs" />
@@ -162,6 +164,7 @@
     <Compile Include="Interfaces\ILaundryReportDao.cs" />
     <Compile Include="Interfaces\ILaundryView.cs" />
     <Compile Include="Interfaces\IMainFormStationView.cs" />
+    <Compile Include="Interfaces\IPrinterDao.cs" />
     <Compile Include="Interfaces\IRefillCustomerInventoryDao.cs" />
     <Compile Include="Interfaces\IRefillDao.cs" />
     <Compile Include="Interfaces\IRefillDaySummaryDao.cs" />

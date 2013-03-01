@@ -104,6 +104,7 @@
     <Compile Include="Models\LaundryPriceSchemeDao.cs" />
     <Compile Include="Models\LaundryReportDao.cs" />
     <Compile Include="Models\LaundryServiceDao.cs" />
+    <Compile Include="Models\PrinterDao.cs" />
     <Compile Include="Models\RefillCustomerInventoryDao.cs" />
     <Compile Include="Models\RefillDao.cs" />
     <Compile Include="Models\RefillDataDao.cs" />

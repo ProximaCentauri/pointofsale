@@ -37,7 +37,7 @@ CREATE  TABLE `db_laundry_refilling`.`customer` (
 ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
--- Table structure for table `customer`
+-- Table structure for table `company`
 DROP TABLE IF EXISTS `company`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -46,7 +46,21 @@ CREATE  TABLE `db_laundry_refilling`.`company` (
   `Name` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,
   `Address` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,
   `ContactNumber` VARCHAR(25) NOT NULL DEFAULT 'NULL' ,  
+  `VoidFlag` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`CompanyID`) )
+ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- Table structure for table `printer`
+DROP TABLE IF EXISTS `printer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE  TABLE `db_laundry_refilling`.`printer` (
+  `PrinterID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,
+  `Model` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,  
+  `Status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`PrinterID`) )
 ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

@@ -2,12 +2,11 @@
  * Created by SharpDevelop.
  * User: mc185104
  * Date: 3/1/2013
- * Time: 3:13 PM
+ * Time: 4:21 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-
 using NJournals.Common;
 using NJournals.Common.Util;
 using System.Linq;
@@ -20,15 +19,15 @@ using NJournals.Common.DataEntities;
 namespace NJournals.Core.Models
 {
 	/// <summary>
-	/// Description of CompanyDao.
+	/// Description of PrinterDao.
 	/// </summary>
-	public class CompanyDao : ICompanyDao
+	public class PrinterDao : IPrinterDao
 	{
-		public CompanyDao()
+		public PrinterDao()
 		{
 		}
 		
-		public void SaveOrUpdate(CompanyDataEntity p_company)
+		public void SaveOrUpdate(PrinterDataEntity p_printer)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -36,7 +35,7 @@ namespace NJournals.Core.Models
 				{
 					try
 					{
-						session.SaveOrUpdate(p_company);
+						session.SaveOrUpdate(p_printer);
 						transaction.Commit();
 					}
 					catch(Exception ex)
@@ -49,13 +48,13 @@ namespace NJournals.Core.Models
 		}
 		
 		
-		public CompanyDataEntity GetByName(string p_name)
+		public PrinterDataEntity GetByName(string p_name)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				using(var transaction = session.BeginTransaction())
 				{
-                    var query = session.Query<CompanyDataEntity>()
+                    var query = session.Query<PrinterDataEntity>()
                         .Where(x => x.Name == p_name)
                         .SingleOrDefault();
 					return query;
@@ -64,19 +63,19 @@ namespace NJournals.Core.Models
 		}
 		
 		
-		public IEnumerable<CompanyDataEntity> GetAllItems()
+		public IEnumerable<PrinterDataEntity> GetAllItems()
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
-                var query = session.Query<CompanyDataEntity>()
-                	.Where(x => x.VoidFlag == false)
+                var query = session.Query<PrinterDataEntity>()
+                	.Where(x => x.Status == false)
                 	.OrderBy(x => x.Name)
                     .ToList();
                 return query;
 			}
 		}
 		
-		public void Update(CompanyDataEntity p_company)
+		public void Update(PrinterDataEntity p_printer)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -84,7 +83,7 @@ namespace NJournals.Core.Models
 				{
 					try
 					{
-						session.Update(p_company);
+						session.Update(p_printer);
 						transaction.Commit();
 					}
 					catch(Exception ex)
@@ -97,7 +96,7 @@ namespace NJournals.Core.Models
 			}
 		}
 		
-		public void Delete(CompanyDataEntity p_company)
+		public void Delete(PrinterDataEntity p_printer)
 		{
 			using(var session = NHibernateHelper.OpenSession())
 			{
@@ -105,7 +104,7 @@ namespace NJournals.Core.Models
 				{
 					try
 					{
-						session.Delete(p_company);
+						session.Delete(p_printer);
 						transaction.Commit();
 					}
 					catch(Exception ex)

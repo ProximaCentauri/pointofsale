@@ -39,14 +39,15 @@ namespace NJournals.Core.Views
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.txtname = new System.Windows.Forms.TextBox();
+			this.txtaddress = new System.Windows.Forms.TextBox();
+			this.txtcontact = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.button1 = new System.Windows.Forms.Button();
+			this.txtprinter = new System.Windows.Forms.TextBox();
+			this.btnclose = new System.Windows.Forms.Button();
+			this.btnsave = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -54,7 +55,7 @@ namespace NJournals.Core.Views
 			// label4
 			// 
 			this.label4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(24, 93);
+			this.label4.Location = new System.Drawing.Point(24, 104);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(100, 23);
 			this.label4.TabIndex = 3;
@@ -64,7 +65,7 @@ namespace NJournals.Core.Views
 			// label3
 			// 
 			this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(24, 41);
+			this.label3.Location = new System.Drawing.Point(24, 47);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(100, 23);
 			this.label3.TabIndex = 2;
@@ -81,40 +82,40 @@ namespace NJournals.Core.Views
 			this.label2.Text = "Name:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// textBox2
+			// txtname
 			// 
-			this.textBox2.Location = new System.Drawing.Point(130, 18);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(364, 22);
-			this.textBox2.TabIndex = 5;
+			this.txtname.Location = new System.Drawing.Point(130, 18);
+			this.txtname.Name = "txtname";
+			this.txtname.Size = new System.Drawing.Size(364, 22);
+			this.txtname.TabIndex = 5;
 			// 
-			// textBox3
+			// txtaddress
 			// 
-			this.textBox3.Location = new System.Drawing.Point(130, 46);
-			this.textBox3.Multiline = true;
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(364, 43);
-			this.textBox3.TabIndex = 6;
+			this.txtaddress.Location = new System.Drawing.Point(130, 52);
+			this.txtaddress.Multiline = true;
+			this.txtaddress.Name = "txtaddress";
+			this.txtaddress.Size = new System.Drawing.Size(364, 43);
+			this.txtaddress.TabIndex = 6;
 			// 
-			// textBox4
+			// txtcontact
 			// 
-			this.textBox4.Location = new System.Drawing.Point(130, 95);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(364, 22);
-			this.textBox4.TabIndex = 7;
+			this.txtcontact.Location = new System.Drawing.Point(130, 106);
+			this.txtcontact.Name = "txtcontact";
+			this.txtcontact.Size = new System.Drawing.Size(364, 22);
+			this.txtcontact.TabIndex = 7;
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.textBox4);
-			this.groupBox1.Controls.Add(this.textBox3);
-			this.groupBox1.Controls.Add(this.textBox2);
+			this.groupBox1.Controls.Add(this.txtcontact);
+			this.groupBox1.Controls.Add(this.txtaddress);
+			this.groupBox1.Controls.Add(this.txtname);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(528, 136);
+			this.groupBox1.Size = new System.Drawing.Size(672, 259);
 			this.groupBox1.TabIndex = 6;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Company Information";
@@ -131,38 +132,50 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.textBox1);
+			this.groupBox2.Controls.Add(this.txtprinter);
 			this.groupBox2.Controls.Add(this.label6);
-			this.groupBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox2.Location = new System.Drawing.Point(12, 166);
+			this.groupBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox2.Location = new System.Drawing.Point(12, 296);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(528, 72);
+			this.groupBox2.Size = new System.Drawing.Size(672, 136);
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Printer Settings";
 			// 
-			// textBox1
+			// txtprinter
 			// 
-			this.textBox1.Location = new System.Drawing.Point(130, 29);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(364, 22);
-			this.textBox1.TabIndex = 8;
+			this.txtprinter.Location = new System.Drawing.Point(130, 29);
+			this.txtprinter.Name = "txtprinter";
+			this.txtprinter.Size = new System.Drawing.Size(364, 22);
+			this.txtprinter.TabIndex = 8;
 			// 
-			// button1
+			// btnclose
 			// 
-			this.button1.Location = new System.Drawing.Point(465, 265);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 8;
-			this.button1.Text = "Close";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnclose.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnclose.Location = new System.Drawing.Point(609, 460);
+			this.btnclose.Name = "btnclose";
+			this.btnclose.Size = new System.Drawing.Size(75, 23);
+			this.btnclose.TabIndex = 8;
+			this.btnclose.Text = "Close";
+			this.btnclose.UseVisualStyleBackColor = true;
+			// 
+			// btnsave
+			// 
+			this.btnsave.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnsave.Location = new System.Drawing.Point(515, 460);
+			this.btnsave.Name = "btnsave";
+			this.btnsave.Size = new System.Drawing.Size(75, 23);
+			this.btnsave.TabIndex = 9;
+			this.btnsave.Text = "Save";
+			this.btnsave.UseVisualStyleBackColor = true;
 			// 
 			// CompanyInfoView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(560, 310);
-			this.Controls.Add(this.button1);
+			this.ClientSize = new System.Drawing.Size(696, 495);
+			this.Controls.Add(this.btnsave);
+			this.Controls.Add(this.btnclose);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "CompanyInfoView";
@@ -173,12 +186,13 @@ namespace NJournals.Core.Views
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 		}
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Button btnsave;
+		private System.Windows.Forms.Button btnclose;
+		private System.Windows.Forms.TextBox txtprinter;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.TextBox textBox4;
-		private System.Windows.Forms.TextBox textBox3;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox txtcontact;
+		private System.Windows.Forms.TextBox txtaddress;
+		private System.Windows.Forms.TextBox txtname;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label4;

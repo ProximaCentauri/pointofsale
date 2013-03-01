@@ -2,7 +2,7 @@
  * Created by SharpDevelop.
  * User: mc185104
  * Date: 3/1/2013
- * Time: 3:08 PM
+ * Time: 4:20 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -14,14 +14,14 @@ using NJournals.Common.DataEntities;
 namespace NJournals.Common.Interfaces
 {
 	/// <summary>
-	/// Description of ICompanyDao.
+	/// Description of IPrinterDao.
 	/// </summary>
-	public interface ICompanyDao
+	public interface IPrinterDao
 	{
-		void SaveOrUpdate(CompanyDataEntity p_customer);
-		IEnumerable<CompanyDataEntity> GetAllItems();
-		CompanyDataEntity GetByName(string p_name);
-		void Delete(CompanyDataEntity p_customer);
-		void Update(CompanyDataEntity p_customer);
+		void SaveOrUpdate(PrinterDataEntity p_printer);
+		IEnumerable<PrinterDataEntity> GetAllItems();		
+		PrinterDataEntity GetByName(string p_name);
+		void Delete(PrinterDataEntity p_printer);
+		void Update(PrinterDataEntity p_printer);
 	}
 }

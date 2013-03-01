@@ -61,6 +61,7 @@ namespace NJournals.Common.Util
             		          .AddFromAssemblyOf<LaundryJobChargesDataEntity>()
             		          .AddFromAssemblyOf<LaundryJobChecklistDataEntity>()
             		          .AddFromAssemblyOf<LaundryDaySummaryDataEntity>()
+            		          .AddFromAssemblyOf<PrinterDataEntity>()
             		          .AddFromAssemblyOf<RefillProductTypeDataEntity>()
             		          .AddFromAssemblyOf<RefillTransactionTypeDataEntity>()
             		          .AddFromAssemblyOf<RefillHeaderDataEntity>()

@@ -2,7 +2,7 @@
  * Created by SharpDevelop.
  * User: mc185104
  * Date: 3/1/2013
- * Time: 3:11 PM
+ * Time: 4:17 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -12,24 +12,21 @@ using FluentNHibernate.Mapping;
 using NHibernate.Linq;
 using NJournals.Common.DataEntities;
 
-
 namespace NJournals.Common.DataMappers
 {
 	/// <summary>
-	/// Description of CompanyDataMap.
+	/// Description of PrinterDataMap.
 	/// </summary>
-	public class CompanyDataMap : ClassMap<CompanyDataEntity>
+	public class PrinterDataMap : ClassMap<PrinterDataEntity>
 	{
-		
-		public CompanyDataMap()
+		public PrinterDataMap()
 		{
-			Id(x => x.CompanyID);
+			Id(x => x.PrinterID);
 			Map(x => x.Name);
-			Map(x => x.Address);
-			Map(x => x.ContactNumber);				
-			Map(x => x.VoidFlag);
+			Map(x => x.Model);
+			Map(x => x.Status);				
 			
-			Table("Company");
+			Table("Printer");
 		}
 	}
 }
