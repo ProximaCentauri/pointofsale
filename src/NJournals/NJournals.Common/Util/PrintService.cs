@@ -48,12 +48,7 @@ namespace NJournals.Common.Util
 				if (ps == null) return false;
 				
 				StringBuilder sb = new StringBuilder();
-				PrintClaimSlip(ref sb, header);			
-				if(header.JobChecklistEntities.Count > 0)
-				{
-					PrintCheckList(ref sb, header);
-				}
-				
+				PrintClaimSlip(ref sb, header);							
 				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
 				
 				sb = new StringBuilder();				
@@ -76,7 +71,34 @@ namespace NJournals.Common.Util
 				if (ps == null) return false;
 				
 				StringBuilder sb = new StringBuilder();
-				PrintCheckList(ref sb, header);
+				sb.Append(SetAlignment("CENTER"));			
+		      	sb.Append(SetFontSize(2));
+		      	sb.AppendLine("CHECKLIST");	      		      	
+		      	sb.Append(SetFontSize(0));
+		      	sb.AppendLine("");
+				sb.Append(SetAlignment("LEFT"));
+				sb.AppendLine("SO#: " + header.LaundryHeaderID.ToString());
+				sb.AppendLine("CUSTOMER: " + header.Customer.Name);			
+				sb.AppendLine("");
+				
+				sb.Append(Convert.ToChar(27) + "D" + Convert.ToChar(12));				
+				sb.Append("ITEM" + Convert.ToChar(9) + "QTY");
+				
+				foreach(LaundryJobChecklistDataEntity checklist in header.JobChecklistEntities)
+				{				
+					sb.AppendLine(checklist.Checklist.Name.ToUpper() + Convert.ToChar(9) +
+					              checklist.Qty.ToString());							
+				}
+				sb.AppendLine("");
+				sb.AppendLine("");
+				sb.Append(SetAlignment("CENTER"));
+				sb.AppendLine(header.TotalItemQty.ToString() + " ITEMS");	
+				sb.AppendLine("");
+				sb.AppendLine("******************************");
+				sb.AppendLine("");
+				sb.AppendLine("");
+				sb.Append(CutPaper());	
+				
 				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
 				return true;
 			}
@@ -119,8 +141,10 @@ namespace NJournals.Common.Util
 			sb.AppendLine("DATE DUE: " + header.DueDate.ToShortDateString());
 			sb.AppendLine("");
 			
-			sb.Append(Convert.ToChar(27) + "D" + Convert.ToChar(12));				
-			sb.Append("#OF ITEMS" + Convert.ToChar(9) + "KLS" + Convert.ToChar(9) + "ITEM" + Convert.ToChar(9) + "TOTAL");				
+		//	sb.Append(Convert.ToChar(27) + "D" + Convert.ToChar(12));				
+			sb.Append("#OF ITEMS  /    ITEM");
+			sb.Append(SetAlignment("CENTER") + " / ");
+			sb.Append(SetAlignment("RIGHT") + "KLS.    /   TOTAL");
 			
 			foreach(LaundryDetailDataEntity detail in header.DetailEntities)
 			{
@@ -138,10 +162,11 @@ namespace NJournals.Common.Util
 					item += st.Substring(0,1);
 				}
 				
-				sb.AppendLine(detail.ItemQty.ToString() + Convert.ToChar(9) +
-				              detail.Kilo.ToString() + Convert.ToChar(9) +
-				              item.ToUpper() + Convert.ToChar(9) +
-				              detail.Amount.ToString("N2")) ;					
+				sb.Append(SetAlignment("LEFT"));
+				sb.AppendLine(detail.ItemQty.ToString() + " / " + item.ToUpper());
+				sb.Append(SetAlignment("RIGHT"));
+				sb.Append(detail.Kilo.ToString() + " / " + detail.Amount.ToString("N2"));
+											
 			}
 			sb.AppendLine("");
 			sb.AppendLine("");
@@ -171,33 +196,7 @@ namespace NJournals.Common.Util
 				
 		private static void PrintCheckList(ref StringBuilder sb, LaundryHeaderDataEntity header)
 	    {
-	      	sb.Append(SetAlignment("CENTER"));			
-	      	sb.Append(SetFontSize(2));
-	      	sb.AppendLine("CHECKLIST");	      		      	
-	      	sb.Append(SetFontSize(0));
-	      	sb.AppendLine("");
-			sb.Append(SetAlignment("LEFT"));
-			sb.AppendLine("SO#: " + header.LaundryHeaderID.ToString());
-			sb.AppendLine("CUSTOMER: " + header.Customer.Name);			
-			sb.AppendLine("");
-			
-			sb.Append(Convert.ToChar(27) + "D" + Convert.ToChar(12));				
-			sb.Append("ITEM" + Convert.ToChar(9) + "QTY");
-			
-			foreach(LaundryJobChecklistDataEntity checklist in header.JobChecklistEntities)
-			{				
-				sb.AppendLine(checklist.Checklist.Name.ToUpper() + Convert.ToChar(9) +
-				              checklist.Qty.ToString());							
-			}
-			sb.AppendLine("");
-			sb.AppendLine("");
-			sb.Append(SetAlignment("CENTER"));
-			sb.AppendLine(header.TotalItemQty.ToString() + " ITEMS");	
-			sb.AppendLine("");
-			sb.AppendLine("******************************");
-			sb.AppendLine("");
-			sb.AppendLine("");
-			sb.Append(CutPaper());	
+	      	
 	    }
 		
 		private static void PrintRefillOrderSlip(ref StringBuilder sb, RefillHeaderDataEntity header)

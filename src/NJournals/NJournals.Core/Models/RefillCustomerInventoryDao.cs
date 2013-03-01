@@ -68,7 +68,7 @@ namespace NJournals.Core.Models
 				return query;
 			}
 		}
-		
+				
 		public void Delete(RefillCustInventoryHeaderDataEntity p_custinv)
 		{
 			using(var session = NHibernateHelper.OpenSession())

@@ -69,21 +69,7 @@ namespace NJournals.Core.Models
 				return query;
 			}
 		}
-		
-		
-		public RefillInventoryDetailDataEntity GetDetailDay(RefillInventoryHeaderDataEntity p_header, DateTime p_dayStamp)
-		{
-			using(var session = NHibernateHelper.OpenSession())
-			{
-                var query = session.QueryOver<RefillInventoryDetailDataEntity>()
-                	.Where(x => x.Header == p_header)
-                	.And(x => x.Date == p_dayStamp)
-                	.SingleOrDefault();
-                   	
-				return query;
-			}
-		}
-		
+						
 		public void Delete(RefillInventoryHeaderDataEntity p_inventory)
 		{
 			using(var session = NHibernateHelper.OpenSession())
