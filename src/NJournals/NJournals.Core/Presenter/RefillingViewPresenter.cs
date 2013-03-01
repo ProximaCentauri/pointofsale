@@ -226,8 +226,9 @@ namespace NJournals.Core.Presenter
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
 			if(m_headerEntity != null){
 				MessageService.ShowInfo("Printing transaction...");
-				PrintService.PrintRefillSlip(m_headerEntity, 1);
-			}
+				PrintService.PrintRefillSlip(m_headerEntity, 1);	
+			}			
+			
 		}
 	}
 }

@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ReportConstants.cs" />
+    <Compile Include="DataEntities\CompanyDataEntity.cs" />
     <Compile Include="DataEntities\CustomerDataEntity.cs" />
     <Compile Include="DataEntities\ItemDataEntity.cs" />
     <Compile Include="DataEntities\ItemGenericDataEntity.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="DataEntities\RefillPaymentDetailDataEntity.cs" />
     <Compile Include="DataEntities\RefillProductTypeDataEntity.cs" />
     <Compile Include="DataEntities\RefillTransactionTypeDataEntity.cs" />
+    <Compile Include="DataMappers\CompanyDataMap.cs" />
     <Compile Include="DataMappers\CustomerDataMap.cs" />
     <Compile Include="DataMappers\ItemCategoryDataMap.cs" />
     <Compile Include="DataEntities\ItemCategoryDataEntity.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Interfaces\IAddItemGenericView.cs" />
     <Compile Include="Interfaces\IAddItemView.cs" />
     <Compile Include="Interfaces\ICheckListView.cs" />
+    <Compile Include="Interfaces\ICompanyDao.cs" />
     <Compile Include="Interfaces\IConfigurationView.cs" />
     <Compile Include="Interfaces\ICustomerDao.cs" />
     <Compile Include="Interfaces\ICustomerListView.cs" />

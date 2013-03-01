@@ -289,8 +289,7 @@ namespace NJournals.Core.Views
 		}
 		
 		void txtamttender_textchanged(object sender, EventArgs e)
-		{
-			
+		{			
 			if(txtamttender.Text.Length == 0){
 				txtamttender.Text = "0.00";				
 			}	

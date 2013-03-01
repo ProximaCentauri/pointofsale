@@ -50,6 +50,7 @@ namespace NJournals.Common.Util
                     )
                 	.Mappings(m => m.FluentMappings
             		          .AddFromAssemblyOf<CustomerDataEntity>()
+            		          .AddFromAssemblyOf<CompanyDataEntity>()
             		          .AddFromAssemblyOf<LaundryCategoryDataEntity>()
             		          .AddFromAssemblyOf<LaundryChargeDataEntity>()
             		          .AddFromAssemblyOf<LaundryChecklistDataEntity>()
