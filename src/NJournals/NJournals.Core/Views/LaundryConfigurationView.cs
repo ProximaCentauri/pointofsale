@@ -233,19 +233,19 @@ namespace NJournals.Core.Views
 					service.Description = description;
 					
 					services.Add(service);
-					updatedServices.Add(service.Name);
+					updatedServices.Add(service.Name.ToUpper());
 				}
 				else
 				{	
 					LaundryServiceDataEntity newService = new LaundryServiceDataEntity();	
-					newService = m_serviceEntity.Find(m_service => m_service.Name == name);
+					newService = m_serviceEntity.Find(m_service => m_service.Name.ToUpper() == name.ToUpper());
 
-					if((newService == null || newService.ServiceID == 0) && !updatedServices.Contains(name))
+					if((newService == null || newService.ServiceID == 0) && !updatedServices.Contains(name.ToUpper()))
 					{
 						service.Name = name;
 						service.Description = description;
 					
-						updatedServices.Add(service.Name);
+						updatedServices.Add(service.Name.ToUpper());
 						services.Add(service);
 					}
 					else
@@ -395,19 +395,19 @@ namespace NJournals.Core.Views
 					category.Description = description;
 					
 					categories.Add(category);
-					updatedCategories.Add(category.Name);
+					updatedCategories.Add(category.Name.ToUpper());
 				}
 				else
 				{
 					LaundryCategoryDataEntity newCategory = new LaundryCategoryDataEntity();
-					newCategory = m_categoryEntity.Find(m_category => m_category.Name == name);					
+					newCategory = m_categoryEntity.Find(m_category => m_category.Name.ToUpper() == name.ToUpper());
 					
-					if(newCategory.CategoryID == 0 && !updatedCategories.Contains(name))
+					if(newCategory.CategoryID == 0 && !updatedCategories.Contains(name.ToUpper()))
 					{
 						category.Name = name;
 						category.Description = description;
 					
-						updatedCategories.Add(category.Name);
+						updatedCategories.Add(category.Name.ToUpper());
 						categories.Add(category);
 					}
 					else
@@ -560,7 +560,7 @@ namespace NJournals.Core.Views
 					priceScheme.Price = price;
 					
 					priceSchemes.Add(priceScheme);
-					updatedPriceScheme.Add(serviceName + " - " + categoryName);
+					updatedPriceScheme.Add(serviceName.ToUpper() + " - " + categoryName.ToUpper());
 				}
 			}
 
@@ -580,10 +580,10 @@ namespace NJournals.Core.Views
 					description = currentRow.Cells["Description"].Value.ToString();
 					price = Convert.ToDecimal(currentRow.Cells["Price"].Value.ToString());
 					
-					newPriceScheme = m_priceSchemeEntity.Find(m_priceScheme => (m_priceScheme.Service.Name == serviceName) 
-					&& (m_priceScheme.Category.Name == categoryName));
+					newPriceScheme = m_priceSchemeEntity.Find(m_priceScheme => (m_priceScheme.Service.Name.ToUpper() == serviceName.ToUpper())
+					                                          && (m_priceScheme.Category.Name.ToUpper() == categoryName.ToUpper()));
 					
-					if((newPriceScheme == null || newPriceScheme.ID == 0) && !updatedPriceScheme.Contains(serviceName + " - " + categoryName))
+					if((newPriceScheme == null || newPriceScheme.ID == 0) && !updatedPriceScheme.Contains(serviceName.ToUpper() + " - " + categoryName.ToUpper()))
 					{
 						priceScheme.Service = new LaundryServiceDataEntity();
 						priceScheme.Service = m_serviceEntity.Find(m_service => m_service.Name == serviceName);
@@ -593,7 +593,7 @@ namespace NJournals.Core.Views
 						priceScheme.Price = price;
 						
 						priceSchemes.Add(priceScheme);
-						updatedPriceScheme.Add(serviceName + " - " + categoryName);						
+						updatedPriceScheme.Add(serviceName.ToUpper() + " - " + categoryName.ToUpper());
 					}
 					else
 					{

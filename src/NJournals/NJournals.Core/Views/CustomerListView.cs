@@ -108,7 +108,7 @@ namespace NJournals.Core.Views
 				}
 				else
 				{
-					customer = m_customersEntity.Find(m_customer => m_customer.Name == name);	
+					customer = m_customersEntity.Find(m_customer => m_customer.Name.ToUpper() == name.ToUpper());
 
 					if(customer != null && customer.CustomerID != 0)
 					{
