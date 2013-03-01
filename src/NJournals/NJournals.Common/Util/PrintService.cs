@@ -9,6 +9,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using NJournals.Common.DataEntities;
@@ -25,16 +26,85 @@ namespace NJournals.Common.Util
 		{
 		}
 		
-		public static void Print()
-		{
-			
+		static PrinterSettings ps = null;
+		private static void SetPrinter(short copies)
+		{								
+			foreach(string printer in PrinterSettings.InstalledPrinters)
+			{
+				if(printer.ToUpper().Equals("POS80"))
+				{
+					ps = new PrinterSettings();
+					ps.PrinterName = "POS80";	
+					ps.Copies = copies;					
+					break;
+				}
+			}			  				    		
 		}
 		
-		public static void PrintClaimSlip(LaundryHeaderDataEntity header)
+		public static bool PrintLaundrySlip(LaundryHeaderDataEntity header, short copies)
 		{
-			// FIXME
-			StringBuilder sb = new StringBuilder();
-			sb.Append(Convert.ToChar(27) + "a" + Convert.ToChar(49));						
+			try{
+				SetPrinter(copies);
+				if (ps == null) return false;
+				
+				StringBuilder sb = new StringBuilder();
+				PrintClaimSlip(ref sb, header);				
+				PrintCheckList(ref sb, header);
+				
+				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
+				
+				sb = new StringBuilder();				
+				PrintTag(ref sb, header);
+				ps.Copies = 1;
+				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
+				return true;				
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}			
+		}
+			
+		public static bool PrintCheckList(LaundryHeaderDataEntity header, short copies)
+		{
+			try
+			{
+				SetPrinter(copies);
+				if (ps == null) return false;
+				
+				StringBuilder sb = new StringBuilder();
+				PrintCheckList(ref sb, header);
+				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
+				return true;
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
+		}
+		
+		public static bool PrintRefillSlip(RefillHeaderDataEntity header, short copies)
+		{
+			try{
+				SetPrinter(copies);
+				if (ps == null) return false;
+				
+				StringBuilder sb = new StringBuilder();
+				PrintRefillOrderSlip(ref sb, header);				
+				
+				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());								
+				return true;				
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}			
+		}
+				
+		
+		private static void PrintClaimSlip(ref StringBuilder sb, LaundryHeaderDataEntity header)
+		{						
+			sb.Append(SetAlignment("CENTER"));
 			sb.AppendLine("LAUNDRYPRO GARMENT CARE");
 			sb.AppendLine("TETH'S SATELLITE MARKET");
 			sb.AppendLine("M.L. QUEZON AVE. MAGUIKAY");
@@ -43,45 +113,176 @@ namespace NJournals.Common.Util
 			sb.AppendLine("");
 			sb.AppendLine("");
 			sb.AppendLine("CLAIM SLIP");
-			sb.Append(Convert.ToChar(27) + "a" + Convert.ToChar(48));
-			sb.AppendLine("SO#: 1234");
-			sb.AppendLine("CUSTOMER: MAGIS");
-			sb.AppendLine("DATE RECEIVED: " + DateTime.Now.Date);
-			sb.AppendLine("DATE DUE: 1234" + DateTime.Now.Date);
+			sb.Append(SetAlignment("LEFT"));
+			sb.AppendLine("SO#: " + header.LaundryHeaderID.ToString());
+			sb.AppendLine("CUSTOMER: " + header.Customer.Name.ToUpper());
+			sb.AppendLine("DATE RECEIVED: " + header.ReceivedDate.ToShortDateString());
+			sb.AppendLine("DATE DUE: " + header.DueDate.ToShortDateString());
 			sb.AppendLine("");
 			
-			sb.AppendLine("#OF ITEMS" + Convert.ToChar(29) + "C" + Convert.ToChar(2) + Convert.ToChar(50)			             
-			          + "KLS" + Convert.ToChar(9) + "ITEM" + Convert.ToChar(9) + "TOTAL");
-			sb.AppendLine("27" + Convert.ToChar(9) + "5" + Convert.ToChar(9) + "WDFAG" + Convert.ToChar(9) +"135");
+			sb.Append(Convert.ToChar(27) + "D" + Convert.ToChar(12));				
+			sb.Append("#OF ITEMS" + Convert.ToChar(9) + "KLS" + Convert.ToChar(9) + "ITEM" + Convert.ToChar(9) + "TOTAL");				
+			
+			foreach(LaundryDetailDataEntity detail in header.DetailEntities)
+			{
+				string[] itemArr = detail.Service.Name.Split(' ');
+				string item = "";
+				foreach(string st in itemArr)
+				{
+					item += st.Substring(0,1); 
+				}
+				item += " - ";
+				itemArr = detail.Category.Name.Split(' ');
+				foreach(string st in itemArr){
+					item += st.Substring(0,1);
+				}
+				
+				sb.AppendLine(detail.ItemQty.ToString() + Convert.ToChar(9) +
+				              detail.Kilo.ToString() + Convert.ToChar(9) +
+				              item.ToUpper() + Convert.ToChar(9) +
+				              detail.Amount.ToString("N2")) ;					
+			}
 			sb.AppendLine("");
 			sb.AppendLine("");
+			sb.Append(SetAlignment("CENTER"));
+			sb.AppendLine(header.TotalItemQty.ToString() + " ITEMS");										
+			sb.Append(SetAlignment("RIGHT"));
+			sb.AppendLine("TOTAL: " + header.TotalAmountDue.ToString("N2"));
+			sb.AppendLine("DEPOSIT: " + header.TotalPayment.ToString("N2"));
+			sb.AppendLine("BALANCE: " + (header.TotalAmountDue - header.TotalPayment).ToString("N2"));
 			sb.AppendLine("");
-			sb.Append(Convert.ToChar(27) + "a" + Convert.ToChar(49));
-			sb.AppendLine("27 ITEMS");
-			sb.Append(Convert.ToChar(27) + "a" + Convert.ToChar(50));
-			sb.AppendLine("TOTAL: 135");
-			sb.AppendLine("DEPOSI: 100");
-			sb.AppendLine("BALANCE: 35");
 			sb.AppendLine("");
-			sb.AppendLine("");
-			sb.Append(Convert.ToChar(27) + "a" + Convert.ToChar(49));
+			sb.Append(SetAlignment("CENTER"));
 			sb.AppendLine("THIS IS NOT AN OFFICIAL RECEIPT.");
 			sb.AppendLine("");
 			sb.AppendLine("WE THANK YOU FOR YOUR BUSINESS!");
 			sb.AppendLine("");
 			sb.AppendLine("");
-			sb.Append(Convert.ToChar(29) + "V" + Convert.ToChar(66) + Convert.ToChar(0));			
-			PrinterSettings ps = new PrinterSettings();
-			ps.PrinterName = "POS80";
-	    	// Allow the user to select a printer.
-	    	//PrintDialog pd  = new PrintDialog();
-	    	//pd.PrinterSettings = new PrinterSettings();
-		  //  if( DialogResult.OK == pd.ShowDialog() )
-		  //  {
-		        // Send a printer-specific to the printer.
-		        RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
-		 //   }
+			sb.Append(CutPaper());	
+									
 		}
+		
+		private static void PrintTag(ref StringBuilder sb, LaundryHeaderDataEntity header)
+		{
+			sb.Append(SetAlignment("CENTER"));
+			sb.Append(Convert.ToChar(29) + "!" + Convert.ToChar(32));
+			sb.AppendLine(header.Customer.Name.ToUpper());
+			sb.Append(Convert.ToChar(29) + "!" + Convert.ToChar(16));
+			sb.AppendLine(header.LaundryHeaderID.ToString());
+			              sb.Append(Convert.ToChar(29) + "!" + Convert.ToChar(0));
+			sb.AppendLine("");
+			sb.AppendLine("");
+			sb.Append(CutPaper());
+		}
+				
+		private static void PrintCheckList(ref StringBuilder sb, LaundryHeaderDataEntity header)
+	    {
+	      	sb.Append(SetAlignment("CENTER"));			
+			sb.AppendLine("CHECKLIST");
+			sb.Append(SetAlignment("LEFT"));
+			sb.AppendLine("SO#: " + header.LaundryHeaderID.ToString());
+			sb.AppendLine("CUSTOMER: " + header.Customer.Name);			
+			sb.AppendLine("");
 			
+			sb.Append(Convert.ToChar(27) + "D" + Convert.ToChar(12));				
+			sb.Append("ITEM" + Convert.ToChar(9) + "QTY");
+			
+			foreach(LaundryJobChecklistDataEntity checklist in header.JobChecklistEntities)
+			{				
+				sb.AppendLine(checklist.Checklist.Name.ToUpper() + Convert.ToChar(9) +
+				              checklist.Qty.ToString());							
+			}
+			sb.AppendLine("");
+			sb.AppendLine("");
+			sb.Append(SetAlignment("CENTER"));
+			sb.AppendLine(header.TotalItemQty.ToString() + " ITEMS");	
+			sb.AppendLine("");
+			sb.AppendLine("******************************");
+			sb.AppendLine("");
+			sb.AppendLine("");
+			sb.Append(CutPaper());	
+	    }
+		
+		private static void PrintRefillOrderSlip(ref StringBuilder sb, RefillHeaderDataEntity header)
+		{
+			sb.Append(SetAlignment("CENTER"));
+			sb.AppendLine("LAUNDRYPRO GARMENT CARE");
+			sb.AppendLine("TETH'S SATELLITE MARKET");
+			sb.AppendLine("M.L. QUEZON AVE. MAGUIKAY");
+			sb.AppendLine("MANDAUE CITY");
+			sb.AppendLine("# (032) 4127045 # (0906) 5429986");
+			sb.AppendLine("");
+			sb.AppendLine("");
+			sb.AppendLine("ORDER SLIP");
+			sb.Append(SetAlignment("LEFT"));
+			sb.AppendLine("SO#: " + header.RefillHeaderID.ToString());
+			sb.AppendLine("CUSTOMER: " + header.Customer.Name.ToUpper());
+			sb.AppendLine("DATE RECEIVED: " + header.Date.ToShortDateString());
+			sb.AppendLine("TRANSACTION TYPE: " + header.TransactionType.Name.ToUpper());			
+			sb.AppendLine("");
+			
+			sb.Append(Convert.ToChar(27) + "D" + Convert.ToChar(12));				
+			sb.Append("#OF ITEMS" + Convert.ToChar(9) + "ITEM" + Convert.ToChar(9) + "TOTAL");				
+			
+			int storebottle = 0;
+			int storecap = 0;
+			foreach(RefillDetailDataEntity detail in header.DetailEntities)
+			{
+				string[] itemArr = detail.ProductType.Name.Split(' ');
+				string item = "";
+				foreach(string st in itemArr)
+				{
+					item += st.Substring(0,1); 
+				}			
+				
+				sb.AppendLine(detail.Qty.ToString() + Convert.ToChar(9) +				              
+				              item.ToUpper() + Convert.ToChar(9) +
+				              detail.Amount.ToString("N2")) ;	
+				storebottle += detail.StoreBottleQty;
+				storecap += detail.StoreCapQty;				
+			}
+			sb.AppendLine("");
+			sb.AppendLine("");
+			sb.Append(SetAlignment("CENTER"));
+			sb.AppendLine(header.TotalQty.ToString() + " ITEMS");										
+			sb.Append(SetAlignment("LEFT"));	
+			sb.AppendLine("STORE BOTTLE: " + storebottle);
+			sb.AppendLine("STORE CAP: " + storebottle);
+			sb.AppendLine("");
+			sb.Append(SetAlignment("RIGHT"));
+			sb.AppendLine("");
+			sb.AppendLine("TOTAL: " + header.AmountDue.ToString("N2"));
+			sb.AppendLine("DEPOSIT: " + header.AmountTender.ToString("N2"));
+			sb.AppendLine("BALANCE: " + (header.AmountDue - header.AmountTender).ToString("N2"));
+			sb.AppendLine("");
+			sb.AppendLine("");
+			sb.Append(SetAlignment("CENTER"));
+			sb.AppendLine("THIS IS NOT AN OFFICIAL RECEIPT.");
+			sb.AppendLine("");
+			sb.AppendLine("WE THANK YOU FOR YOUR BUSINESS!");
+			sb.AppendLine("");
+			sb.AppendLine("");
+			sb.Append(CutPaper());	
+		}
+		
+		private static string SetAlignment(string align)
+		{
+			switch(align)
+			{
+				case "LEFT":
+					return Convert.ToChar(27) + "a" + Convert.ToChar(48);
+				case "RIGHT":
+					return Convert.ToChar(27) + "a" + Convert.ToChar(50);
+				case "CENTER":
+					return Convert.ToChar(27) + "a" + Convert.ToChar(49);
+			default:
+				return Convert.ToChar(27) + "a" + Convert.ToChar(48); // align left
+			}
+		}
+		
+		private static string CutPaper()
+		{
+			return (Convert.ToChar(29) + "V" + Convert.ToChar(66) + Convert.ToChar(0));
+		}
 	}
 }
