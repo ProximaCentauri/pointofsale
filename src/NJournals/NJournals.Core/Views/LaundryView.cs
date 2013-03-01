@@ -517,7 +517,6 @@ namespace NJournals.Core.Views
 		
 		void BtnprintClick(object sender, EventArgs e)
 		{
-
 			if(CheckForEmptyFields())
 				return;
 			m_presenter.PrintTransaction();
