@@ -51,6 +51,12 @@ namespace NJournals.Core.Views
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.dgvOutBalance = new System.Windows.Forms.DataGridView();
+			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ItemQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TotalAmtDue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TotalAmtTender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.label7 = new System.Windows.Forms.Label();
 			this.txtchange = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
@@ -63,12 +69,6 @@ namespace NJournals.Core.Views
 			this.dtDate = new System.Windows.Forms.DateTimePicker();
 			this.txtbalance = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
-			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ItemQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TotalAmtDue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TotalAmtTender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dgvOutBalance)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -153,6 +153,7 @@ namespace NJournals.Core.Views
 			this.txtReturnedBottles.Name = "txtReturnedBottles";
 			this.txtReturnedBottles.Size = new System.Drawing.Size(84, 20);
 			this.txtReturnedBottles.TabIndex = 20;
+			this.txtReturnedBottles.TextChanged += new System.EventHandler(this.TxtReturnedBottlesTextChanged);
 			this.txtReturnedBottles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
 			// label4
@@ -173,6 +174,7 @@ namespace NJournals.Core.Views
 			this.txtReturnedCaps.Name = "txtReturnedCaps";
 			this.txtReturnedCaps.Size = new System.Drawing.Size(84, 20);
 			this.txtReturnedCaps.TabIndex = 22;
+			this.txtReturnedCaps.TextChanged += new System.EventHandler(this.TxtReturnedCapsTextChanged);
 			this.txtReturnedCaps.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
 			// label5
@@ -224,6 +226,48 @@ namespace NJournals.Core.Views
 			this.dgvOutBalance.RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvOutBalance.Size = new System.Drawing.Size(913, 311);
 			this.dgvOutBalance.TabIndex = 25;
+			// 
+			// Date
+			// 
+			this.Date.HeaderText = "Date";
+			this.Date.Name = "Date";
+			this.Date.ReadOnly = true;
+			this.Date.Width = 170;
+			// 
+			// TransactionNo
+			// 
+			this.TransactionNo.HeaderText = "Transaction #";
+			this.TransactionNo.Name = "TransactionNo";
+			this.TransactionNo.ReadOnly = true;
+			this.TransactionNo.Width = 150;
+			// 
+			// ItemQty
+			// 
+			this.ItemQty.HeaderText = "Total # Items";
+			this.ItemQty.Name = "ItemQty";
+			this.ItemQty.ReadOnly = true;
+			this.ItemQty.Width = 130;
+			// 
+			// TotalAmtDue
+			// 
+			this.TotalAmtDue.HeaderText = "Total Amount Due";
+			this.TotalAmtDue.Name = "TotalAmtDue";
+			this.TotalAmtDue.ReadOnly = true;
+			this.TotalAmtDue.Width = 140;
+			// 
+			// TotalAmtTender
+			// 
+			this.TotalAmtTender.HeaderText = "Total Amount Tender";
+			this.TotalAmtTender.Name = "TotalAmtTender";
+			this.TotalAmtTender.ReadOnly = true;
+			this.TotalAmtTender.Width = 150;
+			// 
+			// Balance
+			// 
+			this.Balance.HeaderText = "Balance";
+			this.Balance.Name = "Balance";
+			this.Balance.ReadOnly = true;
+			this.Balance.Width = 130;
 			// 
 			// label7
 			// 
@@ -354,48 +398,6 @@ namespace NJournals.Core.Views
 			this.label13.TabIndex = 36;
 			this.label13.Text = "Balance:";
 			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// Date
-			// 
-			this.Date.HeaderText = "Date";
-			this.Date.Name = "Date";
-			this.Date.ReadOnly = true;
-			this.Date.Width = 170;
-			// 
-			// TransactionNo
-			// 
-			this.TransactionNo.HeaderText = "Transaction #";
-			this.TransactionNo.Name = "TransactionNo";
-			this.TransactionNo.ReadOnly = true;
-			this.TransactionNo.Width = 150;
-			// 
-			// ItemQty
-			// 
-			this.ItemQty.HeaderText = "Total # Items";
-			this.ItemQty.Name = "ItemQty";
-			this.ItemQty.ReadOnly = true;
-			this.ItemQty.Width = 130;
-			// 
-			// TotalAmtDue
-			// 
-			this.TotalAmtDue.HeaderText = "Total Amount Due";
-			this.TotalAmtDue.Name = "TotalAmtDue";
-			this.TotalAmtDue.ReadOnly = true;
-			this.TotalAmtDue.Width = 140;
-			// 
-			// TotalAmtTender
-			// 
-			this.TotalAmtTender.HeaderText = "Total Amount Tender";
-			this.TotalAmtTender.Name = "TotalAmtTender";
-			this.TotalAmtTender.ReadOnly = true;
-			this.TotalAmtTender.Width = 150;
-			// 
-			// Balance
-			// 
-			this.Balance.HeaderText = "Balance";
-			this.Balance.Name = "Balance";
-			this.Balance.ReadOnly = true;
-			this.Balance.Width = 130;
 			// 
 			// RefillReturnPaymentView
 			// 

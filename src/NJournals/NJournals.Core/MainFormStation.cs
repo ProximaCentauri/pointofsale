@@ -90,8 +90,8 @@ namespace NJournals.Core
 			ShowSingletonForm(refillingView);
 		}
 		
-		public void ShowRefillingClaimView(){
-			refillingView.SetTitle("Refilling  [RETURN/PAYMENT]");
+		public void ShowRefillingReturnPaymentView(){
+			refillReturnView.SetTitle("Refilling  [RETURN/PAYMENT]");
 			ShowSingletonForm(refillReturnView);
 		}
 		
