@@ -157,8 +157,6 @@ namespace NJournals.Core.Views
 		void dgvchecklist_cellclick(object sender, DataGridViewCellEventArgs e)
 		{
 			calculateQty();
-		}
-		
-		
+		}		
 	}
 }
