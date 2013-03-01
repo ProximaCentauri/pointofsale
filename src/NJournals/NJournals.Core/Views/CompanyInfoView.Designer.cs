@@ -45,6 +45,8 @@ namespace NJournals.Core.Views
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.rdbinactive = new System.Windows.Forms.RadioButton();
 			this.rdbactive = new System.Windows.Forms.RadioButton();
 			this.label5 = new System.Windows.Forms.Label();
@@ -91,7 +93,7 @@ namespace NJournals.Core.Views
 			// 
 			this.txtname.Location = new System.Drawing.Point(130, 18);
 			this.txtname.Name = "txtname";
-			this.txtname.Size = new System.Drawing.Size(364, 22);
+			this.txtname.Size = new System.Drawing.Size(414, 22);
 			this.txtname.TabIndex = 5;
 			// 
 			// txtaddress
@@ -99,14 +101,14 @@ namespace NJournals.Core.Views
 			this.txtaddress.Location = new System.Drawing.Point(130, 52);
 			this.txtaddress.Multiline = true;
 			this.txtaddress.Name = "txtaddress";
-			this.txtaddress.Size = new System.Drawing.Size(364, 43);
+			this.txtaddress.Size = new System.Drawing.Size(414, 43);
 			this.txtaddress.TabIndex = 6;
 			// 
 			// txtcontact
 			// 
 			this.txtcontact.Location = new System.Drawing.Point(130, 106);
 			this.txtcontact.Name = "txtcontact";
-			this.txtcontact.Size = new System.Drawing.Size(364, 22);
+			this.txtcontact.Size = new System.Drawing.Size(414, 22);
 			this.txtcontact.TabIndex = 7;
 			// 
 			// groupBox1
@@ -120,7 +122,7 @@ namespace NJournals.Core.Views
 			this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(672, 259);
+			this.groupBox1.Size = new System.Drawing.Size(672, 173);
 			this.groupBox1.TabIndex = 6;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Company Information";
@@ -128,15 +130,17 @@ namespace NJournals.Core.Views
 			// label6
 			// 
 			this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(24, 28);
+			this.label6.Location = new System.Drawing.Point(290, 21);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(100, 23);
 			this.label6.TabIndex = 5;
-			this.label6.Text = "Printer Name:";
+			this.label6.Text = "Current Printer";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.listBox1);
+			this.groupBox2.Controls.Add(this.label7);
 			this.groupBox2.Controls.Add(this.rdbinactive);
 			this.groupBox2.Controls.Add(this.rdbactive);
 			this.groupBox2.Controls.Add(this.label5);
@@ -145,16 +149,35 @@ namespace NJournals.Core.Views
 			this.groupBox2.Controls.Add(this.txtprinter);
 			this.groupBox2.Controls.Add(this.label6);
 			this.groupBox2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox2.Location = new System.Drawing.Point(12, 296);
+			this.groupBox2.Location = new System.Drawing.Point(12, 222);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(672, 136);
+			this.groupBox2.Size = new System.Drawing.Size(672, 210);
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Printer Settings";
 			// 
+			// listBox1
+			// 
+			this.listBox1.FormattingEnabled = true;
+			this.listBox1.ItemHeight = 14;
+			this.listBox1.Location = new System.Drawing.Point(24, 47);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.Size = new System.Drawing.Size(241, 144);
+			this.listBox1.TabIndex = 15;
+			// 
+			// label7
+			// 
+			this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label7.Location = new System.Drawing.Point(24, 18);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(100, 23);
+			this.label7.TabIndex = 14;
+			this.label7.Text = "Installed Printers";
+			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// rdbinactive
 			// 
-			this.rdbinactive.Location = new System.Drawing.Point(207, 93);
+			this.rdbinactive.Location = new System.Drawing.Point(396, 156);
 			this.rdbinactive.Name = "rdbinactive";
 			this.rdbinactive.Size = new System.Drawing.Size(104, 24);
 			this.rdbinactive.TabIndex = 13;
@@ -164,7 +187,7 @@ namespace NJournals.Core.Views
 			// rdbactive
 			// 
 			this.rdbactive.Checked = true;
-			this.rdbactive.Location = new System.Drawing.Point(130, 93);
+			this.rdbactive.Location = new System.Drawing.Point(319, 156);
 			this.rdbactive.Name = "rdbactive";
 			this.rdbactive.Size = new System.Drawing.Size(71, 24);
 			this.rdbactive.TabIndex = 12;
@@ -175,41 +198,41 @@ namespace NJournals.Core.Views
 			// label5
 			// 
 			this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(24, 93);
+			this.label5.Location = new System.Drawing.Point(290, 130);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(100, 23);
 			this.label5.TabIndex = 11;
-			this.label5.Text = "Printer Status:";
+			this.label5.Text = "Printer Status";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label1
 			// 
 			this.label1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(24, 61);
+			this.label1.Location = new System.Drawing.Point(299, 79);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(100, 23);
 			this.label1.TabIndex = 10;
-			this.label1.Text = "Printer Model:";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.label1.Text = "Printer Model";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// txtmodel
 			// 
-			this.txtmodel.Location = new System.Drawing.Point(130, 61);
+			this.txtmodel.Location = new System.Drawing.Point(312, 105);
 			this.txtmodel.Name = "txtmodel";
-			this.txtmodel.Size = new System.Drawing.Size(364, 22);
+			this.txtmodel.Size = new System.Drawing.Size(232, 22);
 			this.txtmodel.TabIndex = 9;
 			// 
 			// txtprinter
 			// 
-			this.txtprinter.Location = new System.Drawing.Point(130, 29);
+			this.txtprinter.Location = new System.Drawing.Point(312, 47);
 			this.txtprinter.Name = "txtprinter";
-			this.txtprinter.Size = new System.Drawing.Size(364, 22);
+			this.txtprinter.Size = new System.Drawing.Size(232, 22);
 			this.txtprinter.TabIndex = 8;
 			// 
 			// btnclose
 			// 
 			this.btnclose.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnclose.Location = new System.Drawing.Point(609, 460);
+			this.btnclose.Location = new System.Drawing.Point(481, 451);
 			this.btnclose.Name = "btnclose";
 			this.btnclose.Size = new System.Drawing.Size(75, 23);
 			this.btnclose.TabIndex = 8;
@@ -219,7 +242,7 @@ namespace NJournals.Core.Views
 			// btnsave
 			// 
 			this.btnsave.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnsave.Location = new System.Drawing.Point(515, 460);
+			this.btnsave.Location = new System.Drawing.Point(387, 451);
 			this.btnsave.Name = "btnsave";
 			this.btnsave.Size = new System.Drawing.Size(75, 23);
 			this.btnsave.TabIndex = 9;
@@ -239,12 +262,15 @@ namespace NJournals.Core.Views
 			this.Name = "CompanyInfoView";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "CompanyInfoView";
+			this.Load += new System.EventHandler(this.CompanyInfoViewLoad);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.TextBox txtmodel;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label5;

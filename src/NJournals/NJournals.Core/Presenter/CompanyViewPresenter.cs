@@ -10,6 +10,7 @@ using System;
 using NJournals.Common.DataEntities;
 using NJournals.Core.Models;
 using NJournals.Common.Interfaces;
+using System.Collections.Generic;
 namespace NJournals.Core.Presenter
 {
 	/// <summary>
@@ -19,15 +20,16 @@ namespace NJournals.Core.Presenter
 	{
 		private ICompanyDao m_companyDao;
 		private IPrinterDao m_printerDao;
-		
-		public CompanyViewPresenter()
+		private ICompanyView m_view;		
+		public CompanyViewPresenter(ICompanyView p_view)
 		{
+			m_view = p_view;
 			m_companyDao = new CompanyDao();
 			m_printerDao = new PrinterDao();
 		}
 		
 		public void ShowCompanyInfo(){
-			//return m_companyDao.
+			m_view.SetCompanyInfo(m_companyDao.GetAllItems() as List<CompanyDataEntity>);
 		}
 		
 		public void ShowPrinterInfo(){
