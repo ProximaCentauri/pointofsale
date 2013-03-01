@@ -82,16 +82,6 @@ namespace NJournals.Core.Presenter
 			return m_productDao.GetByName(name).Price;
 		}
 		
-		public void PrintClicked(){
-			m_headerEntity = m_view.ProcessHeaderDataEntity();
-			if(SaveDaySummary(m_headerEntity)){
-				UpdateRefillCustomerInventory(m_headerEntity);
-				//TODO: Add printing process
-				MessageService.ShowInfo("Successfully saved the entries.","Save");
-			}
-				
-		}
-		
 		public void SaveClicked(){
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
 			if(SaveDaySummary(m_headerEntity)){
@@ -230,6 +220,14 @@ namespace NJournals.Core.Presenter
 		
 		public void loadHeaderEntity(){
 			m_view.LoadHeaderEntityData(m_OriginalHeaderEntity);
+		}
+		
+		public void PrintTransaction(){
+			m_headerEntity = m_view.ProcessHeaderDataEntity();
+			if(m_headerEntity != null){
+				MessageService.ShowInfo("Printing transaction...");
+				PrintService.PrintClaimSlip(null);
+			}
 		}
 	}
 }

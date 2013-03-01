@@ -128,14 +128,10 @@ namespace NJournals.Core.Views
 		
 		void BtnprintcloseClick(object sender, EventArgs e)
 		{
-			if(CheckForEmptyFields())
-				return;
+			//if(CheckForEmptyFields())
+			//	return;
 			
-			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjonumber.Text + "?" + 
-			                            Environment.NewLine + "Transaction will be print upon saving." , "Save?")){
-				m_presenter.PrintClicked();			
-				this.Close();
-			}			                            			
+			m_presenter.PrintTransaction();						                            			
 		}
 		
 		private bool CheckForEmptyFields(){

@@ -76,6 +76,7 @@ namespace NJournals.Core.Views
 				txtdiscount.Enabled = false;
 				dataGridView1.AllowUserToDeleteRows = false;
 				btnprint.Visible = true;
+				btnDeleteDetail.Enabled = false;
 			}
 			m_presenter.SetAllServices();
 			m_presenter.SetAllCharges();
@@ -465,6 +466,7 @@ namespace NJournals.Core.Views
 			txtamtdue.Text = amtdue.ToString("N2");
 			totaldue -= removePrice;
 			txttotalamtdue.Text = totaldue.ToString("N2");
+			txtbalance.Text = (totaldue - decimal.Parse(txtamttender.Text)).ToString("N2");
 		}		
 		
 		void dgv_selectionchanged(object sender, EventArgs e)
@@ -509,15 +511,22 @@ namespace NJournals.Core.Views
 		void ChkpaywhenclaimCheckedChanged(object sender, EventArgs e)
 		{
 			//if(this.Text.Contains("NEW"))
-				txtamttender.Enabled = !chkpaywhenclaim.Checked;
+				//txtamttender.Enabled = !chkpaywhenclaim.Checked;
 		}
 
 		
 		void BtnprintClick(object sender, EventArgs e)
 		{
-//			if(CheckForEmptyFields())
-//				return;
+			//if(CheckForEmptyFields())
+			//	return;
 			m_presenter.PrintTransaction();
+		}
+		
+		void BtnDeleteDetailClick(object sender, EventArgs e)
+		{
+			if(dataGridView1.SelectedRows.Count > 0 && this.Text.Contains("NEW")){
+				dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+			}
 		}
 	}	
 }

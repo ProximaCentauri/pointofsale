@@ -416,11 +416,11 @@ namespace NJournals.Core.Views
 			// btnprintclose
 			// 
 			this.btnprintclose.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnprintclose.Location = new System.Drawing.Point(685, 686);
+			this.btnprintclose.Location = new System.Drawing.Point(545, 686);
 			this.btnprintclose.Name = "btnprintclose";
 			this.btnprintclose.Size = new System.Drawing.Size(136, 23);
 			this.btnprintclose.TabIndex = 20;
-			this.btnprintclose.Text = " Print && Close";
+			this.btnprintclose.Text = "Print";
 			this.btnprintclose.UseVisualStyleBackColor = true;
 			this.btnprintclose.Click += new System.EventHandler(this.BtnprintcloseClick);
 			// 
@@ -537,7 +537,7 @@ namespace NJournals.Core.Views
 			// btnsave
 			// 
 			this.btnsave.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnsave.Location = new System.Drawing.Point(520, 686);
+			this.btnsave.Location = new System.Drawing.Point(714, 686);
 			this.btnsave.Name = "btnsave";
 			this.btnsave.Size = new System.Drawing.Size(123, 23);
 			this.btnsave.TabIndex = 27;

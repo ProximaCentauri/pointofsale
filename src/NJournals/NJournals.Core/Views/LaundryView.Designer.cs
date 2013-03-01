@@ -538,6 +538,7 @@ namespace NJournals.Core.Views
 			this.chkpaywhenclaim.TabIndex = 15;
 			this.chkpaywhenclaim.Text = "Pay when Claim";
 			this.chkpaywhenclaim.UseVisualStyleBackColor = true;
+			this.chkpaywhenclaim.Visible = false;
 			this.chkpaywhenclaim.CheckedChanged += new System.EventHandler(this.ChkpaywhenclaimCheckedChanged);
 			// 
 			// btnsaveclose
@@ -721,6 +722,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteDetail.Size = new System.Drawing.Size(35, 23);
 			this.btnDeleteDetail.TabIndex = 32;
 			this.btnDeleteDetail.UseVisualStyleBackColor = true;
+			this.btnDeleteDetail.Click += new System.EventHandler(this.BtnDeleteDetailClick);
 			// 
 			// btnprint
 			// 
