@@ -86,9 +86,18 @@ namespace NJournals.Core.Presenter
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
 			if(SaveDaySummary(m_headerEntity)){
 				UpdateRefillCustomerInventory(m_headerEntity);
+				//TODO: Add printing process
 				MessageService.ShowInfo("Successfully saved the entries.","Save");
 			}
 				
+		}
+		
+		public void SaveClicked(){
+			m_headerEntity = m_view.ProcessHeaderDataEntity();
+			if(SaveDaySummary(m_headerEntity)){
+				UpdateRefillCustomerInventory(m_headerEntity);
+				MessageService.ShowInfo("Successfully saved the entries.","Save");
+			}
 		}
 		
 		private void UpdateRefillCustomerInventory(RefillHeaderDataEntity headerEntity){

@@ -47,12 +47,12 @@ namespace NJournals.Core.Views
 			this.label2 = new System.Windows.Forms.Label();
 			this.txttotal = new System.Windows.Forms.TextBox();
 			this.dgvCheckList = new System.Windows.Forms.DataGridView();
-			this.btnDeleteCheckList = new System.Windows.Forms.Button();
-			this.btnSaveCheckList = new System.Windows.Forms.Button();
-			this.btncancel = new System.Windows.Forms.Button();
 			this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.btnDeleteCheckList = new System.Windows.Forms.Button();
+			this.btnSaveCheckList = new System.Windows.Forms.Button();
+			this.btncancel = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCheckList)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -137,7 +137,36 @@ namespace NJournals.Core.Views
 			this.dgvCheckList.RowsDefaultCellStyle = dataGridViewCellStyle4;
 			this.dgvCheckList.Size = new System.Drawing.Size(276, 423);
 			this.dgvCheckList.TabIndex = 25;
+			this.dgvCheckList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvchecklist_cellclick);
 			this.dgvCheckList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvChecklist_cellvalidating);
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "";
+			this.Column1.Name = "Column1";
+			this.Column1.Width = 25;
+			// 
+			// Column2
+			// 
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
+			this.Column2.HeaderText = "Item Name";
+			this.Column2.Name = "Column2";
+			this.Column2.Width = 130;
+			// 
+			// Column3
+			// 
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
+			this.Column3.HeaderText = "Item #";
+			this.Column3.Name = "Column3";
+			this.Column3.Width = 78;
 			// 
 			// btnDeleteCheckList
 			// 
@@ -175,34 +204,6 @@ namespace NJournals.Core.Views
 			this.btncancel.Text = "Cancel";
 			this.btncancel.UseVisualStyleBackColor = true;
 			this.btncancel.Click += new System.EventHandler(this.BtncancelClick);
-			// 
-			// Column1
-			// 
-			this.Column1.HeaderText = "";
-			this.Column1.Name = "Column1";
-			this.Column1.Width = 25;
-			// 
-			// Column2
-			// 
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
-			this.Column2.HeaderText = "Item Name";
-			this.Column2.Name = "Column2";
-			this.Column2.Width = 130;
-			// 
-			// Column3
-			// 
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
-			this.Column3.HeaderText = "Item #";
-			this.Column3.Name = "Column3";
-			this.Column3.Width = 78;
 			// 
 			// CheckListView
 			// 
