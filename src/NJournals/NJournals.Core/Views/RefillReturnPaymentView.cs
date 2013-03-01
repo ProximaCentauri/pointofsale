@@ -45,6 +45,7 @@ namespace NJournals.Core.Views
 		void RefillReturnPaymentViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
+			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/user1.ico");
 			m_presenter = new RefillingReturnPaymentPresenter(this);
 			refillHeaders = null;
 			m_customerEntity = null;

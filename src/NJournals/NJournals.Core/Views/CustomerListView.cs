@@ -47,6 +47,7 @@ namespace NJournals.Core.Views
 			setButtonImages();
 			formatAlternatingRows();
 			setToolTip();
+			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/customer.ico");
 			m_presenter = new CustomerListViewPresenter(this);
 			m_presenter.SetAllCustomerList();
 		}

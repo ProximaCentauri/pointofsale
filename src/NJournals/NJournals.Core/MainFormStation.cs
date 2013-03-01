@@ -34,7 +34,7 @@ namespace NJournals.Core
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 			MessageService.Attach(new MessageBoxMessageProvider());
-			
+			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/company.ico");			
 		}
 		
 		public event EventHandler SelectCustomerList;
@@ -71,7 +71,6 @@ namespace NJournals.Core
 		
 		public void ShowLaundryNewView(){					
 			laundryView.SetTitle("Laundry  [NEW]");	
-			laundryView.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.IO.Directory.GetCurrentDirectory() + "/images/basket_new.ico");
 			ShowSingletonForm(laundryView);
 		}
 		

@@ -57,18 +57,20 @@ namespace NJournals.Core.Views
 		
 		void LaundryNewViewLoad(object sender, EventArgs e)
 		{
-			setButtonImages();
+			setButtonImages();			
 				
 			m_laundryDao = new LaundryDao();
 			m_presenter = new LaundryViewPresenter(this, m_laundryDao);
-			if(this.Text.Contains("[NEW]")){	
+			if(this.Text.Contains("[NEW]")){
+				this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/basket_new.ico");				
 				m_headerEntity = new LaundryHeaderDataEntity();						
 				m_presenter.SetAllCustomers();
 				this.groupBox2.Enabled = this.btnclaim.Enabled = btndelete.Enabled = false;
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 				this.dtrecieveDate.Value = DateTime.Now;				
 				dataGridView1.AllowUserToDeleteRows = true;
-			}else{				
+			}else{	
+				this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/basket_claim.ico");				
 				cmbCustomers.Enabled = false;
 				grpServices.Enabled = false;
 				lblchecklist.Enabled = false;

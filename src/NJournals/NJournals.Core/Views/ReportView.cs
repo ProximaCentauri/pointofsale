@@ -48,7 +48,7 @@ namespace NJournals.Core.Views
         private void ReportView_Load(object sender, EventArgs e)
         {
         	m_presenter = new ReportViewPresenter(this);
-        	
+        	this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/chart.ico");
             this.reportViewer.RefreshReport();
             this.reportViewer.LocalReport.ReportEmbeddedResource = null;
             m_presenter.SetAllReportTypes(this.GetTitle());

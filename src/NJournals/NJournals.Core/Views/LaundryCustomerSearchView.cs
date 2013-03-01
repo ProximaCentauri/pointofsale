@@ -42,6 +42,7 @@ namespace NJournals.Core.Views
 		
 		void LaundryCustomerSearchViewLoad(object sender, EventArgs e)
 		{
+			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/user1.ico");
 			if(m_customer!=null)
 			{
 				txtcustomer.Text = m_customer.Name;			

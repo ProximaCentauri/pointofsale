@@ -47,6 +47,7 @@ namespace NJournals.Core.Views
 		void CheckListViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
+			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/checklist.ico");
 			m_presenter.SetAllChecklist();
 			if(m_headerEntity.JobChecklistEntities.Count > 0){
 				m_presenter.SetSelectedChecklist();

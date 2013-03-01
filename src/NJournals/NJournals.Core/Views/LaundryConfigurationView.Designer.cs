@@ -95,6 +95,8 @@ namespace NJournals.Core.Views
 			this.dgvPriceScheme.RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvPriceScheme.Size = new System.Drawing.Size(789, 220);
 			this.dgvPriceScheme.TabIndex = 1;
+			this.dgvPriceScheme.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(dgvPriceScheme_CellValueChanged);
+			this.dgvPriceScheme.CellValidating += new DataGridViewCellValidatingEventHandler(dgvPriceScheme_cellValidating);
 			// 
 			// label2
 			// 

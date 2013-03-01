@@ -55,7 +55,7 @@ namespace NJournals.Core.Views
 			setButtonImages();
 			formatAlternatingRows();
 			setToolTip();
-			
+			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/config.ico");
 			m_presenter = new LaundryConfigurationViewPresenter(this);
 			m_presenter.SetAllCategories();
 			m_presenter.SetAllServices();
@@ -468,7 +468,7 @@ namespace NJournals.Core.Views
 			List<LaundryPriceSchemeDataEntity> priceSchemes = new List<LaundryPriceSchemeDataEntity>();
 			string errorMessage = string.Empty;
 			
-			if(ValidatePriceSchemeData(priceSchemeRowIndexChange))
+			if(ValidatePriceSchemeData())
 			{
 				priceSchemes = GetPriceSchemeDataValueChange(priceSchemeRowIndexChange, out errorMessage);
 				
@@ -502,7 +502,7 @@ namespace NJournals.Core.Views
 			}
 			else
 			{
-				MessageService.ShowWarning("Cannot save empty service/category name. Please select service/category name");
+				MessageService.ShowWarning("Cannot save empty service/category name. Please select service/category name.");
 			}
 		}
 		
@@ -536,7 +536,7 @@ namespace NJournals.Core.Views
 		private List<LaundryPriceSchemeDataEntity> GetPriceSchemeDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
 			List<LaundryPriceSchemeDataEntity> priceSchemes = new List<LaundryPriceSchemeDataEntity>();	
-			LaundryPriceSchemeDataEntity priceScheme = new LaundryPriceSchemeDataEntity();
+			LaundryPriceSchemeDataEntity priceScheme = null;
 			List<string> updatedPriceScheme = new List<string>();
 			string errorMsg = string.Empty;
 			string serviceName = string.Empty;
@@ -549,8 +549,11 @@ namespace NJournals.Core.Views
 				priceScheme = new LaundryPriceSchemeDataEntity();
 				serviceName = this.dgvPriceScheme.Rows[rowIndex].Cells["ServiceName"].Value.ToString();
 				categoryName = this.dgvPriceScheme.Rows[rowIndex].Cells["CategoryName"].Value.ToString();
-				description = this.dgvPriceScheme.Rows[rowIndex].Cells["Description"].Value.ToString();
-				price = Convert.ToDecimal(this.dgvPriceScheme.Rows[rowIndex].Cells["Price"].Value.ToString());
+				
+				if(!this.dgvPriceScheme.Rows[rowIndex].Cells["Description"].Value.ToString().Trim().Equals(string.Empty))
+					description = this.dgvPriceScheme.Rows[rowIndex].Cells["Description"].Value.ToString();
+				if(!this.dgvPriceScheme.Rows[rowIndex].Cells["Price"].Value.ToString().Trim().Equals(string.Empty))
+					price = Convert.ToDecimal(this.dgvPriceScheme.Rows[rowIndex].Cells["Price"].Value.ToString());
 				
 				if(rowIndex <= priceSchemeMaxRowIndex)
 				{
@@ -562,24 +565,9 @@ namespace NJournals.Core.Views
 					priceSchemes.Add(priceScheme);
 					updatedPriceScheme.Add(serviceName.ToUpper() + " - " + categoryName.ToUpper());
 				}
-			}
-
-			//TODO: get new data
-			if(this.dgvPriceScheme.RowCount -1 > priceSchemeMaxRowIndex)
-			{
-				int rowDataToAdd =  (this.dgvPriceScheme.RowCount - 1) - priceSchemeMaxRowIndex;				
-				
-				for(int ctr = 1; ctr < rowDataToAdd; ctr++)
+				else
 				{
-					LaundryPriceSchemeDataEntity newPriceScheme = new LaundryPriceSchemeDataEntity();
-					priceScheme = new LaundryPriceSchemeDataEntity();
-					DataGridViewRow currentRow = this.dgvPriceScheme.Rows[priceSchemeMaxRowIndex + ctr];
-					
-					serviceName = currentRow.Cells["ServiceName"].Value.ToString();
-					categoryName = currentRow.Cells["CategoryName"].Value.ToString();
-					description = currentRow.Cells["Description"].Value.ToString();
-					price = Convert.ToDecimal(currentRow.Cells["Price"].Value.ToString());
-					
+					LaundryPriceSchemeDataEntity newPriceScheme = new LaundryPriceSchemeDataEntity();					
 					newPriceScheme = m_priceSchemeEntity.Find(m_priceScheme => (m_priceScheme.Service.Name.ToUpper() == serviceName.ToUpper())
 					                                          && (m_priceScheme.Category.Name.ToUpper() == categoryName.ToUpper()));
 					
@@ -600,7 +588,7 @@ namespace NJournals.Core.Views
 						errorMsg += serviceName + " - " + categoryName + " , ";
 					}
 				}
-			}			
+			}
 
 			errorMessage = errorMsg;
 			return priceSchemes;
@@ -620,16 +608,19 @@ namespace NJournals.Core.Views
 			}
 		}
 		
-		private bool ValidatePriceSchemeData(List<int> rowIndexChange)
+		private bool ValidatePriceSchemeData()
 		{
 			int rowDataToAdd =  (this.dgvPriceScheme.RowCount - 1) - priceSchemeMaxRowIndex;				
 				
+			if(rowDataToAdd == 1)
+				return false;
+			
 			for(int ctr = 1; ctr < rowDataToAdd; ctr++)
 			{
 				DataGridViewRow currentRow = this.dgvPriceScheme.Rows[priceSchemeMaxRowIndex + ctr];
 				
-				if(currentRow.Cells["ServiceName"].Value.ToString().Equals(string.Empty) ||
-				   currentRow.Cells["CategoryName"].Value.ToString().Equals(string.Empty))
+				if(currentRow.Cells["ServiceName"].Value == null || currentRow.Cells["ServiceName"].Value.ToString().Equals(string.Empty) ||
+				   currentRow.Cells["CategoryName"].Value == null || currentRow.Cells["CategoryName"].Value.ToString().Equals(string.Empty))
 					return false;
 			}
 			return true;

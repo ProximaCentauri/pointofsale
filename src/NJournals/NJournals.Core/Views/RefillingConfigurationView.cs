@@ -52,7 +52,7 @@ namespace NJournals.Core.Views
 			setButtonImages();
 			formatAlternatingRows();
 			SetToolTip();
-			
+			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/config.ico");
 			m_presenter = new RefillingConfigurationViewPresenter(this);
 			m_presenter.SetAllRefillProductType();
 			m_presenter.SetAllRefillInventory();
@@ -447,12 +447,17 @@ namespace NJournals.Core.Views
 		{
 			int rowDataToAdd = (this.dgvRefillInventory.RowCount - 1) - refillInvMaxRowIndex;
 			
+			if(rowDataToAdd == 1)
+			{
+				return false;
+			}
+			
 			for(int ctr = 1; ctr < rowDataToAdd; ctr++)
 			{
 				DataGridViewRow currentRow = this.dgvRefillInventory.Rows[refillInvMaxRowIndex + ctr];
 				
-				if(currentRow.Cells["Name"].Value.ToString().Trim().Equals(string.Empty))
-					return false;
+				if(currentRow.Cells["Name"].Value == null || currentRow.Cells["Name"].Value.ToString().Trim().Equals(string.Empty))
+						return false;
 			}			
 			
 			return true;

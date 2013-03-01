@@ -74,6 +74,7 @@ namespace NJournals.Core.Views
 			this.dgvProductType.Size = new System.Drawing.Size(789, 326);
 			this.dgvProductType.TabIndex = 7;
 			this.dgvProductType.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductType_CellValueChanged);
+			this.dgvProductType.CellValidating += new DataGridViewCellValidatingEventHandler(dgvProductType_cellValidating);
 			// 
 			// label3
 			// 
