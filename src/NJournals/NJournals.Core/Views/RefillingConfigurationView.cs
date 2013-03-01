@@ -186,10 +186,10 @@ namespace NJournals.Core.Views
 			foreach(int rowIndex in rowIndexChange)
 			{
 				RefillProductTypeDataEntity productType = new RefillProductTypeDataEntity();
-				name = this.dgvProductType.Rows[rowIndex].Cells["Name"].Value.ToString();
+				name = this.dgvProductType.Rows[rowIndex].Cells["Name"].Value.ToString().Trim();
 				
 				if(this.dgvProductType.Rows[rowIndex].Cells["Description"].Value != null)
-					description = this.dgvProductType.Rows[rowIndex].Cells["Description"].Value.ToString();
+					description = this.dgvProductType.Rows[rowIndex].Cells["Description"].Value.ToString().Trim();
 				
 				price = Convert.ToDecimal(this.dgvProductType.Rows[rowIndex].Cells["Price"].Value.ToString());
 				
@@ -210,7 +210,7 @@ namespace NJournals.Core.Views
 					RefillProductTypeDataEntity newProduct = new RefillProductTypeDataEntity();
 					newProduct = m_productTypeEntity.Find(m_productType => m_productType.Name.ToUpper() == name.ToUpper());
 					
-					if(newProduct.ProductTypeID == 0 && !updatedProducts.Contains(name.ToUpper()))
+					if((newProduct == null || newProduct.ProductTypeID == 0) && !updatedProducts.Contains(name.ToUpper()))
 					{
 						productType.Name = name;
 						productType.Description = description;

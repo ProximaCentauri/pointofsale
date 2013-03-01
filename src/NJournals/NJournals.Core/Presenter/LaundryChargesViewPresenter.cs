@@ -33,5 +33,20 @@ namespace NJournals.Core.Presenter
 			List<LaundryChargeDataEntity> charges = m_laundryChargeDao.GetAllItems() as List<LaundryChargeDataEntity>;
 			m_view.SetAllLaundryCharges(charges);
 		}
+		
+		public void SaveOrUpdateCharges(List<LaundryChargeDataEntity> charges)
+		{
+			try
+			{
+				foreach(LaundryChargeDataEntity charge in charges)
+				{
+					m_laundryChargeDao.SaveOrUpdate(charge);
+				}
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
+		}
 	}
 }

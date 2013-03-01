@@ -57,6 +57,7 @@ namespace NJournals.Core.Views
 			BindingSource source = new BindingSource();
 			source.DataSource = m_chargesEntity;
 			dgvCharges.DataSource = source;
+			chargesMaxRowIndex = dgvCharges.RowCount - 1;
 			formatChargesDataGridView();
 		}
 		
@@ -78,12 +79,100 @@ namespace NJournals.Core.Views
 			
 			if(ValidateChargeName(chargesIndexChange))
 			{
+				charges = GetChargesDataValueChange(chargesIndexChange, out errorMessage);
 				
+				if(errorMessage.Equals(string.Empty))
+				{
+					if(charges.Count > 0)
+					{
+						try
+						{
+							m_presenter.SaveOrUpdateCharges(charges);
+							m_presenter.SetAllLaundryCharges();
+							MessageService.ShowInfo("Successfully saved/updated charges.", "Save or Update charges");
+							chargesMaxRowIndex = dgvCharges.RowCount - 1;
+							dgvCharges.Refresh();
+						}
+						catch (Exception ex)
+						{
+							//TODO: error message
+                            MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
+                                       "Please check error log for details.\n", ex); ;
+						}
+					}
+				}
+				else
+				{
+					//TODO: error message
+					MessageService.ShowWarning("Unable to insert duplicate charge name: " + errorMessage.Remove(errorMessage.LastIndexOf(',')).Trim() +
+					                          " . Please make sure that no duplicate entry before saving.");
+				}
+			}
+			else
+			{
+				MessageService.ShowWarning("Cannot save empty charge name.");
 			}
 		}
 		
+		//TODO: void flag;
 		void BtnDeleteChargesClick(object sender, EventArgs e)
 		{
+			LaundryChargeDataEntity charge = new LaundryChargeDataEntity();
+			
+			if(dgvCharges.SelectedRows.Count > 0)
+			{
+				if(MessageService.ShowYesNo("Are you sure you want to remove the selected charges from the list?", "Remove Charges"))
+				{
+					
+				}
+			}
+		}
+		
+		private List<LaundryChargeDataEntity> GetChargesDataValueChange(List<int> rowIndexChange, out string errorMessage)
+		{
+			List<LaundryChargeDataEntity> charges = new List<LaundryChargeDataEntity>();
+			List<string> updateCharges = new List<string>();
+			string errorMsg = string.Empty;
+			string name = string.Empty;
+			decimal price = 0;
+			
+			foreach(int rowIndex in rowIndexChange)
+			{
+				LaundryChargeDataEntity charge = new LaundryChargeDataEntity();
+				name = dgvCharges.Rows[rowIndex].Cells["Name"].Value.ToString().Trim();
+				price = Convert.ToDecimal(dgvCharges.Rows[rowIndex].Cells["Amount"].Value.ToString());
+				
+				if(rowIndex < chargesMaxRowIndex)
+				{
+					int chargeID = (int)dgvCharges.Rows[rowIndex].Cells["ChargeID"].Value;
+					charge = m_chargesEntity.Find(chargesEntity => chargesEntity.ChargeID == chargeID);
+					
+					charge.Name = name;
+					charge.Amount = price;
+					charges.Add(charge);
+					updateCharges.Add(charge.Name.ToUpper());
+				}
+				else
+				{
+					LaundryChargeDataEntity newCharge = new LaundryChargeDataEntity();
+					newCharge = m_chargesEntity.Find(chargesEntity => chargesEntity.Name.ToUpper() == name.ToUpper());
+					
+					if((newCharge == null || newCharge.ChargeID == 0) && !updateCharges.Contains(name))
+					{
+						charge.Name = name;
+						charge.Amount = price;
+						
+						updateCharges.Add(charge.Name.ToUpper());
+						charges.Add(charge);
+					}
+					else
+					{
+						errorMsg += name + ", ";
+					}
+				}				
+			}
+			errorMessage = errorMsg;
+			return charges;
 			
 		}
 		
@@ -91,8 +180,11 @@ namespace NJournals.Core.Views
 		{
 			foreach(int rowIndex in rowIndexChange)
 			{
-				
+				if(dgvCharges.Rows[rowIndex].Cells["Name"].Value == null ||
+				   dgvCharges.Rows[rowIndex].Cells["Name"].Value.ToString().Trim().Equals(string.Empty))
+					return false;
 			}
+			return true;
 		}
 		
 		#endregion
