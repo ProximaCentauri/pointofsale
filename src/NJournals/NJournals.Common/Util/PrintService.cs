@@ -128,9 +128,11 @@ namespace NJournals.Common.Util
 				string item = "";
 				foreach(string st in itemArr)
 				{
-					item += st.Substring(0,1); 
+					if(!st.Equals("-"){
+					   	item += st.Substring(0,1); 
+					}
 				}
-				item += " - ";
+				item += "-";
 				itemArr = detail.Category.Name.Split(' ');
 				foreach(string st in itemArr){
 					item += st.Substring(0,1);
