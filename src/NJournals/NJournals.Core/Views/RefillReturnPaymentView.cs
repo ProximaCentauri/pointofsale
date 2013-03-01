@@ -27,6 +27,8 @@ namespace NJournals.Core.Views
 		List<CustomerDataEntity> m_customerEntity;
 		List<RefillHeaderDataEntity> refillHeaders;
 		private decimal totalAmountDue = 0.00M;
+		private int capsOnHand = 0;
+		private int bottlesOnHand =0;
 		
 		public RefillReturnPaymentView()
 		{
@@ -86,10 +88,12 @@ namespace NJournals.Core.Views
 			txtBottlesOnHand.Text = (custInv != null) ? custInv.BottlesOnHand.ToString() : "0";
 			txtCapsOnHand.Text = (custInv != null) ? custInv.CapsOnHand.ToString() : "0";
 			
+			bottlesOnHand = Int32.Parse(txtBottlesOnHand.Text);
+			capsOnHand = Int32.Parse(txtCapsOnHand.Text);
+			
 			txtReturnedBottles.Enabled = (txtBottlesOnHand.Text != "0") ? true : false;
 			txtReturnedCaps.Enabled = (txtCapsOnHand.Text != "0") ? true : false;
 			
-
 			this.refillHeaders = m_headers;		
 			totalAmountDue = 0.00M;
 			foreach(RefillHeaderDataEntity header in this.refillHeaders)
@@ -208,5 +212,21 @@ namespace NJournals.Core.Views
 			dgvOutBalance.Rows.Clear();				
 		}
 						
+		
+		void TxtReturnedBottlesTextChanged(object sender, EventArgs e)
+		{
+			if(txtReturnedBottles.Text.Length == 0){
+				txtReturnedBottles.Text = "0";				
+			}			
+			txtBottlesOnHand.Text = (bottlesOnHand - Int32.Parse(txtReturnedBottles.Text)).ToString();			
+		}
+		
+		void TxtReturnedCapsTextChanged(object sender, EventArgs e)
+		{
+			if(txtReturnedCaps.Text.Length == 0){
+				txtReturnedCaps.Text = "0";
+			}
+			txtCapsOnHand.Text = (capsOnHand - Int32.Parse(txtReturnedCaps.Text)).ToString();
+		}
 	}
 }

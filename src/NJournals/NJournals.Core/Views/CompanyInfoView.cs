@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using NJournals.Common.Interfaces;
 using NJournals.Common.Gui;
 using NJournals.Common.DataEntities;
+using NJournals.Core.Presenter;
+using System.Collections.Generic;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -34,12 +36,19 @@ namespace NJournals.Core.Views
 		}
 		
 		private CompanyDataEntity m_companyEntity;
+		private List<CompanyDataEntity> m_companyEntities;
 		private PrinterDataEntity m_printerEntity;
+		private CompanyViewPresenter m_presenter;
 		
-		public void SetCompanyInfo(CompanyDataEntity p_entity){
-			m_companyEntity = p_entity;
-			if(m_companyEntity == null){
+		public void SetCompanyInfo(List<CompanyDataEntity> p_entities){
+			m_companyEntities = p_entities;
+			if(m_companyEntities == null){
 				m_companyEntity = new CompanyDataEntity();
+				m_companyEntities.Add(m_companyEntity);
+			}
+			
+			foreach(CompanyDataEntity entity in m_companyEntities){
+				m_companyEntity = entity;	
 			}
 			txtname.Text = m_companyEntity.Name;
 			txtaddress.Text = m_companyEntity.Address;
@@ -57,8 +66,11 @@ namespace NJournals.Core.Views
 				rdbinactive.Checked = true;
 			}
 			rdbactive.Checked = rdbinactive.Checked ? false : true;
+		}	
+		
+		void CompanyInfoViewLoad(object sender, EventArgs e)
+		{
+			m_presenter = new CompanyViewPresenter(this);
 		}
-		
-		
 	}
 }

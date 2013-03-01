@@ -86,6 +86,8 @@ namespace NJournals.Core.Presenter
 			{			
 				custInv.BottlesReturned += returnedBottles;
 				custInv.CapsOnHand += returnedCaps;
+				custInv.BottlesOnHand -= returnedBottles;
+				custInv.CapsOnHand -= returnedCaps;
 				
 				RefillCustInventoryDetailDataEntity detail = new RefillCustInventoryDetailDataEntity();
 				detail.BottlesReturned = returnedBottles;
@@ -95,8 +97,8 @@ namespace NJournals.Core.Presenter
 				custInv.DetailEntities.Add(detail);
 				m_custInvDao.SaveOrUpdate(custInv);
 				
-				UpdateInventory("BOTTLE", returnedBottles, returnDate);
-				UpdateInventory("CAP", returnedCaps, returnDate);				
+				UpdateInventory("5 GAL BOTTLE", returnedBottles, returnDate);
+				UpdateInventory("CAPS", returnedCaps, returnDate);				
 			}
 			catch(Exception ex)
 			{								
@@ -109,6 +111,9 @@ namespace NJournals.Core.Presenter
 			try
 			{
 				RefillInventoryHeaderDataEntity header = m_invDao.GetByName(name);
+				if(header == null) 
+					return;
+				
 				header.QtyOnHand += returnedQty;
 				header.QtyReleased -= returnedQty;
 							
