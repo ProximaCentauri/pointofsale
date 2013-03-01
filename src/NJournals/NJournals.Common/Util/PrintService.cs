@@ -107,14 +107,7 @@ namespace NJournals.Common.Util
 		
 		private static void PrintClaimSlip(ref StringBuilder sb, LaundryHeaderDataEntity header)
 		{						
-			sb.Append(SetAlignment("CENTER"));
-			sb.AppendLine("LAUNDRYPRO GARMENT CARE");
-			sb.AppendLine("TETH'S SATELLITE MARKET");
-			sb.AppendLine("M.L. QUEZON AVE. MAGUIKAY");
-			sb.AppendLine("MANDAUE CITY");
-			sb.AppendLine("# (032) 4127045 # (0906) 5429986");
-			sb.AppendLine("");
-			sb.AppendLine("");
+			PrintHeader(ref sb);
 			sb.Append(SetFontSize(2));
 			sb.AppendLine("CLAIM SLIP");
 			sb.Append(SetFontSize(0));
@@ -156,14 +149,7 @@ namespace NJournals.Common.Util
 			sb.AppendLine("TOTAL: " + header.TotalAmountDue.ToString("N2"));
 			sb.AppendLine("DEPOSIT: " + header.TotalPayment.ToString("N2"));
 			sb.AppendLine("BALANCE: " + (header.TotalAmountDue - header.TotalPayment).ToString("N2"));
-			sb.AppendLine("");
-			sb.AppendLine("");
-			sb.Append(SetAlignment("CENTER"));
-			sb.AppendLine("THIS IS NOT AN OFFICIAL RECEIPT.");
-			sb.AppendLine("");
-			sb.AppendLine("WE THANK YOU FOR YOUR BUSINESS!");
-			sb.AppendLine("");
-			sb.AppendLine("");
+			PrintFooter(ref sb);
 			sb.Append(CutPaper());	
 									
 		}
@@ -213,15 +199,8 @@ namespace NJournals.Common.Util
 	    }
 		
 		private static void PrintRefillOrderSlip(ref StringBuilder sb, RefillHeaderDataEntity header)
-		{
-			sb.Append(SetAlignment("CENTER"));
-			sb.AppendLine("LAUNDRYPRO GARMENT CARE");
-			sb.AppendLine("TETH'S SATELLITE MARKET");
-			sb.AppendLine("M.L. QUEZON AVE. MAGUIKAY");
-			sb.AppendLine("MANDAUE CITY");
-			sb.AppendLine("# (032) 4127045 # (0906) 5429986");
-			sb.AppendLine("");
-			sb.AppendLine("");
+		{			
+			PrintHeader(ref sb);
 			sb.Append(SetFontSize(2));
 			sb.AppendLine("ORDER SLIP");
 			sb.Append(SetFontSize(0));
@@ -266,14 +245,7 @@ namespace NJournals.Common.Util
 			sb.AppendLine("TOTAL: " + header.AmountDue.ToString("N2"));
 			sb.AppendLine("DEPOSIT: " + header.AmountTender.ToString("N2"));
 			sb.AppendLine("BALANCE: " + (header.AmountDue - header.AmountTender).ToString("N2"));
-			sb.AppendLine("");
-			sb.AppendLine("");
-			sb.Append(SetAlignment("CENTER"));
-			sb.AppendLine("THIS IS NOT AN OFFICIAL RECEIPT.");
-			sb.AppendLine("");
-			sb.AppendLine("WE THANK YOU FOR YOUR BUSINESS!");
-			sb.AppendLine("");
-			sb.AppendLine("");
+			PrintFooter(ref sb);
 			sb.Append(CutPaper());	
 		}
 		
@@ -314,6 +286,30 @@ namespace NJournals.Common.Util
 				default:
 					return (Convert.ToChar(29) + "!" + Convert.ToChar(0));
 			}
+		}
+		
+		private static void PrintHeader(ref StringBuilder sb)
+		{
+			sb.Append(SetAlignment("CENTER"));
+			sb.AppendLine("LAUNDRYPRO GARMENT CARE");
+			sb.AppendLine("TETH'S SATELLITE MARKET");
+			sb.AppendLine("M.L. QUEZON AVE. MAGUIKAY");
+			sb.AppendLine("MANDAUE CITY");
+			sb.AppendLine("# (032) 4127045 # (0906) 5429986");
+			sb.AppendLine("");
+			sb.AppendLine("");
+		}
+		
+		private static void PrintFooter(ref StringBuilder sb)
+		{
+			sb.AppendLine("");
+			sb.AppendLine("");
+			sb.Append(SetAlignment("CENTER"));
+			sb.AppendLine("THIS IS NOT AN OFFICIAL RECEIPT.");
+			sb.AppendLine("");
+			sb.AppendLine("WE THANK YOU FOR YOUR BUSINESS!");
+			sb.AppendLine("");
+			sb.AppendLine("");
 		}
 	}
 }
