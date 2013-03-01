@@ -47,6 +47,7 @@ namespace NJournals.Core
 		public event EventHandler SelectRefillingClaim;
 		public event EventHandler SelectRefillingReport;
 		public event EventHandler SelectRefillingConfiguration;
+		public event EventHandler SelectCompany;
 		
 		private CustomerListView customerListView = new CustomerListView();
 		private LaundryNewView laundryView = new LaundryNewView();
@@ -55,11 +56,17 @@ namespace NJournals.Core
 		private ReportView reportView = new ReportView();
 		private LaundryConfigurationView laundryConfigView = new LaundryConfigurationView();
 		private RefillingConfigurationView refillingConfigView = new RefillingConfigurationView();
+		private CompanyInfoView companyView = new CompanyInfoView();
 		
 		public void ShowCustomerListView()
 		{
 			customerListView.SetTitle("Customer List");
 			ShowSingletonForm(customerListView);
+		}
+		
+		public void ShowCompanyView(){
+			companyView.SetTitle("Company Information");
+			ShowSingletonForm(companyView);
 		}
 		
 		public void ShowLaundryNewView(){					
@@ -193,6 +200,12 @@ namespace NJournals.Core
 			}
 		}
 		
+		protected virtual void OnSelectCompany(EventArgs e){
+			if(SelectCompany != null){
+				SelectCompany(this, e);
+			}
+		}
+		
 		void label_mousehover(object sender, EventArgs e)
 		{
 			Label label = sender as Label;			
@@ -260,7 +273,7 @@ namespace NJournals.Core
 			this.lblRefClaim.Click += delegate { OnSelectRefillingClaim(null); };
 			this.lblRefConfig.Click += delegate { OnSelectRefillingConfig(null); };
 			this.lblRefReports.Click += delegate { OnSelectRefillingReports(null); };
-			
+			this.lblcompany.Click += delegate { OnSelectCompany(null); };
 		}
 		
 		void FormViewClose(object sender, FormClosedEventArgs e){
@@ -292,6 +305,7 @@ namespace NJournals.Core
 				}
 			}
 		}
-
+		
+		
 	}
 }

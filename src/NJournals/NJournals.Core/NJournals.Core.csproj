@@ -87,6 +87,7 @@
     <Compile Include="MainFormStation.Designer.cs">
       <DependentUpon>MainFormStation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompanyDao.cs" />
     <Compile Include="Models\CustomerDao.cs" />
     <Compile Include="Models\ItemCategoryDao.cs" />
     <Compile Include="Models\ItemDao.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Models\LaundryPriceSchemeDao.cs" />
     <Compile Include="Models\LaundryReportDao.cs" />
     <Compile Include="Models\LaundryServiceDao.cs" />
+    <Compile Include="Models\PrinterDao.cs" />
     <Compile Include="Models\RefillCustomerInventoryDao.cs" />
     <Compile Include="Models\RefillDao.cs" />
     <Compile Include="Models\RefillDataDao.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="Models\RefillTransactionTypeDao.cs" />
     <Compile Include="Presenter\AddItemPresenter.cs" />
     <Compile Include="Presenter\ChekcListViewPresenter.cs" />
+    <Compile Include="Presenter\CompanyViewPresenter.cs" />
     <Compile Include="Presenter\CustomerListViewPresenter.cs" />
     <Compile Include="Presenter\LaundryChargesViewPresenter.cs" />
     <Compile Include="Presenter\LaundryConfigurationViewPresenter.cs" />
