@@ -32,7 +32,7 @@ namespace NJournals.Common.Interfaces
 		void ShowLaundryClaimView();
 		void ShowRefillingNewView();
 		void ShowRefillingDeleteView();
-		void ShowRefillingClaimView();
+		void ShowRefillingReturnPaymentView();
 		void ShowLaundryReportView();
 		void ShowRefillingReportView();
 		void ShowLaundryConfigurationView();
