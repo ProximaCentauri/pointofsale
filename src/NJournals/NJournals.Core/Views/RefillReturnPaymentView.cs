@@ -163,14 +163,14 @@ namespace NJournals.Core.Views
 		
 		private void UpdateCustomerInventory(int returnedBottles, int returnedCaps)
 		{
-			m_presenter.UpdateCustomerInventory(returnedBottles, returnedCaps, dtDate.Value);	
+			m_presenter.UpdateCustomerInventory(returnedBottles, returnedCaps, dtDate.Value.Date);	
 		}
 		
 		private void UpdateCustomerRefillHeaders(decimal amountTender)
 		{
 			if(this.refillHeaders.Count > 0)
 			{
-				m_presenter.UpdateCustomerRefillHeaders(amountTender,refillHeaders, dtDate.Value);
+				m_presenter.UpdateCustomerRefillHeaders(amountTender,refillHeaders, dtDate.Value.Date);
 			}			
 		}
 		

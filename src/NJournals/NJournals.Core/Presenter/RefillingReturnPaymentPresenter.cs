@@ -85,20 +85,38 @@ namespace NJournals.Core.Presenter
 			try
 			{			
 				custInv.BottlesReturned += returnedBottles;
-				custInv.CapsOnHand += returnedCaps;
-				custInv.BottlesOnHand -= returnedBottles;
-				custInv.CapsOnHand -= returnedCaps;
+				custInv.CapsReturned += returnedCaps;
+				if(custInv.BottlesOnHand != 0){
+					custInv.BottlesOnHand -= returnedBottles;	
+				}
+				if(custInv.CapsOnHand != 0){
+					custInv.CapsOnHand -= returnedCaps;	
+				}
 				
-				RefillCustInventoryDetailDataEntity detail = new RefillCustInventoryDetailDataEntity();
-				detail.BottlesReturned = returnedBottles;
-				detail.CapsReturned = returnedCaps;
-				detail.Date = returnDate;
-				detail.Header = custInv;
-				custInv.DetailEntities.Add(detail);
+				List<RefillCustInventoryDetailDataEntity> detailEntities = new List<RefillCustInventoryDetailDataEntity>();
+				detailEntities = custInv.DetailEntities as List<RefillCustInventoryDetailDataEntity>;
+				if(detailEntities != null){
+					RefillCustInventoryDetailDataEntity detail = detailEntities.Find(m_detail => m_detail.Date == returnDate);
+					if(detail == null){
+						detail = CreateNewCustInventoryDetail(custInv, returnedBottles, returnedCaps, returnDate);										
+						custInv.DetailEntities.Add(detail);
+					}
+					else{
+						detail.BottlesReturned += returnedBottles;
+						detail.CapsReturned += returnedCaps;
+					}
+				}else{
+					RefillCustInventoryDetailDataEntity detail = CreateNewCustInventoryDetail(custInv, returnedBottles, returnedCaps, returnDate);										
+					custInv.DetailEntities.Add(detail);
+				}
 				m_custInvDao.SaveOrUpdate(custInv);
-				
-				UpdateInventory("5 GAL BOTTLE", returnedBottles, returnDate);
-				UpdateInventory("CAPS", returnedCaps, returnDate);				
+						
+				if(returnedBottles != 0){
+					UpdateInventory("5 GAL BOTTLE", returnedBottles, returnDate);
+				}
+				if(returnedCaps != 0){
+					UpdateInventory("CAPS", returnedCaps, returnDate);				
+				}
 			}
 			catch(Exception ex)
 			{								
@@ -115,19 +133,25 @@ namespace NJournals.Core.Presenter
 					return;
 				
 				header.QtyOnHand += returnedQty;
-				header.QtyReleased -= returnedQty;
-							
-				RefillInventoryDetailDataEntity detail = m_invDao.GetDetailDay(header, daystamp);
-				if(detail == null)
-				{
-					detail = new RefillInventoryDetailDataEntity();
-					detail.Header = header;
-					detail.QtyOnHand += returnedQty;
-					detail.Date = daystamp;
-					header.DetailEntities.Add(detail);
-				}else{
-					detail.QtyOnHand += returnedQty;
+				if(header.QtyReleased !=0){
+					header.QtyReleased -= returnedQty;
 				}
+				List<RefillInventoryDetailDataEntity> detailEntities = new List<RefillInventoryDetailDataEntity>();
+				detailEntities = header.DetailEntities as List<RefillInventoryDetailDataEntity>;
+//				if(detailEntities != null){
+					RefillInventoryDetailDataEntity detail = detailEntities.Find(m_detail => m_detail.Date == daystamp);								
+					if(detail == null)
+					{
+						detail = CreateNewInventoryDetail(header, returnedQty, daystamp);
+						header.DetailEntities.Add(detail);
+					}else{
+						detail.QtyOnHand += returnedQty;
+					}
+//				}
+//				else{
+//					RefillInventoryDetailDataEntity detail = CreateNewInventoryDetail(header, returnedQty, daystamp);
+//					header.DetailEntities.Add(detail);
+//				}
 				m_invDao.SaveOrUpdate(header);
 			}
 			catch(Exception ex)
@@ -208,6 +232,26 @@ namespace NJournals.Core.Presenter
 			payment.Amount = amount;
 			payment.PaymentDate = paymentDate;		
 			return payment;
+		}
+		
+		private RefillCustInventoryDetailDataEntity CreateNewCustInventoryDetail(RefillCustInventoryHeaderDataEntity header,
+		                                                                    int returnedBottles, int returnedCaps, DateTime returnDate)
+		{
+			RefillCustInventoryDetailDataEntity detail = new RefillCustInventoryDetailDataEntity();
+			detail.Header = header;
+			detail.BottlesReturned = returnedBottles;
+			detail.CapsReturned = returnedCaps;
+			detail.Date = returnDate;	
+			return detail;						
+		}
+		
+		private RefillInventoryDetailDataEntity CreateNewInventoryDetail(RefillInventoryHeaderDataEntity header, int returnedQty, DateTime daystamp)
+		{
+			RefillInventoryDetailDataEntity detail = new RefillInventoryDetailDataEntity();
+			detail.Header = header;
+			detail.QtyOnHand += returnedQty;
+			detail.Date = daystamp;
+			return detail;
 		}
 	}
 }
