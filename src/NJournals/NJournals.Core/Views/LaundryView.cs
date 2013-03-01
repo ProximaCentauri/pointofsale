@@ -221,7 +221,10 @@ namespace NJournals.Core.Views
 				   e.Handled = true;
 				}
 				else{
-					e.Handled = false;						
+					if(char.IsLetter(e.KeyChar))
+						e.Handled = true;
+					else
+						e.Handled = false;		
 				}									   
 			}					
 		}			

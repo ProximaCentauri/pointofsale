@@ -368,6 +368,7 @@ namespace NJournals.Core.Views
 			this.txtamttender.TabIndex = 17;
 			this.txtamttender.Text = "0.00";
 			this.txtamttender.TextChanged += new System.EventHandler(this.txtamttender_textchanged);
+			this.txtamttender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
 			// label11
 			// 

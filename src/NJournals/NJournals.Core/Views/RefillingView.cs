@@ -294,6 +294,7 @@ namespace NJournals.Core.Views
 		
 		void txtamttender_textchanged(object sender, EventArgs e)
 		{
+			
 			if(txtamttender.Text.Length == 0){
 				txtamttender.Text = "0.00";				
 			}	
@@ -316,6 +317,23 @@ namespace NJournals.Core.Views
 			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjonumber.Text + "?", "Save?")){
 				m_presenter.SaveClicked();			
 				this.Close();
+			}		
+		}
+		
+		void txtbox_keypress(object sender, KeyPressEventArgs e)
+		{
+			if(sender is TextBox){
+				TextBox txt = sender as TextBox;
+				if(!char.IsDigit(e.KeyChar) && (e.KeyChar != (char)Keys.Back) 
+				   && (e.KeyChar != (char)Keys.Decimal) && (e.KeyChar != (char)Keys.OemPeriod) && !char.IsNumber(e.KeyChar)){
+				   e.Handled = true;
+				}
+				else{
+					if(char.IsLetter(e.KeyChar))
+						e.Handled = true;
+					else
+						e.Handled = false;						
+				}									   
 			}		
 		}
 	}
