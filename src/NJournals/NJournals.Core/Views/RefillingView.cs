@@ -128,25 +128,32 @@ namespace NJournals.Core.Views
 		
 		void BtnprintcloseClick(object sender, EventArgs e)
 		{
+			if(CheckForEmptyFields())
+				return;
+			
+			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjonumber.Text + "?" + 
+			                            Environment.NewLine + "Transaction will be print upon saving." , "Save?")){
+				m_presenter.PrintClicked();			
+				this.Close();
+			}			                            			
+		}
+		
+		private bool CheckForEmptyFields(){
 			if(cmbCustomers.Text.Trim().Equals(string.Empty)){
 				cmbCustomers.Focus();
 				MessageService.ShowWarning("No customer being selected. Please select a customer.","Empty Field");				
-				return;
+				return true;
 			}
 			if(dataGridView1.Rows.Count == 0){
 				MessageService.ShowWarning("No list to save. Please add an item before saving.","Empty Field");				
-				return;
+				return true;
 			}
 			if(cmbtransTypes.Text.Trim().Equals(string.Empty)){
 				MessageService.ShowWarning("No transaction type being selected. Please select a type of transaction.","Empty Field");
 				cmbtransTypes.Focus();
-				return;
+				return true;
 			}
-			
-			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number:" + txtjonumber.Text + "?", "Save?")){
-				m_presenter.PrintClicked();			
-				this.Close();
-			}			                            			
+			return false;
 		}
 		
 		public RefillHeaderDataEntity ProcessHeaderDataEntity(){
@@ -219,7 +226,7 @@ namespace NJournals.Core.Views
 		{
 			if(MessageService.ShowYesNo("Are you sure you want to void this transaction: " + txtjonumber.Text + "?" + Environment.NewLine +
 			                            "Please note that voiding this transaction will revert back items being released to your inventory." + Environment.NewLine + 
-			                            "If you know what are you doing, then proceed by clicking option below.","Voiding Transaction?")){
+			                            "If you know what you're doing, then proceed by clicking option below.","Voiding Transaction?")){
 				m_presenter.VoidTransaction();
 				this.Close();
 			}		
@@ -303,7 +310,13 @@ namespace NJournals.Core.Views
 		
 		void BtnsaveClick(object sender, EventArgs e)
 		{
+			if(CheckForEmptyFields())
+				return;
 			
+			if(MessageService.ShowYesNo("Are you sure you want to save this transaction with JO number: " + txtjonumber.Text + "?", "Save?")){
+				m_presenter.SaveClicked();			
+				this.Close();
+			}		
 		}
 	}
 }

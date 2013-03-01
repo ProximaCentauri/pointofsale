@@ -536,11 +536,11 @@ namespace NJournals.Core.Views
 			// btnsave
 			// 
 			this.btnsave.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnsave.Location = new System.Drawing.Point(556, 686);
+			this.btnsave.Location = new System.Drawing.Point(520, 686);
 			this.btnsave.Name = "btnsave";
-			this.btnsave.Size = new System.Drawing.Size(87, 23);
+			this.btnsave.Size = new System.Drawing.Size(123, 23);
 			this.btnsave.TabIndex = 27;
-			this.btnsave.Text = "Save";
+			this.btnsave.Text = "Save && Close";
 			this.btnsave.UseVisualStyleBackColor = true;
 			this.btnsave.Click += new System.EventHandler(this.BtnsaveClick);
 			// 
