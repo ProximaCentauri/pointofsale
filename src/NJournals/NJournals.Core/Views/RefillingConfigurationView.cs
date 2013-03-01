@@ -203,20 +203,20 @@ namespace NJournals.Core.Views
 					productType.Price = price;
 					
 					productTypes.Add(productType);
-					updatedProducts.Add(productType.Name);
+					updatedProducts.Add(productType.Name.ToUpper());
 				}
 				else
 				{
 					RefillProductTypeDataEntity newProduct = new RefillProductTypeDataEntity();
-					newProduct = m_productTypeEntity.Find(m_productType => m_productType.Name == name);					
+					newProduct = m_productTypeEntity.Find(m_productType => m_productType.Name.ToUpper() == name.ToUpper());
 					
-					if(newProduct.ProductTypeID == 0 && !updatedProducts.Contains(name))
+					if(newProduct.ProductTypeID == 0 && !updatedProducts.Contains(name.ToUpper()))
 					{
 						productType.Name = name;
 						productType.Description = description;
 						productType.Price = price;
 						
-						updatedProducts.Add(productType.Name);
+						updatedProducts.Add(productType.Name.ToUpper());
 						productTypes.Add(productType);
 					}
 					else
@@ -404,7 +404,7 @@ namespace NJournals.Core.Views
 					refillInv.TotalQty += addStocks - removeStocks;
 																
 					refillInvs.Add(refillInv);
-					updatedRefillInv.Add(refillInv.Name);
+					updatedRefillInv.Add(refillInv.Name.ToUpper());
 				}
 				else
 				{
@@ -413,9 +413,9 @@ namespace NJournals.Core.Views
 					RefillInventoryDetailDataEntity detail = new RefillInventoryDetailDataEntity();	
 					name = this.dgvRefillInventory.Rows[rowIndex].Cells["Name"].Value.ToString().Trim();
 					
-					newHeader = m_refillInvEntity.Find(m_refillInv => m_refillInv.Name == name);
+					newHeader = m_refillInvEntity.Find(m_refillInv => m_refillInv.Name.ToUpper() == name.ToUpper());
 					
-					if((newHeader == null || newHeader.InvHeaderID == 0) && !updatedRefillInv.Contains(name))
+					if((newHeader == null || newHeader.InvHeaderID == 0) && !updatedRefillInv.Contains(name.ToUpper()))
 					{
 						header.Name = name;
 						header.QtyOnHand += addStocks;
@@ -428,9 +428,9 @@ namespace NJournals.Core.Views
 						detail.QtyOnHand += addStocks;
 						detail.TotalQty += addStocks;				
 						
-						header.DetailEntities.Add(detail);
-						
-						refillInvs.Add(header);													
+						header.DetailEntities.Add(detail);						
+						refillInvs.Add(header);		
+						updatedRefillInv.Add(header.Name.ToUpper());
 					}
 					else
 					{

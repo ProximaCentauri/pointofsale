@@ -554,7 +554,8 @@ INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber
 INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber`) VALUES ('Vanessa Dee', 'Cebu', '111-1111');
 
 -- Refill inventory table (for testing only)
-INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('5 Gal Bottle', '400', '400', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('5 GAL BOTTLE', '400', '400', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('CAPS', '0', '0', '0');
 
 
 -- Refill inventory table (for testing only)
