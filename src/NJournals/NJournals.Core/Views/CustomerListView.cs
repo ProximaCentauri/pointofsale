@@ -124,7 +124,7 @@ namespace NJournals.Core.Views
 				customer.Name = name;
 				customer.Address = address;
 				customer.ContactNumber = number;
-				customer.VoidFlag = 0;
+				customer.VoidFlag = false;
 				
 				try
 				{
@@ -216,7 +216,7 @@ namespace NJournals.Core.Views
 						{
 							int ID = (int)dgvCustomerList.Rows[currentRow.Index].Cells["CustomerID"].Value;
 							customer = m_customersEntity.Find(m_customer => m_customer.CustomerID == ID);
-							customer.VoidFlag = 1;
+							customer.VoidFlag = true;
 							if(!m_presenter.VerifyCustomerPendingTransaction(customer))
 							{
 								m_presenter.SaveOrUpdateCustomer(customer);
