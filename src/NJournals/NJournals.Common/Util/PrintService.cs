@@ -48,8 +48,11 @@ namespace NJournals.Common.Util
 				if (ps == null) return false;
 				
 				StringBuilder sb = new StringBuilder();
-				PrintClaimSlip(ref sb, header);				
-				PrintCheckList(ref sb, header);
+				PrintClaimSlip(ref sb, header);			
+				if(header.JobChecklistEntities.Count > 0)
+				{
+					PrintCheckList(ref sb, header);
+				}
 				
 				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
 				
@@ -112,7 +115,10 @@ namespace NJournals.Common.Util
 			sb.AppendLine("# (032) 4127045 # (0906) 5429986");
 			sb.AppendLine("");
 			sb.AppendLine("");
+			sb.Append(SetFontSize(2));
 			sb.AppendLine("CLAIM SLIP");
+			sb.Append(SetFontSize(0));
+			sb.AppendLine("");
 			sb.Append(SetAlignment("LEFT"));
 			sb.AppendLine("SO#: " + header.LaundryHeaderID.ToString());
 			sb.AppendLine("CUSTOMER: " + header.Customer.Name.ToUpper());
@@ -165,11 +171,11 @@ namespace NJournals.Common.Util
 		private static void PrintTag(ref StringBuilder sb, LaundryHeaderDataEntity header)
 		{
 			sb.Append(SetAlignment("CENTER"));
-			sb.Append(Convert.ToChar(29) + "!" + Convert.ToChar(32));
+			sb.Append(SetFontSize(3));
 			sb.AppendLine(header.Customer.Name.ToUpper());
-			sb.Append(Convert.ToChar(29) + "!" + Convert.ToChar(16));
+			sb.Append(SetFontSize(2));
 			sb.AppendLine(header.LaundryHeaderID.ToString());
-			              sb.Append(Convert.ToChar(29) + "!" + Convert.ToChar(0));
+			sb.Append(SetFontSize(0));;
 			sb.AppendLine("");
 			sb.AppendLine("");
 			sb.Append(CutPaper());
@@ -178,7 +184,10 @@ namespace NJournals.Common.Util
 		private static void PrintCheckList(ref StringBuilder sb, LaundryHeaderDataEntity header)
 	    {
 	      	sb.Append(SetAlignment("CENTER"));			
-			sb.AppendLine("CHECKLIST");
+	      	sb.Append(SetFontSize(2));
+	      	sb.AppendLine("CHECKLIST");	      		      	
+	      	sb.Append(SetFontSize(0));
+	      	sb.AppendLine("");
 			sb.Append(SetAlignment("LEFT"));
 			sb.AppendLine("SO#: " + header.LaundryHeaderID.ToString());
 			sb.AppendLine("CUSTOMER: " + header.Customer.Name);			
@@ -213,7 +222,10 @@ namespace NJournals.Common.Util
 			sb.AppendLine("# (032) 4127045 # (0906) 5429986");
 			sb.AppendLine("");
 			sb.AppendLine("");
+			sb.Append(SetFontSize(2));
 			sb.AppendLine("ORDER SLIP");
+			sb.Append(SetFontSize(0));
+			sb.AppendLine("");			
 			sb.Append(SetAlignment("LEFT"));
 			sb.AppendLine("SO#: " + header.RefillHeaderID.ToString());
 			sb.AppendLine("CUSTOMER: " + header.Customer.Name.ToUpper());
@@ -267,7 +279,7 @@ namespace NJournals.Common.Util
 		
 		private static string SetAlignment(string align)
 		{
-			switch(align)
+			switch(align.ToUpper())
 			{
 				case "LEFT":
 					return Convert.ToChar(27) + "a" + Convert.ToChar(48);
@@ -283,6 +295,25 @@ namespace NJournals.Common.Util
 		private static string CutPaper()
 		{
 			return (Convert.ToChar(29) + "V" + Convert.ToChar(66) + Convert.ToChar(0));
+		}
+		
+		private static string SetFontSize(short size)
+		{
+			switch(size)
+			{
+				case 0:
+					return (Convert.ToChar(29) + "!" + Convert.ToChar(0));
+				case 1:
+					return (Convert.ToChar(29) + "!" + Convert.ToChar(16));
+				case 2:
+					return (Convert.ToChar(29) + "!" + Convert.ToChar(32));
+				case 3:
+					return (Convert.ToChar(29) + "!" + Convert.ToChar(48));
+				case 4:
+					return (Convert.ToChar(29) + "!" + Convert.ToChar(64));
+				default:
+					return (Convert.ToChar(29) + "!" + Convert.ToChar(0));
+			}
 		}
 	}
 }
