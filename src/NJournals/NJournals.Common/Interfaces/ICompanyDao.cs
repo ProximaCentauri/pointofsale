@@ -21,6 +21,7 @@ namespace NJournals.Common.Interfaces
 		void SaveOrUpdate(CompanyDataEntity p_customer);
 		IEnumerable<CompanyDataEntity> GetAllItems();
 		CompanyDataEntity GetByName(string p_name);
+		CompanyDataEntity GetById(int p_id);
 		void Delete(CompanyDataEntity p_customer);
 		void Update(CompanyDataEntity p_customer);
 	}

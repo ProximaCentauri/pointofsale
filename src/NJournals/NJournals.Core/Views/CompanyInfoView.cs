@@ -117,6 +117,7 @@ namespace NJournals.Core.Views
 		
 		public CompanyDataEntity ProcessCompanyInfo(){
 			CompanyDataEntity company = new CompanyDataEntity();
+			company.CompanyID = m_companyEntity.CompanyID;
 			company.Name = txtname.Text;
 			company.Address = txtaddress.Text;
 			company.ContactNumber = txtcontact.Text;

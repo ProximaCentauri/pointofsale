@@ -43,15 +43,22 @@ namespace NJournals.Core.Presenter
 		public void SaveClicked(){
 			try{
 				CompanyDataEntity companyEntity =  m_view.ProcessCompanyInfo();
-				CompanyDataEntity company = m_companyDao.GetByName(companyEntity.Name.Trim());
+				CompanyDataEntity company = m_companyDao.GetById(companyEntity.CompanyID);
 				if(company == null){
 					company = companyEntity;
+				}else{
+					company.Name = companyEntity.Name;
+					company.Address = companyEntity.Address;
+					company.ContactNumber = companyEntity.ContactNumber;
 				}
 				m_companyDao.SaveOrUpdate(company);
 				PrinterDataEntity printerEntity = m_view.ProcessPrinterInfo();
 				PrinterDataEntity printer = m_printerDao.GetByName(printerEntity.Name.Trim());
 				if(printer == null){
 					printer = printerEntity;
+				}else{
+					printer.Model = printerEntity.Model;
+					printer.Active = printerEntity.Active;
 				}
 				m_printerDao.SaveOrUpdate(printer);
 				MessageService.ShowInfo("Successfully save your request.");

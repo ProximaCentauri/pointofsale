@@ -245,10 +245,6 @@ namespace NJournals.Core.Views
 			dgvCharges.Columns["Amount"].HeaderText = "Price";
 			dgvCharges.Columns["Name"].Width = 200;
 			dgvCharges.Columns["Amount"].Width = 88;
-		}
-		
-		
-		
-		
+		}	
 	}
 }

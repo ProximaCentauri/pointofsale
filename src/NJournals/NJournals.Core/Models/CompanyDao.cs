@@ -63,6 +63,19 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public CompanyDataEntity GetById(int p_id)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				using(var transaction = session.BeginTransaction())
+				{
+                    var query = session.Query<CompanyDataEntity>()
+                        .Where(x => x.CompanyID == p_id)
+                        .SingleOrDefault();
+					return query;
+				}
+			}
+		}	
 		
 		public IEnumerable<CompanyDataEntity> GetAllItems()
 		{
@@ -70,7 +83,7 @@ namespace NJournals.Core.Models
 			{
                 var query = session.Query<CompanyDataEntity>()
                 	.Where(x => x.VoidFlag == false)
-                	.OrderBy(x => x.Name)
+                	.OrderBy(x => x.CompanyID)
                     .ToList();
                 return query;
 			}
