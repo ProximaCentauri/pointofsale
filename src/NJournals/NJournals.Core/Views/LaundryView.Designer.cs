@@ -51,7 +51,7 @@ namespace NJournals.Core.Views
 			this.label1 = new System.Windows.Forms.Label();
 			this.cmbservices = new System.Windows.Forms.ComboBox();
 			this.grpServices = new System.Windows.Forms.GroupBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.txtunitprice = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.btnadd = new System.Windows.Forms.Button();
 			this.txtkilo = new System.Windows.Forms.TextBox();
@@ -62,6 +62,11 @@ namespace NJournals.Core.Views
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.lblvoid = new System.Windows.Forms.Label();
 			this.btnsearch = new System.Windows.Forms.Button();
@@ -93,12 +98,6 @@ namespace NJournals.Core.Views
 			this.btnDeleteDetail = new System.Windows.Forms.Button();
 			this.btnprint = new System.Windows.Forms.Button();
 			this.btnEditCharges = new System.Windows.Forms.Button();
-			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -232,7 +231,7 @@ namespace NJournals.Core.Views
 			// 
 			// grpServices
 			// 
-			this.grpServices.Controls.Add(this.textBox1);
+			this.grpServices.Controls.Add(this.txtunitprice);
 			this.grpServices.Controls.Add(this.label14);
 			this.grpServices.Controls.Add(this.btnadd);
 			this.grpServices.Controls.Add(this.txtkilo);
@@ -251,15 +250,15 @@ namespace NJournals.Core.Views
 			this.grpServices.TabStop = false;
 			this.grpServices.Text = "Services";
 			// 
-			// textBox1
+			// txtunitprice
 			// 
-			this.textBox1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox1.Location = new System.Drawing.Point(84, 82);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-
-			this.textBox1.Size = new System.Drawing.Size(100, 24);
-			this.textBox1.TabIndex = 14;
+			this.txtunitprice.BackColor = System.Drawing.Color.White;
+			this.txtunitprice.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtunitprice.Location = new System.Drawing.Point(84, 82);
+			this.txtunitprice.Name = "txtunitprice";
+			this.txtunitprice.ReadOnly = true;
+			this.txtunitprice.Size = new System.Drawing.Size(100, 24);
+			this.txtunitprice.TabIndex = 14;
 			// 
 			// label14
 			// 
@@ -326,6 +325,7 @@ namespace NJournals.Core.Views
 			this.cmbcategory.Name = "cmbcategory";
 			this.cmbcategory.Size = new System.Drawing.Size(190, 23);
 			this.cmbcategory.TabIndex = 5;
+			this.cmbcategory.SelectedIndexChanged += new System.EventHandler(this.cmbcategory_selectedindexchanged);
 			// 
 			// label5
 			// 
@@ -383,6 +383,34 @@ namespace NJournals.Core.Views
 			this.dataGridView1.TabIndex = 4;
 			this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgv_rowsremoved);
 			this.dataGridView1.SelectionChanged += new System.EventHandler(this.dgv_selectionchanged);
+			// 
+			// Column2
+			// 
+			this.Column2.HeaderText = "Service";
+			this.Column2.Name = "Column2";
+			this.Column2.Width = 130;
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "Category";
+			this.Column1.Name = "Column1";
+			this.Column1.Width = 130;
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "No. of Items";
+			this.Column3.Name = "Column3";
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Kilo";
+			this.Column4.Name = "Column4";
+			this.Column4.Width = 88;
+			// 
+			// Column5
+			// 
+			this.Column5.HeaderText = "Price";
+			this.Column5.Name = "Column5";
 			// 
 			// groupBox2
 			// 
@@ -746,35 +774,6 @@ namespace NJournals.Core.Views
 			this.btnEditCharges.UseVisualStyleBackColor = true;
 			this.btnEditCharges.Click += new System.EventHandler(this.BtnEditChargesClick);
 			// 
-			// Column2
-			// 
-			this.Column2.HeaderText = "Service";
-			this.Column2.Name = "Column2";
-			this.Column2.Width = 130;
-			// 
-			// Column1
-			// 
-			this.Column1.HeaderText = "Category";
-			this.Column1.Name = "Column1";
-			this.Column1.Width = 130;
-			// 
-			// Column3
-			// 
-			this.Column3.HeaderText = "No. of Items";
-			this.Column3.Name = "Column3";
-			// 
-			// Column4
-			// 
-			this.Column4.HeaderText = "Kilo";
-			this.Column4.Name = "Column4";
-			this.Column4.Width = 88;
-			// 
-			// Column5
-			// 
-			this.Column5.HeaderText = "Price";
-			this.Column5.Name = "Column5";
-			// 
-
 			// LaundryNewView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -826,7 +825,7 @@ namespace NJournals.Core.Views
 			this.PerformLayout();
 		}
 		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txtunitprice;
 		private System.Windows.Forms.Button btnEditCharges;
 		private System.Windows.Forms.Button btnprint;
 		private System.Windows.Forms.Label lblvoid;

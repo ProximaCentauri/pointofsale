@@ -48,7 +48,7 @@ namespace NJournals.Core.Views
 			this.cmbtransTypes = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.grpServices = new System.Windows.Forms.GroupBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.txtunitprice = new System.Windows.Forms.TextBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.txtcaps = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -187,7 +187,7 @@ namespace NJournals.Core.Views
 			// 
 			// grpServices
 			// 
-			this.grpServices.Controls.Add(this.textBox1);
+			this.grpServices.Controls.Add(this.txtunitprice);
 			this.grpServices.Controls.Add(this.label14);
 			this.grpServices.Controls.Add(this.txtcaps);
 			this.grpServices.Controls.Add(this.label8);
@@ -206,12 +206,14 @@ namespace NJournals.Core.Views
 			this.grpServices.TabStop = false;
 			this.grpServices.Text = "Product";
 			// 
-			// textBox1
+			// txtunitprice
 			// 
-			this.textBox1.Location = new System.Drawing.Point(114, 54);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 25);
-			this.textBox1.TabIndex = 18;
+			this.txtunitprice.BackColor = System.Drawing.Color.White;
+			this.txtunitprice.Location = new System.Drawing.Point(114, 54);
+			this.txtunitprice.Name = "txtunitprice";
+			this.txtunitprice.ReadOnly = true;
+			this.txtunitprice.Size = new System.Drawing.Size(100, 25);
+			this.txtunitprice.TabIndex = 18;
 			// 
 			// label14
 			// 
@@ -630,7 +632,7 @@ namespace NJournals.Core.Views
 		}
 		private System.Windows.Forms.Button btnDeleteDetail;
 		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txtunitprice;
 		private System.Windows.Forms.Button btnsave;
 		private System.Windows.Forms.Label lblvoid;
 		private System.Windows.Forms.Label label13;

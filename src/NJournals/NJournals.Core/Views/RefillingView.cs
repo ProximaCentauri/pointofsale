@@ -40,7 +40,7 @@ namespace NJournals.Core.Views
 		private IRefillDao m_refillDao;
 		private RefillingViewPresenter m_presenter;
 		private decimal removePrice = 0;
-		
+		private decimal unitprice = 0;
 		void RefillingViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();		
@@ -115,8 +115,8 @@ namespace NJournals.Core.Views
 		}
 		
 		public void AddItem(){
-			decimal price = m_presenter.getAmtChargeByName(cmbproducts.Text);
-			decimal totalPrice = decimal.Parse(txtnoitems.Text) * price;
+			
+			decimal totalPrice = decimal.Parse(txtnoitems.Text) * unitprice;
 			bool alreadyExist = false;
 			string nobottles = txtbottles.Text.Trim().Equals(string.Empty) ? "0" : txtbottles.Text;
 			string nocaps = txtcaps.Text.Trim().Equals(string.Empty) ? "0" : txtcaps.Text;
@@ -291,6 +291,8 @@ namespace NJournals.Core.Views
 			}			
 			txtcaps.Text = "0";
 			txtbottles.Text = "0";
+			unitprice = m_presenter.getAmtChargeByName(cmbproducts.Text);
+			txtunitprice.Text = unitprice.ToString("N2");
 		}
 		
 		void chkunpaid_click(object sender, EventArgs e)

@@ -44,11 +44,11 @@ namespace NJournals.Core.Views
 		CheckListView chklistView = null;
 		LaundryCustomerSearchView customerSearchView = null;
 		LaundryChargesView chargesView = null;
+		LaundryPriceSchemeDataEntity priceEntity = null;
 		private decimal removePrice = 0;
 		private decimal amountTender = 0;		
 		private decimal totalAmtDue = 0;
 		private decimal totalPayment = 0;
-		
 		void setButtonImages()
 		{
 			Resource.setImage(this.btnsearch, System.IO.Directory.GetCurrentDirectory() + "/images/search.png");
@@ -185,7 +185,7 @@ namespace NJournals.Core.Views
 		}				
 		
 		public void AddItem(){
-			LaundryPriceSchemeDataEntity priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
+			
 			decimal kilo = decimal.Parse(txtkilo.Text);			
 			decimal price = priceEntity.Price * kilo;	
 			bool alreadyExist = false;
@@ -541,6 +541,12 @@ namespace NJournals.Core.Views
 		public void LaunchCharges(){
 			chargesView = new LaundryChargesView();
 			chargesView.ShowDialog();
+		}
+		
+		void cmbcategory_selectedindexchanged(object sender, EventArgs e)
+		{
+			priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
+			txtunitprice.Text = priceEntity.Price.ToString("N2");
 		}
 	}	
 }
