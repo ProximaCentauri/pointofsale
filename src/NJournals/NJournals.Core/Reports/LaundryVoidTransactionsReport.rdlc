@@ -383,8 +383,8 @@
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
-                        <TextAlign>Center</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -405,8 +405,8 @@
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
-                        <TextAlign>Center</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -427,7 +427,8 @@
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -448,7 +449,8 @@
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -469,7 +471,8 @@
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -513,7 +516,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>23</ZIndex>
+                      <ZIndex>22</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Received Date</Value>
                     </Textbox>
@@ -539,7 +542,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>22</ZIndex>
+                      <ZIndex>21</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Due Date</Value>
                     </Textbox>
@@ -565,7 +568,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>21</ZIndex>
+                      <ZIndex>20</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Customer</Value>
                     </Textbox>
@@ -591,7 +594,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>20</ZIndex>
+                      <ZIndex>19</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Job No.</Value>
                     </Textbox>
@@ -617,7 +620,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>19</ZIndex>
+                      <ZIndex>18</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value># of Items</Value>
                     </Textbox>
@@ -643,7 +646,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>18</ZIndex>
+                      <ZIndex>17</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Amount Due</Value>
                     </Textbox>
@@ -669,7 +672,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>17</ZIndex>
+                      <ZIndex>16</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Amount Paid</Value>
                     </Textbox>
@@ -695,7 +698,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>16</ZIndex>
+                      <ZIndex>15</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Balance</Value>
                     </Textbox>
@@ -733,12 +736,49 @@
             <Width>1.15in</Width>
           </TableColumn>
         </TableColumns>
-        <Height>0.72in</Height>
         <Footer>
           <TableRows>
             <TableRow>
+              <Visibility>
+                <Hidden>=Count(Fields!LaundryHeaderID.Value) &gt; 0</Hidden>
+              </Visibility>
               <TableCells>
                 <TableCell>
+                  <ColSpan>8</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="textbox19">
+                      <rd:DefaultName>textbox19</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>PowderBlue</BackgroundColor>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>="No void transactions found."</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+            <TableRow>
+              <Visibility>
+                <Hidden>=Count(Fields!LaundryHeaderID.Value) &lt;= 0</Hidden>
+              </Visibility>
+              <TableCells>
+                <TableCell>
+                  <ColSpan>3</ColSpan>
                   <ReportItems>
                     <Textbox Name="textbox31">
                       <rd:DefaultName>textbox31</rd:DefaultName>
@@ -750,29 +790,7 @@
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>15</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>TOTAL</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox22">
-                      <rd:DefaultName>textbox22</rd:DefaultName>
-                      <Style>
-                        <BackgroundColor>PowderBlue</BackgroundColor>
-                        <BorderColor>
-                          <Default>White</Default>
-                        </BorderColor>
-                        <FontFamily>Calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
-                        <FontWeight>700</FontWeight>
+                        <TextAlign>Right</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -780,30 +798,7 @@
                       </Style>
                       <ZIndex>14</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value />
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox19">
-                      <rd:DefaultName>textbox19</rd:DefaultName>
-                      <Style>
-                        <BackgroundColor>PowderBlue</BackgroundColor>
-                        <BorderColor>
-                          <Default>White</Default>
-                        </BorderColor>
-                        <FontFamily>Calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>13</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>TOTAL</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -819,13 +814,13 @@
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
-                        <TextAlign>Center</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>12</ZIndex>
+                      <ZIndex>13</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=FormatNumber(Count(Fields!LaundryHeaderID.Value),0)</Value>
                     </Textbox>
@@ -843,13 +838,13 @@
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
-                        <TextAlign>Center</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>11</ZIndex>
+                      <ZIndex>12</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=FormatNumber(SUM(Fields!TotalItemQty.Value),0)</Value>
                     </Textbox>
@@ -867,12 +862,13 @@
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>10</ZIndex>
+                      <ZIndex>11</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=FormatCurrency(SUM(Fields!TotalAmountDue.Value),2)</Value>
                     </Textbox>
@@ -890,12 +886,13 @@
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>9</ZIndex>
+                      <ZIndex>10</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=FormatCurrency(SUM(Fields!AmountTender.Value),2)</Value>
                     </Textbox>
@@ -913,12 +910,13 @@
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>8</ZIndex>
+                      <ZIndex>9</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=FormatCurrency(SUM(Fields!TotalAmountDue.Value - Fields!AmountTender.Value),2)</Value>
                     </Textbox>
@@ -931,7 +929,7 @@
         </Footer>
       </Table>
     </ReportItems>
-    <Height>1.125in</Height>
+    <Height>1.22in</Height>
   </Body>
   <Language>en-PH</Language>
   <PageFooter>
