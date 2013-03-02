@@ -93,22 +93,16 @@ namespace NJournals.Core.Presenter
 					custInv.CapsOnHand -= returnedCaps;	
 				}
 				
-				List<RefillCustInventoryDetailDataEntity> detailEntities = new List<RefillCustInventoryDetailDataEntity>();
-				detailEntities = custInv.DetailEntities as List<RefillCustInventoryDetailDataEntity>;
-				if(detailEntities != null){
-					RefillCustInventoryDetailDataEntity detail = detailEntities.Find(m_detail => m_detail.Date == returnDate);
-					if(detail == null){
-						detail = CreateNewCustInventoryDetail(custInv, returnedBottles, returnedCaps, returnDate);										
-						custInv.DetailEntities.Add(detail);
-					}
-					else{
-						detail.BottlesReturned += returnedBottles;
-						detail.CapsReturned += returnedCaps;
-					}
-				}else{
-					RefillCustInventoryDetailDataEntity detail = CreateNewCustInventoryDetail(custInv, returnedBottles, returnedCaps, returnDate);										
+				RefillCustInventoryDetailDataEntity detail = m_custInvDao.GetDetailByDay(custInv, returnDate);								
+				if(detail == null){
+					detail = CreateNewCustInventoryDetail(custInv, returnedBottles, returnedCaps, returnDate);										
 					custInv.DetailEntities.Add(detail);
 				}
+				else{
+					detail.BottlesReturned += returnedBottles;
+					detail.CapsReturned += returnedCaps;
+				}	
+				
 				m_custInvDao.SaveOrUpdate(custInv);
 						
 				if(returnedBottles != 0){
@@ -136,22 +130,15 @@ namespace NJournals.Core.Presenter
 				if(header.QtyReleased !=0){
 					header.QtyReleased -= returnedQty;
 				}
-				List<RefillInventoryDetailDataEntity> detailEntities = new List<RefillInventoryDetailDataEntity>();
-				detailEntities = header.DetailEntities as List<RefillInventoryDetailDataEntity>;
-//				if(detailEntities != null){
-					RefillInventoryDetailDataEntity detail = detailEntities.Find(m_detail => m_detail.Date == daystamp);								
-					if(detail == null)
-					{
-						detail = CreateNewInventoryDetail(header, returnedQty, daystamp);
-						header.DetailEntities.Add(detail);
-					}else{
-						detail.QtyOnHand += returnedQty;
-					}
-//				}
-//				else{
-//					RefillInventoryDetailDataEntity detail = CreateNewInventoryDetail(header, returnedQty, daystamp);
-//					header.DetailEntities.Add(detail);
-//				}
+				RefillInventoryDetailDataEntity detail = m_invDao.GetDetailByDay(header,daystamp);							
+				if(detail == null)
+				{
+					detail = CreateNewInventoryDetail(header, returnedQty, daystamp);
+					header.DetailEntities.Add(detail);
+				}else{
+					detail.QtyOnHand += returnedQty;
+					detail.QtyReleased -= returnedQty;	
+				}
 				m_invDao.SaveOrUpdate(header);
 			}
 			catch(Exception ex)
@@ -250,6 +237,7 @@ namespace NJournals.Core.Presenter
 			RefillInventoryDetailDataEntity detail = new RefillInventoryDetailDataEntity();
 			detail.Header = header;
 			detail.QtyOnHand += returnedQty;
+			detail.QtyReleased -= returnedQty;			
 			detail.Date = daystamp;
 			return detail;
 		}
