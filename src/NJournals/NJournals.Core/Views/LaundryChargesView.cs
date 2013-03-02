@@ -187,9 +187,28 @@ namespace NJournals.Core.Views
 			return true;
 		}
 		
-		#endregion
+		void BtnCloseClick(object sender, EventArgs e)
+		{
+			this.Close();
+		}
 		
-		//TODO: 1. add voidFlag column;
+		void dgvCharges_cellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+		{		
+			DataGridViewColumn price = dgvCharges.Columns["Amount"];
+			
+			if(dgvCharges.Rows[e.RowIndex].IsNewRow) { return;}
+			if(dgvCharges.CurrentCell.OwningColumn.HeaderText == "Price" && dgvCharges.IsCurrentCellInEditMode)
+			{
+				Decimal val;
+				if(!Decimal.TryParse(Convert.ToString(e.FormattedValue), out val)){
+					e.Cancel = true;
+					MessageService.ShowWarning("Invalid value being inputted.", "Invalid Value");
+					dgvCharges.CurrentCell = dgvCharges.Rows[e.RowIndex].Cells["Amount"];
+				}
+			}
+		}
+		
+		#endregion
 		
 		void setButtonImages()
 		{
@@ -209,9 +228,11 @@ namespace NJournals.Core.Views
 			dgvCharges.Columns["ChargeID"].Visible = false;
 			dgvCharges.Columns["Name"].HeaderText = "Charge Name";
 			dgvCharges.Columns["Amount"].HeaderText = "Price";
-			dgvCharges.Columns["Name"].Width = 150;
-			dgvCharges.Columns["Amount"].Width = 120;
+			dgvCharges.Columns["Name"].Width = 200;
+			dgvCharges.Columns["Amount"].Width = 88;
 		}
+		
+		
 		
 		
 	}
