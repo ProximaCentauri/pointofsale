@@ -48,14 +48,14 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/config.ico");
 		}	
 
 		void LaundryConfigurationFormLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
 			formatAlternatingRows();
-			setToolTip();
-			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/config.ico");
+			setToolTip();			
 			m_presenter = new LaundryConfigurationViewPresenter(this);
 			m_presenter.SetAllCategories();
 			m_presenter.SetAllServices();

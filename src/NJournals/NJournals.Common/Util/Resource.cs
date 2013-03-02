@@ -23,5 +23,11 @@ namespace NJournals.Common.Util
 				control.BackgroundImageLayout  = ImageLayout.Center;
 			}
 		}
+		
+		public static void setIcon(Form form, string imagePath){
+			if(File.Exists(imagePath)){
+				form.Icon = new System.Drawing.Icon(imagePath);
+			}
+		}
 	}
 }

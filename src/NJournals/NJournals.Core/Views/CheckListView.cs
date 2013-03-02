@@ -33,6 +33,7 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/checklist.ico");
 			m_presenter = new CheckListViewPresenter(this, new LaundryChecklistDao());
 			m_headerEntity = p_headerEntity;
 			m_jonumber = p_jonumber;
@@ -47,7 +48,6 @@ namespace NJournals.Core.Views
 		void CheckListViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
-			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/checklist.ico");
 			m_presenter.SetAllChecklist();
 			if(m_headerEntity.JobChecklistEntities.Count > 0){
 				m_presenter.SetSelectedChecklist();

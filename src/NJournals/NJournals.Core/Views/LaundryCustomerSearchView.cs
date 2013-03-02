@@ -36,13 +36,14 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//			
+			Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/user1.ico");
 			m_customer = p_customer;			
 			m_presenter = new LaundryCustomerSearchViewPresenter(this, p_customer);
 		}
 		
 		void LaundryCustomerSearchViewLoad(object sender, EventArgs e)
 		{
-			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/user1.ico");
+			
 			if(m_customer!=null)
 			{
 				txtcustomer.Text = m_customer.Name;			

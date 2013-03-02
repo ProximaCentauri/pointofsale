@@ -40,12 +40,12 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/user1.ico");
 		}
 		
 		void RefillReturnPaymentViewLoad(object sender, EventArgs e)
 		{
-			setButtonImages();
-			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/user1.ico");
+			setButtonImages();			
 			m_presenter = new RefillingReturnPaymentPresenter(this);
 			refillHeaders = null;
 			m_customerEntity = null;
