@@ -64,6 +64,7 @@ namespace NJournals.Core.Views
 			m_laundryDao = new LaundryDao();
 			m_presenter = new LaundryViewPresenter(this, m_laundryDao);
 			if(this.Text.Contains("[NEW]")){
+
 				Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/basket_new.ico");				
 				m_headerEntity = new LaundryHeaderDataEntity();						
 				m_presenter.SetAllCustomers();
@@ -81,9 +82,11 @@ namespace NJournals.Core.Views
 				dataGridView1.AllowUserToDeleteRows = false;
 				btnprint.Visible = true;
 				btnDeleteDetail.Enabled = false;
+				cmbCustomers.DropDownStyle = ComboBoxStyle.DropDown;
 			}
 			m_presenter.SetAllServices();
 			m_presenter.SetAllCharges();
+			
 		}				
 		
 		public void SetAllServices(List<LaundryServiceDataEntity> services){			

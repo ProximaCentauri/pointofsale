@@ -59,6 +59,8 @@ namespace NJournals.Core.Views
 				groupBox2.Enabled = true;
 				btnprintclose.Enabled = btnsave.Enabled = btncancel.Enabled = false;
 				btndeleteclose.Enabled = true;
+				cmbCustomers.DropDownStyle = ComboBoxStyle.DropDown;
+				cmbtransTypes.DropDownStyle = ComboBoxStyle.DropDown;
 			}
 		}
 		

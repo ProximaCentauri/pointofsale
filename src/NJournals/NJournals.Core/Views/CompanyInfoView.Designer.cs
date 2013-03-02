@@ -45,6 +45,7 @@ namespace NJournals.Core.Views
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.btnselectprinter = new System.Windows.Forms.Button();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.rdbinactive = new System.Windows.Forms.RadioButton();
@@ -139,6 +140,7 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.btnselectprinter);
 			this.groupBox2.Controls.Add(this.listBox1);
 			this.groupBox2.Controls.Add(this.label7);
 			this.groupBox2.Controls.Add(this.rdbinactive);
@@ -156,24 +158,35 @@ namespace NJournals.Core.Views
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Printer Settings";
 			// 
+			// btnselectprinter
+			// 
+			this.btnselectprinter.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnselectprinter.Location = new System.Drawing.Point(258, 105);
+			this.btnselectprinter.Name = "btnselectprinter";
+			this.btnselectprinter.Size = new System.Drawing.Size(42, 23);
+			this.btnselectprinter.TabIndex = 10;
+			this.btnselectprinter.Text = ">>";
+			this.btnselectprinter.UseVisualStyleBackColor = true;
+			this.btnselectprinter.Click += new System.EventHandler(this.BtnselectprinterClick);
+			// 
 			// listBox1
 			// 
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.ItemHeight = 14;
-			this.listBox1.Location = new System.Drawing.Point(24, 47);
+			this.listBox1.Location = new System.Drawing.Point(15, 47);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(241, 144);
+			this.listBox1.Size = new System.Drawing.Size(234, 144);
 			this.listBox1.TabIndex = 15;
 			// 
 			// label7
 			// 
 			this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.Location = new System.Drawing.Point(24, 18);
+			this.label7.Location = new System.Drawing.Point(15, 18);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(100, 23);
 			this.label7.TabIndex = 14;
 			this.label7.Text = "Installed Printers";
-			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// rdbinactive
 			// 
@@ -269,6 +282,7 @@ namespace NJournals.Core.Views
 			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Button btnselectprinter;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.TextBox txtmodel;
