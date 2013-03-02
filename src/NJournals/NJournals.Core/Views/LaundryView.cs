@@ -515,13 +515,6 @@ namespace NJournals.Core.Views
 			this.Close();
 		}
 		
-		void ChkpaywhenclaimCheckedChanged(object sender, EventArgs e)
-		{
-			//if(this.Text.Contains("NEW"))
-				//txtamttender.Enabled = !chkpaywhenclaim.Checked;
-		}
-
-		
 		void BtnprintClick(object sender, EventArgs e)
 		{
 			if(CheckForEmptyFields())

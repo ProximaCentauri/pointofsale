@@ -70,6 +70,10 @@ namespace NJournals.Core.Presenter
 			new_ChecklistEntities = m_headerEntity.JobChecklistEntities as List<LaundryJobChecklistDataEntity>;
 			if(m_view.GetTitle().Contains("NEW")){
 				SaveDaySummary(m_headerEntity);
+				if(MessageService.ShowInfo("Successfully saved entries." + Environment.NewLine +
+			                           "Do you want to print this transaction with JO number: " + m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0') ,"Information")){
+					PrintService.PrintLaundrySlip(m_headerEntity, 1);
+				}
 			}else if(m_view.GetTitle().Contains("CLAIM")){								
 
 				SaveUpdateDetails();						
@@ -79,9 +83,11 @@ namespace NJournals.Core.Presenter
 				SaveUpdateOrDeleteJobCheckList();			
 				
 				SaveDaySummary(m_OriginalHeaderEntity);
+				
+				MessageService.ShowInfo("Successfully saved entries.","Information");
 			}							
 				
-			MessageService.ShowInfo("Successfully saved entries.","Information");						
+									
 		}	
 		
 		private void SaveUpdateOrDeleteJobCheckList(){
