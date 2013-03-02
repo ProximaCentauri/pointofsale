@@ -285,8 +285,8 @@
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
-                        <TextAlign>Center</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -307,7 +307,8 @@
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -353,7 +354,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>8</ZIndex>
+                      <ZIndex>9</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Date</Value>
                     </Textbox>
@@ -379,7 +380,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>7</ZIndex>
+                      <ZIndex>8</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>No. of Transactions</Value>
                     </Textbox>
@@ -405,7 +406,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>6</ZIndex>
+                      <ZIndex>7</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Total Sales</Value>
                     </Textbox>
@@ -428,10 +429,46 @@
             <Width>2.21543in</Width>
           </TableColumn>
         </TableColumns>
-        <Height>0.72in</Height>
         <Footer>
           <TableRows>
             <TableRow>
+              <Visibility>
+                <Hidden>=Count(Fields!DayStamp.Value) &gt; 0</Hidden>
+              </Visibility>
+              <TableCells>
+                <TableCell>
+                  <ColSpan>3</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="textbox17">
+                      <rd:DefaultName>textbox17</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>PowderBlue</BackgroundColor>
+                        <BorderColor>
+                          <Default>White</Default>
+                        </BorderColor>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>="No records found."</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+            <TableRow>
+              <Visibility>
+                <Hidden>=Count(Fields!DayStamp.Value) &lt;= 0</Hidden>
+              </Visibility>
               <TableCells>
                 <TableCell>
                   <ReportItems>
@@ -445,14 +482,15 @@
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
+                        <TextAlign>Right</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>5</ZIndex>
+                      <ZIndex>6</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>Total</Value>
+                      <Value>TOTAL</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -468,13 +506,13 @@
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
-                        <TextAlign>Center</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>4</ZIndex>
+                      <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=FormatNumber(SUM(Fields!TransCount.Value),0)</Value>
                     </Textbox>
@@ -492,12 +530,13 @@
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>25pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>3</ZIndex>
+                      <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=FormatCurrency(SUM(Fields!TotalSales.Value),2)</Value>
                     </Textbox>
@@ -510,7 +549,7 @@
         </Footer>
       </Table>
     </ReportItems>
-    <Height>1.125in</Height>
+    <Height>1.22in</Height>
   </Body>
   <Language>en-PH</Language>
   <PageFooter>
