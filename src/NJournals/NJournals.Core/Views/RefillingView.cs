@@ -60,7 +60,7 @@ namespace NJournals.Core.Views
 					}					
 				}
 				groupBox2.Enabled = true;
-				btnprintclose.Enabled = btnsave.Enabled = btncancel.Enabled = false;
+				btnprintclose.Enabled = btnsave.Enabled = btncancel.Enabled = chkunpaid.Enabled = false;
 				btndeleteclose.Enabled = true;
 				cmbCustomers.DropDownStyle = ComboBoxStyle.DropDown;
 				cmbtransTypes.DropDownStyle = ComboBoxStyle.DropDown;
