@@ -356,24 +356,25 @@ namespace NJournals.Core.Views
 			this.btncancel.TabIndex = 34;
 			this.btncancel.Text = "Cancel";
 			this.btncancel.UseVisualStyleBackColor = true;
+			this.btncancel.Click += new System.EventHandler(this.BtncancelClick);
 			// 
 			// btnSave
 			// 
 			this.btnSave.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSave.Location = new System.Drawing.Point(761, 667);
+			this.btnSave.Location = new System.Drawing.Point(748, 667);
 			this.btnSave.Name = "btnSave";
-			this.btnSave.Size = new System.Drawing.Size(75, 23);
+			this.btnSave.Size = new System.Drawing.Size(99, 23);
 			this.btnSave.TabIndex = 33;
-			this.btnSave.Text = "Save";
+			this.btnSave.Text = "Save && Close";
 			this.btnSave.UseVisualStyleBackColor = true;
 			this.btnSave.Click += new System.EventHandler(this.BtnSaveClick);
 			// 
 			// dtDate
 			// 
-			this.dtDate.Font = new System.Drawing.Font("Calibri", 9.75F);
+			this.dtDate.Font = new System.Drawing.Font("Calibri", 11F);
 			this.dtDate.Location = new System.Drawing.Point(526, 25);
 			this.dtDate.Name = "dtDate";
-			this.dtDate.Size = new System.Drawing.Size(200, 23);
+			this.dtDate.Size = new System.Drawing.Size(200, 25);
 			this.dtDate.TabIndex = 35;
 			this.dtDate.Value = new System.DateTime(2013, 2, 2, 18, 46, 34, 0);
 			// 
@@ -405,7 +406,7 @@ namespace NJournals.Core.Views
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(984, 750);
+			this.ClientSize = new System.Drawing.Size(984, 742);
 			this.Controls.Add(this.txtbalance);
 			this.Controls.Add(this.label13);
 			this.Controls.Add(this.dtDate);

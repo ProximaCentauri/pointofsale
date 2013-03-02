@@ -70,7 +70,8 @@ namespace NJournals.Core.Views
 				m_presenter.SetAllCustomers();
 				this.groupBox2.Enabled = this.btnclaim.Enabled = btndelete.Enabled = false;
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
-				this.dtrecieveDate.Value = DateTime.Now;				
+				this.dtrecieveDate.Value = DateTime.Now;	
+				this.dtdueDate.Value = DateTime.Now;				
 				dataGridView1.AllowUserToDeleteRows = true;
 			}else{	
 				Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/basket_claim.ico");				
