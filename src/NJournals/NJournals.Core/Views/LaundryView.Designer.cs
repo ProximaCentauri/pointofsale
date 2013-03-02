@@ -62,11 +62,6 @@ namespace NJournals.Core.Views
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.lblvoid = new System.Windows.Forms.Label();
 			this.btnsearch = new System.Windows.Forms.Button();
@@ -98,6 +93,12 @@ namespace NJournals.Core.Views
 			this.btnDeleteDetail = new System.Windows.Forms.Button();
 			this.btnprint = new System.Windows.Forms.Button();
 			this.btnEditCharges = new System.Windows.Forms.Button();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -255,6 +256,8 @@ namespace NJournals.Core.Views
 			this.textBox1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBox1.Location = new System.Drawing.Point(84, 82);
 			this.textBox1.Name = "textBox1";
+			this.textBox1.ReadOnly = true;
+
 			this.textBox1.Size = new System.Drawing.Size(100, 24);
 			this.textBox1.TabIndex = 14;
 			// 
@@ -356,8 +359,8 @@ namespace NJournals.Core.Views
 			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-									this.Column1,
 									this.Column2,
+									this.Column1,
 									this.Column3,
 									this.Column4,
 									this.Column5});
@@ -380,34 +383,6 @@ namespace NJournals.Core.Views
 			this.dataGridView1.TabIndex = 4;
 			this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgv_rowsremoved);
 			this.dataGridView1.SelectionChanged += new System.EventHandler(this.dgv_selectionchanged);
-			// 
-			// Column1
-			// 
-			this.Column1.HeaderText = "Category";
-			this.Column1.Name = "Column1";
-			this.Column1.Width = 130;
-			// 
-			// Column2
-			// 
-			this.Column2.HeaderText = "Service";
-			this.Column2.Name = "Column2";
-			this.Column2.Width = 130;
-			// 
-			// Column3
-			// 
-			this.Column3.HeaderText = "No. of Items";
-			this.Column3.Name = "Column3";
-			// 
-			// Column4
-			// 
-			this.Column4.HeaderText = "Kilo";
-			this.Column4.Name = "Column4";
-			this.Column4.Width = 88;
-			// 
-			// Column5
-			// 
-			this.Column5.HeaderText = "Price";
-			this.Column5.Name = "Column5";
 			// 
 			// groupBox2
 			// 
@@ -771,6 +746,35 @@ namespace NJournals.Core.Views
 			this.btnEditCharges.UseVisualStyleBackColor = true;
 			this.btnEditCharges.Click += new System.EventHandler(this.BtnEditChargesClick);
 			// 
+			// Column2
+			// 
+			this.Column2.HeaderText = "Service";
+			this.Column2.Name = "Column2";
+			this.Column2.Width = 130;
+			// 
+			// Column1
+			// 
+			this.Column1.HeaderText = "Category";
+			this.Column1.Name = "Column1";
+			this.Column1.Width = 130;
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "No. of Items";
+			this.Column3.Name = "Column3";
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Kilo";
+			this.Column4.Name = "Column4";
+			this.Column4.Width = 88;
+			// 
+			// Column5
+			// 
+			this.Column5.HeaderText = "Price";
+			this.Column5.Name = "Column5";
+			// 
+
 			// LaundryNewView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
