@@ -78,7 +78,6 @@ namespace NJournals.Core.Views
 			this.label12 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.chkchargesList = new System.Windows.Forms.CheckedListBox();
-			this.chkpaywhenclaim = new System.Windows.Forms.CheckBox();
 			this.btnsaveclose = new System.Windows.Forms.Button();
 			this.btncancel = new System.Windows.Forms.Button();
 			this.btndelete = new System.Windows.Forms.Button();
@@ -476,7 +475,7 @@ namespace NJournals.Core.Views
 			// txtamttender
 			// 
 			this.txtamttender.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtamttender.Location = new System.Drawing.Point(801, 571);
+			this.txtamttender.Location = new System.Drawing.Point(801, 540);
 			this.txtamttender.Name = "txtamttender";
 			this.txtamttender.Size = new System.Drawing.Size(119, 29);
 			this.txtamttender.TabIndex = 11;
@@ -489,12 +488,13 @@ namespace NJournals.Core.Views
 			// 
 			this.label11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-			this.label11.Location = new System.Drawing.Point(677, 575);
+			this.label11.Location = new System.Drawing.Point(677, 544);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(124, 18);
 			this.label11.TabIndex = 10;
 			this.label11.Text = "Amount Tender:";
 			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.label11.Click += new System.EventHandler(this.Label11Click);
 			// 
 			// txtchange
 			// 
@@ -502,7 +502,7 @@ namespace NJournals.Core.Views
 			this.txtchange.Enabled = false;
 			this.txtchange.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtchange.ForeColor = System.Drawing.Color.Black;
-			this.txtchange.Location = new System.Drawing.Point(801, 640);
+			this.txtchange.Location = new System.Drawing.Point(801, 609);
 			this.txtchange.Name = "txtchange";
 			this.txtchange.Size = new System.Drawing.Size(119, 29);
 			this.txtchange.TabIndex = 13;
@@ -512,7 +512,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.label12.Location = new System.Drawing.Point(708, 644);
+			this.label12.Location = new System.Drawing.Point(708, 613);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(93, 18);
 			this.label12.TabIndex = 12;
@@ -542,20 +542,10 @@ namespace NJournals.Core.Views
 			this.chkchargesList.TabIndex = 24;
 			this.chkchargesList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkchargesList_ItemChecked);
 			// 
-			// chkpaywhenclaim
-			// 
-			this.chkpaywhenclaim.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkpaywhenclaim.Location = new System.Drawing.Point(795, 541);
-			this.chkpaywhenclaim.Name = "chkpaywhenclaim";
-			this.chkpaywhenclaim.Size = new System.Drawing.Size(125, 24);
-			this.chkpaywhenclaim.TabIndex = 15;
-			this.chkpaywhenclaim.Text = "Pay upon Claim";
-			this.chkpaywhenclaim.UseVisualStyleBackColor = true;
-			// 
 			// btnsaveclose
 			// 
 			this.btnsaveclose.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnsaveclose.Location = new System.Drawing.Point(716, 698);
+			this.btnsaveclose.Location = new System.Drawing.Point(716, 670);
 			this.btnsaveclose.Name = "btnsaveclose";
 			this.btnsaveclose.Size = new System.Drawing.Size(99, 23);
 			this.btnsaveclose.TabIndex = 16;
@@ -566,7 +556,7 @@ namespace NJournals.Core.Views
 			// btncancel
 			// 
 			this.btncancel.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btncancel.Location = new System.Drawing.Point(28, 698);
+			this.btncancel.Location = new System.Drawing.Point(28, 670);
 			this.btncancel.Name = "btncancel";
 			this.btncancel.Size = new System.Drawing.Size(99, 23);
 			this.btncancel.TabIndex = 17;
@@ -577,7 +567,7 @@ namespace NJournals.Core.Views
 			// btndelete
 			// 
 			this.btndelete.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btndelete.Location = new System.Drawing.Point(133, 698);
+			this.btndelete.Location = new System.Drawing.Point(133, 670);
 			this.btndelete.Name = "btndelete";
 			this.btndelete.Size = new System.Drawing.Size(91, 23);
 			this.btndelete.TabIndex = 18;
@@ -591,7 +581,7 @@ namespace NJournals.Core.Views
 			this.txtbalance.Enabled = false;
 			this.txtbalance.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtbalance.ForeColor = System.Drawing.Color.Black;
-			this.txtbalance.Location = new System.Drawing.Point(801, 606);
+			this.txtbalance.Location = new System.Drawing.Point(801, 575);
 			this.txtbalance.Name = "txtbalance";
 			this.txtbalance.Size = new System.Drawing.Size(119, 29);
 			this.txtbalance.TabIndex = 21;
@@ -601,7 +591,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label13.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label13.ForeColor = System.Drawing.Color.Maroon;
-			this.label13.Location = new System.Drawing.Point(711, 610);
+			this.label13.Location = new System.Drawing.Point(711, 579);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(90, 18);
 			this.label13.TabIndex = 20;
@@ -623,7 +613,7 @@ namespace NJournals.Core.Views
 			// btnclaim
 			// 
 			this.btnclaim.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnclaim.Location = new System.Drawing.Point(821, 698);
+			this.btnclaim.Location = new System.Drawing.Point(821, 670);
 			this.btnclaim.Name = "btnclaim";
 			this.btnclaim.Size = new System.Drawing.Size(99, 23);
 			this.btnclaim.TabIndex = 23;
@@ -739,7 +729,7 @@ namespace NJournals.Core.Views
 			// 
 			this.btnprint.Enabled = false;
 			this.btnprint.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnprint.Location = new System.Drawing.Point(611, 698);
+			this.btnprint.Location = new System.Drawing.Point(611, 670);
 			this.btnprint.Name = "btnprint";
 			this.btnprint.Size = new System.Drawing.Size(99, 23);
 			this.btnprint.TabIndex = 33;
@@ -766,7 +756,7 @@ namespace NJournals.Core.Views
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(984, 750);
+			this.ClientSize = new System.Drawing.Size(984, 722);
 			this.Controls.Add(this.btnEditCharges);
 			this.Controls.Add(this.btnprint);
 			this.Controls.Add(this.btnDeleteDetail);
@@ -785,7 +775,6 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.btndelete);
 			this.Controls.Add(this.btncancel);
 			this.Controls.Add(this.btnsaveclose);
-			this.Controls.Add(this.chkpaywhenclaim);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.txtchange);
 			this.Controls.Add(this.label12);
@@ -841,7 +830,6 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.DateTimePicker dtdueDate;
 		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.Button btnsaveclose;
-		private System.Windows.Forms.CheckBox chkpaywhenclaim;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.TextBox txtchange;

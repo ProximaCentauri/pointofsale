@@ -223,7 +223,7 @@ namespace NJournals.Core
 		
 		void setMenuBackgroundImages()
 		{
-			#if !DEBUG
+			//#if !DEBUG
 			lblcustomerList.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/customer.png");
 			lblcustomerList.BackgroundImageLayout = ImageLayout.None;
 			//refilling
@@ -246,17 +246,17 @@ namespace NJournals.Core
 			lbllaundryReports.BackgroundImageLayout = ImageLayout.None;
 			lbllaundryConfig.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/config.png");
 			lbllaundryConfig.BackgroundImageLayout = ImageLayout.None;
-			#endif
+			//#endif
 			
-			#if DEBUG
-			label1.Text = label2.Text = "";
-			foreach(Control c in this.panel1.Controls){
-				if(c is Label){
-					Label l = c as Label;
-					l.Font = new Font("Calibri", 7, FontStyle.Regular);
-				}					
-			}
-			#endif
+//			#if DEBUG
+//			label1.Text = label2.Text = "";
+//			foreach(Control c in this.panel1.Controls){
+//				if(c is Label){
+//					Label l = c as Label;
+//					l.Font = new Font("Calibri", 7, FontStyle.Regular);
+//				}					
+//			}
+//			#endif
 			
 		}
 		
