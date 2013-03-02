@@ -52,6 +52,7 @@ namespace NJournals.Core.Views
 			m_presenter.SetAllCustomers();
 			totalAmountDue = 0.00M;			
 			dtDate.Value = DateTime.Now;
+			btnSave.Enabled = false;
 		}
 		
 		void setButtonImages()
@@ -75,11 +76,13 @@ namespace NJournals.Core.Views
 				this.refillHeaders = null;
                 txtReturnedBottles.Enabled = false;
                 txtReturnedCaps.Enabled = false;
-				m_presenter.GetRefillJOsByCustomer(this.cmbCustomers.SelectedItem.ToString());                
+				m_presenter.GetRefillJOsByCustomer(this.cmbCustomers.SelectedItem.ToString());  
+				btnSave.Enabled = true;				
 			}
 			else
 			{
 				MessageService.ShowWarning("No customer selected. Please select a customer.");
+				btnSave.Enabled = false;
 			}
 		}
 		
