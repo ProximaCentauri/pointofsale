@@ -159,5 +159,10 @@ namespace NJournals.Core.Views
 		{
 			calculateQty();
 		}		
+		
+		void BtnokprintClick(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }

@@ -134,8 +134,8 @@ namespace NJournals.Core.Views
 					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
 						LaundryDetailDataEntity detail = new LaundryDetailDataEntity();
 						detail.Header = m_headerEntity;				
-						detail.Category = m_presenter.getCategoryByName(row.Cells[0].Value.ToString());				
-						detail.Service = m_presenter.getServiceByName(row.Cells[1].Value.ToString());
+						detail.Category = m_presenter.getCategoryByName(row.Cells[1].Value.ToString());				
+						detail.Service = m_presenter.getServiceByName(row.Cells[0].Value.ToString());
 						detail.Kilo = double.Parse(row.Cells[2].Value.ToString());
 						itemQty = int.Parse(row.Cells[3].Value.ToString());
 						detail.ItemQty = itemQty;
@@ -339,7 +339,7 @@ namespace NJournals.Core.Views
 				dtrecieveDate.Value = m_headerEntity.ReceivedDate;
 				dtdueDate.Value = m_headerEntity.DueDate;
 				foreach(LaundryDetailDataEntity detailEntity in m_headerEntity.DetailEntities){
-					dataGridView1.Rows.Add(detailEntity.Category.Name, detailEntity.Service.Name, detailEntity.Kilo.ToString(), detailEntity.ItemQty.ToString(), detailEntity.Amount.ToString("N2"));
+					dataGridView1.Rows.Add(detailEntity.Service.Name, detailEntity.Category.Name,  detailEntity.Kilo.ToString(), detailEntity.ItemQty.ToString(), detailEntity.Amount.ToString("N2"));
 				}				
 				//chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;										
 				for(int i=0;i<chkchargesList.Items.Count;i++){

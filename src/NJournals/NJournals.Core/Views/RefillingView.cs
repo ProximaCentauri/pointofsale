@@ -64,6 +64,7 @@ namespace NJournals.Core.Views
 				cmbCustomers.DropDownStyle = ComboBoxStyle.DropDown;
 				cmbtransTypes.DropDownStyle = ComboBoxStyle.DropDown;
 				btnprintclose.Enabled = true;
+				dataGridView1.AllowUserToDeleteRows = false;
 			}
 		}
 		
