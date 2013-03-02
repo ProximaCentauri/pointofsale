@@ -67,7 +67,7 @@ namespace NJournals.Core.Views
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(41, 19);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(364, 200);
+            this.groupBox1.Size = new System.Drawing.Size(428, 200);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Report Information";
@@ -77,11 +77,11 @@ namespace NJournals.Core.Views
             this.cmbCustomers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbCustomers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCustomers.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCustomers.Font = new System.Drawing.Font("Calibri", 11F);
             this.cmbCustomers.FormattingEnabled = true;
             this.cmbCustomers.Location = new System.Drawing.Point(131, 51);
             this.cmbCustomers.Name = "cmbCustomers";
-            this.cmbCustomers.Size = new System.Drawing.Size(199, 26);
+            this.cmbCustomers.Size = new System.Drawing.Size(244, 26);
             this.cmbCustomers.TabIndex = 10;
             // 
             // label4
@@ -96,25 +96,25 @@ namespace NJournals.Core.Views
             // 
             // dateToPicker
             // 
-            this.dateToPicker.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateToPicker.Font = new System.Drawing.Font("Calibri", 11F);
             this.dateToPicker.Location = new System.Drawing.Point(130, 114);
             this.dateToPicker.Name = "dateToPicker";
-            this.dateToPicker.Size = new System.Drawing.Size(200, 26);
+            this.dateToPicker.Size = new System.Drawing.Size(245, 25);
             this.dateToPicker.TabIndex = 8;
             // 
             // dateFromPicker
             // 
             this.dateFromPicker.CustomFormat = "mm/dd/yyyy hh:mm:ss";
-            this.dateFromPicker.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateFromPicker.Font = new System.Drawing.Font("Calibri", 11F);
             this.dateFromPicker.Location = new System.Drawing.Point(130, 81);
             this.dateFromPicker.Name = "dateFromPicker";
-            this.dateFromPicker.Size = new System.Drawing.Size(200, 26);
+            this.dateFromPicker.Size = new System.Drawing.Size(245, 25);
             this.dateFromPicker.TabIndex = 7;
             // 
             // btnRunReport
             // 
-            this.btnRunReport.Font = new System.Drawing.Font("Calibri", 10.5F, System.Drawing.FontStyle.Bold);
-            this.btnRunReport.Location = new System.Drawing.Point(233, 161);
+            this.btnRunReport.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.btnRunReport.Location = new System.Drawing.Point(277, 161);
             this.btnRunReport.Name = "btnRunReport";
             this.btnRunReport.Size = new System.Drawing.Size(97, 23);
             this.btnRunReport.TabIndex = 6;
@@ -147,11 +147,11 @@ namespace NJournals.Core.Views
             this.cmbReportTypes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbReportTypes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbReportTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbReportTypes.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbReportTypes.Font = new System.Drawing.Font("Calibri", 11F);
             this.cmbReportTypes.FormattingEnabled = true;
             this.cmbReportTypes.Location = new System.Drawing.Point(131, 20);
             this.cmbReportTypes.Name = "cmbReportTypes";
-            this.cmbReportTypes.Size = new System.Drawing.Size(199, 26);
+            this.cmbReportTypes.Size = new System.Drawing.Size(244, 26);
             this.cmbReportTypes.TabIndex = 1;
             this.cmbReportTypes.SelectedIndexChanged += new System.EventHandler(this.CmbReportTypesSelectedIndexChanged);
             // 
@@ -170,9 +170,10 @@ namespace NJournals.Core.Views
             this.reportViewer.AutoScroll = true;
             this.reportViewer.AutoSize = true;
             this.reportViewer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.reportViewer.IsDocumentMapWidthFixed = true;
             this.reportViewer.Location = new System.Drawing.Point(38, 234);
             this.reportViewer.Name = "reportViewer";
-            this.reportViewer.Size = new System.Drawing.Size(900, 400);
+            this.reportViewer.Size = new System.Drawing.Size(900, 450);
             this.reportViewer.TabIndex = 1;
             // 
             // ReportView
@@ -182,7 +183,7 @@ namespace NJournals.Core.Views
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-            this.ClientSize = new System.Drawing.Size(1084, 662);
+            this.ClientSize = new System.Drawing.Size(1084, 722);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.groupBox1);
             this.Name = "ReportView";
