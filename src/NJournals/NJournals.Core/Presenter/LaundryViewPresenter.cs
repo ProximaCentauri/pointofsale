@@ -357,7 +357,7 @@ namespace NJournals.Core.Presenter
 			
 				MessageService.ShowInfo("Printing transaction with JO number: " + m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0'));
 			}		
-			PrintService.PrintLaundrySlip(m_headerEntity, 1);			
+			PrintService.PrintLaundrySlip(null,m_headerEntity,null);			
 		}
 	}
 }

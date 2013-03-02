@@ -27,36 +27,30 @@ namespace NJournals.Common.Util
 		}
 		
 		static PrinterSettings ps = null;
-		private static void SetPrinter(short copies)
-		{								
-			foreach(string printer in PrinterSettings.InstalledPrinters)
-			{
-				if(printer.ToUpper().Equals("POS80"))
-				{
-					ps = new PrinterSettings();
-					ps.PrinterName = "POS80";	
-					ps.Copies = copies;					
-					break;
-				}
-			}			  				    		
+		private static void SetPrinter(PrinterDataEntity printer)
+		{				
+			// todo:			
+			if(printer == null) return;
+			
+			ps = new PrinterSettings();
+			ps.PrinterName = printer.Name;  		
+			return;
 		}
 		
-		public static bool PrintLaundrySlip(LaundryHeaderDataEntity header, short copies)
+		public static bool PrintLaundrySlip(PrinterDataEntity printer, LaundryHeaderDataEntity header, CompanyDataEntity company)
 		{
 			try{
-				SetPrinter(copies);
+				SetPrinter(printer);
 				if (ps == null) return false;
 				
 				StringBuilder sb = new StringBuilder();
-				PrintClaimSlip(ref sb, header);							
-				//RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
-				Console.WriteLine("------------starts here-----------");
-				Console.WriteLine(sb.ToString());
+				PrintClaimSlip(ref sb, header, company);							
+				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
 				
 				sb = new StringBuilder();				
 				PrintTag(ref sb, header);
 				ps.Copies = 1;
-				//RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
+				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
 				return true;				
 			}
 			catch(Exception ex)
@@ -65,11 +59,11 @@ namespace NJournals.Common.Util
 			}			
 		}
 			
-		public static bool PrintCheckList(LaundryHeaderDataEntity header, short copies)
+		public static bool PrintCheckList(LaundryHeaderDataEntity header, PrinterDataEntity printer)
 		{
 			try
 			{
-				SetPrinter(copies);
+				SetPrinter(printer);
 				if (ps == null) return false;
 				
 				StringBuilder sb = new StringBuilder();
@@ -113,14 +107,14 @@ namespace NJournals.Common.Util
 			}
 		}
 		
-		public static bool PrintRefillSlip(RefillHeaderDataEntity header, short copies)
+		public static bool PrintRefillSlip(PrinterDataEntity printer, RefillHeaderDataEntity header, CompanyDataEntity company)
 		{
 			try{
-				SetPrinter(copies);
+				SetPrinter(printer);
 				if (ps == null) return false;
 				
 				StringBuilder sb = new StringBuilder();
-				PrintRefillOrderSlip(ref sb, header);				
+				PrintRefillOrderSlip(ref sb, header,company);				
 				
 				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());								
 				return true;				
@@ -132,12 +126,12 @@ namespace NJournals.Common.Util
 		}
 				
 		
-		private static void PrintClaimSlip(ref StringBuilder sb, LaundryHeaderDataEntity header)
+		private static void PrintClaimSlip(ref StringBuilder sb, LaundryHeaderDataEntity header, CompanyDataEntity company)
 		{									
-			string[] itemArr			;
+			string[] itemArr;
 			string item;
 			
-			PrintHeader(ref sb);
+			PrintHeader(ref sb, company);
 			sb.Append(SetFontSize(2));
 			sb.AppendLine("CLAIM SLIP");
 			sb.Append(SetFontSize(0));
@@ -191,9 +185,9 @@ namespace NJournals.Common.Util
 		private static void PrintTag(ref StringBuilder sb, LaundryHeaderDataEntity header)
 		{
 			sb.Append(SetAlignment("CENTER"));
-			sb.Append(SetFontSize(4));
+			sb.Append(SetFontSize(5));
 			sb.AppendLine(header.Customer.Name.ToUpper());
-			sb.Append(SetFontSize(3));
+			sb.Append(SetFontSize(4));
 			sb.AppendLine(header.LaundryHeaderID.ToString());
 			sb.Append(SetFontSize(0));;
 			sb.AppendLine("");
@@ -201,12 +195,12 @@ namespace NJournals.Common.Util
 			sb.Append(CutPaper());
 		}					
 		
-		private static void PrintRefillOrderSlip(ref StringBuilder sb, RefillHeaderDataEntity header)
+		private static void PrintRefillOrderSlip(ref StringBuilder sb, RefillHeaderDataEntity header,CompanyDataEntity company)
 		{			
 			string[] itemArr;
 			string item = "";
 			
-			PrintHeader(ref sb);
+			PrintHeader(ref sb,company);
 			sb.Append(SetFontSize(2));
 			sb.AppendLine("ORDER SLIP");
 			sb.Append(SetFontSize(0));
@@ -292,19 +286,40 @@ namespace NJournals.Common.Util
 					return (Convert.ToChar(29) + "!" + Convert.ToChar(48));
 				case 4:
 					return (Convert.ToChar(29) + "!" + Convert.ToChar(64));
+				case 5:
+					return (Convert.ToChar(29) + "!" + Convert.ToChar(72));
+				case 6:
+					return (Convert.ToChar(29) + "!" + Convert.ToChar(88));
 				default:
 					return (Convert.ToChar(29) + "!" + Convert.ToChar(0));
 			}
 		}
 		
-		private static void PrintHeader(ref StringBuilder sb)
+		private static void PrintHeader(ref StringBuilder sb, CompanyDataEntity company)
 		{
 			sb.Append(SetAlignment("CENTER"));
-			sb.AppendLine("LAUNDRYPRO GARMENT CARE");
-			sb.AppendLine("TETH'S SATELLITE MARKET");
-			sb.AppendLine("M.L. QUEZON AVE. MAGUIKAY");
-			sb.AppendLine("MANDAUE CITY");
-			sb.AppendLine("# (032) 4127045 # (0906) 5429986");
+			sb.Append(SetFontSize(1));
+			sb.AppendLine(company.Name.ToUpper());
+			sb.Append(SetFontSize(0));			
+			
+			string[] tempArr = company.Address.Split(' ');
+			string address="";
+			for(int i=0;i<tempArr.Length;i++)
+			{
+				address+=tempArr[i] + " ";
+				if(i%3==0){
+					sb.AppendLine(address.ToUpper());
+					address="";
+				}
+			}						
+			tempArr=null;
+			tempArr = company.ContactNumber.Split(';');
+			string contactNum="";
+			for(int i=0;i<tempArr.Length;i++)
+			{
+				contactNum += "# " + tempArr[i] + " ";
+			}
+			sb.AppendLine(contactNum);
 			sb.AppendLine("");
 			sb.AppendLine("");
 		}
