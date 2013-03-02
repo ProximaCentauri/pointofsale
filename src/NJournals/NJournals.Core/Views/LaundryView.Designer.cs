@@ -36,8 +36,9 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cmbCustomers = new System.Windows.Forms.ComboBox();
 			this.btnCustomerSearch = new System.Windows.Forms.Button();
@@ -325,14 +326,14 @@ namespace NJournals.Core.Views
 			// dataGridView1
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Column1,
@@ -344,8 +345,16 @@ namespace NJournals.Core.Views
 			this.dataGridView1.Location = new System.Drawing.Point(329, 176);
 			this.dataGridView1.MultiSelect = false;
 			this.dataGridView1.Name = "dataGridView1";
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView1.Size = new System.Drawing.Size(591, 240);
 			this.dataGridView1.TabIndex = 4;
@@ -446,11 +455,11 @@ namespace NJournals.Core.Views
 			// 
 			this.txtamtdue.BackColor = System.Drawing.SystemColors.Info;
 			this.txtamtdue.Enabled = false;
-			this.txtamtdue.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtamtdue.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtamtdue.ForeColor = System.Drawing.Color.Black;
 			this.txtamtdue.Location = new System.Drawing.Point(801, 422);
 			this.txtamtdue.Name = "txtamtdue";
-			this.txtamtdue.Size = new System.Drawing.Size(119, 23);
+			this.txtamtdue.Size = new System.Drawing.Size(119, 27);
 			this.txtamtdue.TabIndex = 9;
 			this.txtamtdue.Text = "0.00";
 			// 
@@ -627,11 +636,11 @@ namespace NJournals.Core.Views
 			// 
 			this.txttotalcharges.BackColor = System.Drawing.SystemColors.Info;
 			this.txttotalcharges.Enabled = false;
-			this.txttotalcharges.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txttotalcharges.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txttotalcharges.ForeColor = System.Drawing.Color.Black;
 			this.txttotalcharges.Location = new System.Drawing.Point(801, 448);
 			this.txttotalcharges.Name = "txttotalcharges";
-			this.txttotalcharges.Size = new System.Drawing.Size(119, 24);
+			this.txttotalcharges.Size = new System.Drawing.Size(119, 27);
 			this.txttotalcharges.TabIndex = 25;
 			this.txttotalcharges.Text = "0.00";
 			// 
@@ -648,11 +657,11 @@ namespace NJournals.Core.Views
 			// txtdiscount
 			// 
 			this.txtdiscount.BackColor = System.Drawing.SystemColors.Info;
-			this.txtdiscount.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtdiscount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtdiscount.ForeColor = System.Drawing.Color.Black;
 			this.txtdiscount.Location = new System.Drawing.Point(801, 477);
 			this.txtdiscount.Name = "txtdiscount";
-			this.txtdiscount.Size = new System.Drawing.Size(34, 24);
+			this.txtdiscount.Size = new System.Drawing.Size(34, 27);
 			this.txtdiscount.TabIndex = 27;
 			this.txtdiscount.Text = "0";
 			this.txtdiscount.Click += new System.EventHandler(this.textbox_click);
@@ -696,11 +705,11 @@ namespace NJournals.Core.Views
 			// 
 			this.txttotaldiscount.BackColor = System.Drawing.SystemColors.Info;
 			this.txttotaldiscount.Enabled = false;
-			this.txttotaldiscount.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txttotaldiscount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txttotaldiscount.ForeColor = System.Drawing.Color.Black;
 			this.txttotaldiscount.Location = new System.Drawing.Point(861, 477);
 			this.txttotaldiscount.Name = "txttotaldiscount";
-			this.txttotaldiscount.Size = new System.Drawing.Size(59, 24);
+			this.txttotaldiscount.Size = new System.Drawing.Size(59, 27);
 			this.txttotaldiscount.TabIndex = 30;
 			this.txttotaldiscount.Text = "0.00";
 			// 

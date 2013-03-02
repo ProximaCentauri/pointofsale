@@ -69,7 +69,7 @@ namespace NJournals.Core.Models
 			{
                 var query = session.Query<PrinterDataEntity>()
                 	.Where(x => x.Active == true)
-                	.OrderBy(x => x.Name)
+                	.OrderBy(x => x.PrinterID)
                     .ToList();
                 return query;
 			}
