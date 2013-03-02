@@ -83,6 +83,7 @@ namespace NJournals.Core.Views
 			this.txtbalance = new System.Windows.Forms.TextBox();
 			this.label13 = new System.Windows.Forms.Label();
 			this.btnsave = new System.Windows.Forms.Button();
+			this.btnDeleteDetail = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -573,12 +574,26 @@ namespace NJournals.Core.Views
 			this.btnsave.UseVisualStyleBackColor = true;
 			this.btnsave.Click += new System.EventHandler(this.BtnsaveClick);
 			// 
+			// btnDeleteDetail
+			// 
+			this.btnDeleteDetail.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnDeleteDetail.FlatAppearance.BorderSize = 0;
+			this.btnDeleteDetail.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteDetail.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDeleteDetail.Location = new System.Drawing.Point(950, 223);
+			this.btnDeleteDetail.Name = "btnDeleteDetail";
+			this.btnDeleteDetail.Size = new System.Drawing.Size(26, 23);
+			this.btnDeleteDetail.TabIndex = 33;
+			this.btnDeleteDetail.UseVisualStyleBackColor = true;
+			// 
 			// RefillingView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(984, 712);
+			this.ClientSize = new System.Drawing.Size(994, 712);
+			this.Controls.Add(this.btnDeleteDetail);
 			this.Controls.Add(this.btnsave);
 			this.Controls.Add(this.txtbalance);
 			this.Controls.Add(this.label13);
@@ -609,6 +624,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button btnDeleteDetail;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button btnsave;
