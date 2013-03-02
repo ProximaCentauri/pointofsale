@@ -48,6 +48,7 @@ namespace NJournals.Core.Views
 				m_presenter.SetAllProducts();
 				m_presenter.SetAllTransactionTypes();
 				txtjonumber.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
+				this.dtDate.Value = DateTime.Now;
 			}else{
 				Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/bottle_return.ico");
 				foreach(Control c in this.Controls){

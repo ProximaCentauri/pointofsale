@@ -51,6 +51,7 @@ namespace NJournals.Core.Views
 			m_customerEntity = null;
 			m_presenter.SetAllCustomers();
 			totalAmountDue = 0.00M;			
+			dtDate.Value = DateTime.Now;
 		}
 		
 		void setButtonImages()
@@ -126,51 +127,56 @@ namespace NJournals.Core.Views
 		}		
 				
 		void BtnSaveClick(object sender, EventArgs e)
-		{			
-			int returnedBottles = (txtReturnedBottles.Text != string.Empty) ? Convert.ToInt32(txtReturnedBottles.Text) : 0;
-			int returnedCaps = (txtReturnedCaps.Text != string.Empty) ? Convert.ToInt32(txtReturnedCaps.Text) : 0;
-			decimal amountTender = Convert.ToDecimal(txtamttender.Text);
-						
+		{		
 			if(this.ValidateCustomerInput())
-			{	
-				try
-				{
-					bool isSaved = false;
-					if(returnedBottles > 0 || returnedCaps > 0)
+			{			
+				if(MessageService.ShowYesNo("Are you sure you want to save changes?", "Saving Return/Payment?"))
+				{				
+					int returnedBottles = (txtReturnedBottles.Text != string.Empty) ? Convert.ToInt32(txtReturnedBottles.Text) : 0;
+					int returnedCaps = (txtReturnedCaps.Text != string.Empty) ? Convert.ToInt32(txtReturnedCaps.Text) : 0;
+					DateTime daystamp = dtDate.Value.Date;
+					decimal amountTender = Convert.ToDecimal(txtamttender.Text);
+												
+					try
 					{
-						this.UpdateCustomerInventory(returnedBottles, returnedCaps);
-						isSaved = true;
+						bool isSaved = false;
+						if(returnedBottles > 0 || returnedCaps > 0)
+						{
+							this.UpdateCustomerInventory(returnedBottles, returnedCaps, daystamp);
+							isSaved = true;
+						}
+						if(amountTender > 0.0M)
+						{
+							this.UpdateCustomerRefillHeaders(amountTender, daystamp);
+							isSaved = true;
+						}
+						if(isSaved){
+							MessageService.ShowInfo("Save successful!","Save");
+						}
+						else{
+							MessageService.ShowWarning("No changes; nothing to save.","Save");
+						}
 					}
-					if(amountTender > 0.0M)
+					catch(Exception ex)
 					{
-						this.UpdateCustomerRefillHeaders(amountTender);
-						isSaved = true;
-					}
-					if(isSaved){
-						MessageService.ShowInfo("Save successful!","Save");
-					}
-					else{
-						MessageService.ShowWarning("No changes; nothing to save.","Save");
-					}
-				}
-				catch(Exception ex)
-				{
-                    MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
-                                        "Please check error log for details.\n", ex);
-				}
-			}		
+	                    MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
+	                                        "Please check error log for details.\n", ex);
+					}	
+					this.Close();						
+				}										
+			}			
 		}
 		
-		private void UpdateCustomerInventory(int returnedBottles, int returnedCaps)
+		private void UpdateCustomerInventory(int returnedBottles, int returnedCaps, DateTime daystamp)
 		{
-			m_presenter.UpdateCustomerInventory(returnedBottles, returnedCaps, dtDate.Value.Date);	
+			m_presenter.UpdateCustomerInventory(returnedBottles, returnedCaps, daystamp);	
 		}
 		
-		private void UpdateCustomerRefillHeaders(decimal amountTender)
+		private void UpdateCustomerRefillHeaders(decimal amountTender, DateTime daystamp)
 		{
 			if(this.refillHeaders.Count > 0)
 			{
-				m_presenter.UpdateCustomerRefillHeaders(amountTender,refillHeaders, dtDate.Value.Date);
+				m_presenter.UpdateCustomerRefillHeaders(amountTender, refillHeaders, daystamp);
 			}			
 		}
 		
@@ -228,6 +234,13 @@ namespace NJournals.Core.Views
 				txtReturnedCaps.Text = "0";
 			}
 			txtCapsOnHand.Text = (capsOnHand - Int32.Parse(txtReturnedCaps.Text)).ToString();
+		}
+		
+		void BtncancelClick(object sender, EventArgs e)
+		{
+			if(MessageService.ShowYesNo("Are you sure you want to cancel changes? Data in the fields will be remove.","Cancel Transaction")){
+				ClearFields();
+			}	
 		}
 	}
 }
