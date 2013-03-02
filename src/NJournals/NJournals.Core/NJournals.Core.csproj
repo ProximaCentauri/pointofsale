@@ -141,11 +141,15 @@
     <Compile Include="Views\CheckListView.Designer.cs">
       <DependentUpon>CheckListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CompanyInfoView.cs" />
+    <Compile Include="Views\CompanyInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\CompanyInfoView.Designer.cs">
       <DependentUpon>CompanyInfoView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\LaundryChargesView.cs" />
+    <Compile Include="Views\LaundryChargesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\LaundryChargesView.Designer.cs">
       <DependentUpon>LaundryChargesView.cs</DependentUpon>
     </Compile>
