@@ -42,6 +42,7 @@ namespace NJournals.Core.Views
 		
 		void RefillingViewLoad(object sender, EventArgs e)
 		{
+			setButtonImages();		
 			if(this.Text.Contains("[NEW]")){
 				Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/bottle_new.ico");
 				m_presenter.SetAllCustomers();
@@ -340,5 +341,11 @@ namespace NJournals.Core.Views
 				}									   
 			}		
 		}
+		
+		void setButtonImages()
+		{			
+			Resource.setImage(this.btnsearch, System.IO.Directory.GetCurrentDirectory() + "/images/search.png");
+		}
+
 	}
 }
