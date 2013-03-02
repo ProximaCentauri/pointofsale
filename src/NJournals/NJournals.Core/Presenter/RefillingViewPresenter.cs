@@ -88,7 +88,7 @@ namespace NJournals.Core.Presenter
 				UpdateRefillCustomerInventory(m_headerEntity);
 				if(MessageService.ShowYesNo("Successfully saved entries." + Environment.NewLine +
 				                            "Do you want to print this transaction with JO number: " + m_headerEntity.RefillHeaderID.ToString().PadLeft(6, '0') + "?" ,"Information")){
-					PrintService.PrintRefillSlip(m_headerEntity, 1);
+					//PrintService.PrintRefillSlip(m_headerEntity, 1);
 				}
 			}
 		}
@@ -249,7 +249,7 @@ namespace NJournals.Core.Presenter
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
 			if(m_headerEntity != null){
 				MessageService.ShowInfo("Printing transaction...");
-				PrintService.PrintRefillSlip(m_headerEntity, 1);	
+				//PrintService.PrintRefillSlip(m_headerEntity, 1);	
 			}			
 			
 		}
