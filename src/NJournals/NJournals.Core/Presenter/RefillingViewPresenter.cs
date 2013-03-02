@@ -107,9 +107,10 @@ namespace NJournals.Core.Presenter
 						customerInvHeader.BottlesOnHand += detail.StoreBottleQty;						
 						m_refillInvDao.Update(inventoryHeader);
 						m_customerInvDao.SaveOrUpdate(customerInvHeader);
+						UpdateCapsQty(detail, customerInvHeader, false);
 						UpdateInventoryDetail(inventoryHeader);
 					}		
-				}						
+				}
 			}			
 		}
 		
@@ -128,6 +129,25 @@ namespace NJournals.Core.Presenter
 				inventoryDetail.QtyRemoved = 0;
 				inventoryDetail.TotalQty = p_inventoryHeader.TotalQty;					
 				m_refillInvDetailDao.SaveOrUpdate(inventoryDetail);
+			}
+		}
+		
+		private void UpdateCapsQty(RefillDetailDataEntity detail, RefillCustInventoryHeaderDataEntity customerInvHeader, bool voided){
+			RefillInventoryHeaderDataEntity inventoryHeader = new RefillInventoryHeaderDataEntity();
+			inventoryHeader = m_refillInvDao.GetByName("Caps");
+			if(inventoryHeader != null){
+				if(!voided){
+					inventoryHeader.QtyOnHand -= detail.StoreCapQty;
+					inventoryHeader.QtyReleased += detail.StoreCapQty;
+					customerInvHeader.CapsOnHand += detail.StoreCapQty;
+					m_refillInvDao.Update(inventoryHeader);
+				}else{
+					inventoryHeader.QtyOnHand += detail.StoreCapQty;
+					inventoryHeader.QtyReleased -= detail.StoreCapQty;
+					customerInvHeader.CapsOnHand -= detail.StoreCapQty;
+					m_refillInvDao.Update(inventoryHeader);
+				}
+				
 			}
 		}
 		
@@ -152,6 +172,7 @@ namespace NJournals.Core.Presenter
 							customerInvHeader.BottlesOnHand -= detail.StoreBottleQty;
 							m_refillInvDao.Update(inventoryHeader);
 							m_customerInvDao.SaveOrUpdate(customerInvHeader);
+							UpdateCapsQty(detail, customerInvHeader, true);
 							UpdateInventoryDetail(inventoryHeader);
 						}		
 					}							
