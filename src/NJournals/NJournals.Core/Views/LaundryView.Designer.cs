@@ -494,7 +494,6 @@ namespace NJournals.Core.Views
 			this.label11.TabIndex = 10;
 			this.label11.Text = "Amount Tender:";
 			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.label11.Click += new System.EventHandler(this.Label11Click);
 			// 
 			// txtchange
 			// 

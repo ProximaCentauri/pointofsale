@@ -341,7 +341,7 @@ namespace NJournals.Core.Views
 				foreach(LaundryDetailDataEntity detailEntity in m_headerEntity.DetailEntities){
 					dataGridView1.Rows.Add(detailEntity.Category.Name, detailEntity.Service.Name, detailEntity.Kilo.ToString(), detailEntity.ItemQty.ToString(), detailEntity.Amount.ToString("N2"));
 				}				
-				chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;										
+				//chkpaywhenclaim.Enabled = m_headerEntity.PaidFlag;										
 				for(int i=0;i<chkchargesList.Items.Count;i++){
 					foreach(LaundryJobChargesDataEntity chargeEntity in m_headerEntity.JobChargeEntities){
 						if(chkchargesList.Items[i].ToString().Equals(chargeEntity.Charge.Name)){
@@ -387,7 +387,7 @@ namespace NJournals.Core.Views
 			btnclaim.Enabled = enabled;
 			chkchargesList.Enabled = enabled;
 			
-			chkpaywhenclaim.Enabled = enabled;
+			//chkpaywhenclaim.Enabled = enabled;
 			txtamttender.Enabled = enabled;
 		}
 		
