@@ -43,9 +43,9 @@ DROP TABLE IF EXISTS `company`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE  TABLE `db_laundry_refilling`.`company` (
   `CompanyID` int(10) NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,
-  `Address` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,
-  `ContactNumber` VARCHAR(25) NOT NULL DEFAULT 'NULL' ,  
+  `Name` VARCHAR(75) NOT NULL DEFAULT 'NULL' ,
+  `Address` VARCHAR(75) NOT NULL DEFAULT 'NULL' ,
+  `ContactNumber` VARCHAR(50) NOT NULL DEFAULT 'NULL' ,  
   `VoidFlag` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`CompanyID`) )
 ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

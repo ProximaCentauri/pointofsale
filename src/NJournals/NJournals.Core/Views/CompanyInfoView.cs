@@ -103,6 +103,7 @@ namespace NJournals.Core.Views
 			
 			if(MessageService.ShowYesNo("Are you sure you want to save these entries?")){
 				m_presenter.SaveClicked();
+				this.Close();
 			}		
 		}
 		
@@ -130,8 +131,11 @@ namespace NJournals.Core.Views
 			printer.Model = txtmodel.Text;
 			printer.Active = rdbactive.Checked ? true : false;
 			return printer;
+		}		
+		
+		void BtncloseClick(object sender, EventArgs e)
+		{
+			this.Close();
 		}
-		
-		
 	}
 }

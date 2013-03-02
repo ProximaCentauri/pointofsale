@@ -253,15 +253,16 @@ namespace NJournals.Core.Views
 			this.btnclose.TabIndex = 8;
 			this.btnclose.Text = "Close";
 			this.btnclose.UseVisualStyleBackColor = true;
+			this.btnclose.Click += new System.EventHandler(this.BtncloseClick);
 			// 
 			// btnsave
 			// 
 			this.btnsave.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnsave.Location = new System.Drawing.Point(387, 451);
+			this.btnsave.Location = new System.Drawing.Point(351, 451);
 			this.btnsave.Name = "btnsave";
-			this.btnsave.Size = new System.Drawing.Size(75, 23);
+			this.btnsave.Size = new System.Drawing.Size(111, 23);
 			this.btnsave.TabIndex = 9;
-			this.btnsave.Text = "Save";
+			this.btnsave.Text = "Save && Close";
 			this.btnsave.UseVisualStyleBackColor = true;
 			this.btnsave.Click += new System.EventHandler(this.BtnsaveClick);
 			// 
