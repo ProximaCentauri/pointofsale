@@ -125,6 +125,7 @@ namespace NJournals.Core.Views
 			// 
 			this.cmbCustomers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
 			this.cmbCustomers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.cmbCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbCustomers.FormattingEnabled = true;
 			this.cmbCustomers.Location = new System.Drawing.Point(143, 50);
 			this.cmbCustomers.Name = "cmbCustomers";
@@ -216,6 +217,7 @@ namespace NJournals.Core.Views
 			// 
 			// cmbservices
 			// 
+			this.cmbservices.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbservices.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmbservices.FormattingEnabled = true;
 			this.cmbservices.Location = new System.Drawing.Point(84, 27);
@@ -292,6 +294,7 @@ namespace NJournals.Core.Views
 			// 
 			// cmbcategory
 			// 
+			this.cmbcategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbcategory.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmbcategory.FormattingEnabled = true;
 			this.cmbcategory.Location = new System.Drawing.Point(84, 53);

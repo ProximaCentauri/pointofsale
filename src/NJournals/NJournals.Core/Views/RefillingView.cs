@@ -93,12 +93,13 @@ namespace NJournals.Core.Views
 					         c.Name.Equals("txtcaps")){
 						int i = 0;
 						int.TryParse(c.Text, out i);
-						if(i == 0){
-							MessageService.ShowWarning("Invalid data in input field. " + c.Text,"Invalid data");
-							c.Focus();
-							return;
-						}
-							
+						foreach(char val in c.Text.ToCharArray()){
+							if((i == 0 || i < 0) && (!char.IsNumber(val) || !char.IsDigit(val))){
+								MessageService.ShowWarning("Invalid data in input field. " + c.Text,"Invalid data");
+								c.Focus();
+								return;
+							}
+						}						
 					}
 				}				
 			}
@@ -275,8 +276,8 @@ namespace NJournals.Core.Views
 				txtbottles.Enabled = true;
 				txtcaps.Enabled = true;			
 			}			
-			txtcaps.Text = "";
-			txtbottles.Text = "";
+			txtcaps.Text = "0";
+			txtbottles.Text = "0";
 		}
 		
 		void chkunpaid_click(object sender, EventArgs e)
