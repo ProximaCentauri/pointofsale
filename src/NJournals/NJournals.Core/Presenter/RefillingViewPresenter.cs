@@ -140,14 +140,13 @@ namespace NJournals.Core.Presenter
 					inventoryHeader.QtyOnHand -= detail.StoreCapQty;
 					inventoryHeader.QtyReleased += detail.StoreCapQty;
 					customerInvHeader.CapsOnHand += detail.StoreCapQty;
-					m_refillInvDao.Update(inventoryHeader);
 				}else{
 					inventoryHeader.QtyOnHand += detail.StoreCapQty;
 					inventoryHeader.QtyReleased -= detail.StoreCapQty;
 					customerInvHeader.CapsOnHand -= detail.StoreCapQty;
-					m_refillInvDao.Update(inventoryHeader);
 				}
-				
+				m_refillInvDao.Update(inventoryHeader);
+				UpdateInventoryDetail(inventoryHeader);
 			}
 		}
 		
