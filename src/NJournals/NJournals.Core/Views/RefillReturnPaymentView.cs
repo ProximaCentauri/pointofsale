@@ -246,5 +246,6 @@ namespace NJournals.Core.Views
 				ClearFields();
 			}	
 		}
+
 	}
 }

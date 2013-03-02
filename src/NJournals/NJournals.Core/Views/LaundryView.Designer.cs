@@ -36,9 +36,9 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cmbCustomers = new System.Windows.Forms.ComboBox();
 			this.btnCustomerSearch = new System.Windows.Forms.Button();
@@ -155,7 +155,7 @@ namespace NJournals.Core.Views
 			this.dtdueDate.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dtdueDate.Location = new System.Drawing.Point(610, 50);
 			this.dtdueDate.Name = "dtdueDate";
-			this.dtdueDate.Size = new System.Drawing.Size(200, 24);
+			this.dtdueDate.Size = new System.Drawing.Size(218, 24);
 			this.dtdueDate.TabIndex = 9;
 			this.dtdueDate.Value = new System.DateTime(2013, 2, 2, 18, 46, 42, 0);
 			// 
@@ -164,7 +164,7 @@ namespace NJournals.Core.Views
 			this.dtrecieveDate.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dtrecieveDate.Location = new System.Drawing.Point(610, 20);
 			this.dtrecieveDate.Name = "dtrecieveDate";
-			this.dtrecieveDate.Size = new System.Drawing.Size(200, 24);
+			this.dtrecieveDate.Size = new System.Drawing.Size(218, 24);
 			this.dtrecieveDate.TabIndex = 8;
 			this.dtrecieveDate.Value = new System.DateTime(2013, 2, 2, 18, 46, 34, 0);
 			// 
@@ -349,14 +349,14 @@ namespace NJournals.Core.Views
 			// dataGridView1
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Column2,
@@ -368,16 +368,16 @@ namespace NJournals.Core.Views
 			this.dataGridView1.Location = new System.Drawing.Point(329, 176);
 			this.dataGridView1.MultiSelect = false;
 			this.dataGridView1.Name = "dataGridView1";
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView1.Size = new System.Drawing.Size(591, 240);
 			this.dataGridView1.TabIndex = 4;
@@ -499,7 +499,7 @@ namespace NJournals.Core.Views
 			// txtamttender
 			// 
 			this.txtamttender.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtamttender.Location = new System.Drawing.Point(801, 540);
+			this.txtamttender.Location = new System.Drawing.Point(801, 538);
 			this.txtamttender.Name = "txtamttender";
 			this.txtamttender.Size = new System.Drawing.Size(119, 29);
 			this.txtamttender.TabIndex = 11;
@@ -512,7 +512,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-			this.label11.Location = new System.Drawing.Point(677, 544);
+			this.label11.Location = new System.Drawing.Point(677, 542);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(124, 18);
 			this.label11.TabIndex = 10;
@@ -525,7 +525,7 @@ namespace NJournals.Core.Views
 			this.txtchange.Enabled = false;
 			this.txtchange.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtchange.ForeColor = System.Drawing.Color.Black;
-			this.txtchange.Location = new System.Drawing.Point(801, 609);
+			this.txtchange.Location = new System.Drawing.Point(801, 602);
 			this.txtchange.Name = "txtchange";
 			this.txtchange.Size = new System.Drawing.Size(119, 29);
 			this.txtchange.TabIndex = 13;
@@ -535,7 +535,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.label12.Location = new System.Drawing.Point(708, 613);
+			this.label12.Location = new System.Drawing.Point(708, 606);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(93, 18);
 			this.label12.TabIndex = 12;
@@ -568,7 +568,7 @@ namespace NJournals.Core.Views
 			// btnsaveclose
 			// 
 			this.btnsaveclose.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnsaveclose.Location = new System.Drawing.Point(716, 670);
+			this.btnsaveclose.Location = new System.Drawing.Point(716, 658);
 			this.btnsaveclose.Name = "btnsaveclose";
 			this.btnsaveclose.Size = new System.Drawing.Size(99, 23);
 			this.btnsaveclose.TabIndex = 16;
@@ -579,7 +579,7 @@ namespace NJournals.Core.Views
 			// btncancel
 			// 
 			this.btncancel.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btncancel.Location = new System.Drawing.Point(28, 670);
+			this.btncancel.Location = new System.Drawing.Point(28, 658);
 			this.btncancel.Name = "btncancel";
 			this.btncancel.Size = new System.Drawing.Size(99, 23);
 			this.btncancel.TabIndex = 17;
@@ -590,7 +590,7 @@ namespace NJournals.Core.Views
 			// btndelete
 			// 
 			this.btndelete.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btndelete.Location = new System.Drawing.Point(133, 670);
+			this.btndelete.Location = new System.Drawing.Point(133, 658);
 			this.btndelete.Name = "btndelete";
 			this.btndelete.Size = new System.Drawing.Size(91, 23);
 			this.btndelete.TabIndex = 18;
@@ -604,7 +604,7 @@ namespace NJournals.Core.Views
 			this.txtbalance.Enabled = false;
 			this.txtbalance.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtbalance.ForeColor = System.Drawing.Color.Black;
-			this.txtbalance.Location = new System.Drawing.Point(801, 575);
+			this.txtbalance.Location = new System.Drawing.Point(801, 570);
 			this.txtbalance.Name = "txtbalance";
 			this.txtbalance.Size = new System.Drawing.Size(119, 29);
 			this.txtbalance.TabIndex = 21;
@@ -614,7 +614,7 @@ namespace NJournals.Core.Views
 			// 
 			this.label13.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label13.ForeColor = System.Drawing.Color.Maroon;
-			this.label13.Location = new System.Drawing.Point(711, 579);
+			this.label13.Location = new System.Drawing.Point(711, 574);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(90, 18);
 			this.label13.TabIndex = 20;
@@ -636,7 +636,7 @@ namespace NJournals.Core.Views
 			// btnclaim
 			// 
 			this.btnclaim.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnclaim.Location = new System.Drawing.Point(821, 670);
+			this.btnclaim.Location = new System.Drawing.Point(821, 658);
 			this.btnclaim.Name = "btnclaim";
 			this.btnclaim.Size = new System.Drawing.Size(99, 23);
 			this.btnclaim.TabIndex = 23;
@@ -752,7 +752,7 @@ namespace NJournals.Core.Views
 			// 
 			this.btnprint.Enabled = false;
 			this.btnprint.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnprint.Location = new System.Drawing.Point(611, 670);
+			this.btnprint.Location = new System.Drawing.Point(611, 658);
 			this.btnprint.Name = "btnprint";
 			this.btnprint.Size = new System.Drawing.Size(99, 23);
 			this.btnprint.TabIndex = 33;
@@ -779,7 +779,7 @@ namespace NJournals.Core.Views
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(984, 722);
+			this.ClientSize = new System.Drawing.Size(984, 702);
 			this.Controls.Add(this.btnEditCharges);
 			this.Controls.Add(this.btnprint);
 			this.Controls.Add(this.btnDeleteDetail);
