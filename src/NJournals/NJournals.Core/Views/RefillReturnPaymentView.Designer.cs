@@ -206,7 +206,7 @@ namespace NJournals.Core.Views
 			this.dgvOutBalance.AllowUserToResizeRows = false;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
 			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -223,7 +223,7 @@ namespace NJournals.Core.Views
 			this.dgvOutBalance.Location = new System.Drawing.Point(16, 173);
 			this.dgvOutBalance.Name = "dgvOutBalance";
 			this.dgvOutBalance.ReadOnly = true;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dgvOutBalance.RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvOutBalance.Size = new System.Drawing.Size(913, 311);
 			this.dgvOutBalance.TabIndex = 25;

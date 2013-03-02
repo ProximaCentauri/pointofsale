@@ -133,7 +133,7 @@ namespace NJournals.Core.Views
 									this.Column3});
 			this.dgvCheckList.Location = new System.Drawing.Point(12, 61);
 			this.dgvCheckList.Name = "dgvCheckList";
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dgvCheckList.RowsDefaultCellStyle = dataGridViewCellStyle4;
 			this.dgvCheckList.Size = new System.Drawing.Size(276, 423);
 			this.dgvCheckList.TabIndex = 25;

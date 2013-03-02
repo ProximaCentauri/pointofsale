@@ -91,12 +91,10 @@ namespace NJournals.Core.Views
 			this.dgvPriceScheme.Cursor = System.Windows.Forms.Cursors.Default;
 			this.dgvPriceScheme.Location = new System.Drawing.Point(25, 45);
 			this.dgvPriceScheme.Name = "dgvPriceScheme";
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dgvPriceScheme.RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvPriceScheme.Size = new System.Drawing.Size(789, 220);
 			this.dgvPriceScheme.TabIndex = 1;
-			this.dgvPriceScheme.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(dgvPriceScheme_CellValueChanged);
-			this.dgvPriceScheme.CellValidating += new DataGridViewCellValidatingEventHandler(dgvPriceScheme_cellValidating);
 			// 
 			// label2
 			// 
@@ -138,7 +136,7 @@ namespace NJournals.Core.Views
 			this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvCategory.Location = new System.Drawing.Point(25, 494);
 			this.dgvCategory.Name = "dgvCategory";
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dgvCategory.RowsDefaultCellStyle = dataGridViewCellStyle4;
 			this.dgvCategory.Size = new System.Drawing.Size(789, 186);
 			this.dgvCategory.TabIndex = 5;
@@ -256,7 +254,7 @@ namespace NJournals.Core.Views
 			this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvServices.Location = new System.Drawing.Point(25, 305);
 			this.dgvServices.Name = "dgvServices";
-			dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dgvServices.RowsDefaultCellStyle = dataGridViewCellStyle6;
 			this.dgvServices.Size = new System.Drawing.Size(789, 151);
 			this.dgvServices.TabIndex = 15;

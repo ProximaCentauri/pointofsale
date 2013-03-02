@@ -49,7 +49,7 @@ namespace NJournals.Core.Views
 			// 
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
 			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -58,12 +58,10 @@ namespace NJournals.Core.Views
 			this.dgvCharges.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvCharges.Location = new System.Drawing.Point(12, 35);
 			this.dgvCharges.Name = "dgvCharges";
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dgvCharges.RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvCharges.Size = new System.Drawing.Size(331, 209);
 			this.dgvCharges.TabIndex = 0;
-			this.dgvCharges.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(dgvCharges_CellValueChanged);
-			this.dgvCharges.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(dgvCharges_cellValidating);
 			// 
 			// btnDeleteCharges
 			// 
