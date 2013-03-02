@@ -39,6 +39,7 @@ namespace NJournals.Core.Views
 		
 		private IRefillDao m_refillDao;
 		private RefillingViewPresenter m_presenter;
+		private decimal removePrice = 0;
 		
 		void RefillingViewLoad(object sender, EventArgs e)
 		{
@@ -350,5 +351,26 @@ namespace NJournals.Core.Views
 			Resource.setImage(this.btnDeleteDetail, System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
 		}
 
+		
+		void BtnDeleteDetailClick(object sender, EventArgs e)
+		{
+			if(dataGridView1.SelectedRows.Count > 0 && this.Text.Contains("NEW")){
+				dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+			}
+		}
+		
+		void dgv_rowsremoved(object sender, DataGridViewRowsRemovedEventArgs e)
+		{			
+			decimal amtdue = decimal.Parse(txtamtdue.Text);
+			amtdue -= removePrice;
+			txtamtdue.Text = amtdue.ToString("N2");
+			txtbalance.Text = (amtdue - decimal.Parse(txtamttender.Text)).ToString("N2");
+		}		
+		
+		void dgv_selectionchanged(object sender, EventArgs e)
+		{
+			if(dataGridView1.SelectedRows.Count > 0 )
+				removePrice = decimal.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+		}		
 	}
 }

@@ -329,8 +329,11 @@ namespace NJournals.Core.Views
 			this.dataGridView1.ReadOnly = true;
 			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView1.Size = new System.Drawing.Size(619, 284);
 			this.dataGridView1.TabIndex = 5;
+			this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgv_rowsremoved);
+			this.dataGridView1.SelectionChanged += new System.EventHandler(this.dgv_selectionchanged);
 			// 
 			// Column1
 			// 
@@ -586,6 +589,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteDetail.Size = new System.Drawing.Size(26, 23);
 			this.btnDeleteDetail.TabIndex = 33;
 			this.btnDeleteDetail.UseVisualStyleBackColor = true;
+			this.btnDeleteDetail.Click += new System.EventHandler(this.BtnDeleteDetailClick);
 			// 
 			// RefillingView
 			// 
