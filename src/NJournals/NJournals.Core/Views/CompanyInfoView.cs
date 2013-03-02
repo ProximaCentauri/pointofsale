@@ -43,7 +43,7 @@ namespace NJournals.Core.Views
 		
 		public void SetCompanyInfo(List<CompanyDataEntity> p_entities){
 			m_companyEntities = p_entities;
-			if(m_companyEntities == null){
+			if(m_companyEntities.Count <= 0){
 				m_companyEntity = new CompanyDataEntity();
 				m_companyEntities.Add(m_companyEntity);
 			}
@@ -51,22 +51,25 @@ namespace NJournals.Core.Views
 			foreach(CompanyDataEntity entity in m_companyEntities){
 				m_companyEntity = entity;	
 			}
-			txtname.Text = m_companyEntity.Name;
-			txtaddress.Text = m_companyEntity.Address;
-			txtcontact.Text = m_companyEntity.ContactNumber;			
+			txtname.Text = m_companyEntity.Name == null ? "" : m_companyEntity.Name;
+			txtaddress.Text = m_companyEntity.Address == null ? "" : m_companyEntity.Address;
+			txtcontact.Text = m_companyEntity.ContactNumber == null ? "" : m_companyEntity.ContactNumber;
+			
 		}
 		
 		public void SetPrinterInfo(List<PrinterDataEntity> p_printers){
 			m_printers = p_printers;
-			if(m_printers == null){
+			if(m_printers.Count <= 0){
 				m_printerEntity = new PrinterDataEntity();
 				m_printers.Add(m_printerEntity);
 			}
 			foreach(PrinterDataEntity entity in m_printers){
 				m_printerEntity = entity;
 			}
-			txtprinter.Text = m_printerEntity.Name;
-			txtmodel.Text = m_printerEntity.Model;
+			txtprinter.Text = m_printerEntity.Name == null ? "" : m_printerEntity.Name;
+			txtmodel.Text = m_printerEntity.Model == null ? "" : m_printerEntity.Model;
+			
+			//m_printerEntity.Active = m_printerEntity.Active == null ? false : m_printerEntity.Active;
 			if(!m_printerEntity.Active){
 				rdbinactive.Checked = true;
 			}
@@ -75,8 +78,7 @@ namespace NJournals.Core.Views
 				
 				listBox1.Items.Add(printer);
 			}
-			listBox1.Items.Add("printer1");
-			listBox1.Items.Add("printer2");
+			
 		}	
 		
 		void CompanyInfoViewLoad(object sender, EventArgs e)
@@ -91,5 +93,44 @@ namespace NJournals.Core.Views
 			if(listBox1.SelectedItems.Count > 0)
 				txtprinter.Text = listBox1.SelectedItem.ToString();
 		}
+		
+		void BtnsaveClick(object sender, EventArgs e)
+		{
+			if(CheckForEmptyFields()){
+				MessageService.ShowWarning("Please fill up the empty fields.","Empty fields");
+				return;				                           
+			}
+			
+			if(MessageService.ShowYesNo("Are you sure you want to save these entries?")){
+				m_presenter.SaveClicked();
+			}		
+		}
+		
+		bool CheckForEmptyFields(){
+			if(txtname.Text.Trim().Equals(string.Empty) ||
+			   txtaddress.Text.Trim().Equals(string.Empty) ||
+			   txtcontact.Text.Trim().Equals(string.Empty) ||
+			   txtprinter.Text.Trim().Equals(string.Empty))
+				return true;
+			return false;
+		}
+		
+		public CompanyDataEntity ProcessCompanyInfo(){
+			CompanyDataEntity company = new CompanyDataEntity();
+			company.Name = txtname.Text;
+			company.Address = txtaddress.Text;
+			company.ContactNumber = txtcontact.Text;
+			return company;
+		}
+		
+		public PrinterDataEntity ProcessPrinterInfo(){
+			PrinterDataEntity printer = new PrinterDataEntity();
+			printer.Name = txtprinter.Text;
+			printer.Model = txtmodel.Text;
+			printer.Active = rdbactive.Checked ? true : false;
+			return printer;
+		}
+		
+		
 	}
 }

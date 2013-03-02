@@ -22,7 +22,7 @@ namespace NJournals.Common.DataMappers
 	{
 		public RefillInventoryDetailDataMap()
 		{
-			Id(x => x.ID);			
+			Id(x => x.ID);
 			Map(x => x.QtyAdded);
 			Map(x => x.QtyRemoved);
             Map(x => x.TotalQty);

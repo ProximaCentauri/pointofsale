@@ -237,8 +237,10 @@ namespace NJournals.Core.Views
 			// 
 			// txtprinter
 			// 
+			this.txtprinter.BackColor = System.Drawing.Color.White;
 			this.txtprinter.Location = new System.Drawing.Point(312, 47);
 			this.txtprinter.Name = "txtprinter";
+			this.txtprinter.ReadOnly = true;
 			this.txtprinter.Size = new System.Drawing.Size(232, 22);
 			this.txtprinter.TabIndex = 8;
 			// 
@@ -261,6 +263,7 @@ namespace NJournals.Core.Views
 			this.btnsave.TabIndex = 9;
 			this.btnsave.Text = "Save";
 			this.btnsave.UseVisualStyleBackColor = true;
+			this.btnsave.Click += new System.EventHandler(this.BtnsaveClick);
 			// 
 			// CompanyInfoView
 			// 
