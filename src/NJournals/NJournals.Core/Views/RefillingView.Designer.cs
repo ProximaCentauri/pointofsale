@@ -36,8 +36,8 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.dtDate = new System.Windows.Forms.DateTimePicker();
 			this.cmbCustomers = new System.Windows.Forms.ComboBox();
@@ -48,6 +48,8 @@ namespace NJournals.Core.Views
 			this.cmbtransTypes = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.grpServices = new System.Windows.Forms.GroupBox();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.label14 = new System.Windows.Forms.Label();
 			this.txtcaps = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.txtbottles = new System.Windows.Forms.TextBox();
@@ -184,6 +186,8 @@ namespace NJournals.Core.Views
 			// 
 			// grpServices
 			// 
+			this.grpServices.Controls.Add(this.textBox1);
+			this.grpServices.Controls.Add(this.label14);
 			this.grpServices.Controls.Add(this.txtcaps);
 			this.grpServices.Controls.Add(this.label8);
 			this.grpServices.Controls.Add(this.txtbottles);
@@ -196,14 +200,31 @@ namespace NJournals.Core.Views
 			this.grpServices.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.grpServices.Location = new System.Drawing.Point(16, 189);
 			this.grpServices.Name = "grpServices";
-			this.grpServices.Size = new System.Drawing.Size(304, 188);
+			this.grpServices.Size = new System.Drawing.Size(304, 218);
 			this.grpServices.TabIndex = 4;
 			this.grpServices.TabStop = false;
 			this.grpServices.Text = "Product";
 			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(114, 54);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(100, 25);
+			this.textBox1.TabIndex = 18;
+			// 
+			// label14
+			// 
+			this.label14.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label14.Location = new System.Drawing.Point(41, 55);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(71, 23);
+			this.label14.TabIndex = 17;
+			this.label14.Text = "Unit Price:";
+			this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// txtcaps
 			// 
-			this.txtcaps.Location = new System.Drawing.Point(114, 103);
+			this.txtcaps.Location = new System.Drawing.Point(114, 138);
 			this.txtcaps.Name = "txtcaps";
 			this.txtcaps.Size = new System.Drawing.Size(100, 25);
 			this.txtcaps.TabIndex = 16;
@@ -211,7 +232,7 @@ namespace NJournals.Core.Views
 			// label8
 			// 
 			this.label8.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(29, 102);
+			this.label8.Location = new System.Drawing.Point(29, 137);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(83, 23);
 			this.label8.TabIndex = 15;
@@ -220,7 +241,7 @@ namespace NJournals.Core.Views
 			// 
 			// txtbottles
 			// 
-			this.txtbottles.Location = new System.Drawing.Point(114, 77);
+			this.txtbottles.Location = new System.Drawing.Point(114, 110);
 			this.txtbottles.Name = "txtbottles";
 			this.txtbottles.Size = new System.Drawing.Size(100, 25);
 			this.txtbottles.TabIndex = 14;
@@ -228,7 +249,7 @@ namespace NJournals.Core.Views
 			// label6
 			// 
 			this.label6.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(17, 79);
+			this.label6.Location = new System.Drawing.Point(17, 112);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(95, 23);
 			this.label6.TabIndex = 13;
@@ -238,7 +259,7 @@ namespace NJournals.Core.Views
 			// btnadd
 			// 
 			this.btnadd.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnadd.Location = new System.Drawing.Point(216, 149);
+			this.btnadd.Location = new System.Drawing.Point(216, 175);
 			this.btnadd.Name = "btnadd";
 			this.btnadd.Size = new System.Drawing.Size(75, 23);
 			this.btnadd.TabIndex = 12;
@@ -248,7 +269,7 @@ namespace NJournals.Core.Views
 			// 
 			// txtnoitems
 			// 
-			this.txtnoitems.Location = new System.Drawing.Point(114, 51);
+			this.txtnoitems.Location = new System.Drawing.Point(114, 82);
 			this.txtnoitems.Name = "txtnoitems";
 			this.txtnoitems.Size = new System.Drawing.Size(100, 25);
 			this.txtnoitems.TabIndex = 7;
@@ -256,11 +277,12 @@ namespace NJournals.Core.Views
 			// label7
 			// 
 			this.label7.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.Location = new System.Drawing.Point(41, 56);
+			this.label7.Location = new System.Drawing.Point(41, 85);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(71, 23);
 			this.label7.TabIndex = 6;
 			this.label7.Text = "# of Items:";
+			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label4
 			// 
@@ -287,14 +309,14 @@ namespace NJournals.Core.Views
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
 			this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Column1,
@@ -305,8 +327,8 @@ namespace NJournals.Core.Views
 			this.dataGridView1.Location = new System.Drawing.Point(326, 189);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridView1.Size = new System.Drawing.Size(619, 284);
 			this.dataGridView1.TabIndex = 5;
 			// 
@@ -588,6 +610,8 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button btnsave;
 		private System.Windows.Forms.Label lblvoid;
 		private System.Windows.Forms.Label label13;
