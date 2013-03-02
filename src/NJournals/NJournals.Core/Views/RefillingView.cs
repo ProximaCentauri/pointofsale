@@ -166,6 +166,7 @@ namespace NJournals.Core.Views
 		}
 		
 		public RefillHeaderDataEntity ProcessHeaderDataEntity(){
+			int totalQty = 0;
 			RefillHeaderDataEntity m_headerEntity = new RefillHeaderDataEntity();
 			m_headerEntity.Date = dtDate.Value;
 			m_headerEntity.Customer = m_presenter.getCustomerByName(cmbCustomers.Text);
@@ -182,6 +183,7 @@ namespace NJournals.Core.Views
 						detail.StoreBottleQty = int.Parse(row.Cells[1].Value.ToString());
 						detail.StoreCapQty = int.Parse(row.Cells[2].Value.ToString());
 						detail.Qty = int.Parse(row.Cells[3].Value.ToString());
+						totalQty += detail.Qty;
 						detail.Amount = decimal.Parse(row.Cells[4].Value.ToString());
 						refillDetails.Add(detail);							
 					}
@@ -203,7 +205,7 @@ namespace NJournals.Core.Views
 				paymentDetail.Amount = 0M;
 			
 			m_headerEntity.AmountTender = paymentDetail.Amount;		
-			
+			m_headerEntity.TotalQty = totalQty;
 			paymentDetail.PaymentDate = Convert.ToDateTime(DateTime.Now);		
 			paymentDetail.Header = m_headerEntity;
 			m_headerEntity.PaymentDetailEntities.Add(paymentDetail);
