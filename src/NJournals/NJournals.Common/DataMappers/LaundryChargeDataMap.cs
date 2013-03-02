@@ -24,6 +24,7 @@ namespace NJournals.Common.DataMappers
 			Id(x => x.ChargeID);
 			Map(x => x.Name);
 			Map(x => x.Amount);
+			Map(x => x.VoidFlag);
 			Table("LaundryCharges");
 		}
 	}

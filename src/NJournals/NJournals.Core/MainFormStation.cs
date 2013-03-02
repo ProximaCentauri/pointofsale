@@ -229,6 +229,8 @@ namespace NJournals.Core
 			//refilling
 			lblRefNew.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/bottle_new.png");
 			lblRefNew.BackgroundImageLayout = ImageLayout.None;
+			lblrefdel.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/refill_search.png");
+			lblrefdel.BackgroundImageLayout = ImageLayout.None;
 			lblRefClaim.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/bottle_return.png");
 			lblRefClaim.BackgroundImageLayout = ImageLayout.None;
 			lblRefReports.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/chart.png");

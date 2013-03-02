@@ -52,7 +52,8 @@ namespace NJournals.Core.Models
 			using(var session = NHibernateHelper.OpenSession())
 			{
 				var query = session.Query<LaundryChargeDataEntity>()
-                    .OrderBy(x => x.Name)
+					.Where(x => x.VoidFlag == false)
+					.OrderBy(x => x.Name)
                     .ToList();
                 return query;
 			}

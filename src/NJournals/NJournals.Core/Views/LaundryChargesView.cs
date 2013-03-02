@@ -87,7 +87,7 @@ namespace NJournals.Core.Views
 					{
 						try
 						{
-							m_presenter.SaveOrUpdateCharges(charges);
+							m_presenter.SaveOrUpdateCharge(charges);
 							m_presenter.SetAllLaundryCharges();
 							MessageService.ShowInfo("Successfully saved/updated charges.", "Save or Update charges");
 							chargesMaxRowIndex = dgvCharges.RowCount - 1;
@@ -114,7 +114,6 @@ namespace NJournals.Core.Views
 			}
 		}
 		
-		//TODO: void flag;
 		void BtnDeleteChargesClick(object sender, EventArgs e)
 		{
 			LaundryChargeDataEntity charge = new LaundryChargeDataEntity();
@@ -123,7 +122,20 @@ namespace NJournals.Core.Views
 			{
 				if(MessageService.ShowYesNo("Are you sure you want to remove the selected charges from the list?", "Remove Charges"))
 				{
-					
+					foreach(DataGridViewRow currentRow in dgvCharges.SelectedRows)
+					{
+						if(currentRow.Index < chargesMaxRowIndex)
+						{
+							int chargeID = (int)this.dgvCharges.Rows[currentRow.Index].Cells["ChargeID"].Value;
+							charge = m_chargesEntity.Find(m_charge => m_charge.ChargeID == chargeID);
+							charge.VoidFlag = true;								
+							m_presenter.SaveOrUpdateCharge(charge);
+						}							
+						if(!this.dgvCharges.Rows[currentRow.Index].IsNewRow)
+							dgvCharges.Rows.Remove(this.dgvCharges.Rows[currentRow.Index]);	
+					}
+					m_presenter.SetAllLaundryCharges();
+					chargesMaxRowIndex = dgvCharges.RowCount - 1;
 				}
 			}
 		}
@@ -149,6 +161,7 @@ namespace NJournals.Core.Views
 					
 					charge.Name = name;
 					charge.Amount = price;
+					charge.VoidFlag = false;
 					charges.Add(charge);
 					updateCharges.Add(charge.Name.ToUpper());
 				}
@@ -161,6 +174,7 @@ namespace NJournals.Core.Views
 					{
 						charge.Name = name;
 						charge.Amount = price;
+						charge.VoidFlag = false;
 						
 						updateCharges.Add(charge.Name.ToUpper());
 						charges.Add(charge);
@@ -226,6 +240,7 @@ namespace NJournals.Core.Views
 		private void formatChargesDataGridView()
 		{
 			dgvCharges.Columns["ChargeID"].Visible = false;
+			dgvCharges.Columns["VoidFlag"].Visible = false;
 			dgvCharges.Columns["Name"].HeaderText = "Charge Name";
 			dgvCharges.Columns["Amount"].HeaderText = "Price";
 			dgvCharges.Columns["Name"].Width = 200;

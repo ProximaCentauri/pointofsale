@@ -34,7 +34,7 @@ namespace NJournals.Core.Presenter
 			m_view.SetAllLaundryCharges(charges);
 		}
 		
-		public void SaveOrUpdateCharges(List<LaundryChargeDataEntity> charges)
+		public void SaveOrUpdateCharge(List<LaundryChargeDataEntity> charges)
 		{
 			try
 			{
@@ -42,6 +42,18 @@ namespace NJournals.Core.Presenter
 				{
 					m_laundryChargeDao.SaveOrUpdate(charge);
 				}
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
+		}
+		
+		public void SaveOrUpdateCharge(LaundryChargeDataEntity charge)
+		{
+			try
+			{
+				m_laundryChargeDao.SaveOrUpdate(charge);
 			}
 			catch(Exception ex)
 			{
