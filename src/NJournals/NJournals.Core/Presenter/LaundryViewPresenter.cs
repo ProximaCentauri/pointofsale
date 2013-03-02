@@ -72,7 +72,7 @@ namespace NJournals.Core.Presenter
 				SaveDaySummary(m_headerEntity);
 				if(MessageService.ShowYesNo("Successfully saved entries." + Environment.NewLine +
 			                           "Do you want to print this transaction with JO number: " + m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0') + "?" ,"Information")){
-					PrintService.PrintLaundrySlip(m_headerEntity, 1);
+					PrintService.PrintLaundrySlip(null,m_headerEntity, null);
 				}
 			}else if(m_view.GetTitle().Contains("CLAIM")){								
 
@@ -359,7 +359,7 @@ namespace NJournals.Core.Presenter
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
 			if(m_headerEntity != null){			
 				MessageService.ShowInfo("Printing transaction with JO number: " + m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0'));
-				PrintService.PrintLaundrySlip(m_headerEntity, 1);	
+				PrintService.PrintLaundrySlip(null,m_headerEntity, null);	
 			}		
 		}
 	}
