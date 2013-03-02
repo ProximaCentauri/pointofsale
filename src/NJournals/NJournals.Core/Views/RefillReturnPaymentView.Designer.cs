@@ -36,8 +36,8 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.cmbCustomers = new System.Windows.Forms.ComboBox();
 			this.btnCustomerSearch = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
@@ -77,10 +77,11 @@ namespace NJournals.Core.Views
 			this.cmbCustomers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
 			this.cmbCustomers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cmbCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cmbCustomers.Font = new System.Drawing.Font("Calibri", 11F);
 			this.cmbCustomers.FormattingEnabled = true;
 			this.cmbCustomers.Location = new System.Drawing.Point(124, 25);
 			this.cmbCustomers.Name = "cmbCustomers";
-			this.cmbCustomers.Size = new System.Drawing.Size(165, 21);
+			this.cmbCustomers.Size = new System.Drawing.Size(165, 26);
 			this.cmbCustomers.TabIndex = 14;
 			// 
 			// btnCustomerSearch
@@ -121,19 +122,21 @@ namespace NJournals.Core.Views
 			// txtBottlesOnHand
 			// 
 			this.txtBottlesOnHand.BackColor = System.Drawing.SystemColors.Info;
+			this.txtBottlesOnHand.Font = new System.Drawing.Font("Calibri", 11F);
 			this.txtBottlesOnHand.Location = new System.Drawing.Point(125, 60);
 			this.txtBottlesOnHand.Name = "txtBottlesOnHand";
 			this.txtBottlesOnHand.ReadOnly = true;
-			this.txtBottlesOnHand.Size = new System.Drawing.Size(84, 20);
+			this.txtBottlesOnHand.Size = new System.Drawing.Size(84, 25);
 			this.txtBottlesOnHand.TabIndex = 16;
 			// 
 			// txtCapsOnHand
 			// 
 			this.txtCapsOnHand.BackColor = System.Drawing.SystemColors.Info;
+			this.txtCapsOnHand.Font = new System.Drawing.Font("Calibri", 11F);
 			this.txtCapsOnHand.Location = new System.Drawing.Point(125, 83);
 			this.txtCapsOnHand.Name = "txtCapsOnHand";
 			this.txtCapsOnHand.ReadOnly = true;
-			this.txtCapsOnHand.Size = new System.Drawing.Size(84, 20);
+			this.txtCapsOnHand.Size = new System.Drawing.Size(84, 25);
 			this.txtCapsOnHand.TabIndex = 18;
 			// 
 			// label3
@@ -149,10 +152,11 @@ namespace NJournals.Core.Views
 			// txtReturnedBottles
 			// 
 			this.txtReturnedBottles.Enabled = false;
+			this.txtReturnedBottles.Font = new System.Drawing.Font("Calibri", 11F);
 			this.txtReturnedBottles.Location = new System.Drawing.Point(364, 62);
 			this.txtReturnedBottles.MaxLength = 9;
 			this.txtReturnedBottles.Name = "txtReturnedBottles";
-			this.txtReturnedBottles.Size = new System.Drawing.Size(84, 20);
+			this.txtReturnedBottles.Size = new System.Drawing.Size(84, 25);
 			this.txtReturnedBottles.TabIndex = 20;
 			this.txtReturnedBottles.TextChanged += new System.EventHandler(this.TxtReturnedBottlesTextChanged);
 			this.txtReturnedBottles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
@@ -170,10 +174,11 @@ namespace NJournals.Core.Views
 			// txtReturnedCaps
 			// 
 			this.txtReturnedCaps.Enabled = false;
+			this.txtReturnedCaps.Font = new System.Drawing.Font("Calibri", 11F);
 			this.txtReturnedCaps.Location = new System.Drawing.Point(364, 85);
 			this.txtReturnedCaps.MaxLength = 9;
 			this.txtReturnedCaps.Name = "txtReturnedCaps";
-			this.txtReturnedCaps.Size = new System.Drawing.Size(84, 20);
+			this.txtReturnedCaps.Size = new System.Drawing.Size(84, 25);
 			this.txtReturnedCaps.TabIndex = 22;
 			this.txtReturnedCaps.TextChanged += new System.EventHandler(this.TxtReturnedCapsTextChanged);
 			this.txtReturnedCaps.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
@@ -204,14 +209,14 @@ namespace NJournals.Core.Views
 			this.dgvOutBalance.AllowUserToDeleteRows = false;
 			this.dgvOutBalance.AllowUserToResizeColumns = false;
 			this.dgvOutBalance.AllowUserToResizeRows = false;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvOutBalance.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvOutBalance.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
 			this.dgvOutBalance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvOutBalance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Date,
@@ -223,8 +228,8 @@ namespace NJournals.Core.Views
 			this.dgvOutBalance.Location = new System.Drawing.Point(16, 173);
 			this.dgvOutBalance.Name = "dgvOutBalance";
 			this.dgvOutBalance.ReadOnly = true;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dgvOutBalance.RowsDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dgvOutBalance.RowsDefaultCellStyle = dataGridViewCellStyle4;
 			this.dgvOutBalance.Size = new System.Drawing.Size(913, 311);
 			this.dgvOutBalance.TabIndex = 25;
 			// 
@@ -349,8 +354,8 @@ namespace NJournals.Core.Views
 			// 
 			// btncancel
 			// 
-			this.btncancel.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btncancel.Location = new System.Drawing.Point(854, 667);
+			this.btncancel.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+			this.btncancel.Location = new System.Drawing.Point(854, 657);
 			this.btncancel.Name = "btncancel";
 			this.btncancel.Size = new System.Drawing.Size(75, 23);
 			this.btncancel.TabIndex = 34;
@@ -360,8 +365,8 @@ namespace NJournals.Core.Views
 			// 
 			// btnSave
 			// 
-			this.btnSave.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSave.Location = new System.Drawing.Point(748, 667);
+			this.btnSave.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+			this.btnSave.Location = new System.Drawing.Point(748, 657);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(99, 23);
 			this.btnSave.TabIndex = 33;
@@ -406,7 +411,7 @@ namespace NJournals.Core.Views
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(984, 742);
+			this.ClientSize = new System.Drawing.Size(984, 712);
 			this.Controls.Add(this.txtbalance);
 			this.Controls.Add(this.label13);
 			this.Controls.Add(this.dtDate);

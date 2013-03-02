@@ -200,8 +200,7 @@ namespace NJournals.Core.Presenter
 					daysummary.HeaderEntities.Add(header);
 					daysummary.TotalSales += amount;
 					daysummary.DayStamp = paymentDate;				
-				}else{
-					daysummary.HeaderEntities.Add(header);
+				}else{                   
 					daysummary.TotalSales += amount;
 				}
 				m_daysummaryDao.SaveOrUpdate(daysummary);

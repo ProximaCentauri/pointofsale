@@ -61,6 +61,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <TextAlign>Right</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -81,6 +82,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -100,6 +102,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -118,6 +121,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -137,6 +141,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -218,6 +223,8 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
+          <TextAlign>Left</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -227,7 +234,7 @@
         <CanGrow>true</CanGrow>
         <Left>2.375in</Left>
         <Height>0.25in</Height>
-        <Value>=FormatNumber(Fields!HeaderQtyReleased.Value,0)</Value>
+        <Value>=FormatNumber(Fields!HeaderQtyOnHand.Value,0)</Value>
       </Textbox>
       <Textbox Name="textbox30">
         <Top>0.75in</Top>
@@ -237,6 +244,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -246,7 +254,7 @@
         <ZIndex>5</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.25in</Height>
-        <Value>="QTY RELEASED AS OF " + FormatDateTime(Now(),DateFormat.ShortDate) + " : "</Value>
+        <Value>="QTY ON-HAND AS OF " + FormatDateTime(Now(),DateFormat.ShortDate) + " : "</Value>
       </Textbox>
       <Textbox Name="textbox10">
         <Top>0.25in</Top>
@@ -256,6 +264,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -265,7 +274,7 @@
         <ZIndex>4</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.25in</Height>
-        <Value>="TOTAL QTY AS OF " + FormatDateTime(Now(),DateFormat.ShortDate) + " : "</Value>
+        <Value>="TOTAL QTY AS OF " + FormatDateTime(Now(),DateFormat.ShortDate) + "        : "</Value>
       </Textbox>
       <Textbox Name="textbox27">
         <Top>0.50001in</Top>
@@ -275,6 +284,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -294,6 +304,8 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
+          <TextAlign>Left</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -313,6 +325,8 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
+          <TextAlign>Left</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -338,10 +352,13 @@
                       <rd:DefaultName>textbox5</rd:DefaultName>
                       <HideDuplicates>NJournals_Common_DataEntities_RefillInventoryReportDataEntity</HideDuplicates>
                       <Style>
+                        <BackgroundColor>LightGoldenrodYellow</BackgroundColor>
                         <BorderColor>
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>700</FontWeight>
                         <TextAlign>Left</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -368,6 +385,8 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <TextAlign>Left</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -375,7 +394,7 @@
                       </Style>
                       <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatDateTime(Fields!DayStamp.Value,DateFormat.ShortDate)</Value>
+                      <Value>="    " + FormatDateTime(Fields!DayStamp.Value,DateFormat.ShortDate)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -388,6 +407,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -409,6 +429,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -429,6 +450,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -449,6 +471,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -469,6 +492,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -838,7 +862,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
-          <FontSize>8pt</FontSize>
+          <FontSize>9pt</FontSize>
           <TextAlign>Right</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
