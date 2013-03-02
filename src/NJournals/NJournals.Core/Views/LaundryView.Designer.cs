@@ -95,6 +95,7 @@ namespace NJournals.Core.Views
 			this.label19 = new System.Windows.Forms.Label();
 			this.btnDeleteDetail = new System.Windows.Forms.Button();
 			this.btnprint = new System.Windows.Forms.Button();
+			this.btnEditCharges = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -739,12 +740,27 @@ namespace NJournals.Core.Views
 			this.btnprint.Visible = false;
 			this.btnprint.Click += new System.EventHandler(this.BtnprintClick);
 			// 
+			// btnEditCharges
+			// 
+			this.btnEditCharges.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnEditCharges.FlatAppearance.BorderSize = 0;
+			this.btnEditCharges.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnEditCharges.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnEditCharges.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnEditCharges.Location = new System.Drawing.Point(541, 439);
+			this.btnEditCharges.Name = "btnEditCharges";
+			this.btnEditCharges.Size = new System.Drawing.Size(24, 24);
+			this.btnEditCharges.TabIndex = 34;
+			this.btnEditCharges.UseVisualStyleBackColor = true;
+			this.btnEditCharges.Click += new System.EventHandler(this.BtnEditChargesClick);
+			// 
 			// LaundryNewView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(984, 750);
+			this.Controls.Add(this.btnEditCharges);
 			this.Controls.Add(this.btnprint);
 			this.Controls.Add(this.btnDeleteDetail);
 			this.Controls.Add(this.label19);
@@ -789,6 +805,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button btnEditCharges;
 		private System.Windows.Forms.Button btnprint;
 		private System.Windows.Forms.Label lblvoid;
 		private System.Windows.Forms.Button btnDeleteDetail;

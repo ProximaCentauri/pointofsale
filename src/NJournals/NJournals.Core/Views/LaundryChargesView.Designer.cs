@@ -91,6 +91,7 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.dgvCharges);
 			this.Name = "LaundryChargesView";
 			this.Text = "LaundryAdditionalChargesView";
+			this.Load += new System.EventHandler(this.LaundryChargesFormLoad);
 			((System.ComponentModel.ISupportInitialize)(this.dgvCharges)).EndInit();
 			this.ResumeLayout(false);
 		}

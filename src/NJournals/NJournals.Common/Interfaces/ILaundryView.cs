@@ -28,6 +28,7 @@ namespace NJournals.Common.Interfaces
 		void LoadHeaderEntityData(LaundryHeaderDataEntity headerEntity);
 		void LaunchChecklist();
 		void LaunchCustomerSearch();
+		void LaunchCharges();
 		LaundryHeaderDataEntity ProcessHeaderDataEntity();
 		void AddItem();
 		bool ClaimTransaction();
