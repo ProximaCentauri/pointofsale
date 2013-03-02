@@ -29,11 +29,13 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void ShowCompanyInfo(){
-			m_view.SetCompanyInfo(m_companyDao.GetAllItems() as List<CompanyDataEntity>);
+			List<CompanyDataEntity> companyEntities = m_companyDao.GetAllItems() as List<CompanyDataEntity>;
+			m_view.SetCompanyInfo(companyEntities);
 		}
 		
 		public void ShowPrinterInfo(){
-			
+			List<PrinterDataEntity> printerEntities = m_printerDao.GetAllItems() as List<PrinterDataEntity>;
+			m_view.SetPrinterInfo(printerEntities);
 		}
 	}
 }

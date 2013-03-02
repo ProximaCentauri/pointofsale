@@ -37,6 +37,7 @@ namespace NJournals.Core.Views
 		
 		private CompanyDataEntity m_companyEntity;
 		private List<CompanyDataEntity> m_companyEntities;
+		private List<PrinterDataEntity> m_printers;
 		private PrinterDataEntity m_printerEntity;
 		private CompanyViewPresenter m_presenter;
 		
@@ -55,10 +56,14 @@ namespace NJournals.Core.Views
 			txtcontact.Text = m_companyEntity.ContactNumber;			
 		}
 		
-		public void SetPrinterInfo(PrinterDataEntity p_printer){
-			m_printerEntity = p_printer;
-			if(m_printerEntity == null){
+		public void SetPrinterInfo(List<PrinterDataEntity> p_printers){
+			m_printers = p_printers;
+			if(m_printers == null){
 				m_printerEntity = new PrinterDataEntity();
+				m_printers.Add(m_printerEntity);
+			}
+			foreach(PrinterDataEntity entity in m_printers){
+				m_printerEntity = entity;
 			}
 			txtprinter.Text = m_printerEntity.Name;
 			txtmodel.Text = m_printerEntity.Model;
@@ -66,11 +71,25 @@ namespace NJournals.Core.Views
 				rdbinactive.Checked = true;
 			}
 			rdbactive.Checked = rdbinactive.Checked ? false : true;
+			foreach(string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters){
+				
+				listBox1.Items.Add(printer);
+			}
+			listBox1.Items.Add("printer1");
+			listBox1.Items.Add("printer2");
 		}	
 		
 		void CompanyInfoViewLoad(object sender, EventArgs e)
 		{
 			m_presenter = new CompanyViewPresenter(this);
+			m_presenter.ShowCompanyInfo();
+			m_presenter.ShowPrinterInfo();
+		}
+		
+		void BtnselectprinterClick(object sender, EventArgs e)
+		{
+			if(listBox1.SelectedItems.Count > 0)
+				txtprinter.Text = listBox1.SelectedItem.ToString();
 		}
 	}
 }
