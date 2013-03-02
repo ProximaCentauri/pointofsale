@@ -138,7 +138,7 @@ namespace NJournals.Core.Views
 			if(CheckForEmptyFields())
 				return;
 			
-			if(MessageService.ShowYesNo("Are you sure you want to print this transaction with JO number: " + txtjonumber.Text)){
+			if(MessageService.ShowYesNo("Are you sure you want to print this transaction with JO number: " + txtjonumber.Text + "?")){
 			   	m_presenter.PrintTransaction();						                            			
 			}			
 		}

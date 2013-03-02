@@ -72,8 +72,11 @@ namespace NJournals.Core.Presenter
 				SaveDaySummary(m_headerEntity);
 				if(MessageService.ShowYesNo("Successfully saved entries." + Environment.NewLine +
 			                           "Do you want to print this transaction with JO number: " + m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0') + "?" ,"Information")){
-					PrintService.PrintLaundrySlip(null,m_headerEntity, null);
-
+					try{
+						PrintService.PrintLaundrySlip(null,m_headerEntity, null);
+					}catch(Exception ex){
+						MessageService.ShowError("Unexpected exception has occurred during printing. Please verify whether printer is installed and online. \n Please check error logs for details.", "Error in Printing", ex);	
+					}
 				}
 			}else if(m_view.GetTitle().Contains("CLAIM")){								
 
@@ -360,7 +363,13 @@ namespace NJournals.Core.Presenter
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
 			if(m_headerEntity != null){			
 				MessageService.ShowInfo("Printing transaction with JO number: " + m_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0'));
-				PrintService.PrintLaundrySlip(null,m_headerEntity, null);	
+					
+				try{
+					PrintService.PrintLaundrySlip(null,m_headerEntity, null);
+				}catch(Exception ex){
+					MessageService.ShowError("Unexpected exception has occurred during printing. Please verify whether printer is installed and online. \n Please check error logs for details.", "Error in Printing", ex);
+					
+				}
 
 			}		
 		}
