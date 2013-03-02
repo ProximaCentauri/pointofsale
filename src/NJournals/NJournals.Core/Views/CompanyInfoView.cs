@@ -96,10 +96,23 @@ namespace NJournals.Core.Views
 		
 		void BtnsaveClick(object sender, EventArgs e)
 		{
-			if(MessageService.ShowYesNo("Are you sure you want to save these entries?")){
-				m_presenter.SaveClicked();
+			if(CheckForEmptyFields()){
+				MessageService.ShowWarning("Please fill up the empty fields.","Empty fields");
+				return;				                           
 			}
 			
+			if(MessageService.ShowYesNo("Are you sure you want to save these entries?")){
+				m_presenter.SaveClicked();
+			}		
+		}
+		
+		bool CheckForEmptyFields(){
+			if(txtname.Text.Trim().Equals(string.Empty) ||
+			   txtaddress.Text.Trim().Equals(string.Empty) ||
+			   txtcontact.Text.Trim().Equals(string.Empty) ||
+			   txtprinter.Text.Trim().Equals(string.Empty))
+				return true;
+			return false;
 		}
 		
 		public CompanyDataEntity ProcessCompanyInfo(){
