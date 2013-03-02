@@ -19,5 +19,7 @@ namespace NJournals.Common.Interfaces
 	{		
 		void SetCompanyInfo(List<CompanyDataEntity> p_entities);
 		void SetPrinterInfo(List<PrinterDataEntity> p_entities);
+		CompanyDataEntity ProcessCompanyInfo();
+		PrinterDataEntity ProcessPrinterInfo();
 	}
 }
