@@ -36,19 +36,34 @@ namespace NJournals.Core.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dgvCharges = new System.Windows.Forms.DataGridView();
 			this.btnDeleteCharges = new System.Windows.Forms.Button();
 			this.btnSaveCharges = new System.Windows.Forms.Button();
+			this.btnClose = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCharges)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// dgvCharges
 			// 
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvCharges.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgvCharges.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvCharges.Location = new System.Drawing.Point(12, 35);
 			this.dgvCharges.Name = "dgvCharges";
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dgvCharges.RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvCharges.Size = new System.Drawing.Size(331, 209);
 			this.dgvCharges.TabIndex = 0;
+			this.dgvCharges.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(dgvCharges_CellValueChanged);
+			this.dgvCharges.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(dgvCharges_cellValidating);
 			// 
 			// btnDeleteCharges
 			// 
@@ -80,12 +95,24 @@ namespace NJournals.Core.Views
 			this.btnSaveCharges.UseVisualStyleBackColor = false;
 			this.btnSaveCharges.Click += new System.EventHandler(this.BtnSaveChargesClick);
 			// 
+			// btnClose
+			// 
+			this.btnClose.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnClose.Location = new System.Drawing.Point(309, 268);
+			this.btnClose.Name = "btnClose";
+			this.btnClose.Size = new System.Drawing.Size(75, 23);
+			this.btnClose.TabIndex = 19;
+			this.btnClose.Text = "Close";
+			this.btnClose.UseVisualStyleBackColor = true;
+			this.btnClose.Click += new System.EventHandler(this.BtnCloseClick);
+			// 
 			// LaundryChargesView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(410, 316);
+			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.btnDeleteCharges);
 			this.Controls.Add(this.btnSaveCharges);
 			this.Controls.Add(this.dgvCharges);
@@ -95,6 +122,7 @@ namespace NJournals.Core.Views
 			((System.ComponentModel.ISupportInitialize)(this.dgvCharges)).EndInit();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Button btnClose;
 		private System.Windows.Forms.Button btnSaveCharges;
 		private System.Windows.Forms.Button btnDeleteCharges;
 		private System.Windows.Forms.DataGridView dgvCharges;

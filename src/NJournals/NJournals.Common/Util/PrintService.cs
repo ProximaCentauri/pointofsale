@@ -49,12 +49,14 @@ namespace NJournals.Common.Util
 				
 				StringBuilder sb = new StringBuilder();
 				PrintClaimSlip(ref sb, header);							
-				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
+				//RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
+				Console.WriteLine("------------starts here-----------");
+				Console.WriteLine(sb.ToString());
 				
 				sb = new StringBuilder();				
 				PrintTag(ref sb, header);
 				ps.Copies = 1;
-				RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
+				//RawPrinterHelper.SendStringToPrinter(ps.PrinterName, sb.ToString());
 				return true;				
 			}
 			catch(Exception ex)
@@ -84,17 +86,12 @@ namespace NJournals.Common.Util
 
 				sb.Append(SetAlignment("CENTER"));				
 				sb.Append("  ITEM               # OF ITEMS");
-				sb.AppendLine("");
-				string tempname = "";
-				string tempqty = "";
+				sb.AppendLine("");				
 				int qty = 0;
 				foreach(LaundryJobChecklistDataEntity checklist in header.JobChecklistEntities)
-				{			
-					tempname = checklist.Checklist.Name.ToUpper();
-					ParseString(ref tempname, "LEFT");					
-					tempqty = checklist.Qty.ToString();
-					ParseString(ref tempqty, "RIGHT");					
-					sb.AppendLine(SetAlignment("CENTER") + "  " + tempname + tempqty);
+				{											
+					sb.AppendLine(SetAlignment("CENTER") + "  " + FormatStringAlignment(checklist.Checklist.Name.ToUpper(),"LEFT") + 
+					              FormatStringAlignment(checklist.Qty.ToString(), "RIGHT"));
 					qty += checklist.Qty;
 				}
 				sb.AppendLine("");
@@ -136,12 +133,7 @@ namespace NJournals.Common.Util
 				
 		
 		private static void PrintClaimSlip(ref StringBuilder sb, LaundryHeaderDataEntity header)
-		{						
-			string tempqty = "";
-			string tempkilo = "";
-			string tempamt = "";			
-			string tempbal = "";
-			string temptender = "";
+		{									
 			string[] itemArr			;
 			string item;
 			
@@ -175,17 +167,9 @@ namespace NJournals.Common.Util
 				foreach(string st in itemArr){
 					item += st.Substring(0,1);
 				}			
-				
-				ParseString(ref item, "RIGHT");
-				tempqty = detail.ItemQty.ToString();
-				ParseString(ref tempqty, "LEFT");
-				tempkilo = detail.Kilo.ToString();				
-				ParseString(ref tempkilo, "LEFT");
-				tempamt = detail.Amount.ToString("N2");
-				ParseString(ref tempamt, "RIGHT");
-
-				sb.AppendLine(SetAlignment("LEFT") + "  " + tempqty  + tempkilo);
-				sb.AppendLine(SetAlignment("RIGHT") + item + tempamt);				             
+							
+				sb.AppendLine(SetAlignment("LEFT") + "  " + FormatStringAlignment(detail.ItemQty.ToString(), "LEFT")  + FormatStringAlignment(detail.Kilo.ToString(),"LEFT"));
+				sb.AppendLine(SetAlignment("RIGHT") + FormatStringAlignment(item,"RIGHT") + FormatStringAlignment(detail.Amount.ToString("N2"),"RIGHT"));
 											
 			}
 			sb.AppendLine("");
@@ -194,18 +178,11 @@ namespace NJournals.Common.Util
 			sb.AppendLine(header.TotalItemQty.ToString() + " ITEMS");										
 			sb.Append(SetAlignment("RIGHT"));
 			sb.AppendLine("");
-			sb.AppendLine("");
+			sb.AppendLine("");				
 			
-			tempamt = header.TotalAmountDue.ToString("N2");
-			ParseString(ref tempamt, "RIGHT");
-			temptender = header.TotalPayment.ToString("N2");
-			ParseString(ref temptender, "RIGHT");
-			tempbal = (header.TotalAmountDue - header.TotalPayment).ToString("N2");
-			ParseString(ref tempbal, "RIGHT");
-			
-			sb.AppendLine("  TOTAL: " + tempamt);
-			sb.AppendLine("DEPOSIT: " + temptender);
-			sb.AppendLine("BALANCE: " + tempbal);
+			sb.AppendLine("  TOTAL: " + FormatStringAlignment(header.TotalAmountDue.ToString("N2"),"RIGHT"));
+			sb.AppendLine("DEPOSIT: " + FormatStringAlignment(header.TotalPayment.ToString("N2"),"RIGHT"));
+			sb.AppendLine("BALANCE: " + FormatStringAlignment((header.TotalAmountDue - header.TotalPayment).ToString("N2"),"RIGHT"));
 			PrintFooter(ref sb);
 			sb.Append(CutPaper());	
 									
@@ -226,10 +203,6 @@ namespace NJournals.Common.Util
 		
 		private static void PrintRefillOrderSlip(ref StringBuilder sb, RefillHeaderDataEntity header)
 		{			
-			string tempqty = "";			
-			string tempamt = "";			
-			string tempbal = "";
-			string temptender = "";
 			string[] itemArr;
 			string item = "";
 			
@@ -260,15 +233,9 @@ namespace NJournals.Common.Util
 						continue;
 					}
 					item += st;
-				}			
-				ParseString(ref item, "RIGHT");
-				tempqty = detail.Qty.ToString();
-				ParseString(ref tempqty, "LEFT");
-				tempamt = detail.Amount.ToString("N2");
-				ParseString(ref tempamt, "RIGHT");
-				
-				sb.AppendLine(SetAlignment("LEFT") + "  " + tempqty);
-				sb.AppendLine(SetAlignment("RIGHT") + item + tempamt);				             			              		
+				}							
+				sb.AppendLine(SetAlignment("LEFT") + "  " + FormatStringAlignment(detail.Qty.ToString(),"LEFT"));
+				sb.AppendLine(SetAlignment("RIGHT") + FormatStringAlignment(item,"RIGHT") + FormatStringAlignment(detail.Amount.ToString("N2"),"LEFT"));				             			              		
 				storebottle += detail.StoreBottleQty;
 				storecap += detail.StoreCapQty;				
 			}
@@ -282,17 +249,11 @@ namespace NJournals.Common.Util
 			sb.AppendLine("STORE BOTTLE: " + storebottle);		
 			sb.AppendLine("");
 			sb.Append(SetAlignment("RIGHT"));
-	
-			tempamt = header.AmountDue.ToString("N2");
-			ParseString(ref tempamt, "RIGHT");
-			temptender = header.AmountTender.ToString("N2");
-			ParseString(ref temptender, "RIGHT");
-			tempbal = (header.AmountDue - header.AmountTender).ToString("N2");
-			ParseString(ref tempbal, "RIGHT");
 			
-			sb.AppendLine("  TOTAL: " + tempamt);
-			sb.AppendLine("DEPOSIT: " + temptender);
-			sb.AppendLine("BALANCE: " + tempbal);
+			sb.AppendLine("  TOTAL: " + FormatStringAlignment(header.AmountDue.ToString("N2"),"RIGHT"));
+			sb.AppendLine("DEPOSIT: " + FormatStringAlignment(header.AmountTender.ToString("N2"),"RIGHT"));
+			sb.AppendLine("BALANCE: " + FormatStringAlignment((header.AmountDue - header.AmountTender).ToString("N2"),"RIGHT"));
+						
 			PrintFooter(ref sb);
 			sb.Append(CutPaper());	
 		}
@@ -360,7 +321,7 @@ namespace NJournals.Common.Util
 			sb.AppendLine("");
 		}
 		
-		private static void ParseString(ref string temp, string align)
+		private static string FormatStringAlignment(string temp, string align)
 		{
 			int cnt = 13;
 			if(align == "RIGHT"){
@@ -374,7 +335,8 @@ namespace NJournals.Common.Util
 				else{
 					temp += " ";
 				}
-			}		
+			}	
+			return temp;			
 		}
 	}
 }
