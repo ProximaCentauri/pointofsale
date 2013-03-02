@@ -98,6 +98,7 @@ namespace NJournals.Core.Views
 			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -256,6 +257,7 @@ namespace NJournals.Core.Views
 			this.textBox1.Location = new System.Drawing.Point(84, 82);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ReadOnly = true;
+
 			this.textBox1.Size = new System.Drawing.Size(100, 24);
 			this.textBox1.TabIndex = 14;
 			// 
@@ -772,6 +774,7 @@ namespace NJournals.Core.Views
 			this.Column5.HeaderText = "Price";
 			this.Column5.Name = "Column5";
 			// 
+
 			// LaundryNewView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

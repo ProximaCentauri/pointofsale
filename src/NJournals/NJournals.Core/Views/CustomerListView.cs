@@ -46,7 +46,7 @@ namespace NJournals.Core.Views
 		void CustomerListViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
-			formatAlternatingRows();
+			Resource.formatAlternatingRows(dgvCustomerList);
 			setToolTip();			
 			m_presenter = new CustomerListViewPresenter(this);
 			m_presenter.SetAllCustomerList();
@@ -268,12 +268,6 @@ namespace NJournals.Core.Views
 			dgvCustomerList.Columns["Name"].Width = 115;
 			dgvCustomerList.Columns["Address"].Width = 140;
 			dgvCustomerList.Columns["ContactNumber"].Width = 110;
-		}
-		
-		void formatAlternatingRows()
-		{
-            this.dgvCustomerList.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgvCustomerList.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
 		}
 		
 		void setToolTip()

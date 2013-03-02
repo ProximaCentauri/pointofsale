@@ -76,7 +76,12 @@ namespace NJournals.Core
 			// 
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.panel1.Controls.Add(this.label13);
+			this.panel1.Controls.Add(this.lblRefConfig);
+			this.panel1.Controls.Add(this.label8);
 			this.panel1.Controls.Add(this.lblrefdel);
+			this.panel1.Controls.Add(this.label5);
+			this.panel1.Controls.Add(this.lblRefReports);
+			this.panel1.Controls.Add(this.lblRefClaim);
 			this.panel1.Controls.Add(this.lblcustomerList);
 			this.panel1.Controls.Add(this.label11);
 			this.panel1.Controls.Add(this.label12);
@@ -85,18 +90,13 @@ namespace NJournals.Core
 			this.panel1.Controls.Add(this.lbllaundryReports);
 			this.panel1.Controls.Add(this.label9);
 			this.panel1.Controls.Add(this.lbllaundryClaim);
-			this.panel1.Controls.Add(this.label8);
-			this.panel1.Controls.Add(this.label5);
-			this.panel1.Controls.Add(this.lblRefReports);
 			this.panel1.Controls.Add(this.label7);
-			this.panel1.Controls.Add(this.lblRefClaim);
 			this.panel1.Controls.Add(this.label6);
 			this.panel1.Controls.Add(this.lblcompany);
 			this.panel1.Controls.Add(this.lblRefNew);
 			this.panel1.Controls.Add(this.lstOpenWindows);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.lbllaundryNew);
-			this.panel1.Controls.Add(this.lblRefConfig);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -109,7 +109,7 @@ namespace NJournals.Core
 			// 
 			this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 			this.label13.ForeColor = System.Drawing.Color.Red;
-			this.label13.Location = new System.Drawing.Point(1, 198);
+			this.label13.Location = new System.Drawing.Point(1, 200);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(191, 1);
 			this.label13.TabIndex = 27;
@@ -118,7 +118,7 @@ namespace NJournals.Core
 			// 
 			this.lblrefdel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblrefdel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblrefdel.Location = new System.Drawing.Point(1, 163);
+			this.lblrefdel.Location = new System.Drawing.Point(1, 165);
 			this.lblrefdel.Name = "lblrefdel";
 			this.lblrefdel.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
 			this.lblrefdel.Size = new System.Drawing.Size(192, 32);
@@ -173,7 +173,7 @@ namespace NJournals.Core
 			// 
 			this.lbllaundryConfig.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lbllaundryConfig.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryConfig.Location = new System.Drawing.Point(1, 496);
+			this.lbllaundryConfig.Location = new System.Drawing.Point(1, 499);
 			this.lbllaundryConfig.Name = "lbllaundryConfig";
 			this.lbllaundryConfig.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
 			this.lbllaundryConfig.Size = new System.Drawing.Size(191, 32);
@@ -224,7 +224,7 @@ namespace NJournals.Core
 			// 
 			this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 			this.label8.ForeColor = System.Drawing.Color.Red;
-			this.label8.Location = new System.Drawing.Point(0, 312);
+			this.label8.Location = new System.Drawing.Point(1, 317);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(191, 1);
 			this.label8.TabIndex = 22;
@@ -233,7 +233,7 @@ namespace NJournals.Core
 			// 
 			this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 			this.label5.ForeColor = System.Drawing.Color.Red;
-			this.label5.Location = new System.Drawing.Point(1, 273);
+			this.label5.Location = new System.Drawing.Point(1, 278);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(191, 1);
 			this.label5.TabIndex = 18;
@@ -242,7 +242,7 @@ namespace NJournals.Core
 			// 
 			this.lblRefReports.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblRefReports.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefReports.Location = new System.Drawing.Point(0, 238);
+			this.lblRefReports.Location = new System.Drawing.Point(1, 243);
 			this.lblRefReports.Name = "lblRefReports";
 			this.lblRefReports.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
 			this.lblRefReports.Size = new System.Drawing.Size(191, 32);
@@ -256,7 +256,7 @@ namespace NJournals.Core
 			// 
 			this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 			this.label7.ForeColor = System.Drawing.Color.Red;
-			this.label7.Location = new System.Drawing.Point(0, 234);
+			this.label7.Location = new System.Drawing.Point(0, 239);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(191, 1);
 			this.label7.TabIndex = 20;
@@ -265,7 +265,7 @@ namespace NJournals.Core
 			// 
 			this.lblRefClaim.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblRefClaim.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefClaim.Location = new System.Drawing.Point(0, 199);
+			this.lblRefClaim.Location = new System.Drawing.Point(1, 204);
 			this.lblRefClaim.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
 			this.lblRefClaim.Name = "lblRefClaim";
 			this.lblRefClaim.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
@@ -280,7 +280,7 @@ namespace NJournals.Core
 			// 
 			this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 			this.label6.ForeColor = System.Drawing.Color.Red;
-			this.label6.Location = new System.Drawing.Point(1, 162);
+			this.label6.Location = new System.Drawing.Point(1, 161);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(191, 1);
 			this.label6.TabIndex = 19;
@@ -299,7 +299,7 @@ namespace NJournals.Core
 			// 
 			this.lblRefNew.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblRefNew.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefNew.Location = new System.Drawing.Point(1, 127);
+			this.lblRefNew.Location = new System.Drawing.Point(1, 126);
 			this.lblRefNew.Name = "lblRefNew";
 			this.lblRefNew.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
 			this.lblRefNew.Size = new System.Drawing.Size(192, 32);
@@ -313,11 +313,10 @@ namespace NJournals.Core
 			// 
 			this.lstOpenWindows.BackColor = System.Drawing.SystemColors.Control;
 			this.lstOpenWindows.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.lstOpenWindows.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.lstOpenWindows.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstOpenWindows.FormattingEnabled = true;
 			this.lstOpenWindows.ItemHeight = 14;
-			this.lstOpenWindows.Location = new System.Drawing.Point(0, 585);
+			this.lstOpenWindows.Location = new System.Drawing.Point(0, 580);
 			this.lstOpenWindows.Name = "lstOpenWindows";
 			this.lstOpenWindows.Size = new System.Drawing.Size(192, 168);
 			this.lstOpenWindows.TabIndex = 0;
@@ -353,7 +352,7 @@ namespace NJournals.Core
 			// 
 			this.lblRefConfig.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblRefConfig.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefConfig.Location = new System.Drawing.Point(0, 277);
+			this.lblRefConfig.Location = new System.Drawing.Point(1, 282);
 			this.lblRefConfig.Name = "lblRefConfig";
 			this.lblRefConfig.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
 			this.lblRefConfig.Size = new System.Drawing.Size(191, 32);

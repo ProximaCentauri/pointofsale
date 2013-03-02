@@ -51,8 +51,10 @@ namespace NJournals.Core.Views
 		void RefillingConfigurationFormLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
-			formatAlternatingRows();
+			Resource.formatAlternatingRows(dgvProductType);
+			Resource.formatAlternatingRows(dgvRefillInventory);
 			SetToolTip();			
+			
 			m_presenter = new RefillingConfigurationViewPresenter(this);
 			m_presenter.SetAllRefillProductType();
 			m_presenter.SetAllRefillInventory();
@@ -501,15 +503,7 @@ namespace NJournals.Core.Views
 			Resource.setImage(this.btnDeleteInv,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");	
 			
 		}
-		
-		void formatAlternatingRows()
-		{
-            this.dgvProductType.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgvProductType.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
-			this.dgvRefillInventory.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgvRefillInventory.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
-		}
-		
+			
 		void formatProductTypeDataGridView()
 		{
 			this.dgvProductType.Columns["ProductTypeID"].Visible = false;

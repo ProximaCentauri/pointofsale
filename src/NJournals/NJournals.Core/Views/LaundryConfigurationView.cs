@@ -54,8 +54,11 @@ namespace NJournals.Core.Views
 		void LaundryConfigurationFormLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
-			formatAlternatingRows();
+			Resource.formatAlternatingRows(dgvServices);
+			Resource.formatAlternatingRows(dgvCategory);
+			Resource.formatAlternatingRows(dgvPriceScheme);
 			setToolTip();			
+			
 			m_presenter = new LaundryConfigurationViewPresenter(this);
 			m_presenter.SetAllCategories();
 			m_presenter.SetAllServices();
@@ -661,15 +664,6 @@ namespace NJournals.Core.Views
 			
 		}
 		
-		void formatAlternatingRows()
-		{
-			this.dgvServices.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgvServices.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
-            this.dgvCategory.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgvCategory.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
-            this.dgvPriceScheme.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgvPriceScheme.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
-		}
 		
 		void formatCategoryDataGridView()
 		{

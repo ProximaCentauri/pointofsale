@@ -60,7 +60,7 @@ namespace NJournals.Core.Views
 		void LaundryNewViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();			
-				
+			Resource.formatAlternatingRows(dataGridView1);
 			m_laundryDao = new LaundryDao();
 			m_presenter = new LaundryViewPresenter(this, m_laundryDao);
 			if(this.Text.Contains("[NEW]")){

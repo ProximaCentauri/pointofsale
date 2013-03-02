@@ -45,7 +45,8 @@ namespace NJournals.Core.Views
 		
 		void RefillReturnPaymentViewLoad(object sender, EventArgs e)
 		{
-			setButtonImages();			
+			setButtonImages();
+			Resource.formatAlternatingRows(dgvOutBalance);
 			m_presenter = new RefillingReturnPaymentPresenter(this);
 			refillHeaders = null;
 			m_customerEntity = null;

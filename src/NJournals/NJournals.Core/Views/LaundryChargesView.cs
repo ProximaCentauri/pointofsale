@@ -46,7 +46,7 @@ namespace NJournals.Core.Views
 		void LaundryChargesFormLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
-			formatAlternatingRows();			
+			Resource.formatAlternatingRows(dgvCharges);
 			m_presenter = new LaundryChargesViewPresenter(this);
 			m_presenter.SetAllLaundryCharges();
 		}
@@ -229,13 +229,7 @@ namespace NJournals.Core.Views
 			Resource.setImage(this.btnSaveCharges,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
 			Resource.setImage(this.btnDeleteCharges,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
 			
-		}
-		
-		void formatAlternatingRows()
-		{
-            this.dgvCharges.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgvCharges.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
-		}
+		}		
 		
 		private void formatChargesDataGridView()
 		{
