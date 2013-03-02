@@ -346,6 +346,7 @@ namespace NJournals.Core.Views
 		void setButtonImages()
 		{			
 			Resource.setImage(this.btnsearch, System.IO.Directory.GetCurrentDirectory() + "/images/search.png");
+			Resource.setImage(this.btnDeleteDetail, System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
 		}
 
 	}
