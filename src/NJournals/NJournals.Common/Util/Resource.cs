@@ -29,5 +29,11 @@ namespace NJournals.Common.Util
 				form.Icon = new System.Drawing.Icon(imagePath);
 			}
 		}
+		
+		public static void formatAlternatingRows(DataGridView dataGridView)
+		{
+			dataGridView.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridView.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));        
+		}
 	}
 }

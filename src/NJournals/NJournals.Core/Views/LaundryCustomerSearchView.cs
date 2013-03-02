@@ -43,6 +43,8 @@ namespace NJournals.Core.Views
 		
 		void LaundryCustomerSearchViewLoad(object sender, EventArgs e)
 		{
+			Resource.formatAlternatingRows(dgvunclaimeditems);
+			Resource.formatAlternatingRows(dgvunpaidtrans);
 			
 			if(m_customer!=null)
 			{

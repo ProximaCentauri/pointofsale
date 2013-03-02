@@ -43,6 +43,7 @@ namespace NJournals.Core.Views
 		void RefillingViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();		
+			Resource.formatAlternatingRows(dataGridView1);
 			if(this.Text.Contains("[NEW]")){
 				Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/bottle_new.ico");
 				m_presenter.SetAllCustomers();

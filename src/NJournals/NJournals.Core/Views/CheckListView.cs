@@ -48,6 +48,7 @@ namespace NJournals.Core.Views
 		void CheckListViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
+			Resource.formatAlternatingRows(dgvCheckList);
 			m_presenter.SetAllChecklist();
 			if(m_headerEntity.JobChecklistEntities.Count > 0){
 				m_presenter.SetSelectedChecklist();
