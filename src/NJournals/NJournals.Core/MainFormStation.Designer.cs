@@ -46,7 +46,12 @@ namespace NJournals.Core
 		{
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label13 = new System.Windows.Forms.Label();
+			this.lblRefConfig = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
 			this.lblrefdel = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.lblRefReports = new System.Windows.Forms.Label();
+			this.lblRefClaim = new System.Windows.Forms.Label();
 			this.lblcustomerList = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
@@ -55,18 +60,13 @@ namespace NJournals.Core
 			this.lbllaundryReports = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.lbllaundryClaim = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.lblRefReports = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
-			this.lblRefClaim = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.lblcompany = new System.Windows.Forms.Label();
 			this.lblRefNew = new System.Windows.Forms.Label();
 			this.lstOpenWindows = new System.Windows.Forms.ListBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.lbllaundryNew = new System.Windows.Forms.Label();
-			this.lblRefConfig = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
@@ -114,6 +114,29 @@ namespace NJournals.Core
 			this.label13.Size = new System.Drawing.Size(191, 1);
 			this.label13.TabIndex = 27;
 			// 
+			// lblRefConfig
+			// 
+			this.lblRefConfig.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.lblRefConfig.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblRefConfig.Location = new System.Drawing.Point(1, 282);
+			this.lblRefConfig.Name = "lblRefConfig";
+			this.lblRefConfig.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.lblRefConfig.Size = new System.Drawing.Size(191, 32);
+			this.lblRefConfig.TabIndex = 12;
+			this.lblRefConfig.Text = "CONFIGURATION";
+			this.lblRefConfig.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.lblRefConfig.MouseLeave += new System.EventHandler(this.label_mouseleave);
+			this.lblRefConfig.MouseHover += new System.EventHandler(this.label_mousehover);
+			// 
+			// label8
+			// 
+			this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.label8.ForeColor = System.Drawing.Color.Red;
+			this.label8.Location = new System.Drawing.Point(1, 317);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(191, 1);
+			this.label8.TabIndex = 22;
+			// 
 			// lblrefdel
 			// 
 			this.lblrefdel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -127,6 +150,44 @@ namespace NJournals.Core
 			this.lblrefdel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			this.lblrefdel.MouseLeave += new System.EventHandler(this.label_mouseleave);
 			this.lblrefdel.MouseHover += new System.EventHandler(this.label_mousehover);
+			// 
+			// label5
+			// 
+			this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.label5.ForeColor = System.Drawing.Color.Red;
+			this.label5.Location = new System.Drawing.Point(1, 278);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(191, 1);
+			this.label5.TabIndex = 18;
+			// 
+			// lblRefReports
+			// 
+			this.lblRefReports.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.lblRefReports.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblRefReports.Location = new System.Drawing.Point(1, 243);
+			this.lblRefReports.Name = "lblRefReports";
+			this.lblRefReports.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.lblRefReports.Size = new System.Drawing.Size(191, 32);
+			this.lblRefReports.TabIndex = 11;
+			this.lblRefReports.Text = "REPORTS";
+			this.lblRefReports.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.lblRefReports.MouseLeave += new System.EventHandler(this.label_mouseleave);
+			this.lblRefReports.MouseHover += new System.EventHandler(this.label_mousehover);
+			// 
+			// lblRefClaim
+			// 
+			this.lblRefClaim.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.lblRefClaim.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblRefClaim.Location = new System.Drawing.Point(1, 204);
+			this.lblRefClaim.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+			this.lblRefClaim.Name = "lblRefClaim";
+			this.lblRefClaim.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.lblRefClaim.Size = new System.Drawing.Size(192, 32);
+			this.lblRefClaim.TabIndex = 10;
+			this.lblRefClaim.Text = "RETURN/PAYMENT";
+			this.lblRefClaim.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+			this.lblRefClaim.MouseLeave += new System.EventHandler(this.label_mouseleave);
+			this.lblRefClaim.MouseHover += new System.EventHandler(this.label_mousehover);
 			// 
 			// lblcustomerList
 			// 
@@ -220,38 +281,6 @@ namespace NJournals.Core
 			this.lbllaundryClaim.MouseLeave += new System.EventHandler(this.label_mouseleave);
 			this.lbllaundryClaim.MouseHover += new System.EventHandler(this.label_mousehover);
 			// 
-			// label8
-			// 
-			this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-			this.label8.ForeColor = System.Drawing.Color.Red;
-			this.label8.Location = new System.Drawing.Point(1, 317);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(191, 1);
-			this.label8.TabIndex = 22;
-			// 
-			// label5
-			// 
-			this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-			this.label5.ForeColor = System.Drawing.Color.Red;
-			this.label5.Location = new System.Drawing.Point(1, 278);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(191, 1);
-			this.label5.TabIndex = 18;
-			// 
-			// lblRefReports
-			// 
-			this.lblRefReports.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.lblRefReports.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefReports.Location = new System.Drawing.Point(1, 243);
-			this.lblRefReports.Name = "lblRefReports";
-			this.lblRefReports.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.lblRefReports.Size = new System.Drawing.Size(191, 32);
-			this.lblRefReports.TabIndex = 11;
-			this.lblRefReports.Text = "REPORTS";
-			this.lblRefReports.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.lblRefReports.MouseLeave += new System.EventHandler(this.label_mouseleave);
-			this.lblRefReports.MouseHover += new System.EventHandler(this.label_mousehover);
-			// 
 			// label7
 			// 
 			this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -260,21 +289,6 @@ namespace NJournals.Core
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(191, 1);
 			this.label7.TabIndex = 20;
-			// 
-			// lblRefClaim
-			// 
-			this.lblRefClaim.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.lblRefClaim.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefClaim.Location = new System.Drawing.Point(1, 204);
-			this.lblRefClaim.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-			this.lblRefClaim.Name = "lblRefClaim";
-			this.lblRefClaim.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.lblRefClaim.Size = new System.Drawing.Size(192, 32);
-			this.lblRefClaim.TabIndex = 10;
-			this.lblRefClaim.Text = "RETURN/PAYMENT";
-			this.lblRefClaim.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.lblRefClaim.MouseLeave += new System.EventHandler(this.label_mouseleave);
-			this.lblRefClaim.MouseHover += new System.EventHandler(this.label_mousehover);
 			// 
 			// label6
 			// 
@@ -348,20 +362,6 @@ namespace NJournals.Core
 			this.lbllaundryNew.MouseLeave += new System.EventHandler(this.label_mouseleave);
 			this.lbllaundryNew.MouseHover += new System.EventHandler(this.label_mousehover);
 			// 
-			// lblRefConfig
-			// 
-			this.lblRefConfig.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.lblRefConfig.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblRefConfig.Location = new System.Drawing.Point(1, 282);
-			this.lblRefConfig.Name = "lblRefConfig";
-			this.lblRefConfig.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.lblRefConfig.Size = new System.Drawing.Size(191, 32);
-			this.lblRefConfig.TabIndex = 12;
-			this.lblRefConfig.Text = "CONFIGURATION";
-			this.lblRefConfig.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.lblRefConfig.MouseLeave += new System.EventHandler(this.label_mouseleave);
-			this.lblRefConfig.MouseHover += new System.EventHandler(this.label_mousehover);
-			// 
 			// label2
 			// 
 			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(147)))), ((int)(((byte)(152)))));
@@ -397,6 +397,7 @@ namespace NJournals.Core
 			this.Name = "MainFormStation";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "MainFormStation";
+			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.MainFormStationLoad);
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);

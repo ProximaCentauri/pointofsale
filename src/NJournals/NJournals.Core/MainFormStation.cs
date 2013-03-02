@@ -118,14 +118,14 @@ namespace NJournals.Core
 			string title = p_form.Text;
 			foreach(Form m_form in this.MdiChildren){
 				if(m_form.Text.Equals(p_form.Text)){
-					m_form.StartPosition = FormStartPosition.CenterScreen;
+					m_form.WindowState = System.Windows.Forms.FormWindowState.Maximized;	
 					m_form.Activate();
 					return;	
 				}				
 			}		
 			p_form = (Form)Activator.CreateInstance(p_form.GetType());
 			p_form.Text = title;
-			p_form.StartPosition = FormStartPosition.CenterScreen;			
+			p_form.WindowState = System.Windows.Forms.FormWindowState.Maximized;			
 			p_form.MdiParent = this;
 			p_form.FormClosed += new FormClosedEventHandler(FormViewClose);
 			p_form.Load += new EventHandler(FormViewShow);
@@ -263,7 +263,6 @@ namespace NJournals.Core
 		void MainFormStationLoad(object sender, EventArgs e)
 		{
 			setMenuBackgroundImages();
-				
 			this.lblcustomerList.Click += delegate { OnSelectCustomerList(null); };
 			this.lbllaundryNew.Click += delegate { OnSelectLaundryNew(null); };
 			this.lbllaundryClaim.Click += delegate { OnSelectLaundryClaim(null); };
