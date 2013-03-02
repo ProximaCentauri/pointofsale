@@ -49,6 +49,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -68,6 +69,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -87,6 +89,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -106,6 +109,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <FontWeight>700</FontWeight>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -125,6 +129,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -144,6 +149,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -186,6 +192,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
           <TextAlign>Right</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -315,6 +322,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -335,6 +343,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -355,6 +364,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -376,6 +386,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -397,6 +408,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -418,6 +430,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -438,6 +451,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -458,6 +472,7 @@
                           <Default>White</Default>
                         </BorderColor>
                         <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -477,6 +492,8 @@
           <BorderColor>
             <Default>White</Default>
           </BorderColor>
+          <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
         </Style>
         <Header>
           <TableRows>
@@ -934,7 +951,7 @@
             <Default>White</Default>
           </BorderColor>
           <FontFamily>Calibri</FontFamily>
-          <FontSize>8pt</FontSize>
+          <FontSize>9pt</FontSize>
           <TextAlign>Right</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
