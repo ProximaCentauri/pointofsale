@@ -551,7 +551,6 @@ namespace NJournals.Core.Views
 			this.chkpaywhenclaim.TabIndex = 15;
 			this.chkpaywhenclaim.Text = "Pay upon Claim";
 			this.chkpaywhenclaim.UseVisualStyleBackColor = true;
-			this.chkpaywhenclaim.CheckedChanged += new System.EventHandler(this.ChkpaywhenclaimCheckedChanged);
 			// 
 			// btnsaveclose
 			// 
@@ -738,6 +737,7 @@ namespace NJournals.Core.Views
 			// 
 			// btnprint
 			// 
+			this.btnprint.Enabled = false;
 			this.btnprint.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnprint.Location = new System.Drawing.Point(611, 698);
 			this.btnprint.Name = "btnprint";
@@ -745,7 +745,6 @@ namespace NJournals.Core.Views
 			this.btnprint.TabIndex = 33;
 			this.btnprint.Text = "Print";
 			this.btnprint.UseVisualStyleBackColor = true;
-			this.btnprint.Visible = false;
 			this.btnprint.Click += new System.EventHandler(this.BtnprintClick);
 			// 
 			// btnEditCharges

@@ -62,6 +62,7 @@ namespace NJournals.Core.Views
 				btndeleteclose.Enabled = true;
 				cmbCustomers.DropDownStyle = ComboBoxStyle.DropDown;
 				cmbtransTypes.DropDownStyle = ComboBoxStyle.DropDown;
+				btnprintclose.Enabled = true;
 			}
 		}
 		
@@ -134,10 +135,12 @@ namespace NJournals.Core.Views
 		
 		void BtnprintcloseClick(object sender, EventArgs e)
 		{
-			//if(CheckForEmptyFields())
-			//	return;
+			if(CheckForEmptyFields())
+				return;
 			
-			m_presenter.PrintTransaction();						                            			
+			if(MessageService.ShowYesNo("Are you sure you want to print this transaction with JO number: " + txtjonumber.Text)){
+			   	m_presenter.PrintTransaction();						                            			
+			}			
 		}
 		
 		private bool CheckForEmptyFields(){

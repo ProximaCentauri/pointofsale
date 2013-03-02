@@ -418,6 +418,7 @@ namespace NJournals.Core.Views
 			// 
 			// btnprintclose
 			// 
+			this.btnprintclose.Enabled = false;
 			this.btnprintclose.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnprintclose.Location = new System.Drawing.Point(545, 686);
 			this.btnprintclose.Name = "btnprintclose";

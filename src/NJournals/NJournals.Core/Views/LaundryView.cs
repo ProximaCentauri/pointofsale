@@ -81,7 +81,8 @@ namespace NJournals.Core.Views
 				btncancel.Enabled = false;
 				txtdiscount.Enabled = false;
 				dataGridView1.AllowUserToDeleteRows = false;
-				btnprint.Visible = true;
+				btnprint.Enabled = true;
+				
 				btnDeleteDetail.Enabled = false;
 				cmbCustomers.DropDownStyle = ComboBoxStyle.DropDown;
 			}
@@ -515,13 +516,6 @@ namespace NJournals.Core.Views
 		public override void CloseView(){
 			this.Close();
 		}
-		
-		void ChkpaywhenclaimCheckedChanged(object sender, EventArgs e)
-		{
-			//if(this.Text.Contains("NEW"))
-				//txtamttender.Enabled = !chkpaywhenclaim.Checked;
-		}
-
 		
 		void BtnprintClick(object sender, EventArgs e)
 		{
