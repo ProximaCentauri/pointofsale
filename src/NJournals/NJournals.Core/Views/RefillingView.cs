@@ -43,13 +43,13 @@ namespace NJournals.Core.Views
 		void RefillingViewLoad(object sender, EventArgs e)
 		{
 			if(this.Text.Contains("[NEW]")){
-				this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/bottle_new.ico");
+				Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/bottle_new.ico");
 				m_presenter.SetAllCustomers();
 				m_presenter.SetAllProducts();
 				m_presenter.SetAllTransactionTypes();
 				txtjonumber.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 			}else{
-				this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/bottle_return.ico");
+				Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/bottle_return.ico");
 				foreach(Control c in this.Controls){
 					if(c is GroupBox){
 						GroupBox groupBox = c as GroupBox;

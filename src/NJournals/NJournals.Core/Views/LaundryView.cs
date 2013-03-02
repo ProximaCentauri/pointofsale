@@ -43,6 +43,7 @@ namespace NJournals.Core.Views
 		LaundryHeaderDataEntity m_headerEntity;
 		CheckListView chklistView = null;
 		LaundryCustomerSearchView customerSearchView = null;
+		LaundryChargesView chargesView = null;
 		private decimal removePrice = 0;
 		private decimal amountTender = 0;		
 		private decimal totalAmtDue = 0;
@@ -53,6 +54,7 @@ namespace NJournals.Core.Views
 			Resource.setImage(this.btnsearch, System.IO.Directory.GetCurrentDirectory() + "/images/search.png");
 			Resource.setImage(this.btnCustomerSearch, System.IO.Directory.GetCurrentDirectory() + "/images/search.png");
 			Resource.setImage(this.btnDeleteDetail,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
+			Resource.setImage(this.btnEditCharges, System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
 		}
 		
 		void LaundryNewViewLoad(object sender, EventArgs e)
@@ -62,15 +64,16 @@ namespace NJournals.Core.Views
 			m_laundryDao = new LaundryDao();
 			m_presenter = new LaundryViewPresenter(this, m_laundryDao);
 			if(this.Text.Contains("[NEW]")){
-				this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/basket_new.ico");				
-				m_headerEntity = new LaundryHeaderDataEntity();					
+
+				Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/basket_new.ico");				
+				m_headerEntity = new LaundryHeaderDataEntity();						
 				m_presenter.SetAllCustomers();
 				this.groupBox2.Enabled = this.btnclaim.Enabled = btndelete.Enabled = false;
 				txtjoborder.Text = m_presenter.getHeaderID().ToString().PadLeft(6, '0');
 				this.dtrecieveDate.Value = DateTime.Now;				
 				dataGridView1.AllowUserToDeleteRows = true;
 			}else{	
-				this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/basket_claim.ico");				
+				Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/basket_claim.ico");				
 				cmbCustomers.Enabled = false;
 				grpServices.Enabled = false;
 				lblchecklist.Enabled = false;
@@ -531,6 +534,16 @@ namespace NJournals.Core.Views
 			if(dataGridView1.SelectedRows.Count > 0 && this.Text.Contains("NEW")){
 				dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
 			}
+		}
+		
+		void BtnEditChargesClick(object sender, EventArgs e)
+		{
+			m_presenter.LaunchCharges();
+		}
+		
+		public void LaunchCharges(){
+			chargesView = new LaundryChargesView();
+			chargesView.ShowDialog();
 		}
 	}	
 }

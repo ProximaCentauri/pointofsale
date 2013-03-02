@@ -13,6 +13,7 @@ using NJournals.Common.Interfaces;
 using NJournals.Common.Gui;
 using NJournals.Common.DataEntities;
 using NJournals.Core.Presenter;
+using NJournals.Common.Util;
 using System.Collections.Generic;
 namespace NJournals.Core.Views
 {
@@ -31,8 +32,7 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
-			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/company.ico");
-			
+			Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/company.ico");
 		}
 		
 		private CompanyDataEntity m_companyEntity;

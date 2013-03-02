@@ -45,14 +45,14 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/config.ico");
 		}
 		
 		void RefillingConfigurationFormLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
 			formatAlternatingRows();
-			SetToolTip();
-			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/config.ico");
+			SetToolTip();			
 			m_presenter = new RefillingConfigurationViewPresenter(this);
 			m_presenter.SetAllRefillProductType();
 			m_presenter.SetAllRefillInventory();

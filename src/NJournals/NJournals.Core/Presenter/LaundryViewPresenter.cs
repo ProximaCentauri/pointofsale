@@ -311,6 +311,10 @@ namespace NJournals.Core.Presenter
 			m_view.LaunchChecklist();	
 		}
 		
+		public void LaunchCharges(){
+			m_view.LaunchCharges();
+		}
+		
 		public LaundryChecklistDataEntity GetChecklistByName(string p_name){
 			return m_checklistDao.GetByName(p_name);
 		}

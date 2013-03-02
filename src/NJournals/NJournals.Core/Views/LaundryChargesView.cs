@@ -40,13 +40,13 @@ namespace NJournals.Core.Views
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+			Resource.setImage(this, System.IO.Directory.GetCurrentDirectory() + "/images/checklist.ico");
 		}
 		
 		void LaundryChargesFormLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
-			formatAlternatingRows();
-			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/checklist.ico");
+			formatAlternatingRows();			
 			m_presenter = new LaundryChargesViewPresenter(this);
 			m_presenter.SetAllLaundryCharges();
 		}

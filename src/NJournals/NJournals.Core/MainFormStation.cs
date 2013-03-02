@@ -34,7 +34,7 @@ namespace NJournals.Core
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 			MessageService.Attach(new MessageBoxMessageProvider());
-			this.Icon = new System.Drawing.Icon(System.IO.Directory.GetCurrentDirectory() + "/images/company.ico");			
+			Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/company.ico");			
 		}
 		
 		public event EventHandler SelectCustomerList;
