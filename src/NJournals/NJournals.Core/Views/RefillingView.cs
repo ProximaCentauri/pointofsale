@@ -223,6 +223,7 @@ namespace NJournals.Core.Views
 			}
 			txtamtdue.Text = m_headerEntity.AmountDue.ToString("N2");
 			txtbalance.Text = (m_headerEntity.AmountDue - m_headerEntity.AmountTender).ToString("N2");
+			chkunpaid.Checked = decimal.Parse(txtbalance.Text) == 0 ? false : true;
 			lblvoid.Visible = m_headerEntity.VoidFlag;
 			if(m_headerEntity.VoidFlag){
 				btndeleteclose.Enabled = false;				
