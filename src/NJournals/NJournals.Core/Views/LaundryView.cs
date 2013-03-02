@@ -81,7 +81,8 @@ namespace NJournals.Core.Views
 				btncancel.Enabled = false;
 				txtdiscount.Enabled = false;
 				dataGridView1.AllowUserToDeleteRows = false;
-				btnprint.Visible = true;
+				btnprint.Enabled = true;
+				
 				btnDeleteDetail.Enabled = false;
 				cmbCustomers.DropDownStyle = ComboBoxStyle.DropDown;
 			}
