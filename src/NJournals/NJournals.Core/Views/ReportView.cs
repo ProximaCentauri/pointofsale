@@ -54,6 +54,11 @@ namespace NJournals.Core.Views
             m_presenter.SetAllReportTypes(this.GetTitle());
             m_presenter.SetAllCustomers();
 
+            if (this.GetTitle() == ReportConstants.REFILL_WINDOW)
+            {
+                m_presenter.SetAllInvProducts();
+            }
+            this.cmbProducts.Enabled = false;
             this.reportViewer.RefreshReport();
             this.reportViewer.RefreshReport();
         }
@@ -76,13 +81,23 @@ namespace NJournals.Core.Views
         	}
         	this.cmbCustomers.SelectedIndex = 0;
         }
-		
+
+        public void SetAllInvProducts(List<RefillInventoryHeaderDataEntity> invproducts)
+        {
+            this.cmbProducts.Items.Add("All");
+            foreach (RefillInventoryHeaderDataEntity inv in invproducts)
+            {
+                this.cmbProducts.Items.Add(inv.Name);
+            }
+            this.cmbProducts.SelectedIndex = 0;
+        }
+
 		void BtnRunReportClick(object sender, EventArgs e)
 		{
             if (ValidateReportParameters())
             { 
                	string selectedReport = this.cmbReportTypes.Text;
-                b_isAll = true;
+                b_isAll = true;               
                 CustomerDataEntity customer = new CustomerDataEntity();
                 if (this.cmbCustomers.Text != "All")
                 {
@@ -90,9 +105,9 @@ namespace NJournals.Core.Views
                     customer = m_customerEntity.Find(m_customer => m_customer.Name == cmbCustomers.Text);
                 }
 
-
+                string product = this.cmbProducts.Text;
                 m_presenter.RunReport(this.GetTitle(), selectedReport, customer, fromDateTime,
-                                      toDateTime, b_isAll);
+                                      toDateTime, b_isAll, product);
          
             }            			
 		}
@@ -109,8 +124,7 @@ namespace NJournals.Core.Views
 	            foreach (ReportDataSource datasource in datasources)
 	            {
 	                this.reportViewer.LocalReport.DataSources.Add(datasource);
-	            }
-	                  
+	            }	                  
 	            this.reportViewer.LocalReport.SetParameters(parameters);
 	            this.reportViewer.RefreshReport();     
             }
@@ -123,7 +137,7 @@ namespace NJournals.Core.Views
 
         private bool ValidateReportParameters()
         {        	
-            fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);
+            fromDateTime = dateFromPicker.Value.Date;
             toDateTime = Convert.ToDateTime(this.dateToPicker.Text + " 23:59:59");
             if ((cmbReportTypes.SelectedItem != null && cmbReportTypes.SelectedItem.ToString() != string.Empty) &&
             	(cmbCustomers.SelectedItem != null && cmbCustomers.SelectedItem.ToString() != string.Empty) &&
@@ -141,15 +155,19 @@ namespace NJournals.Core.Views
         void CmbReportTypesSelectedIndexChanged(object sender, System.EventArgs e)
 		{
         	if(this.GetTitle() == ReportConstants.REFILL_WINDOW 
-        	   && this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.INVENTORY_REPORT)
+        	   && (this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.INVENTORY_REPORT 
+                || this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.INVENTORY_ACTIVITY_REPORT))                
         	{
         		cmbCustomers.Enabled = false;
+                cmbProducts.Enabled = true;
         	}        	
         	else{
         		cmbCustomers.Enabled = true;
+                cmbProducts.Enabled = false;
         	}
         	if(this.GetTitle() == ReportConstants.REFILL_WINDOW
-        	   && this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.CUSTINVENTORY_REPORT)
+        	   && (this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.CUSTINVENTORY_REPORT
+                || this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.INVENTORY_REPORT))
         	{
         		this.dateFromPicker.Enabled = false;
         		this.dateToPicker.Enabled = false;        		

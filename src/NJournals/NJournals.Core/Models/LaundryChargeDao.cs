@@ -59,6 +59,17 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public IEnumerable<LaundryChargeDataEntity> GetAllItemsWithVoid()
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+				var query = session.Query<LaundryChargeDataEntity>()
+					.OrderBy(x => x.Name)
+                    .ToList();
+                return query;
+			}
+		}
+		
 		public LaundryChargeDataEntity GetByName(string p_name)
 		{
 			using(var session = NHibernateHelper.OpenSession())

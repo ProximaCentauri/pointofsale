@@ -98,6 +98,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteDetail = new System.Windows.Forms.Button();
 			this.btnprint = new System.Windows.Forms.Button();
 			this.btnEditCharges = new System.Windows.Forms.Button();
+			this.btnRefresh = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.grpServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -544,6 +545,7 @@ namespace NJournals.Core.Views
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.btnRefresh);
 			this.groupBox3.Controls.Add(this.chkchargesList);
 			this.groupBox3.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -559,7 +561,7 @@ namespace NJournals.Core.Views
 			this.chkchargesList.CheckOnClick = true;
 			this.chkchargesList.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.chkchargesList.FormattingEnabled = true;
-			this.chkchargesList.Location = new System.Drawing.Point(12, 18);
+			this.chkchargesList.Location = new System.Drawing.Point(12, 25);
 			this.chkchargesList.Name = "chkchargesList";
 			this.chkchargesList.Size = new System.Drawing.Size(182, 156);
 			this.chkchargesList.TabIndex = 24;
@@ -774,6 +776,20 @@ namespace NJournals.Core.Views
 			this.btnEditCharges.UseVisualStyleBackColor = true;
 			this.btnEditCharges.Click += new System.EventHandler(this.BtnEditChargesClick);
 			// 
+			// btnRefresh
+			// 
+			this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnRefresh.FlatAppearance.BorderSize = 0;
+			this.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnRefresh.Location = new System.Drawing.Point(143, -2);
+			this.btnRefresh.Name = "btnRefresh";
+			this.btnRefresh.Size = new System.Drawing.Size(24, 24);
+			this.btnRefresh.TabIndex = 35;
+			this.btnRefresh.UseVisualStyleBackColor = true;
+			this.btnRefresh.Click += new System.EventHandler(this.BtnRefreshClick);
+			// 
 			// LaundryNewView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -824,6 +840,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button btnRefresh;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.TextBox txtunitprice;
 		private System.Windows.Forms.Button btnEditCharges;

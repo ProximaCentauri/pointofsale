@@ -2,7 +2,7 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <DataSources>
     <DataSource Name="DummyDataSource">
-      <rd:DataSourceID>f36b9e86-9762-4a86-8b02-8e625ab899f4</rd:DataSourceID>
+      <rd:DataSourceID>d46f2d47-421c-4e17-bbb0-b74cb9e5c22b</rd:DataSourceID>
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString />
@@ -10,6 +10,18 @@
     </DataSource>
   </DataSources>
   <InteractiveHeight>11in</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="fromDateTime">
+      <DataType>DateTime</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>fromDateTime</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="toDateTime">
+      <DataType>DateTime</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>toDateTime</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
@@ -36,10 +48,10 @@
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>1</ZIndex>
+        <ZIndex>5</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.36in</Height>
-        <Value>Inventory Report</Value>
+        <Value>Inventory Activity Report</Value>
       </Textbox>
       <Textbox Name="textbox15">
         <rd:DefaultName>textbox15</rd:DefaultName>
@@ -56,45 +68,131 @@
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
+        <ZIndex>4</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>4.5in</Left>
         <Height>0.25in</Height>
         <Value>=Now()</Value>
       </Textbox>
+      <Textbox Name="textbox13">
+        <Top>0.92708in</Top>
+        <Width>1in</Width>
+        <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
+          <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>DATE FROM:</Value>
+      </Textbox>
+      <Textbox Name="textbox14">
+        <Top>1.13542in</Top>
+        <Width>1in</Width>
+        <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
+          <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Value>TO DATE:</Value>
+      </Textbox>
+      <Textbox Name="textbox9">
+        <Top>0.92708in</Top>
+        <Width>3.125in</Width>
+        <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
+          <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>1in</Left>
+        <Height>0.25in</Height>
+        <Value>=FormatDateTime(Parameters!fromDateTime.Value, DateFormat.ShortDate)</Value>
+      </Textbox>
+      <Textbox Name="textbox11">
+        <Top>1.13542in</Top>
+        <Width>3.125in</Width>
+        <Style>
+          <BorderColor>
+            <Default>White</Default>
+          </BorderColor>
+          <FontFamily>Calibri</FontFamily>
+          <FontSize>11pt</FontSize>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>1in</Left>
+        <Value>=FormatDateTime(Parameters!toDateTime.Value, DateFormat.ShortDate)</Value>
+      </Textbox>
     </ReportItems>
-    <Height>0.75in</Height>
+    <Height>1.38542in</Height>
   </PageHeader>
   <BottomMargin>1in</BottomMargin>
   <rd:ReportID>8fdae99d-7631-4e93-8241-39580bef8c23</rd:ReportID>
   <DataSets>
-    <DataSet Name="NJournals_Common_DataEntities_RefillInventoryHeaderDataEntity">
+    <DataSet Name="NJournals_Common_DataEntities_RefillInventoryReportDataEntity">
       <Fields>
-        <Field Name="DetailEntities">
-          <DataField>DetailEntities</DataField>
-          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.RefillInventoryDetailDataEntity]</rd:TypeName>
+        <Field Name="DayStamp">
+          <DataField>DayStamp</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="InvHeaderID">
-          <DataField>InvHeaderID</DataField>
+        <Field Name="DetailQtyOnHand">
+          <DataField>DetailQtyOnHand</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DetailQtyReleased">
+          <DataField>DetailQtyReleased</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DetailTotalQty">
+          <DataField>DetailTotalQty</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="HeaderQtyOnHand">
+          <DataField>HeaderQtyOnHand</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="HeaderQtyReleased">
+          <DataField>HeaderQtyReleased</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="HeaderTotalQty">
+          <DataField>HeaderTotalQty</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Name">
           <DataField>Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="QtyOnHand">
-          <DataField>QtyOnHand</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="QtyReleased">
-          <DataField>QtyReleased</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="TotalAdded">
           <DataField>TotalAdded</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="TotalQty">
-          <DataField>TotalQty</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="TotalRemoved">
@@ -109,8 +207,8 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>NJournals.Common.DataEntities</rd:DataSetName>
-        <rd:TableName>RefillInventoryHeaderDataEntity</rd:TableName>
-        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.RefillInventoryHeaderDataEntity, NJournals.Common, Version=1.0.4810.29460, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>RefillInventoryReportDataEntity</rd:TableName>
+        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.RefillInventoryReportDataEntity, NJournals.Common, Version=1.0.4792.15572, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -118,17 +216,174 @@
   <Body>
     <ReportItems>
       <Table Name="table1">
-        <DataSetName>NJournals_Common_DataEntities_RefillInventoryHeaderDataEntity</DataSetName>
+        <DataSetName>NJournals_Common_DataEntities_RefillInventoryReportDataEntity</DataSetName>
         <Top>0.25in</Top>
         <Details>
           <TableRows>
             <TableRow>
               <TableCells>
                 <TableCell>
+                  <ColSpan>6</ColSpan>
                   <ReportItems>
                     <Textbox Name="textbox5">
                       <rd:DefaultName>textbox5</rd:DefaultName>
-                      <HideDuplicates>NJournals_Common_DataEntities_RefillInventoryHeaderDataEntity</HideDuplicates>
+                      <HideDuplicates>NJournals_Common_DataEntities_RefillInventoryReportDataEntity</HideDuplicates>
+                      <Style>
+                        <BackgroundColor>LightGoldenrodYellow</BackgroundColor>
+                        <BorderColor>
+                          <Default>Linen</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>5pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>11</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Name.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="DayStamp_2">
+                      <rd:DefaultName>DayStamp_2</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Linen</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>17pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>10</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=FormatDateTime(Fields!DayStamp.Value,DateFormat.ShortDate)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox22">
+                      <rd:DefaultName>textbox22</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Linen</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>5pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>9</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=FormatNumber(Fields!DetailTotalQty.Value,0)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox39">
+                      <Style>
+                        <BorderColor>
+                          <Default>Linen</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>5pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=FormatNumber(Fields!DetailQtyOnHand.Value,0)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox12">
+                      <rd:DefaultName>textbox12</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Linen</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>5pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=FormatNumber(Fields!TotalAdded.Value,0)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox19">
+                      <rd:DefaultName>textbox19</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Linen</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>5pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=FormatNumber(Fields!TotalRemoved.Value,0)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox25">
+                      <rd:DefaultName>textbox25</rd:DefaultName>
                       <Style>
                         <BorderColor>
                           <Default>Linen</Default>
@@ -146,68 +401,59 @@
                       </Style>
                       <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!Name.Value</Value>
+                      <Value>=FormatNumber(Fields!DetailQtyReleased.Value,0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+            <TableRow>
+              <Visibility>
+                <Hidden>=Count(Fields!Name.Value) &lt;= 0</Hidden>
+              </Visibility>
+              <TableCells>
                 <TableCell>
+                  <ColSpan>3</ColSpan>
                   <ReportItems>
-                    <Textbox Name="textbox3">
+                    <Textbox Name="textbox10">
+                      <rd:DefaultName>textbox10</rd:DefaultName>
                       <Style>
+                        <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
                           <Default>Linen</Default>
                         </BorderColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
+                        <FontStyle>Italic</FontStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>5pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>4</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!TotalQty.Value,0)</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox6">
-                      <Style>
-                        <BorderColor>
-                          <Default>Linen</Default>
-                        </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <FontFamily>Calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>5pt</PaddingLeft>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>17pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!QtyOnHand.Value,0)</Value>
+                      <Value>TOTAL</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox7">
+                    <Textbox Name="textbox28">
+                      <rd:DefaultName>textbox28</rd:DefaultName>
                       <Style>
+                        <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
                           <Default>Linen</Default>
                         </BorderColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
+                        <FontStyle>Italic</FontStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <TextAlign>Left</TextAlign>
@@ -218,20 +464,23 @@
                       </Style>
                       <ZIndex>2</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!QtyReleased.Value,0)</Value>
+                      <Value>=FormatNumber(Sum(Fields!TotalAdded.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox24">
+                    <Textbox Name="textbox29">
+                      <rd:DefaultName>textbox29</rd:DefaultName>
                       <Style>
+                        <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
                           <Default>Linen</Default>
                         </BorderColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
+                        <FontStyle>Italic</FontStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <TextAlign>Left</TextAlign>
@@ -242,20 +491,23 @@
                       </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!TotalAdded.Value,0)</Value>
+                      <Value>=FormatNumber(Sum(Fields!TotalAdded.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox25">
+                    <Textbox Name="textbox30">
+                      <rd:DefaultName>textbox30</rd:DefaultName>
                       <Style>
+                        <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
                           <Default>Linen</Default>
                         </BorderColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
+                        <FontStyle>Italic</FontStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <TextAlign>Left</TextAlign>
@@ -265,7 +517,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Fields!TotalRemoved.Value,0)</Value>
+                      <Value>=FormatNumber(Sum(Fields!DetailQtyReleased.Value),0)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -273,6 +525,11 @@
               <Height>0.25in</Height>
             </TableRow>
           </TableRows>
+          <Grouping Name="table1_Details_Group">
+            <GroupExpressions>
+              <GroupExpression>=Fields!Name.Value</GroupExpression>
+            </GroupExpressions>
+          </Grouping>
         </Details>
         <Style>
           <BorderColor>
@@ -309,9 +566,9 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>18</ZIndex>
+                      <ZIndex>17</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>Product Name</Value>
+                      <Value>Date</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -338,7 +595,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>17</ZIndex>
+                      <ZIndex>16</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Total Qty</Value>
                     </Textbox>
@@ -346,35 +603,7 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox39">
-                      <Style>
-                        <Color>White</Color>
-                        <BackgroundColor>SteelBlue</BackgroundColor>
-                        <BorderColor>
-                          <Default>Linen</Default>
-                        </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <FontFamily>Calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                        <TextAlign>Center</TextAlign>
-                        <VerticalAlign>Middle</VerticalAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>16</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>Qty on Hand</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox34">
+                    <Textbox Name="textbox37">
                       <Style>
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
@@ -396,7 +625,7 @@
                       </Style>
                       <ZIndex>15</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>Total Qty Released</Value>
+                      <Value>Qty on Hand</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -425,7 +654,7 @@
                       </Style>
                       <ZIndex>14</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>Total Qty Added</Value>
+                      <Value>Restock</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -454,7 +683,36 @@
                       </Style>
                       <ZIndex>13</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>Total Qty Removed</Value>
+                      <Value>Damaged / Removed</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox24">
+                      <rd:DefaultName>textbox24</rd:DefaultName>
+                      <Style>
+                        <Color>White</Color>
+                        <BackgroundColor>SteelBlue</BackgroundColor>
+                        <BorderColor>
+                          <Default>Linen</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>12</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Qty Released</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -484,6 +742,7 @@
             <Width>1in</Width>
           </TableColumn>
         </TableColumns>
+        <Height>1.5in</Height>
         <Footer>
           <TableRows>
             <TableRow>
@@ -514,177 +773,9 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>6</ZIndex>
+                      <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>="No records found."</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.25in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=Count(Fields!Name.Value) &lt;= 0</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox4">
-                      <rd:DefaultName>textbox4</rd:DefaultName>
-                      <Style>
-                        <BackgroundColor>PowderBlue</BackgroundColor>
-                        <BorderColor>
-                          <Default>Linen</Default>
-                        </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <FontFamily>Calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                        <TextAlign>Right</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>12</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>TOTAL</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox10">
-                      <rd:DefaultName>textbox10</rd:DefaultName>
-                      <Style>
-                        <BackgroundColor>PowderBlue</BackgroundColor>
-                        <BorderColor>
-                          <Default>Linen</Default>
-                        </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <FontFamily>Calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>5pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>11</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Sum(Fields!TotalQty.Value),0)</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox43">
-                      <Style>
-                        <BackgroundColor>PowderBlue</BackgroundColor>
-                        <BorderColor>
-                          <Default>Linen</Default>
-                        </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <FontFamily>Calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>5pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>10</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Sum(Fields!QtyOnHand.Value),0)</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox38">
-                      <Style>
-                        <BackgroundColor>PowderBlue</BackgroundColor>
-                        <BorderColor>
-                          <Default>Linen</Default>
-                        </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <FontFamily>Calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>5pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>9</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Sum(Fields!QtyReleased.Value),0)</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox17">
-                      <rd:DefaultName>textbox17</rd:DefaultName>
-                      <Style>
-                        <BackgroundColor>PowderBlue</BackgroundColor>
-                        <BorderColor>
-                          <Default>Linen</Default>
-                        </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <FontFamily>Calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>5pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>8</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Sum(Fields!TotalAdded.Value),0)</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox20">
-                      <rd:DefaultName>textbox20</rd:DefaultName>
-                      <Style>
-                        <BackgroundColor>PowderBlue</BackgroundColor>
-                        <BorderColor>
-                          <Default>Linen</Default>
-                        </BorderColor>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <FontFamily>Calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>5pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>7</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=FormatNumber(Sum(Fields!TotalRemoved.Value),0)</Value>
+                      <Value>="No inventory activity records found."</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -695,7 +786,7 @@
         </Footer>
       </Table>
     </ReportItems>
-    <Height>1.5in</Height>
+    <Height>2in</Height>
   </Body>
   <Language>en-PH</Language>
   <PageFooter>
