@@ -36,7 +36,7 @@
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>3</ZIndex>
+        <ZIndex>1</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.36in</Height>
         <Value>Inventory Report</Value>
@@ -56,51 +56,13 @@
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>2</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>4.5in</Left>
         <Height>0.25in</Height>
         <Value>=Now()</Value>
       </Textbox>
-      <Textbox Name="textbox13">
-        <Top>0.92708in</Top>
-        <Width>1in</Width>
-        <Style>
-          <BorderColor>
-            <Default>White</Default>
-          </BorderColor>
-          <FontFamily>Calibri</FontFamily>
-          <FontSize>11pt</FontSize>
-          <FontWeight>700</FontWeight>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>1</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Value>PRODUCT:</Value>
-      </Textbox>
-      <Textbox Name="textbox9">
-        <Top>0.92708in</Top>
-        <Width>3.125in</Width>
-        <Style>
-          <BorderColor>
-            <Default>White</Default>
-          </BorderColor>
-          <FontFamily>Calibri</FontFamily>
-          <FontSize>11pt</FontSize>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <CanGrow>true</CanGrow>
-        <Left>1in</Left>
-        <Value />
-      </Textbox>
     </ReportItems>
-    <Height>1.17708in</Height>
+    <Height>0.75in</Height>
   </PageHeader>
   <BottomMargin>1in</BottomMargin>
   <rd:ReportID>8fdae99d-7631-4e93-8241-39580bef8c23</rd:ReportID>
