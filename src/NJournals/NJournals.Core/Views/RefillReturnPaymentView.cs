@@ -54,6 +54,7 @@ namespace NJournals.Core.Views
 			totalAmountDue = 0.00M;			
 			dtDate.Value = DateTime.Now;
 			btnSave.Enabled = false;
+			btncancel.Enabled = false;			
 		}
 		
 		void setButtonImages()
@@ -77,13 +78,15 @@ namespace NJournals.Core.Views
 				this.refillHeaders = null;
                 txtReturnedBottles.Enabled = false;
                 txtReturnedCaps.Enabled = false;
-				m_presenter.GetRefillJOsByCustomer(this.cmbCustomers.SelectedItem.ToString());  
-				btnSave.Enabled = true;				
+				m_presenter.GetRefillJOsByCustomer(this.cmbCustomers.SelectedItem.ToString());							
+				btnSave.Enabled = true;		
+				btncancel.Enabled = true;
 			}
 			else
 			{
 				MessageService.ShowWarning("No customer selected. Please select a customer.");
 				btnSave.Enabled = false;
+				btncancel.Enabled = false;
 			}
 		}
 		
@@ -99,7 +102,7 @@ namespace NJournals.Core.Views
 			
 			txtReturnedBottles.Enabled = (txtBottlesOnHand.Text != "0") ? true : false;
 			txtReturnedCaps.Enabled = (txtCapsOnHand.Text != "0") ? true : false;
-			
+		
 			this.refillHeaders = m_headers;		
 			totalAmountDue = 0.00M;
 			foreach(RefillHeaderDataEntity header in this.refillHeaders)
@@ -215,7 +218,7 @@ namespace NJournals.Core.Views
 			txtBottlesOnHand.Text = 
 				txtCapsOnHand.Text =
 				txtReturnedBottles.Text =
-				txtReturnedCaps.Text ="";
+				txtReturnedCaps.Text ="0";
 			txtTotalAmtDue.Text =
 				txtamttender.Text =
 				txtchange.Text =
@@ -243,7 +246,9 @@ namespace NJournals.Core.Views
 		void BtncancelClick(object sender, EventArgs e)
 		{
 			if(MessageService.ShowYesNo("Are you sure you want to cancel changes? Data in the fields will be remove.","Cancel Transaction")){
-				ClearFields();
+				txtReturnedCaps.Text = "";
+				txtReturnedBottles.Text = "";
+				txtamttender.Text="0.00";
 			}	
 		}
 
