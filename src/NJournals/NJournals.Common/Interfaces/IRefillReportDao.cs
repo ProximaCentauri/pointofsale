@@ -33,5 +33,6 @@ namespace NJournals.Common.Interfaces
 		                                                               DateTime fromDateTime,
 		                                                               DateTime toDateTime,
 		                                                               bool b_isAll);
+		IEnumerable<RefillInventoryHeaderDataEntity> GetInventoryHeaderReport();
 	}
 }

@@ -88,8 +88,8 @@ namespace NJournals.Tests
 		public void getInventoryReport()
 		{
 			RefillReportDao dao = new RefillReportDao();
-			List<RefillInventoryReportDataEntity> entities = dao.GetInventoryReport(DateTime.Now.AddDays(-25),
-			                                                                        DateTime.Now.AddDays(35)) as List<RefillInventoryReportDataEntity>;
+			List<RefillInventoryReportDataEntity> entities = dao.GetInventoryReport(DateTime.Now,
+			                                                                        DateTime.Now) as List<RefillInventoryReportDataEntity>;
 			
 			Assert.NotNull(entities);
 			foreach(RefillInventoryReportDataEntity entity in entities)

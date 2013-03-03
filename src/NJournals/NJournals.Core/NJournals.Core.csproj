@@ -42,12 +42,10 @@
       <HintPath>..\..\..\lib\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common">
-
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms">
       <Private>False</Private>
-
     </Reference>
     <Reference Include="MySql.Data">
       <HintPath>C:\Program Files\MySQL\MySQL Installer\MySql.Data.dll</HintPath>
@@ -396,6 +394,7 @@
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.RefillCustInventoryHeaderDataEntity.datasource" />
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.RefillDaySummaryDataEntity.datasource" />
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.RefillHeaderDataEntity.datasource" />
+    <None Include="Properties\DataSources\NJournals.Common.DataEntities.RefillInventoryHeaderDataEntity.datasource" />
     <None Include="Properties\DataSources\NJournals.Common.DataEntities.RefillInventoryReportDataEntity.datasource" />
   </ItemGroup>
   <ItemGroup>

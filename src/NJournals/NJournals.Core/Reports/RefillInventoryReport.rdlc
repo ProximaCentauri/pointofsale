@@ -21,6 +21,11 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>toDateTime</Prompt>
     </ReportParameter>
+    <ReportParameter Name="reportType">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>reportType</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
@@ -211,6 +216,52 @@
         <rd:ObjectDataSourceType>NJournals.Common.DataEntities.RefillInventoryReportDataEntity, NJournals.Common, Version=1.0.4792.15572, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="NJournals_Common_DataEntities_RefillInventoryHeaderDataEntity">
+      <Fields>
+        <Field Name="DetailEntities">
+          <DataField>DetailEntities</DataField>
+          <rd:TypeName>System.Collections.Generic.IList`1[NJournals.Common.DataEntities.RefillInventoryDetailDataEntity]</rd:TypeName>
+        </Field>
+        <Field Name="InvHeaderID">
+          <DataField>InvHeaderID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QtyOnHand">
+          <DataField>QtyOnHand</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="QtyReleased">
+          <DataField>QtyReleased</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TotalAdded">
+          <DataField>TotalAdded</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TotalQty">
+          <DataField>TotalQty</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TotalRemoved">
+          <DataField>TotalRemoved</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DummyDataSource</DataSourceName>
+        <CommandText />
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>NJournals.Common.DataEntities</rd:DataSetName>
+        <rd:TableName>RefillInventoryHeaderDataEntity</rd:TableName>
+        <rd:ObjectDataSourceType>NJournals.Common.DataEntities.RefillInventoryHeaderDataEntity, NJournals.Common, Version=1.0.4810.29460, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
   </DataSets>
   <Width>6.5in</Width>
   <Body>
@@ -234,7 +285,7 @@
         <CanGrow>true</CanGrow>
         <Left>2.375in</Left>
         <Height>0.25in</Height>
-        <Value>=FormatNumber(Fields!HeaderQtyOnHand.Value,0)</Value>
+        <Value>=IIf(Parameters!reportType.Value = "inventorydetail",FormatNumber(Sum(Fields!HeaderQtyOnHand.Value, "NJournals_Common_DataEntities_RefillInventoryReportDataEntity"),0),FormatNumber(Sum(Fields!QtyOnHand.Value, "NJournals_Common_DataEntities_RefillInventoryHeaderDataEntity"),0))</Value>
       </Textbox>
       <Textbox Name="textbox30">
         <Top>0.75in</Top>
@@ -315,7 +366,7 @@
         <CanGrow>true</CanGrow>
         <Left>2.375in</Left>
         <Height>0.25in</Height>
-        <Value>=FormatNumber(Fields!HeaderTotalQty.Value,0)</Value>
+        <Value>=IIf(Parameters!reportType.Value = "inventorydetail",FormatNumber(Sum(Fields!HeaderTotalQty.Value, "NJournals_Common_DataEntities_RefillInventoryReportDataEntity"),0),FormatNumber(Sum(Fields!TotalQty.Value, "NJournals_Common_DataEntities_RefillInventoryHeaderDataEntity"),0))</Value>
       </Textbox>
       <Textbox Name="textbox29">
         <Top>0.50001in</Top>
@@ -336,7 +387,7 @@
         <CanGrow>true</CanGrow>
         <Left>2.375in</Left>
         <Height>0.25in</Height>
-        <Value>=FormatNumber(Fields!HeaderQtyReleased.Value,0)</Value>
+        <Value>=IIf(Parameters!reportType.Value = "inventorydetail",FormatNumber(Sum(Fields!HeaderQtyReleased.Value, "NJournals_Common_DataEntities_RefillInventoryReportDataEntity"),0),FormatNumber(Sum(Fields!QtyReleased.Value, "NJournals_Common_DataEntities_RefillInventoryHeaderDataEntity"),0))</Value>
       </Textbox>
       <Table Name="table1">
         <DataSetName>NJournals_Common_DataEntities_RefillInventoryReportDataEntity</DataSetName>
@@ -657,7 +708,7 @@
                       </Style>
                       <ZIndex>15</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>Damaged/Removed</Value>
+                      <Value>Damaged / Removed</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -720,7 +771,7 @@
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.22in</Height>
+              <Height>0.5in</Height>
             </TableRow>
           </TableRows>
           <RepeatOnNewPage>true</RepeatOnNewPage>
@@ -777,7 +828,7 @@
                       </Style>
                       <ZIndex>6</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>="No records found."</Value>
+                      <Value>="No inventory records found within date range."</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -931,7 +982,7 @@
         </Footer>
       </Table>
     </ReportItems>
-    <Height>2.47in</Height>
+    <Height>2.75in</Height>
   </Body>
   <Language>en-PH</Language>
   <PageFooter>

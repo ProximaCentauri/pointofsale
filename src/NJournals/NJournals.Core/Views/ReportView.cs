@@ -109,8 +109,7 @@ namespace NJournals.Core.Views
 	            foreach (ReportDataSource datasource in datasources)
 	            {
 	                this.reportViewer.LocalReport.DataSources.Add(datasource);
-	            }
-	                  
+	            }	                  
 	            this.reportViewer.LocalReport.SetParameters(parameters);
 	            this.reportViewer.RefreshReport();     
             }
@@ -123,7 +122,7 @@ namespace NJournals.Core.Views
 
         private bool ValidateReportParameters()
         {        	
-            fromDateTime = Convert.ToDateTime(this.dateFromPicker.Text);
+            fromDateTime = dateFromPicker.Value.Date;
             toDateTime = Convert.ToDateTime(this.dateToPicker.Text + " 23:59:59");
             if ((cmbReportTypes.SelectedItem != null && cmbReportTypes.SelectedItem.ToString() != string.Empty) &&
             	(cmbCustomers.SelectedItem != null && cmbCustomers.SelectedItem.ToString() != string.Empty) &&

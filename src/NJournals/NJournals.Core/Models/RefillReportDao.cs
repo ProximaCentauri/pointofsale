@@ -128,7 +128,7 @@ namespace NJournals.Core.Models
                 using (var transaction = session.BeginTransaction())
                 {
 					var query = session.CreateCriteria<RefillInventoryHeaderDataEntity>("header")						
-                		.CreateAlias("header.DetailEntities","detailentities")                        
+                		.CreateAlias("header.DetailEntities","detailentities",CriteriaSpecification.LeftJoin)                       
                 		.SetProjection(Projections.ProjectionList()						                         
                 		               .Add(Projections.Distinct(Projections.GroupProperty("header.Name")),"Name")
                 		               .Add(Projections.GroupProperty(Projections.Cast(NHibernateUtil.Date
@@ -150,6 +150,20 @@ namespace NJournals.Core.Models
                 }
             }
         }
+        
+        public IEnumerable<RefillInventoryHeaderDataEntity> GetInventoryHeaderReport()
+        {
+        	using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+					var query = session.QueryOver<RefillInventoryHeaderDataEntity>()
+						.Fetch(x => x.DetailEntities).Lazy()
+						.List<RefillInventoryHeaderDataEntity>();						   
+                	return query;
+                }
+            }
+        }               
         
         public IEnumerable<RefillCustInventoryHeaderDataEntity> GetCustomerInventoryReport(CustomerDataEntity customer, bool b_isAll)
         {          
