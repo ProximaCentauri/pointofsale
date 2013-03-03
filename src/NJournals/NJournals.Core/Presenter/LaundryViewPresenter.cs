@@ -375,7 +375,7 @@ namespace NJournals.Core.Presenter
 					
 				}
 
-			}		
+			}					
 		}
 	}
 }
