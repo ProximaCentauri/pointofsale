@@ -141,7 +141,7 @@ namespace NJournals.Core.Views
 				{				
 					int returnedBottles = (txtReturnedBottles.Text != string.Empty) ? Convert.ToInt32(txtReturnedBottles.Text) : 0;
 					int returnedCaps = (txtReturnedCaps.Text != string.Empty) ? Convert.ToInt32(txtReturnedCaps.Text) : 0;
-					DateTime daystamp = dtDate.Value.Date;
+					DateTime daystamp = dtDate.Value;
 					decimal amountTender = Convert.ToDecimal(txtamttender.Text);
 												
 					try
@@ -176,7 +176,7 @@ namespace NJournals.Core.Views
 		
 		private void UpdateCustomerInventory(int returnedBottles, int returnedCaps, DateTime daystamp)
 		{
-			m_presenter.UpdateCustomerInventory(returnedBottles, returnedCaps, daystamp);	
+			m_presenter.UpdateCustomerInventory(returnedBottles, returnedCaps, daystamp.Date);	
 		}
 		
 		private void UpdateCustomerRefillHeaders(decimal amountTender, DateTime daystamp)
