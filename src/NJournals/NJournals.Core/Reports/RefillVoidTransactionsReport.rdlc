@@ -186,7 +186,6 @@
       <Textbox Name="textbox15">
         <rd:DefaultName>textbox15</rd:DefaultName>
         <Top>0.23958in</Top>
-        <Width>2in</Width>
         <Style>
           <BorderColor>
             <Default>White</Default>
@@ -200,7 +199,7 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <CanGrow>true</CanGrow>
-        <Left>6.375in</Left>
+        <Left>7.5in</Left>
         <Height>0.25in</Height>
         <Value>=Now()</Value>
       </Textbox>
@@ -271,12 +270,13 @@
     </DataSet>
   </DataSets>
   <Code />
-  <Width>8.425in</Width>
+  <Width>9.5in</Width>
   <Body>
     <ReportItems>
       <Table Name="table1">
         <DataSetName>NJournals_Common_DataEntities_RefillHeaderDataEntity</DataSetName>
         <Top>0.25in</Top>
+        <Width>9.475in</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -649,13 +649,13 @@
             <Width>0.875in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.15in</Width>
+            <Width>1.5in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.15in</Width>
+            <Width>1.5in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.15in</Width>
+            <Width>1.5in</Width>
           </TableColumn>
         </TableColumns>
         <Footer>
@@ -859,7 +859,6 @@
     <ReportItems>
       <Textbox Name="textbox16">
         <rd:DefaultName>textbox16</rd:DefaultName>
-        <Width>1.875in</Width>
         <Style>
           <BorderColor>
             <Default>White</Default>
@@ -873,7 +872,7 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <CanGrow>true</CanGrow>
-        <Left>6.5in</Left>
+        <Left>7.625in</Left>
         <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
       </Textbox>
     </ReportItems>
