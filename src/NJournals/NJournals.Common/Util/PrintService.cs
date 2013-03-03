@@ -28,8 +28,7 @@ namespace NJournals.Common.Util
 		
 		static PrinterSettings ps = null;
 		private static void SetPrinter(PrinterDataEntity printer)
-		{				
-			// todo:			
+		{									
 			if(printer == null) return;
 			
 			ps = new PrinterSettings();
@@ -295,19 +294,19 @@ namespace NJournals.Common.Util
 			}
 		}
 		
-		private static void PrintHeader(ref StringBuilder sb, CompanyDataEntity company)
+		public static void PrintHeader(ref StringBuilder sb, CompanyDataEntity company)		
 		{
 			sb.Append(SetAlignment("CENTER"));
 			sb.Append(SetFontSize(1));
 			sb.AppendLine(company.Name.ToUpper());
 			sb.Append(SetFontSize(0));			
 			
-			string[] tempArr = company.Address.Split(' ');
+			string[] tempArr = (company.Address.Replace("\r\n"," ")).Split(' ');
 			string address="";
 			for(int i=0;i<tempArr.Length;i++)
-			{
-				address+=tempArr[i] + " ";
-				if(i%3==0){
+			{				
+				address+=tempArr[i] + " ";		
+				if((address.TrimEnd().Split(' ').Length == 3) || i == (tempArr.Length-1)){
 					sb.AppendLine(address.ToUpper());
 					address="";
 				}
@@ -317,11 +316,11 @@ namespace NJournals.Common.Util
 			string contactNum="";
 			for(int i=0;i<tempArr.Length;i++)
 			{
-				contactNum += "# " + tempArr[i] + " ";
+				contactNum += "# " + tempArr[i].TrimStart().TrimEnd() + " ";
 			}
 			sb.AppendLine(contactNum);
 			sb.AppendLine("");
-			sb.AppendLine("");
+			sb.AppendLine("");			
 		}
 		
 		private static void PrintFooter(ref StringBuilder sb)
