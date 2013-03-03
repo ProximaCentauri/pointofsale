@@ -191,8 +191,8 @@ namespace NJournals.Core.Views
 			bool alreadyExist = false;
 			for(int i=0;i<dataGridView1.Rows.Count;i++){
 				if(dataGridView1.Rows[i].Cells[0].Value != null){
-					if(dataGridView1.Rows[i].Cells[0].Value.ToString().Equals(cmbcategory.Text) &&
-					   dataGridView1.Rows[i].Cells[1].Value.ToString().Equals(cmbservices.Text)){
+					if(dataGridView1.Rows[i].Cells[1].Value.ToString().Equals(cmbcategory.Text) &&
+					   dataGridView1.Rows[i].Cells[0].Value.ToString().Equals(cmbservices.Text)){
 						dataGridView1.Rows[i].Cells[2].Value = (int.Parse(txtnoitems.Text) + int.Parse(dataGridView1.Rows[i].Cells[2].Value.ToString())).ToString();
 						dataGridView1.Rows[i].Cells[3].Value = (int.Parse(txtkilo.Text) + int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString())).ToString();
 						dataGridView1.Rows[i].Cells[4].Value = (decimal.Parse((dataGridView1.Rows[i].Cells[4].Value.ToString())) + price).ToString("N2");
@@ -203,11 +203,13 @@ namespace NJournals.Core.Views
 			}
 			
 			if(!alreadyExist)
-				dataGridView1.Rows.Add(cmbcategory.Text, cmbservices.Text, txtnoitems.Text, txtkilo.Text, price.ToString("N2"));
+				dataGridView1.Rows.Add(cmbservices.Text, cmbcategory.Text, txtnoitems.Text, txtkilo.Text, price.ToString("N2"));
 			this.totalAmtDue = decimal.Parse(txtamtdue.Text) + price;
 			txtamtdue.Text = totalAmtDue.ToString("N2");			
 			this.txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + price).ToString("N2");
-			this.txtbalance.Text = this.txttotalamtdue.Text;			
+			this.txtbalance.Text = this.txttotalamtdue.Text;	
+			dataGridView1.CurrentRow.Selected = false;
+			dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count-1].Cells[0];
 		}		
 		
 		void BtnaddClick(object sender, EventArgs e)
@@ -471,6 +473,7 @@ namespace NJournals.Core.Views
 		{			
 			decimal amtdue = decimal.Parse(txtamtdue.Text);
 			decimal totaldue = decimal.Parse(txttotalamtdue.Text);
+			
 			amtdue -= removePrice;
 			txtamtdue.Text = amtdue.ToString("N2");
 			totaldue -= removePrice;

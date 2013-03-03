@@ -135,6 +135,9 @@ namespace NJournals.Core.Views
 				dataGridView1.Rows.Add(cmbproducts.Text, nobottles, nocaps, txtnoitems.Text, totalPrice.ToString("N2"));
 			this.txtamtdue.Text = (decimal.Parse(txtamtdue.Text) + totalPrice).ToString("N2");
 			txtbalance.Text = txtamtdue.Text;
+			
+			dataGridView1.CurrentRow.Selected = false;
+			dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count-1].Cells[0];
 		}
 		
 		void BtnprintcloseClick(object sender, EventArgs e)
