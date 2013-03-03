@@ -211,6 +211,7 @@ namespace NJournals.Core.Views
 			m_headerEntity.TotalQty = totalQty;
 			paymentDetail.PaymentDate = Convert.ToDateTime(DateTime.Now);		
 			paymentDetail.Header = m_headerEntity;
+			paymentDetail = paymentDetail.Amount > 0 ? paymentDetail : null;
 			m_headerEntity.PaymentDetailEntities.Add(paymentDetail);
 			
 			return m_headerEntity;

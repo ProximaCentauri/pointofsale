@@ -194,9 +194,12 @@ namespace NJournals.Core.Presenter
 				if(m_view.GetTitle().Contains("NEW"))
 					daySummary.TransCount += 1;
 				//TODO: totalsales should be totalamoutdue - balance
-				daySummary.TotalSales += headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1].Amount;
-				headerEntity.DaySummary = daySummary;
+				if(headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1] != null)
+					daySummary.TotalSales += headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1].Amount;
+				else
+					daySummary.TotalSales += 0;
 				
+				headerEntity.DaySummary = daySummary;				
 				// update daysummary with transcount and totalsales				
 				m_summaryDao.Update(daySummary);				
 			}else{
@@ -204,10 +207,11 @@ namespace NJournals.Core.Presenter
 				daySummary = new LaundryDaySummaryDataEntity();
 				daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 				//TODO: totalsales should be amounttender - amount change.			
+				if(headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1] != null)
+					daySummary.TotalSales += headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1].Amount;
+				else
+					daySummary.TotalSales += 0;
 				
-				
-				
-				daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1].Amount;
 				if(m_view.GetTitle().Contains("NEW"))
 					daySummary.TransCount += 1;
 				

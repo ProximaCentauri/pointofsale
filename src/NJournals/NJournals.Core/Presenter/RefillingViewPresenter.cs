@@ -198,7 +198,11 @@ namespace NJournals.Core.Presenter
 				{
 					daySummary.TransCount += 1;
 					//TODO: totalsales should be totalamoutdue - balance
-					daySummary.TotalSales += headerEntity.PaymentDetailEntities[0].Amount;
+					//daySummary.TotalSales += headerEntity.PaymentDetailEntities[0].Amount;
+					if(headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1] != null)
+						daySummary.TotalSales += headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1].Amount;
+					else
+						daySummary.TotalSales += 0;
 					headerEntity.DaySummary = daySummary;
 					
 					// update daysummary with transcount and totalsales				
@@ -209,7 +213,11 @@ namespace NJournals.Core.Presenter
 					daySummary.DayStamp = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 					//TODO: totalsales should be amounttender - amount change.			
 					
-					daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[0].Amount;
+					//daySummary.TotalSales +=  headerEntity.PaymentDetailEntities[0].Amount;
+					if(headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1] != null)
+						daySummary.TotalSales += headerEntity.PaymentDetailEntities[headerEntity.PaymentDetailEntities.Count-1].Amount;
+					else
+						daySummary.TotalSales += 0;
 					daySummary.TransCount += 1;
 					
 					// set header entity in daysummary for nhibernate to pickup and map			
