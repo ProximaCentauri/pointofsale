@@ -140,7 +140,8 @@ namespace NJournals.Core.Views
         void CmbReportTypesSelectedIndexChanged(object sender, System.EventArgs e)
 		{
         	if(this.GetTitle() == ReportConstants.REFILL_WINDOW 
-        	   && this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.INVENTORY_REPORT)
+        	   && (this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.INVENTORY_REPORT 
+                || this.cmbReportTypes.SelectedItem.ToString() == ReportConstants.INVENTORY_ACTIVITY_REPORT))                
         	{
         		cmbCustomers.Enabled = false;
         	}        	

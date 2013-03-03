@@ -121,7 +121,7 @@ namespace NJournals.Core.Views
 		{
 			if(txtamttender.Text.Length == 0){
 				txtamttender.Text = "0.00";				
-			}	
+			}
 			decimal amountTender = decimal.Parse(txtamttender.Text);
 			decimal totalAmtDue = decimal.Parse(txtTotalAmtDue.Text);				
 			if(amountTender < totalAmtDue){
@@ -136,41 +136,40 @@ namespace NJournals.Core.Views
 		void BtnSaveClick(object sender, EventArgs e)
 		{		
 			if(this.ValidateCustomerInput())
-			{			
-				if(MessageService.ShowYesNo("Are you sure you want to save changes?", "Saving Return/Payment?"))
-				{				
-					int returnedBottles = (txtReturnedBottles.Text != string.Empty) ? Convert.ToInt32(txtReturnedBottles.Text) : 0;
-					int returnedCaps = (txtReturnedCaps.Text != string.Empty) ? Convert.ToInt32(txtReturnedCaps.Text) : 0;
-					DateTime daystamp = dtDate.Value;
-					decimal amountTender = Convert.ToDecimal(txtamttender.Text);
-												
-					try
-					{
-						bool isSaved = false;
-						if(returnedBottles > 0 || returnedCaps > 0)
+			{		
+							
+				int returnedBottles = (txtReturnedBottles.Text != string.Empty) ? Convert.ToInt32(txtReturnedBottles.Text) : 0;
+				int returnedCaps = (txtReturnedCaps.Text != string.Empty) ? Convert.ToInt32(txtReturnedCaps.Text) : 0;
+				DateTime daystamp = dtDate.Value;
+				decimal amountTender = Convert.ToDecimal(txtamttender.Text);
+				
+				if(returnedBottles > 0 || returnedCaps > 0 || amountTender > 0)
+				{
+					if(MessageService.ShowYesNo("Are you sure you want to save changes?", "Saving Return/Payment?"))
+					{																			
+						try
+						{							
+							if(returnedBottles > 0 || returnedCaps > 0)
+							{
+								this.UpdateCustomerInventory(returnedBottles, returnedCaps, daystamp);								
+							}
+							if(amountTender > 0.0M)
+							{
+								this.UpdateCustomerRefillHeaders(amountTender, daystamp);
+							}							
+							MessageService.ShowInfo("Save successful!","Save");							
+						}
+						catch(Exception ex)
 						{
-							this.UpdateCustomerInventory(returnedBottles, returnedCaps, daystamp);
-							isSaved = true;
-						}
-						if(amountTender > 0.0M)
-						{
-							this.UpdateCustomerRefillHeaders(amountTender, daystamp);
-							isSaved = true;
-						}
-						if(isSaved){
-							MessageService.ShowInfo("Save successful!","Save");
-						}
-						else{
-							MessageService.ShowWarning("No changes; nothing to save.","Save");
-						}
-					}
-					catch(Exception ex)
-					{
-	                    MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
-	                                        "Please check error log for details.\n", ex);
-					}	
-					this.Close();						
-				}										
+		                    MessageService.ShowError("Unable to save data; an unexpected error occurred.\n" +
+		                                        "Please check error log for details.\n", ex);
+						}	
+						this.Close();						
+					}							
+				}
+				else{
+						MessageService.ShowWarning("No changes; nothing to save.","Save");
+				}
 			}			
 		}
 		

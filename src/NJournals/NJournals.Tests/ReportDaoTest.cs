@@ -88,7 +88,7 @@ namespace NJournals.Tests
 		public void getInventoryReport()
 		{
 			RefillReportDao dao = new RefillReportDao();
-			List<RefillInventoryReportDataEntity> entities = dao.GetInventoryReport(DateTime.Now,
+			List<RefillInventoryReportDataEntity> entities = dao.GetInventoryActivityReport(DateTime.Now,
 			                                                                        DateTime.Now) as List<RefillInventoryReportDataEntity>;
 			
 			Assert.NotNull(entities);

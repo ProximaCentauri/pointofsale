@@ -121,7 +121,7 @@ namespace NJournals.Core.Models
 		}
 
 		
-        public IEnumerable<RefillInventoryReportDataEntity> GetInventoryReport(DateTime fromDateTime, DateTime toDateTime)
+        public IEnumerable<RefillInventoryReportDataEntity> GetInventoryActivityReport(DateTime fromDateTime, DateTime toDateTime)
         {          
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -151,7 +151,7 @@ namespace NJournals.Core.Models
             }
         }
         
-        public IEnumerable<RefillInventoryHeaderDataEntity> GetInventoryHeaderReport()
+        public IEnumerable<RefillInventoryHeaderDataEntity> GetInventoryReport()
         {
         	using (var session = NHibernateHelper.OpenSession())
             {
@@ -159,6 +159,7 @@ namespace NJournals.Core.Models
                 {
 					var query = session.QueryOver<RefillInventoryHeaderDataEntity>()
 						.Fetch(x => x.DetailEntities).Lazy()
+                        .OrderBy(x => x.Name).Asc                        
 						.List<RefillInventoryHeaderDataEntity>();						   
                 	return query;
                 }

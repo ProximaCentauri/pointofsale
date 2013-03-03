@@ -48,8 +48,9 @@ namespace NJournals.Core.Presenter
                     reportTypes.Add(ReportConstants.VOID_TRANSACTIONS_REPORT);
         			break;
                 case ReportConstants.REFILL_WINDOW:
-                    reportTypes.Add(ReportConstants.INVENTORY_REPORT);
                     reportTypes.Add(ReportConstants.CUSTINVENTORY_REPORT);
+                    reportTypes.Add(ReportConstants.INVENTORY_ACTIVITY_REPORT);
+                    reportTypes.Add(ReportConstants.INVENTORY_REPORT);                    
                     reportTypes.Add(ReportConstants.SALES_REPORT);
                     reportTypes.Add(ReportConstants.UNPAID_TRANSACTIONS_REPORT);                    
                     reportTypes.Add(ReportConstants.VOID_TRANSACTIONS_REPORT);
@@ -149,28 +150,18 @@ namespace NJournals.Core.Presenter
                     datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLHEADER, unpaidReport));
                     m_view.DisplayReport(unpaidReport, datasources, parameters, ReportConstants.ES_REFILL_UNPAIDTRANSACTIONS_REPORT);
                     break;
+                case ReportConstants.INVENTORY_ACTIVITY_REPORT:
+                    List<RefillInventoryReportDataEntity> invActReport = m_refillReportDao                        
+                         .GetInventoryActivityReport(fromDateTime, toDateTime) as List<RefillInventoryReportDataEntity>;                                                                                                                              
+				    parameters = SetReportParameters(fromDateTime, toDateTime);
+                    datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORYDETAIL, invActReport));
+                    m_view.DisplayReport(invActReport, datasources, parameters, ReportConstants.ES_REFILL_INVENTORYACTIVITY_REPORT); 
+                    break;
                 case ReportConstants.INVENTORY_REPORT:
-                    List<RefillInventoryReportDataEntity> invReport = m_refillReportDao                        
-                         .GetInventoryReport(fromDateTime, toDateTime) as List<RefillInventoryReportDataEntity>;                                                                                                                              
-				    parameters = SetReportParameters(fromDateTime, toDateTime);                
-                    if(invReport.Count > 0)
-                    {
-                        datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORYDETAIL, invReport));
-                        datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORYHEADER, new List<RefillInventoryHeaderDataEntity>()));
-                        parameters.Add(new ReportParameter("reportType", "inventorydetail"));
-                    	m_view.DisplayReport(invReport, datasources, parameters, ReportConstants.ES_REFILL_INVENTORY_REPORT);                   
-                    }
-                    else{
-                    	// TODO: update report file to add datasource for header
                     	List<RefillInventoryHeaderDataEntity> invHeader = m_refillReportDao                    		
-                    		.GetInventoryHeaderReport() as List<RefillInventoryHeaderDataEntity>;
-                        datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORYDETAIL, invReport));
-                    	datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORYHEADER, invHeader));  
-                        parameters.Add(new ReportParameter("reportType", "inventoryheader"));
-                    	m_view.DisplayReport(invHeader, datasources, parameters, ReportConstants.ES_REFILL_INVENTORY_REPORT);
-                    }
-                	                	
-                    
+                    		.GetInventoryReport() as List<RefillInventoryHeaderDataEntity>;                        
+                    	datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORYHEADER, invHeader));                          
+                    	m_view.DisplayReport(invHeader, datasources, parameters, ReportConstants.ES_REFILL_INVENTORY_REPORT);                  
                 	break;
                 case ReportConstants.CUSTINVENTORY_REPORT:
                 	List<RefillCustInventoryHeaderDataEntity> custInvReport = m_refillReportDao

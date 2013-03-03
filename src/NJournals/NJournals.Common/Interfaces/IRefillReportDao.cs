@@ -27,12 +27,12 @@ namespace NJournals.Common.Interfaces
 		                                                             DateTime toDateTime,
 		                                                            bool b_isAll);
 		IEnumerable<RefillHeaderDataEntity> GetUnpaidTransactionsReport(CustomerDataEntity customer);
-		IEnumerable<RefillInventoryReportDataEntity> GetInventoryReport(DateTime fromDateTime, DateTime toDateTime);
+		IEnumerable<RefillInventoryReportDataEntity> GetInventoryActivityReport(DateTime fromDateTime, DateTime toDateTime);
 		IEnumerable<RefillCustInventoryHeaderDataEntity> GetCustomerInventoryReport(CustomerDataEntity customer, bool  b_isAll);
 		IEnumerable<RefillHeaderDataEntity> GetVoidTransactionsReport(CustomerDataEntity customer,
 		                                                               DateTime fromDateTime,
 		                                                               DateTime toDateTime,
 		                                                               bool b_isAll);
-		IEnumerable<RefillInventoryHeaderDataEntity> GetInventoryHeaderReport();
+		IEnumerable<RefillInventoryHeaderDataEntity> GetInventoryReport();
 	}
 }

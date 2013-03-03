@@ -233,10 +233,11 @@
       <DependentUpon>MainFormStation.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RefillInventoryReport.rdlc" />
     <EmbeddedResource Include="Reports\RefillVoidTransactionsReport.rdlc" />
     <EmbeddedResource Include="Reports\LaundryVoidTransactionsReport.rdlc" />
     <EmbeddedResource Include="Reports\RefillCustomerInventoryReport.rdlc" />
-    <EmbeddedResource Include="Reports\RefillInventoryReport.rdlc" />
+    <EmbeddedResource Include="Reports\RefillInventoryActivityReport.rdlc" />
     <EmbeddedResource Include="Reports\RefillUnpaidTransactionsReport.rdlc" />
     <EmbeddedResource Include="Reports\RefillSalesReport.rdlc" />
     <EmbeddedResource Include="Reports\LaundryClaimedItemsReport.rdlc" />
