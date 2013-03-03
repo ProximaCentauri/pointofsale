@@ -162,6 +162,7 @@ namespace NJournals.Core.Views
 				}	
 			}else
 				paymentdetail.Amount = 0;
+				
 			
 			if(this.Text.Contains("NEW"))
 				m_headerEntity.TotalPayment = paymentdetail.Amount;					
@@ -170,6 +171,7 @@ namespace NJournals.Core.Views
 			
 			paymentdetail.PaymentDate = Convert.ToDateTime(DateTime.Now);
 			paymentdetail.Header = m_headerEntity;
+			paymentdetail = paymentdetail.Amount > 0 ? paymentdetail : null;
 			m_headerEntity.PaymentDetailEntities.Add(paymentdetail);
 			m_headerEntity.JobChargeEntities = new List<LaundryJobChargesDataEntity>();
 			foreach(object checkedItem in this.chkchargesList.CheckedItems){
@@ -526,6 +528,7 @@ namespace NJournals.Core.Views
 				return;
 			if(MessageService.ShowYesNo("Are you sure you want to print this transaction with JO number: " + txtjoborder.Text + "?")){
 				m_presenter.PrintTransaction();
+				this.Close();
 			}			
 		}
 		
