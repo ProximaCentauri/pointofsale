@@ -42,10 +42,12 @@
       <HintPath>..\..\..\lib\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common">
-      <HintPath>..\..\..\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms">
-      <HintPath>..\..\..\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <Private>False</Private>
+
     </Reference>
     <Reference Include="MySql.Data">
       <HintPath>C:\Program Files\MySQL\MySQL Installer\MySql.Data.dll</HintPath>

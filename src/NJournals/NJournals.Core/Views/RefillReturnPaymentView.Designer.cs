@@ -128,6 +128,7 @@ namespace NJournals.Core.Views
 			this.txtBottlesOnHand.ReadOnly = true;
 			this.txtBottlesOnHand.Size = new System.Drawing.Size(84, 25);
 			this.txtBottlesOnHand.TabIndex = 16;
+			this.txtBottlesOnHand.Text = "0";
 			// 
 			// txtCapsOnHand
 			// 
@@ -138,6 +139,7 @@ namespace NJournals.Core.Views
 			this.txtCapsOnHand.ReadOnly = true;
 			this.txtCapsOnHand.Size = new System.Drawing.Size(84, 25);
 			this.txtCapsOnHand.TabIndex = 18;
+			this.txtCapsOnHand.Text = "0";
 			// 
 			// label3
 			// 
@@ -158,6 +160,7 @@ namespace NJournals.Core.Views
 			this.txtReturnedBottles.Name = "txtReturnedBottles";
 			this.txtReturnedBottles.Size = new System.Drawing.Size(84, 25);
 			this.txtReturnedBottles.TabIndex = 20;
+			this.txtReturnedBottles.Text = "0";
 			this.txtReturnedBottles.TextChanged += new System.EventHandler(this.TxtReturnedBottlesTextChanged);
 			this.txtReturnedBottles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 
@@ -180,6 +183,7 @@ namespace NJournals.Core.Views
 			this.txtReturnedCaps.Name = "txtReturnedCaps";
 			this.txtReturnedCaps.Size = new System.Drawing.Size(84, 25);
 			this.txtReturnedCaps.TabIndex = 22;
+			this.txtReturnedCaps.Text = "0";
 			this.txtReturnedCaps.TextChanged += new System.EventHandler(this.TxtReturnedCapsTextChanged);
 			this.txtReturnedCaps.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbox_keypress);
 			// 

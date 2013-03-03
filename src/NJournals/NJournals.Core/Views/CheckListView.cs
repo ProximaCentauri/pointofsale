@@ -52,6 +52,7 @@ namespace NJournals.Core.Views
 			m_presenter.SetAllChecklist();
 			if(m_headerEntity.JobChecklistEntities.Count > 0){
 				btnprint.Enabled = true;
+				txtjonumber.Text = m_headerEntity.LaundryHeaderID.ToString().PadLeft(6,'0');
 				m_presenter.SetSelectedChecklist();
 			}else{
 				txtjonumber.Text = m_jonumber.ToString().PadLeft(6, '0');					
@@ -141,7 +142,7 @@ namespace NJournals.Core.Views
 					dgvCheckList.Rows[e.RowIndex].Cells[2].Value = "0";
 				}
 			}
-			//TODO: improve the calculating qty
+			
 			calculateQty();
 			
 		}
@@ -162,22 +163,18 @@ namespace NJournals.Core.Views
 			calculateQty();
 		}		
 		
-		void BtnokprintClick(object sender, EventArgs e)
-		{
-			if(MessageService.ShowYesNo("Are you sure you want to print this checklist?")){
-				m_presenter.PrintTransaction();	
-			}		
-		}		
 		
 		void BtnprintClick(object sender, EventArgs e)
 		{
-			LaundryHeaderDataEntity headerEntity = m_presenter.GetLaundryHeader(m_headerEntity.LaundryHeaderID);
-			if(headerEntity != null){
-				m_presenter.PrintTransaction(headerEntity);
-			}else{
-				MessageService.ShowWarning("Can't print this checklist. Please save first the transaction before printing this checklist.");
+			if(MessageService.ShowYesNo("Are you sure you want to print this checklist?")){
+				LaundryHeaderDataEntity headerEntity = m_presenter.GetLaundryHeader(m_headerEntity.LaundryHeaderID);
+				if(headerEntity != null){
+					m_presenter.PrintTransaction(headerEntity);
+				}else{
+					MessageService.ShowWarning("Can't print this checklist. Please save first the transaction before printing this checklist.");
+				}
 				this.Close();
-			}
+			}			
 		}
 	}
 }

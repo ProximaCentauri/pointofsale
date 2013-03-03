@@ -47,18 +47,16 @@ namespace NJournals.Core.Presenter
 			m_view.SetSelectedCheckList();
 		}
 		
-	public void PrintTransaction(LaundryHeaderDataEntity p_headerEntity){
-			PrintService.
-			/*m_headerEntity = m_view.ProcessHeaderDataEntity();
-			if(m_headerEntity != null){
-				MessageService.ShowInfo("Printing transaction with JO number: " + m_OriginalHeaderEntity.RefillHeaderID.ToString().PadLeft(6, '0'));
+		public void PrintTransaction(LaundryHeaderDataEntity p_headerEntity){
+			if(p_headerEntity != null){
+				MessageService.ShowInfo("Printing checklist with JO number: " + p_headerEntity.LaundryHeaderID.ToString().PadLeft(6, '0'));
 				
 				try{
-					PrintService.PrintRefillSlip(GetPrinterInfo(), m_headerEntity, GetCompanyInfo());
+					PrintService.PrintCheckList(p_headerEntity, GetPrinterInfo());
 				}catch(Exception ex){
 					MessageService.ShowError("Unexpected exception has occurred during printing. Please verify whether printer is installed and online. \n Please check error logs for details.", "Error in Printing", ex);
 				}		
-			}*/
+			}
 		}
 		
 		private CompanyDataEntity GetCompanyInfo(){

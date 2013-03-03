@@ -186,7 +186,6 @@
       <Textbox Name="textbox15">
         <rd:DefaultName>textbox15</rd:DefaultName>
         <Top>0.23958in</Top>
-        <Width>2in</Width>
         <Style>
           <BorderColor>
             <Default>White</Default>
@@ -200,7 +199,7 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <CanGrow>true</CanGrow>
-        <Left>7.75in</Left>
+        <Left>6.625in</Left>
         <Height>0.25in</Height>
         <Value>=Now()</Value>
       </Textbox>
@@ -303,12 +302,13 @@
     </DataSet>
   </DataSets>
   <Code />
-  <Width>9.775in</Width>
+  <Width>8.625in</Width>
   <Body>
     <ReportItems>
       <Table Name="table1">
         <DataSetName>NJournals_Common_DataEntities_LaundryHeaderDataEntity</DataSetName>
         <Top>0.25in</Top>
+        <Width>8.6in</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -319,11 +319,14 @@
                       <rd:DefaultName>textbox4</rd:DefaultName>
                       <Style>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -340,11 +343,14 @@
                       <rd:DefaultName>textbox21</rd:DefaultName>
                       <Style>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
-                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -361,8 +367,11 @@
                       <rd:DefaultName>Name</rd:DefaultName>
                       <Style>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <TextAlign>Center</TextAlign>
@@ -383,12 +392,15 @@
                       <rd:DefaultName>DayStamp_1</rd:DefaultName>
                       <Style>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <TextAlign>Left</TextAlign>
-                        <PaddingLeft>25pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -405,12 +417,15 @@
                       <rd:DefaultName>textbox10</rd:DefaultName>
                       <Style>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <TextAlign>Left</TextAlign>
-                        <PaddingLeft>25pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -427,12 +442,15 @@
                       <rd:DefaultName>textbox29</rd:DefaultName>
                       <Style>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <TextAlign>Left</TextAlign>
-                        <PaddingLeft>25pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -449,12 +467,15 @@
                       <rd:DefaultName>textbox26</rd:DefaultName>
                       <Style>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <TextAlign>Left</TextAlign>
-                        <PaddingLeft>25pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -471,12 +492,15 @@
                       <rd:DefaultName>textbox23</rd:DefaultName>
                       <Style>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <TextAlign>Left</TextAlign>
-                        <PaddingLeft>25pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -493,8 +517,15 @@
         </Details>
         <Style>
           <BorderColor>
-            <Default>White</Default>
+            <Default>Linen</Default>
+            <Left>Linen</Left>
+            <Right>Linen</Right>
+            <Top>Linen</Top>
+            <Bottom>Linen</Bottom>
           </BorderColor>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
           <FontFamily>Calibri</FontFamily>
           <FontSize>11pt</FontSize>
         </Style>
@@ -510,8 +541,11 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -536,8 +570,11 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -562,8 +599,11 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -588,8 +628,11 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -614,8 +657,11 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -640,8 +686,11 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -666,8 +715,11 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -692,8 +744,11 @@
                         <Color>White</Color>
                         <BackgroundColor>SteelBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -718,28 +773,28 @@
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>1.35in</Width>
-          </TableColumn>
-          <TableColumn>
-            <Width>1.35in</Width>
-          </TableColumn>
-          <TableColumn>
-            <Width>1.75in</Width>
+            <Width>1in</Width>
           </TableColumn>
           <TableColumn>
             <Width>1in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>0.875in</Width>
+            <Width>1.5in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.15in</Width>
+            <Width>0.75in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.15in</Width>
+            <Width>0.75in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.15in</Width>
+            <Width>1.2in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.2in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.2in</Width>
           </TableColumn>
         </TableColumns>
         <Footer>
@@ -757,8 +812,11 @@
                       <Style>
                         <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontStyle>Italic</FontStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
@@ -791,8 +849,11 @@
                       <Style>
                         <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
@@ -815,13 +876,16 @@
                       <Style>
                         <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
                         <TextAlign>Left</TextAlign>
-                        <PaddingLeft>25pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -839,13 +903,16 @@
                       <Style>
                         <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
                         <TextAlign>Left</TextAlign>
-                        <PaddingLeft>25pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -863,13 +930,16 @@
                       <Style>
                         <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
                         <TextAlign>Left</TextAlign>
-                        <PaddingLeft>25pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -887,13 +957,16 @@
                       <Style>
                         <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
                         <TextAlign>Left</TextAlign>
-                        <PaddingLeft>25pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -911,13 +984,16 @@
                       <Style>
                         <BackgroundColor>PowderBlue</BackgroundColor>
                         <BorderColor>
-                          <Default>White</Default>
+                          <Default>Linen</Default>
                         </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
                         <FontWeight>700</FontWeight>
                         <TextAlign>Left</TextAlign>
-                        <PaddingLeft>25pt</PaddingLeft>
+                        <PaddingLeft>5pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -943,7 +1019,6 @@
     <ReportItems>
       <Textbox Name="textbox16">
         <rd:DefaultName>textbox16</rd:DefaultName>
-        <Width>1.875in</Width>
         <Style>
           <BorderColor>
             <Default>White</Default>
@@ -957,7 +1032,7 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <CanGrow>true</CanGrow>
-        <Left>7.875in</Left>
+        <Left>6.75in</Left>
         <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
       </Textbox>
     </ReportItems>
