@@ -66,11 +66,12 @@ namespace NJournals.Core.Presenter
 				customer = m_customerDao.GetByName(customerName) as CustomerDataEntity;
 				List<RefillHeaderDataEntity> refillHeaders = m_refillReportDao.GetUnpaidTransactionsReport(customer) as List<RefillHeaderDataEntity>;
 				custInv = m_custInvDao.GetByCustomer(customer) as RefillCustInventoryHeaderDataEntity;
-				if(custInv == null && refillHeaders.Count == 0)
+				if((custInv == null || (custInv.BottlesOnHand == 0 && custInv.CapsOnHand == 0))
+				   && refillHeaders.Count == 0)
 				{
 					MessageService.ShowInfo("No records found for customer: " + customerName);
 					return;
-				}				
+				}					
 				m_view.LoadRefillHeaderAndInventoryData(refillHeaders, custInv);
 			}
 			catch(Exception ex)
