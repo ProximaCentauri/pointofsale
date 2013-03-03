@@ -25,7 +25,7 @@ namespace NJournals.Core.Presenter
 		IReportView m_view;
 		ICustomerDao m_customerDao;
 		ILaundryReportDao m_laundryReportDao;
-        IRefillReportDao m_refillReportDao;
+        IRefillReportDao m_refillReportDao;        
 		
 		public ReportViewPresenter(IReportView p_view)
 		{
@@ -66,9 +66,15 @@ namespace NJournals.Core.Presenter
 			List<CustomerDataEntity> customers = m_customerDao.GetAllItems() as List<CustomerDataEntity>;
 			m_view.SetAllCustomers(customers);
 		}
-		
+
+        public void SetAllInvProducts()
+        {
+            List<RefillInventoryHeaderDataEntity> inv = m_refillReportDao.GetInventoryReport("All") as List<RefillInventoryHeaderDataEntity>;
+            m_view.SetAllInvProducts(inv);          
+        }
+
 		public void RunReport(string wndTitle, string selectedReport, CustomerDataEntity customer, 
-		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll)
+		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll, string product)
 		{						
 			switch(wndTitle)
         	{
@@ -77,7 +83,7 @@ namespace NJournals.Core.Presenter
 					                 toDateTime, b_isAll);
 					break;
                 case ReportConstants.REFILL_WINDOW:
-                    RunRefillReport(selectedReport, customer, fromDateTime, toDateTime, b_isAll);
+                    RunRefillReport(selectedReport, customer, fromDateTime, toDateTime, b_isAll, product);
 					break;
 				default:
 					break;
@@ -130,7 +136,7 @@ namespace NJournals.Core.Presenter
 		}		
 
 		private void RunRefillReport(string selectedReport, CustomerDataEntity customer, 
-		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll)
+		                      DateTime fromDateTime, DateTime toDateTime, bool b_isAll, string product)
 		{
             List<ReportDataSource> datasources = new List<ReportDataSource>();
             List<ReportParameter> parameters = new List<ReportParameter>();
@@ -152,14 +158,14 @@ namespace NJournals.Core.Presenter
                     break;
                 case ReportConstants.INVENTORY_ACTIVITY_REPORT:
                     List<RefillInventoryReportDataEntity> invActReport = m_refillReportDao                        
-                         .GetInventoryActivityReport(fromDateTime, toDateTime) as List<RefillInventoryReportDataEntity>;                                                                                                                              
+                         .GetInventoryActivityReport(fromDateTime, toDateTime, product) as List<RefillInventoryReportDataEntity>;                                                                                                                              
 				    parameters = SetReportParameters(fromDateTime, toDateTime);
                     datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORYDETAIL, invActReport));
                     m_view.DisplayReport(invActReport, datasources, parameters, ReportConstants.ES_REFILL_INVENTORYACTIVITY_REPORT); 
                     break;
                 case ReportConstants.INVENTORY_REPORT:
                     	List<RefillInventoryHeaderDataEntity> invHeader = m_refillReportDao                    		
-                    		.GetInventoryReport() as List<RefillInventoryHeaderDataEntity>;                        
+                    		.GetInventoryReport(product) as List<RefillInventoryHeaderDataEntity>;                        
                     	datasources.Add(new ReportDataSource(ReportConstants.DS_REFILLINVENTORYHEADER, invHeader));                          
                     	m_view.DisplayReport(invHeader, datasources, parameters, ReportConstants.ES_REFILL_INVENTORY_REPORT);                  
                 	break;

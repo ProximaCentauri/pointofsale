@@ -121,47 +121,87 @@ namespace NJournals.Core.Models
 		}
 
 		
-        public IEnumerable<RefillInventoryReportDataEntity> GetInventoryActivityReport(DateTime fromDateTime, DateTime toDateTime)
+        public IEnumerable<RefillInventoryReportDataEntity> GetInventoryActivityReport(DateTime fromDateTime, 
+            DateTime toDateTime, string product)
         {          
             using (var session = NHibernateHelper.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
-					var query = session.CreateCriteria<RefillInventoryHeaderDataEntity>("header")						
-                		.CreateAlias("header.DetailEntities","detailentities",CriteriaSpecification.LeftJoin)                       
-                		.SetProjection(Projections.ProjectionList()						                         
-                		               .Add(Projections.Distinct(Projections.GroupProperty("header.Name")),"Name")
-                		               .Add(Projections.GroupProperty(Projections.Cast(NHibernateUtil.Date
-							                                                               ,Projections.GroupProperty("detailentities.Date"))),"DayStamp")
-                                       .Add(Projections.Sum("header.TotalQty"), "HeaderTotalQty")
-                                       .Add(Projections.Sum("header.QtyReleased"), "HeaderQtyReleased")
-                                       .Add(Projections.Sum("header.QtyOnHand"), "HeaderQtyOnHand")
-                                       .Add(Projections.Sum("detailentities.TotalQty"),"DetailTotalQty")
-                		               .Add(Projections.Sum("detailentities.QtyOnHand"),"DetailQtyOnHand")
-                		               .Add(Projections.Sum("detailentities.QtyAdded"),"TotalAdded")
-                		               .Add(Projections.Sum("detailentities.QtyRemoved"),"TotalRemoved")
-                		               .Add(Projections.Sum("detailentities.QtyReleased"),"DetailQtyReleased"))
-                        .Add(Restrictions.Between("detailentities.Date", fromDateTime, toDateTime))
-                		.AddOrder(Order.Asc("Name"))
-                        .AddOrder(Order.Asc("DayStamp"))
-                        .SetResultTransformer(Transformers.AliasToBean(typeof(RefillInventoryReportDataEntity)))
-                        .List<RefillInventoryReportDataEntity>();
-                	return query;
+                    if (product.ToUpper().Equals("ALL"))
+                    {
+                        var query = session.CreateCriteria<RefillInventoryHeaderDataEntity>("header")
+                            .CreateAlias("header.DetailEntities", "detailentities", CriteriaSpecification.LeftJoin)
+                            .SetProjection(Projections.ProjectionList()
+                                           .Add(Projections.Distinct(Projections.GroupProperty("header.Name")), "Name")
+                                           .Add(Projections.GroupProperty(Projections.Cast(NHibernateUtil.Date
+                                                                                               , Projections.GroupProperty("detailentities.Date"))), "DayStamp")
+                                           .Add(Projections.Sum("header.TotalQty"), "HeaderTotalQty")
+                                           .Add(Projections.Sum("header.QtyReleased"), "HeaderQtyReleased")
+                                           .Add(Projections.Sum("header.QtyOnHand"), "HeaderQtyOnHand")
+                                           .Add(Projections.Sum("detailentities.TotalQty"), "DetailTotalQty")
+                                           .Add(Projections.Sum("detailentities.QtyOnHand"), "DetailQtyOnHand")
+                                           .Add(Projections.Sum("detailentities.QtyAdded"), "TotalAdded")
+                                           .Add(Projections.Sum("detailentities.QtyRemoved"), "TotalRemoved")
+                                           .Add(Projections.Sum("detailentities.QtyReleased"), "DetailQtyReleased"))
+                            .Add(Restrictions.Between("detailentities.Date", fromDateTime, toDateTime))
+                            .AddOrder(Order.Asc("Name"))
+                            .AddOrder(Order.Asc("DayStamp"))
+                            .SetResultTransformer(Transformers.AliasToBean(typeof(RefillInventoryReportDataEntity)))
+                            .List<RefillInventoryReportDataEntity>();
+                        return query;
+                    }
+                    else
+                    {
+                        var query = session.CreateCriteria<RefillInventoryHeaderDataEntity>("header")
+                            .CreateAlias("header.DetailEntities", "detailentities", CriteriaSpecification.LeftJoin)
+                            .SetProjection(Projections.ProjectionList()
+                                           .Add(Projections.Distinct(Projections.GroupProperty("header.Name")), "Name")
+                                           .Add(Projections.GroupProperty(Projections.Cast(NHibernateUtil.Date
+                                                                                               , Projections.GroupProperty("detailentities.Date"))), "DayStamp")
+                                           .Add(Projections.Sum("header.TotalQty"), "HeaderTotalQty")
+                                           .Add(Projections.Sum("header.QtyReleased"), "HeaderQtyReleased")
+                                           .Add(Projections.Sum("header.QtyOnHand"), "HeaderQtyOnHand")
+                                           .Add(Projections.Sum("detailentities.TotalQty"), "DetailTotalQty")
+                                           .Add(Projections.Sum("detailentities.QtyOnHand"), "DetailQtyOnHand")
+                                           .Add(Projections.Sum("detailentities.QtyAdded"), "TotalAdded")
+                                           .Add(Projections.Sum("detailentities.QtyRemoved"), "TotalRemoved")
+                                           .Add(Projections.Sum("detailentities.QtyReleased"), "DetailQtyReleased"))
+                            .Add(Restrictions.Eq("header.Name",product))
+                            .Add(Restrictions.Between("detailentities.Date", fromDateTime, toDateTime))                            
+                            .AddOrder(Order.Asc("Name"))
+                            .AddOrder(Order.Asc("DayStamp"))
+                            .SetResultTransformer(Transformers.AliasToBean(typeof(RefillInventoryReportDataEntity)))
+                            .List<RefillInventoryReportDataEntity>();
+                        return query;
+                    }
                 }
             }
         }
         
-        public IEnumerable<RefillInventoryHeaderDataEntity> GetInventoryReport()
+        public IEnumerable<RefillInventoryHeaderDataEntity> GetInventoryReport(string product)
         {
         	using (var session = NHibernateHelper.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
-					var query = session.QueryOver<RefillInventoryHeaderDataEntity>()
-						.Fetch(x => x.DetailEntities).Lazy()
-                        .OrderBy(x => x.Name).Asc                        
-						.List<RefillInventoryHeaderDataEntity>();						   
-                	return query;
+                    if (product.ToUpper().Equals("ALL"))
+                    {
+                        var query = session.QueryOver<RefillInventoryHeaderDataEntity>()
+                            .Fetch(x => x.DetailEntities).Lazy()
+                            .OrderBy(x => x.Name).Asc
+                            .List<RefillInventoryHeaderDataEntity>();
+                        return query;
+                    }
+                    else
+                    {
+                        var query = session.QueryOver<RefillInventoryHeaderDataEntity>()
+                            .Where(x => x.Name == product)
+                            .Fetch(x => x.DetailEntities).Lazy()
+                            .OrderBy(x => x.Name).Asc
+                            .List<RefillInventoryHeaderDataEntity>();
+                        return query;
+                    }                	
                 }
             }
         }               
