@@ -41,6 +41,7 @@ namespace NJournals.Core.Views
 		private RefillingViewPresenter m_presenter;
 		private decimal removePrice = 0;
 		private decimal unitprice = 0;
+		private RefillHeaderDataEntity m_headerEntity = null;
 		void RefillingViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();		
@@ -219,7 +220,7 @@ namespace NJournals.Core.Views
 		}
 		
 		public void LoadHeaderEntityData(RefillHeaderDataEntity p_headerEntity){
-			RefillHeaderDataEntity m_headerEntity = p_headerEntity;
+			m_headerEntity = p_headerEntity;
 			txtjonumber.Text = m_headerEntity.RefillHeaderID.ToString().PadLeft(6, '0');
 			cmbCustomers.Text = m_headerEntity.Customer.Name;
 			cmbtransTypes.Text = m_headerEntity.TransactionType.Name;
@@ -241,6 +242,10 @@ namespace NJournals.Core.Views
 		
 		void BtndeletecloseClick(object sender, EventArgs e)
 		{
+			if(m_headerEntity == null){
+				MessageService.ShowWarning("No transaction to delete!");
+				return;
+			}
 			if(MessageService.ShowYesNo("Are you sure you want to void this transaction: " + txtjonumber.Text + "?" + Environment.NewLine +
 			                            "Please note that voiding this transaction will revert back items being released to your inventory." + Environment.NewLine + 
 			                            "If you know what you're doing, then proceed by clicking option below.","Voiding Transaction?")){

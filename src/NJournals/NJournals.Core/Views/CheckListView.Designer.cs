@@ -170,6 +170,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteCheckList.Size = new System.Drawing.Size(35, 23);
 			this.btnDeleteCheckList.TabIndex = 27;
 			this.btnDeleteCheckList.UseVisualStyleBackColor = true;
+			this.btnDeleteCheckList.Click += new System.EventHandler(this.BtnDeleteCheckListClick);
 			// 
 			// btnSaveCheckList
 			// 

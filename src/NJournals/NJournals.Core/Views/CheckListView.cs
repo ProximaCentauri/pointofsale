@@ -176,5 +176,10 @@ namespace NJournals.Core.Views
 				this.Close();
 			}			
 		}
+		
+		void BtnDeleteCheckListClick(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }

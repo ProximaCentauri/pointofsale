@@ -163,6 +163,8 @@ namespace NJournals.Core.Presenter
 		
 		public void VoidTransaction(){
 			try{
+				
+					
 				m_OriginalHeaderEntity.VoidFlag = true;
 				m_refillDao.Update(m_OriginalHeaderEntity);
 				RefillDaySummaryDataEntity daySummary = m_summaryDao.GetByDayId(m_OriginalHeaderEntity.DaySummary.DayID);
@@ -189,7 +191,7 @@ namespace NJournals.Core.Presenter
 				}		
 				MessageService.ShowInfo("Successfully voiding transaction with JO number: " + m_OriginalHeaderEntity.RefillHeaderID.ToString().PadLeft(6, '0'));
 			}catch(Exception ex){
-				MessageService.ShowError("There is a problem while void this transaction." ,"Error in Voiding Transaction", ex);
+				MessageService.ShowError("There is a problem while void this transaction. \n Please see the log file for technical details." ,"Error in Voiding Transaction", ex);
 			}			
 		}
 		

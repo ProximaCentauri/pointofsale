@@ -491,6 +491,10 @@ namespace NJournals.Core.Views
 		
 		void BtndeleteClick(object sender, EventArgs e)
 		{
+			if(m_headerEntity == null){
+				MessageService.ShowWarning("No transaction to delete!");
+				return;
+			}
 			if(MessageService.ShowYesNo("Are you sure you want to void this transaction: " + txtjoborder.Text + "?")){
 				m_presenter.VoidingTransaction();	
 			}			
@@ -502,6 +506,7 @@ namespace NJournals.Core.Views
 		}
 		
 		public bool ClaimTransaction(){
+			
 			if(decimal.Parse(txtbalance.Text) <= 0.00M){
 				MessageService.ShowInfo("Claiming transaction with JO number: " + txtjoborder.Text , "Claim");				
 				return true;				

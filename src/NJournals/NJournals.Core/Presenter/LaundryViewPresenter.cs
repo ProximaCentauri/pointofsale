@@ -358,13 +358,18 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void ClaimTransaction(){
-			if(m_view.ClaimTransaction())
-			{
-				m_OriginalHeaderEntity.ClaimDate = DateTime.Now;			
-				m_OriginalHeaderEntity.ClaimFlag = true;
-				SaveClicked();							
-				m_view.CloseView();
-			}			
+			if(m_OriginalHeaderEntity != null){
+				if(m_view.ClaimTransaction())
+				{
+					m_OriginalHeaderEntity.ClaimDate = DateTime.Now;			
+					m_OriginalHeaderEntity.ClaimFlag = true;
+					SaveClicked();							
+					m_view.CloseView();
+				}	
+			}else{
+				MessageService.ShowWarning("No transaction to claim!");
+			}
+					
 		}
 		
 		public void PrintTransaction(){
