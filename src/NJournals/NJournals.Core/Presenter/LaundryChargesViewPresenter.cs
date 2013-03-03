@@ -28,9 +28,15 @@ namespace NJournals.Core.Presenter
 			m_laundryChargeDao = new LaundryChargeDao();
 		}
 		
-		public void SetAllLaundryCharges()
+		public void SetAllValidLaundryCharges()
 		{
 			List<LaundryChargeDataEntity> charges = m_laundryChargeDao.GetAllItems() as List<LaundryChargeDataEntity>;
+			m_view.SetAllValidLaundryCharges(charges);
+		}
+		
+		public void SetAllLaundryCharges()
+		{
+			List<LaundryChargeDataEntity> charges = m_laundryChargeDao.GetAllItemsWithVoid() as List<LaundryChargeDataEntity>;
 			m_view.SetAllLaundryCharges(charges);
 		}
 		

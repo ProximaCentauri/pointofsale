@@ -27,6 +27,7 @@ namespace NJournals.Core.Views
 	{
 		LaundryChargesViewPresenter m_presenter;
 		List<LaundryChargeDataEntity> m_chargesEntity;
+		List<LaundryChargeDataEntity> c_chargesEntity;
 		List<int> chargesIndexChange = new List<int>();
 		int chargesMaxRowIndex = -1;
 		
@@ -48,10 +49,11 @@ namespace NJournals.Core.Views
 			setButtonImages();
 			Resource.formatAlternatingRows(dgvCharges);
 			m_presenter = new LaundryChargesViewPresenter(this);
+			m_presenter.SetAllValidLaundryCharges();
 			m_presenter.SetAllLaundryCharges();
 		}
 		
-		public void SetAllLaundryCharges(List<LaundryChargeDataEntity> charges)
+		public void SetAllValidLaundryCharges(List<LaundryChargeDataEntity> charges)
 		{
 			m_chargesEntity = charges;
 			BindingSource source = new BindingSource();
@@ -60,6 +62,12 @@ namespace NJournals.Core.Views
 			chargesMaxRowIndex = dgvCharges.RowCount - 1;
 			formatChargesDataGridView();
 		}
+		
+		public void SetAllLaundryCharges(List<LaundryChargeDataEntity> charges)
+		{
+			c_chargesEntity = charges;
+		}
+
 		
 		#region Charges
 		private void dgvCharges_CellValueChanged(object sender,
@@ -88,6 +96,7 @@ namespace NJournals.Core.Views
 						try
 						{
 							m_presenter.SaveOrUpdateCharge(charges);
+							m_presenter.SetAllValidLaundryCharges();
 							m_presenter.SetAllLaundryCharges();
 							MessageService.ShowInfo("Successfully saved/updated charges.", "Save or Update charges");
 							chargesMaxRowIndex = dgvCharges.RowCount - 1;
@@ -134,6 +143,7 @@ namespace NJournals.Core.Views
 						if(!this.dgvCharges.Rows[currentRow.Index].IsNewRow)
 							dgvCharges.Rows.Remove(this.dgvCharges.Rows[currentRow.Index]);	
 					}
+					m_presenter.SetAllValidLaundryCharges();
 					m_presenter.SetAllLaundryCharges();
 					chargesMaxRowIndex = dgvCharges.RowCount - 1;
 				}
@@ -168,7 +178,7 @@ namespace NJournals.Core.Views
 				else
 				{
 					LaundryChargeDataEntity newCharge = new LaundryChargeDataEntity();
-					newCharge = m_chargesEntity.Find(chargesEntity => chargesEntity.Name.ToUpper() == name.ToUpper());
+					newCharge = c_chargesEntity.Find(chargesEntity => chargesEntity.Name.ToUpper() == name.ToUpper());
 					
 					if((newCharge == null || newCharge.ChargeID == 0) && !updateCharges.Contains(name))
 					{
@@ -178,6 +188,15 @@ namespace NJournals.Core.Views
 						
 						updateCharges.Add(charge.Name.ToUpper());
 						charges.Add(charge);
+					}
+					else if(newCharge.ChargeID != 0 && !updateCharges.Contains(name))
+					{
+						newCharge.Name = name;
+						newCharge.Amount = price;
+						newCharge.VoidFlag = false;
+						
+						updateCharges.Add(newCharge.Name.ToUpper());
+						charges.Add(newCharge);
 					}
 					else
 					{
