@@ -31,7 +31,8 @@ namespace NJournals.Core.Presenter
 		IRefillCustomerInventoryDao m_customerInvDao;
 		IRefillInventoryDao m_refillInvDao;
 		IRefillInventoryDetailDao m_refillInvDetailDao;
-				
+		ICompanyDao m_companyDao;
+		IPrinterDao m_printerDao;
 		List<CustomerDataEntity> customers = null;
 		List<RefillTransactionTypeDataEntity> transactionTypes = null;
 		List<RefillProductTypeDataEntity> products = null;	
@@ -49,6 +50,8 @@ namespace NJournals.Core.Presenter
 			m_customerInvDao = new RefillCustomerInventoryDao();
 			m_refillInvDao = new RefillInventoryDao();
 			m_refillInvDetailDao = new RefillInventoryDetailDao();
+			m_printerDao = new PrinterDao();
+			m_companyDao = new CompanyDao();
 		}
 		
 		public void SetAllCustomers(){
@@ -89,7 +92,7 @@ namespace NJournals.Core.Presenter
 				if(MessageService.ShowYesNo("Successfully saved entries." + Environment.NewLine +
 				                            "Do you want to print this transaction with JO number: " + m_headerEntity.RefillHeaderID.ToString().PadLeft(6, '0') + "?" ,"Information")){
 					try{
-						PrintService.PrintRefillSlip(null,m_headerEntity, null);
+						PrintService.PrintRefillSlip(GetPrinterInfo(), m_headerEntity, GetCompanyInfo());
 					}catch(Exception ex){
 						MessageService.ShowError("Unexpected exception has occurred during printing. Please verify whether printer is installed and online. \n Please check error logs for details.", "Error in Printing", ex);
 					}
@@ -264,13 +267,23 @@ namespace NJournals.Core.Presenter
 				MessageService.ShowInfo("Printing transaction with JO number: " + m_OriginalHeaderEntity.RefillHeaderID.ToString().PadLeft(6, '0'));
 				
 				try{
-					PrintService.PrintRefillSlip(null,m_headerEntity, null);
+					PrintService.PrintRefillSlip(GetPrinterInfo(), m_headerEntity, GetCompanyInfo());
 				}catch(Exception ex){
 					MessageService.ShowError("Unexpected exception has occurred during printing. Please verify whether printer is installed and online. \n Please check error logs for details.", "Error in Printing", ex);
 				}				
 
 			}			
 			
+		}
+		
+		private CompanyDataEntity GetCompanyInfo(){
+			List<CompanyDataEntity> companies = m_companyDao.GetAllItems() as List<CompanyDataEntity>;
+			return companies[0];
+		}
+		
+		private PrinterDataEntity GetPrinterInfo(){
+			List<PrinterDataEntity> printers = m_printerDao.GetAllItems() as List<PrinterDataEntity>;
+			return printers[0];
 		}
 	}
 }

@@ -528,6 +528,7 @@ namespace NJournals.Core.Views
 				return;
 			if(MessageService.ShowYesNo("Are you sure you want to print this transaction with JO number: " + txtjoborder.Text + "?")){
 				m_presenter.PrintTransaction();
+				this.Close();
 			}			
 		}
 		
