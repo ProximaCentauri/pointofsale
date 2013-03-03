@@ -55,6 +55,7 @@ namespace NJournals.Core.Views
 			Resource.setImage(this.btnCustomerSearch, System.IO.Directory.GetCurrentDirectory() + "/images/search.png");
 			Resource.setImage(this.btnDeleteDetail,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
 			Resource.setImage(this.btnEditCharges, System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
+			Resource.setImage(this.btnRefresh, System.IO.Directory.GetCurrentDirectory() + "/images/refresh2.png");
 		}
 		
 		void LaundryNewViewLoad(object sender, EventArgs e)
@@ -104,6 +105,7 @@ namespace NJournals.Core.Views
 		}
 		
 		public void SetAllCharges(List<LaundryChargeDataEntity> charges){
+			chkchargesList.Items.Clear();
 			foreach(LaundryChargeDataEntity charge in charges){
 				this.chkchargesList.Items.Add(charge.Name);
 			}
@@ -553,6 +555,11 @@ namespace NJournals.Core.Views
 		{
 			priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
 			txtunitprice.Text = priceEntity.Price.ToString("N2");
+		}
+		
+		void BtnRefreshClick(object sender, EventArgs e)
+		{
+			m_presenter.SetAllCharges();
 		}
 	}	
 }

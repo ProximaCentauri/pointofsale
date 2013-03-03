@@ -62,6 +62,8 @@ namespace NJournals.Core.Views
 			this.dgvCharges.RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvCharges.Size = new System.Drawing.Size(331, 209);
 			this.dgvCharges.TabIndex = 0;
+			this.dgvCharges.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(dgvCharges_CellValueChanged);
+			this.dgvCharges.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(dgvCharges_cellValidating);
 			// 
 			// btnDeleteCharges
 			// 
