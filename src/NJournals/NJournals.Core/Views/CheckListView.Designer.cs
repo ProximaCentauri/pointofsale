@@ -43,7 +43,6 @@ namespace NJournals.Core.Views
 			this.txtjonumber = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnok = new System.Windows.Forms.Button();
-			this.btnokprint = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txttotal = new System.Windows.Forms.TextBox();
 			this.dgvCheckList = new System.Windows.Forms.DataGridView();
@@ -53,6 +52,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteCheckList = new System.Windows.Forms.Button();
 			this.btnSaveCheckList = new System.Windows.Forms.Button();
 			this.btncancel = new System.Windows.Forms.Button();
+			this.btnprint = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCheckList)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -85,16 +85,7 @@ namespace NJournals.Core.Views
 			this.btnok.TabIndex = 21;
 			this.btnok.Text = "OK";
 			this.btnok.UseVisualStyleBackColor = true;
-			// 
-			// btnokprint
-			// 
-			this.btnokprint.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnokprint.Location = new System.Drawing.Point(7, 561);
-			this.btnokprint.Name = "btnokprint";
-			this.btnokprint.Size = new System.Drawing.Size(99, 23);
-			this.btnokprint.TabIndex = 20;
-			this.btnokprint.Text = "OK && Print";
-			this.btnokprint.UseVisualStyleBackColor = true;
+			this.btnok.Click += new System.EventHandler(this.BtnokClick);
 			// 
 			// label2
 			// 
@@ -205,12 +196,25 @@ namespace NJournals.Core.Views
 			this.btncancel.UseVisualStyleBackColor = true;
 			this.btncancel.Click += new System.EventHandler(this.BtncancelClick);
 			// 
+			// btnprint
+			// 
+			this.btnprint.Enabled = false;
+			this.btnprint.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnprint.Location = new System.Drawing.Point(12, 561);
+			this.btnprint.Name = "btnprint";
+			this.btnprint.Size = new System.Drawing.Size(83, 23);
+			this.btnprint.TabIndex = 29;
+			this.btnprint.Text = "Print";
+			this.btnprint.UseVisualStyleBackColor = true;
+			this.btnprint.Click += new System.EventHandler(this.BtnprintClick);
+			// 
 			// CheckListView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(341, 612);
+			this.Controls.Add(this.btnprint);
 			this.Controls.Add(this.btncancel);
 			this.Controls.Add(this.btnDeleteCheckList);
 			this.Controls.Add(this.btnSaveCheckList);
@@ -218,7 +222,6 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.txttotal);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.btnok);
-			this.Controls.Add(this.btnokprint);
 			this.Controls.Add(this.txtjonumber);
 			this.Controls.Add(this.label1);
 			this.Name = "CheckListView";
@@ -229,6 +232,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button btnprint;
 		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.Button btnSaveCheckList;
 		private System.Windows.Forms.Button btnDeleteCheckList;
@@ -238,7 +242,6 @@ namespace NJournals.Core.Views
 		private System.Windows.Forms.DataGridView dgvCheckList;
 		private System.Windows.Forms.TextBox txttotal;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Button btnokprint;
 		private System.Windows.Forms.Button btnok;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox txtjonumber;

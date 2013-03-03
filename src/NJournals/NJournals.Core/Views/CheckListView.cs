@@ -51,6 +51,7 @@ namespace NJournals.Core.Views
 			Resource.formatAlternatingRows(dgvCheckList);
 			m_presenter.SetAllChecklist();
 			if(m_headerEntity.JobChecklistEntities.Count > 0){
+				btnprint.Enabled = true;
 				m_presenter.SetSelectedChecklist();
 			}else{
 				txtjonumber.Text = m_jonumber.ToString().PadLeft(6, '0');					
@@ -88,12 +89,12 @@ namespace NJournals.Core.Views
 		void BtncancelClick(object sender, EventArgs e)
 		{			
 			this.Close();
-		}	
-		
+		}			
 		
 		protected virtual void OnSelectChecklist(EventArgs e){
 			if(SelectChecklist != null){
 				SelectChecklist(this, e);
+				
 				this.Close();
 			}
 		}
@@ -163,7 +164,20 @@ namespace NJournals.Core.Views
 		
 		void BtnokprintClick(object sender, EventArgs e)
 		{
-			
+			if(MessageService.ShowYesNo("Are you sure you want to print this checklist?")){
+				m_presenter.PrintTransaction();	
+			}		
+		}		
+		
+		void BtnprintClick(object sender, EventArgs e)
+		{
+			LaundryHeaderDataEntity headerEntity = m_presenter.GetLaundryHeader(m_headerEntity.LaundryHeaderID);
+			if(headerEntity != null){
+				m_presenter.PrintTransaction(headerEntity);
+			}else{
+				MessageService.ShowWarning("Can't print this checklist. Please save first the transaction before printing this checklist.");
+				this.Close();
+			}
 		}
 	}
 }

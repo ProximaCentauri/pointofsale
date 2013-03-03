@@ -11,6 +11,7 @@ using NJournals.Core.Models;
 using NJournals.Common.DataEntities;
 using System.Collections.Generic;
 using NJournals.Common.Interfaces;
+using NJournals.Common.Util;
 namespace NJournals.Core.Presenter
 {
 	/// <summary>
@@ -20,11 +21,17 @@ namespace NJournals.Core.Presenter
 	{
 		ILaundryChecklistDao m_checklistDao;
 		ICheckListView m_view;
+		ICompanyDao m_companyDao;
+		IPrinterDao m_printerDao;
+		ILaundryDao m_laundryDao;
+		
 		public CheckListViewPresenter(ICheckListView p_view, ILaundryChecklistDao p_checklistDao)
 		{
 			m_checklistDao = p_checklistDao;
 			m_view = p_view;
-			
+			m_printerDao = new PrinterDao();
+			m_companyDao = new CompanyDao();
+			m_laundryDao = new LaundryDao();
 		}
 		
 		public void SetAllChecklist(){
@@ -38,6 +45,34 @@ namespace NJournals.Core.Presenter
 		
 		public void SetSelectedChecklist(){
 			m_view.SetSelectedCheckList();
+		}
+		
+	public void PrintTransaction(LaundryHeaderDataEntity p_headerEntity){
+			PrintService.
+			/*m_headerEntity = m_view.ProcessHeaderDataEntity();
+			if(m_headerEntity != null){
+				MessageService.ShowInfo("Printing transaction with JO number: " + m_OriginalHeaderEntity.RefillHeaderID.ToString().PadLeft(6, '0'));
+				
+				try{
+					PrintService.PrintRefillSlip(GetPrinterInfo(), m_headerEntity, GetCompanyInfo());
+				}catch(Exception ex){
+					MessageService.ShowError("Unexpected exception has occurred during printing. Please verify whether printer is installed and online. \n Please check error logs for details.", "Error in Printing", ex);
+				}		
+			}*/
+		}
+		
+		private CompanyDataEntity GetCompanyInfo(){
+			List<CompanyDataEntity> companies = m_companyDao.GetAllItems() as List<CompanyDataEntity>;
+			return companies[0];
+		}
+		
+		private PrinterDataEntity GetPrinterInfo(){
+			List<PrinterDataEntity> printers = m_printerDao.GetAllItems() as List<PrinterDataEntity>;
+			return printers[0];
+		}
+		
+		public LaundryHeaderDataEntity GetLaundryHeader(int p_id){
+			return m_laundryDao.GetByID(p_id);
 		}
 	}
 }
