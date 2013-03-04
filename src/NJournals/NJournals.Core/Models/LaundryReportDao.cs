@@ -135,6 +135,7 @@ namespace NJournals.Core.Models
                         var query = session.CreateCriteria<LaundryHeaderDataEntity>("header")
                            .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
                            .Add(Restrictions.Eq("header.ClaimFlag", true))
+                           .Add(Restrictions.Eq("header.VoidFlag", false))
                            .AddOrder(Order.Asc("header.ReceivedDate"))
                            .List<LaundryHeaderDataEntity>();
                         return query;
@@ -145,6 +146,7 @@ namespace NJournals.Core.Models
                             .Add(Restrictions.Eq("header.Customer", customer))
                             .Add(Restrictions.Between("header.ReceivedDate", fromDateTime, toDateTime))
                             .Add(Restrictions.Eq("header.ClaimFlag", true))
+                        	.Add(Restrictions.Eq("header.VoidFlag", false))
                             .AddOrder(Order.Asc("header.ReceivedDate"))
                             .List<LaundryHeaderDataEntity>();
                         return query;
