@@ -127,15 +127,17 @@ namespace NJournals.Core.Views
 			DataGridViewColumn itemQty = dgvCheckList.Columns[e.ColumnIndex];
 			
 			if(itemQty == this.Column3 && dgvCheckList.IsCurrentCellInEditMode){
-				if(bool.Parse(dgvCheckList.Rows[e.RowIndex].Cells[0].Value.ToString())){
-					int val;					
-					if(!int.TryParse(Convert.ToString(e.FormattedValue), out val)){
-						e.Cancel = true;
-						MessageService.ShowWarning("Invalid value being inputted.","Invalid Value");
-						dgvCheckList.CurrentCell = dgvCheckList.Rows[e.RowIndex].Cells[2];				
-					}
-						
-				}
+				//if(dgvCheckList.Rows[e.RowIndex].Cells[0].Value != null){
+				//	if(bool.Parse(dgvCheckList.Rows[e.RowIndex].Cells[0].Value.ToString())){
+						int val;					
+						if(!int.TryParse(Convert.ToString(e.FormattedValue), out val)){
+							e.Cancel = true;
+							MessageService.ShowWarning("Invalid value being inputted.","Invalid Value");
+							dgvCheckList.CurrentCell = dgvCheckList.Rows[e.RowIndex].Cells[2];				
+						}
+							
+				//	}
+				//}				
 			}
 			if(itemQty == this.Column1){
 				if(!Convert.ToBoolean(e.FormattedValue)){
@@ -159,7 +161,7 @@ namespace NJournals.Core.Views
 		}
 		
 		void dgvchecklist_cellclick(object sender, DataGridViewCellEventArgs e)
-		{
+		{			
 			calculateQty();
 		}		
 		
@@ -179,7 +181,10 @@ namespace NJournals.Core.Views
 		
 		void BtnDeleteCheckListClick(object sender, EventArgs e)
 		{
-			
+			if(dgvCheckList.SelectedRows.Count > 0){
+				if(dgvCheckList.SelectedRows[0].Cells[1].Value != null)
+					dgvCheckList.Rows.RemoveAt(dgvCheckList.SelectedRows[0].Index);
+			}
 		}
 	}
 }

@@ -125,6 +125,7 @@ namespace NJournals.Core.Views
 			this.dgvCheckList.Name = "dgvCheckList";
 			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dgvCheckList.RowsDefaultCellStyle = dataGridViewCellStyle4;
+			this.dgvCheckList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvCheckList.Size = new System.Drawing.Size(276, 423);
 			this.dgvCheckList.TabIndex = 25;
 			this.dgvCheckList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvchecklist_cellclick);
