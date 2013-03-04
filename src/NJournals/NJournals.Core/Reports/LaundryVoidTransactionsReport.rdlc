@@ -506,7 +506,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatCurrency(Fields!TotalAmountDue.Value - Fields!TotalPayment.Value,2)</Value>
+                      <Value>="(" + FormatCurrency(Fields!TotalPayment.Value,2) + ")"</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -755,7 +755,7 @@
                       </Style>
                       <ZIndex>15</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>Balance</Value>
+                      <Value>Void Amount</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -994,7 +994,7 @@
                       </Style>
                       <ZIndex>9</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=FormatCurrency(SUM(Fields!TotalAmountDue.Value - Fields!TotalPayment.Value),2)</Value>
+                      <Value>="(" + FormatCurrency(SUM(Fields!TotalPayment.Value),2) + ")"</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
