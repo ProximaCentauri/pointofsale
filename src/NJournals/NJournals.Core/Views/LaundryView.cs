@@ -79,13 +79,14 @@ namespace NJournals.Core.Views
 				cmbCustomers.Enabled = false;
 				grpServices.Enabled = false;
 				lblchecklist.Enabled = false;
-				btncancel.Enabled = false;
+				//btncancel.Enabled = false;
 				txtdiscount.Enabled = false;
 				dataGridView1.AllowUserToDeleteRows = false;
-				btnprint.Enabled = true;
+				//btnprint.Enabled = true;
 				
 				btnDeleteDetail.Enabled = false;
 				cmbCustomers.DropDownStyle = ComboBoxStyle.DropDown;
+				EnableDisableControls(false);
 			}
 			m_presenter.SetAllServices();
 			m_presenter.SetAllCharges();
@@ -377,11 +378,11 @@ namespace NJournals.Core.Views
 					lblvoid.Visible = true;
 					lblvoid.Text = "VOIDED TRANSACTION";
 					lblvoid.ForeColor = Color.Red;
-					btndelete.Enabled = false;
+					//btndelete.Enabled = false;
 					EnableDisableControls(false);
 				}else if(!m_headerEntity.ClaimFlag){
 					lblvoid.Visible = false;
-					btndelete.Enabled = true;
+					//btndelete.Enabled = true;
 					//EnableDisableControls(true);
 				}								
 			}else
@@ -391,10 +392,11 @@ namespace NJournals.Core.Views
 		private void EnableDisableControls(bool enabled){
 			btnsaveclose.Enabled = enabled;
 			btnclaim.Enabled = enabled;
-			chkchargesList.Enabled = enabled;
-			
-			//chkpaywhenclaim.Enabled = enabled;
+			chkchargesList.Enabled = enabled;			
 			txtamttender.Enabled = enabled;
+			btndelete.Enabled = enabled;
+			btnprint.Enabled = enabled;
+			btncancel.Enabled = enabled;
 		}
 		
 		void BtnsearchClick(object sender, EventArgs e)
