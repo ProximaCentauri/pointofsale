@@ -64,7 +64,19 @@ namespace NJournals.Core.Views
 		{
 			m_productTypeEntity = productTypes;
 			BindingSource source = new BindingSource();
-			source.DataSource = m_productTypeEntity;
+			
+			DataTable tempTable = new DataTable();
+			tempTable.Columns.Add("ProductTypeID", typeof(int));
+			tempTable.Columns.Add("Name", typeof(string));
+			tempTable.Columns.Add("Description", typeof(string));
+			tempTable.Columns.Add("Price", typeof(decimal));
+			
+			foreach(RefillProductTypeDataEntity product in m_productTypeEntity)
+            {
+            	tempTable.Rows.Add(product.ProductTypeID, product.Name, product.Description, product.Price);		
+            }
+			
+			source.DataSource = tempTable;
 			this.dgvProductType.DataSource = source;
 			productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
 			formatProductTypeDataGridView();
@@ -127,7 +139,8 @@ namespace NJournals.Core.Views
 							m_presenter.SetAllRefillProductType();
 							MessageService.ShowInfo("Successfully added/updated Product Type.", "Save  or Updated Product Type");
 							dgvProductType.Refresh();
-							productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;							
+							productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;		
+							productTypeIndexChange.Clear();							
 						}
 						catch(Exception ex)
 						{
@@ -146,7 +159,7 @@ namespace NJournals.Core.Views
 			}
 			else
 			{
-				MessageService.ShowWarning("Cannot save empty product type name.");
+				MessageService.ShowWarning("Cannot save empty product type name or price.");
 			}
 		}
 		
@@ -172,6 +185,7 @@ namespace NJournals.Core.Views
 					}
 					m_presenter.SetAllRefillProductType();
 					productTypeMaxRowIndex = this.dgvProductType.RowCount - 1;
+					productTypeIndexChange.Clear();
 				}
 			}			
 		}
@@ -179,15 +193,19 @@ namespace NJournals.Core.Views
 		private List<RefillProductTypeDataEntity> GetProductTypeDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
 			List<RefillProductTypeDataEntity> productTypes = new List<RefillProductTypeDataEntity>();
+			RefillProductTypeDataEntity productType = null;
+			RefillProductTypeDataEntity newProduct = null;		
 			List<string> updatedProducts = new List<string>();
 			string errorMsg = string.Empty;
 			string name = string.Empty;
 			string description = string.Empty;
 			decimal price = 0;
+			bool isNameExists = true;
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
-				RefillProductTypeDataEntity productType = new RefillProductTypeDataEntity();
+				productType = new RefillProductTypeDataEntity();
+				newProduct = new RefillProductTypeDataEntity();
 				name = this.dgvProductType.Rows[rowIndex].Cells["Name"].Value.ToString().Trim();
 				
 				if(this.dgvProductType.Rows[rowIndex].Cells["Description"].Value != null)
@@ -195,24 +213,39 @@ namespace NJournals.Core.Views
 				
 				price = Convert.ToDecimal(this.dgvProductType.Rows[rowIndex].Cells["Price"].Value.ToString());
 				
+				newProduct = m_productTypeEntity.Find(m_productType => m_productType.Name.ToUpper() == name.ToUpper());
+				if(newProduct == null || newProduct.ProductTypeID == 0)
+					isNameExists = false;
+				
 				if(rowIndex < productTypeMaxRowIndex)
 				{
 					int productTypeID = (int)this.dgvProductType.Rows[rowIndex].Cells["ProductTypeID"].Value;
 					productType = m_productTypeEntity.Find(m_productType => m_productType.ProductTypeID == productTypeID);
 					
-					productType.Name = name;
-					productType.Description = description;
-					productType.Price = price;
-					
-					productTypes.Add(productType);
-					updatedProducts.Add(productType.Name.ToUpper());
+					if(productType.Name.ToUpper().Equals(name.ToUpper()))
+					{
+						productType.Name = name;
+						productType.Description = description;
+						productType.Price = price;						
+						productTypes.Add(productType);
+					}
+					else if(!productType.Name.ToUpper().Equals(name.ToUpper())
+					        && !isNameExists && !updatedProducts.Contains(name.ToUpper()))
+					{
+						productType.Name = name;
+						productType.Description = description;
+						productType.Price = price;						
+						productTypes.Add(productType);
+						updatedProducts.Add(productType.Name.ToUpper());
+					}
+					else
+					{
+						errorMsg += name + " , ";
+					}
 				}
 				else
 				{
-					RefillProductTypeDataEntity newProduct = new RefillProductTypeDataEntity();
-					newProduct = m_productTypeEntity.Find(m_productType => m_productType.Name.ToUpper() == name.ToUpper());
-					
-					if((newProduct == null || newProduct.ProductTypeID == 0) && !updatedProducts.Contains(name.ToUpper()))
+					if(!isNameExists && !updatedProducts.Contains(name.ToUpper()))
 					{
 						productType.Name = name;
 						productType.Description = description;
@@ -237,7 +270,9 @@ namespace NJournals.Core.Views
 			foreach(int rowIndex in rowIndexChange)
 			{
 				if(this.dgvProductType.Rows[rowIndex].Cells["Name"].Value == null ||
-				   this.dgvProductType.Rows[rowIndex].Cells["Name"].Value.ToString().Trim().Equals(string.Empty))
+				   this.dgvProductType.Rows[rowIndex].Cells["Name"].Value.ToString().Trim().Equals(string.Empty) ||
+				   this.dgvProductType.Rows[rowIndex].Cells["Price"].Value == null ||
+				   this.dgvProductType.Rows[rowIndex].Cells["Price"].Value.ToString().Trim().Equals(string.Empty))
 					return false;
 			}			
 			return true;
@@ -297,6 +332,7 @@ namespace NJournals.Core.Views
 							this.dgvRefillInventory.AllowUserToAddRows = false;
 							dgvRefillInventory.Refresh();
 							refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
+							refillInvIndexChange.Clear();
 						}
 						catch(Exception ex)
 						{
@@ -340,6 +376,7 @@ namespace NJournals.Core.Views
 					m_presenter.SetAllRefillInventory();
 					this.dgvRefillInventory.AllowUserToAddRows = false;
 					refillInvMaxRowIndex = this.dgvRefillInventory.RowCount - 1;
+					refillInvIndexChange.Clear();
 				}
 			}			
 		}
@@ -513,6 +550,9 @@ namespace NJournals.Core.Views
             this.dgvProductType.Columns["Name"].HeaderText = "Product Name";
             this.dgvProductType.Columns["Description"].HeaderText = "Product Description";
             this.dgvProductType.Columns["Price"].HeaderText = "Price";
+            this.dgvProductType.Columns["Name"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            this.dgvProductType.Columns["Description"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            this.dgvProductType.Columns["Price"].SortMode = DataGridViewColumnSortMode.NotSortable;
 		}
 		
 		void formatRefillIventoryDataGridView()
@@ -533,6 +573,12 @@ namespace NJournals.Core.Views
 			this.dgvRefillInventory.Columns["QtyReleased"].HeaderText = "QTY Released";
 			this.dgvRefillInventory.Columns["AddStocks"].HeaderText = "Add Stocks";
 			this.dgvRefillInventory.Columns["RemoveStocks"].HeaderText = "Remove Stocks";
+			this.dgvRefillInventory.Columns["Name"].SortMode = DataGridViewColumnSortMode.NotSortable;
+			this.dgvRefillInventory.Columns["TotalQty"].SortMode = DataGridViewColumnSortMode.NotSortable;
+			this.dgvRefillInventory.Columns["QtyOnHand"].SortMode = DataGridViewColumnSortMode.NotSortable;
+			this.dgvRefillInventory.Columns["QtyReleased"].SortMode = DataGridViewColumnSortMode.NotSortable;
+			this.dgvRefillInventory.Columns["AddStocks"].SortMode = DataGridViewColumnSortMode.NotSortable;
+			this.dgvRefillInventory.Columns["RemoveStocks"].SortMode = DataGridViewColumnSortMode.NotSortable;
 		}
 		
 		void SetToolTip()

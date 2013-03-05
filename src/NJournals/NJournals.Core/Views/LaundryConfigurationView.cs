@@ -68,7 +68,18 @@ namespace NJournals.Core.Views
 		public void SetAllCategories(List<LaundryCategoryDataEntity> categories){	
 			m_categoryEntity = categories;			
 			BindingSource source = new BindingSource();
-			source.DataSource = m_categoryEntity;
+			
+			DataTable tempTable = new DataTable();
+			tempTable.Columns.Add("CategoryID", typeof(int));
+			tempTable.Columns.Add("Name", typeof(string));
+			tempTable.Columns.Add("Description", typeof(string));
+			
+			foreach(LaundryCategoryDataEntity category in m_categoryEntity)
+            {
+            	tempTable.Rows.Add(category.CategoryID, category.Name, category.Description);		
+            }
+			
+			source.DataSource = tempTable;
 			dgvCategory.DataSource = source;
 			categoryMaxRowIndex = this.dgvCategory.RowCount - 1;			
 			formatCategoryDataGridView();			
@@ -78,10 +89,21 @@ namespace NJournals.Core.Views
 		{
 			m_serviceEntity = services;
             BindingSource source = new BindingSource();
-            source.DataSource = m_serviceEntity;
+  
+           	DataTable tempTable = new DataTable();
+			tempTable.Columns.Add("ServiceID", typeof(int));
+			tempTable.Columns.Add("Name", typeof(string));
+			tempTable.Columns.Add("Description", typeof(string));
+			
+            foreach(LaundryServiceDataEntity service in m_serviceEntity)
+            {
+            	tempTable.Rows.Add(service.ServiceID, service.Name, service.Description);		
+            }
+            
+            source.DataSource = tempTable;
             dgvServices.DataSource = source;
             servicesMaxRowIndex = this.dgvServices.RowCount - 1;
-            formatServicesDataGridView();                          
+            formatServicesDataGridView();  
 		}
 		
 		public void SetAllPriceScheme(List<LaundryPriceSchemeDataEntity> priceSchemes)
@@ -144,6 +166,7 @@ namespace NJournals.Core.Views
 					}
 					m_presenter.SetAllServices();
 					servicesMaxRowIndex = this.dgvServices.RowCount - 1;
+					serviceRowIndexChange.Clear();
 				}
 			}
 			
@@ -176,6 +199,7 @@ namespace NJournals.Core.Views
 							m_presenter.SetAllPriceScheme();
 							MessageService.ShowInfo("Successfully saved/updated service.", "Save or Update service");
 							servicesMaxRowIndex = this.dgvServices.RowCount - 1;
+							serviceRowIndexChange.Clear();
 							dgvServices.Refresh();	
 						}
 						catch (Exception ex)
@@ -213,37 +237,55 @@ namespace NJournals.Core.Views
 		
 		private List<LaundryServiceDataEntity> GetServiceDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
-			List<LaundryServiceDataEntity> services = new List<LaundryServiceDataEntity>();		
+			List<LaundryServiceDataEntity> services = new List<LaundryServiceDataEntity>();	
+			LaundryServiceDataEntity service = null;
+			LaundryServiceDataEntity newService =  null;		
 			List<string> updatedServices = new List<string>();		
 			string errorMsg = string.Empty;
 			string name = string.Empty;
 			string description = string.Empty;
+			bool isNameExists = true;
 
 			foreach(int rowIndex in rowIndexChange)
 			{
-				LaundryServiceDataEntity service = new LaundryServiceDataEntity();
-				
+				service = new LaundryServiceDataEntity();
+				newService = new LaundryServiceDataEntity();	
 				name = this.dgvServices.Rows[rowIndex].Cells["Name"].Value.ToString().Trim();
 				
 				if(this.dgvServices.Rows[rowIndex].Cells["Description"].Value != null)
 					description = this.dgvServices.Rows[rowIndex].Cells["Description"].Value.ToString();
 				
+				newService = m_serviceEntity.Find(m_service => m_service.Name.ToUpper() == name.ToUpper());				
+				if(newService == null || newService.ServiceID == 0)
+					isNameExists = false;
+
 				if(rowIndex <  servicesMaxRowIndex)
 				{
 					int serviceId = (int)this.dgvServices.Rows[rowIndex].Cells["ServiceID"].Value;
 					service = m_serviceEntity.Find(m_service => m_service.ServiceID == serviceId);
-					service.Name = name;
-					service.Description = description;
-					
-					services.Add(service);
-					updatedServices.Add(service.Name.ToUpper());
+	
+					if(service.Name.ToUpper().Equals(name.ToUpper()))
+					{	
+						service.Name = name;
+						service.Description = description;						
+						services.Add(service);
+					}
+					else if(!service.Name.ToUpper().Equals(name.ToUpper())
+					        && !isNameExists && !updatedServices.Contains(name.ToUpper()))
+					{	
+						service.Name = name;
+						service.Description = description;						
+						services.Add(service);
+						updatedServices.Add(service.Name.ToUpper());
+					}					
+					else
+					{
+						errorMsg += name + " , ";
+					}
 				}
 				else
-				{	
-					LaundryServiceDataEntity newService = new LaundryServiceDataEntity();	
-					newService = m_serviceEntity.Find(m_service => m_service.Name.ToUpper() == name.ToUpper());
-
-					if((newService == null || newService.ServiceID == 0) && !updatedServices.Contains(name.ToUpper()))
+				{						
+					if(!isNameExists && !updatedServices.Contains(name.ToUpper()))
 					{
 						service.Name = name;
 						service.Description = description;
@@ -308,6 +350,7 @@ namespace NJournals.Core.Views
 							m_presenter.SetAllPriceScheme();
 							MessageService.ShowInfo("Successfully saved/updated category.", "Save or Update category");
 							categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
+							categoryRowIndexChange.Clear();
 							dgvCategory.Refresh();	
 						}
 						catch(Exception ex)
@@ -364,6 +407,7 @@ namespace NJournals.Core.Views
 					}
 					m_presenter.SetAllCategories();
 					categoryMaxRowIndex = this.dgvCategory.RowCount - 1;
+					categoryRowIndexChange.Clear();
 				}
 			}			
 			
@@ -377,39 +421,58 @@ namespace NJournals.Core.Views
 		private List<LaundryCategoryDataEntity> GetCategoryDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
 			List<LaundryCategoryDataEntity> categories = new List<LaundryCategoryDataEntity>();		
+			LaundryCategoryDataEntity newCategory = null;
+			LaundryCategoryDataEntity category = null;
 			List<string> updatedCategories = new List<string>();
 			string name = string.Empty;
 			string description = string.Empty;
 			string errorMsg = string.Empty;
+			bool isNameExists = true;
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
-				LaundryCategoryDataEntity category = new LaundryCategoryDataEntity();
+				category = new LaundryCategoryDataEntity();
+				newCategory = new LaundryCategoryDataEntity();
 				name = this.dgvCategory.Rows[rowIndex].Cells["Name"].Value.ToString().Trim();
 				
 				if(this.dgvCategory.Rows[rowIndex].Cells["Description"].Value != null)
 					description = this.dgvCategory.Rows[rowIndex].Cells["Description"].Value.ToString();
 				
+				newCategory = m_categoryEntity.Find(m_category => m_category.Name.ToUpper() == name.ToUpper());
+				if(newCategory == null || newCategory.CategoryID == 0)
+					isNameExists = false;
+				
 				if(rowIndex < categoryMaxRowIndex)
 				{
 					int categoryId = (int)this.dgvCategory.Rows[rowIndex].Cells["CategoryID"].Value;
 					category = m_categoryEntity.Find(m_category => m_category.CategoryID == categoryId);
-					category.Name = name;
-					category.Description = description;
 					
-					categories.Add(category);
-					updatedCategories.Add(category.Name.ToUpper());
+					if(category.Name.ToUpper().Equals(name.ToUpper()))
+					{
+						category.Name = name;
+						category.Description = description;					
+						categories.Add(category);
+					}
+					else if(!category.Name.ToUpper().Equals(name.ToUpper())
+					        && !isNameExists && !updatedCategories.Contains(name.ToUpper()))
+					{
+						category.Name = name;
+						category.Description = description;					
+						categories.Add(category);
+						updatedCategories.Add(category.Name.ToUpper());
+					}
+					else
+					{
+						errorMsg += name + " , ";
+					}
 				}
 				else
 				{
-					LaundryCategoryDataEntity newCategory = new LaundryCategoryDataEntity();
-					newCategory = m_categoryEntity.Find(m_category => m_category.Name.ToUpper() == name.ToUpper());
-					
-					if(newCategory.CategoryID == 0 && !updatedCategories.Contains(name.ToUpper()))
+
+					if(!isNameExists && !updatedCategories.Contains(name.ToUpper()))
 					{
 						category.Name = name;
-						category.Description = description;
-					
+						category.Description = description;					
 						updatedCategories.Add(category.Name.ToUpper());
 						categories.Add(category);
 					}
@@ -672,6 +735,8 @@ namespace NJournals.Core.Views
             this.dgvCategory.Columns["Description"].Width = 429;
             this.dgvCategory.Columns["Name"].HeaderText = "Category Name";
             this.dgvCategory.Columns["Description"].HeaderText = "Category Description";
+            this.dgvCategory.Columns["Name"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            this.dgvCategory.Columns["Description"].SortMode = DataGridViewColumnSortMode.NotSortable;
 		}
 		
 		void formatServicesDataGridView()
@@ -680,7 +745,9 @@ namespace NJournals.Core.Views
             this.dgvServices.Columns["Name"].Width = 300;
             this.dgvServices.Columns["Description"].Width = 429;
             this.dgvServices.Columns["Name"].HeaderText = "Service Name";
-            this.dgvServices.Columns["Description"].HeaderText = "Service Description";  
+            this.dgvServices.Columns["Description"].HeaderText = "Service Description"; 
+			this.dgvServices.Columns["Name"].SortMode = DataGridViewColumnSortMode.NotSortable;  
+			this.dgvServices.Columns["Description"].SortMode = DataGridViewColumnSortMode.NotSortable;			
 		}
 		
 		void formatPriceSchemeDataGridView()
@@ -696,6 +763,10 @@ namespace NJournals.Core.Views
 			dgvPriceScheme.Columns["Description"].HeaderText = "Description";
 			dgvPriceScheme.Columns["Price"].Width = 100;
 			dgvPriceScheme.Columns["Price"].HeaderText = "Price";	
+			dgvPriceScheme.Columns["ServiceName"].SortMode = DataGridViewColumnSortMode.NotSortable;	
+			dgvPriceScheme.Columns["CategoryName"].SortMode = DataGridViewColumnSortMode.NotSortable;	
+			dgvPriceScheme.Columns["Description"].SortMode = DataGridViewColumnSortMode.NotSortable;	
+			dgvPriceScheme.Columns["Price"].SortMode = DataGridViewColumnSortMode.NotSortable;	
 		}
 		
 		void setToolTip()

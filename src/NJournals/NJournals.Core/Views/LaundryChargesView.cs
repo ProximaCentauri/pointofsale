@@ -55,7 +55,18 @@ namespace NJournals.Core.Views
 		{
 			m_chargesEntity = charges;
 			BindingSource source = new BindingSource();
-			source.DataSource = m_chargesEntity;
+			
+			DataTable tempTable = new DataTable();
+			tempTable.Columns.Add("ChargeID", typeof(int));
+			tempTable.Columns.Add("Name", typeof(string));
+			tempTable.Columns.Add("Amount", typeof(decimal));
+			
+			foreach(LaundryChargeDataEntity charge in m_chargesEntity)
+			{
+				tempTable.Rows.Add(charge.ChargeID, charge.Name, charge.Amount);
+			}
+			
+			source.DataSource = tempTable;
 			dgvCharges.DataSource = source;
 			chargesMaxRowIndex = dgvCharges.RowCount - 1;
 			formatChargesDataGridView();
@@ -91,6 +102,7 @@ namespace NJournals.Core.Views
 							m_presenter.SetAllLaundryCharges();
 							MessageService.ShowInfo("Successfully saved/updated charges.", "Save or Update charges");
 							chargesMaxRowIndex = dgvCharges.RowCount - 1;
+							chargesIndexChange.Clear();
 							dgvCharges.Refresh();
 						}
 						catch (Exception ex)
@@ -110,7 +122,7 @@ namespace NJournals.Core.Views
 			}
 			else
 			{
-				MessageService.ShowWarning("Cannot save empty charge name.");
+				MessageService.ShowWarning("Cannot save empty charge name or amount.");
 			}
 		}
 			
@@ -123,29 +135,46 @@ namespace NJournals.Core.Views
 			string errorMsg = string.Empty;
 			string name = string.Empty;
 			decimal price = 0;
+			bool isNameExists = true;
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
 				charge = new LaundryChargeDataEntity();
 				newCharge = new LaundryChargeDataEntity();
 				name = dgvCharges.Rows[rowIndex].Cells["Name"].Value.ToString().Trim();
-				price = Convert.ToDecimal(dgvCharges.Rows[rowIndex].Cells["Amount"].Value.ToString());				
+				price = Convert.ToDecimal(dgvCharges.Rows[rowIndex].Cells["Amount"].Value.ToString());	
+				
+				newCharge = m_chargesEntity.Find(chargesEntity => chargesEntity.Name.ToUpper() == name.ToUpper());
+				if(newCharge == null || newCharge.ChargeID == 0)
+					isNameExists = false;
 					
 				if(rowIndex < chargesMaxRowIndex)
 				{
 					int chargeID = (int)dgvCharges.Rows[rowIndex].Cells["ChargeID"].Value;
 					charge = m_chargesEntity.Find(chargesEntity => chargesEntity.ChargeID == chargeID);
-						
-					charge.Name = name;
-					charge.Amount = price;
-					charges.Add(charge);
-					updateCharges.Add(charge.Name.ToUpper());
+					
+					if(charge.Name.ToUpper().Equals(name.ToUpper()))
+					{
+						charge.Name = name;
+						charge.Amount = price;
+						charges.Add(charge);
+					}
+					else if(!charge.Name.ToUpper().Equals(name.ToUpper())
+					        && !isNameExists && !updateCharges.Contains(name.ToUpper()))
+					{						
+						charge.Name = name;
+						charge.Amount = price;
+						charges.Add(charge);
+						updateCharges.Add(charge.Name.ToUpper());
+					}
+					else
+					{
+						errorMsg += name + " , ";
+					}
 				}
 				else
-				{					
-					newCharge = m_chargesEntity.Find(chargesEntity => chargesEntity.Name.ToUpper() == name.ToUpper());
-					
-					if((newCharge == null || newCharge.ChargeID == 0) && !updateCharges.Contains(name.ToUpper()))
+				{				
+					if(!isNameExists && !updateCharges.Contains(name.ToUpper()))
 					{
 						charge.Name = name;
 						charge.Amount = price;
@@ -169,7 +198,9 @@ namespace NJournals.Core.Views
 			foreach(int rowIndex in rowIndexChange)
 			{
 				if(dgvCharges.Rows[rowIndex].Cells["Name"].Value == null ||
-				   dgvCharges.Rows[rowIndex].Cells["Name"].Value.ToString().Trim().Equals(string.Empty))
+				   dgvCharges.Rows[rowIndex].Cells["Name"].Value.ToString().Trim().Equals(string.Empty) ||
+				  dgvCharges.Rows[rowIndex].Cells["Amount"].Value == null ||
+				 dgvCharges.Rows[rowIndex].Cells["Amount"].Value.ToString().Trim().Equals(string.Empty))
 					return false;
 			}
 			return true;
@@ -210,6 +241,8 @@ namespace NJournals.Core.Views
 			dgvCharges.Columns["Amount"].HeaderText = "Price";
 			dgvCharges.Columns["Name"].Width = 200;
 			dgvCharges.Columns["Amount"].Width = 88;
+			dgvCharges.Columns["Name"].SortMode = DataGridViewColumnSortMode.NotSortable;
+			dgvCharges.Columns["Amount"].SortMode = DataGridViewColumnSortMode.NotSortable;
 		}	
 	}
 }
