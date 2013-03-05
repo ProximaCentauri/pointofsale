@@ -21,7 +21,6 @@ namespace NJournals.Common.Interfaces
 	{
 		void SaveOrUpdate(LaundryChargeDataEntity p_charge);
 		IEnumerable<LaundryChargeDataEntity> GetAllItems();
-		IEnumerable<LaundryChargeDataEntity> GetAllItemsWithVoid();
 		LaundryChargeDataEntity GetByName(string p_name);
 		void Delete(LaundryChargeDataEntity p_charge);
 		void Update(LaundryChargeDataEntity p_charge);

@@ -27,7 +27,6 @@ namespace NJournals.Core.Views
 	{
 		LaundryChargesViewPresenter m_presenter;
 		List<LaundryChargeDataEntity> m_chargesEntity;
-		List<LaundryChargeDataEntity> c_chargesEntity;
 		List<int> chargesIndexChange = new List<int>();
 		int chargesMaxRowIndex = -1;
 		
@@ -49,11 +48,10 @@ namespace NJournals.Core.Views
 			setButtonImages();
 			Resource.formatAlternatingRows(dgvCharges);
 			m_presenter = new LaundryChargesViewPresenter(this);
-			m_presenter.SetAllValidLaundryCharges();
 			m_presenter.SetAllLaundryCharges();
 		}
-		
-		public void SetAllValidLaundryCharges(List<LaundryChargeDataEntity> charges)
+
+		public void SetAllLaundryCharges(List<LaundryChargeDataEntity> charges)
 		{
 			m_chargesEntity = charges;
 			BindingSource source = new BindingSource();
@@ -62,12 +60,6 @@ namespace NJournals.Core.Views
 			chargesMaxRowIndex = dgvCharges.RowCount - 1;
 			formatChargesDataGridView();
 		}
-		
-		public void SetAllLaundryCharges(List<LaundryChargeDataEntity> charges)
-		{
-			c_chargesEntity = charges;
-		}
-
 		
 		#region Charges
 		private void dgvCharges_CellValueChanged(object sender,
@@ -96,7 +88,6 @@ namespace NJournals.Core.Views
 						try
 						{
 							m_presenter.SaveOrUpdateCharge(charges);
-							m_presenter.SetAllValidLaundryCharges();
 							m_presenter.SetAllLaundryCharges();
 							MessageService.ShowInfo("Successfully saved/updated charges.", "Save or Update charges");
 							chargesMaxRowIndex = dgvCharges.RowCount - 1;
@@ -122,37 +113,12 @@ namespace NJournals.Core.Views
 				MessageService.ShowWarning("Cannot save empty charge name.");
 			}
 		}
-		
-		void BtnDeleteChargesClick(object sender, EventArgs e)
-		{
-			LaundryChargeDataEntity charge = new LaundryChargeDataEntity();
 			
-			if(dgvCharges.SelectedRows.Count > 0)
-			{
-				if(MessageService.ShowYesNo("Are you sure you want to remove the selected charges from the list?", "Remove Charges"))
-				{
-					foreach(DataGridViewRow currentRow in dgvCharges.SelectedRows)
-					{
-						if(currentRow.Index < chargesMaxRowIndex)
-						{
-							int chargeID = (int)this.dgvCharges.Rows[currentRow.Index].Cells["ChargeID"].Value;
-							charge = m_chargesEntity.Find(m_charge => m_charge.ChargeID == chargeID);
-							charge.VoidFlag = true;								
-							m_presenter.SaveOrUpdateCharge(charge);
-						}							
-						if(!this.dgvCharges.Rows[currentRow.Index].IsNewRow)
-							dgvCharges.Rows.Remove(this.dgvCharges.Rows[currentRow.Index]);	
-					}
-					m_presenter.SetAllValidLaundryCharges();
-					m_presenter.SetAllLaundryCharges();
-					chargesMaxRowIndex = dgvCharges.RowCount - 1;
-				}
-			}
-		}
-		
 		private List<LaundryChargeDataEntity> GetChargesDataValueChange(List<int> rowIndexChange, out string errorMessage)
 		{
 			List<LaundryChargeDataEntity> charges = new List<LaundryChargeDataEntity>();
+			LaundryChargeDataEntity charge = null;
+			LaundryChargeDataEntity newCharge = null;
 			List<string> updateCharges = new List<string>();
 			string errorMsg = string.Empty;
 			string name = string.Empty;
@@ -160,43 +126,32 @@ namespace NJournals.Core.Views
 			
 			foreach(int rowIndex in rowIndexChange)
 			{
-				LaundryChargeDataEntity charge = new LaundryChargeDataEntity();
+				charge = new LaundryChargeDataEntity();
+				newCharge = new LaundryChargeDataEntity();
 				name = dgvCharges.Rows[rowIndex].Cells["Name"].Value.ToString().Trim();
-				price = Convert.ToDecimal(dgvCharges.Rows[rowIndex].Cells["Amount"].Value.ToString());
-				
+				price = Convert.ToDecimal(dgvCharges.Rows[rowIndex].Cells["Amount"].Value.ToString());				
+					
 				if(rowIndex < chargesMaxRowIndex)
 				{
 					int chargeID = (int)dgvCharges.Rows[rowIndex].Cells["ChargeID"].Value;
 					charge = m_chargesEntity.Find(chargesEntity => chargesEntity.ChargeID == chargeID);
-					
+						
 					charge.Name = name;
 					charge.Amount = price;
-					charge.VoidFlag = false;
 					charges.Add(charge);
 					updateCharges.Add(charge.Name.ToUpper());
 				}
 				else
-				{
-					LaundryChargeDataEntity newCharge = new LaundryChargeDataEntity();
-					newCharge = c_chargesEntity.Find(chargesEntity => chargesEntity.Name.ToUpper() == name.ToUpper());
+				{					
+					newCharge = m_chargesEntity.Find(chargesEntity => chargesEntity.Name.ToUpper() == name.ToUpper());
 					
-					if((newCharge == null || newCharge.ChargeID == 0) && !updateCharges.Contains(name))
+					if((newCharge == null || newCharge.ChargeID == 0) && !updateCharges.Contains(name.ToUpper()))
 					{
 						charge.Name = name;
 						charge.Amount = price;
-						charge.VoidFlag = false;
 						
 						updateCharges.Add(charge.Name.ToUpper());
 						charges.Add(charge);
-					}
-					else if(newCharge.ChargeID != 0 && !updateCharges.Contains(name))
-					{
-						newCharge.Name = name;
-						newCharge.Amount = price;
-						newCharge.VoidFlag = false;
-						
-						updateCharges.Add(newCharge.Name.ToUpper());
-						charges.Add(newCharge);
 					}
 					else
 					{
@@ -245,15 +200,12 @@ namespace NJournals.Core.Views
 		
 		void setButtonImages()
 		{
-			Resource.setImage(this.btnSaveCharges,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
-			Resource.setImage(this.btnDeleteCharges,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
-			
+			Resource.setImage(this.btnSaveCharges,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");		
 		}		
 		
 		private void formatChargesDataGridView()
 		{
 			dgvCharges.Columns["ChargeID"].Visible = false;
-			dgvCharges.Columns["VoidFlag"].Visible = false;
 			dgvCharges.Columns["Name"].HeaderText = "Charge Name";
 			dgvCharges.Columns["Amount"].HeaderText = "Price";
 			dgvCharges.Columns["Name"].Width = 200;

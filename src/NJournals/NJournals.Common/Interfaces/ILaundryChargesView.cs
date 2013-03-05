@@ -18,6 +18,5 @@ namespace NJournals.Common.Interfaces
 	public interface ILaundryChargesView : IView
 	{
 		void SetAllLaundryCharges(List<LaundryChargeDataEntity> charges);
-		void SetAllValidLaundryCharges(List<LaundryChargeDataEntity> charges);
 	}
 }
