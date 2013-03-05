@@ -108,6 +108,7 @@ namespace NJournals.Core.Views
 			// 
 			// dgvCheckList
 			// 
+			this.dgvCheckList.AllowUserToDeleteRows = false;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
 			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -171,6 +172,7 @@ namespace NJournals.Core.Views
 			this.btnDeleteCheckList.Size = new System.Drawing.Size(35, 23);
 			this.btnDeleteCheckList.TabIndex = 27;
 			this.btnDeleteCheckList.UseVisualStyleBackColor = true;
+			this.btnDeleteCheckList.Visible = false;
 			this.btnDeleteCheckList.Click += new System.EventHandler(this.BtnDeleteCheckListClick);
 			// 
 			// btnSaveCheckList

@@ -152,7 +152,7 @@ namespace NJournals.Core.Views
 		private void calculateQty(){
 			txttotal.Text = "0";
 			foreach(DataGridViewRow row in dgvCheckList.Rows){
-				if(row.Cells[0].Value != null){
+				if(row.Cells[0].Value != null && row.Cells[2].Value != null){
 					if(!string.IsNullOrEmpty(row.Cells[2].Value.ToString())){
 						txttotal.Text = (int.Parse(txttotal.Text) + int.Parse(row.Cells[2].Value.ToString())).ToString();
 					}	

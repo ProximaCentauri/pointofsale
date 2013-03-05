@@ -31,13 +31,15 @@ namespace NJournals.Common.Util
 	
 			using (StreamWriter sw = new StreamWriter(path + "\\NJournals" + DateTime.Now.ToString("MM-dd-yy") + ".log", true)) {		
 					
-				if (type != LogType.INFO && 
+				sw.WriteLine("[" + type.ToString() + "] " + data);
+				
+				/*if (type != LogType.INFO && 
 					type != LogType.WARNING &&
 					type != LogType.ERR){
 					sw.WriteLine("[" + type.ToString() + "] " + data);
 				} else {
 					sw.WriteLine(data);
-				}
+				}*/
 			}
 		}
 	}
@@ -46,6 +48,6 @@ namespace NJournals.Common.Util
 	{
 		INFO = 1,
 		WARNING = 2,
-		ERR = 3
+		ERROR = 3
 	}
 }

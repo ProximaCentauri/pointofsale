@@ -88,7 +88,8 @@ namespace NJournals.Core.Presenter
 		public void SaveClicked(){
 			m_headerEntity = m_view.ProcessHeaderDataEntity();
 			if(SaveDaySummary(m_headerEntity)){
-				UpdateRefillCustomerInventory(m_headerEntity);
+				if(!UpdateRefillCustomerInventory(m_headerEntity))
+					return;
 				if(MessageService.ShowYesNo("Successfully saved entries." + Environment.NewLine +
 				                            "Do you want to print this transaction with JO number: " + m_headerEntity.RefillHeaderID.ToString().PadLeft(6, '0') + "?" ,"Information")){
 					try{
@@ -101,28 +102,34 @@ namespace NJournals.Core.Presenter
 			}
 		}
 		
-		private void UpdateRefillCustomerInventory(RefillHeaderDataEntity headerEntity){
-			RefillInventoryHeaderDataEntity inventoryHeader = new RefillInventoryHeaderDataEntity();
-			RefillCustInventoryHeaderDataEntity customerInvHeader = m_customerInvDao.GetByCustomer(headerEntity.Customer);
-			if(customerInvHeader == null){
-				customerInvHeader = new RefillCustInventoryHeaderDataEntity();
-				customerInvHeader.Customer = headerEntity.Customer;	
-			}			
-			foreach(RefillDetailDataEntity detail in headerEntity.DetailEntities){
-				if(detail.ProductType.Name.StartsWith("5 Gal",true,null)){
-					inventoryHeader = m_refillInvDao.GetByName("5 Gal");
-					if(inventoryHeader != null){
-						inventoryHeader.QtyOnHand -= detail.StoreBottleQty;
-						inventoryHeader.QtyReleased += detail.StoreBottleQty;
-						customerInvHeader.CapsOnHand += detail.StoreCapQty;
-						customerInvHeader.BottlesOnHand += detail.StoreBottleQty;						
-						m_refillInvDao.Update(inventoryHeader);
-						m_customerInvDao.SaveOrUpdate(customerInvHeader);
-						UpdateCapsQty(detail, customerInvHeader, false);
-						UpdateInventoryDetail(inventoryHeader);
-					}		
-				}
-			}			
+		private bool UpdateRefillCustomerInventory(RefillHeaderDataEntity headerEntity){
+			try{
+				RefillInventoryHeaderDataEntity inventoryHeader = new RefillInventoryHeaderDataEntity();
+				RefillCustInventoryHeaderDataEntity customerInvHeader = m_customerInvDao.GetByCustomer(headerEntity.Customer);
+				if(customerInvHeader == null){
+					customerInvHeader = new RefillCustInventoryHeaderDataEntity();
+					customerInvHeader.Customer = headerEntity.Customer;	
+				}			
+				foreach(RefillDetailDataEntity detail in headerEntity.DetailEntities){
+					if(detail.ProductType.Name.StartsWith("5 Gal",true,null)){
+						inventoryHeader = m_refillInvDao.GetByName("5 Gal");
+						if(inventoryHeader != null){
+							inventoryHeader.QtyOnHand -= detail.StoreBottleQty;
+							inventoryHeader.QtyReleased += detail.StoreBottleQty;
+							customerInvHeader.CapsOnHand += detail.StoreCapQty;
+							customerInvHeader.BottlesOnHand += detail.StoreBottleQty;						
+							m_refillInvDao.Update(inventoryHeader);
+							m_customerInvDao.SaveOrUpdate(customerInvHeader);
+							UpdateCapsQty(detail, customerInvHeader, false);
+							UpdateInventoryDetail(inventoryHeader);
+						}		
+					}
+				}			
+			}catch(Exception ex){
+				MessageService.ShowError("Unexpected exception occured while processing your request.\nPlease see log file to technical details","Error", ex);
+				return false;
+			}		
+			return true;
 		}
 		
 		public void UpdateInventoryDetail(RefillInventoryHeaderDataEntity p_inventoryHeader){
@@ -163,8 +170,6 @@ namespace NJournals.Core.Presenter
 		
 		public void VoidTransaction(){
 			try{
-				
-					
 				m_OriginalHeaderEntity.VoidFlag = true;
 				m_refillDao.Update(m_OriginalHeaderEntity);
 				RefillDaySummaryDataEntity daySummary = m_summaryDao.GetByDayId(m_OriginalHeaderEntity.DaySummary.DayID);
@@ -191,7 +196,7 @@ namespace NJournals.Core.Presenter
 				}		
 				MessageService.ShowInfo("Successfully voiding transaction with JO number: " + m_OriginalHeaderEntity.RefillHeaderID.ToString().PadLeft(6, '0'));
 			}catch(Exception ex){
-				MessageService.ShowError("There is a problem while void this transaction. \n Please see the log file for technical details." ,"Error in Voiding Transaction", ex);
+				MessageService.ShowError("There is a problem while voiding this transaction.\nPlease see the log file for technical details." ,"Error in Voiding Transaction", ex);
 			}			
 		}
 		
@@ -237,7 +242,7 @@ namespace NJournals.Core.Presenter
 				m_refillDao.SaveOrUpdate(headerEntity);
 				return true;
 			}catch(Exception ex){
-				MessageService.ShowError("There's been a problem while processing this request.", "Error in saving", ex);
+				MessageService.ShowError("Unexpected exception occured while saving your entries.\nPlease see log file to technical details","Error in Saving", ex);
 			}	
 			return false;
 		}
@@ -272,10 +277,8 @@ namespace NJournals.Core.Presenter
 					PrintService.PrintRefillSlip(GetPrinterInfo(), m_headerEntity, GetCompanyInfo());
 				}catch(Exception ex){
 					MessageService.ShowError("Unexpected exception has occurred during printing. Please verify whether printer is installed and online. \n Please check error logs for details.", "Error in Printing", ex);
-				}				
-
+				}		
 			}			
-			
 		}
 		
 		private CompanyDataEntity GetCompanyInfo(){
