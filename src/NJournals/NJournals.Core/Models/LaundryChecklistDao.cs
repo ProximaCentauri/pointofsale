@@ -69,6 +69,17 @@ namespace NJournals.Core.Models
 			}
 		}
 		
+		public LaundryChecklistDataEntity GetById(int p_id)
+		{
+			using(var session = NHibernateHelper.OpenSession())
+			{
+                var query = session.Query<LaundryChecklistDataEntity>()
+                    .Where(x => x.ChecklistID == p_id)
+                    .SingleOrDefault();
+				return query;
+			}
+		}
+		
 		public void Delete(LaundryChecklistDataEntity p_checklist)
 		{
 			using(var session = NHibernateHelper.OpenSession())

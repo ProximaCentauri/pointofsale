@@ -49,6 +49,7 @@ namespace NJournals.Core.Views
 			this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnDeleteCheckList = new System.Windows.Forms.Button();
 			this.btnSaveCheckList = new System.Windows.Forms.Button();
 			this.btncancel = new System.Windows.Forms.Button();
@@ -121,7 +122,8 @@ namespace NJournals.Core.Views
 			this.dgvCheckList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 									this.Column1,
 									this.Column2,
-									this.Column3});
+									this.Column3,
+									this.Column4});
 			this.dgvCheckList.Location = new System.Drawing.Point(12, 61);
 			this.dgvCheckList.Name = "dgvCheckList";
 			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -131,6 +133,7 @@ namespace NJournals.Core.Views
 			this.dgvCheckList.TabIndex = 25;
 			this.dgvCheckList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvchecklist_cellclick);
 			this.dgvCheckList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvChecklist_cellvalidating);
+			this.dgvCheckList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChecklist_valuechanged);
 			// 
 			// Column1
 			// 
@@ -160,6 +163,12 @@ namespace NJournals.Core.Views
 			this.Column3.HeaderText = "Item #";
 			this.Column3.Name = "Column3";
 			this.Column3.Width = 78;
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Column4";
+			this.Column4.Name = "Column4";
+			this.Column4.Visible = false;
 			// 
 			// btnDeleteCheckList
 			// 
@@ -229,6 +238,7 @@ namespace NJournals.Core.Views
 			this.Controls.Add(this.btnok);
 			this.Controls.Add(this.txtjonumber);
 			this.Controls.Add(this.label1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "CheckListView";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "CheckListView";
@@ -237,6 +247,7 @@ namespace NJournals.Core.Views
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 		private System.Windows.Forms.Button btnprint;
 		private System.Windows.Forms.Button btncancel;
 		private System.Windows.Forms.Button btnSaveCheckList;
