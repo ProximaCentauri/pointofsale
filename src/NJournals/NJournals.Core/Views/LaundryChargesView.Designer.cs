@@ -32,14 +32,13 @@ namespace NJournals.Core.Views
 		/// <summary>
 		/// This method is required for Windows Forms designer support.
 		/// Do not change the method contents inside the source code editor. The Forms designer might
-		/// not be able to load this method if it was changed manually.
+		/// not be able to load this method if it was changed manudally.
 		/// </summary>
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dgvCharges = new System.Windows.Forms.DataGridView();
-			this.btnDeleteCharges = new System.Windows.Forms.Button();
 			this.btnSaveCharges = new System.Windows.Forms.Button();
 			this.btnClose = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCharges)).BeginInit();
@@ -62,23 +61,8 @@ namespace NJournals.Core.Views
 			this.dgvCharges.RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvCharges.Size = new System.Drawing.Size(331, 209);
 			this.dgvCharges.TabIndex = 0;
-			this.dgvCharges.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(dgvCharges_CellValueChanged);
 			this.dgvCharges.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(dgvCharges_cellValidating);
-			// 
-			// btnDeleteCharges
-			// 
-			this.btnDeleteCharges.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnDeleteCharges.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btnDeleteCharges.FlatAppearance.BorderSize = 0;
-			this.btnDeleteCharges.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnDeleteCharges.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnDeleteCharges.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnDeleteCharges.Location = new System.Drawing.Point(349, 76);
-			this.btnDeleteCharges.Name = "btnDeleteCharges";
-			this.btnDeleteCharges.Size = new System.Drawing.Size(35, 23);
-			this.btnDeleteCharges.TabIndex = 18;
-			this.btnDeleteCharges.UseVisualStyleBackColor = false;
-			this.btnDeleteCharges.Click += new System.EventHandler(this.BtnDeleteChargesClick);
+			this.dgvCharges.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(dgvCharges_CellValueChanged);
 			// 
 			// btnSaveCharges
 			// 
@@ -113,7 +97,6 @@ namespace NJournals.Core.Views
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
 			this.ClientSize = new System.Drawing.Size(410, 316);
 			this.Controls.Add(this.btnClose);
-			this.Controls.Add(this.btnDeleteCharges);
 			this.Controls.Add(this.btnSaveCharges);
 			this.Controls.Add(this.dgvCharges);
 			this.Name = "LaundryChargesView";
@@ -124,7 +107,6 @@ namespace NJournals.Core.Views
 		}
 		private System.Windows.Forms.Button btnClose;
 		private System.Windows.Forms.Button btnSaveCharges;
-		private System.Windows.Forms.Button btnDeleteCharges;
 		private System.Windows.Forms.DataGridView dgvCharges;
 	}
 }

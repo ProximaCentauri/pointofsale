@@ -28,15 +28,9 @@ namespace NJournals.Core.Presenter
 			m_laundryChargeDao = new LaundryChargeDao();
 		}
 		
-		public void SetAllValidLaundryCharges()
-		{
-			List<LaundryChargeDataEntity> charges = m_laundryChargeDao.GetAllItems() as List<LaundryChargeDataEntity>;
-			m_view.SetAllValidLaundryCharges(charges);
-		}
-		
 		public void SetAllLaundryCharges()
 		{
-			List<LaundryChargeDataEntity> charges = m_laundryChargeDao.GetAllItemsWithVoid() as List<LaundryChargeDataEntity>;
+			List<LaundryChargeDataEntity> charges = m_laundryChargeDao.GetAllItems() as List<LaundryChargeDataEntity>;
 			m_view.SetAllLaundryCharges(charges);
 		}
 		
@@ -53,18 +47,6 @@ namespace NJournals.Core.Presenter
 			{
 				throw ex;
 			}
-		}
-		
-		public void SaveOrUpdateCharge(LaundryChargeDataEntity charge)
-		{
-			try
-			{
-				m_laundryChargeDao.SaveOrUpdate(charge);
-			}
-			catch(Exception ex)
-			{
-				throw ex;
-			}
-		}
+		}		
 	}
 }
