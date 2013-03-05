@@ -24,6 +24,7 @@ namespace NJournals.Core.Presenter
 		ICompanyDao m_companyDao;
 		IPrinterDao m_printerDao;
 		ILaundryDao m_laundryDao;
+		List<LaundryChecklistDataEntity> m_checklistEntities = null;
 		
 		public CheckListViewPresenter(ICheckListView p_view, ILaundryChecklistDao p_checklistDao)
 		{
@@ -71,6 +72,19 @@ namespace NJournals.Core.Presenter
 		
 		public LaundryHeaderDataEntity GetLaundryHeader(int p_id){
 			return m_laundryDao.GetByID(p_id);
+		}
+			
+		public void SaveClicked(){
+			try{
+				m_checklistEntities = m_view.ProcessCheckList();
+				foreach(LaundryChecklistDataEntity entity in m_checklistEntities){
+					m_checklistDao.SaveOrUpdate(entity);
+				}
+				
+				MessageService.ShowInfo("Successfully save your entries.");
+			}catch(Exception ex){
+				MessageService.ShowError("Unexpected exception occured while saving your entries.\nPlease see log file to technical details","Error in Saving", ex);
+			}			
 		}
 	}
 }

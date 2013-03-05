@@ -46,13 +46,13 @@ namespace NJournals.Core.Views
 			this.label2 = new System.Windows.Forms.Label();
 			this.txttotal = new System.Windows.Forms.TextBox();
 			this.dgvCheckList = new System.Windows.Forms.DataGridView();
+			this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnDeleteCheckList = new System.Windows.Forms.Button();
 			this.btnSaveCheckList = new System.Windows.Forms.Button();
 			this.btncancel = new System.Windows.Forms.Button();
 			this.btnprint = new System.Windows.Forms.Button();
-			this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCheckList)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -132,57 +132,6 @@ namespace NJournals.Core.Views
 			this.dgvCheckList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvchecklist_cellclick);
 			this.dgvCheckList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvChecklist_cellvalidating);
 			// 
-			// btnDeleteCheckList
-			// 
-			this.btnDeleteCheckList.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btnDeleteCheckList.FlatAppearance.BorderSize = 0;
-			this.btnDeleteCheckList.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnDeleteCheckList.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnDeleteCheckList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnDeleteCheckList.Location = new System.Drawing.Point(294, 147);
-			this.btnDeleteCheckList.Name = "btnDeleteCheckList";
-			this.btnDeleteCheckList.Size = new System.Drawing.Size(35, 23);
-			this.btnDeleteCheckList.TabIndex = 27;
-			this.btnDeleteCheckList.UseVisualStyleBackColor = true;
-			this.btnDeleteCheckList.Visible = false;
-			this.btnDeleteCheckList.Click += new System.EventHandler(this.BtnDeleteCheckListClick);
-			// 
-			// btnSaveCheckList
-			// 
-			this.btnSaveCheckList.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btnSaveCheckList.FlatAppearance.BorderSize = 0;
-			this.btnSaveCheckList.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnSaveCheckList.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
-			this.btnSaveCheckList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSaveCheckList.Location = new System.Drawing.Point(294, 118);
-			this.btnSaveCheckList.Name = "btnSaveCheckList";
-			this.btnSaveCheckList.Size = new System.Drawing.Size(35, 23);
-			this.btnSaveCheckList.TabIndex = 26;
-			this.btnSaveCheckList.UseVisualStyleBackColor = true;
-			// 
-			// btncancel
-			// 
-			this.btncancel.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btncancel.Location = new System.Drawing.Point(212, 561);
-			this.btncancel.Name = "btncancel";
-			this.btncancel.Size = new System.Drawing.Size(83, 23);
-			this.btncancel.TabIndex = 28;
-			this.btncancel.Text = "Cancel";
-			this.btncancel.UseVisualStyleBackColor = true;
-			this.btncancel.Click += new System.EventHandler(this.BtncancelClick);
-			// 
-			// btnprint
-			// 
-			this.btnprint.Enabled = false;
-			this.btnprint.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnprint.Location = new System.Drawing.Point(12, 561);
-			this.btnprint.Name = "btnprint";
-			this.btnprint.Size = new System.Drawing.Size(83, 23);
-			this.btnprint.TabIndex = 29;
-			this.btnprint.Text = "Print";
-			this.btnprint.UseVisualStyleBackColor = true;
-			this.btnprint.Click += new System.EventHandler(this.BtnprintClick);
-			// 
 			// Column1
 			// 
 			this.Column1.HeaderText = "";
@@ -211,6 +160,58 @@ namespace NJournals.Core.Views
 			this.Column3.HeaderText = "Item #";
 			this.Column3.Name = "Column3";
 			this.Column3.Width = 78;
+			// 
+			// btnDeleteCheckList
+			// 
+			this.btnDeleteCheckList.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnDeleteCheckList.FlatAppearance.BorderSize = 0;
+			this.btnDeleteCheckList.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteCheckList.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnDeleteCheckList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDeleteCheckList.Location = new System.Drawing.Point(294, 147);
+			this.btnDeleteCheckList.Name = "btnDeleteCheckList";
+			this.btnDeleteCheckList.Size = new System.Drawing.Size(35, 23);
+			this.btnDeleteCheckList.TabIndex = 27;
+			this.btnDeleteCheckList.UseVisualStyleBackColor = true;
+			this.btnDeleteCheckList.Visible = false;
+			this.btnDeleteCheckList.Click += new System.EventHandler(this.BtnDeleteCheckListClick);
+			// 
+			// btnSaveCheckList
+			// 
+			this.btnSaveCheckList.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnSaveCheckList.FlatAppearance.BorderSize = 0;
+			this.btnSaveCheckList.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnSaveCheckList.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+			this.btnSaveCheckList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSaveCheckList.Location = new System.Drawing.Point(294, 118);
+			this.btnSaveCheckList.Name = "btnSaveCheckList";
+			this.btnSaveCheckList.Size = new System.Drawing.Size(35, 23);
+			this.btnSaveCheckList.TabIndex = 26;
+			this.btnSaveCheckList.UseVisualStyleBackColor = true;
+			this.btnSaveCheckList.Click += new System.EventHandler(this.BtnSaveCheckListClick);
+			// 
+			// btncancel
+			// 
+			this.btncancel.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btncancel.Location = new System.Drawing.Point(212, 561);
+			this.btncancel.Name = "btncancel";
+			this.btncancel.Size = new System.Drawing.Size(83, 23);
+			this.btncancel.TabIndex = 28;
+			this.btncancel.Text = "Cancel";
+			this.btncancel.UseVisualStyleBackColor = true;
+			this.btncancel.Click += new System.EventHandler(this.BtncancelClick);
+			// 
+			// btnprint
+			// 
+			this.btnprint.Enabled = false;
+			this.btnprint.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnprint.Location = new System.Drawing.Point(12, 561);
+			this.btnprint.Name = "btnprint";
+			this.btnprint.Size = new System.Drawing.Size(83, 23);
+			this.btnprint.TabIndex = 29;
+			this.btnprint.Text = "Print";
+			this.btnprint.UseVisualStyleBackColor = true;
+			this.btnprint.Click += new System.EventHandler(this.BtnprintClick);
 			// 
 			// CheckListView
 			// 

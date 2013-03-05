@@ -44,6 +44,7 @@ namespace NJournals.Core.Views
 		public event EventHandler SelectChecklist;
 		private int m_jonumber;
 		private LaundryHeaderDataEntity m_headerEntity;
+		private List<LaundryChecklistDataEntity> m_checklistEntities = new List<LaundryChecklistDataEntity>();
 		
 		void CheckListViewLoad(object sender, EventArgs e)
 		{
@@ -101,7 +102,8 @@ namespace NJournals.Core.Views
 		}
 		
 		public void SetAllCheckList(List<LaundryChecklistDataEntity> entities){
-			foreach(LaundryChecklistDataEntity entity in entities){				
+			m_checklistEntities = entities;
+			foreach(LaundryChecklistDataEntity entity in m_checklistEntities){				
 				dgvCheckList.Rows.Add(false, entity.Name, "0");
 			}
 		}
@@ -140,8 +142,7 @@ namespace NJournals.Core.Views
 				}
 			}
 			
-			calculateQty();
-			
+			calculateQty();			
 		}
 		
 		private void calculateQty(){
@@ -180,6 +181,32 @@ namespace NJournals.Core.Views
 				if(dgvCheckList.SelectedRows[0].Cells[1].Value != null)
 					dgvCheckList.Rows.RemoveAt(dgvCheckList.SelectedRows[0].Index);
 			}
+		}
+		
+		void BtnSaveCheckListClick(object sender, EventArgs e)
+		{
+			
+			if(dgvCheckList.Rows.Count-1 > m_checklistEntities.Count){
+				if(MessageService.ShowYesNo("Are you sure you want to save your new entries?")){
+					m_presenter.SaveClicked();
+				}
+			}
+		}
+		
+		public List<LaundryChecklistDataEntity> ProcessCheckList(){
+			List<LaundryChecklistDataEntity> checklist = new List<LaundryChecklistDataEntity>();
+			foreach(DataGridViewRow row in dgvCheckList.Rows){
+				if(row.Cells[1].Value != null){
+					string name = row.Cells[1].Value.ToString();
+					LaundryChecklistDataEntity entity = m_presenter.getChecklistByName(name);
+					if(entity == null){
+						entity = new LaundryChecklistDataEntity();
+						entity.Name = name;		
+						checklist.Add(entity);
+					}
+				}		
+			}
+			return checklist;
 		}
 	}
 }
