@@ -127,17 +127,12 @@ namespace NJournals.Core.Views
 			DataGridViewColumn itemQty = dgvCheckList.Columns[e.ColumnIndex];
 			
 			if(itemQty == this.Column3 && dgvCheckList.IsCurrentCellInEditMode){
-				//if(dgvCheckList.Rows[e.RowIndex].Cells[0].Value != null){
-				//	if(bool.Parse(dgvCheckList.Rows[e.RowIndex].Cells[0].Value.ToString())){
-						int val;					
-						if(!int.TryParse(Convert.ToString(e.FormattedValue), out val)){
-							e.Cancel = true;
-							MessageService.ShowWarning("Invalid value being inputted.","Invalid Value");
-							dgvCheckList.CurrentCell = dgvCheckList.Rows[e.RowIndex].Cells[2];				
-						}
-							
-				//	}
-				//}				
+				int val;					
+				if(!int.TryParse(Convert.ToString(e.FormattedValue), out val)){
+					e.Cancel = true;
+					MessageService.ShowWarning("Invalid value being inputted.","Invalid Value");
+					dgvCheckList.CurrentCell = dgvCheckList.Rows[e.RowIndex].Cells[2];				
+				}		
 			}
 			if(itemQty == this.Column1){
 				if(!Convert.ToBoolean(e.FormattedValue)){
@@ -152,19 +147,19 @@ namespace NJournals.Core.Views
 		private void calculateQty(){
 			txttotal.Text = "0";
 			foreach(DataGridViewRow row in dgvCheckList.Rows){
-				if(row.Cells[0].Value != null && row.Cells[2].Value != null){
+				if(row.Cells[0].Value != null && row.Cells[2].Value != null){					
 					if(!string.IsNullOrEmpty(row.Cells[2].Value.ToString())){
 						txttotal.Text = (int.Parse(txttotal.Text) + int.Parse(row.Cells[2].Value.ToString())).ToString();
 					}	
 				}
+				
 			}					
 		}
 		
 		void dgvchecklist_cellclick(object sender, DataGridViewCellEventArgs e)
 		{			
-			calculateQty();
+			calculateQty();			
 		}		
-		
 		
 		void BtnprintClick(object sender, EventArgs e)
 		{
