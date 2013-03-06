@@ -227,6 +227,8 @@ namespace NJournals.Core
 			lblcustomerList.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/customer.png");
 			lblcustomerList.BackgroundImageLayout = ImageLayout.None;
 			//refilling
+			lblRefill.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/refill_logo.png");
+			lblRefill.BackgroundImageLayout = ImageLayout.None;
 			lblRefNew.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/bottle_new.png");
 			lblRefNew.BackgroundImageLayout = ImageLayout.None;
 			lblrefdel.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/refill_search.png");
@@ -238,6 +240,8 @@ namespace NJournals.Core
 			lblRefConfig.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/config.png");
 			lblRefConfig.BackgroundImageLayout = ImageLayout.None;
 			//laundry
+			lblLaundry.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/laundry_logo.jpg");
+			lblLaundry.BackgroundImageLayout = ImageLayout.None;
 			lbllaundryNew.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/basket_new.png");
 			lbllaundryNew.BackgroundImageLayout = ImageLayout.None;
 			lbllaundryClaim.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Directory.GetCurrentDirectory() + "/images/basket_claim.png");

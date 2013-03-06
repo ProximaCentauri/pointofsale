@@ -67,8 +67,8 @@ namespace NJournals.Core
 			this.lstOpenWindows = new System.Windows.Forms.ListBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.lbllaundryNew = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
+			this.lblLaundry = new System.Windows.Forms.Label();
+			this.lblRefill = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -97,8 +97,8 @@ namespace NJournals.Core
 			this.panel1.Controls.Add(this.lstOpenWindows);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.lbllaundryNew);
-			this.panel1.Controls.Add(this.label2);
-			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.lblLaundry);
+			this.panel1.Controls.Add(this.lblRefill);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
@@ -193,7 +193,7 @@ namespace NJournals.Core
 			// 
 			this.lblcustomerList.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblcustomerList.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblcustomerList.Location = new System.Drawing.Point(-1, 53);
+			this.lblcustomerList.Location = new System.Drawing.Point(-1, 24);
 			this.lblcustomerList.Name = "lblcustomerList";
 			this.lblcustomerList.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
 			this.lblcustomerList.Size = new System.Drawing.Size(192, 32);
@@ -207,7 +207,7 @@ namespace NJournals.Core
 			// 
 			this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 			this.label11.ForeColor = System.Drawing.Color.Red;
-			this.label11.Location = new System.Drawing.Point(2, 534);
+			this.label11.Location = new System.Drawing.Point(2, 539);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(191, 1);
 			this.label11.TabIndex = 24;
@@ -216,7 +216,7 @@ namespace NJournals.Core
 			// 
 			this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 			this.label12.ForeColor = System.Drawing.Color.Red;
-			this.label12.Location = new System.Drawing.Point(1, 495);
+			this.label12.Location = new System.Drawing.Point(1, 500);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(191, 1);
 			this.label12.TabIndex = 25;
@@ -225,7 +225,7 @@ namespace NJournals.Core
 			// 
 			this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 			this.label10.ForeColor = System.Drawing.Color.Red;
-			this.label10.Location = new System.Drawing.Point(2, 456);
+			this.label10.Location = new System.Drawing.Point(2, 461);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(191, 1);
 			this.label10.TabIndex = 24;
@@ -234,7 +234,7 @@ namespace NJournals.Core
 			// 
 			this.lbllaundryConfig.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lbllaundryConfig.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryConfig.Location = new System.Drawing.Point(1, 499);
+			this.lbllaundryConfig.Location = new System.Drawing.Point(1, 504);
 			this.lbllaundryConfig.Name = "lbllaundryConfig";
 			this.lbllaundryConfig.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
 			this.lbllaundryConfig.Size = new System.Drawing.Size(191, 32);
@@ -248,7 +248,7 @@ namespace NJournals.Core
 			// 
 			this.lbllaundryReports.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lbllaundryReports.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryReports.Location = new System.Drawing.Point(1, 460);
+			this.lbllaundryReports.Location = new System.Drawing.Point(1, 465);
 			this.lbllaundryReports.Name = "lbllaundryReports";
 			this.lbllaundryReports.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
 			this.lbllaundryReports.Size = new System.Drawing.Size(191, 32);
@@ -262,7 +262,7 @@ namespace NJournals.Core
 			// 
 			this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
 			this.label9.ForeColor = System.Drawing.Color.Red;
-			this.label9.Location = new System.Drawing.Point(3, 417);
+			this.label9.Location = new System.Drawing.Point(3, 422);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(191, 1);
 			this.label9.TabIndex = 23;
@@ -271,7 +271,7 @@ namespace NJournals.Core
 			// 
 			this.lbllaundryClaim.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lbllaundryClaim.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryClaim.Location = new System.Drawing.Point(1, 421);
+			this.lbllaundryClaim.Location = new System.Drawing.Point(1, 426);
 			this.lbllaundryClaim.Name = "lbllaundryClaim";
 			this.lbllaundryClaim.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
 			this.lbllaundryClaim.Size = new System.Drawing.Size(191, 32);
@@ -330,7 +330,7 @@ namespace NJournals.Core
 			this.lstOpenWindows.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstOpenWindows.FormattingEnabled = true;
 			this.lstOpenWindows.ItemHeight = 14;
-			this.lstOpenWindows.Location = new System.Drawing.Point(0, 580);
+			this.lstOpenWindows.Location = new System.Drawing.Point(0, 573);
 			this.lstOpenWindows.Name = "lstOpenWindows";
 			this.lstOpenWindows.Size = new System.Drawing.Size(192, 168);
 			this.lstOpenWindows.TabIndex = 0;
@@ -341,7 +341,7 @@ namespace NJournals.Core
 			this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(120)))), ((int)(((byte)(0)))));
 			this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.ForeColor = System.Drawing.Color.White;
-			this.label3.Location = new System.Drawing.Point(-2, 554);
+			this.label3.Location = new System.Drawing.Point(-2, 545);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(196, 23);
 			this.label3.TabIndex = 4;
@@ -352,7 +352,7 @@ namespace NJournals.Core
 			// 
 			this.lbllaundryNew.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lbllaundryNew.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbllaundryNew.Location = new System.Drawing.Point(1, 382);
+			this.lbllaundryNew.Location = new System.Drawing.Point(1, 387);
 			this.lbllaundryNew.Name = "lbllaundryNew";
 			this.lbllaundryNew.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
 			this.lbllaundryNew.Size = new System.Drawing.Size(191, 32);
@@ -362,29 +362,27 @@ namespace NJournals.Core
 			this.lbllaundryNew.MouseLeave += new System.EventHandler(this.label_mouseleave);
 			this.lbllaundryNew.MouseHover += new System.EventHandler(this.label_mousehover);
 			// 
-			// label2
+			// lblLaundry
 			// 
-			this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(147)))), ((int)(((byte)(152)))));
-			this.label2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.ForeColor = System.Drawing.Color.White;
-			this.label2.Location = new System.Drawing.Point(-2, 346);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(200, 33);
-			this.label2.TabIndex = 3;
-			this.label2.Text = "LAUNDRY";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.lblLaundry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(147)))), ((int)(((byte)(152)))));
+			this.lblLaundry.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblLaundry.ForeColor = System.Drawing.Color.White;
+			this.lblLaundry.Location = new System.Drawing.Point(-2, 322);
+			this.lblLaundry.Name = "lblLaundry";
+			this.lblLaundry.Size = new System.Drawing.Size(198, 60);
+			this.lblLaundry.TabIndex = 3;
+			this.lblLaundry.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// label1
+			// lblRefill
 			// 
-			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(147)))), ((int)(((byte)(152)))));
-			this.label1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.Color.White;
-			this.label1.Location = new System.Drawing.Point(-2, 90);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(198, 33);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "REFILLING";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.lblRefill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(147)))), ((int)(((byte)(152)))));
+			this.lblRefill.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblRefill.ForeColor = System.Drawing.Color.White;
+			this.lblRefill.Location = new System.Drawing.Point(-2, 62);
+			this.lblRefill.Name = "lblRefill";
+			this.lblRefill.Size = new System.Drawing.Size(198, 60);
+			this.lblRefill.TabIndex = 2;
+			this.lblRefill.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// MainFormStation
 			// 
@@ -423,8 +421,8 @@ namespace NJournals.Core
 		private System.Windows.Forms.Label lbllaundryReports;
 		private System.Windows.Forms.Label lbllaundryConfig;
 		private System.Windows.Forms.ListBox lstOpenWindows;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label lblRefill;
+		private System.Windows.Forms.Label lblLaundry;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Panel panel1;
 		

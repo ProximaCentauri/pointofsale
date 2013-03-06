@@ -550,6 +550,7 @@ namespace NJournals.Core.Views
 							this.dgvPriceScheme.AllowUserToAddRows = false;
 							dgvPriceScheme.Refresh();
 							priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
+							priceSchemeRowIndexChange.Clear();
 						}
 						catch(Exception ex)
 						{
@@ -595,6 +596,7 @@ namespace NJournals.Core.Views
 					m_presenter.SetAllPriceScheme();
 				    this.dgvPriceScheme.AllowUserToAddRows = false;
 				    priceSchemeMaxRowIndex = this.dgvPriceScheme.RowCount - 1;
+				    priceSchemeRowIndexChange.Clear();
 				}				
 			}
 		}
