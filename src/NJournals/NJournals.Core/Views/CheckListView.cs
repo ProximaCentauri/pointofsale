@@ -92,13 +92,22 @@ namespace NJournals.Core.Views
 		protected virtual void OnSelectChecklist(EventArgs e){
 			if(SelectChecklist != null){
 				SelectChecklist(this, e);
-				if(itemsIndex.Count > 0){
+				if(itemsIndex.Count > 0 && !ValidateEmptyCellValues()){
 					if(MessageService.ShowYesNo("You have made changes to the checklist. Do you want to save your changes?")){
 						m_presenter.SaveClicked();
 					}
 				}
 				this.Close();
 			}
+		}
+		
+		private bool ValidateEmptyCellValues(){
+			foreach(int index in itemsIndex){
+				if(dgvCheckList.Rows[index].Cells[1].Value.ToString().Trim().Equals(string.Empty)){
+					return true;
+				}
+			}
+			return false;
 		}
 		
 		public void SetAllCheckList(List<LaundryChecklistDataEntity> entities){
