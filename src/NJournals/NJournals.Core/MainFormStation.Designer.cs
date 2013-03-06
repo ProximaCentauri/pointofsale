@@ -308,6 +308,7 @@ namespace NJournals.Core
 			this.lblcompany.Size = new System.Drawing.Size(166, 23);
 			this.lblcompany.TabIndex = 17;
 			this.lblcompany.Text = "Company Logo HERE";
+			this.lblcompany.Visible = false;
 			// 
 			// lblRefNew
 			// 
@@ -365,6 +366,7 @@ namespace NJournals.Core
 			// lblLaundry
 			// 
 			this.lblLaundry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(147)))), ((int)(((byte)(152)))));
+			this.lblLaundry.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblLaundry.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblLaundry.ForeColor = System.Drawing.Color.White;
 			this.lblLaundry.Location = new System.Drawing.Point(-2, 322);
@@ -376,6 +378,7 @@ namespace NJournals.Core
 			// lblRefill
 			// 
 			this.lblRefill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(147)))), ((int)(((byte)(152)))));
+			this.lblRefill.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblRefill.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblRefill.ForeColor = System.Drawing.Color.White;
 			this.lblRefill.Location = new System.Drawing.Point(-2, 62);

@@ -36,21 +36,13 @@ namespace NJournals.Core.Views
 		}
 		
 		private CompanyDataEntity m_companyEntity;
-		private List<CompanyDataEntity> m_companyEntities;
 		private List<PrinterDataEntity> m_printers;
 		private PrinterDataEntity m_printerEntity;
 		private CompanyViewPresenter m_presenter;
 		
-		public void SetCompanyInfo(List<CompanyDataEntity> p_entities){
-			m_companyEntities = p_entities;
-			if(m_companyEntities.Count <= 0){
-				m_companyEntity = new CompanyDataEntity();
-				m_companyEntities.Add(m_companyEntity);
-			}
+		public void SetCompanyInfo(CompanyDataEntity p_entity){
+			m_companyEntity = p_entity;
 			
-			foreach(CompanyDataEntity entity in m_companyEntities){
-				m_companyEntity = entity;	
-			}
 			txtname.Text = m_companyEntity.Name == null ? "" : m_companyEntity.Name;
 			txtaddress.Text = m_companyEntity.Address == null ? "" : m_companyEntity.Address;
 			txtcontact.Text = m_companyEntity.ContactNumber == null ? "" : m_companyEntity.ContactNumber;

@@ -47,7 +47,8 @@ namespace NJournals.Core
 		public event EventHandler SelectRefillingClaim;
 		public event EventHandler SelectRefillingReport;
 		public event EventHandler SelectRefillingConfiguration;
-		public event EventHandler SelectCompany;
+		public event EventHandler SelectRefillCompany;
+		public event EventHandler SelectLaundryCompany;
 		
 		private CustomerListView customerListView = new CustomerListView();
 		private LaundryNewView laundryView = new LaundryNewView();
@@ -64,8 +65,13 @@ namespace NJournals.Core
 			ShowSingletonForm(customerListView);
 		}
 		
-		public void ShowCompanyView(){
-			companyView.SetTitle("Company Information");
+		public void ShowRefillCompanyView(){
+			companyView.SetTitle("Refill Company Information");
+			ShowSingletonForm(companyView);
+		}
+		
+		public void ShowLaundryCompanyView(){
+			companyView.SetTitle("Laundry Company Information");
 			ShowSingletonForm(companyView);
 		}
 		
@@ -199,9 +205,15 @@ namespace NJournals.Core
 			}
 		}
 		
-		protected virtual void OnSelectCompany(EventArgs e){
-			if(SelectCompany != null){
-				SelectCompany(this, e);
+		protected virtual void OnSelectRefillCompany(EventArgs e){
+			if(SelectRefillCompany != null){
+				SelectRefillCompany(this, e);
+			}
+		}
+		
+		protected virtual void OnSelectLaundryCompany(EventArgs e){
+			if(SelectLaundryCompany != null){
+				SelectLaundryCompany(this, e);
 			}
 		}
 		
@@ -277,7 +289,8 @@ namespace NJournals.Core
 			this.lblRefClaim.Click += delegate { OnSelectRefillingClaim(null); };
 			this.lblRefConfig.Click += delegate { OnSelectRefillingConfig(null); };
 			this.lblRefReports.Click += delegate { OnSelectRefillingReports(null); };
-			this.lblcompany.Click += delegate { OnSelectCompany(null); };
+			this.lblRefill.Click += delegate { OnSelectRefillCompany(null); };
+			this.lblLaundry.Click += delegate { OnSelectLaundryCompany(null); };
 		}
 		
 		void FormViewClose(object sender, FormClosedEventArgs e){

@@ -30,7 +30,8 @@ namespace NJournals.Core.Presenter
 			this.m_view.SelectLaundryConfiguration += delegate { ShowLaundryConfigurationView(); };
 			this.m_view.SelectRefillingConfiguration += delegate { ShowRefillingConfigurationView(); };
 			this.m_view.SelectCustomerList += delegate { ShowCustomerListView(); };
-			this.m_view.SelectCompany += delegate { ShowCompanyView(); };
+			this.m_view.SelectLaundryCompany += delegate { ShowLaundryCompanyView(); };
+			this.m_view.SelectRefillCompany += delegate { ShowRefillCompanyView(); };
 		}
 		
 		public void ShowLaundryNewView(){
@@ -73,8 +74,12 @@ namespace NJournals.Core.Presenter
 			this.m_view.ShowCustomerListView();
 		}
 		
-		public void ShowCompanyView(){
-			this.m_view.ShowCompanyView();
+		public void ShowRefillCompanyView(){
+			this.m_view.ShowRefillCompanyView();
+		}
+		
+		public void ShowLaundryCompanyView(){
+			this.m_view.ShowLaundryCompanyView();
 		}
 	}
 }
