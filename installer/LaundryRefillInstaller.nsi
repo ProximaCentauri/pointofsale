@@ -3,28 +3,28 @@
 !include nsProcess.nsh
 !include Sections.nsh
 
-!define APPNAME "SSCO_Application_Performance_Assessment_Tool"
-!define COMPANYNAME "NCR"
+!define APPNAME "LaundryRefill"
+!define COMPANYNAME "ZeroPoint Solutions"
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 0
-!define VERSIONHOTFIX 5
+!define VERSIONHOTFIX 0
 !define VERSIONBUILD 0
 
-!define DOT_MAJOR "2"
-!define DOT_MINOR "0"
+!define DOT_MAJOR "3"
+!define DOT_MINOR "5"
 
 !define LVM_GETITEMCOUNT 0x1004
 !define LVM_GETITEMTEXT 0x102D
 
 !define SHELLFOLDERS "Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
 # Name of our application
-Name "SSCO Application Performance Assessment Tool"
+Name "Laundry and Refill Application"
 
 # define name of installer
-outFile "PerfCheck${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}.exe"
+outFile "LaundryRefill${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}.exe"
  
 # define installation directory
-installDir "$PROGRAMFILES\SSCO Application Performance Assessment Tool"
+installDir "$DESKTOP\LaundryRefill"
 
 # Set the text which prompts the user to enter the installation directory
 DirText "Please choose a directory to which you'd like to install this application."
@@ -34,7 +34,7 @@ XPStyle on
 
 #Interface Configuration
 !define MUI_HEADERIMAGE
-!define MUI_HEADERIMAGE_BITMAP "Images\NCR-logo-sm.bmp" /resizetofit; optional
+!define MUI_HEADERIMAGE_BITMAP "" /resizetofit; optional
 !define MUI_ABORTWARNING
 
 # Add branding image to the installer (an image placeholder on the side).
@@ -91,49 +91,42 @@ section "install" SEC_1
 	Pop $1 ;current time (xx:xx:xx)
 	DetailPrint "Start Time: $1"
 	
-	ReadRegStr $0 HKCU "${SHELLFOLDERS}" AppData
-	StrCmp $0 "" 0 +2
-	  ReadRegStr $0 HKLM "${SHELLFOLDERS}" "Common AppData"
-	StrCmp $0 "" 0 +2
-	  StrCpy $0 "$WINDIR\Application Data"
-	IfFileExists "$0\PerfCheck\reports\*.csv" 0 +4
-	MessageBox MB_ICONEXCLAMATION|MB_YESNO "Existing reports found. $\r$\nWould you like to keep reports folder?" IDYES +2 IDNO 0
-		Delete $0\PerfCheck\reports\*.*
+	;ReadRegStr $0 HKCU "${SHELLFOLDERS}" AppData
+	;StrCmp $0 "" 0 +2
+	 ; ReadRegStr $0 HKLM "${SHELLFOLDERS}" "Common AppData"
+	;StrCmp $0 "" 0 +2
+	 ; StrCpy $0 "$WINDIR\Application Data"
+	;IfFileExists "$0\PerfCheck\reports\*.csv" 0 +4
+	;MessageBox MB_ICONEXCLAMATION|MB_YESNO "Existing reports found. $\r$\nWould you like to keep reports folder?" IDYES +2 IDNO 0
+	;	Delete $0\PerfCheck\reports\*.*
 	
 	;Delete $0\PerfCheck\reports\*.*
-	Delete $0\PerfCheck\logs\*.*
-	RMDir $0\PerfCheck\reports
-	RMDir $0\PerfCheck\logs	
-	RMDir $0\PerfCheck
 	
-    # first, delete the uninstaller
-	Delete "$INSTDIR\PerfCheckUninstall.exe"
-    Delete "$INSTDIR\Ionic.Zip.dll"
-	Delete $INSTDIR\PerfCheck.exe
-	Delete $INSTDIR\Install.log
-	Delete $INSTDIR\unziplist.lst
-	Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc
-	Delete $INSTDIR\config\TescoUK-NCR39\*.*
-	Delete $INSTDIR\config\TescoUK-NCR40\*.*
-	Delete $INSTDIR\config\WalMart-NCR45\*.*
-	Delete $INSTDIR\config\Base-NCR50\*.*
-	Delete $INSTDIR\config\Base-NCR45\*.*
-	Delete $INSTDIR\logs\*.*
-	Delete $INSTDIR\dictionaries\*.*
+	;RMDir $0\PerfCheck\reports
+	;RMDir $0\PerfCheck\logs	
+	Delete $0\LaundryRefill\images\*.*
+	RMDir $0\LaundryRefill\images
+	Delete "$INSTDIR\LaundryRefillUninstall.exe"
 	Delete $INSTDIR\*.*
-
-	;RMDir $INSTDIR\config\TescoUK-TescoUK-NCR39
-	;RMDir $INSTDIR\config\NCR40
-	RMDir $INSTDIR\config
-	RMDir $INSTDIR\logs
-	RMDir $INSTDIR\dictionaries
 	RMDir $INSTDIR
 	
-	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool"
-	DeleteRegKey HKCU "LogAnal"
-	DeleteRegKey HKCU "PerfCheck"
-	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\AppCompatFlags\Layers"
-	
+    # first, delete the uninstaller
+	;Delete "$INSTDIR\LaundryRefillUninstall.exe"
+    ;Delete "$INSTDIR\Ionic.Zip.dll"
+	;Delete $INSTDIR\PerfCheck.exe
+	;Delete $INSTDIR\Install.log
+	;Delete $INSTDIR\unziplist.lst
+	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc
+	;Delete $INSTDIR\config\TescoUK-NCR39\*.*
+	;Delete $INSTDIR\config\TescoUK-NCR40\*.*
+	;Delete $INSTDIR\config\WalMart-NCR45\*.*
+	;Delete $INSTDIR\config\Base-NCR50\*.*
+	;Delete $INSTDIR\config\Base-NCR45\*.*
+	;Delete $INSTDIR\logs\*.*
+	;Delete $INSTDIR\dictionaries\*.*
+	;Delete $INSTDIR\*.*
+
+		
 	# set the installation directory as the destination for the following actions
 	setOutPath $INSTDIR
 	
@@ -145,23 +138,11 @@ section "install" SEC_1
 
 	# set the installation directory as the destination for the following actions
 	;setOutPath $INSTDIR\dictionaries
-	setOutPath $INSTDIR\config\TescoUK-NCR39
-	File ../config/TescoUK-NCR39\*.*
-	
-	setOutPath $INSTDIR\config\TescoUK-NCR40
-	File ../config/TescoUK-NCR40\*.*
-	
-	setOutPath $INSTDIR\config\WalMart-NCR45
-	File ../config/WalMart-NCR45\*.*
-	
-	setOutPath $INSTDIR\config\Base-NCR50
-	File ../config/Base-NCR50\*.*
-	
-	setOutPath $INSTDIR\config\Base-NCR45
-	File ../config/Base-NCR45\*.*
+	setOutPath $INSTDIR\images
+	File ../bin/debug/images\*.*
 	
 	# create the uninstaller
-	WriteUninstaller "$INSTDIR\PerfCheckUninstall.exe"
+	WriteUninstaller "$INSTDIR\LaundryRefillUninstall.exe"
  
 	# create a shortcut in the start menu programs directory
 	# point the new shortcut at the program uninstaller
