@@ -18,13 +18,13 @@
 
 !define SHELLFOLDERS "Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
 # Name of our application
-Name "SSCO Application Performance Assessment Tool"
+Name "Laundry and Refill Application"
 
 # define name of installer
-outFile "PerfCheck${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}.exe"
+outFile "LaundryRefill${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}.exe"
  
 # define installation directory
-installDir "$PROGRAMFILES\SSCO Application Performance Assessment Tool"
+installDir "c:\Laundry and Refill Application"
 
 # Set the text which prompts the user to enter the installation directory
 DirText "Please choose a directory to which you'd like to install this application."
@@ -96,42 +96,30 @@ section "install" SEC_1
 	  ReadRegStr $0 HKLM "${SHELLFOLDERS}" "Common AppData"
 	StrCmp $0 "" 0 +2
 	  StrCpy $0 "$WINDIR\Application Data"
-	IfFileExists "$0\PerfCheck\reports\*.csv" 0 +4
-	MessageBox MB_ICONEXCLAMATION|MB_YESNO "Existing reports found. $\r$\nWould you like to keep reports folder?" IDYES +2 IDNO 0
-		Delete $0\PerfCheck\reports\*.*
+	;IfFileExists "$0\PerfCheck\reports\*.csv" 0 +4
+	;MessageBox MB_ICONEXCLAMATION|MB_YESNO "Existing reports found. $\r$\nWould you like to keep reports folder?" IDYES +2 IDNO 0
+	;	Delete $0\PerfCheck\reports\*.*
 	
 	;Delete $0\PerfCheck\reports\*.*
-	Delete $0\PerfCheck\logs\*.*
-	RMDir $0\PerfCheck\reports
-	RMDir $0\PerfCheck\logs	
-	RMDir $0\PerfCheck
+	;Delete $0\PerfCheck\logs\*.*
+	;RMDir $0\PerfCheck\reports
+	;RMDir $0\PerfCheck\logs	
+	;RMDir $0\PerfCheck
 	
     # first, delete the uninstaller
-	Delete "$INSTDIR\PerfCheckUninstall.exe"
-    Delete "$INSTDIR\Ionic.Zip.dll"
-	Delete $INSTDIR\PerfCheck.exe
-	Delete $INSTDIR\Install.log
-	Delete $INSTDIR\unziplist.lst
-	Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc
-	Delete $INSTDIR\config\TescoUK-NCR39\*.*
-	Delete $INSTDIR\config\TescoUK-NCR40\*.*
-	Delete $INSTDIR\config\WalMart-NCR45\*.*
-	Delete $INSTDIR\config\Base-NCR50\*.*
-	Delete $INSTDIR\config\Base-NCR45\*.*
-	Delete $INSTDIR\logs\*.*
-	Delete $INSTDIR\dictionaries\*.*
+	;Delete "$INSTDIR\LaundryRefillUninstall.exe"
+    ;Delete "$INSTDIR\Ionic.Zip.dll"
+	;Delete $INSTDIR\PerfCheck.exe
+	;Delete $INSTDIR\Install.log
+	;Delete $INSTDIR\unziplist.lst
+	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc
+	Delete $INSTDIR\images\*.*
+	RMDir $INSTDIR\images
 	Delete $INSTDIR\*.*
-
-	;RMDir $INSTDIR\config\TescoUK-TescoUK-NCR39
-	;RMDir $INSTDIR\config\NCR40
-	RMDir $INSTDIR\config
-	RMDir $INSTDIR\logs
-	RMDir $INSTDIR\dictionaries
 	RMDir $INSTDIR
 	
-	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool"
-	DeleteRegKey HKCU "LogAnal"
-	DeleteRegKey HKCU "PerfCheck"
+	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\LaundryRefillApplication"
+	DeleteRegKey HKCU "LaundryRefill"
 	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\AppCompatFlags\Layers"
 	
 	# set the installation directory as the destination for the following actions
@@ -145,8 +133,8 @@ section "install" SEC_1
 
 	# set the installation directory as the destination for the following actions
 	;setOutPath $INSTDIR\dictionaries
-	setOutPath $INSTDIR\config\TescoUK-NCR39
-	File ../config/TescoUK-NCR39\*.*
+	setOutPath $INSTDIR\images
+	File ../images\*.*
 	
 	setOutPath $INSTDIR\config\TescoUK-NCR40
 	File ../config/TescoUK-NCR40\*.*
