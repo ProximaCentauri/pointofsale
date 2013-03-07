@@ -3,15 +3,17 @@
 !include nsProcess.nsh
 !include Sections.nsh
 
-!define APPNAME "SSCO_Application_Performance_Assessment_Tool"
-!define COMPANYNAME "NCR"
+!define APPNAME "Laundry_Refill_Applicaton"
+!define COMPANYNAME "NoisyWorks Solution"
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 0
-!define VERSIONHOTFIX 5
+!define VERSIONHOTFIX 0
 !define VERSIONBUILD 0
+!define APPDIR "C:\LaundryRefill"
+!define APPEXE "..\src\NJournals\NJournals.Core\bin\Release"
 
-!define DOT_MAJOR "2"
-!define DOT_MINOR "0"
+!define DOT_MAJOR "3"
+!define DOT_MINOR "5"
 
 !define LVM_GETITEMCOUNT 0x1004
 !define LVM_GETITEMTEXT 0x102D
@@ -24,7 +26,7 @@ Name "Laundry and Refill Application"
 outFile "LaundryRefill${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}.exe"
  
 # define installation directory
-installDir "c:\Laundry and Refill Application"
+;installDir "c:\Laundry and Refill Application"
 
 # Set the text which prompts the user to enter the installation directory
 DirText "Please choose a directory to which you'd like to install this application."
@@ -34,7 +36,7 @@ XPStyle on
 
 #Interface Configuration
 !define MUI_HEADERIMAGE
-!define MUI_HEADERIMAGE_BITMAP "Images\NCR-logo-sm.bmp" /resizetofit; optional
+;!define MUI_HEADERIMAGE_BITMAP "Images\NCR-logo-sm.bmp" /resizetofit; optional
 !define MUI_ABORTWARNING
 
 # Add branding image to the installer (an image placeholder on the side).
@@ -75,7 +77,7 @@ ${EndIf}
 section "install" SEC_1
 
 	# Check to see if already installed
-	IfFileExists $INSTDIR 0 +2
+	IfFileExists ${APPDIR} 0 +2
 	MessageBox MB_YESNO "Directory already exist. Would you like to overwrite the existing directory? $\n$\nPress Yes to continue installation else Press No to stop installation" IDNO end
 	
 	Call Today
@@ -113,42 +115,44 @@ section "install" SEC_1
 	;Delete $INSTDIR\Install.log
 	;Delete $INSTDIR\unziplist.lst
 	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc
-	Delete $INSTDIR\images\*.*
-	RMDir $INSTDIR\images
-	Delete $INSTDIR\*.*
-	RMDir $INSTDIR
+	Delete ${APPDIR}\images\*.*
+	RMDir ${APPDIR}\images
+	Delete ${APPDIR}\*.*
+	RMDir ${APPDIR}
 	
 	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\LaundryRefillApplication"
 	DeleteRegKey HKCU "LaundryRefill"
 	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\AppCompatFlags\Layers"
 	
 	# set the installation directory as the destination for the following actions
-	setOutPath $INSTDIR
+	setOutPath ${APPDIR}
 	
 	File ../lib\*.*
-	setOutPath $INSTDIR\docs
+	File ${APPEXE}\LaundryRefill.exe
+	setOutPath ${APPDIR}\docs
 	File ../docs\*.*
 	;CreateDirectory $0\logs
 
 	# set the installation directory as the destination for the following actions
 	;setOutPath $INSTDIR\dictionaries
-	setOutPath $INSTDIR\images
+	setOutPath ${APPDIR}\images
 	File ../images\*.*
 
 	# create the uninstaller
-	WriteUninstaller "$INSTDIR\LaundryRefillUninstall.exe"
+	WriteUninstaller "${APPDIR}\LaundryRefillUninstall.exe"
  
 	# create a shortcut in the start menu programs directory
 	# point the new shortcut at the program uninstaller
-	CreateDirectory "$SMPROGRAMS\SSCO Application Performance Assessment Tool"
-	CreateShortCut "$SMPROGRAMS\SSCO Application Performance Assessment Tool\PerfCheck.lnk" "$INSTDIR\PerfCheck.exe"
-	CreateShortCut "$SMPROGRAMS\SSCO Application Performance Assessment Tool\Users_Guide.lnk" "$INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc"
-	CreateShortCut "$SMPROGRAMS\SSCO Application Performance Assessment Tool\PerfCheckUninstall.lnk" "$INSTDIR\PerfCheckUninstall.exe"
+	
+	CreateDirectory "$SMPROGRAMS\Laundry Refill Application"
+	CreateShortCut "$SMPROGRAMS\Laundry Refill Application\LaundryRefill.lnk" "$INSTDIR\LaundryRefill.exe"
+	CreateShortCut "$SMPROGRAMS\Laundry Refill Application\Users_Guide.lnk" "$INSTDIR\User Manual.docx"
+	CreateShortCut "$SMPROGRAMS\Laundry Refill Application\LaundryRefillUninstall.lnk" "$INSTDIR\LaundryRefillUninstall.exe"
 		
 	# create registry keys for add/remove programs in control panel
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool" "DisplayName" ${APPNAME}
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool" "DisplayVersion" ${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool" "UninstallString" $INSTDIR\PerfCheckUninstall.exe
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Laundry Refill Application" "DisplayName" ${APPNAME}
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Laundry Refill Application" "DisplayVersion" ${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Laundry Refill Application" "UninstallString" $INSTDIR\LaundryRefillUninstall.exe
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\AppCompatFlags\Layers" "$INSTDIR" "WINXPSP2"
 
 	Push finish ;signifies to finish & report completion time
@@ -176,54 +180,35 @@ section "uninstall" SEC_2
 	  ReadRegStr $0 HKLM "${SHELLFOLDERS}" "Common AppData"
 	StrCmp $0 "" 0 +2
 	  StrCpy $0 "$WINDIR\Application Data"
-	IfFileExists "$0\PerfCheck\reports\*.csv" 0 +4
-	MessageBox MB_ICONEXCLAMATION|MB_YESNO "Existing reports found. $\r$\nWould you like to keep reports folder?" IDYES +2 IDNO 0
-		Delete $0\PerfCheck\reports\*.*
+	;IfFileExists "$0\PerfCheck\reports\*.csv" 0 +4
+;	MessageBox MB_ICONEXCLAMATION|MB_YESNO "Existing reports found. $\r$\nWould you like to keep reports folder?" IDYES +2 IDNO 0
+	;	Delete $0\PerfCheck\reports\*.*
 	
 	;Delete $0\PerfCheck\reports\*.*
-	Delete $0\PerfCheck\logs\*.*
-	RMDir $0\PerfCheck\reports
-	RMDir $0\PerfCheck\logs
-	RMDir $0\PerfCheck
+	Delete $0\NJournals\logs\*.*
+	
+	RMDir $0\NJournals\logs
+	RMDir $0\NJournals
 	
     # first, delete the uninstaller
-	Delete "$INSTDIR\PerfCheckUninstall.exe"
-    Delete "$INSTDIR\Ionic.Zip.dll"
-	Delete $INSTDIR\PerfCheck.exe
-	Delete $INSTDIR\Install.log
-	Delete $INSTDIR\unziplist.lst
+	;Delete "${APPDIR}\PerfCheckUninstall.exe"
+    Delete ${APPDIR}\images\*.*
+	RMDir ${APPDIR}\images
+	Delete ${APPDIR}\*.*
+	RMDir ${APPDIR}
 	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.0UsersGuide.doc
-	Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc	
-	Delete $INSTDIR\config\TescoUK-NCR39\*.*
-	Delete $INSTDIR\config\TescoUK-NCR40\*.*
-	Delete $INSTDIR\config\WalMart-NCR45\*.*
-	Delete $INSTDIR\config\Base-NCR50\*.*
-	Delete $INSTDIR\config\Base-NCR45\*.*
-	Delete $INSTDIR\logs\*.*
-	Delete $INSTDIR\dictionaries\*.*
-	Delete $INSTDIR\*.*
-
-	RMDir $INSTDIR\config\TescoUK-NCR39
-	RMDir $INSTDIR\config\TescoUK-NCR40
-	RMDir $INSTDIR\config\WalMart-NCR45
-	RMDir $INSTDIR\config\Base-NCR50
-	RMDir $INSTDIR\config\Base-NCR45
-	RMDir $INSTDIR\config
-	RMDir $INSTDIR\logs
-	RMDir $INSTDIR\dictionaries
-	RMDir $INSTDIR
+	
 		
     # second, remove the link from the start menu
-	Delete "$SMPROGRAMS\SSCO Application Performance Assessment Tool\PerfCheck.lnk"
-	Delete "$SMPROGRAMS\SSCO Application Performance Assessment Tool\Users_Guide.lnk"
-    Delete "$SMPROGRAMS\SSCO Application Performance Assessment Tool\PerfCheckUninstall.lnk"
+	Delete "$SMPROGRAMS\Laundry Refill Application\LaundryRefill.lnk"
+	Delete "$SMPROGRAMS\Laundry Refill Application\Users_Guide.lnk"
+    Delete "$SMPROGRAMS\Laundry Refill Application\LaundryRefillUninstall.lnk"
 
-	RMDir "$SMPROGRAMS\SSCO Application Performance Assessment Tool"
+	RMDir "$SMPROGRAMS\Laundry Refill Application"
 	
 	# Remove uninstaller information from the registry
-	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool"
-	DeleteRegKey HKCU "LogAnal"
-	DeleteRegKey HKCU "PerfCheck"
+	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Laundry Refill Application"
+	DeleteRegKey HKCU "LaundryRefill"
 	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\AppCompatFlags\Layers"
 
 # uninstaller section end
@@ -238,9 +223,9 @@ Function .onInit
 	Call IsDotNetInstalled
 	#Check if product is running.
 	App_Running_Check:
-	${nsProcess::FindProcess} "PerfCheck.exe" $R0
+	${nsProcess::FindProcess} "LaundryRefill.exe" $R0
 	${If} $R0 == 0
-		MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "SSCO Log File Analysis Utility is running. $\nPlease close the application before continuing." /SD IDCANCEL IDRETRY App_Running_Check
+		MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "Laundry Refill Application is running. $\nPlease close the application before continuing." /SD IDCANCEL IDRETRY App_Running_Check
 		Quit
 	${EndIf}
 	#Check if product is already installed.
@@ -251,15 +236,15 @@ Function un.onInit
 	SetShellVarContext all
  
 	#Verify the uninstaller - last chance to back out
-	MessageBox MB_OKCANCEL "Permanantly remove SSCO Application Performance Assessment Tool?" IDOK next
+	MessageBox MB_OKCANCEL "Permanantly remove Laundry Refill Application?" IDOK next
 		Abort
 	next:
 	!insertmacro VerifyUserIsAdmin
 
 	App_Running_Check:
-	${nsProcess::FindProcess} "PerfCheck.exe" $R0
+	${nsProcess::FindProcess} "LaundryRefill.exe" $R0
 	${If} $R0 == 0
-		MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "SSCO Log File Analysis Utility is running. $\nPlease close the application before continuing." /SD IDCANCEL IDRETRY App_Running_Check
+		MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "Laundry Refill Application is running. $\nPlease close the application before continuing." /SD IDCANCEL IDRETRY App_Running_Check
 		Quit
 	${EndIf} 
 FunctionEnd
@@ -272,7 +257,7 @@ Function IsProductInstalled
 	;Abort
 	;exit:
 	ClearErrors
-	ReadRegDWORD $2 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool" "DisplayVersion"
+	ReadRegDWORD $2 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Laundry Refill Application" "DisplayVersion"
 	StrCmp $2 "" exit
 	
 	Push $2
@@ -281,15 +266,15 @@ Function IsProductInstalled
 	Pop $R0
 	
 	${If} $R0 == 0
-		MessageBox MB_OKCANCEL "SSCO Log File Analysis Utility v$2 is already installed. Install anyway?" IDOK exit
+		MessageBox MB_OKCANCEL "Laundry Refill Application v$2 is already installed. Install anyway?" IDOK exit
 		Abort
 	${EndIf} 
 	${If} $R0 == 1
-		MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "SSCO Log File Analysis Utility v$2 is installed. $\nDowngrade to v${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}?" IDOK exit
+		MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "Laundry Refill Application v$2 is installed. $\nDowngrade to v${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}?" IDOK exit
 		Abort
 	${EndIf} 
 	${If} $R0 == 2
-		MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "SSCO Log File Analysis Utility v$2 is installed. $\nUpgrade to v${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}?" IDOK exit
+		MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "Laundry Refill Application v$2 is installed. $\nUpgrade to v${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}?" IDOK exit
 		Abort
 	${EndIf} 
 			
