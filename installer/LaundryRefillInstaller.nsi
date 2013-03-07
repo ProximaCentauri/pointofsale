@@ -3,12 +3,15 @@
 !include nsProcess.nsh
 !include Sections.nsh
 
-!define APPNAME "LaundryRefill"
-!define COMPANYNAME "ZeroPoint Solutions"
+!define APPNAME "Laundry_Refill_Applicaton"
+!define COMPANYNAME "NoisyWorks Solution"
+
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 0
 !define VERSIONHOTFIX 0
 !define VERSIONBUILD 0
+;!define INSDIR "C:\LaundryRefill"
+!define APPEXE "..\src\NJournals\NJournals.Core\bin\Release"
 
 !define DOT_MAJOR "3"
 !define DOT_MINOR "5"
@@ -24,7 +27,9 @@ Name "Laundry and Refill Application"
 outFile "LaundryRefill${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}.exe"
  
 # define installation directory
-installDir "$DESKTOP\LaundryRefill"
+
+;installDir "c:\Laundry and Refill Application"
+
 
 # Set the text which prompts the user to enter the installation directory
 DirText "Please choose a directory to which you'd like to install this application."
@@ -34,7 +39,9 @@ XPStyle on
 
 #Interface Configuration
 !define MUI_HEADERIMAGE
-!define MUI_HEADERIMAGE_BITMAP "" /resizetofit; optional
+
+;!define MUI_HEADERIMAGE_BITMAP "Images\NCR-logo-sm.bmp" /resizetofit; optional
+
 !define MUI_ABORTWARNING
 
 # Add branding image to the installer (an image placeholder on the side).
@@ -91,24 +98,22 @@ section "install" SEC_1
 	Pop $1 ;current time (xx:xx:xx)
 	DetailPrint "Start Time: $1"
 	
-	;ReadRegStr $0 HKCU "${SHELLFOLDERS}" AppData
-	;StrCmp $0 "" 0 +2
-	 ; ReadRegStr $0 HKLM "${SHELLFOLDERS}" "Common AppData"
-	;StrCmp $0 "" 0 +2
-	 ; StrCpy $0 "$WINDIR\Application Data"
+	ReadRegStr $0 HKCU "${SHELLFOLDERS}" AppData
+	StrCmp $0 "" 0 +2
+	  ReadRegStr $0 HKLM "${SHELLFOLDERS}" "Common AppData"
+	StrCmp $0 "" 0 +2
+	  StrCpy $0 "$WINDIR\Application Data"
+
 	;IfFileExists "$0\PerfCheck\reports\*.csv" 0 +4
 	;MessageBox MB_ICONEXCLAMATION|MB_YESNO "Existing reports found. $\r$\nWould you like to keep reports folder?" IDYES +2 IDNO 0
 	;	Delete $0\PerfCheck\reports\*.*
 	
 	;Delete $0\PerfCheck\reports\*.*
-	
+
+	;Delete $0\PerfCheck\logs\*.*
 	;RMDir $0\PerfCheck\reports
 	;RMDir $0\PerfCheck\logs	
-	Delete $0\LaundryRefill\images\*.*
-	RMDir $0\LaundryRefill\images
-	Delete "$INSTDIR\LaundryRefillUninstall.exe"
-	Delete $INSTDIR\*.*
-	RMDir $INSTDIR
+	;RMDir $0\PerfCheck
 	
     # first, delete the uninstaller
 	;Delete "$INSTDIR\LaundryRefillUninstall.exe"
@@ -117,47 +122,51 @@ section "install" SEC_1
 	;Delete $INSTDIR\Install.log
 	;Delete $INSTDIR\unziplist.lst
 	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc
-	;Delete $INSTDIR\config\TescoUK-NCR39\*.*
-	;Delete $INSTDIR\config\TescoUK-NCR40\*.*
-	;Delete $INSTDIR\config\WalMart-NCR45\*.*
-	;Delete $INSTDIR\config\Base-NCR50\*.*
-	;Delete $INSTDIR\config\Base-NCR45\*.*
-	;Delete $INSTDIR\logs\*.*
-	;Delete $INSTDIR\dictionaries\*.*
-	;Delete $INSTDIR\*.*
-
-		
+	Delete $INSTDIR\images\*.*
+	RMDir $INSTDIR\images
+	Delete $INSTDIR\*.*
+	RMDir $INSTDIR
+	
+	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\LaundryRefillApplication"
+	DeleteRegKey HKCU "LaundryRefill"
+	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\AppCompatFlags\Layers"
+	
 	# set the installation directory as the destination for the following actions
+	setOutPath $INSTDIR
 	
-	
-	;File ../bin\thirdparty\Ionic.Zip.dll
-	;File ../bin\Debug\PerfCheck.exe
-	;File ../bin\thirdparty\unziplist.lst
-	;File ../docs\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc
+	File ../lib\*.*
+	File ${APPEXE}\LaundryRefill.exe
+	setOutPath $INSTDIR\docs
+	File ../docs\*.*
+
 	;CreateDirectory $0\logs
 	setOutPath $INSTDIR
 	File ../docs\*.*
 
+	CreateDirectory "$SMPROGRAMS\Laundry Refill Application"
+	CreateShortCut "$SMPROGRAMS\Laundry Refill Application\LaundryRefill.lnk" "$INSTDIR\LaundryRefill.exe"
+	CreateShortCut "$SMPROGRAMS\Laundry Refill Application\Users_Guide.lnk" "$INSTDIR\User Manual.docx"
+	CreateShortCut "$SMPROGRAMS\Laundry Refill Application\LaundryRefillUninstall.lnk" "$INSTDIR\LaundryRefillUninstall.exe"
+	
 	# set the installation directory as the destination for the following actions
 	;setOutPath $INSTDIR\dictionaries
+
 	setOutPath $INSTDIR\images
-	File ../bin/debug/images\*.*
-	
+	File ../images\*.*
+
 	# create the uninstaller
 	WriteUninstaller "$INSTDIR\LaundryRefillUninstall.exe"
  
 	# create a shortcut in the start menu programs directory
 	# point the new shortcut at the program uninstaller
-	CreateDirectory "$SMPROGRAMS\LaundryRefill"
-	CreateShortCut "$SMPROGRAMS\LaundryRefill\LaundryRefill.lnk" "$INSTDIR\LaundryRefill.exe"
-	CreateShortCut "$SMPROGRAMS\LaundryRefill\Users_Guide.lnk" "$INSTDIR\User Manual.docx"
-	CreateShortCut "$SMPROGRAMS\LaundryRefill\LaundryRefillUninstall.lnk" "$INSTDIR\LaundryRefillUninstall.exe"
+	
 		
 	# create registry keys for add/remove programs in control panel
-	;WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool" "DisplayName" ${APPNAME}
-	;WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool" "DisplayVersion" ${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}
-	;WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool" "UninstallString" $INSTDIR\PerfCheckUninstall.exe
-	;WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\AppCompatFlags\Layers" "$INSTDIR" "WINXPSP2"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Laundry Refill Application" "DisplayName" ${APPNAME}
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Laundry Refill Application" "DisplayVersion" ${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Laundry Refill Application" "UninstallString" $INSTDIR\LaundryRefillUninstall.exe
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\AppCompatFlags\Layers" "$INSTDIR" "WINXPSP2"
+
 
 	Push finish ;signifies to finish & report completion time
 	Push 3 ;output mode (1=secs only|2=secs+mins only|3=all)
@@ -179,46 +188,44 @@ sectionEnd
 # uninstaller section start
 section "uninstall" SEC_2
 
-	;ReadRegStr $0 HKCU "${SHELLFOLDERS}" AppData
-	;StrCmp $0 "" 0 +2
-	  ;ReadRegStr $0 HKLM "${SHELLFOLDERS}" "Common AppData"
-	;StrCmp $0 "" 0 +2
-	  ;StrCpy $0 "$WINDIR\Application Data"
+	ReadRegStr $0 HKCU "${SHELLFOLDERS}" AppData
+	StrCmp $0 "" 0 +2
+	  ReadRegStr $0 HKLM "${SHELLFOLDERS}" "Common AppData"
+	StrCmp $0 "" 0 +2
+	  StrCpy $0 "$WINDIR\Application Data"
 	;IfFileExists "$0\PerfCheck\reports\*.csv" 0 +4
-	;MessageBox MB_ICONEXCLAMATION|MB_YESNO "Existing reports found. $\r$\nWould you like to keep reports folder?" IDYES +2 IDNO 0
+;	MessageBox MB_ICONEXCLAMATION|MB_YESNO "Existing reports found. $\r$\nWould you like to keep reports folder?" IDYES +2 IDNO 0
 	;	Delete $0\PerfCheck\reports\*.*
 	
 	;Delete $0\PerfCheck\reports\*.*
-	;Delete $0\PerfCheck\logs\*.*
-	;RMDir $0\PerfCheck\reports
-	;RMDir $0\PerfCheck\logs
-	;RMDir $0\PerfCheck
+	Delete $0\NJournals\logs\*.*
+	
+	RMDir $0\NJournals\logs
+	RMDir $0\NJournals
 	
     # first, delete the uninstaller
-	;Delete "$INSTDIR\LaundryRefillUninstall.exe"
-    ;Delete "$INSTDIR\Ionic.Zip.dll"
-	;Delete $INSTDIR\LaundryRefill.exe
-	;Delete $INSTDIR\Install.log
-	;Delete $INSTDIR\unziplist.lst
-	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.0UsersGuide.doc
-	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc	
-	Delete $INSTDIR\images\*.*
+	;Delete "${APPDIR}\PerfCheckUninstall.exe"
+    Delete $INSTDIR\images\*.*
 	RMDir $INSTDIR\images
+	Delete $INSTDIR\docs\*.*
+	RMDir $INSTDIR\docs
 	Delete $INSTDIR\*.*
 	RMDir $INSTDIR
+	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.0UsersGuide.doc
+	
 		
     # second, remove the link from the start menu
-	Delete "$SMPROGRAMS\LaundryRefill\LaundryRefill.lnk"
-	Delete "$SMPROGRAMS\LaundryRefill\Users_Guide.lnk"
-    Delete "$SMPROGRAMS\LaundryRefill\LaundryRefillUninstall.lnk"
+	Delete "$SMPROGRAMS\Laundry Refill Application\LaundryRefill.lnk"
+	Delete "$SMPROGRAMS\Laundry Refill Application\Users_Guide.lnk"
+    Delete "$SMPROGRAMS\Laundry Refill Application\LaundryRefillUninstall.lnk"
 
-	RMDir "$SMPROGRAMS\LaundryRefill"
+	RMDir "$SMPROGRAMS\Laundry Refill Application"
 	
 	# Remove uninstaller information from the registry
-	;DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool"
-	;DeleteRegKey HKCU "LogAnal"
-	;DeleteRegKey HKCU "PerfCheck"
-	;DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\AppCompatFlags\Layers"
+	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Laundry Refill Application"
+	DeleteRegKey HKCU "LaundryRefill"
+	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\AppCompatFlags\Layers"
+
 
 # uninstaller section end
 sectionEnd
@@ -234,7 +241,9 @@ Function .onInit
 	App_Running_Check:
 	${nsProcess::FindProcess} "LaundryRefill.exe" $R0
 	${If} $R0 == 0
-		MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "Laundry and Water Refill Application is running. $\nPlease close the application before continuing." /SD IDCANCEL IDRETRY App_Running_Check
+
+		MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "Laundry Refill Application is running. $\nPlease close the application before continuing." /SD IDCANCEL IDRETRY App_Running_Check
+
 		Quit
 	${EndIf}
 	#Check if product is already installed.
@@ -245,15 +254,19 @@ Function un.onInit
 	SetShellVarContext all
  
 	#Verify the uninstaller - last chance to back out
-	MessageBox MB_OKCANCEL "Permanantly remove Laundry and Water Refill Application?" IDOK next
+
+	MessageBox MB_OKCANCEL "Permanantly remove Laundry Refill Application?" IDOK next
+
 		Abort
 	next:
 	!insertmacro VerifyUserIsAdmin
 
 	App_Running_Check:
-	${nsProcess::FindProcess} "PerfCheck.exe" $R0
+	${nsProcess::FindProcess} "LaundryRefill.exe" $R0
 	${If} $R0 == 0
-		MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "Laundry and Water Refill Application is running. $\nPlease close the application before continuing." /SD IDCANCEL IDRETRY App_Running_Check
+
+		MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "Laundry Refill Application is running. $\nPlease close the application before continuing." /SD IDCANCEL IDRETRY App_Running_Check
+
 		Quit
 	${EndIf} 
 FunctionEnd
@@ -266,7 +279,7 @@ Function IsProductInstalled
 	;Abort
 	;exit:
 	ClearErrors
-	ReadRegDWORD $2 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SSCO Application Performance Assessment Tool" "DisplayVersion"
+	ReadRegDWORD $2 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Laundry Refill Application" "DisplayVersion"
 	StrCmp $2 "" exit
 	
 	Push $2
@@ -275,15 +288,15 @@ Function IsProductInstalled
 	Pop $R0
 	
 	${If} $R0 == 0
-		MessageBox MB_OKCANCEL "SSCO Log File Analysis Utility v$2 is already installed. Install anyway?" IDOK exit
+		MessageBox MB_OKCANCEL "Laundry Refill Application v$2 is already installed. Install anyway?" IDOK exit
 		Abort
 	${EndIf} 
 	${If} $R0 == 1
-		MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "SSCO Log File Analysis Utility v$2 is installed. $\nDowngrade to v${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}?" IDOK exit
+		MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "Laundry Refill Application v$2 is installed. $\nDowngrade to v${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}?" IDOK exit
 		Abort
 	${EndIf} 
 	${If} $R0 == 2
-		MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "SSCO Log File Analysis Utility v$2 is installed. $\nUpgrade to v${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}?" IDOK exit
+		MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "Laundry Refill Application v$2 is installed. $\nUpgrade to v${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONHOTFIX}.${VERSIONBUILD}?" IDOK exit
 		Abort
 	${EndIf} 
 			

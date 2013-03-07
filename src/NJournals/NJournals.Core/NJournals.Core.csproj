@@ -368,6 +368,12 @@
     <None Include="images\edit2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="images\laundry_logo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="images\refill_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="images\refill_search.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

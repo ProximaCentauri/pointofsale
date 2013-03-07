@@ -30,9 +30,14 @@ namespace NJournals.Core.Presenter
 		}
 		
 		public void ShowCompanyInfo(){
-			List<CompanyDataEntity> companyEntities = m_companyDao.GetAllItems() as List<CompanyDataEntity>;
+			CompanyDataEntity entity = null;
+			if(m_view.GetTitle().Contains("Refill")){
+				entity = m_companyDao.GetById(1);
+			}else{
+				entity = m_companyDao.GetById(2);
+			}
 			
-			m_view.SetCompanyInfo(companyEntities);
+			m_view.SetCompanyInfo(entity);
 		}
 		
 		public void ShowPrinterInfo(){

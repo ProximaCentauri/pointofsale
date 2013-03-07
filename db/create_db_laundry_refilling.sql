@@ -575,6 +575,10 @@ INSERT INTO `db_laundry_refilling`.`refillproducttype` (`Name`, `Description`) V
 INSERT INTO `db_laundry_refilling`.`refilltransactiontype` (`Name`) VALUES ('Delivery');
 INSERT INTO `db_laundry_refilling`.`refilltransactiontype` (`Name`) VALUES ('Walk-In');
 
+-- Refill and Laundry Company Info
+INSERT INTO `db_laundry_refilling`.`company` (`Name`,`Address`,`ContactNumber`,`VoidFlag`) VALUES ('Bottoms up purified drinking water','Mandaue City','239-9555','0');
+INSERT INTO `db_laundry_refilling`.`company` (`Name`,`Address`,`ContactNumber`,`VoidFlag`) VALUES ('Laundry Pro Garmet Care','Mandaue City','239-9555','0');
+
 -- Customer table (for testing only)
 INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber`) VALUES ('John Dee', 'Cebu', '111-1111');
 INSERT INTO `db_laundry_refilling`.`customer` (`Name`, `Address`, `ContactNumber`) VALUES ('Vanessa Dee', 'Cebu', '111-1111');

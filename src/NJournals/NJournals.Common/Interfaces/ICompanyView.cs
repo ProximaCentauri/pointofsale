@@ -15,9 +15,9 @@ namespace NJournals.Common.Interfaces
 	/// <summary>
 	/// Description of ICompanyView.
 	/// </summary>
-	public interface ICompanyView
+	public interface ICompanyView : IView
 	{		
-		void SetCompanyInfo(List<CompanyDataEntity> p_entities);
+		void SetCompanyInfo(CompanyDataEntity p_entity);
 		void SetPrinterInfo(List<PrinterDataEntity> p_entities);
 		CompanyDataEntity ProcessCompanyInfo();
 		PrinterDataEntity ProcessPrinterInfo();
