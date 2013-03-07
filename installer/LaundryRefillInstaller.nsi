@@ -125,31 +125,18 @@ section "install" SEC_1
 	# set the installation directory as the destination for the following actions
 	setOutPath $INSTDIR
 	
-	File ../bin\thirdparty\Ionic.Zip.dll
-	File ../bin\Debug\PerfCheck.exe
-	File ../bin\thirdparty\unziplist.lst
-	File ../docs\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc
+	File ../lib\*.*
+	setOutPath $INSTDIR\docs
+	File ../docs\*.*
 	;CreateDirectory $0\logs
 
 	# set the installation directory as the destination for the following actions
 	;setOutPath $INSTDIR\dictionaries
 	setOutPath $INSTDIR\images
 	File ../images\*.*
-	
-	setOutPath $INSTDIR\config\TescoUK-NCR40
-	File ../config/TescoUK-NCR40\*.*
-	
-	setOutPath $INSTDIR\config\WalMart-NCR45
-	File ../config/WalMart-NCR45\*.*
-	
-	setOutPath $INSTDIR\config\Base-NCR50
-	File ../config/Base-NCR50\*.*
-	
-	setOutPath $INSTDIR\config\Base-NCR45
-	File ../config/Base-NCR45\*.*
-	
+
 	# create the uninstaller
-	WriteUninstaller "$INSTDIR\PerfCheckUninstall.exe"
+	WriteUninstaller "$INSTDIR\LaundryRefillUninstall.exe"
  
 	# create a shortcut in the start menu programs directory
 	# point the new shortcut at the program uninstaller
