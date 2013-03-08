@@ -11,7 +11,7 @@
 !define VERSIONHOTFIX 0
 !define VERSIONBUILD 0
 ;!define INSDIR "C:\LaundryRefill"
-!define APPEXE "..\src\NJournals\NJournals.Core\bin\Release"
+!define APPEXE "../lib"
 
 !define DOT_MAJOR "3"
 !define DOT_MINOR "5"
@@ -126,6 +126,7 @@ section "install" SEC_1
 	File ../lib\*.dll*
 	File ../lib\app.config
 	File ${APPEXE}\LaundryRefill.exe
+	File ${APPEXE}\LaundryRefill.exe.config
 	setOutPath $INSTDIR\docs
 	File ../docs\*.*
 	setOutPath $INSTDIR\bin
