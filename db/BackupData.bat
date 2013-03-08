@@ -11,7 +11,13 @@ set year=%DATE:~-4%
 set currentdate=%month%%day%%year%  
 set dbname=db_laundry_refilling
 
-goto createBackupDir
+set result=mysql --skip-column-names -e "SHOW DATABASES LIKE '%dbname%'"
+if result==%dbname% (
+	goto createBackupDir
+)
+goto successHandler
+
+
 REM ================= START Create backup directory =====================
 :createBackupDir
 echo Verifying backup directory
@@ -24,6 +30,8 @@ REM ================= END Create backup directory =======================
 REM ================= START Perform backup of data ======================
 :backupData
 echo Performing backup of data
+
+
 mysqldump -uroot -proot --no-create-info %dbname% > %backupPath%%dbname%_data_%currentdate%.sql
 IF %ERRORLEVEL% NEQ 0 goto errorHandler
 echo Performing backup of data - DONE
@@ -38,6 +46,7 @@ echo Performing backup of schema
 mysqldump -uroot -proot --no-data %dbname% > %backupPath%%dbname%_schema_%currentdate%.sql
 IF %ERRORLEVEL% NEQ 0 goto errorHandler
 echo Performing backup of schema - DONE
+@echo Backup data and schema successful
 goto successHandler
 REM ================= END Perform backup of schema ======================
 
@@ -47,9 +56,8 @@ REM ================= START Return handlers =============================
 :errorHandler
 @echo Error in performing the backup of data/schema; please check if you have mysql installed and mysql service running
 @echo ERRORLEVEL %ERRORLEVEL% 
+exit /B
 
-exit /B
 :successHandler
-@echo Backup data and schema successful
-exit /B
+exit /B 0
 REM ================= END Return handlers ===============================
