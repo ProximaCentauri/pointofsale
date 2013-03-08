@@ -23,8 +23,18 @@ REM ================= START Create database script ======================
 echo Creating database
 mysql -h localhost -u root -proot < %sqlscriptPath%\create_db_laundry_refilling.sql
 IF %ERRORLEVEL% NEQ 0 goto errorHandler
-goto successHandler
+goto insertDefaultData
 REM ================= END Create database script ========================
+
+
+
+REM ================= START Insert default data =========================
+:insertDefaultData
+echo Creating database
+mysql -h localhost -u root -proot < %sqlscriptPath%\insert_default_livedata.sql
+IF %ERRORLEVEL% NEQ 0 goto errorHandler
+goto successHandler
+REM ================= END Insert default data ===========================
 
 
 

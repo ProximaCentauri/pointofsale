@@ -8,7 +8,7 @@ set backupPath="C:\Documents and Settings\%USERNAME%\Application Data\LaundryRef
 set month=%DATE:~4,2%
 set day=%DATE:~7,2%
 set year=%DATE:~-4%
-set currentdate=%month%%day%%year%  REM this is in mmddyyyy format
+set currentdate=%month%%day%%year%  
 set dbname=db_laundry_refilling
 
 goto createBackupDir
