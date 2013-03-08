@@ -397,7 +397,7 @@ namespace NJournals.Core
 			this.IsMdiContainer = true;
 			this.Name = "MainFormStation";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "MainFormStation";
+			this.Text = "Main";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.MainFormStationLoad);
 			this.panel1.ResumeLayout(false);

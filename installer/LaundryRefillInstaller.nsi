@@ -134,11 +134,18 @@ section "install" SEC_1
 	# set the installation directory as the destination for the following actions
 	setOutPath $INSTDIR
 	
-	File ../lib\*.*
+	File ../lib\*.dll*
+	File ../lib\app.config
 	File ${APPEXE}\LaundryRefill.exe
 	setOutPath $INSTDIR\docs
 	File ../docs\*.*
-
+	setOutPath $INSTDIR\bin
+	File ../db\BackupData.bat
+	File ../db\CreateDatabase.bat
+	setOutPath $INSTDIR\db\script
+	File ../db\create_db_laundry_refilling.sql
+	
+	
 	;CreateDirectory $0\logs
 	setOutPath $INSTDIR
 	File ../docs\*.*
@@ -209,6 +216,10 @@ section "uninstall" SEC_2
 	RMDir $INSTDIR\images
 	Delete $INSTDIR\docs\*.*
 	RMDir $INSTDIR\docs
+	Delete $INSTDIR\bin\*.*
+	RMDir $INSTDIR\bin
+	Delete $INSTDIR\db\script\*.*
+	RMDir $INSTDIR\db\script
 	Delete $INSTDIR\*.*
 	RMDir $INSTDIR
 	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.0UsersGuide.doc
