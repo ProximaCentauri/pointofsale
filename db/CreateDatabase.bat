@@ -43,7 +43,7 @@ echo Inserting default data
 mysql -h localhost -u root -proot < %sqlscriptPath%\insert_default_livedata.sql
 IF %ERRORLEVEL% NEQ 0 goto errorHandler
 echo Inserting default data - DONE
-goto successHandler
+goto createBackupSchedJob
 REM ================= END Insert default data ===========================
 
 
@@ -52,6 +52,7 @@ REM ================= START Create backup scheduled job =================
 :createBackupSchedJob
 echo Creating backup schedule job
 schtasks /create /RU "system" /SC DAILY /TN runMySQLbackupjob /TR %currentPath%\BackupData.bat /ST 18:00:00
+goto successHandler
 REM ================= END Create backup scheduled job ===================
 
 
