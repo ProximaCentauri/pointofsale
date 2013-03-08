@@ -104,26 +104,15 @@ section "install" SEC_1
 	StrCmp $0 "" 0 +2
 	  StrCpy $0 "$WINDIR\Application Data"
 
-	;IfFileExists "$0\PerfCheck\reports\*.csv" 0 +4
-	;MessageBox MB_ICONEXCLAMATION|MB_YESNO "Existing reports found. $\r$\nWould you like to keep reports folder?" IDYES +2 IDNO 0
-	;	Delete $0\PerfCheck\reports\*.*
-	
-	;Delete $0\PerfCheck\reports\*.*
-
-	;Delete $0\PerfCheck\logs\*.*
-	;RMDir $0\PerfCheck\reports
-	;RMDir $0\PerfCheck\logs	
-	;RMDir $0\PerfCheck
-	
-    # first, delete the uninstaller
-	;Delete "$INSTDIR\LaundryRefillUninstall.exe"
-    ;Delete "$INSTDIR\Ionic.Zip.dll"
-	;Delete $INSTDIR\PerfCheck.exe
-	;Delete $INSTDIR\Install.log
-	;Delete $INSTDIR\unziplist.lst
-	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.4_UsersGuide.doc
 	Delete $INSTDIR\images\*.*
 	RMDir $INSTDIR\images
+	Delete $INSTDIR\docs\*.*
+	RMDir $INSTDIR\docs
+	Delete $INSTDIR\bin\*.*
+	RMDir $INSTDIR\bin
+	Delete $INSTDIR\db\script\*.*
+	RMDir $INSTDIR\db\script
+	RMDir $INSTDIR\db
 	Delete $INSTDIR\*.*
 	RMDir $INSTDIR
 	
@@ -220,6 +209,7 @@ section "uninstall" SEC_2
 	RMDir $INSTDIR\bin
 	Delete $INSTDIR\db\script\*.*
 	RMDir $INSTDIR\db\script
+	RMDir $INSTDIR\db
 	Delete $INSTDIR\*.*
 	RMDir $INSTDIR
 	;Delete $INSTDIR\NCRSelfServCheckoutApplicationPerformanceAssessmentToolVersion1.0.0UsersGuide.doc
