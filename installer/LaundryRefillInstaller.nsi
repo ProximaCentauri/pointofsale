@@ -40,7 +40,7 @@ XPStyle on
 #Interface Configuration
 !define MUI_HEADERIMAGE
 
-;!define MUI_HEADERIMAGE_BITMAP "Images\NCR-logo-sm.bmp" /resizetofit; optional
+!define MUI_HEADERIMAGE_BITMAP "../images\nowsolutions.bmp" /resizetofit; optional
 
 !define MUI_ABORTWARNING
 
