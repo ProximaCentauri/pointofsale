@@ -134,7 +134,8 @@ section "install" SEC_1
 	File ../db\CreateDatabase.bat
 	setOutPath $INSTDIR\db\script
 	File ../db\create_db_laundry_refilling.sql
-	
+	File ../db\insert_default_livedata.sql
+	File ../db\insert_default_testdata.sql
 	
 	;CreateDirectory $0\logs
 	setOutPath $INSTDIR

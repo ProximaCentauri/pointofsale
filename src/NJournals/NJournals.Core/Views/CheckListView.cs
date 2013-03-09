@@ -148,9 +148,9 @@ namespace NJournals.Core.Views
 				}		
 			}
 			if(itemQty == Column2 && dgvCheckList.IsCurrentCellInEditMode){
-				if(m_checklistEntities.Find(x => x.Name == Convert.ToString(e.FormattedValue)) != null){
+				if(m_checklistEntities.Find(x => string.Equals(x.Name, Convert.ToString(e.FormattedValue), StringComparison.OrdinalIgnoreCase)) != null){
 					e.Cancel = true;
-					MessageService.ShowWarning("Duplicate entry is not allowed. Please input another name of the item.","Duplicate Value");
+					MessageService.ShowWarning("Duplicate entry of " + Convert.ToString(e.FormattedValue) + " is not allowed. Please input another name of the item.","Duplicate Value");
 					dgvCheckList.CurrentCell = dgvCheckList.Rows[e.RowIndex].Cells[1];	
 				}
 			}

@@ -135,7 +135,7 @@ namespace NJournals.Core.Presenter
 				}
 			}
 			catch(Exception ex){
-				MessageService.ShowError("Unexpected exception occured while processing your request.\nPlease see log file to technical details","Error", ex);
+				MessageService.ShowError("Unexpected exception occured while processing your request.\nPlease see log file for technical details.","Error", ex);
 				return false;
 			}
 			return true;					
@@ -240,7 +240,7 @@ namespace NJournals.Core.Presenter
 				}
 				m_laundryDao.SaveOrUpdate(headerEntity);
 			}catch(Exception ex){
-				MessageService.ShowError("Unexpected exception occured while saving your entries.\nPlease see log file to technical details","Error in Saving", ex);
+				MessageService.ShowError("Unexpected exception occured while saving your entries.\nPlease see log file for technical details.","Error in Saving", ex);
 				return false;
 			}		
 			return true;
