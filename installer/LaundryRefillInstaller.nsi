@@ -4,7 +4,7 @@
 !include Sections.nsh
 
 !define APPNAME "Laundry_Refill_Applicaton"
-!define COMPANYNAME "NoisyWorks Solution"
+!define COMPANYNAME "NOW Solutions"
 
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 0

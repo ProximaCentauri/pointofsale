@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("LaundryRefill")]
 [assembly: AssemblyDescription("Application for Laundry and Refill")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ZeroPoint Solutions")]
+[assembly: AssemblyCompany("NOW Solutions")]
 [assembly: AssemblyProduct("NJournals")]
 [assembly: AssemblyCopyright("Copyright 2013")]
 [assembly: AssemblyTrademark("")]
