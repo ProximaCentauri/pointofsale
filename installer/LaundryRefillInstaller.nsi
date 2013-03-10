@@ -376,10 +376,10 @@ Function IsMySqlInstalled
   StrCpy $1 "SOFTWARE\MySQL AB" ;registry entry to look in.
   StrCpy $2 0
  
-	;Enumerate the versions installed.
+	;check if regkey exist
 	EnumRegKey $3 HKLM "$1" 0
 
-	;If we don't find any versions installed, it's not here.
+	;If we don't find the registry key, it's not here.
 	StrCmp $3 "" noMySql yesMySql
 
 	noMySql:
