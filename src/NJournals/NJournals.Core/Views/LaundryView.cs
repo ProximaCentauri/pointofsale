@@ -87,6 +87,7 @@ namespace NJournals.Core.Views
 				btnDeleteDetail.Enabled = false;
 				cmbCustomers.DropDownStyle = ComboBoxStyle.DropDown;
 				EnableDisableControls(false);
+				txtsearch.Focus();
 			}
 			m_presenter.SetAllServices();
 			m_presenter.SetAllCharges();
@@ -562,6 +563,7 @@ namespace NJournals.Core.Views
 		{
 			priceEntity = m_presenter.getLaundryPrice(cmbcategory.Text,cmbservices.Text);
 			txtunitprice.Text = priceEntity.Price.ToString("N2");
+			txtnoitems.Focus();
 		}
 		
 		void BtnRefreshClick(object sender, EventArgs e)

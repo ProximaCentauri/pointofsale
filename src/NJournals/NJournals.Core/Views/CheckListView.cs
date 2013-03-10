@@ -16,6 +16,7 @@ using NJournals.Core.Presenter;
 using System.Collections.Generic;
 using NJournals.Common.DataEntities;
 using NJournals.Common.Util;
+using System.Linq;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -46,6 +47,7 @@ namespace NJournals.Core.Views
 		private LaundryHeaderDataEntity m_headerEntity;
 		private List<LaundryChecklistDataEntity> m_checklistEntities = new List<LaundryChecklistDataEntity>();
 		private List<int> itemsIndex = new List<int>();
+		private List<int> newIndex = new List<int>();
 		void CheckListViewLoad(object sender, EventArgs e)
 		{
 			setButtonImages();
@@ -93,7 +95,8 @@ namespace NJournals.Core.Views
 			if(SelectChecklist != null){
 				SelectChecklist(this, e);
 				if(itemsIndex.Count > 0 && !ValidateEmptyCellValues()){
-					if(MessageService.ShowYesNo("You have made changes to the checklist. Do you want to save your changes?")){
+					if(MessageService.ShowYesNo("You have made changes to the checklist. Do you want to save your changes?"))
+					{
 						m_presenter.SaveClicked();
 					}
 				}
@@ -103,6 +106,16 @@ namespace NJournals.Core.Views
 		
 		private bool ValidateEmptyCellValues(){
 			foreach(int index in itemsIndex){
+				if(dgvCheckList.Rows[index].Cells[1].Value.ToString().Trim().Equals(string.Empty)){
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		
+		private bool ValidateNewRowEmptyCell(){
+			foreach(int index in newIndex){
 				if(dgvCheckList.Rows[index].Cells[1].Value.ToString().Trim().Equals(string.Empty)){
 					return true;
 				}
@@ -147,13 +160,22 @@ namespace NJournals.Core.Views
 					dgvCheckList.CurrentCell = dgvCheckList.Rows[e.RowIndex].Cells[2];				
 				}		
 			}
-			if(itemQty == Column2 && dgvCheckList.IsCurrentCellInEditMode){
-				if(m_checklistEntities.Find(x => string.Equals(x.Name, Convert.ToString(e.FormattedValue), StringComparison.OrdinalIgnoreCase)) != null){
-					e.Cancel = true;
-					MessageService.ShowWarning("Duplicate entry of " + Convert.ToString(e.FormattedValue) + " is not allowed. Please input another name of the item.","Duplicate Value");
-					dgvCheckList.CurrentCell = dgvCheckList.Rows[e.RowIndex].Cells[1];	
-				}
-			}
+			
+			
+			foreach (DataGridViewRow row in dgvCheckList.Rows)
+	        {
+	            if (row.Index != e.RowIndex & !row.IsNewRow)
+	            {
+	            	if(row.Cells[1].Value != null){
+	            		if (row.Cells[1].Value.ToString() == e.FormattedValue.ToString())
+		                {
+		                   	MessageService.ShowWarning("Duplicate entry of " + Convert.ToString(e.FormattedValue) + " is not allowed. Please input another name of the item.","Duplicate Value");
+		                    e.Cancel = true;
+		                    return;
+		                }
+	            	}	                
+	            }
+	        }       		
 
 			if(itemQty == this.Column1){
 				if(!Convert.ToBoolean(e.FormattedValue)){
@@ -204,7 +226,7 @@ namespace NJournals.Core.Views
 		
 		void BtnSaveCheckListClick(object sender, EventArgs e)
 		{			
-			if(itemsIndex.Count > 0){
+			if(itemsIndex.Count > 0){				
 				if(MessageService.ShowYesNo("Are you sure you want to save your new entries?")){
 					m_presenter.SaveClicked();
 					itemsIndex.Clear();
@@ -242,9 +264,12 @@ namespace NJournals.Core.Views
 					if(!itemsIndex.Contains(e.RowIndex))
 						itemsIndex.Add(e.RowIndex);
 				}
-												
+				if(dgvCheckList.Columns[e.ColumnIndex] == Column2){
+					if(e.RowIndex > m_checklistEntities.Count-1 && !newIndex.Contains(e.RowIndex)){
+						newIndex.Add(e.RowIndex);
+					}					
+				}											
 			}			
-		}	
-	
+		}
 	}
 }
