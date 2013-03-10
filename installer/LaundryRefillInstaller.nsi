@@ -240,6 +240,8 @@ Function .onInit
 	!insertmacro VerifyUserIsAdmin
 	#Check if .Net Framework is installed.
 	Call IsDotNetInstalled
+	#Check if MySQL is installed.
+	Call IsMySqlInstalled
 	#Check if product is running.
 	App_Running_Check:
 	${nsProcess::FindProcess} "LaundryRefill.exe" $R0
@@ -366,6 +368,25 @@ Function IsDotNetInstalled
   yesDotNet:
     ;Everything checks out.  Go on with the rest of the installation.
  
+FunctionEnd
+
+Function IsMySqlInstalled
+ 
+  StrCpy $0 "0"
+  StrCpy $1 "SOFTWARE\MySQL AB" ;registry entry to look in.
+  StrCpy $2 0
+ 
+	;Enumerate the versions installed.
+	EnumRegKey $3 HKLM "$1" 0
+
+	;If we don't find any versions installed, it's not here.
+	StrCmp $3 "" noMySql yesMySql
+
+	noMySql:
+		MessageBox MB_OK "This setup requires MySQL to be installed. $\nPlease install the requirement. Aborting Installation!"
+		Abort
+	;Mysql is installed
+	yesMySql:
 FunctionEnd
 
 Function VersionCompare
