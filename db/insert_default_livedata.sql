@@ -69,3 +69,7 @@ INSERT INTO `db_laundry_refilling`.`refilltransactiontype` (`Name`) VALUES ('Wal
 -- Refill and Laundry Company Info
 INSERT INTO `db_laundry_refilling`.`company` (`Name`,`Address`,`ContactNumber`,`VoidFlag`) VALUES ('Bottoms Up Purified Drinking Water','Mandaue City','239-9555','0');
 INSERT INTO `db_laundry_refilling`.`company` (`Name`,`Address`,`ContactNumber`,`VoidFlag`) VALUES ('Laundry Pro Garmet Care','Mandaue City','239-9555','0');
+
+-- Refill inventory table
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('5 GAL BOTTLE', '0', '0', '0');
+INSERT INTO `db_laundry_refilling`.`refillinventoryheader` (`Name`, `TotalQty`, `QtyOnHand`, `QtyReleased`) VALUES ('CAPS', '0', '0', '0');
