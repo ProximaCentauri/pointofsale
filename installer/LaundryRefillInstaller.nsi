@@ -4,7 +4,7 @@
 !include Sections.nsh
 
 !define APPNAME "Laundry_Refill_Applicaton"
-!define COMPANYNAME "NOW Solutions"
+!define COMPANYNAME "Code@Work Solutions"
 
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 0
