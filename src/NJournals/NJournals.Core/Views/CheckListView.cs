@@ -35,6 +35,7 @@ namespace NJournals.Core.Views
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 			Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/checklist.ico");
+			this.SetTitle("Laundry Check List");
 			m_presenter = new CheckListViewPresenter(this, new LaundryChecklistDao());
 			m_headerEntity = p_headerEntity;
 			m_jonumber = p_jonumber;

@@ -22,7 +22,7 @@ namespace NJournals.Core.Views
 	/// <summary>
 	/// Description of CustomerSearchView.
 	/// </summary>
-	public partial class LaundryCustomerSearchView : Form, ILaundryCustomerSearchView
+	public partial class LaundryCustomerSearchView : BaseForm, ILaundryCustomerSearchView
 	{
 		private CustomerDataEntity m_customer;
 		private LaundryCustomerSearchViewPresenter m_presenter;
@@ -37,6 +37,7 @@ namespace NJournals.Core.Views
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//			
 			Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/user1.ico");
+			this.SetTitle("Laundry Customer Record");
 			m_customer = p_customer;			
 			m_presenter = new LaundryCustomerSearchViewPresenter(this, p_customer);
 		}

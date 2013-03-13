@@ -41,6 +41,7 @@ namespace NJournals.Core.Views
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 			Resource.setIcon(this, System.IO.Directory.GetCurrentDirectory() + "/images/checklist.ico");
+			this.SetTitle("Laundry Job Charges");
 		}
 		
 		void LaundryChargesFormLoad(object sender, EventArgs e)
