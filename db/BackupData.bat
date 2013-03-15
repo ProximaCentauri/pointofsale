@@ -8,11 +8,11 @@ set backupPath=C:\Documents and Settings\%USERNAME%\Application Data\LaundryRefi
 set month=%DATE:~4,2%
 set day=%DATE:~7,2%
 set year=%DATE:~-4%
-set currentdate=%month%%day%%year%  
+set currentdate=%month%%day%%year%
 set dbname=db_laundry_refilling
 
-set result=mysql --skip-column-names -e "SHOW DATABASES LIKE '%dbname%'"
-if result==%dbname% (
+set result=mysql -uroot -proot --skip-column-names -e "SHOW DATABASES LIKE '%dbname%'" 
+if not result=="" (
 	goto createBackupDir
 )
 goto successHandler
