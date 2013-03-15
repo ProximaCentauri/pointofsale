@@ -11,7 +11,7 @@ set year=%DATE:~-4%
 set currentdate=%month%%day%%year%
 set dbname=db_laundry_refilling
 
-set result=mysql -uroot -proot --skip-column-names -e "SHOW DATABASES LIKE '%dbname%'" 
+set result=mysql -u root -proot --skip-column-names -e "SHOW DATABASES LIKE '%dbname%'" 
 if not result=="" (
 	goto createBackupDir
 )
@@ -30,8 +30,6 @@ REM ================= END Create backup directory =======================
 REM ================= START Perform backup of data ======================
 :backupData
 echo Performing backup of data
-
-
 mysqldump -uroot -proot --no-create-info %dbname% > "%backupPath%%dbname%_data_%currentdate%.sql"
 IF %ERRORLEVEL% NEQ 0 goto errorHandler
 echo Performing backup of data - DONE

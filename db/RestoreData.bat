@@ -16,8 +16,8 @@ if %backupSchemaFile%=="" (
 if %backupDataFile%=="" (
 	for /f %%x in ('dir  %dbname%_data*.sql /B /O:-D') do set %backupDataFile%=%%x	
 )
-set result=mysql --skip-column-names -e "SHOW DATABASES LIKE '%dbname%'"
-if result==%dbname% (
+set result=mysql -u root -proot --skip-column-names -e "SHOW DATABASES LIKE '%dbname%'" 
+if not result=="" (
 	goto verifyBackupFile
 )
 goto successHandler
@@ -36,7 +36,9 @@ REM ================= END Verify backup file =============================
 REM ================= START Verify restore of schema =======================
 :restoreSchema
 echo Performing restore of schema
-mysql -uroot -proot source "%backupPath%%backupSchemaFile%"
+mysqladmin -f -u root -proot drop %dbname%
+mysql -u root -proot create database %dbname%
+mysqladmin -u root -proot %dbname% < "%backupPath%%backupSchemaFile%"
 IF %ERRORLEVEL% NEQ 0 goto errorHandler
 echo Performing restore of schema - DONE
 goto restoreData
