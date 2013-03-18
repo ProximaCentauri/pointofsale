@@ -1,5 +1,6 @@
 
 @echo off
+
 REM 03072013 
 REM Start : backup data and schema in db_laundry_refilling
 REM Start mysql service first before executing this script
@@ -10,9 +11,10 @@ set day=%DATE:~7,2%
 set year=%DATE:~-4%
 set currentdate=%month%%day%%year%
 set dbname=db_laundry_refilling
+set dbfound=null
 
-set result=mysql -u root -proot --skip-column-names -e "SHOW DATABASES LIKE '%dbname%'" 
-if not result=="" (
+for /f %%a in ('mysql.exe -u root -proot -s -N -e "SHOW DATABASES LIKE '%dbname%'"') do set dbfound=%%a
+if %dbfound%==%dbname% (
 	goto createBackupDir
 )
 goto successHandler
@@ -30,7 +32,7 @@ REM ================= END Create backup directory =======================
 REM ================= START Perform backup of data ======================
 :backupData
 echo Performing backup of data
-mysqldump -uroot -proot --no-create-info %dbname% > "%backupPath%%dbname%_data_%currentdate%.sql"
+mysqldump -u root -proot --no-create-info %dbname% > "%backupPath%%dbname%_data_%currentdate%.sql"
 IF %ERRORLEVEL% NEQ 0 goto errorHandler
 echo Performing backup of data - DONE
 goto backupSchema

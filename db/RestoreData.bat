@@ -1,23 +1,33 @@
 
 @echo off
+
 REM 03152013 
 REM Start : restore data and schema in db_laundry_refilling
 REM Start mysql service first before executing this script
 
-
 set backupPath=C:\Documents and Settings\%USERNAME%\Application Data\LaundryRefill\Data\
-set backupSchemaFile=%1
-set backupDataFile=%2
+set backupSchemaFile=%~1
+set backupDataFile=%~2
 set dbname=db_laundry_refilling
+set dbfound=null
 
-if %backupSchemaFile%=="" (
-	for /f %%x in ('dir  %dbname%_schema*.sql /B /O:-D') do set %backupSchemaFile%=%%x	
+if "%backupSchemaFile%"=="" (
+	for /f %%a in ('dir "%backupPath%%dbname%_schema*.sql" /od /a-d /b') do set backupSchemaFile=%%a
 )
-if %backupDataFile%=="" (
-	for /f %%x in ('dir  %dbname%_data*.sql /B /O:-D') do set %backupDataFile%=%%x	
+if "%backupDataFile%"=="" (
+	for /f %%a in ('dir "%backupPath%%dbname%_data*.sql" /od /a-d /b') do set backupDataFile=%%a
 )
-set result=mysql -u root -proot --skip-column-names -e "SHOW DATABASES LIKE '%dbname%'" 
-if not result=="" (
+
+if not "%backupSchemaFile%"=="" (	
+	set backupSchemaFile=%backupSchemaFile: =%
+)
+if not "%backupDataFile%"=="" (
+	set backupDataFile=%backupDataFile: =%
+)
+
+
+for /f %%a in ('mysql.exe -u root -proot -s -N -e "SHOW DATABASES LIKE '%dbname%'"') do set dbfound=%%a
+if %dbfound%==%dbname% (
 	goto verifyBackupFile
 )
 goto successHandler
@@ -26,8 +36,10 @@ goto successHandler
 REM ================= START Verify backup file ===========================
 :verifyBackupFile
 echo Verifying backup file
-IF NOT EXIST "%backupPath%%backupSchemaFile%" goto errorHandler
-IF NOT EXIST "%backupPath%%backupDataFile%" goto errorHandler
+IF NOT EXIST %backupPath%%backupSchemaFile% goto errorHandler
+IF "%backupSchemaFile%"=="" goto errorHandler
+IF NOT EXIST %backupPath%%backupDataFile% goto errorHandler
+IF "%backupDataFile%"=="" goto errorHandler
 goto restoreSchema
 REM ================= END Verify backup file =============================
 
@@ -36,9 +48,7 @@ REM ================= END Verify backup file =============================
 REM ================= START Verify restore of schema =======================
 :restoreSchema
 echo Performing restore of schema
-mysqladmin -f -u root -proot drop %dbname%
-mysql -u root -proot create database %dbname%
-mysqladmin -u root -proot %dbname% < "%backupPath%%backupSchemaFile%"
+mysql -u root -proot %dbname% < "%backupPath%%backupSchemaFile%"
 IF %ERRORLEVEL% NEQ 0 goto errorHandler
 echo Performing restore of schema - DONE
 goto restoreData

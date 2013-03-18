@@ -51,7 +51,7 @@ REM ================= END Insert default data ===========================
 REM ================= START Create backup scheduled job =================
 :createBackupSchedJob
 echo Creating backup schedule job
-schtasks /create /RU "system" /SC DAILY /TN runMySQLbackupjob /TR %currentPath%\BackupData.bat /ST 18:00:00
+schtasks /create /RU runasuser /SC DAILY /TN runMySQLbackupjob /TR %currentPath%\BackupData.bat /ST 18:00:00
 goto successHandler
 REM ================= END Create backup scheduled job ===================
 
