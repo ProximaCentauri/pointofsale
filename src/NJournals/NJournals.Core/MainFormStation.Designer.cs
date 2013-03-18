@@ -395,11 +395,13 @@ namespace NJournals.Core
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.IsMdiContainer = true;
+			this.KeyPreview = true;
 			this.Name = "MainFormStation";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Main";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.MainFormStationLoad);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainFormStation_keydown);
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 		}

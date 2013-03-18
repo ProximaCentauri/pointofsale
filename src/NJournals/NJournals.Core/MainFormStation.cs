@@ -291,6 +291,7 @@ namespace NJournals.Core
 			this.lblRefReports.Click += delegate { OnSelectRefillingReports(null); };
 			this.lblRefill.Click += delegate { OnSelectRefillCompany(null); };
 			this.lblLaundry.Click += delegate { OnSelectLaundryCompany(null); };
+			
 		}
 		
 		void FormViewClose(object sender, FormClosedEventArgs e){
@@ -321,8 +322,49 @@ namespace NJournals.Core
 					}
 				}
 			}
+		}		
+		
+		
+		void MainFormStation_keydown(object sender, KeyEventArgs e)
+		{
+			switch(e.KeyCode){
+				case Keys.F1:
+					ShowCustomerListView();
+					break;
+				case Keys.F2:
+					ShowRefillCompanyView();
+					break;
+				case Keys.F3:
+					ShowRefillingNewView();
+					break;
+				case Keys.F4:
+					ShowRefillingDeleteView();
+					break;
+				case Keys.F5:
+					ShowRefillingReturnPaymentView();					
+					break;
+				case Keys.F6:
+					ShowRefillingReportView();
+					break;
+				case Keys.F7:
+					ShowRefillingConfigurationView();
+					break;
+				case Keys.F8:
+					ShowLaundryCompanyView();
+					break;
+				case Keys.F9:
+					ShowLaundryNewView();
+					break;
+				case Keys.F10:
+					ShowLaundryClaimView();
+					break;
+				case Keys.F11:
+					ShowLaundryReportView();
+					break;
+				case Keys.F12:
+					ShowLaundryConfigurationView();
+					break;						
+			}			
 		}
-		
-		
 	}
 }

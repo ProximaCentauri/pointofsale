@@ -303,6 +303,7 @@ namespace NJournals.Core.Views
 			txtbottles.Text = "0";
 			unitprice = m_presenter.getAmtChargeByName(cmbproducts.Text);
 			txtunitprice.Text = unitprice.ToString("N2");
+			txtnoitems.Focus();
 		}
 		
 		void chkunpaid_click(object sender, EventArgs e)
