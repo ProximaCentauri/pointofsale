@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using NJournals.Core.Presenter;
 using NJournals.Core.Models;
 using System.Data;
-
+using NJournals.Common.LREventArgs;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -28,7 +28,8 @@ namespace NJournals.Core.Views
 		LaundryChargesViewPresenter m_presenter;
 		List<LaundryChargeDataEntity> m_chargesEntity;
 		List<int> chargesIndexChange = new List<int>();
-		int chargesMaxRowIndex = -1;
+		int chargesMaxRowIndex = -1;		
+		public event EventHandler<ChargeListEventArgs> SelectChargelist;
 		
 		public LaundryChargesView()
 		{
@@ -105,6 +106,11 @@ namespace NJournals.Core.Views
 							chargesMaxRowIndex = dgvCharges.RowCount - 1;
 							chargesIndexChange.Clear();
 							dgvCharges.Refresh();
+							
+							if(SelectChargelist != null){								
+								SelectChargelist(this, new ChargeListEventArgs(charges));
+							}
+								
 						}
 						catch (Exception ex)
 						{
@@ -246,4 +252,6 @@ namespace NJournals.Core.Views
 			dgvCharges.Columns["Amount"].SortMode = DataGridViewColumnSortMode.NotSortable;
 		}	
 	}
+	
+	
 }

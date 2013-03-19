@@ -49,4 +49,6 @@ namespace NJournals.Core.Presenter
 			}
 		}		
 	}
+	
+	
 }

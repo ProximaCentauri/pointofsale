@@ -9,7 +9,7 @@
 using System;
 using NJournals.Common.DataEntities;
 using System.Collections.Generic;
-
+using NJournals.Common.LREventArgs; 
 namespace NJournals.Common.Interfaces
 {
 	/// <summary>
@@ -17,10 +17,9 @@ namespace NJournals.Common.Interfaces
 	/// </summary>
 	public interface ICheckListView : IView
 	{
-		event EventHandler SelectChecklist;
+		event EventHandler<ChecklistEventArgs> SelectChecklist;
 		void SetAllCheckList(List<LaundryChecklistDataEntity> checkListEntities);
 		void SetSelectedCheckList();
 		List<LaundryChecklistDataEntity> ProcessCheckList();
-		List<string> GetAllSelectedCheckList();
 	}
 }

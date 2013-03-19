@@ -91,4 +91,6 @@ namespace NJournals.Core.Presenter
 			}			
 		}
 	}
+	
+	
 }

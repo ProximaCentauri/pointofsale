@@ -16,6 +16,7 @@ using NJournals.Common.Util;
 using System.Collections.Generic;
 using NJournals.Core.Presenter;
 using NJournals.Core.Models;
+using NJournals.Common.LREventArgs;
 using System.Data;
 namespace NJournals.Core.Views
 {
@@ -318,14 +319,15 @@ namespace NJournals.Core.Views
 		
 		public void LaunchChecklist(){			
 			chklistView = new CheckListView(m_headerEntity, int.Parse(txtjoborder.Text));
-			chklistView.SelectChecklist += delegate { GetSelectedChecklist(); };
+			chklistView.SelectChecklist += new EventHandler<ChecklistEventArgs>(OnCheckListChange);
 			chklistView.ShowDialog();		
+			chklistView.SelectChecklist -= new EventHandler<ChecklistEventArgs>(OnCheckListChange);
+			
 		}
 		
-		public void GetSelectedChecklist(){
-			List<string> checkListEntities = chklistView.GetAllSelectedCheckList();
+		public void OnCheckListChange(object sender, ChecklistEventArgs e){
 			m_headerEntity.JobChecklistEntities = new List<LaundryJobChecklistDataEntity>();
-			foreach(string checklist in checkListEntities){
+			foreach(string checklist in e.Checklist){
 				string[] arrchecklist = checklist.Split('|');
 				LaundryJobChecklistDataEntity newChecklist = new LaundryJobChecklistDataEntity();
 				newChecklist.Header = m_headerEntity;
@@ -556,7 +558,26 @@ namespace NJournals.Core.Views
 		
 		public void LaunchCharges(){
 			chargesView = new LaundryChargesView();
+			chargesView.SelectChargelist += new EventHandler<ChargeListEventArgs>(OnChargeListChange);
 			chargesView.ShowDialog();
+			chargesView.SelectChargelist -= new EventHandler<ChargeListEventArgs>(OnChargeListChange);			
+		}
+		
+		private void OnChargeListChange(object sender, ChargeListEventArgs e){
+			foreach(LaundryChargeDataEntity charge in e.Charges){
+				bool newEntry = true;
+				for(int i=0; i < chkchargesList.Items.Count-1; i++){
+					if(chkchargesList.GetItemChecked(i) && string.Equals(chkchargesList.Items[i].ToString(), charge.Name, StringComparison.OrdinalIgnoreCase)){
+						//TODO: calculate 						
+						newEntry = false;
+					}
+					if(string.Equals(chkchargesList.Items[i].ToString(), charge.Name, StringComparison.OrdinalIgnoreCase)){
+						newEntry = false;
+					}
+				}
+				if(newEntry)
+					chkchargesList.Items.Add(charge.Name);
+			}
 		}
 		
 		void cmbcategory_selectedindexchanged(object sender, EventArgs e)

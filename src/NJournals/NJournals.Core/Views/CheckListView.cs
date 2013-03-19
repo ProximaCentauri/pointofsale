@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using NJournals.Common.DataEntities;
 using NJournals.Common.Util;
 using System.Linq;
+using NJournals.Common.LREventArgs;
 namespace NJournals.Core.Views
 {
 	/// <summary>
@@ -43,7 +44,7 @@ namespace NJournals.Core.Views
 		
 	
 		private CheckListViewPresenter m_presenter;
-		public event EventHandler SelectChecklist;
+		public event EventHandler<ChecklistEventArgs> SelectChecklist;
 		private int m_jonumber;
 		private LaundryHeaderDataEntity m_headerEntity;
 		private List<LaundryChecklistDataEntity> m_checklistEntities = new List<LaundryChecklistDataEntity>();
@@ -63,24 +64,8 @@ namespace NJournals.Core.Views
 			}
 			
 			btnok.Click += delegate { OnSelectChecklist(null); };
-		}
-		
-		public List<string> GetAllSelectedCheckList(){
-			List<string> checklistEntities = new List<string>();;
-			foreach(DataGridViewRow row in dgvCheckList.Rows){
-				if(row.Cells[0].Value != null){
-					if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
-						//LaundryJobChecklistDataEntity entity = new LaundryJobChecklistDataEntity();
-						bool isChecked = bool.Parse(row.Cells[0].Value.ToString());
-						if(isChecked && row.Cells[1].Value != null){
-							checklistEntities.Add(row.Cells[1].Value.ToString() + "|" + row.Cells[2].Value.ToString());
-						}
-					}
-				}
-			}
-			return checklistEntities;
 		}		
-
+		
 		void setButtonImages()
 		{		
 			Resource.setImage(this.btnSaveCheckList,System.IO.Directory.GetCurrentDirectory() + "/images/save2.png");
@@ -94,7 +79,19 @@ namespace NJournals.Core.Views
 		
 		protected virtual void OnSelectChecklist(EventArgs e){
 			if(SelectChecklist != null){
-				SelectChecklist(this, e);
+				List<string> checklistEntities = new List<string>();;
+				foreach(DataGridViewRow row in dgvCheckList.Rows){
+					if(row.Cells[0].Value != null){
+						if(!string.IsNullOrEmpty(row.Cells[0].Value.ToString())){
+							//LaundryJobChecklistDataEntity entity = new LaundryJobChecklistDataEntity();
+							bool isChecked = bool.Parse(row.Cells[0].Value.ToString());
+							if(isChecked && row.Cells[1].Value != null){
+								checklistEntities.Add(row.Cells[1].Value.ToString() + "|" + row.Cells[2].Value.ToString());
+							}
+						}
+					}
+				}
+				SelectChecklist(this, new ChecklistEventArgs(checklistEntities));
 				if(itemsIndex.Count > 0 && !ValidateEmptyCellValues()){
 					if(MessageService.ShowYesNo("You have made changes to the checklist. Do you want to save your changes?"))
 					{
