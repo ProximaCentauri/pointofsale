@@ -46,6 +46,7 @@ namespace NJournals.Core.Views
 		LaundryCustomerSearchView customerSearchView = null;
 		LaundryChargesView chargesView = null;
 		LaundryPriceSchemeDataEntity priceEntity = null;
+		List<LaundryChargeDataEntity> m_charges = new List<LaundryChargeDataEntity>();
 		private decimal removePrice = 0;
 		private decimal amountTender = 0;		
 		private decimal totalAmtDue = 0;
@@ -108,6 +109,7 @@ namespace NJournals.Core.Views
 		}
 		
 		public void SetAllCharges(List<LaundryChargeDataEntity> charges){
+			m_charges = charges;
 			chkchargesList.Items.Clear();
 			foreach(LaundryChargeDataEntity charge in charges){
 				this.chkchargesList.Items.Add(charge.Name);
@@ -450,15 +452,18 @@ namespace NJournals.Core.Views
 		}			
 		
 		void chkchargesList_ItemChecked(object sender, ItemCheckEventArgs e)
-		{			
+		{					
+			CalculateCharges(e);
+		}
+		
+		void CalculateCharges(ItemCheckEventArgs e){
 			decimal charge = 0M;
-			
-			if(e.NewValue == CheckState.Checked){
-				charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
+			charge = m_charges.Find(x => x.Name.Equals(chkchargesList.Items[e.Index].ToString())).Amount;
+			//charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
+			if(e.NewValue == CheckState.Checked){				
 				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) + charge).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + charge).ToString("N2");
-			}else{
-				charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
+			}else{				
 				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) - charge).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) - charge).ToString("N2");
 			}			
@@ -564,19 +569,26 @@ namespace NJournals.Core.Views
 		}
 		
 		private void OnChargeListChange(object sender, ChargeListEventArgs e){
+			
 			foreach(LaundryChargeDataEntity charge in e.Charges){
 				bool newEntry = true;
-				for(int i=0; i < chkchargesList.Items.Count-1; i++){
+				for(int i=0; i < chkchargesList.Items.Count; i++){
 					if(chkchargesList.GetItemChecked(i) && string.Equals(chkchargesList.Items[i].ToString(), charge.Name, StringComparison.OrdinalIgnoreCase)){
-						//TODO: calculate 						
+						//TODO: calculate 								
+						CalculateCharges(new ItemCheckEventArgs(i, CheckState.Unchecked, CheckState.Checked));
 						newEntry = false;
+						int index = m_charges.FindIndex(x => x.Name.Equals(charge.Name));
+						m_charges[index].Amount = charge.Amount;
+						CalculateCharges(new ItemCheckEventArgs(i, CheckState.Checked, CheckState.Unchecked));
 					}
 					if(string.Equals(chkchargesList.Items[i].ToString(), charge.Name, StringComparison.OrdinalIgnoreCase)){
 						newEntry = false;
 					}
 				}
-				if(newEntry)
+				if(newEntry){
 					chkchargesList.Items.Add(charge.Name);
+					m_charges.Add(charge);
+				}					
 			}
 		}
 		
