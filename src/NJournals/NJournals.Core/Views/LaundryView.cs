@@ -57,7 +57,6 @@ namespace NJournals.Core.Views
 			Resource.setImage(this.btnCustomerSearch, System.IO.Directory.GetCurrentDirectory() + "/images/search.png");
 			Resource.setImage(this.btnDeleteDetail,System.IO.Directory.GetCurrentDirectory() + "/images/delete2.png");
 			Resource.setImage(this.btnEditCharges, System.IO.Directory.GetCurrentDirectory() + "/images/edit2.png");
-			Resource.setImage(this.btnRefresh, System.IO.Directory.GetCurrentDirectory() + "/images/refresh2.png");
 		}
 		
 		void LaundryNewViewLoad(object sender, EventArgs e)
