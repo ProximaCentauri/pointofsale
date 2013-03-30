@@ -170,6 +170,13 @@ namespace NJournals.Core.Views
 			errorProvider.SetError(txtName, "");
 		}
 		
+		void enableShowButton(object sender, EventArgs e)
+		{
+			if(dgvCustomerList.SelectedRows.Count > 0)
+				btnShow.Enabled = true;
+			else
+				btnShow.Enabled = false;
+		}
 
 		
 		void BtnsearchClick(object sender, EventArgs e)
