@@ -457,8 +457,8 @@ namespace NJournals.Core.Views
 		
 		void CalculateCharges(ItemCheckEventArgs e){
 			decimal charge = 0M;
-			charge = m_charges.Find(x => x.Name.Equals(chkchargesList.Items[e.Index].ToString())).Amount;
-			//charge = m_presenter.getAmtChargeByName(chkchargesList.Items[e.Index].ToString());
+			//charge = m_charges.Find(x => x.Name.Equals(chkchargesList.Items[e.Index].ToString())).Amount;
+			charge = m_presenter.getAmtChargeById(m_charges[e.Index].ChargeID);
 			if(e.NewValue == CheckState.Checked){				
 				txttotalcharges.Text = (decimal.Parse(txttotalcharges.Text) + charge).ToString("N2");
 				txttotalamtdue.Text = (decimal.Parse(txttotalamtdue.Text) + charge).ToString("N2");
@@ -572,7 +572,8 @@ namespace NJournals.Core.Views
 			foreach(LaundryChargeDataEntity charge in e.Charges){
 				bool newEntry = true;
 				for(int i=0; i < chkchargesList.Items.Count; i++){
-					if(chkchargesList.GetItemChecked(i) && string.Equals(chkchargesList.Items[i].ToString(), charge.Name, StringComparison.OrdinalIgnoreCase)){
+					//if(chkchargesList.GetItemChecked(i) && string.Equals(chkchargesList.Items[i].ToString(), charge.Name, StringComparison.OrdinalIgnoreCase)){
+					if(chkchargesList.GetItemChecked(i) && m_charges[i].ChargeID == charge.ChargeID){
 						//TODO: calculate 								
 						CalculateCharges(new ItemCheckEventArgs(i, CheckState.Unchecked, CheckState.Checked));
 						newEntry = false;
@@ -580,8 +581,9 @@ namespace NJournals.Core.Views
 						m_charges[index].Amount = charge.Amount;
 						CalculateCharges(new ItemCheckEventArgs(i, CheckState.Checked, CheckState.Unchecked));
 					}
-					if(string.Equals(chkchargesList.Items[i].ToString(), charge.Name, StringComparison.OrdinalIgnoreCase)){
+					if(m_charges[i].ChargeID == charge.ChargeID){
 						newEntry = false;
+						chkchargesList.Items[i] = charge.Name;
 					}
 				}
 				if(newEntry){

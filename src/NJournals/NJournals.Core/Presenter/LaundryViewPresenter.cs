@@ -324,6 +324,10 @@ namespace NJournals.Core.Presenter
 			return m_chargeDao.GetByName(name).Amount;
 		}
 		
+		public decimal getAmtChargeById(int id){			
+			return m_chargeDao.GetById(id).Amount;
+		}
+		
 		public LaundryChargeDataEntity getJobChargeByName(string name){			
 			return m_chargeDao.GetByName(name);
 		}	
